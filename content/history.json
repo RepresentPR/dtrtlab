@@ -1,0 +1,39 @@
+{
+  "title": "The journey",
+  "note": "Public milestones only. Playable archives stay private. Do not invent builds.",
+  "items": [
+    {
+      "id": "b01",
+      "public": true,
+      "build": 1,
+      "version": "1.0.0-rc.6",
+      "date": "2026-08-28",
+      "stage": "Release Candidate",
+      "title": "Build 01 — Añasco vertical slice",
+      "summary": "Hometown street behind the lane. Late-afternoon west-coast light. UNIT 12 without a pasted face. First numbered archive.",
+      "playablePublic": false
+    },
+    {
+      "id": "rc5",
+      "public": true,
+      "build": null,
+      "version": "1.0.0-rc.5",
+      "date": "2026-08-28",
+      "stage": "Release Candidate",
+      "title": "RC5 — website in the product",
+      "summary": "In-game Website, What’s new, Support, Contact. Not a sequential archive number.",
+      "playablePublic": false
+    },
+    {
+      "id": "rc1",
+      "public": true,
+      "build": null,
+      "version": "1.0.0-rc.1",
+      "date": "2026-08-27",
+      "stage": "Release Candidate",
+      "title": "RC1 — launch candidate systems",
+      "summary": "90-second rule, atomic saves, Ultra/High/Medium/Low. Not snapshotted as a playable archive.",
+      "playablePublic": false
+    }
+  ]
+}

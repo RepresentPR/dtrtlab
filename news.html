@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>What’s new — DTRT Lab</title>
+  <meta name="description" content="Patch notes, worlds, music, and development milestones for DTRT Lab.">
+  <link rel="stylesheet" href="css/lab.css">
+  <link rel="icon" href="img/icon.svg">
+</head>
+<body>
+  <header class="nav" id="site-nav"></header>
+  <section>
+    <div class="wrap">
+      <p class="kicker">What’s new</p>
+      <h2>The public record of the lab.</h2>
+      <p class="lead">Patch notes, new worlds, music, art, and milestones. The game links here. Training does not wait on this page.</p>
+      <p class="muted" id="build-note"></p>
+      <div class="grid two" id="news-list"></div>
+    </div>
+  </section>
+  <footer id="site-foot"></footer>
+  <script src="js/nav.js"></script>
+  <script src="js/content.js"></script>
+  <script>
+    (function () {
+      var v = new URLSearchParams(location.search).get("v");
+      var note = document.getElementById("build-note");
+      if (v && note) note.textContent = "You opened this from DTRT Lab " + v + ". Nothing was uploaded.";
+      DTRT.loadNews().then(function (data) {
+        var host = document.getElementById("news-list");
+        var items = (data && data.items) || [];
+        host.innerHTML = items.map(function (it) {
+          return (
+            '<article class="card" id="' + (it.id || "") + '">' +
+            "<h3>" + (it.title || "") + "</h3>" +
+            '<p class="muted">' + (it.date || "") + "</p>" +
+            "<p>" + (it.body || "") + "</p>" +
+            "</article>"
+          );
+        }).join("");
+      }).catch(function () {
+        document.getElementById("news-list").innerHTML = "<p>Could not load news.json. Serve the site folder.</p>";
+      });
+    })();
+  </script>
+</body>
+</html>

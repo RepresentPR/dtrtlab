@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Worlds — DTRT Lab</title>
+  <meta name="description" content="Añasco is the first training world. Other Puerto Rican-inspired places are planned. Same 12 m lane.">
+  <link rel="stylesheet" href="css/lab.css">
+  <link rel="icon" href="img/icon.svg">
+</head>
+<body>
+  <header class="nav" id="site-nav"></header>
+
+  <section>
+    <div class="wrap">
+      <p class="kicker">Puerto Rico</p>
+      <h2>Inspired places. Original maps.</h2>
+      <p class="lead">We use real climate, architecture, and light. We do not photocopy plazas, forts, or lighthouses. The 12 m pit stays the measurement. <strong>Only Añasco exists as a vertical slice.</strong> The other names are planned light and architecture, not playable maps.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap grid two">
+      <article class="card" id="anasco">
+        <img src="img/ocean.jpg" alt="Añasco ocean backdrop">
+        <h3>Añasco — gold</h3>
+        <p><strong>Where it started.</strong> West-coast hometown range. Warm afternoon, painted houses, hanging flag, ocean over the far wall. First bullet, stop, peek.</p>
+      </article>
+      <article class="card" id="mayaguez">
+        <img src="img/house.jpg" alt="Mayagüez urban plaster language">
+        <h3>Mayagüez — skin</h3>
+        <p><strong>The city.</strong> Denser street, urban fill. Not Plaza Colón. Flick, switch, small.</p>
+      </article>
+      <article class="card" id="caborojo">
+        <img src="img/limestone.jpg" alt="Cabo Rojo limestone">
+        <h3>Cabo Rojo — skin</h3>
+        <p><strong>The dry coast.</strong> Hard sun, salt, stone. Precision and small targets.</p>
+      </article>
+      <article class="card" id="rincon">
+        <img src="img/ocean.jpg" alt="Rincón west light">
+        <h3>Rincón — skin</h3>
+        <p><strong>The surf.</strong> Sunset sun, wood, ocean. Tracking and reaction. No copied dome or lighthouse.</p>
+      </article>
+      <article class="card" id="sanjuan">
+        <h3>San Juan — shell</h3>
+        <p><strong>The capital.</strong> Lighting and dense facades. Blockout.</p>
+      </article>
+      <article class="card" id="oldsanjuan">
+        <h3>Old San Juan — shell</h3>
+        <p><strong>The old city.</strong> Warm historic light. No forts.</p>
+      </article>
+      <article class="card" id="aguadilla">
+        <h3>Aguadilla — shell</h3>
+        <p><strong>The northwest.</strong> Bright coastal light.</p>
+      </article>
+      <article class="card" id="humacao">
+        <h3>Humacao — shell</h3>
+        <p><strong>East coast.</strong> Cooler, brighter; not Añasco gold.</p>
+      </article>
+    </div>
+    <div class="wrap">
+      <p class="caption">Status is honest: gold is dressed, skin is architecture plus light, shell is light and horizon. Artwork on this page is in-game.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap grid two">
+      <article class="card">
+        <img src="img/flag.jpg" alt="Weathered Puerto Rican flag as used in the lab">
+        <h3>The flag</h3>
+        <p>One natural placement per world. Hanging cloth, shop wall, or pole — not a collectible and not eight identical banners on spawn.</p>
+      </article>
+      <article class="card">
+        <img src="img/roots.jpg" alt="Raíces mural in the courtyard">
+        <h3>Art around the lane</h3>
+        <p>Original murals unlock with visits. Culture lives in the courtyard, never behind UNIT 12.</p>
+      </article>
+    </div>
+  </section>
+
+  <footer id="site-foot"></footer>
+  <script src="js/nav.js"></script>
+  <script src="js/content.js"></script>
+  <script>
+    var q = new URLSearchParams(location.search).get("w") || location.hash.replace("#", "");
+    if (q) {
+      var el = document.getElementById(q);
+      if (el) el.scrollIntoView();
+    }
+  </script>
+</body>
+</html>

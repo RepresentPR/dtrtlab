@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Support the build — DTRT Lab</title>
+  <meta name="description" content="Voluntary support for DTRT Lab development. Not a purchase.">
+  <link rel="stylesheet" href="css/lab.css">
+  <link rel="icon" href="img/icon.svg">
+</head>
+<body>
+  <header class="nav" id="site-nav"></header>
+  <section>
+    <div class="wrap">
+      <p class="kicker">Support the build</p>
+      <h2>You’re not buying anything extra.</h2>
+      <p class="lead">This is voluntary funding. It is not a pre-order and it does not add in-game items. No guilt. No fake urgency.</p>
+      <p id="donate-box" class="note warn">Donations stay off until a PayPal hosted donation button ID is placed in content/site.json (donateHostedButtonId). We will not show a fake “donation received”.</p>
+      <p><a href="preorder.html">Pre-order the game</a> is a different page on purpose.</p>
+    </div>
+  </section>
+  <footer id="site-foot"></footer>
+  <script src="js/nav.js"></script>
+  <script src="js/content.js"></script>
+  <script>
+    DTRT.loadSite().then(function (s) {
+      var box = document.getElementById("donate-box");
+      var id = s.donateHostedButtonId;
+      if (id) {
+        box.className = "note";
+        box.innerHTML = 'PayPal hosts this. <a class="cta" href="https://www.paypal.com/donate/?hosted_button_id=' + encodeURIComponent(id) + '">Donate via PayPal</a>';
+      }
+    }).catch(function () {});
+  </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catalog — DTRT Lab</title>
+  <meta name="description" content="Live training modes, rifles, music, and art. Planned items are labeled.">
+  <link rel="stylesheet" href="css/lab.css">
+  <link rel="icon" href="img/icon.svg">
+</head>
+<body>
+  <header class="nav" id="site-nav"></header>
+  <section>
+    <div class="wrap">
+      <p class="kicker">Catalog</p>
+      <h2>What ships. What doesn’t yet.</h2>
+      <p class="lead">This list is JSON (`content/catalog.json`). Planned rows stay marked planned. Edit the file — don’t rewrite the HTML.</p>
+      <h3>AIM + DTRT</h3>
+      <div class="grid two" id="modes"></div>
+      <h3>Rifles</h3>
+      <div class="grid two" id="weapons"></div>
+      <h3>News</h3>
+      <div id="news"></div>
+    </div>
+  </section>
+  <footer id="site-foot"></footer>
+  <script src="js/nav.js"></script>
+  <script src="js/content.js"></script>
+  <script>
+    function card(item) {
+      var st = DTRT.statusLabel(item.status);
+      var cls = item.status === "available" ? "pill" : item.status === "planned" ? "pill plan" : "pill dev";
+      var id = item.id ? ' id="' + item.id + '"' : "";
+      return '<article class="card"' + id + '><h3>' + item.title + ' <span class="' + cls + '">' + st + '</span></h3><p>' + (item.blurb || "") + "</p></article>";
+    }
+    DTRT.loadCatalog().then(function (c) {
+      document.getElementById("modes").innerHTML = (c.modes || []).map(card).join("");
+      document.getElementById("weapons").innerHTML = (c.weapons || []).map(card).join("");
+    });
+    DTRT.loadNews().then(function (n) {
+      document.getElementById("news").innerHTML = (n.items || []).map(function (i) {
+        return "<p><strong>" + i.date + " — " + i.title + "</strong><br>" + i.body + "</p>";
+      }).join("");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — DTRT Lab</title>
+  <meta name="description" content="Contact DTRT Lab: general, press, support, bugs, feedback.">
+  <link rel="stylesheet" href="css/lab.css">
+  <link rel="icon" href="img/icon.svg">
+</head>
+<body>
+  <header class="nav" id="site-nav"></header>
+  <section>
+    <div class="wrap">
+      <p class="kicker">Contact</p>
+      <h2>Write. Don’t expect a timer.</h2>
+      <p class="lead">Write when you have something real. No response time is promised. If the form cannot send, your email app opens a draft to the lab inbox.</p>
+      <form class="stack" id="contact-form">
+        <label>Name <input name="name" autocomplete="name" required></label>
+        <label>Email <input name="email" type="email" autocomplete="email" required></label>
+        <label>Category
+          <select name="category" required>
+            <option value="general">General</option>
+            <option value="support">Support</option>
+            <option value="press">Press</option>
+            <option value="business">Business</option>
+            <option value="bug">Bug</option>
+            <option value="feedback">Feedback</option>
+          </select>
+        </label>
+        <label>Message <textarea name="message" required maxlength="8000"></textarea></label>
+        <input class="hp" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="cta" type="submit">Send</button>
+        <p data-status class="note muted">Your message goes to the lab inbox. No autoresponder.</p>
+      </form>
+      <p><a href="bug.html">Full bug report form</a></p>
+    </div>
+  </section>
+  <footer id="site-foot"></footer>
+  <script src="js/nav.js"></script>
+  <script src="js/forms.js"></script>
+  <script>DTRT.bindForm(document.getElementById("contact-form"), "/api/contact");</script>
+</body>
+</html>

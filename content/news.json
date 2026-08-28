@@ -1,0 +1,11 @@
+{
+  "items": [
+    {"id": "b01", "date": "2026-08-28", "title": "Build 01 — archive + Añasco slice", "body": "Sequential Build 01. Private DTRT_ARCHIVE snapshots. Public journey page. Añasco street. UNIT 12 without a pasted face."},
+    {"id": "rc6", "date": "2026-08-28", "title": "RC6 — Añasco vertical slice", "body": "Hometown street, west-coast afternoon light, volume houses, hanging flag. UNIT 12 no longer uses a pasted face. Godot stays. Other worlds wait until Añasco clears the bar."},
+    {"id": "rc5", "date": "2026-08-28", "title": "RC5 — website in the product", "body": "In-game Website, What’s new, Support, Contact, bug form with version. Optional desktop/Start Menu shortcuts. No production domain invented. Pre-order stays off until PayPal sandbox works."},
+    {"id": "rc4", "date": "2026-08-28", "title": "RC4 — official site", "body": "Public site, press language, F12 shots. No new training modes."},
+    {"id": "rc3", "date": "2026-08-27", "title": "RC3 — Puerto Rico worlds", "body": "Añasco gold. Seven more worlds as skins or shells. Same 12 m lane."},
+    {"id": "rc2", "date": "2026-08-27", "title": "RC2 — first-person arms", "body": "Gloves, fingers, walk ≠ run."},
+    {"id": "rc1", "date": "2026-08-27", "title": "RC1 — launch candidate systems", "body": "90-second rule, atomic saves, Ultra/High/Medium/Low."}
+  ]
+}
