@@ -12,6 +12,7 @@
     '<a class="brand" href="' + root + 'index.html">DTRT</a>' +
     '<nav class="links" id="site-links" aria-label="Primary">' +
     a("game.html", "Lab", "Lab") +
+    a("faq.html", "FAQ", "FAQ") +
     a("news.html", "GitHub", "GitHub") +
     a("donate.html", "Support", "Support") +
     "</nav>" +
@@ -58,6 +59,7 @@
       '<div class="wrap">' +
       "<span>DTRT Lab</span>" +
       '<a href="' + root + 'contact.html" data-event="Contact">Contact</a>' +
+      '<a href="' + root + 'faq.html" data-event="FAQ">FAQ</a>' +
       '<a href="' + root + 'press.html" data-event="Press">Press</a>' +
       '<a href="' + root + 'story.html" data-event="Mission">Mission</a>' +
       '<a href="' + root + 'legal/privacy.html">Privacy</a>' +

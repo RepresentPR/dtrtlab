@@ -190,6 +190,31 @@ h1 {
   letter-spacing: -0.03em;
 }
 .hero p { margin: 0 auto 0; max-width: 36rem; color: #ececec; }
+.hero .lede {
+  font-size: clamp(16px, 2.1vw, 20px);
+  line-height: 1.45;
+  max-width: 34rem;
+  margin: 0 auto 4px;
+  color: #ececec;
+}
+figure.proof { margin: 32px 0 0; }
+.proof .still { margin-top: 0; }
+.proof .caption { margin-top: 12px; max-width: 40rem; }
+#offer .card h3 {
+  font-size: clamp(22px, 3vw, 28px);
+  letter-spacing: -0.03em;
+  text-transform: none;
+  margin: 0 0 10px;
+  font-weight: 700;
+}
+#offer .card p { margin: 0; color: #d4d4d4; }
+#offer .card .kicker { margin: 0 0 8px; }
+.engine-line {
+  margin-top: 28px;
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 40rem;
+}
 .kicker {
   font-size: 13px;
   letter-spacing: 0.18em;
