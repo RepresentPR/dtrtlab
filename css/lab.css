@@ -409,6 +409,32 @@ footer a {
 }
 footer a:hover { color: #fff; }
 
+.consent {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  background: rgba(0, 0, 0, 0.94);
+  border-top: 1px solid var(--line);
+  padding: 16px 0 calc(16px + env(safe-area-inset-bottom));
+}
+.consent .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+.consent p {
+  margin: 0;
+  max-width: 40rem;
+  color: #d4d4d4;
+  font-size: 14px;
+}
+.consent .actions { margin: 0; }
+.consent a { color: #fff; }
+
 form.stack { display: grid; gap: 14px; max-width: 36rem; }
 form.stack label { font-size: 13px; color: var(--muted); font-weight: 500; }
 form.stack input, form.stack select, form.stack textarea {
