@@ -2,6 +2,7 @@
   var host = (location.hostname || "").replace(/^www\./, "");
   if (host !== "dtrtlab.com") return;
   if (navigator.globalPrivacyControl === true) return;
+  if (navigator.doNotTrack === "1" || window.doNotTrack === "1") return;
 
   window.plausible =
     window.plausible ||
@@ -12,7 +13,7 @@
   var s = document.createElement("script");
   s.defer = true;
   s.setAttribute("data-domain", "dtrtlab.com");
-  s.src = "https://plausible.io/js/script.outbound-links.tagged-events.js";
+  s.src = "https://plausible.io/js/script.outbound-links.file-downloads.tagged-events.js";
   document.head.appendChild(s);
 
   document.addEventListener(
@@ -26,4 +27,8 @@
     },
     true
   );
+
+  if (/^404\b/.test(document.title)) {
+    window.plausible("404", { props: { path: location.pathname } });
+  }
 })();

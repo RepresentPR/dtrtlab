@@ -60,7 +60,7 @@
       "<span>DTRT Lab</span>" +
       '<a href="' + root + 'contact.html" data-event="Contact">Contact</a>' +
       '<a href="' + root + 'faq.html" data-event="FAQ">FAQ</a>' +
-      '<a href="' + root + 'index.html#setup">Setup</a>' +
+      '<a href="' + root + 'index.html#setup" data-event="Setup">Setup</a>' +
       '<a href="' + root + 'press.html" data-event="Press">Press</a>' +
       '<a href="' + root + 'story.html" data-event="Mission">Mission</a>' +
       '<a href="' + root + 'legal/privacy.html">Privacy</a>' +
@@ -75,6 +75,23 @@
       '<a href="https://ko-fi.com/dtrtlab" rel="noopener noreferrer" target="_blank">Ko-fi</a>' +
       "</div>";
   }
+  if (!document.querySelector('meta[name="referrer"]')) {
+    var ref = document.createElement("meta");
+    ref.name = "referrer";
+    ref.content = "strict-origin-when-cross-origin";
+    document.head.appendChild(ref);
+  }
+  fetch(root + "content/site.json", { cache: "no-store" })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (site) {
+      if (!site || !site.googleSiteVerification) return;
+      if (document.querySelector('meta[name="google-site-verification"]')) return;
+      var g = document.createElement("meta");
+      g.name = "google-site-verification";
+      g.content = site.googleSiteVerification;
+      document.head.appendChild(g);
+    })
+    .catch(function () {});
   var analytics = document.createElement("script");
   analytics.src = root + "js/analytics.js";
   analytics.defer = true;
