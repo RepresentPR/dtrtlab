@@ -289,7 +289,13 @@ p.lead { font-size: clamp(16px, 2.4vw, 19px); max-width: 40rem; color: #d4d4d4; 
   font-size: 13px;
   line-height: 1.6;
 }
+.sources p { margin: 0 0 14px; }
 .sources a { color: var(--muted); }
+.sources-list {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+.sources-list li { margin: 0 0 10px; }
 .card img {
   margin: -24px -24px 16px;
   width: calc(100% + 48px);
