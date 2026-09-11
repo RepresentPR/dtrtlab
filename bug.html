@@ -3,8 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Report a bug — DTRT Lab</title>
-  <meta name="description" content="Report a DTRT Lab bug. Version, steps, hardware. No extra personal data.">
+  <title>Bug — DTRT Lab</title>
   <link rel="stylesheet" href="css/lab.css">
   <link rel="icon" href="img/icon.svg">
 </head>
@@ -13,43 +12,20 @@
   <section>
     <div class="wrap">
       <p class="kicker">Bugs</p>
-      <h2>What broke.</h2>
+      <h2>Report.</h2>
       <form class="stack" id="bug-form">
-        <label>Email (for follow-up, optional) <input name="email" type="email"></label>
-        <label>Game version <input name="version" placeholder="1.0.0-rc.5" required></label>
-        <label>Category
-          <select name="category">
-            <option>Crash</option>
-            <option>Scoring</option>
-            <option>Movement</option>
-            <option>Graphics</option>
-            <option>Audio</option>
-            <option>UI</option>
-            <option>Other</option>
-          </select>
-        </label>
+        <label>Email <input name="email" type="email"></label>
         <label>What happened <textarea name="description" required></textarea></label>
-        <label>Steps to reproduce <textarea name="steps"></textarea></label>
-        <label>Expected <input name="expected"></label>
-        <label>Actual <input name="actual"></label>
-        <label>GPU <input name="gpu"></label>
-        <label>CPU <input name="cpu"></label>
-        <label>Resolution <input name="resolution" placeholder="1920x1080"></label>
-        <label>Refresh Hz <input name="hz" placeholder="144"></label>
+        <input type="hidden" name="category" value="bug">
         <input class="hp" name="company" tabindex="-1" autocomplete="off">
-        <button class="cta" type="submit">Send report</button>
-        <p data-status class="note muted">Attach screenshots with F12 in-game, then describe the file name here. Uploads are not on this form yet.</p>
+        <button class="cta" type="submit">Send</button>
+        <p data-status class="note muted">Opens mail to DTRTCollision@outlook.com</p>
       </form>
     </div>
   </section>
   <footer id="site-foot"></footer>
   <script src="js/nav.js"></script>
   <script src="js/forms.js"></script>
-  <script>
-    DTRT.bindForm(document.getElementById("bug-form"), "/api/bug");
-    var v = new URLSearchParams(location.search).get("version");
-    var field = document.querySelector("[name=version]");
-    if (v && field && !field.value) field.value = v;
-  </script>
+  <script>DTRT.bindForm(document.getElementById("bug-form"));</script>
 </body>
 </html>

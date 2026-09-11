@@ -3,42 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The journey — DTRT Lab</title>
-  <meta name="description" content="Public milestones in DTRT Lab’s development. Playable archives stay private.">
-  <link rel="stylesheet" href="css/lab.css">
-  <link rel="icon" href="img/icon.svg">
+  <title>GitHub — DTRT Lab</title>
+  <meta http-equiv="refresh" content="0; url=news.html">
+  <link rel="canonical" href="https://dtrtlab.com/news.html">
 </head>
 <body>
-  <header class="nav" id="site-nav"></header>
-  <section>
-    <div class="wrap">
-      <p class="kicker">The journey</p>
-      <h2>How the lab was built.</h2>
-      <p class="lead">Public milestones only. Full playable history lives in a private archive. Nothing here is a download of the game.</p>
-      <div class="grid two" id="history-list"></div>
-    </div>
-  </section>
-  <footer id="site-foot"></footer>
-  <script src="js/nav.js"></script>
-  <script src="js/content.js"></script>
-  <script>
-    fetch("content/history.json", { cache: "no-store" })
-      .then(function (r) { return r.json(); })
-      .then(function (data) {
-        var host = document.getElementById("history-list");
-        var items = (data.items || []).filter(function (it) { return it.public; });
-        host.innerHTML = items.map(function (it) {
-          var b = it.build != null ? "Build " + String(it.build).padStart(2, "0") : "Unarchived RC";
-          return (
-            '<article class="card" id="' + (it.id || "") + '">' +
-            '<p class="kicker">' + b + "  ·  " + (it.stage || "") + "</p>" +
-            "<h3>" + (it.title || "") + "</h3>" +
-            '<p class="muted">' + (it.version || "") + "  ·  " + (it.date || "") + "</p>" +
-            "<p>" + (it.summary || "") + "</p>" +
-            "</article>"
-          );
-        }).join("");
-      });
-  </script>
+  <p><a href="news.html">GitHub</a></p>
 </body>
 </html>

@@ -1,12 +1,1 @@
-{
-  "worlds": [
-    {"id": "anasco", "title": "Añasco", "tagline": "Where it started", "status": "available", "training": "First bullet, stop, peek", "blurb": "West-coast hometown range. Warm afternoon, painted houses, hanging flag, ocean over the far wall.", "audio": "Neighborhood air, distant road, lab hum", "img": "img/ocean.jpg"},
-    {"id": "mayaguez", "title": "Mayagüez", "tagline": "The city", "status": "in-development", "training": "Flick, switch, small", "blurb": "Denser street, urban fill. Inspired by historic-city form, not Plaza Colón.", "audio": "Urban fill", "img": "img/house.jpg"},
-    {"id": "caborojo", "title": "Cabo Rojo", "tagline": "The dry coast", "status": "in-development", "training": "Precision, small, stability", "blurb": "Hard sun, limestone, salt. Original lantern tower — not Faro Los Morrillos.", "audio": "Dry wind", "img": "img/limestone.jpg"},
-    {"id": "rincon", "title": "Rincón", "tagline": "The surf", "status": "in-development", "training": "Track, reaction, peek", "blurb": "Sunset sun, wood, ocean. No copied dome.", "audio": "Surf / dusk", "img": "img/ocean.jpg"},
-    {"id": "sanjuan", "title": "San Juan", "tagline": "The capital", "status": "planned", "training": "Switch, reaction, track", "blurb": "Lighting and dense facades. Shell.", "audio": "City", "img": "img/house.jpg"},
-    {"id": "oldsanjuan", "title": "Old San Juan", "tagline": "The old city", "status": "planned", "training": "Precision, peek, small", "blurb": "Warm historic light. No forts.", "audio": "Stone / evening", "img": "img/stillness.jpg"},
-    {"id": "aguadilla", "title": "Aguadilla", "tagline": "The northwest", "status": "planned", "training": "Switch, reaction, first bullet", "blurb": "Bright coastal light.", "audio": "Coast / road", "img": "img/ocean.jpg"},
-    {"id": "humacao", "title": "Humacao", "tagline": "East coast", "status": "planned", "training": "Track, smooth, stability", "blurb": "Cooler, brighter; not Añasco gold.", "audio": "East wind", "img": "img/island.jpg"}
-  ]
-}
+{"worlds": []}

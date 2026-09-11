@@ -1,6 +1,6 @@
 {
   "product": "DTRT Lab",
-  "version": "1.0.0-rc.6",
+  "version": "ue5-lab",
   "creator": "Ian Ferraro Crespo",
   "tagline": "Move. Stop. Fire.",
   "oneSentence": "DTRT Lab is an original offline first-bullet laboratory: move, stop, acquire, fire — UNIT 12 drops only on a credited stopped head.",
@@ -9,9 +9,19 @@
   "preorderNote": "Price and checkout stay off until a PayPal sandbox app is configured and a price is set in .env. This is a release candidate, not 1.0.",
   "paypalClientIdPublic": "",
   "donateHostedButtonId": "",
-  "contactEmail": "IanAnthonyFC@gmail.com",
-  "pressEmail": "IanAnthonyFC@gmail.com",
-  "supportEmail": "IanAnthonyFC@gmail.com",
-  "social": {},
+  "contactEmail": "DTRTCollision@outlook.com",
+  "pressEmail": "DTRTCollision@outlook.com",
+  "supportEmail": "DTRTCollision@outlook.com",
+  "donateUrl": "https://ko-fi.com/dtrtlab",
+  "social": {
+    "x": "https://x.com/DTRTLab",
+    "instagram": "https://www.instagram.com/officiallydtrt/",
+    "twitch": "https://www.twitch.tv/dtrtc",
+    "youtube": "https://www.youtube.com/@DTRTLabYT",
+    "kofi": "https://ko-fi.com/dtrtlab"
+  },
+  "githubOwner": "RepresentPR",
+  "githubRepo": "DTRTCore",
+  "githubBranch": "codex/issue-33-clean-production",
   "releaseWindow": "When Windows export and playtest pass — no date claimed."
 }

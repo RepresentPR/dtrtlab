@@ -9,17 +9,12 @@
   DTRT.loadSite = function () {
     return load("content/site.json");
   };
-  DTRT.loadWorlds = function () {
-    return load("content/worlds.json");
-  };
   DTRT.loadCatalog = function () {
     return load("content/catalog.json");
   };
-  DTRT.loadNews = function () {
-    return load("content/news.json");
-  };
   DTRT.statusLabel = function (s) {
-    if (s === "available") return "Available";
+    if (s === "in-production") return "In production";
+    if (s === "available") return "In production";
     if (s === "in-development") return "In development";
     if (s === "planned") return "Planned";
     if (s === "experimental") return "Experimental";

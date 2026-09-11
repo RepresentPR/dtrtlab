@@ -1,28 +1,28 @@
 {
   "modes": [
-    {"id": "precision", "cat": "aim", "title": "Precision", "status": "available", "blurb": "Small corrections. One clean placement."},
-    {"id": "flick", "cat": "aim", "title": "Flick", "status": "available", "blurb": "Get there. Then confirm."},
-    {"id": "track", "cat": "aim", "title": "Tracking", "status": "available", "blurb": "Time-on-target."},
-    {"id": "smooth", "cat": "aim", "title": "Smooth", "status": "available", "blurb": "Continuous control."},
-    {"id": "switch", "cat": "aim", "title": "Target Switch", "status": "available", "blurb": "A, confirm. B, confirm."},
-    {"id": "reaction", "cat": "aim", "title": "Reaction", "status": "available", "blurb": "Wait. Then go."},
-    {"id": "small", "cat": "aim", "title": "Small Target", "status": "available", "blurb": "Tighter plates."},
-    {"id": "stability", "cat": "aim", "title": "Stability", "status": "available", "blurb": "Hold still after you arrive."},
-    {"id": "first_bullet", "cat": "dtrt", "title": "First bullet", "status": "available", "blurb": "Stop. Head. Dummy drops only then."},
-    {"id": "stop_shoot", "cat": "dtrt", "title": "Stop / plant", "status": "available", "blurb": "Walking is not a hit."},
-    {"id": "peek", "cat": "dtrt", "title": "Peek", "status": "available", "blurb": "Swing. Stop. Tap."},
+    {"id": "precision", "cat": "aim", "title": "Precision", "status": "in-production", "blurb": "Small corrections. One clean placement."},
+    {"id": "flick", "cat": "aim", "title": "Flick", "status": "in-production", "blurb": "Get there. Then confirm."},
+    {"id": "track", "cat": "aim", "title": "Tracking", "status": "in-production", "blurb": "Time-on-target."},
+    {"id": "smooth", "cat": "aim", "title": "Smooth", "status": "in-production", "blurb": "Continuous control."},
+    {"id": "switch", "cat": "aim", "title": "Target Switch", "status": "in-production", "blurb": "A, confirm. B, confirm."},
+    {"id": "reaction", "cat": "aim", "title": "Reaction", "status": "in-production", "blurb": "Wait. Then go."},
+    {"id": "small", "cat": "aim", "title": "Small Target", "status": "in-production", "blurb": "Tighter plates."},
+    {"id": "stability", "cat": "aim", "title": "Stability", "status": "in-production", "blurb": "Hold still after you arrive."},
+    {"id": "first_bullet", "cat": "dtrt", "title": "First bullet", "status": "in-production", "blurb": "Stop. Head. Dummy drops only then."},
+    {"id": "stop_shoot", "cat": "dtrt", "title": "Stop / plant", "status": "in-production", "blurb": "Walking is not a hit."},
+    {"id": "peek", "cat": "dtrt", "title": "Peek", "status": "in-production", "blurb": "Swing. Stop. Tap."},
     {"id": "strafe-read", "cat": "aim", "title": "Strafe read", "status": "planned", "blurb": "Not in the live catalog yet."},
     {"id": "integrated", "cat": "aim", "title": "Integrated aim", "status": "planned", "blurb": "Not in the live catalog yet."}
   ],
   "weapons": [
-    {"id": "kestrel", "title": "R-762 Kestrel", "status": "available", "blurb": "Original tap rifle. One clean head."},
-    {"id": "lumen", "title": "R-556 Lumen", "status": "available", "blurb": "Original short burst. Two heads."}
+    {"id": "kestrel", "title": "R-762 Kestrel", "status": "in-production", "blurb": "Original tap rifle. One clean head."},
+    {"id": "lumen", "title": "R-556 Lumen", "status": "planned", "blurb": "Original short burst. Not in the current Unreal slice."}
   ],
   "music": [
-    {"id": "no_me_muevo", "title": "No Me Muevo", "status": "available", "blurb": "Score. Lyrics on screen. Vocal file is a drop-in slot."}
+    {"id": "no_me_muevo", "title": "No Me Muevo", "status": "in-production", "blurb": "Score. Lyrics on screen. Vocal file is a drop-in slot."}
   ],
   "art": [
-    {"id": "roots", "title": "Raíces", "status": "available", "img": "img/roots.jpg"},
-    {"id": "stillness", "title": "Quietud", "status": "available", "img": "img/stillness.jpg"}
+    {"id": "roots", "title": "Raíces", "status": "in-production", "img": "img/roots.jpg"},
+    {"id": "stillness", "title": "Quietud", "status": "in-production", "img": "img/stillness.jpg"}
   ]
 }
