@@ -2,20 +2,21 @@
   var path = (location.pathname.split("/").pop() || "index.html").toLowerCase();
   var nested = location.pathname.indexOf("/legal/") !== -1;
   var root = nested ? "../" : "";
-  function a(href, label) {
+  function a(href, label, eventName) {
     var cur = path === href.toLowerCase() ? ' aria-current="page"' : "";
-    return '<a href="' + root + href + '"' + cur + ">" + label + "</a>";
+    var ev = eventName ? ' data-event="' + eventName + '"' : "";
+    return '<a href="' + root + href + '"' + cur + ev + ">" + label + "</a>";
   }
   var html =
     '<div class="wrap nav-row">' +
     '<a class="brand" href="' + root + 'index.html">DTRT</a>' +
     '<nav class="links" id="site-links" aria-label="Primary">' +
-    a("game.html", "Lab") +
-    a("news.html", "GitHub") +
-    a("donate.html", "Support") +
+    a("game.html", "Lab", "Lab") +
+    a("news.html", "GitHub", "GitHub") +
+    a("donate.html", "Support", "Support") +
     "</nav>" +
     '<div class="nav-end">' +
-    '<a class="nav-cta" href="' + root + 'contact.html">Access</a>' +
+    '<a class="nav-cta" href="' + root + 'contact.html" data-event="Access">Access</a>' +
     '<button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-links">Menu</button>' +
     "</div>" +
     "</div>";
@@ -56,12 +57,12 @@
     foot.innerHTML =
       '<div class="wrap">' +
       "<span>DTRT Lab</span>" +
-      '<a href="' + root + 'contact.html">Contact</a>' +
-      '<a href="' + root + 'press.html">Press</a>' +
-      '<a href="' + root + 'story.html">Mission</a>' +
+      '<a href="' + root + 'contact.html" data-event="Contact">Contact</a>' +
+      '<a href="' + root + 'press.html" data-event="Press">Press</a>' +
+      '<a href="' + root + 'story.html" data-event="Mission">Mission</a>' +
       '<a href="' + root + 'legal/privacy.html">Privacy</a>' +
       '<a href="' + root + 'legal/terms.html">Terms</a>' +
-      '<a href="' + root + 'donate.html">Support</a>' +
+      '<a href="' + root + 'donate.html" data-event="Support">Support</a>' +
       "</div>" +
       '<div class="wrap socials">' +
       '<a href="https://x.com/DTRTLab" rel="noopener noreferrer" target="_blank">X</a>' +
@@ -71,4 +72,8 @@
       '<a href="https://ko-fi.com/dtrtlab" rel="noopener noreferrer" target="_blank">Ko-fi</a>' +
       "</div>";
   }
+  var analytics = document.createElement("script");
+  analytics.src = root + "js/analytics.js";
+  analytics.defer = true;
+  document.head.appendChild(analytics);
 })();
