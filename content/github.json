@@ -1,8 +1,7 @@
 {
   "owner": "RepresentPR",
   "repo": "DTRTCore",
-  "branch": "codex/issue-33-clean-production",
-  "source": "https://github.com/RepresentPR/DTRTCore",
+  "branch": "",
   "created": "2026-09-04",
   "updated": "2026-09-11",
   "pulls": [
@@ -264,15 +263,6 @@
       "html_url": "https://github.com/RepresentPR/DTRTCore/pull/30",
       "state": "open",
       "created_at": "2026-09-08T01:50:25Z",
-      "merged_at": null,
-      "closed_at": null
-    },
-    {
-      "number": 31,
-      "title": "Autonomous visual production supervisor v1",
-      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/31",
-      "state": "open",
-      "created_at": "2026-09-09T18:50:25Z",
       "merged_at": null,
       "closed_at": null
     }
@@ -583,18 +573,6 @@
       "html_url": "https://github.com/RepresentPR/DTRTCore/commit/2be834ed3546d77ed8dab012915a34664cc9b76a",
       "message": "Add automatic repair for generated material LFS stubs",
       "date": "2026-09-07T00:49:44Z"
-    },
-    {
-      "sha": "2e01caeaaf58e2067a770e9b7fd250caa6087c8e",
-      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/2e01caeaaf58e2067a770e9b7fd250caa6087c8e",
-      "message": "C05: implement 1:1 mouse-driven Aimlabs 2.0 browser menu, HUD, and settings navigation",
-      "date": "2026-09-07T00:43:24Z"
-    },
-    {
-      "sha": "6a931b72b31ac4104788e4a292f54c1443ddb35e",
-      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/6a931b72b31ac4104788e4a292f54c1443ddb35e",
-      "message": "C05: implement 1:1 mouse-driven Aimlabs 2.0 browser menu, HUD, and settings navigation",
-      "date": "2026-09-07T00:38:40Z"
     },
     {
       "sha": "c9484a9257b6ca7cdcaf5889ff62ed89da0e1db1",
@@ -1899,18 +1877,6 @@
       "date": "2026-09-06T20:55:47Z"
     },
     {
-      "sha": "e35dffb7817082e1f83c7f36a6883ef3c15a2093",
-      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/e35dffb7817082e1f83c7f36a6883ef3c15a2093",
-      "message": "Merge commit '04c6bcf0a4fb6beefa1b047f77ad8fddc67e6e4d' into codex/vs1-integration",
-      "date": "2026-09-06T20:52:57Z"
-    },
-    {
-      "sha": "5d2bcf1c2c3ed8cbeab7f1d104eaa6050915b6d6",
-      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/5d2bcf1c2c3ed8cbeab7f1d104eaa6050915b6d6",
-      "message": "Merge commit '878de01' into codex/vs1-integration",
-      "date": "2026-09-06T20:52:41Z"
-    },
-    {
       "sha": "640dcb0d444856266dbb708c61dbb81569ed9c94",
       "html_url": "https://github.com/RepresentPR/DTRTCore/commit/640dcb0d444856266dbb708c61dbb81569ed9c94",
       "message": "Add hover feedback to Wave A menus",
@@ -2121,18 +2087,6 @@
       "date": "2026-09-05T21:21:20Z"
     },
     {
-      "sha": "313d704b00a32eced69cf141248858aaea56487f",
-      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/313d704b00a32eced69cf141248858aaea56487f",
-      "message": "Wave 2: Grok Build implementation prompt (real-RHI content-gen + L0 lighting, sequenced)",
-      "date": "2026-09-05T21:19:14Z"
-    },
-    {
-      "sha": "5769971ba630d7af951bf702120c23b8a57649fd",
-      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/5769971ba630d7af951bf702120c23b8a57649fd",
-      "message": "Phase 7: packaged --visual validation stage; land Grok Build's plan docs; mark Wave 1 AAA-visual research done",
-      "date": "2026-09-05T21:18:18Z"
-    },
-    {
       "sha": "e92228a92f9cb78a658a50c16b890c1b4599f29b",
       "html_url": "https://github.com/RepresentPR/DTRTCore/commit/e92228a92f9cb78a658a50c16b890c1b4599f29b",
       "message": "Docs: capture DTRT Lab north-star vision (10-screen loop) for future-phase reference",
@@ -2163,22 +2117,10 @@
       "date": "2026-09-05T19:32:35Z"
     },
     {
-      "sha": "9987144e2f3105a55d9e4db4c6474a035a558cc6",
-      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/9987144e2f3105a55d9e4db4c6474a035a558cc6",
-      "message": "Intake Super Grok Build look-path report; correct stale claims; auto-assign Phase 6",
-      "date": "2026-09-05T19:02:04Z"
-    },
-    {
       "sha": "9e8b0a386d29cc0b79317e4c0b383647ab4d8930",
       "html_url": "https://github.com/RepresentPR/DTRTCore/commit/9e8b0a386d29cc0b79317e4c0b383647ab4d8930",
       "message": "Reconcile task ledger with shipped Phase 5 work",
       "date": "2026-09-05T18:09:52Z"
-    },
-    {
-      "sha": "fea554e6c1c200e6147be80c919bb7b3e66be71e",
-      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/fea554e6c1c200e6147be80c919bb7b3e66be71e",
-      "message": "Add overnight Grok Build + Grok bot prompts for knife spec and movement investigation",
-      "date": "2026-09-05T09:19:34Z"
     },
     {
       "sha": "ee844ca4f77724b7ec9f2463a6b6d1138f1dfe85",
@@ -2258,5 +2200,6 @@
       "message": "Initialize official DTRTCore project",
       "date": "2026-09-04T21:28:43Z"
     }
-  ]
+  ],
+  "source": "https://github.com/RepresentPR/DTRTCore"
 }

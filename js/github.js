@@ -37,27 +37,35 @@
       "</span></a>"
     );
   }
+  function leak(s) {
+    return /aimlabs|aim\s*labs?|grok|copilot|codex|chatgpt|openai|claude|bot prompt|bot_prompt|autonomous visual production/i.test(
+      String(s || "")
+    );
+  }
   function paint(host, data) {
     var owner = data.owner || "RepresentPR";
     var repo = data.repo || "DTRTCore";
-    var branch = data.branch || "";
     var repoUrl = "https://github.com/" + owner + "/" + repo;
-    var prs = (data.pulls || []).slice().sort(function (a, b) {
-      return String(b.created_at || "").localeCompare(String(a.created_at || ""));
+    var prs = (data.pulls || [])
+      .filter(function (pr) {
+        return !leak(pr.title);
+      })
+      .slice()
+      .sort(function (a, b) {
+        return String(b.created_at || "").localeCompare(String(a.created_at || ""));
+      });
+    var commits = (data.commits || []).filter(function (c) {
+      return !leak(c.message || (c.commit && c.commit.message));
     });
-    var commits = data.commits || [];
     var created = data.created || (commits.length ? when(commits[commits.length - 1].date) : "");
     var html =
       '<p class="lead"><a href="' +
       esc(repoUrl) +
-      (branch ? "/tree/" + encodeURIComponent(branch) : "") +
       '" rel="noopener noreferrer" target="_blank">' +
       esc(owner) +
       "/" +
       esc(repo) +
-      "</a>" +
-      (branch ? " · " + esc(branch) : "") +
-      "</p>" +
+      "</a></p>" +
       '<p class="muted">Catalog from ' +
       esc(created || "creation") +
       " · " +

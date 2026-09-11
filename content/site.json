@@ -22,6 +22,6 @@
   },
   "githubOwner": "RepresentPR",
   "githubRepo": "DTRTCore",
-  "githubBranch": "codex/issue-33-clean-production",
+  "githubBranch": "",
   "releaseWindow": "When Windows export and playtest pass — no date claimed."
 }

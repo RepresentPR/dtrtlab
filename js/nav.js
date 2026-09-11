@@ -22,10 +22,27 @@
   var host = document.getElementById("site-nav");
   if (host) host.innerHTML = html;
   var btn = host && host.querySelector(".menu-btn");
+  function setOpen(open) {
+    if (!host || !btn) return;
+    host.classList.toggle("open", open);
+    document.body.classList.toggle("nav-open", open);
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+    btn.textContent = open ? "Close" : "Menu";
+  }
   if (btn && host) {
     btn.addEventListener("click", function () {
-      var open = host.classList.toggle("open");
-      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      setOpen(!host.classList.contains("open"));
+    });
+    host.querySelectorAll("nav.links a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        setOpen(false);
+      });
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") setOpen(false);
+    });
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 900) setOpen(false);
     });
   }
   function onScroll() {

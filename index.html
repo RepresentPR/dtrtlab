@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>DTRT Lab</title>
   <meta name="description" content="DTRT Lab. Move. Stop. Fire.">
   <meta name="theme-color" content="#000000">
@@ -19,11 +19,19 @@
   <header class="nav" id="site-nav"></header>
 
   <header class="hero vision">
-    <img src="img/north-star-home.jpg" alt="DTRT Lab range" width="3840" height="2160" fetchpriority="high" decoding="async">
+    <img
+      src="img/north-star-home-1920.jpg"
+      srcset="img/north-star-home-1280.jpg 1280w, img/north-star-home-1920.jpg 1920w, img/north-star-home.jpg 3840w"
+      sizes="100vw"
+      alt="DTRT Lab range"
+      width="1920"
+      height="1080"
+      fetchpriority="high"
+      decoding="async">
     <div class="shade"></div>
     <div class="wrap copy" id="main">
       <h1>Move. Stop. Fire.</h1>
-      <div class="actions" style="justify-content:center">
+      <div class="actions">
         <a class="cta" href="contact.html">Request access</a>
         <a class="cta ghost" href="donate.html">Support</a>
       </div>
@@ -32,12 +40,15 @@
 
   <section id="product">
     <div class="wrap">
-      <h2>The first bullet is the whole conversation.</h2>
-      <p class="lead">DTRT Lab is an original FPS laboratory. You move. You stop. You take the shot. UNIT 12 falls only when the head is earned at a stop.</p>
+      <h2>Original runtime. Not an overlay.</h2>
+      <p class="lead">DTRT Lab is an original FPS laboratory in Unreal Engine 5. You move. You stop. You take the shot. UNIT 12 falls only when the head is earned at a stop.</p>
       <table class="specs">
-        <tr><th>Credit</th><td>Stopped head</td></tr>
+        <tr><th>Look</th><td>Raw 1:1 mouse. No acceleration.</td></tr>
+        <tr><th>Credit</th><td>Stopped head. Walking never counts.</td></tr>
         <tr><th>Rifle</th><td>Kestrel</td></tr>
+        <tr><th>Sim</th><td>Deterministic shot audit</td></tr>
         <tr><th>Engine</th><td>Unreal Engine 5</td></tr>
+        <tr><th>Runtime</th><td>Windows. Offline. No account.</td></tr>
         <tr><th>Access</th><td>Request only</td></tr>
       </table>
     </div>
