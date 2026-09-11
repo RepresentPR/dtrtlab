@@ -60,6 +60,7 @@
       "<span>DTRT Lab</span>" +
       '<a href="' + root + 'contact.html" data-event="Contact">Contact</a>' +
       '<a href="' + root + 'faq.html" data-event="FAQ">FAQ</a>' +
+      '<a href="' + root + 'index.html#setup">Setup</a>' +
       '<a href="' + root + 'press.html" data-event="Press">Press</a>' +
       '<a href="' + root + 'story.html" data-event="Mission">Mission</a>' +
       '<a href="' + root + 'legal/privacy.html">Privacy</a>' +
