@@ -3,54 +3,2260 @@
   "repo": "DTRTCore",
   "branch": "codex/issue-33-clean-production",
   "source": "https://github.com/RepresentPR/DTRTCore",
+  "created": "2026-09-04",
   "updated": "2026-09-11",
   "pulls": [
-    {"number": 31, "title": "Autonomous visual production supervisor v1", "html_url": "https://github.com/RepresentPR/DTRTCore/pull/31", "state": "open"},
-    {"number": 30, "title": "Integrate production game loop and audit release readiness", "html_url": "https://github.com/RepresentPR/DTRTCore/pull/30", "state": "open"},
-    {"number": 29, "title": "Photorealistic UE5.8 rendering pass (DTRT Lab)", "html_url": "https://github.com/RepresentPR/DTRTCore/pull/29", "state": "open"},
-    {"number": 28, "title": "feat: implement CS2-grade competitive FPS foundation", "html_url": "https://github.com/RepresentPR/DTRTCore/pull/28", "state": "open"},
-    {"number": 27, "title": "feat: modernize Range visuals to AAA competitive FPS baseline", "html_url": "https://github.com/RepresentPR/DTRTCore/pull/27", "state": "open"},
-    {"number": 24, "title": "Fix DTRT range visuals with premium runtime dressing", "html_url": "https://github.com/RepresentPR/DTRTCore/pull/24", "state": "open"},
-    {"number": 23, "title": "feat: runtime visual production overhaul", "html_url": "https://github.com/RepresentPR/DTRTCore/pull/23", "state": "open"},
-    {"number": 17, "title": "Promote DTRT 2050/AAA production line to main", "html_url": "https://github.com/RepresentPR/DTRTCore/pull/17", "state": "open"},
-    {"number": 12, "title": "Core: add first playable target-training vertical slice", "html_url": "https://github.com/RepresentPR/DTRTCore/pull/12", "state": "open"},
-    {"number": 10, "title": "Core: delayimp AutoSDK preflight (Wave A package unblock)", "html_url": "https://github.com/RepresentPR/DTRTCore/pull/10", "state": "open"},
-    {"number": 7, "title": "VS1 integration: real gameplay foundation + ported North Star docs", "html_url": "https://github.com/RepresentPR/DTRTCore/pull/7", "state": "open"},
-    {"number": 6, "title": "Docs: VS1 Signature Hero Corridor design lock (Presentation)", "html_url": "https://github.com/RepresentPR/DTRTCore/pull/6", "state": "open"},
-    {"number": 4, "title": "Build DTRTCore production core plan", "html_url": "https://github.com/RepresentPR/DTRTCore/pull/4", "state": "open"},
-    {"number": 3, "title": "Enforce main quality gate workflows", "html_url": "https://github.com/RepresentPR/DTRTCore/pull/3", "state": "open"},
-    {"number": 2, "title": "Fix packaged Range sun orientation", "html_url": "https://github.com/RepresentPR/DTRTCore/pull/2", "state": "open"}
+    {
+      "number": 2,
+      "title": "Fix packaged Range sun orientation",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/2",
+      "state": "open",
+      "created_at": "2026-09-04T21:49:32Z",
+      "merged_at": null,
+      "closed_at": null
+    },
+    {
+      "number": 3,
+      "title": "Enforce main quality gate workflows",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/3",
+      "state": "open",
+      "created_at": "2026-09-04T21:53:59Z",
+      "merged_at": null,
+      "closed_at": null
+    },
+    {
+      "number": 4,
+      "title": "Build DTRTCore production core plan",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/4",
+      "state": "open",
+      "created_at": "2026-09-04T23:24:07Z",
+      "merged_at": null,
+      "closed_at": null
+    },
+    {
+      "number": 5,
+      "title": "VS1 North Star hero corridor contract",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/5",
+      "state": "closed",
+      "created_at": "2026-09-06T01:39:18Z",
+      "merged_at": null,
+      "closed_at": "2026-09-06T02:27:52Z"
+    },
+    {
+      "number": 6,
+      "title": "Docs: VS1 Signature Hero Corridor design lock (Presentation)",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/6",
+      "state": "open",
+      "created_at": "2026-09-06T01:43:26Z",
+      "merged_at": null,
+      "closed_at": null
+    },
+    {
+      "number": 7,
+      "title": "VS1 integration: real gameplay foundation + ported North Star docs",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/7",
+      "state": "open",
+      "created_at": "2026-09-06T02:27:53Z",
+      "merged_at": null,
+      "closed_at": null
+    },
+    {
+      "number": 8,
+      "title": "Wave A Combat: bubble-style targets + Impact Sync dryness",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/8",
+      "state": "merged",
+      "created_at": "2026-09-06T20:42:01Z",
+      "merged_at": "2026-09-06T20:55:55Z",
+      "closed_at": "2026-09-06T20:55:55Z"
+    },
+    {
+      "number": 9,
+      "title": "Wave A Core: lobby boot + ESC persist + sens/FOV (M&K)",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/9",
+      "state": "merged",
+      "created_at": "2026-09-06T20:49:09Z",
+      "merged_at": "2026-09-06T20:55:55Z",
+      "closed_at": "2026-09-06T20:55:55Z"
+    },
+    {
+      "number": 10,
+      "title": "Core: delayimp AutoSDK preflight (Wave A package unblock)",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/10",
+      "state": "open",
+      "created_at": "2026-09-06T21:06:00Z",
+      "merged_at": null,
+      "closed_at": null
+    },
+    {
+      "number": 11,
+      "title": "Fix: per-shot fire SFX retrigger on full-auto",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/11",
+      "state": "merged",
+      "created_at": "2026-09-06T21:28:49Z",
+      "merged_at": "2026-09-06T21:44:03Z",
+      "closed_at": "2026-09-06T21:44:03Z"
+    },
+    {
+      "number": 12,
+      "title": "Core: add first playable target-training vertical slice",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/12",
+      "state": "open",
+      "created_at": "2026-09-06T21:52:09Z",
+      "merged_at": null,
+      "closed_at": null
+    },
+    {
+      "number": 13,
+      "title": "Complete game v1: integrate training, flow, profile, and player loop",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/13",
+      "state": "merged",
+      "created_at": "2026-09-06T21:55:57Z",
+      "merged_at": "2026-09-06T21:56:05Z",
+      "closed_at": "2026-09-06T21:56:05Z"
+    },
+    {
+      "number": 14,
+      "title": "Final polish: competitive scoring and build dependency",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/14",
+      "state": "merged",
+      "created_at": "2026-09-06T21:58:55Z",
+      "merged_at": "2026-09-06T21:59:15Z",
+      "closed_at": "2026-09-06T21:59:15Z"
+    },
+    {
+      "number": 15,
+      "title": "DTRT 2050: elevate the full competitive experience",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/15",
+      "state": "merged",
+      "created_at": "2026-09-06T22:04:46Z",
+      "merged_at": "2026-09-06T22:04:58Z",
+      "closed_at": "2026-09-06T22:04:58Z"
+    },
+    {
+      "number": 16,
+      "title": "AAA modernization: maps, frontend, audio, launch flow",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/16",
+      "state": "merged",
+      "created_at": "2026-09-06T22:13:39Z",
+      "merged_at": "2026-09-06T22:14:05Z",
+      "closed_at": "2026-09-06T22:14:05Z"
+    },
+    {
+      "number": 17,
+      "title": "Promote DTRT 2050/AAA production line to main",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/17",
+      "state": "open",
+      "created_at": "2026-09-06T22:14:20Z",
+      "merged_at": null,
+      "closed_at": null
+    },
+    {
+      "number": 18,
+      "title": "Modernize raw input and competitive netcode policy",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/18",
+      "state": "merged",
+      "created_at": "2026-09-06T22:25:54Z",
+      "merged_at": "2026-09-06T22:26:06Z",
+      "closed_at": "2026-09-06T22:26:06Z"
+    },
+    {
+      "number": 19,
+      "title": "Visual system: 3D environment, instant frontend, and modern presentation",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/19",
+      "state": "merged",
+      "created_at": "2026-09-06T22:36:12Z",
+      "merged_at": "2026-09-06T22:36:20Z",
+      "closed_at": "2026-09-06T22:36:20Z"
+    },
+    {
+      "number": 20,
+      "title": "Content: add premium 3D asset kit and package-quality controls",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/20",
+      "state": "merged",
+      "created_at": "2026-09-06T22:45:58Z",
+      "merged_at": "2026-09-06T22:46:39Z",
+      "closed_at": "2026-09-06T22:46:39Z"
+    },
+    {
+      "number": 21,
+      "title": "Product: complete-product audit, session lifecycle, progression, and release gates",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/21",
+      "state": "merged",
+      "created_at": "2026-09-06T23:02:36Z",
+      "merged_at": "2026-09-06T23:03:36Z",
+      "closed_at": "2026-09-06T23:03:37Z"
+    },
+    {
+      "number": 22,
+      "title": "feat: close final 45 percent with PC polish, content, and playtest tooling",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/22",
+      "state": "merged",
+      "created_at": "2026-09-06T23:16:48Z",
+      "merged_at": "2026-09-06T23:17:22Z",
+      "closed_at": "2026-09-06T23:17:22Z"
+    },
+    {
+      "number": 23,
+      "title": "feat: runtime visual production overhaul",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/23",
+      "state": "open",
+      "created_at": "2026-09-07T01:12:18Z",
+      "merged_at": null,
+      "closed_at": null
+    },
+    {
+      "number": 24,
+      "title": "Fix DTRT range visuals with premium runtime dressing",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/24",
+      "state": "open",
+      "created_at": "2026-09-07T03:48:37Z",
+      "merged_at": null,
+      "closed_at": null
+    },
+    {
+      "number": 25,
+      "title": "fix: remove runtime visual director black-screen regression",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/25",
+      "state": "merged",
+      "created_at": "2026-09-07T06:14:32Z",
+      "merged_at": "2026-09-07T06:16:24Z",
+      "closed_at": "2026-09-07T06:16:24Z"
+    },
+    {
+      "number": 26,
+      "title": "fix: disable map-resident runtime visual director",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/26",
+      "state": "merged",
+      "created_at": "2026-09-07T07:00:53Z",
+      "merged_at": "2026-09-07T07:13:07Z",
+      "closed_at": "2026-09-07T07:13:07Z"
+    },
+    {
+      "number": 27,
+      "title": "feat: modernize Range visuals to AAA competitive FPS baseline",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/27",
+      "state": "open",
+      "created_at": "2026-09-07T08:48:39Z",
+      "merged_at": null,
+      "closed_at": null
+    },
+    {
+      "number": 28,
+      "title": "feat: implement CS2-grade competitive FPS foundation",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/28",
+      "state": "open",
+      "created_at": "2026-09-07T18:21:43Z",
+      "merged_at": null,
+      "closed_at": null
+    },
+    {
+      "number": 29,
+      "title": "Photorealistic UE5.8 rendering pass (DTRT Lab)",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/29",
+      "state": "open",
+      "created_at": "2026-09-07T21:40:55Z",
+      "merged_at": null,
+      "closed_at": null
+    },
+    {
+      "number": 30,
+      "title": "Integrate production game loop and audit release readiness",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/30",
+      "state": "open",
+      "created_at": "2026-09-08T01:50:25Z",
+      "merged_at": null,
+      "closed_at": null
+    },
+    {
+      "number": 31,
+      "title": "Autonomous visual production supervisor v1",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/pull/31",
+      "state": "open",
+      "created_at": "2026-09-09T18:50:25Z",
+      "merged_at": null,
+      "closed_at": null
+    }
   ],
   "commits": [
-    {"sha": "f272e8f41051a30b5223fd1acef9438a39dcb545", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/f272e8f41051a30b5223fd1acef9438a39dcb545", "message": "chore(release): freeze generated candidate content and visual evidence (#33)", "date": "2026-09-10T07:23:20Z"},
-    {"sha": "fa074a93e6efd397c75a4304e5cdfd322284c8db", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/fa074a93e6efd397c75a4304e5cdfd322284c8db", "message": "feat(art): deliver authored facility and native rifle presentation (#33)", "date": "2026-09-10T07:15:26Z"},
-    {"sha": "d849c4b0b7b2a877c8851428158885d43cfd7009", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/d849c4b0b7b2a877c8851428158885d43cfd7009", "message": "polish(ui): clarify player labels and verify 1080p accessibility layout (#33)", "date": "2026-09-10T06:50:00Z"},
-    {"sha": "2954891c67f4861f9139c6a1a35e7d5eaebbd4f9", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/2954891c67f4861f9139c6a1a35e7d5eaebbd4f9", "message": "fix(build): disambiguate settings constant in Unity compilation (#33)", "date": "2026-09-10T06:32:47Z"},
-    {"sha": "81e37deea915ef876dd8003b1938d76d98c81d57", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/81e37deea915ef876dd8003b1938d76d98c81d57", "message": "feat(product): ship solo frontend flow and persisted PC settings (#33)", "date": "2026-09-10T06:28:30Z"},
-    {"sha": "84a413b708d1c5e685f819522444946950c8be23", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/84a413b708d1c5e685f819522444946950c8be23", "message": "test(product): verify fresh packaged customer journey and relaunch (#33)", "date": "2026-09-10T05:54:41Z"},
-    {"sha": "19b74387fccc2e1151718a391e221d27672eee6a", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/19b74387fccc2e1151718a391e221d27672eee6a", "message": "fix(qa): reject missing production meshes and Nanite material fallbacks (#33)", "date": "2026-09-10T05:41:14Z"},
-    {"sha": "23931445a95ad9fb99c7980b90a937da32fb27bf", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/23931445a95ad9fb99c7980b90a937da32fb27bf", "message": "feat(audio): author replayable competitive and product sound cues (#33)", "date": "2026-09-10T05:20:10Z"},
-    {"sha": "22094e0647f2f2d33d8b156df4d38915a452c583", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/22094e0647f2f2d33d8b156df4d38915a452c583", "message": "docs: persist Issue 33 production and application recovery checkpoint", "date": "2026-09-10T05:19:34Z"},
-    {"sha": "8cf3b241d9114c2b75f76d92968c7827fc3cc8d2", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/8cf3b241d9114c2b75f76d92968c7827fc3cc8d2", "message": "fix(qa): reject cooked material failures and verify active product HUD (#33)", "date": "2026-09-10T05:05:16Z"},
-    {"sha": "ca3425902efa027474c81937c4cb5aee187334be", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/ca3425902efa027474c81937c4cb5aee187334be", "message": "Refresh material values without deleting rooted expressions", "date": "2026-09-09T15:35:32Z"},
-    {"sha": "bccc4ae84de8c3d1dfab137fab18667d5f28ab68", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/bccc4ae84de8c3d1dfab137fab18667d5f28ab68", "message": "Rebalance range palette and ambient light; correct vertical barrel orientation", "date": "2026-09-09T15:29:43Z"},
-    {"sha": "f3642c050d5998abf026b8ee0e6509cb06ede3a9", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/f3642c050d5998abf026b8ee0e6509cb06ede3a9", "message": "Prevent HUD contract automation crash from stack-constructed GameMode", "date": "2026-09-09T15:18:50Z"},
-    {"sha": "06a0b6294b31119be2e6320b751ec4293839d4db", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/06a0b6294b31119be2e6320b751ec4293839d4db", "message": "Fix HUD canvas drawing and world subsystem compile errors", "date": "2026-09-09T15:09:08Z"},
-    {"sha": "187b45af532fcc46ceb21d7495874c280b3536ff", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/187b45af532fcc46ceb21d7495874c280b3536ff", "message": "Preserve fast trigger taps and establish shot timestamps before auditing", "date": "2026-09-09T05:12:09Z"},
-    {"sha": "07b16c510250b9d45e35b2c75dab53298cbc17ec", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/07b16c510250b9d45e35b2c75dab53298cbc17ec", "message": "Connect production menus, session lifecycle and persistent results", "date": "2026-09-09T05:07:15Z"},
-    {"sha": "2a6660755550925e1d05978ed94aa7ed7def63e7", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/2a6660755550925e1d05978ed94aa7ed7def63e7", "message": "Audit fragmented game branches and prevent false validation success", "date": "2026-09-08T01:49:53Z"},
-    {"sha": "d6507599ce6dfcbefed3186561fe662ea942b116", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/d6507599ce6dfcbefed3186561fe662ea942b116", "message": "fix: isolate Developers sandbox during editor visual passes", "date": "2026-09-07T03:19:30Z"},
-    {"sha": "90a554176336cffaaaf9c3eb7817ad79056301f0", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/90a554176336cffaaaf9c3eb7817ad79056301f0", "message": "fix: use space-safe UE python script paths", "date": "2026-09-07T03:15:56Z"},
-    {"sha": "6b8a2db349006363b30641489a438465357dea90", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/6b8a2db349006363b30641489a438465357dea90", "message": "fix: harden runtime visual polish for UE5.8", "date": "2026-09-07T03:13:27Z"},
-    {"sha": "0b5e3f73366fc93d16750055529710f773b37fe7", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/0b5e3f73366fc93d16750055529710f773b37fe7", "message": "fix: bootstrap missing visual build scripts", "date": "2026-09-07T03:07:00Z"},
-    {"sha": "adc56df707d489cbe7a358fee0fe869bbbb7da2c", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/adc56df707d489cbe7a358fee0fe869bbbb7da2c", "message": "feat: add canonical one-command visual production build", "date": "2026-09-07T03:05:19Z"},
-    {"sha": "216d06c935e466ea68e250cc143b4c27fdc32358", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/216d06c935e466ea68e250cc143b4c27fdc32358", "message": "fix: lock Range map to production GameMode", "date": "2026-09-07T03:00:27Z"},
-    {"sha": "e73883addc7252f819bde85a8cd767c3b2f9e573", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/e73883addc7252f819bde85a8cd767c3b2f9e573", "message": "feat: run visual polish after premium dressing", "date": "2026-09-07T02:52:11Z"},
-    {"sha": "1ae75d25193d1d9b7910f12dee3cf4558508f7dc", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/1ae75d25193d1d9b7910f12dee3cf4558508f7dc", "message": "feat: add runtime visual polish pass", "date": "2026-09-07T02:52:00Z"},
-    {"sha": "4d3e0e740f1df337521228bede65780b106ff855", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/4d3e0e740f1df337521228bede65780b106ff855", "message": "fix: make premium visual build generate hero corridor", "date": "2026-09-07T02:47:49Z"},
-    {"sha": "57bb994c5db76e5279922fe4586d5efd7bed40a6", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/57bb994c5db76e5279922fe4586d5efd7bed40a6", "message": "feat: add one-command premium visual build pipeline", "date": "2026-09-07T02:40:44Z"},
-    {"sha": "f1b774efa53545edb020234511725bbd939fa758", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/f1b774efa53545edb020234511725bbd939fa758", "message": "feat: add premium runtime range dressing pass", "date": "2026-09-07T02:39:52Z"},
-    {"sha": "c4d761ccf0a6ebfb655aefdc00fcfb5f5ffcff16", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/c4d761ccf0a6ebfb655aefdc00fcfb5f5ffcff16", "message": "chore: mark legacy HUD as inert compatibility shell", "date": "2026-09-07T02:25:18Z"},
-    {"sha": "f2dd78674988f47d9ffcf7617f8b577c0f745200", "html_url": "https://github.com/RepresentPR/DTRTCore/commit/f2dd78674988f47d9ffcf7617f8b577c0f745200", "message": "fix: disable legacy HUD renderer", "date": "2026-09-07T02:25:00Z"}
+    {
+      "sha": "f272e8f41051a30b5223fd1acef9438a39dcb545",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/f272e8f41051a30b5223fd1acef9438a39dcb545",
+      "message": "chore(release): freeze generated candidate content and visual evidence (#33)",
+      "date": "2026-09-10T07:23:20Z"
+    },
+    {
+      "sha": "fa074a93e6efd397c75a4304e5cdfd322284c8db",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/fa074a93e6efd397c75a4304e5cdfd322284c8db",
+      "message": "feat(art): deliver authored facility and native rifle presentation (#33)",
+      "date": "2026-09-10T07:15:26Z"
+    },
+    {
+      "sha": "d849c4b0b7b2a877c8851428158885d43cfd7009",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/d849c4b0b7b2a877c8851428158885d43cfd7009",
+      "message": "polish(ui): clarify player labels and verify 1080p accessibility layout (#33)",
+      "date": "2026-09-10T06:50:00Z"
+    },
+    {
+      "sha": "2954891c67f4861f9139c6a1a35e7d5eaebbd4f9",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/2954891c67f4861f9139c6a1a35e7d5eaebbd4f9",
+      "message": "fix(build): disambiguate settings constant in Unity compilation (#33)",
+      "date": "2026-09-10T06:32:47Z"
+    },
+    {
+      "sha": "81e37deea915ef876dd8003b1938d76d98c81d57",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/81e37deea915ef876dd8003b1938d76d98c81d57",
+      "message": "feat(product): ship solo frontend flow and persisted PC settings (#33)",
+      "date": "2026-09-10T06:28:30Z"
+    },
+    {
+      "sha": "84a413b708d1c5e685f819522444946950c8be23",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/84a413b708d1c5e685f819522444946950c8be23",
+      "message": "test(product): verify fresh packaged customer journey and relaunch (#33)",
+      "date": "2026-09-10T05:54:41Z"
+    },
+    {
+      "sha": "19b74387fccc2e1151718a391e221d27672eee6a",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/19b74387fccc2e1151718a391e221d27672eee6a",
+      "message": "fix(qa): reject missing production meshes and Nanite material fallbacks (#33)",
+      "date": "2026-09-10T05:41:14Z"
+    },
+    {
+      "sha": "23931445a95ad9fb99c7980b90a937da32fb27bf",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/23931445a95ad9fb99c7980b90a937da32fb27bf",
+      "message": "feat(audio): author replayable competitive and product sound cues (#33)",
+      "date": "2026-09-10T05:20:10Z"
+    },
+    {
+      "sha": "22094e0647f2f2d33d8b156df4d38915a452c583",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/22094e0647f2f2d33d8b156df4d38915a452c583",
+      "message": "docs: persist Issue 33 production and application recovery checkpoint",
+      "date": "2026-09-10T05:19:34Z"
+    },
+    {
+      "sha": "8cf3b241d9114c2b75f76d92968c7827fc3cc8d2",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/8cf3b241d9114c2b75f76d92968c7827fc3cc8d2",
+      "message": "fix(qa): reject cooked material failures and verify active product HUD (#33)",
+      "date": "2026-09-10T05:05:16Z"
+    },
+    {
+      "sha": "ca3425902efa027474c81937c4cb5aee187334be",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/ca3425902efa027474c81937c4cb5aee187334be",
+      "message": "Refresh material values without deleting rooted expressions",
+      "date": "2026-09-09T15:35:32Z"
+    },
+    {
+      "sha": "bccc4ae84de8c3d1dfab137fab18667d5f28ab68",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/bccc4ae84de8c3d1dfab137fab18667d5f28ab68",
+      "message": "Rebalance range palette and ambient light; correct vertical barrel orientation",
+      "date": "2026-09-09T15:29:43Z"
+    },
+    {
+      "sha": "f3642c050d5998abf026b8ee0e6509cb06ede3a9",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/f3642c050d5998abf026b8ee0e6509cb06ede3a9",
+      "message": "Prevent HUD contract automation crash from stack-constructed GameMode",
+      "date": "2026-09-09T15:18:50Z"
+    },
+    {
+      "sha": "06a0b6294b31119be2e6320b751ec4293839d4db",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/06a0b6294b31119be2e6320b751ec4293839d4db",
+      "message": "Fix HUD canvas drawing and world subsystem compile errors",
+      "date": "2026-09-09T15:09:08Z"
+    },
+    {
+      "sha": "187b45af532fcc46ceb21d7495874c280b3536ff",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/187b45af532fcc46ceb21d7495874c280b3536ff",
+      "message": "Preserve fast trigger taps and establish shot timestamps before auditing",
+      "date": "2026-09-09T05:12:09Z"
+    },
+    {
+      "sha": "07b16c510250b9d45e35b2c75dab53298cbc17ec",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/07b16c510250b9d45e35b2c75dab53298cbc17ec",
+      "message": "Connect production menus, session lifecycle and persistent results",
+      "date": "2026-09-09T05:07:15Z"
+    },
+    {
+      "sha": "2a6660755550925e1d05978ed94aa7ed7def63e7",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/2a6660755550925e1d05978ed94aa7ed7def63e7",
+      "message": "Audit fragmented game branches and prevent false validation success",
+      "date": "2026-09-08T01:49:53Z"
+    },
+    {
+      "sha": "d6507599ce6dfcbefed3186561fe662ea942b116",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/d6507599ce6dfcbefed3186561fe662ea942b116",
+      "message": "fix: isolate Developers sandbox during editor visual passes",
+      "date": "2026-09-07T03:19:30Z"
+    },
+    {
+      "sha": "90a554176336cffaaaf9c3eb7817ad79056301f0",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/90a554176336cffaaaf9c3eb7817ad79056301f0",
+      "message": "fix: use space-safe UE python script paths",
+      "date": "2026-09-07T03:15:56Z"
+    },
+    {
+      "sha": "6b8a2db349006363b30641489a438465357dea90",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/6b8a2db349006363b30641489a438465357dea90",
+      "message": "fix: harden runtime visual polish for UE5.8",
+      "date": "2026-09-07T03:13:27Z"
+    },
+    {
+      "sha": "0b5e3f73366fc93d16750055529710f773b37fe7",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/0b5e3f73366fc93d16750055529710f773b37fe7",
+      "message": "fix: bootstrap missing visual build scripts",
+      "date": "2026-09-07T03:07:00Z"
+    },
+    {
+      "sha": "adc56df707d489cbe7a358fee0fe869bbbb7da2c",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/adc56df707d489cbe7a358fee0fe869bbbb7da2c",
+      "message": "feat: add canonical one-command visual production build",
+      "date": "2026-09-07T03:05:19Z"
+    },
+    {
+      "sha": "216d06c935e466ea68e250cc143b4c27fdc32358",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/216d06c935e466ea68e250cc143b4c27fdc32358",
+      "message": "fix: lock Range map to production GameMode",
+      "date": "2026-09-07T03:00:27Z"
+    },
+    {
+      "sha": "e73883addc7252f819bde85a8cd767c3b2f9e573",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/e73883addc7252f819bde85a8cd767c3b2f9e573",
+      "message": "feat: run visual polish after premium dressing",
+      "date": "2026-09-07T02:52:11Z"
+    },
+    {
+      "sha": "1ae75d25193d1d9b7910f12dee3cf4558508f7dc",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/1ae75d25193d1d9b7910f12dee3cf4558508f7dc",
+      "message": "feat: add runtime visual polish pass",
+      "date": "2026-09-07T02:52:00Z"
+    },
+    {
+      "sha": "4d3e0e740f1df337521228bede65780b106ff855",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/4d3e0e740f1df337521228bede65780b106ff855",
+      "message": "fix: make premium visual build generate hero corridor",
+      "date": "2026-09-07T02:47:49Z"
+    },
+    {
+      "sha": "57bb994c5db76e5279922fe4586d5efd7bed40a6",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/57bb994c5db76e5279922fe4586d5efd7bed40a6",
+      "message": "feat: add one-command premium visual build pipeline",
+      "date": "2026-09-07T02:40:44Z"
+    },
+    {
+      "sha": "f1b774efa53545edb020234511725bbd939fa758",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/f1b774efa53545edb020234511725bbd939fa758",
+      "message": "feat: add premium runtime range dressing pass",
+      "date": "2026-09-07T02:39:52Z"
+    },
+    {
+      "sha": "c4d761ccf0a6ebfb655aefdc00fcfb5f5ffcff16",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/c4d761ccf0a6ebfb655aefdc00fcfb5f5ffcff16",
+      "message": "chore: mark legacy HUD as inert compatibility shell",
+      "date": "2026-09-07T02:25:18Z"
+    },
+    {
+      "sha": "f2dd78674988f47d9ffcf7617f8b577c0f745200",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/f2dd78674988f47d9ffcf7617f8b577c0f745200",
+      "message": "fix: disable legacy HUD renderer",
+      "date": "2026-09-07T02:25:00Z"
+    },
+    {
+      "sha": "20228ceba18beda312daa12b632cd2abea8fbc4d",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/20228ceba18beda312daa12b632cd2abea8fbc4d",
+      "message": "test: require ProductHUD in packaged visual smoke",
+      "date": "2026-09-07T01:59:29Z"
+    },
+    {
+      "sha": "22aaeb5b500b87e23de4b6e0d43265d7a28d3310",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/22aaeb5b500b87e23de4b6e0d43265d7a28d3310",
+      "message": "feat: enforce ProductHUD after world startup",
+      "date": "2026-09-07T01:59:10Z"
+    },
+    {
+      "sha": "9d89887a6be5d3344a098948ab12b88b6fc9392c",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/9d89887a6be5d3344a098948ab12b88b6fc9392c",
+      "message": "feat: add runtime ProductHUD enforcement subsystem",
+      "date": "2026-09-07T01:59:02Z"
+    },
+    {
+      "sha": "ac46fb50a6e9fafc873ddac2b3c9cab6d4375254",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/ac46fb50a6e9fafc873ddac2b3c9cab6d4375254",
+      "message": "fix: disable legacy HUD fallback at runtime",
+      "date": "2026-09-07T01:49:39Z"
+    },
+    {
+      "sha": "a610c0b00262e3819730b155634a7ed086896ba6",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/a610c0b00262e3819730b155634a7ed086896ba6",
+      "message": "test: lock runtime HUD to product presentation",
+      "date": "2026-09-07T01:28:50Z"
+    },
+    {
+      "sha": "ea1635ac02d4b41c9425d1c74905e9d4e81405b7",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/ea1635ac02d4b41c9425d1c74905e9d4e81405b7",
+      "message": "fix: force product HUD on local runtime",
+      "date": "2026-09-07T01:28:32Z"
+    },
+    {
+      "sha": "ad3049884d070b1cfee2a0a3a156ab30868261fc",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/ad3049884d070b1cfee2a0a3a156ab30868261fc",
+      "message": "fix: prove product HUD and modern renderer at runtime",
+      "date": "2026-09-07T01:27:37Z"
+    },
+    {
+      "sha": "0f5a6957ba3d0bd87c85f37c9a1e25634d463082",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/0f5a6957ba3d0bd87c85f37c9a1e25634d463082",
+      "message": "feat: enable modern UE5.8 rendering path",
+      "date": "2026-09-07T01:27:21Z"
+    },
+    {
+      "sha": "a84bcbe719f964633b1983c43da20963cb053a40",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/a84bcbe719f964633b1983c43da20963cb053a40",
+      "message": "fix: make runtime UI world-first and transparent",
+      "date": "2026-09-07T01:27:04Z"
+    },
+    {
+      "sha": "20186b772b8953063c4da8e4c98c5a3cce77a088",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/20186b772b8953063c4da8e4c98c5a3cce77a088",
+      "message": "qa: mark runtime visual stage for packaged smoke gate",
+      "date": "2026-09-07T01:16:34Z"
+    },
+    {
+      "sha": "00b879f2d645ec406120ca67653888b2d3fd27ba",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/00b879f2d645ec406120ca67653888b2d3fd27ba",
+      "message": "qa: add packaged runtime visual smoke gate",
+      "date": "2026-09-07T01:16:14Z"
+    },
+    {
+      "sha": "5b754496400a5ded55b683483dc1fa56d92e6c32",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/5b754496400a5ded55b683483dc1fa56d92e6c32",
+      "message": "fix: include UE5.8 CanvasItem types for product HUD",
+      "date": "2026-09-07T01:15:27Z"
+    },
+    {
+      "sha": "7afa1d3f1e8c14f5a74b2fbbc4ee14409995ff03",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/7afa1d3f1e8c14f5a74b2fbbc4ee14409995ff03",
+      "message": "feat: add runtime target feedback and real progression UI",
+      "date": "2026-09-07T01:14:51Z"
+    },
+    {
+      "sha": "bc1895f9ae5050de2dc151a03654d90c5ad9dc4c",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/bc1895f9ae5050de2dc151a03654d90c5ad9dc4c",
+      "message": "fix: finalize runtime product HUD",
+      "date": "2026-09-07T01:11:50Z"
+    },
+    {
+      "sha": "456623b2c4b0ed05321bcbbe036a952c6f610f2f",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/456623b2c4b0ed05321bcbbe036a952c6f610f2f",
+      "message": "feat: replace prototype HUD with runtime product shell",
+      "date": "2026-09-07T01:10:12Z"
+    },
+    {
+      "sha": "0c2ef1e6c98f516f360721dd7051fcc12746dbf5",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/0c2ef1e6c98f516f360721dd7051fcc12746dbf5",
+      "message": "feat: upgrade first-person weapon presentation",
+      "date": "2026-09-07T01:08:06Z"
+    },
+    {
+      "sha": "92d9e2edb9383bea07e3b43bf3fc6dbcd1df42b4",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/92d9e2edb9383bea07e3b43bf3fc6dbcd1df42b4",
+      "message": "feat: add runtime hero environment dressing",
+      "date": "2026-09-07T01:06:09Z"
+    },
+    {
+      "sha": "65598cb7a2d8f616b2e579661ac6c268f566c46d",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/65598cb7a2d8f616b2e579661ac6c268f566c46d",
+      "message": "docs: add runtime visual production implementation plan",
+      "date": "2026-09-07T01:03:05Z"
+    },
+    {
+      "sha": "c1c60beaa0531534d4c2edaf89d0be2ab3e685bc",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/c1c60beaa0531534d4c2edaf89d0be2ab3e685bc",
+      "message": "docs: define runtime visual production design",
+      "date": "2026-09-07T01:01:51Z"
+    },
+    {
+      "sha": "3c1b03971051a9ef6f38d3b8d9825d3496149293",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/3c1b03971051a9ef6f38d3b8d9825d3496149293",
+      "message": "Fix generated material package repair",
+      "date": "2026-09-07T00:51:33Z"
+    },
+    {
+      "sha": "2be834ed3546d77ed8dab012915a34664cc9b76a",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/2be834ed3546d77ed8dab012915a34664cc9b76a",
+      "message": "Add automatic repair for generated material LFS stubs",
+      "date": "2026-09-07T00:49:44Z"
+    },
+    {
+      "sha": "2e01caeaaf58e2067a770e9b7fd250caa6087c8e",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/2e01caeaaf58e2067a770e9b7fd250caa6087c8e",
+      "message": "C05: implement 1:1 mouse-driven Aimlabs 2.0 browser menu, HUD, and settings navigation",
+      "date": "2026-09-07T00:43:24Z"
+    },
+    {
+      "sha": "6a931b72b31ac4104788e4a292f54c1443ddb35e",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/6a931b72b31ac4104788e4a292f54c1443ddb35e",
+      "message": "C05: implement 1:1 mouse-driven Aimlabs 2.0 browser menu, HUD, and settings navigation",
+      "date": "2026-09-07T00:38:40Z"
+    },
+    {
+      "sha": "c9484a9257b6ca7cdcaf5889ff62ed89da0e1db1",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/c9484a9257b6ca7cdcaf5889ff62ed89da0e1db1",
+      "message": "Add automated cook and runtime repair workflow",
+      "date": "2026-09-07T00:31:15Z"
+    },
+    {
+      "sha": "8da37787231da31ff0dd9c196f5082cfd6beb296",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/8da37787231da31ff0dd9c196f5082cfd6beb296",
+      "message": "Keep runtime map layout free of editor-only labels",
+      "date": "2026-09-07T00:30:59Z"
+    },
+    {
+      "sha": "9c358fb266aaf831b092c127a43c60a00682ec30",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/9c358fb266aaf831b092c127a43c60a00682ec30",
+      "message": "Remove runtime editor labels and harden game CVar types",
+      "date": "2026-09-07T00:30:36Z"
+    },
+    {
+      "sha": "b08f783b728d93b309c31240ce0d80134ba7ef38",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/b08f783b728d93b309c31240ce0d80134ba7ef38",
+      "message": "Preserve scoring implementation while deferring sim binding",
+      "date": "2026-09-07T00:30:13Z"
+    },
+    {
+      "sha": "42c688893587b02d65c4b600fdefc089af03a0c6",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/42c688893587b02d65c4b600fdefc089af03a0c6",
+      "message": "Bind scoring simulation at world begin play",
+      "date": "2026-09-07T00:29:50Z"
+    },
+    {
+      "sha": "611fde55a29a8b6d5373ef128e421aab04ea14a5",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/611fde55a29a8b6d5373ef128e421aab04ea14a5",
+      "message": "Defer scoring sim binding until world begin play",
+      "date": "2026-09-07T00:29:40Z"
+    },
+    {
+      "sha": "c014e6ae08c6933f41f32fe614f1f10a1c3d4dd7",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/c014e6ae08c6933f41f32fe614f1f10a1c3d4dd7",
+      "message": "Fix audio subsystem world ownership for UE5.8",
+      "date": "2026-09-07T00:29:34Z"
+    },
+    {
+      "sha": "177f2ac45d2b77dc9c0b883d81e536292b0d71fd",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/177f2ac45d2b77dc9c0b883d81e536292b0d71fd",
+      "message": "Remove runtime editor-only actor labels",
+      "date": "2026-09-07T00:24:26Z"
+    },
+    {
+      "sha": "88ebdab07b7013fa6dad1cf0c13b7b6a0b942efb",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/88ebdab07b7013fa6dad1cf0c13b7b6a0b942efb",
+      "message": "Fix runtime-only GameMode editor API usage",
+      "date": "2026-09-07T00:24:18Z"
+    },
+    {
+      "sha": "f60226317d10afe800e2caf98a0d67f352cf7ef5",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/f60226317d10afe800e2caf98a0d67f352cf7ef5",
+      "message": "Fix UE5.8 console variable Set overload ambiguity",
+      "date": "2026-09-07T00:21:38Z"
+    },
+    {
+      "sha": "17523d86acfe42f45abdcb72f96d0dcf879ad96e",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/17523d86acfe42f45abdcb72f96d0dcf879ad96e",
+      "message": "fix: make UE5.8 repair transforms deterministic",
+      "date": "2026-09-07T00:20:30Z"
+    },
+    {
+      "sha": "97f6ad13eec9ab6a9b748d7939e523011bd5a0e6",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/97f6ad13eec9ab6a9b748d7939e523011bd5a0e6",
+      "message": "fix: harden UE5.8 repair transformations",
+      "date": "2026-09-07T00:19:49Z"
+    },
+    {
+      "sha": "8788b2fd57639f69b1d5adb3f81ae702739eccef",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/8788b2fd57639f69b1d5adb3f81ae702739eccef",
+      "message": "Fix remaining UE5.8 compiler roots in automated repair",
+      "date": "2026-09-07T00:17:23Z"
+    },
+    {
+      "sha": "691c0fdb30462880caea4c6b8c06b068971c1718",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/691c0fdb30462880caea4c6b8c06b068971c1718",
+      "message": "Make UE5.8 repair tool comprehensive",
+      "date": "2026-09-07T00:16:57Z"
+    },
+    {
+      "sha": "e00552f958b761e7975cdfa1b9843b9fde57cdc9",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/e00552f958b761e7975cdfa1b9843b9fde57cdc9",
+      "message": "Add comprehensive UE5.8 compatibility auto-repair",
+      "date": "2026-09-07T00:14:16Z"
+    },
+    {
+      "sha": "273efacabadeabdba67700585d629241d5d54799",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/273efacabadeabdba67700585d629241d5d54799",
+      "message": "Improve UE5.8 repair diagnostics and contract fixes",
+      "date": "2026-09-07T00:10:41Z"
+    },
+    {
+      "sha": "ddd8011fb47fbfb5728a82559873e58a5228f999",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/ddd8011fb47fbfb5728a82559873e58a5228f999",
+      "message": "Improve repair runner diagnostics and UE5.8 source repair",
+      "date": "2026-09-07T00:09:22Z"
+    },
+    {
+      "sha": "db030a51226cdca44384bc6d94c69970e038b574",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/db030a51226cdca44384bc6d94c69970e038b574",
+      "message": "Align FinalHUD declaration and implementation",
+      "date": "2026-09-07T00:08:42Z"
+    },
+    {
+      "sha": "bd22485e0adb727f0c78125d150b467a2429d614",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/bd22485e0adb727f0c78125d150b467a2429d614",
+      "message": "Align FinalHUD declaration with implementation",
+      "date": "2026-09-07T00:08:36Z"
+    },
+    {
+      "sha": "184e5a6f72f13135506783374ac6981989f672dd",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/184e5a6f72f13135506783374ac6981989f672dd",
+      "message": "Fix FinalHUD DrawNav signature",
+      "date": "2026-09-07T00:08:21Z"
+    },
+    {
+      "sha": "d66a4c323d5d250e8c095184a33327dadbb95b9c",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/d66a4c323d5d250e8c095184a33327dadbb95b9c",
+      "message": "Make FinalHUD declaration match implementation",
+      "date": "2026-09-07T00:08:14Z"
+    },
+    {
+      "sha": "8f7153082516c9ad42c29604067168729539438b",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/8f7153082516c9ad42c29604067168729539438b",
+      "message": "Fix FinalHUD declaration const mismatch",
+      "date": "2026-09-07T00:08:08Z"
+    },
+    {
+      "sha": "fb661a68c11bdc73d9d99b31403e70c42ab18536",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/fb661a68c11bdc73d9d99b31403e70c42ab18536",
+      "message": "Fix automated UE5.8 repair regex",
+      "date": "2026-09-07T00:05:29Z"
+    },
+    {
+      "sha": "ac5e50c20133441eeabe4195647aae1b8938eab3",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/ac5e50c20133441eeabe4195647aae1b8938eab3",
+      "message": "Make local UE repair self-healing",
+      "date": "2026-09-07T00:05:05Z"
+    },
+    {
+      "sha": "40b33d11a9d7cd6f8458d4b23444efe74c5371b3",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/40b33d11a9d7cd6f8458d4b23444efe74c5371b3",
+      "message": "Apply automated UE5.8 HUD and build repairs",
+      "date": "2026-09-06T23:59:51Z"
+    },
+    {
+      "sha": "a5e6f549644d73ddfa6912c03a0f874870caacfb",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/a5e6f549644d73ddfa6912c03a0f874870caacfb",
+      "message": "Add safe automated UE5.8 repair utility",
+      "date": "2026-09-06T23:59:14Z"
+    },
+    {
+      "sha": "c77106146d5a608c676f0d85a23e13fa11d1b5e7",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/c77106146d5a608c676f0d85a23e13fa11d1b5e7",
+      "message": "Add safe local UE5.8 repair utility",
+      "date": "2026-09-06T23:58:26Z"
+    },
+    {
+      "sha": "ab7cbd487f54eda6d60fc6a0191b3c4e548d865d",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/ab7cbd487f54eda6d60fc6a0191b3c4e548d865d",
+      "message": "Make FinalHUD declarations UE5.8-safe",
+      "date": "2026-09-06T23:56:35Z"
+    },
+    {
+      "sha": "f4a93332042a35d55cc99def017be026eec5a4ac",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/f4a93332042a35d55cc99def017be026eec5a4ac",
+      "message": "Fix ScoringSubsystem input type visibility for UE5.8",
+      "date": "2026-09-06T23:56:30Z"
+    },
+    {
+      "sha": "838dd7e1f536fe46e40764750ba9f2c230ccae67",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/838dd7e1f536fe46e40764750ba9f2c230ccae67",
+      "message": "Silence UE HUD local-name warning C4459",
+      "date": "2026-09-06T23:49:14Z"
+    },
+    {
+      "sha": "4d397698c067cb8d6a7908cd43b3fb0490f9fdec",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/4d397698c067cb8d6a7908cd43b3fb0490f9fdec",
+      "message": "Use UE 5.8 TimerManager include path",
+      "date": "2026-09-06T23:48:53Z"
+    },
+    {
+      "sha": "0dbd199d42a33192d2b13eaceb1e97e30bb05aba",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/0dbd199d42a33192d2b13eaceb1e97e30bb05aba",
+      "message": "Replace legacy ModernHUD Canvas calls with UE 5.8-safe rendering",
+      "date": "2026-09-06T23:48:32Z"
+    },
+    {
+      "sha": "95cc90f4eb4b320b7824e2252954bfa1b3fee3e7",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/95cc90f4eb4b320b7824e2252954bfa1b3fee3e7",
+      "message": "Fix FinalHUD for UE 5.8 Canvas API",
+      "date": "2026-09-06T23:48:17Z"
+    },
+    {
+      "sha": "68610d2fce3979bf10f5caf04fbfb69134c87b36",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/68610d2fce3979bf10f5caf04fbfb69134c87b36",
+      "message": "fix: remove accidental nonexistent audit requirement",
+      "date": "2026-09-06T23:44:14Z"
+    },
+    {
+      "sha": "2f66f8cf6134626cf566c8f5848b9ad243ade437",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/2f66f8cf6134626cf566c8f5848b9ad243ade437",
+      "message": "fix: correct Escape token boundary in release audit",
+      "date": "2026-09-06T23:43:59Z"
+    },
+    {
+      "sha": "7ff4351ebcf8a2e844e471cfcb8f0fc37281ef82",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/7ff4351ebcf8a2e844e471cfcb8f0fc37281ef82",
+      "message": "fix: keep controller compatibility internal and PC-only",
+      "date": "2026-09-06T23:38:04Z"
+    },
+    {
+      "sha": "0646cf4d54f111c0ace6ba0f8aa7140f3488bf8d",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/0646cf4d54f111c0ace6ba0f8aa7140f3488bf8d",
+      "message": "fix: enforce PC-only settings contract",
+      "date": "2026-09-06T23:37:26Z"
+    },
+    {
+      "sha": "7ca1c4bf7bad815d99cfbdc0089ecffc21768139",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/7ca1c4bf7bad815d99cfbdc0089ecffc21768139",
+      "message": "fix: prevent debug boot path in shipping builds",
+      "date": "2026-09-06T23:31:15Z"
+    },
+    {
+      "sha": "0306bd39f7195f477b463c7abaf83d7ef7a64a24",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/0306bd39f7195f477b463c7abaf83d7ef7a64a24",
+      "message": "test: harden release audit against flow regressions",
+      "date": "2026-09-06T23:30:53Z"
+    },
+    {
+      "sha": "b935ef1bed2ddafc646dd4f4c323096829083418",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/b935ef1bed2ddafc646dd4f4c323096829083418",
+      "message": "fix: preserve last good profile during save failure",
+      "date": "2026-09-06T23:30:36Z"
+    },
+    {
+      "sha": "888b8efed9bc754b4ffe5a00551bfe95aadc8984",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/888b8efed9bc754b4ffe5a00551bfe95aadc8984",
+      "message": "fix: harden PC session navigation and mode duration",
+      "date": "2026-09-06T23:30:14Z"
+    },
+    {
+      "sha": "ed93466d681e652088d653b74cd7bd1b28690752",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/ed93466d681e652088d653b74cd7bd1b28690752",
+      "message": "fix: enforce session-owned play flow contracts",
+      "date": "2026-09-06T23:30:01Z"
+    },
+    {
+      "sha": "b7c6283f75b256420f6bb172816b78ad118c3a01",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/b7c6283f75b256420f6bb172816b78ad118c3a01",
+      "message": "test: lock game-flow transition contracts",
+      "date": "2026-09-06T23:29:52Z"
+    },
+    {
+      "sha": "80f37c675540463fab8188361e035c46b77060d6",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/80f37c675540463fab8188361e035c46b77060d6",
+      "message": "test: expose pure game-flow contracts",
+      "date": "2026-09-06T23:29:45Z"
+    },
+    {
+      "sha": "84af8676b2ef2d29222a626a1b6340de24b6bd0b",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/84af8676b2ef2d29222a626a1b6340de24b6bd0b",
+      "message": "fix: scope PC menu audit to actual page navigation",
+      "date": "2026-09-06T23:27:14Z"
+    },
+    {
+      "sha": "a6e954fbea86b2012ea7917968cac94f4e7e2821",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/a6e954fbea86b2012ea7917968cac94f4e7e2821",
+      "message": "test: add regression coverage for false-positive menu audit",
+      "date": "2026-09-06T23:27:03Z"
+    },
+    {
+      "sha": "4f50bfb2974968230aa6996d970e744550861ae5",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/4f50bfb2974968230aa6996d970e744550861ae5",
+      "message": "Merge pull request #22 from RepresentPR/feat/dtrt-45pct-finalization",
+      "date": "2026-09-06T23:17:22Z"
+    },
+    {
+      "sha": "fdc8a0f3d8319c719c42c59c8ba35aad786d8f02",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/fdc8a0f3d8319c719c42c59c8ba35aad786d8f02",
+      "message": "docs: add final pc playtest protocol",
+      "date": "2026-09-06T23:16:26Z"
+    },
+    {
+      "sha": "9ef53b2b33e4ddd2ae990c76f709aa84ab586da2",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/9ef53b2b33e4ddd2ae990c76f709aa84ab586da2",
+      "message": "test: harden finalization contract diagnostics",
+      "date": "2026-09-06T23:16:18Z"
+    },
+    {
+      "sha": "52e68c0c6ff89b204bb09f71ec43f5652c94a4a3",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/52e68c0c6ff89b204bb09f71ec43f5652c94a4a3",
+      "message": "qa: harden final product audit contract",
+      "date": "2026-09-06T23:15:49Z"
+    },
+    {
+      "sha": "88c5f1a0e594783568e8be0f0aad7eb5de4b74bc",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/88c5f1a0e594783568e8be0f0aad7eb5de4b74bc",
+      "message": "fix: align final tab navigation hitboxes",
+      "date": "2026-09-06T23:15:37Z"
+    },
+    {
+      "sha": "55d07f669a09c3d9c0de835aef0bab149241ec68",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/55d07f669a09c3d9c0de835aef0bab149241ec68",
+      "message": "feat: add playtest feedback workflow",
+      "date": "2026-09-06T23:15:26Z"
+    },
+    {
+      "sha": "9549b3be374d3074e03bac93d1ac615948079b2a",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/9549b3be374d3074e03bac93d1ac615948079b2a",
+      "message": "feat: add premium content budget auditor",
+      "date": "2026-09-06T23:15:16Z"
+    },
+    {
+      "sha": "1a5e3f7401d9a9088eea2c428ca37c00b84ab6a4",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/1a5e3f7401d9a9088eea2c428ca37c00b84ab6a4",
+      "message": "feat: expand competitive settings and persistence",
+      "date": "2026-09-06T23:15:09Z"
+    },
+    {
+      "sha": "9b3ea9457082e00b0e7391d7f1a7ab556596ab91",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/9b3ea9457082e00b0e7391d7f1a7ab556596ab91",
+      "message": "feat: expand competitive settings backend",
+      "date": "2026-09-06T23:14:50Z"
+    },
+    {
+      "sha": "d51fdd16e0a751292b8814bca040c4ea56d53b16",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/d51fdd16e0a751292b8814bca040c4ea56d53b16",
+      "message": "feat: finalize pc-native frontend and training surfaces",
+      "date": "2026-09-06T23:14:17Z"
+    },
+    {
+      "sha": "62907bff84dc730e789d7e2930b88b4430778a96",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/62907bff84dc730e789d7e2930b88b4430778a96",
+      "message": "feat: finish pc-native frontend navigation",
+      "date": "2026-09-06T23:13:21Z"
+    },
+    {
+      "sha": "aa091a21e23a9cc5c70652a3db0c3bbb7eca1bcd",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/aa091a21e23a9cc5c70652a3db0c3bbb7eca1bcd",
+      "message": "feat: add frontend navigation surfaces",
+      "date": "2026-09-06T23:13:03Z"
+    },
+    {
+      "sha": "2294bc5a4dabba3b292e083ab9081bb2db3ca5be",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/2294bc5a4dabba3b292e083ab9081bb2db3ca5be",
+      "message": "test: finalize crosshair serialization contract",
+      "date": "2026-09-06T23:12:41Z"
+    },
+    {
+      "sha": "48688c7c0bc177b21a1bcb949a406a2b92ef7b73",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/48688c7c0bc177b21a1bcb949a406a2b92ef7b73",
+      "message": "test: expose crosshair serialization contract",
+      "date": "2026-09-06T23:12:06Z"
+    },
+    {
+      "sha": "4d16fc3db39b3766f7a29efe6ae950c50fdd404b",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/4d16fc3db39b3766f7a29efe6ae950c50fdd404b",
+      "message": "test: expose workout factory implementation",
+      "date": "2026-09-06T23:12:00Z"
+    },
+    {
+      "sha": "c54d979f4c19a5eee63c83cb73d9bf53bf82a3c9",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/c54d979f4c19a5eee63c83cb73d9bf53bf82a3c9",
+      "message": "test: expose deterministic workout factory",
+      "date": "2026-09-06T23:11:51Z"
+    },
+    {
+      "sha": "50dce0e7dfad478af9efa0a912ceb5a5461fde74",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/50dce0e7dfad478af9efa0a912ceb5a5461fde74",
+      "message": "test: expose benchmark factory implementation",
+      "date": "2026-09-06T23:11:44Z"
+    },
+    {
+      "sha": "1a3a2db6d3b13fd6623c3d463abce2b17c745a44",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/1a3a2db6d3b13fd6623c3d463abce2b17c745a44",
+      "message": "test: expose deterministic benchmark factory",
+      "date": "2026-09-06T23:11:26Z"
+    },
+    {
+      "sha": "d61cc4ad5ecb402f00adce80761a0a37180ee3de",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/d61cc4ad5ecb402f00adce80761a0a37180ee3de",
+      "message": "test: add finalization product contracts",
+      "date": "2026-09-06T23:11:17Z"
+    },
+    {
+      "sha": "746163f2e45d8a31c38540f7abbd37bf523005b2",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/746163f2e45d8a31c38540f7abbd37bf523005b2",
+      "message": "fix: complete feedback export dependency",
+      "date": "2026-09-06T23:11:10Z"
+    },
+    {
+      "sha": "cc7127676742bce42b3d3088bfbd5651a309ca47",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/cc7127676742bce42b3d3088bfbd5651a309ca47",
+      "message": "fix: harden pc-native frontend click handling",
+      "date": "2026-09-06T23:10:54Z"
+    },
+    {
+      "sha": "54675c0db16c316e44ad96410747ddcbf8434611",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/54675c0db16c316e44ad96410747ddcbf8434611",
+      "message": "feat: promote final pc-native hud shell",
+      "date": "2026-09-06T23:10:36Z"
+    },
+    {
+      "sha": "50be25909ad30183b85b73b42b06c359aa4b3c2e",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/50be25909ad30183b85b73b42b06c359aa4b3c2e",
+      "message": "fix: align frontend click navigation with final HUD",
+      "date": "2026-09-06T23:10:25Z"
+    },
+    {
+      "sha": "6904be02ba53dd529eac91837291c3bd0a6db03c",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/6904be02ba53dd529eac91837291c3bd0a6db03c",
+      "message": "feat: implement final pc-native hud",
+      "date": "2026-09-06T23:10:06Z"
+    },
+    {
+      "sha": "508ac72e6ec63f42331f6fd5e5cc0c4bf5f1883b",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/508ac72e6ec63f42331f6fd5e5cc0c4bf5f1883b",
+      "message": "feat: add final pc-native hud shell",
+      "date": "2026-09-06T23:09:48Z"
+    },
+    {
+      "sha": "6d8141a19cf533eae6001fa8aac727065c077d2c",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/6d8141a19cf533eae6001fa8aac727065c077d2c",
+      "message": "chore: use final release audit in complete gate",
+      "date": "2026-09-06T23:09:12Z"
+    },
+    {
+      "sha": "4b0d17882a7227f42caf9a1a3aa8cba402902920",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/4b0d17882a7227f42caf9a1a3aa8cba402902920",
+      "message": "feat: add final release audit tool",
+      "date": "2026-09-06T23:09:03Z"
+    },
+    {
+      "sha": "cc774c0d7df3b95d41a39508dbd7eafb1b232b93",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/cc774c0d7df3b95d41a39508dbd7eafb1b232b93",
+      "message": "feat: implement training workout catalog",
+      "date": "2026-09-06T23:08:54Z"
+    },
+    {
+      "sha": "0c9c198c5013ea39c10be2a2bd8e49c346971ebb",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/0c9c198c5013ea39c10be2a2bd8e49c346971ebb",
+      "message": "feat: add structured workout system",
+      "date": "2026-09-06T23:08:48Z"
+    },
+    {
+      "sha": "794049988c0c8bc86f22ac59b0e3e628e8d922b1",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/794049988c0c8bc86f22ac59b0e3e628e8d922b1",
+      "message": "feat: implement local training benchmarks",
+      "date": "2026-09-06T23:08:44Z"
+    },
+    {
+      "sha": "eacef5cf1cc80232008c6fd9175bbb5b03f6f875",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/eacef5cf1cc80232008c6fd9175bbb5b03f6f875",
+      "message": "feat: add benchmark training contracts",
+      "date": "2026-09-06T23:08:36Z"
+    },
+    {
+      "sha": "336047adc64f1fa1e724cff655a20ede1354fd51",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/336047adc64f1fa1e724cff655a20ede1354fd51",
+      "message": "feat: integrate premium detail content kit",
+      "date": "2026-09-06T23:08:30Z"
+    },
+    {
+      "sha": "1d1f2aded6b0dde512f36dffab9235f426644249",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/1d1f2aded6b0dde512f36dffab9235f426644249",
+      "message": "feat: build premium procedural detail kit",
+      "date": "2026-09-06T23:08:22Z"
+    },
+    {
+      "sha": "830e98d1594a18fa7f3db7b988e98438b767fd49",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/830e98d1594a18fa7f3db7b988e98438b767fd49",
+      "message": "feat: add premium detail content actor",
+      "date": "2026-09-06T23:08:10Z"
+    },
+    {
+      "sha": "fb926df8916383ff9e04f8cd0244c3d9b37beff3",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/fb926df8916383ff9e04f8cd0244c3d9b37beff3",
+      "message": "feat: implement playtest feedback export",
+      "date": "2026-09-06T23:07:59Z"
+    },
+    {
+      "sha": "91abad2120005c4e8418fe60a09f8af61acca0fa",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/91abad2120005c4e8418fe60a09f8af61acca0fa",
+      "message": "feat: add structured playtest feedback",
+      "date": "2026-09-06T23:07:51Z"
+    },
+    {
+      "sha": "3f7d329237a52eb005508d7a4b3888f130cd9121",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/3f7d329237a52eb005508d7a4b3888f130cd9121",
+      "message": "feat: implement crosshair profile persistence",
+      "date": "2026-09-06T23:07:33Z"
+    },
+    {
+      "sha": "fc00d35b44a98275433b7f30028e200cbc6fb6b4",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/fc00d35b44a98275433b7f30028e200cbc6fb6b4",
+      "message": "feat: complete crosshair subsystem contract",
+      "date": "2026-09-06T23:07:23Z"
+    },
+    {
+      "sha": "9214d92a06703ff3f8acd1c9d25fbd1b268d0972",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/9214d92a06703ff3f8acd1c9d25fbd1b268d0972",
+      "message": "feat: add crosshair profile model",
+      "date": "2026-09-06T23:07:09Z"
+    },
+    {
+      "sha": "03af1c23a7ed7b7400cc4022d324339aad4a406d",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/03af1c23a7ed7b7400cc4022d324339aad4a406d",
+      "message": "feat: make frontend navigation pc-native",
+      "date": "2026-09-06T23:07:01Z"
+    },
+    {
+      "sha": "6a2cbebbbb096884d64c58bf09709c16cdbc695c",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/6a2cbebbbb096884d64c58bf09709c16cdbc695c",
+      "message": "docs: add finalization implementation plan",
+      "date": "2026-09-06T23:06:23Z"
+    },
+    {
+      "sha": "d8173c12b4e7d9c781a68e10087335c9e12bbdde",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/d8173c12b4e7d9c781a68e10087335c9e12bbdde",
+      "message": "test: fix release contract diagnostic string",
+      "date": "2026-09-06T23:03:18Z"
+    },
+    {
+      "sha": "5ac05ebb1cd844fb89747149d39e9be950b2fd1f",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/5ac05ebb1cd844fb89747149d39e9be950b2fd1f",
+      "message": "training: persist authoritative shot analytics",
+      "date": "2026-09-06T23:02:07Z"
+    },
+    {
+      "sha": "782af3917e49e628f932fcb1b67059668730a787",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/782af3917e49e628f932fcb1b67059668730a787",
+      "message": "build: declare flow-state enum for target listeners",
+      "date": "2026-09-06T23:01:55Z"
+    },
+    {
+      "sha": "a29d43b1b9fd370a55a283243a86978684152a35",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/a29d43b1b9fd370a55a283243a86978684152a35",
+      "message": "release: add authoritative complete-product gate",
+      "date": "2026-09-06T23:01:38Z"
+    },
+    {
+      "sha": "25ffd6be096e39896020867bcf045630a53db925",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/25ffd6be096e39896020867bcf045630a53db925",
+      "message": "test: correct pure daily challenge contract coverage",
+      "date": "2026-09-06T23:00:59Z"
+    },
+    {
+      "sha": "03316e43263a699c6a126416577251924fa47be0",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/03316e43263a699c6a126416577251924fa47be0",
+      "message": "training: finalize pure daily challenge resolver",
+      "date": "2026-09-06T23:00:45Z"
+    },
+    {
+      "sha": "70f8b1098ceffdfb2311d08eae71aa85e1ea34e5",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/70f8b1098ceffdfb2311d08eae71aa85e1ea34e5",
+      "message": "training: make daily challenge resolution pure",
+      "date": "2026-09-06T23:00:35Z"
+    },
+    {
+      "sha": "ae587ffbdd5148348958c5001699bc8d4e175e29",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/ae587ffbdd5148348958c5001699bc8d4e175e29",
+      "message": "test: add release contract coverage for core product systems",
+      "date": "2026-09-06T23:00:26Z"
+    },
+    {
+      "sha": "befbacfe972a9540d073469b449f6257dc226076",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/befbacfe972a9540d073469b449f6257dc226076",
+      "message": "training: define distinct drill behavior profiles",
+      "date": "2026-09-06T23:00:13Z"
+    },
+    {
+      "sha": "9822b9afd1dc04ac450dbbc4f39b423797d61ac7",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/9822b9afd1dc04ac450dbbc4f39b423797d61ac7",
+      "message": "training: add explicit behavior metadata to drills",
+      "date": "2026-09-06T23:00:06Z"
+    },
+    {
+      "sha": "2baba3d152413148bc01a4a0c9a78c1ef2433cc7",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/2baba3d152413148bc01a4a0c9a78c1ef2433cc7",
+      "message": "test: add frontend state contract coverage",
+      "date": "2026-09-06T22:59:54Z"
+    },
+    {
+      "sha": "dc36d85451547ca4704edfb6f82507e17a94eb09",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/dc36d85451547ca4704edfb6f82507e17a94eb09",
+      "message": "test: add session descriptor validation",
+      "date": "2026-09-06T22:59:49Z"
+    },
+    {
+      "sha": "ebd21ed8847683862098b61030e571f3eada6aa4",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/ebd21ed8847683862098b61030e571f3eada6aa4",
+      "message": "build: fix generated header include",
+      "date": "2026-09-06T22:59:44Z"
+    },
+    {
+      "sha": "33b70f61a8b9bdeab167639bd7edc39d6b15ea23",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/33b70f61a8b9bdeab167639bd7edc39d6b15ea23",
+      "message": "release: add machine-readable product completeness manifest",
+      "date": "2026-09-06T22:59:27Z"
+    },
+    {
+      "sha": "61ab63b7fa71e88de3f9fa715610b079d3553c20",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/61ab63b7fa71e88de3f9fa715610b079d3553c20",
+      "message": "release: define complete-product contract",
+      "date": "2026-09-06T22:59:17Z"
+    },
+    {
+      "sha": "a582dd6e947379ea82d5acb12ec64efbbf67f43f",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/a582dd6e947379ea82d5acb12ec64efbbf67f43f",
+      "message": "test: add difficulty determinism coverage",
+      "date": "2026-09-06T22:58:53Z"
+    },
+    {
+      "sha": "8c1d87f21bca025702a67206e15d9878c4ada286",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/8c1d87f21bca025702a67206e15d9878c4ada286",
+      "message": "training: make targets respond to session difficulty",
+      "date": "2026-09-06T22:58:37Z"
+    },
+    {
+      "sha": "d0d0db3898771ca7f539e070e294a26eafeb61c5",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/d0d0db3898771ca7f539e070e294a26eafeb61c5",
+      "message": "profile: persist shot analytics in session history",
+      "date": "2026-09-06T22:58:13Z"
+    },
+    {
+      "sha": "027f26e1645a86dac887ad0179a6648ea262cfb6",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/027f26e1645a86dac887ad0179a6648ea262cfb6",
+      "message": "profile: persist shot analytics in session history",
+      "date": "2026-09-06T22:57:39Z"
+    },
+    {
+      "sha": "0d525eabbccfc08158030ba0105399a3e5a36236",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/0d525eabbccfc08158030ba0105399a3e5a36236",
+      "message": "profile: add shot-volume analytics to session records",
+      "date": "2026-09-06T22:56:51Z"
+    },
+    {
+      "sha": "b713897c9c0393bace4b50411a74baf38c494d83",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/b713897c9c0393bace4b50411a74baf38c494d83",
+      "message": "game: reset authoritative scoring when session starts",
+      "date": "2026-09-06T22:56:33Z"
+    },
+    {
+      "sha": "c487e68585365eefd9f1ae7a5055a354839f6735",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/c487e68585365eefd9f1ae7a5055a354839f6735",
+      "message": "training: make session duration authoritative and pause-safe",
+      "date": "2026-09-06T22:56:21Z"
+    },
+    {
+      "sha": "b827884cd4a79f353efc4ab3d0718e61d6e169ee",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/b827884cd4a79f353efc4ab3d0718e61d6e169ee",
+      "message": "training: add deterministic session timing to scoring",
+      "date": "2026-09-06T22:56:10Z"
+    },
+    {
+      "sha": "5abec77a73a3c97412de59e699d1d7bdc367d0d1",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/5abec77a73a3c97412de59e699d1d7bdc367d0d1",
+      "message": "training: make target actors consume session difficulty",
+      "date": "2026-09-06T22:55:25Z"
+    },
+    {
+      "sha": "4c5bf45b58398676df9f04dc85883860c569726d",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/4c5bf45b58398676df9f04dc85883860c569726d",
+      "message": "training: persist completed session results and daily challenge",
+      "date": "2026-09-06T22:54:56Z"
+    },
+    {
+      "sha": "9038a297dead959035363f5042012f0d820c212a",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/9038a297dead959035363f5042012f0d820c212a",
+      "message": "training: store completion guard for profile recording",
+      "date": "2026-09-06T22:54:48Z"
+    },
+    {
+      "sha": "8a81404a6935b14771dbacfc4a914311795c58c7",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/8a81404a6935b14771dbacfc4a914311795c58c7",
+      "message": "ui: surface product pages pause and progression",
+      "date": "2026-09-06T22:54:27Z"
+    },
+    {
+      "sha": "5f5754bc3c250f3e49306196024c510fed6a4d7a",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/5f5754bc3c250f3e49306196024c510fed6a4d7a",
+      "message": "ui: add full frontend page rendering",
+      "date": "2026-09-06T22:54:01Z"
+    },
+    {
+      "sha": "0bacec64e9b9798d5d0c33224b61b6c267948f23",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/0bacec64e9b9798d5d0c33224b61b6c267948f23",
+      "message": "ui: wire frontend pages and pause to product flow",
+      "date": "2026-09-06T22:53:50Z"
+    },
+    {
+      "sha": "1343b331b873903e41e4900ac043df13b1a2d7de",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/1343b331b873903e41e4900ac043df13b1a2d7de",
+      "message": "ui: expose frontend navigation and session controls",
+      "date": "2026-09-06T22:53:41Z"
+    },
+    {
+      "sha": "a6ed69cc560169250b50aa4440a787056e4c6f7f",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/a6ed69cc560169250b50aa4440a787056e4c6f7f",
+      "message": "ui: implement frontend state navigation model",
+      "date": "2026-09-06T22:53:30Z"
+    },
+    {
+      "sha": "fdb70b73c47f0e732a0204b4d4fc38fb08b033a1",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/fdb70b73c47f0e732a0204b4d4fc38fb08b033a1",
+      "message": "ui: add structured frontend state model",
+      "date": "2026-09-06T22:53:25Z"
+    },
+    {
+      "sha": "058598e5ea1bbb82eb6d3926ecdcfea9edf93dbb",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/058598e5ea1bbb82eb6d3926ecdcfea9edf93dbb",
+      "message": "training: implement deterministic daily challenges",
+      "date": "2026-09-06T22:53:20Z"
+    },
+    {
+      "sha": "449a825afa58a35453b622f5814d89e0059d4239",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/449a825afa58a35453b622f5814d89e0059d4239",
+      "message": "training: add deterministic daily challenge subsystem",
+      "date": "2026-09-06T22:53:10Z"
+    },
+    {
+      "sha": "95028f31d7261eb802fe04fc88271921cbd834cf",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/95028f31d7261eb802fe04fc88271921cbd834cf",
+      "message": "game: implement deterministic session flow",
+      "date": "2026-09-06T22:53:04Z"
+    },
+    {
+      "sha": "0fd3f7552b91ec3d1ff49088a5b6b5b64bc4c183",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/0fd3f7552b91ec3d1ff49088a5b6b5b64bc4c183",
+      "message": "game: expand flow with session lifecycle",
+      "date": "2026-09-06T22:52:51Z"
+    },
+    {
+      "sha": "528cb2c9a7bf328c3a5c48d7268e7783af35bb95",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/528cb2c9a7bf328c3a5c48d7268e7783af35bb95",
+      "message": "profile: implement history progression and v1 migration",
+      "date": "2026-09-06T22:52:43Z"
+    },
+    {
+      "sha": "ed10ecee2d0fba054a4445f9a3ace8ac1240316a",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/ed10ecee2d0fba054a4445f9a3ace8ac1240316a",
+      "message": "profile: expand persistent history API",
+      "date": "2026-09-06T22:52:26Z"
+    },
+    {
+      "sha": "575d6c669e40526422967647652406b2c36610c2",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/575d6c669e40526422967647652406b2c36610c2",
+      "message": "profile: add history and lifetime types",
+      "date": "2026-09-06T22:52:18Z"
+    },
+    {
+      "sha": "b00d26841c75ec628c8e77260b23eea4baa35bf4",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/b00d26841c75ec628c8e77260b23eea4baa35bf4",
+      "message": "training: implement deterministic difficulty resolver",
+      "date": "2026-09-06T22:52:14Z"
+    },
+    {
+      "sha": "f3a3a46ca78a8a94b12e32e52d593b28d05a6279",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/f3a3a46ca78a8a94b12e32e52d593b28d05a6279",
+      "message": "training: add deterministic difficulty types",
+      "date": "2026-09-06T22:52:07Z"
+    },
+    {
+      "sha": "fbb31da6a8c6056c0771fe11297e37e5f97b0b38",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/fbb31da6a8c6056c0771fe11297e37e5f97b0b38",
+      "message": "game: add deterministic session descriptor",
+      "date": "2026-09-06T22:51:22Z"
+    },
+    {
+      "sha": "670506bc4adcd20e7b209ef6e7b980ee926aec7c",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/670506bc4adcd20e7b209ef6e7b980ee926aec7c",
+      "message": "docs: add complete product audit implementation plan",
+      "date": "2026-09-06T22:51:07Z"
+    },
+    {
+      "sha": "9562965d770d812ed7e8d29c102d5d05d66b0cac",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/9562965d770d812ed7e8d29c102d5d05d66b0cac",
+      "message": "docs: add complete product audit specification",
+      "date": "2026-09-06T22:50:53Z"
+    },
+    {
+      "sha": "6e05719c26f7b93d224b02c039446fc7fab4593e",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/6e05719c26f7b93d224b02c039446fc7fab4593e",
+      "message": "docs: document premium content package",
+      "date": "2026-09-06T22:45:40Z"
+    },
+    {
+      "sha": "10bdfacd1bbdc377738238dbc40b538c5d20ab5a",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/10bdfacd1bbdc377738238dbc40b538c5d20ab5a",
+      "message": "tools: add cooked content budget audit",
+      "date": "2026-09-06T22:45:30Z"
+    },
+    {
+      "sha": "98c27df0d318fa2002629951e6433a9f12537384",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/98c27df0d318fa2002629951e6433a9f12537384",
+      "message": "docs: record content pack provenance",
+      "date": "2026-09-06T22:45:20Z"
+    },
+    {
+      "sha": "f8173d363cb299bde66e0210ef66186300ff2f10",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/f8173d363cb299bde66e0210ef66186300ff2f10",
+      "message": "docs: define premium content density and package budget",
+      "date": "2026-09-06T22:45:14Z"
+    },
+    {
+      "sha": "217e779ebafb5dd7834ce2c10eec4001dbb3d5d4",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/217e779ebafb5dd7834ce2c10eec4001dbb3d5d4",
+      "message": "test: validate premium content budgets",
+      "date": "2026-09-06T22:45:07Z"
+    },
+    {
+      "sha": "4af71bfaf164e76e35b8d1814566dd6a395debad",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/4af71bfaf164e76e35b8d1814566dd6a395debad",
+      "message": "test: expose premium content pack budgets",
+      "date": "2026-09-06T22:45:02Z"
+    },
+    {
+      "sha": "1054d6cff893d1c341a75d8e8e45205097e6b110",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/1054d6cff893d1c341a75d8e8e45205097e6b110",
+      "message": "perf: add modern streaming and content delivery settings",
+      "date": "2026-09-06T22:44:54Z"
+    },
+    {
+      "sha": "d37b21787b5fc53e6ae8e002fbf51ea1e9fd9f6d",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/d37b21787b5fc53e6ae8e002fbf51ea1e9fd9f6d",
+      "message": "feat: finalize content pack lifecycle and ambient animation",
+      "date": "2026-09-06T22:44:41Z"
+    },
+    {
+      "sha": "fa97014fa54c703b361ba0fd9462e31d96165f91",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/fa97014fa54c703b361ba0fd9462e31d96165f91",
+      "message": "feat: add low-frequency content pack animation",
+      "date": "2026-09-06T22:44:16Z"
+    },
+    {
+      "sha": "d1a0bae08453627e5e4e3d21ea944e4402a5ad1e",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/d1a0bae08453627e5e4e3d21ea944e4402a5ad1e",
+      "message": "fix: use actor iterator for content pack guard",
+      "date": "2026-09-06T22:44:09Z"
+    },
+    {
+      "sha": "6e2d6e1fe987163c824f5ec4c831808ac14f2617",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/6e2d6e1fe987163c824f5ec4c831808ac14f2617",
+      "message": "content: integrate premium content pack into game boot",
+      "date": "2026-09-06T22:43:59Z"
+    },
+    {
+      "sha": "1274ff3f1d59012fd073439841c7423eaccf7ec9",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/1274ff3f1d59012fd073439841c7423eaccf7ec9",
+      "message": "fix: harden content pack lifecycle",
+      "date": "2026-09-06T22:43:40Z"
+    },
+    {
+      "sha": "98272f5f5bd93e1abe1db29fa450eaf03bc055a0",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/98272f5f5bd93e1abe1db29fa450eaf03bc055a0",
+      "message": "content: implement premium procedural prop kit",
+      "date": "2026-09-06T22:43:29Z"
+    },
+    {
+      "sha": "61fc6fd181d725a933a47f7df6bbb1ce707aa90d",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/61fc6fd181d725a933a47f7df6bbb1ce707aa90d",
+      "message": "content: add procedural premium content pack actor",
+      "date": "2026-09-06T22:43:13Z"
+    },
+    {
+      "sha": "e2feea0ee2c2b4d91be33825d849517db7f7e394",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/e2feea0ee2c2b4d91be33825d849517db7f7e394",
+      "message": "spec: define premium DTRT content expansion",
+      "date": "2026-09-06T22:42:56Z"
+    },
+    {
+      "sha": "90998e0e962f346f0dfa23d7a57276725698ab19",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/90998e0e962f346f0dfa23d7a57276725698ab19",
+      "message": "plan: add premium DTRT content expansion",
+      "date": "2026-09-06T22:42:47Z"
+    },
+    {
+      "sha": "3de733336d432c801c38212469662fe8e379cc90",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/3de733336d432c801c38212469662fe8e379cc90",
+      "message": "Merge DTRT visual system",
+      "date": "2026-09-06T22:36:20Z"
+    },
+    {
+      "sha": "638830e527d86ed08aa8cc756c98cd71f172c98c",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/638830e527d86ed08aa8cc756c98cd71f172c98c",
+      "message": "docs: add final visual system release note",
+      "date": "2026-09-06T22:36:06Z"
+    },
+    {
+      "sha": "694fa9867931fccbe1c0e9734b08103d4cf45d02",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/694fa9867931fccbe1c0e9734b08103d4cf45d02",
+      "message": "docs: finalize visual system release notes",
+      "date": "2026-09-06T22:36:02Z"
+    },
+    {
+      "sha": "9f055bbcad063a6d495ac83943506747162925c3",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/9f055bbcad063a6d495ac83943506747162925c3",
+      "message": "docs: add visual system release notes v2",
+      "date": "2026-09-06T22:35:58Z"
+    },
+    {
+      "sha": "801f6cdc06806901c025f9e1a3affbab83086b9b",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/801f6cdc06806901c025f9e1a3affbab83086b9b",
+      "message": "docs: add visual system release notes",
+      "date": "2026-09-06T22:35:51Z"
+    },
+    {
+      "sha": "4703c0d98ec053159ec1eed0d13f8ae7623fe5c8",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/4703c0d98ec053159ec1eed0d13f8ae7623fe5c8",
+      "message": "docs: refresh README for modern visual system",
+      "date": "2026-09-06T22:35:46Z"
+    },
+    {
+      "sha": "ea3f9748a6eadbc760af2d3484cbec741a852997",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/ea3f9748a6eadbc760af2d3484cbec741a852997",
+      "message": "visual: enrich deterministic viewmodel idle motion and weapon feel",
+      "date": "2026-09-06T22:35:33Z"
+    },
+    {
+      "sha": "d0e17014f349021c9bb424b5541fd6d018c27312",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/d0e17014f349021c9bb424b5541fd6d018c27312",
+      "message": "ui: make environment cards directly mouse-selectable",
+      "date": "2026-09-06T22:35:23Z"
+    },
+    {
+      "sha": "e3a3c53bb57c2ce24c47ea19455f0ea7d0680538",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/e3a3c53bb57c2ce24c47ea19455f0ea7d0680538",
+      "message": "docs: record DTRT visual system execution plan",
+      "date": "2026-09-06T22:35:11Z"
+    },
+    {
+      "sha": "f5ae780cf3d71d977a4f1b8f7ffa1b9a4496b91a",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/f5ae780cf3d71d977a4f1b8f7ffa1b9a4496b91a",
+      "message": "docs: add visual asset provenance manifest",
+      "date": "2026-09-06T22:35:03Z"
+    },
+    {
+      "sha": "12fffe3430453024ce2c1f851499cb79d9c3defa",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/12fffe3430453024ce2c1f851499cb79d9c3defa",
+      "message": "docs: add visual system evidence and provenance policy",
+      "date": "2026-09-06T22:34:48Z"
+    },
+    {
+      "sha": "7dc172c8fb2cdbb3fda6c48aa2f0dd3d9895bfc6",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/7dc172c8fb2cdbb3fda6c48aa2f0dd3d9895bfc6",
+      "message": "test: add visual-system timing and contrast budgets",
+      "date": "2026-09-06T22:34:43Z"
+    },
+    {
+      "sha": "ac60cd888ca66fa2c4a68da347fce33022374fd5",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/ac60cd888ca66fa2c4a68da347fce33022374fd5",
+      "message": "visual: add centralized visual design tokens and budgets",
+      "date": "2026-09-06T22:34:38Z"
+    },
+    {
+      "sha": "8024f170a48a23c065b5a2950d2cc4baf57a77a6",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/8024f170a48a23c065b5a2950d2cc4baf57a77a6",
+      "message": "ui: replace placeholder HUD with instant browser-like visual shell",
+      "date": "2026-09-06T22:34:29Z"
+    },
+    {
+      "sha": "b7f3dc991a98e406ebe00954adcd91d23bdd07be",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/b7f3dc991a98e406ebe00954adcd91d23bdd07be",
+      "message": "ui: expand modern HUD surface and interaction primitives",
+      "date": "2026-09-06T22:34:14Z"
+    },
+    {
+      "sha": "a8c062e0abac0afc20ceba64202b0e3ddff93036",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/a8c062e0abac0afc20ceba64202b0e3ddff93036",
+      "message": "visual: build original procedural 3D environment kit and ambient motion",
+      "date": "2026-09-06T22:34:07Z"
+    },
+    {
+      "sha": "1ef10ac0045523e31aa3f7d2214d460e32a98909",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/1ef10ac0045523e31aa3f7d2214d460e32a98909",
+      "message": "docs: add DTRT visual system design",
+      "date": "2026-09-06T22:33:39Z"
+    },
+    {
+      "sha": "88e6af2597fc2a3e2889ae8f84671115f5711205",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/88e6af2597fc2a3e2889ae8f84671115f5711205",
+      "message": "Visual: add procedural 3D environment dressing and ambient animation",
+      "date": "2026-09-06T22:33:30Z"
+    },
+    {
+      "sha": "55a5f7b817df6267d94cdecc3a973ad778a6966f",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/55a5f7b817df6267d94cdecc3a973ad778a6966f",
+      "message": "Modernize raw input and competitive netcode policy",
+      "date": "2026-09-06T22:26:05Z"
+    },
+    {
+      "sha": "2a17f37233e1f8e9cde0cb0474085519d763836d",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/2a17f37233e1f8e9cde0cb0474085519d763836d",
+      "message": "Add regression coverage for modern input and netcode policy",
+      "date": "2026-09-06T22:25:46Z"
+    },
+    {
+      "sha": "9ee8bde2f3e4e062c7de5f8167cd01e6402adf65",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/9ee8bde2f3e4e062c7de5f8167cd01e6402adf65",
+      "message": "Make raw input and network policy technically explicit",
+      "date": "2026-09-06T22:25:39Z"
+    },
+    {
+      "sha": "c4986af0db8b7997beea43e57428ae5e4ec1e560",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/c4986af0db8b7997beea43e57428ae5e4ec1e560",
+      "message": "Trim legacy desktop input configuration",
+      "date": "2026-09-06T22:25:28Z"
+    },
+    {
+      "sha": "d83ea9bfdb7b16219bc9215531bf8add86a81def",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/d83ea9bfdb7b16219bc9215531bf8add86a81def",
+      "message": "Remove legacy controller input scale settings",
+      "date": "2026-09-06T22:25:21Z"
+    },
+    {
+      "sha": "8057f25cae4f415a3de3f7c8e146f46b7e5b5185",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/8057f25cae4f415a3de3f7c8e146f46b7e5b5185",
+      "message": "Remove legacy action and axis input mappings",
+      "date": "2026-09-06T22:25:14Z"
+    },
+    {
+      "sha": "356ea6a122eb79ce54fff10ecbb62e1a367c0234",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/356ea6a122eb79ce54fff10ecbb62e1a367c0234",
+      "message": "Remove remaining legacy gameplay input bindings",
+      "date": "2026-09-06T22:25:09Z"
+    },
+    {
+      "sha": "936cbcfb7fcf04b7b73caa85d2df7a13f7477f66",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/936cbcfb7fcf04b7b73caa85d2df7a13f7477f66",
+      "message": "Migrate movement actions to Enhanced Input",
+      "date": "2026-09-06T22:24:43Z"
+    },
+    {
+      "sha": "ae31575a63d3410e8a02d6600fa6200e9ba61597",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/ae31575a63d3410e8a02d6600fa6200e9ba61597",
+      "message": "Modernize character input context and remove legacy bindings",
+      "date": "2026-09-06T22:24:31Z"
+    },
+    {
+      "sha": "a533f7a0caa3c266c096d5c3dffbc8b971cf38a4",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/a533f7a0caa3c266c096d5c3dffbc8b971cf38a4",
+      "message": "Modernize character input context and remove legacy bindings",
+      "date": "2026-09-06T22:24:21Z"
+    },
+    {
+      "sha": "90da15988c1339084816612c0d0fcea573974ace",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/90da15988c1339084816612c0d0fcea573974ace",
+      "message": "Modernize input stack and network tick intent",
+      "date": "2026-09-06T22:23:19Z"
+    },
+    {
+      "sha": "cd40a465c2948df4ed0d24f29785e4f5772b285b",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/cd40a465c2948df4ed0d24f29785e4f5772b285b",
+      "message": "Merge AAA modernization into DTRT 2050",
+      "date": "2026-09-06T22:14:05Z"
+    },
+    {
+      "sha": "83f203fb13e81672e98a651b424b87f8c3e88e05",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/83f203fb13e81672e98a651b424b87f8c3e88e05",
+      "message": "test: cover modern frontend environment invariants",
+      "date": "2026-09-06T22:13:32Z"
+    },
+    {
+      "sha": "d0f8a2591d41555d6d253c02f9bfc1aea5664995",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/d0f8a2591d41555d6d253c02f9bfc1aea5664995",
+      "message": "feat: enrich modern HUD with environment selector chrome",
+      "date": "2026-09-06T22:13:25Z"
+    },
+    {
+      "sha": "1a48e3ab1343334e05a7b6071163b8bb738817bf",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/1a48e3ab1343334e05a7b6071163b8bb738817bf",
+      "message": "feat: add controlled weapon recoil presentation",
+      "date": "2026-09-06T22:13:14Z"
+    },
+    {
+      "sha": "ad9348ae58ca6992e708ba6a210e6c70954660d1",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/ad9348ae58ca6992e708ba6a210e6c70954660d1",
+      "message": "feat: tune future competitive rendering and 128hz network intent",
+      "date": "2026-09-06T22:13:03Z"
+    },
+    {
+      "sha": "8b9a1e8430f2810ddb990d0024dd17a2140c5c15",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/8b9a1e8430f2810ddb990d0024dd17a2140c5c15",
+      "message": "feat: use modern controller and frontend HUD",
+      "date": "2026-09-06T22:12:51Z"
+    },
+    {
+      "sha": "e27cf35e6673b16e790710fac149a411814e37a6",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/e27cf35e6673b16e790710fac149a411814e37a6",
+      "message": "feat: add staged launch and four-map hotkeys",
+      "date": "2026-09-06T22:12:45Z"
+    },
+    {
+      "sha": "b9d2c95fd21d512228efd73c918c88810a54dc63",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/b9d2c95fd21d512228efd73c918c88810a54dc63",
+      "message": "feat: add modern frontend controller",
+      "date": "2026-09-06T22:12:41Z"
+    },
+    {
+      "sha": "f2e79b183ec6a2c33de685af75d51ba84f4d9b6a",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/f2e79b183ec6a2c33de685af75d51ba84f4d9b6a",
+      "message": "feat: integrate modern shell environment and audio director",
+      "date": "2026-09-06T22:12:26Z"
+    },
+    {
+      "sha": "bd40eaf4b2bfd849adcb6b832583b7d14c63cf97",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/bd40eaf4b2bfd849adcb6b832583b7d14c63cf97",
+      "message": "feat: implement loading screen and environment chrome",
+      "date": "2026-09-06T22:11:35Z"
+    },
+    {
+      "sha": "ac7769e52798f1516690c96413c8e4e313946ec5",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/ac7769e52798f1516690c96413c8e4e313946ec5",
+      "message": "feat: add modern frontend loading and environment HUD",
+      "date": "2026-09-06T22:11:27Z"
+    },
+    {
+      "sha": "2de157dde53d47d6042983979427199a8e6ff845",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/2de157dde53d47d6042983979427199a8e6ff845",
+      "message": "feat: add procedural ambient music motif",
+      "date": "2026-09-06T22:11:21Z"
+    },
+    {
+      "sha": "e2d3f5757fd692ac14142802578b68a5530fcecb",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/e2d3f5757fd692ac14142802578b68a5530fcecb",
+      "message": "feat: add procedural future-audio director",
+      "date": "2026-09-06T22:11:12Z"
+    },
+    {
+      "sha": "db4f16373f0e5502b7f35158acb23e14dc677d33",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/db4f16373f0e5502b7f35158acb23e14dc677d33",
+      "message": "feat: implement four dynamic range layouts",
+      "date": "2026-09-06T22:11:07Z"
+    },
+    {
+      "sha": "844aafee1d6687a4edb891869c0b799a41e99665",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/844aafee1d6687a4edb891869c0b799a41e99665",
+      "message": "feat: add selectable competitive map catalog",
+      "date": "2026-09-06T22:11:00Z"
+    },
+    {
+      "sha": "a69a68b24b60bf17ae11336de25273abeaf41050",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/a69a68b24b60bf17ae11336de25273abeaf41050",
+      "message": "DTRT 2050: elevate competitive experience",
+      "date": "2026-09-06T22:04:57Z"
+    },
+    {
+      "sha": "3c22c9c1ea9b7e244a6f2e09ed8deb8dbe7be620",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/3c22c9c1ea9b7e244a6f2e09ed8deb8dbe7be620",
+      "message": "feat: enable 2050 render and presentation preset",
+      "date": "2026-09-06T22:04:40Z"
+    },
+    {
+      "sha": "b74d15b757f3faafea06a718d45efe4e70df1c07",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/b74d15b757f3faafea06a718d45efe4e70df1c07",
+      "message": "fix: gate 2050 overlay to live training state",
+      "date": "2026-09-06T22:04:29Z"
+    },
+    {
+      "sha": "eef438f4b5a8ca0a6a7f6a70b2dd21d70ab54b74",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/eef438f4b5a8ca0a6a7f6a70b2dd21d70ab54b74",
+      "message": "feat: make 2050 HUD the default player presentation",
+      "date": "2026-09-06T22:04:08Z"
+    },
+    {
+      "sha": "21faf1d4ba8ef1feafb8aa0bab7753b84cb01840",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/21faf1d4ba8ef1feafb8aa0bab7753b84cb01840",
+      "message": "feat: render 2050 coach and telemetry HUD",
+      "date": "2026-09-06T22:04:03Z"
+    },
+    {
+      "sha": "ca754f5e00d54904767814537835211a797c9685",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/ca754f5e00d54904767814537835211a797c9685",
+      "message": "feat: add 2050 competitive HUD layer",
+      "date": "2026-09-06T22:03:56Z"
+    },
+    {
+      "sha": "4aaaadeb240bd617c5e7e2da3fc057ca6286139c",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/4aaaadeb240bd617c5e7e2da3fc057ca6286139c",
+      "message": "test: cover 2050 intelligence boundaries and monotonicity",
+      "date": "2026-09-06T22:03:50Z"
+    },
+    {
+      "sha": "4d973036aab6553f62363cb69c2889a1a1ef6cc2",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/4d973036aab6553f62363cb69c2889a1a1ef6cc2",
+      "message": "feat: implement 2050 player intelligence scoring",
+      "date": "2026-09-06T22:03:44Z"
+    },
+    {
+      "sha": "3ddd235e307b643600c7f071438f97ec0ebd86e7",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/3ddd235e307b643600c7f071438f97ec0ebd86e7",
+      "message": "feat: add deterministic 2050 player intelligence model",
+      "date": "2026-09-06T22:03:38Z"
+    },
+    {
+      "sha": "7fbc7b6da5e20ecacb7fdcada7e914a6eb1aa946",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/7fbc7b6da5e20ecacb7fdcada7e914a6eb1aa946",
+      "message": "Merge ec7250496d11f726547e420d37203bc54f281de4 into 3e7beb58d9fe456c7909df0c0d2c94fef07de860",
+      "date": "2026-09-06T21:58:56Z"
+    },
+    {
+      "sha": "ec7250496d11f726547e420d37203bc54f281de4",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/ec7250496d11f726547e420d37203bc54f281de4",
+      "message": "build: declare EnhancedInput module dependency",
+      "date": "2026-09-06T21:58:48Z"
+    },
+    {
+      "sha": "54fb5f9a3a1463035726f42d45ec8224b0b8d0f7",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/54fb5f9a3a1463035726f42d45ec8224b0b8d0f7",
+      "message": "tune: enable combo scoring in default game rules",
+      "date": "2026-09-06T21:58:38Z"
+    },
+    {
+      "sha": "7b9154c26399e25ae6d7c316d38fba768767895d",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/7b9154c26399e25ae6d7c316d38fba768767895d",
+      "message": "feat: expose combo scoring tuning",
+      "date": "2026-09-06T21:58:34Z"
+    },
+    {
+      "sha": "9d1b8523f537b1048f8df746065129c16a66ffbe",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/9d1b8523f537b1048f8df746065129c16a66ffbe",
+      "message": "feat: add deterministic competitive combo scoring",
+      "date": "2026-09-06T21:58:27Z"
+    },
+    {
+      "sha": "44a9cadea5835cadf17a3ba91877b07837b1f5bf",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/44a9cadea5835cadf17a3ba91877b07837b1f5bf",
+      "message": "test: add competitive score combo invariants",
+      "date": "2026-09-06T21:58:19Z"
+    },
+    {
+      "sha": "3e7beb58d9fe456c7909df0c0d2c94fef07de860",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/3e7beb58d9fe456c7909df0c0d2c94fef07de860",
+      "message": "feat: integrate complete game v1 foundation",
+      "date": "2026-09-06T21:56:05Z"
+    },
+    {
+      "sha": "c8b5a7eee71f13962c83f67d3554849cd39c55fb",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/c8b5a7eee71f13962c83f67d3554849cd39c55fb",
+      "message": "Evidence: Wave A F5 playtest_gate on f582f7e (CREDIT/DENY)",
+      "date": "2026-09-06T21:47:37Z"
+    },
+    {
+      "sha": "f582f7e5449f2e243fb7a4a8dc56c1028282c058",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/f582f7e5449f2e243fb7a4a8dc56c1028282c058",
+      "message": "Refresh evidence for final merged settings tip",
+      "date": "2026-09-06T21:43:50Z"
+    },
+    {
+      "sha": "2195eb2e89fb877d5ac2228ebb76c0cd20e934d1",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/2195eb2e89fb877d5ac2228ebb76c0cd20e934d1",
+      "message": "Merge Combat fire SFX into capture branch",
+      "date": "2026-09-06T21:41:16Z"
+    },
+    {
+      "sha": "cd507e381c5419bd3b4f601a593c4270c6998504",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/cd507e381c5419bd3b4f601a593c4270c6998504",
+      "message": "Merge Core settings reality into capture branch",
+      "date": "2026-09-06T21:41:05Z"
+    },
+    {
+      "sha": "e9faeef74cca6d4c128112f383e4d075353f4d04",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/e9faeef74cca6d4c128112f383e4d075353f4d04",
+      "message": "Wire settings controls to Core persistence",
+      "date": "2026-09-06T21:36:10Z"
+    },
+    {
+      "sha": "be826ef2af98f2cb355880dbdb8239d505da49dd",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/be826ef2af98f2cb355880dbdb8239d505da49dd",
+      "message": "Wave A settings reality: live mute, Invert Y, lobby EnterPlay",
+      "date": "2026-09-06T21:32:46Z"
+    },
+    {
+      "sha": "c5e8d0e9a4990cacc8ac1984f63ef578f9c86b86",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/c5e8d0e9a4990cacc8ac1984f63ef578f9c86b86",
+      "message": "Fix: per-shot Kestrel fire/hit SFX retrigger on full-auto",
+      "date": "2026-09-06T21:28:07Z"
+    },
+    {
+      "sha": "724cfd26b5db9c699e14e612a50a82902b2d9774",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/724cfd26b5db9c699e14e612a50a82902b2d9774",
+      "message": "Add Wave A packaged lobby and settings evidence",
+      "date": "2026-09-06T21:19:38Z"
+    },
+    {
+      "sha": "7a80dc401673ac8412ec55810fae7e9b9c4fb619",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/7a80dc401673ac8412ec55810fae7e9b9c4fb619",
+      "message": "Show Score Time Accuracy in player HUD",
+      "date": "2026-09-06T20:56:49Z"
+    },
+    {
+      "sha": "e619279bacca74d30125cba84b8548ddcbaf4ed6",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/e619279bacca74d30125cba84b8548ddcbaf4ed6",
+      "message": "Wire Wave A menus to Core persistence",
+      "date": "2026-09-06T20:55:47Z"
+    },
+    {
+      "sha": "e35dffb7817082e1f83c7f36a6883ef3c15a2093",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/e35dffb7817082e1f83c7f36a6883ef3c15a2093",
+      "message": "Merge commit '04c6bcf0a4fb6beefa1b047f77ad8fddc67e6e4d' into codex/vs1-integration",
+      "date": "2026-09-06T20:52:57Z"
+    },
+    {
+      "sha": "5d2bcf1c2c3ed8cbeab7f1d104eaa6050915b6d6",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/5d2bcf1c2c3ed8cbeab7f1d104eaa6050915b6d6",
+      "message": "Merge commit '878de01' into codex/vs1-integration",
+      "date": "2026-09-06T20:52:41Z"
+    },
+    {
+      "sha": "640dcb0d444856266dbb708c61dbb81569ed9c94",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/640dcb0d444856266dbb708c61dbb81569ed9c94",
+      "message": "Add hover feedback to Wave A menus",
+      "date": "2026-09-06T20:52:20Z"
+    },
+    {
+      "sha": "6c529ae13a0ea2ebb9e6c95cae3483e7ecd10d1a",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/6c529ae13a0ea2ebb9e6c95cae3483e7ecd10d1a",
+      "message": "Add Wave A lobby and settings presentation shell",
+      "date": "2026-09-06T20:50:36Z"
+    },
+    {
+      "sha": "878de01962c8b2b09a278e919f277d963d1ef534",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/878de01962c8b2b09a278e919f277d963d1ef534",
+      "message": "Wave A Core: lobby boot + ESC persist + sens/FOV (M&K)",
+      "date": "2026-09-06T20:48:57Z"
+    },
+    {
+      "sha": "04c6bcf0a4fb6beefa1b047f77ad8fddc67e6e4d",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/04c6bcf0a4fb6beefa1b047f77ad8fddc67e6e4d",
+      "message": "Wave A Combat: add moving-sphere / unplanted-head / locked-radii tests",
+      "date": "2026-09-06T20:41:40Z"
+    },
+    {
+      "sha": "12c6a3e89db4b8db97ca7c82421f7fb7b046aeaf",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/12c6a3e89db4b8db97ca7c82421f7fb7b046aeaf",
+      "message": "Wave A Combat: bubble-style spheres + moving hit honesty + Impact Sync dryness",
+      "date": "2026-09-06T20:40:56Z"
+    },
+    {
+      "sha": "2282957ba48442d6f419c30fa4dd7e9daaac47a6",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/2282957ba48442d6f419c30fa4dd7e9daaac47a6",
+      "message": "C04: tune VS1 corridor material separation",
+      "date": "2026-09-06T05:12:54Z"
+    },
+    {
+      "sha": "0cf7c9e6c1965d3759c1e2b61be871b794635e15",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/0cf7c9e6c1965d3759c1e2b61be871b794635e15",
+      "message": "C04: build purpose-built VS1 training facility corridor",
+      "date": "2026-09-06T05:05:26Z"
+    },
+    {
+      "sha": "234edf5c6a96b248acf8ccef1ac956d13c7a41c7",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/234edf5c6a96b248acf8ccef1ac956d13c7a41c7",
+      "message": "Evidence: refresh playtest_gate on df034f1 (C03 F5 CREDIT/DENY)",
+      "date": "2026-09-06T04:41:38Z"
+    },
+    {
+      "sha": "df034f10808cbba2ddc0e1f27f747ea439efd55b",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/df034f10808cbba2ddc0e1f27f747ea439efd55b",
+      "message": "Evidence: VS1 C03 compose captures on fee0600 (spawn-forward lane 12)",
+      "date": "2026-09-06T04:37:17Z"
+    },
+    {
+      "sha": "fee0600e248ddbf1d2cbbccc0c0975ac1c942998",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/fee0600e248ddbf1d2cbbccc0c0975ac1c942998",
+      "message": "Remove broken M_EquipStand.uasset from git (regen by make_range)",
+      "date": "2026-09-06T03:49:06Z"
+    },
+    {
+      "sha": "cef9a305158fe820032389f921e1d8ce1383135b",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/cef9a305158fe820032389f921e1d8ce1383135b",
+      "message": "Remove broken M_EquipPlate.uasset from git (regen by make_range)",
+      "date": "2026-09-06T03:49:00Z"
+    },
+    {
+      "sha": "96dbeffcc015db0dfe392ddca226ccdf112ac474",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/96dbeffcc015db0dfe392ddca226ccdf112ac474",
+      "message": "Remove broken M_Equip*.uasset from git (regen by make_range)",
+      "date": "2026-09-06T03:48:53Z"
+    },
+    {
+      "sha": "1f8aa12a5841f385bc29344949a3b045a3f148a4",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/1f8aa12a5841f385bc29344949a3b045a3f148a4",
+      "message": "VS1 C03: spawn-forward lane 12 on 12m backstop; lighter canopy",
+      "date": "2026-09-06T03:48:46Z"
+    },
+    {
+      "sha": "34177c6fbe25f4ac0d9c8e2bfb3b1750d3b075e1",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/34177c6fbe25f4ac0d9c8e2bfb3b1750d3b075e1",
+      "message": "Document VS1 Correction Pass 01 scope and remaining gaps",
+      "date": "2026-09-06T03:18:20Z"
+    },
+    {
+      "sha": "cda6d771a281c327c791bfbe67e6b29a3b4a9c2a",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/cda6d771a281c327c791bfbe67e6b29a3b4a9c2a",
+      "message": "VS1 correction 01: slim player HUD and compose hero corridor",
+      "date": "2026-09-06T03:18:02Z"
+    },
+    {
+      "sha": "35e12d8904373626c0497c62f13a0bb28625a774",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/35e12d8904373626c0497c62f13a0bb28625a774",
+      "message": "VS1 correction 01: restore authored sky and single sun",
+      "date": "2026-09-06T03:16:44Z"
+    },
+    {
+      "sha": "7f752bc7c671350222388e4488d7bf63a87f3cb7",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/7f752bc7c671350222388e4488d7bf63a87f3cb7",
+      "message": "Report: update playtest_gate to VS1 run timestamp/result",
+      "date": "2026-09-06T02:54:58Z"
+    },
+    {
+      "sha": "3aba3e141697cf4f9f80601aac4ca7065aa57061",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/3aba3e141697cf4f9f80601aac4ca7065aa57061",
+      "message": "Evidence: VS1 packaged validation (build/test/package/perf/playtest/visual)",
+      "date": "2026-09-06T02:54:50Z"
+    },
+    {
+      "sha": "f3d0af8d1f5a9a149e95cb6240f4a52b3a1c062b",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/f3d0af8d1f5a9a149e95cb6240f4a52b3a1c062b",
+      "message": "Content: regenerate Range.umap in VS1 hero-corridor mode",
+      "date": "2026-09-06T02:52:14Z"
+    },
+    {
+      "sha": "cac4028addcaf1db02bc779ac9cb9aed5de0ff9a",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/cac4028addcaf1db02bc779ac9cb9aed5de0ff9a",
+      "message": "Content: generate VS1 target-shell materials (EquipStand/Plate/Marker)",
+      "date": "2026-09-06T02:47:02Z"
+    },
+    {
+      "sha": "8aea64704368a767002c645f4433185ecac1b617",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/8aea64704368a767002c645f4433185ecac1b617",
+      "message": "Docs: note pipeline vs1 mode pass-through",
+      "date": "2026-09-06T02:39:57Z"
+    },
+    {
+      "sha": "b3f84f9b987733289214d70f23dc60e79140dd10",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/b3f84f9b987733289214d70f23dc60e79140dd10",
+      "message": "Pipeline: honor DTRT_RANGE_MODE=vs1 (hero/corridor) in content stage",
+      "date": "2026-09-06T02:39:34Z"
+    },
+    {
+      "sha": "9c6c4e4f4c809e23598030b67c914adb0e14950f",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/9c6c4e4f4c809e23598030b67c914adb0e14950f",
+      "message": "Split player and debug HUD modes; add VS1 notes",
+      "date": "2026-09-06T02:37:15Z"
+    },
+    {
+      "sha": "36ea57b6ad114c4ebee7df6f0e9fcc13edc9ddce",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/36ea57b6ad114c4ebee7df6f0e9fcc13edc9ddce",
+      "message": "Add VS1 Dummy_12m presentation shell",
+      "date": "2026-09-06T02:36:28Z"
+    },
+    {
+      "sha": "ef6ebf1c25718bc18aafb8c1bc5c454033133b25",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/ef6ebf1c25718bc18aafb8c1bc5c454033133b25",
+      "message": "Wire VS1 mode path and competitive exposure lock",
+      "date": "2026-09-06T02:35:42Z"
+    },
+    {
+      "sha": "0414bb0cea6cf1fa1d870546574cd74d2675d7ef",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/0414bb0cea6cf1fa1d870546574cd74d2675d7ef",
+      "message": "Add VS1 hero corridor generation and exposure lock",
+      "date": "2026-09-06T02:34:57Z"
+    },
+    {
+      "sha": "83df4c5b22f4a03be7d4a432c80e858aece33782",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/83df4c5b22f4a03be7d4a432c80e858aece33782",
+      "message": "Port VS1 contract, gap matrix, and gameplay audit docs onto real gameplay base",
+      "date": "2026-09-06T02:26:28Z"
+    },
+    {
+      "sha": "82a952e02dd33269fc2c8fcf666569a2a5b04ed7",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/82a952e02dd33269fc2c8fcf666569a2a5b04ed7",
+      "message": "M2: material differentiation, sky gradient, warm sun tint (Signature Range)",
+      "date": "2026-09-06T01:14:25Z"
+    },
+    {
+      "sha": "6a9a5872c00aea3c12f7f2b59e8a2b51028f69da",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/6a9a5872c00aea3c12f7f2b59e8a2b51028f69da",
+      "message": "Log signature-range-m1-courtyard as done in task_ledger.json",
+      "date": "2026-09-06T00:14:30Z"
+    },
+    {
+      "sha": "25214beacdd95b6e7c4fdf9c28905cd41b69bd57",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/25214beacdd95b6e7c4fdf9c28905cd41b69bd57",
+      "message": "Remove committed Python bytecode cache, add to .gitignore",
+      "date": "2026-09-06T00:13:44Z"
+    },
+    {
+      "sha": "5b63933f2af065f6214ebff6a275fe3fd0f134aa",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/5b63933f2af065f6214ebff6a275fe3fd0f134aa",
+      "message": "M1 Signature Range courtyard + Wave 2 step 1 (real-RHI content-gen)",
+      "date": "2026-09-06T00:13:35Z"
+    },
+    {
+      "sha": "090f007c60457a345e9101c151d0b41db2703690",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/090f007c60457a345e9101c151d0b41db2703690",
+      "message": "Remove stale misplaced M_Grid material asset",
+      "date": "2026-09-05T23:06:11Z"
+    },
+    {
+      "sha": "6e35ec6171fabcf59bcc428fc27c09baa056e7f4",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/6e35ec6171fabcf59bcc428fc27c09baa056e7f4",
+      "message": "Add scoring/session-reset training slice",
+      "date": "2026-09-05T22:36:40Z"
+    },
+    {
+      "sha": "67a7dae3a1593256c5dbafeeacb85df32f43da2b",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/67a7dae3a1593256c5dbafeeacb85df32f43da2b",
+      "message": "Close phase5-playtest-evidence: packaged-build gameplay-state gate",
+      "date": "2026-09-05T21:38:10Z"
+    },
+    {
+      "sha": "021c88c558fb4cdf8698be89e548588a18292cde",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/021c88c558fb4cdf8698be89e548588a18292cde",
+      "message": "Phase 7: fix task_ledger outputs list, log Combat PBR/FX research, add delivery board",
+      "date": "2026-09-05T21:21:20Z"
+    },
+    {
+      "sha": "313d704b00a32eced69cf141248858aaea56487f",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/313d704b00a32eced69cf141248858aaea56487f",
+      "message": "Wave 2: Grok Build implementation prompt (real-RHI content-gen + L0 lighting, sequenced)",
+      "date": "2026-09-05T21:19:14Z"
+    },
+    {
+      "sha": "5769971ba630d7af951bf702120c23b8a57649fd",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/5769971ba630d7af951bf702120c23b8a57649fd",
+      "message": "Phase 7: packaged --visual validation stage; land Grok Build's plan docs; mark Wave 1 AAA-visual research done",
+      "date": "2026-09-05T21:18:18Z"
+    },
+    {
+      "sha": "e92228a92f9cb78a658a50c16b890c1b4599f29b",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/e92228a92f9cb78a658a50c16b890c1b4599f29b",
+      "message": "Docs: capture DTRT Lab north-star vision (10-screen loop) for future-phase reference",
+      "date": "2026-09-05T21:12:08Z"
+    },
+    {
+      "sha": "74ffffc1ccc1dfd51f1452474e008437c989ec16",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/74ffffc1ccc1dfd51f1452474e008437c989ec16",
+      "message": "Phase 6(b): in-game options menu for look sensitivity + unit-doc fixes",
+      "date": "2026-09-05T21:06:36Z"
+    },
+    {
+      "sha": "485c6df04f9bdcc13107f529adaed9141d343834",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/485c6df04f9bdcc13107f529adaed9141d343834",
+      "message": "Phase 7: AAA 2026 visual quality research kickoff",
+      "date": "2026-09-05T20:53:13Z"
+    },
+    {
+      "sha": "e4a07451633b479167387e9633d10db0ced606b6",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/e4a07451633b479167387e9633d10db0ced606b6",
+      "message": "Phase 6: procedural materials for viewmodel + dummies, prioritize visuals",
+      "date": "2026-09-05T20:05:57Z"
+    },
+    {
+      "sha": "23b4971a21e494d9193b29a8d4a89df740f6c7de",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/23b4971a21e494d9193b29a8d4a89df740f6c7de",
+      "message": "Phase 6(a): persisted look-sensitivity settings subsystem; refresh bot workforce prompts",
+      "date": "2026-09-05T19:32:35Z"
+    },
+    {
+      "sha": "9987144e2f3105a55d9e4db4c6474a035a558cc6",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/9987144e2f3105a55d9e4db4c6474a035a558cc6",
+      "message": "Intake Super Grok Build look-path report; correct stale claims; auto-assign Phase 6",
+      "date": "2026-09-05T19:02:04Z"
+    },
+    {
+      "sha": "9e8b0a386d29cc0b79317e4c0b383647ab4d8930",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/9e8b0a386d29cc0b79317e4c0b383647ab4d8930",
+      "message": "Reconcile task ledger with shipped Phase 5 work",
+      "date": "2026-09-05T18:09:52Z"
+    },
+    {
+      "sha": "fea554e6c1c200e6147be80c919bb7b3e66be71e",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/fea554e6c1c200e6147be80c919bb7b3e66be71e",
+      "message": "Add overnight Grok Build + Grok bot prompts for knife spec and movement investigation",
+      "date": "2026-09-05T09:19:34Z"
+    },
+    {
+      "sha": "ee844ca4f77724b7ec9f2463a6b6d1138f1dfe85",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/ee844ca4f77724b7ec9f2463a6b6d1138f1dfe85",
+      "message": "Add knife secondary item with movement speed boost",
+      "date": "2026-09-05T09:18:45Z"
+    },
+    {
+      "sha": "7e0945a420e52f4a44c67da22d2963f3a0ce8ebe",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/7e0945a420e52f4a44c67da22d2963f3a0ce8ebe",
+      "message": "fix: viewmodel FObjectFinder crash + pipeline perf false-positive",
+      "date": "2026-09-05T08:15:09Z"
+    },
+    {
+      "sha": "fe3d9b62138615c8126137ef241d91bd5ebd5d8f",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/fe3d9b62138615c8126137ef241d91bd5ebd5d8f",
+      "message": "Phase 5 pipeline report: build/content/test/package green, perf deferred",
+      "date": "2026-09-05T07:31:19Z"
+    },
+    {
+      "sha": "58576333f898abfae067ff89e124ddffb975a207",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/58576333f898abfae067ff89e124ddffb975a207",
+      "message": "Add Kestrel first-person viewmodel (camera-child, 12 primitives)",
+      "date": "2026-09-05T02:50:00Z"
+    },
+    {
+      "sha": "43c0b0010b2c1b23bb4d32756a34fe181d931a76",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/43c0b0010b2c1b23bb4d32756a34fe181d931a76",
+      "message": "Decouple default mouse sensitivity from personal CS2 config",
+      "date": "2026-09-05T02:17:56Z"
+    },
+    {
+      "sha": "ec8bbc6b6b85bf64e10f1c8837f9a10f21496eec",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/ec8bbc6b6b85bf64e10f1c8837f9a10f21496eec",
+      "message": "Kestrel hitscan weapon, range dummies, hitmarker HUD, 1:1 mouse-look fix",
+      "date": "2026-09-05T02:04:46Z"
+    },
+    {
+      "sha": "68d10ffc3d02e3b3e61e80de5c7ce8a825f53480",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/68d10ffc3d02e3b3e61e80de5c7ce8a825f53480",
+      "message": "Add live look sensitivity dial and debug logger",
+      "date": "2026-09-05T00:13:30Z"
+    },
+    {
+      "sha": "84251ffcac1c67f860f3784856f49919fa049062",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/84251ffcac1c67f860f3784856f49919fa049062",
+      "message": "Drive look from raw per-event mouse feed",
+      "date": "2026-09-05T00:05:43Z"
+    },
+    {
+      "sha": "37351ec7e357bbc2e192cd34e99fbf63f0648131",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/37351ec7e357bbc2e192cd34e99fbf63f0648131",
+      "message": "Add bot intake conveyor and set default look sensitivity",
+      "date": "2026-09-04T23:57:49Z"
+    },
+    {
+      "sha": "d78c9dc7d012d89dd4f86547d4e9189a6cf591f4",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/d78c9dc7d012d89dd4f86547d4e9189a6cf591f4",
+      "message": "Make look input 1:1 raw and measure mouse poll rate",
+      "date": "2026-09-04T23:44:34Z"
+    },
+    {
+      "sha": "70078c09fce9d75e31b0b377210c6c1405d630a4",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/70078c09fce9d75e31b0b377210c6c1405d630a4",
+      "message": "Add playability feedback layer to range checkpoint",
+      "date": "2026-09-04T23:36:33Z"
+    },
+    {
+      "sha": "fc4a7e42423b29a8c2f20bff0020f295bef494f5",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/fc4a7e42423b29a8c2f20bff0020f295bef494f5",
+      "message": "Build DTRTCore production core plan",
+      "date": "2026-09-04T23:09:41Z"
+    },
+    {
+      "sha": "e8acae5be5cb50e6b2d5d4b0b8bf6de0bf4d6fa4",
+      "html_url": "https://github.com/RepresentPR/DTRTCore/commit/e8acae5be5cb50e6b2d5d4b0b8bf6de0bf4d6fa4",
+      "message": "Initialize official DTRTCore project",
+      "date": "2026-09-04T21:28:43Z"
+    }
   ]
 }

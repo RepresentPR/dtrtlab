@@ -331,7 +331,16 @@ form.stack textarea { min-height: 120px; }
   font-size: 15px;
   font-weight: 400;
 }
-.gh-list { display: grid; gap: 0; margin: 12px 0 36px; }
+.gh-list { display: grid; gap: 0; margin: 0 0 28px; }
+.gh-day {
+  margin: 36px 0 8px;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+}
+.gh-day:first-of-type { margin-top: 8px; }
 .gh-row {
   display: grid;
   grid-template-columns: 88px 1fr auto;

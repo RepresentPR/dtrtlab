@@ -13,6 +13,17 @@
     if (isNaN(d.getTime())) return iso;
     return d.toISOString().slice(0, 10);
   }
+  function prettyDay(iso) {
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return when(iso);
+    return d.toLocaleDateString("en-US", {
+      weekday: "short",
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      timeZone: "UTC",
+    });
+  }
   function row(href, kicker, title, meta) {
     return (
       '<a class="gh-row" href="' +
@@ -31,6 +42,11 @@
     var repo = data.repo || "DTRTCore";
     var branch = data.branch || "";
     var repoUrl = "https://github.com/" + owner + "/" + repo;
+    var prs = (data.pulls || []).slice().sort(function (a, b) {
+      return String(b.created_at || "").localeCompare(String(a.created_at || ""));
+    });
+    var commits = data.commits || [];
+    var created = data.created || (commits.length ? when(commits[commits.length - 1].date) : "");
     var html =
       '<p class="lead"><a href="' +
       esc(repoUrl) +
@@ -41,24 +57,38 @@
       esc(repo) +
       "</a>" +
       (branch ? " · " + esc(branch) : "") +
-      "</p>";
-    var prs = data.pulls || [];
-    var commits = data.commits || [];
-    if (prs.length) {
-      html += "<h3>Pull requests</h3><div class='gh-list'>";
-      prs.forEach(function (pr) {
-        html += row(pr.html_url, "#" + pr.number, pr.title, pr.state);
-      });
-      html += "</div>";
-    }
-    html += "<h3>Commits</h3><div class='gh-list'>";
-    commits.forEach(function (c) {
-      var msg = firstLine(c.message || (c.commit && c.commit.message));
-      var date = when(c.date || (c.commit && c.commit.author && c.commit.author.date));
-      var sha = String(c.sha || "").slice(0, 7);
-      html += row(c.html_url, sha, msg, date);
+      "</p>" +
+      '<p class="muted">Catalog from ' +
+      esc(created || "creation") +
+      " · " +
+      commits.length +
+      " commits · " +
+      prs.length +
+      " pull requests</p>";
+
+    html += "<h3>Pull requests</h3><div class='gh-list'>";
+    prs.forEach(function (pr) {
+      html += row(pr.html_url, "#" + pr.number, pr.title, pr.state + (pr.created_at ? " · " + when(pr.created_at) : ""));
     });
     html += "</div>";
+
+    html += "<h3>Commits</h3>";
+    var lastDay = "";
+    var listOpen = false;
+    commits.forEach(function (c) {
+      var msg = firstLine(c.message || (c.commit && c.commit.message));
+      var rawDate = c.date || (c.commit && c.commit.author && c.commit.author.date);
+      var date = when(rawDate);
+      var sha = String(c.sha || "").slice(0, 7);
+      if (date !== lastDay) {
+        if (listOpen) html += "</div>";
+        html += '<p class="gh-day">' + esc(prettyDay(rawDate || date)) + "</p><div class='gh-list'>";
+        lastDay = date;
+        listOpen = true;
+      }
+      html += row(c.html_url, sha, msg, date);
+    });
+    if (listOpen) html += "</div>";
     host.innerHTML = html;
   }
   window.DTRT = window.DTRT || {};
