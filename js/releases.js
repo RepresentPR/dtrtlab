@@ -26,6 +26,12 @@
       .then(function (data) {
         var items = data.items || [];
         host.innerHTML = "";
+        if (data.intro) {
+          var intro = document.createElement("p");
+          intro.className = "caption";
+          intro.textContent = data.intro;
+          host.appendChild(intro);
+        }
         items.forEach(function (u) {
           var art = document.createElement("article");
           art.className = "update-card release-note";
