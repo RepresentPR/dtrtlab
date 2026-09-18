@@ -736,6 +736,25 @@ section.band {
   border-bottom: 1px solid var(--line);
 }
 .update-card h3 { text-transform: none; letter-spacing: -0.02em; font-size: 22px; color: var(--ink); }
+.update-card time {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.gh-raw {
+  margin-top: 48px;
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+}
+.gh-raw summary {
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
 .loop { max-width: 36rem; padding-left: 1.2rem; }
 .loop li { margin: 0 0 10px; }
 .hero .chip { display: inline-block; }

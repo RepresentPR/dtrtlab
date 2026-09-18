@@ -1,0 +1,78 @@
+{
+  "title": "Release notes",
+  "from": "2026-08-28",
+  "through": "2026-09-18",
+  "intro": "Public notes for DTRT Lab and DTRT AFTERLIGHT. Dates are when the work landed. A commit is not a public download.",
+  "items": [
+    {
+      "date": "2026-08-28",
+      "title": "The lab site opens",
+      "body": "dtrtlab.com goes live as the public home for DTRT Lab. Contact, FAQ, and legal pages exist. There is no game download.",
+      "canExperience": "The website.",
+      "inDevelopment": "The Unreal game itself."
+    },
+    {
+      "date": "2026-09-04",
+      "title": "The Windows range begins",
+      "body": "The official Unreal project starts. A first-person range, the Kestrel rifle, and 1:1 mouse look are in the engine. This is internal work, not a store page.",
+      "canExperience": "Nothing public to play. The site is still the only public surface.",
+      "inDevelopment": "The range, credit law, and everything else."
+    },
+    {
+      "date": "2026-09-05",
+      "title": "A named 12 m lane",
+      "body": "The range gets a clear 12-metre purpose: acquire, still, first bullet. Session score and reset exist in the build. Visual work on the corridor starts.",
+      "canExperience": "Still request-only internals.",
+      "inDevelopment": "Look of the hangar, public access, campaign."
+    },
+    {
+      "date": "2026-09-06",
+      "title": "Lobby, settings, honest shots",
+      "body": "A simple lobby and mouse/FOV settings. Each shot can retrigger fire sound. The dummy’s credit and deny path is the training law: a walking head does not count.",
+      "canExperience": "Internal range only.",
+      "inDevelopment": "Campaign, public demo, polished hangar."
+    },
+    {
+      "date": "2026-09-07",
+      "title": "Keep the lane on screen",
+      "body": "Visual dressing that went black is turned off so the range stays visible. Presentation work continues; this is not a shipping certification.",
+      "canExperience": "Internal range.",
+      "inDevelopment": "Hangar look, campaign, public build."
+    },
+    {
+      "date": "2026-09-10",
+      "title": "Range package work",
+      "body": "Packaged Windows range builds keep moving inside the studio. No public installer is posted.",
+      "canExperience": "Website only, unless Ian already granted a build.",
+      "inDevelopment": "Everything players would call a game besides the lane."
+    },
+    {
+      "date": "2026-09-11",
+      "title": "The site tells the lab clearly",
+      "body": "Homepage uses a range still. Support via Ko-fi. A development catalog is published so the GitHub trail is readable. Copy is research-backed training language, not a medical claim.",
+      "canExperience": "The public site, including how to request access.",
+      "inDevelopment": "Playable campaign. Public demo."
+    },
+    {
+      "date": "2026-09-14",
+      "title": "Hangar and dummy presentation",
+      "body": "Internal shipping-style range drops: clearer impacts, less clutter in the hangar, combat dummy presentation. These are studio packages, not a Steam build.",
+      "canExperience": "Request-only range if you already have a yes.",
+      "inDevelopment": "Public download, campaign island."
+    },
+    {
+      "date": "2026-09-17",
+      "title": "Internal range beta candidate",
+      "body": "An internal Windows range candidate exists for studio play. First-bullet credit is the rule on that lane. Hangar and sky are still held. This is not a public demo.",
+      "canExperience": "Internal testers only.",
+      "inDevelopment": "Human-play public demo, hangar finish, campaign."
+    },
+    {
+      "date": "2026-09-18",
+      "title": "AFTERLIGHT is the public game name",
+      "body": "Volume One of the story is on the site (9,489 words, EPUB). Afterlight radio plays on demand. The homepage leads with the Puerto Rico campaign. Training stays a chapter of the game, request-only. No public demo button.",
+      "canExperience": "Read Volume One. Play the site radio. Request access for the range.",
+      "inDevelopment": "Playable campaign island, public demo, in-game radios as unlocks."
+    }
+  ]
+}

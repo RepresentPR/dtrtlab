@@ -16,7 +16,8 @@ or `python site/server/app.py` then http://127.0.0.1:8787
 
 Edit:
 
-- `content/product.json` — public game name, status, features, media kinds, dated updates (homepage / FAQ / news must match this file)
+- `content/product.json` — public game name, status, features, media kinds
+- `content/releases.json` — user-facing release notes (`news.html`)
 - `content/site.json` — studio copy, version, donate button id
 - `content/catalog.json` — modes, rifles, music
 - `content/worlds.json` — world blurbs/status

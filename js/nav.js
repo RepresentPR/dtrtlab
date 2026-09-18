@@ -23,7 +23,7 @@
     a("news.html", "Updates", "Updates") +
     "</nav>" +
     '<div class="nav-end">' +
-    '<a class="nav-cta" href="' + root + 'news.html" data-event="Updates">Follow development</a>' +
+    '<a class="nav-cta" href="' + root + 'news.html" data-event="Updates">Release notes</a>' +
     '<button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-links">Menu</button>' +
     "</div>" +
     "</div>";
