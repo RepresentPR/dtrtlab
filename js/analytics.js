@@ -6,8 +6,9 @@
     navigator.globalPrivacyControl === true ||
     navigator.doNotTrack === "1" ||
     window.doNotTrack === "1";
-  var nested = location.pathname.indexOf("/legal/") !== -1;
-  var root = nested ? "../" : "";
+  var parts = (location.pathname || "/").replace(/\\/g, "/").split("/").filter(Boolean);
+  if (parts.length && /\.[a-z0-9]+$/i.test(parts[parts.length - 1])) parts.pop();
+  var root = parts.length ? "../".repeat(parts.length) : "";
   var KEY = "dtrt-ga";
   var gaId = "";
   var gaOn = false;

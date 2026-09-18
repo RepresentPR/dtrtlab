@@ -1,0 +1,176 @@
+{
+  "title": "DTRT Afterlight",
+  "subtitle": "La isla recuerda",
+  "version": "1.0",
+  "words": 9489,
+  "hook": "His mother has been dead for fifteen years. Someone has learned how to make her ask for help.",
+  "description": "Gabriel Vélez hears his dead mother's voice on a call from his missing sister. Following the evidence across Puerto Rico, he discovers how a useful service network became a machinery of disappearance—and why telling the whole truth could endanger the people he is trying to protect.",
+  "attribution": "A story developed for Ian Ferraro and DTRT Lab.",
+  "chapters": [
+    {
+      "id": "section-4",
+      "n": "01",
+      "title": "The completed journey",
+      "place": "Añasco",
+      "still": "img/afterlight/shop-dawn.jpg",
+      "alt": "Pre-dawn electronics shop, rolling door half open, radio on the workbench, a delivery truck on wet asphalt.",
+      "cut": "A transmitter that no longer exists. A workbench lamp left on.",
+      "insight": "Gabriel is introduced by a repair he cannot finish. The story will keep asking what can be restored and what can only be recorded.",
+      "blurb": "A radio. A call. A name marked complete a day early."
+    },
+    {
+      "id": "section-5",
+      "n": "02",
+      "title": "Dead air",
+      "place": "Añasco relay",
+      "still": "img/afterlight/relay.jpg",
+      "alt": "Open gate at a quiet communications compound, white truck idling under an unlit camera.",
+      "cut": "The building has stopped making the noises Inés complained about.",
+      "insight": "Quiet is information. Before anyone fires, the station has already failed its ordinary sounds.",
+      "blurb": "The station is too quiet. Someone is still inside."
+    },
+    {
+      "id": "section-6",
+      "n": "03",
+      "title": "The blue door",
+      "place": "Mayagüez",
+      "still": "img/afterlight/blue-door.jpg",
+      "alt": "A weathered blue wooden door strapped to a flatbed truck on a residential street.",
+      "cut": "Pencil marks on the inner edge. A family that paper tried to relocate.",
+      "insight": "A contractor file is not a deed. Lucía's method is the story's method: what you saw, then what you think.",
+      "blurb": "A reporter, a lawyer, and a door that records a family."
+    },
+    {
+      "id": "section-7",
+      "n": "04",
+      "title": "The woman with the radio",
+      "place": "Cabo Rojo",
+      "still": "img/afterlight/cabo.jpg",
+      "alt": "Dry coastal agricultural yard, bright ground, pickup truck, wind on loose roofing.",
+      "cut": "Southwest light. A meeting outside protected habitat.",
+      "insight": "The island is not one texture. The southwest is written as exposed ground on purpose.",
+      "blurb": "Dry light, a dispatcher, and sheets she signed."
+    },
+    {
+      "id": "section-8",
+      "n": "05",
+      "title": "The price of a familiar voice",
+      "place": "Rincón",
+      "still": "img/afterlight/rincon.jpg",
+      "alt": "A cluttered radio workshop with stairs to a living space above.",
+      "cut": "Four hospitals. No parking. A household that still has to eat.",
+      "insight": "A family dinner is allowed to be ordinary. When trust breaks, it has to cost a real kitchen.",
+      "blurb": "A workshop over a kitchen. A voice that knows too much."
+    },
+    {
+      "id": "section-9",
+      "n": "06",
+      "title": "The house with no address",
+      "place": "Near Utuado",
+      "still": "img/afterlight/shelter.jpg",
+      "alt": "Night at a mountain community shelter converted from a family workshop.",
+      "cut": "The mailing address exists. The service map placed it outside help.",
+      "insight": "Alma's correction is the book's: a missing support polygon is not the same as a place that does not exist.",
+      "blurb": "A shelter the map declined to support."
+    },
+    {
+      "id": "section-10",
+      "n": "07",
+      "title": "The longer road",
+      "place": "The mountains",
+      "still": "img/afterlight/red-bag.jpg",
+      "alt": "A worn red bag, a small recorder, and an open radio chassis on a wooden table.",
+      "cut": "They stay a day. The original material is allowed to take time.",
+      "insight": "Repairing a radio is not a side quest. The longer road is the point.",
+      "blurb": "Not the shortest route. A day spent keeping context."
+    },
+    {
+      "id": "section-11",
+      "n": "08",
+      "title": "Observed and authorized",
+      "place": "Humacao",
+      "still": "img/afterlight/ines.jpg",
+      "alt": "Portrait of Inés Vélez at a security door, two coffees in hand.",
+      "cut": "A visitor badge. Coffee without sugar. A sister who still knows the order.",
+      "insight": "Access that looks official is still a choice. The sibling detail is not a cipher.",
+      "blurb": "A reunion that does not start with forgiveness."
+    },
+    {
+      "id": "section-12",
+      "n": "09",
+      "title": "The people between entries",
+      "place": "Humacao",
+      "still": "img/afterlight/blue-door.jpg",
+      "alt": "The blue door on a truck, used here as occupancy evidence rather than a relic.",
+      "cut": "Receipts, a disputed boundary, a roof repaired by someone who left.",
+      "insight": "Occupancy is a disagreement, not a blank. Lucía will not flatten it into a perfect family with perfect papers.",
+      "blurb": "Lives that do not fit the fields."
+    },
+    {
+      "id": "section-13",
+      "n": "10",
+      "title": "The rehearsal",
+      "place": "Northeastern uplands",
+      "still": "img/afterlight/uplands.jpg",
+      "alt": "A leased analysis building in humid northeastern uplands, late afternoon.",
+      "cut": "A visit that can still leave. Estimates, not magic future footage.",
+      "insight": "The encounter is planned, witnessed, and abandonable. A system that practices people should show its gaps.",
+      "blurb": "A diagnostic window. A building that watches back."
+    },
+    {
+      "id": "section-14",
+      "n": "11",
+      "title": "A voice that would wait",
+      "place": "San Juan",
+      "still": "img/afterlight/sign.jpg",
+      "alt": "A portable electronic sign at dawn, two overlapping circles, one incomplete.",
+      "cut": "Publication is a craft. Some names are not sent through the channel you happen to have.",
+      "insight": "Telling everything is not automatically the moral action. Care is part of the record.",
+      "blurb": "What to print. What to protect. What to wait for."
+    },
+    {
+      "id": "section-15",
+      "n": "12",
+      "title": "What the fortifications could not hold",
+      "place": "Old San Juan",
+      "still": "img/afterlight/archive.jpg",
+      "alt": "A privately leased archive room in a townhouse, files on a table, a high window.",
+      "cut": "Not a monument. Not a server fortress. A room where an audit can still be curated.",
+      "insight": "The old city is geography, not a boss arena. The decision that matters is whether the record can be trimmed.",
+      "blurb": "An archive. A cost that cannot be managed away."
+    },
+    {
+      "id": "section-16",
+      "n": "13",
+      "title": "No one left in the truck",
+      "place": "Metropolitan yard",
+      "still": "img/afterlight/yard.jpg",
+      "alt": "Night at a contractor transfer yard, sodium lights, wet concrete, truck bays.",
+      "cut": "Workers, not paper, become the immediate problem.",
+      "insight": "Opening a truck is not the same as saving a case alone. Other people preserved the evidence.",
+      "blurb": "The yard. The people still inside the work."
+    },
+    {
+      "id": "section-17",
+      "n": "14",
+      "title": "The living record",
+      "place": "Añasco",
+      "still": "img/afterlight/shop-dusk.jpg",
+      "alt": "The repair shop at dusk, rolling door up, a small table set for dinner.",
+      "cut": "Copies existed before the fire. Forgiveness starts with an object between two people.",
+      "insight": "The investigation does not end because one room filled with smoke. Repair is slower than a journey.",
+      "blurb": "What remains. What he can actually fix."
+    },
+    {
+      "id": "section-18",
+      "n": "E",
+      "title": "Someone is here",
+      "place": "Añasco",
+      "still": "img/afterlight/radio.jpg",
+      "alt": "Close view of a vintage radio and a family photograph on a workbench.",
+      "cut": "Dinner first. The receiver stays on.",
+      "insight": "Volume One is resolved. The next problem is not a reason to pretend this one did not matter.",
+      "blurb": "A modest broadcast. A table. A message that can wait ten minutes."
+    }
+  ]
+}

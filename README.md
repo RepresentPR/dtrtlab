@@ -20,6 +20,7 @@ Edit:
 - `content/catalog.json` — modes, rifles, music
 - `content/worlds.json` — world blurbs/status
 - `content/news.json` — What’s new / changelog (`news.html`)
+- `content/afterlight.json` — Afterlight chapter stills and insights (`story.html`)
 
 In-game buttons read `../data/web.json`, not this folder. Keep `preorderEnabled` here in sync with `preorder_live` there. Nav shows **Coming soon** until `preorderEnabled` is true.
 

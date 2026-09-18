@@ -1,9 +1,13 @@
 (function () {
   var path = (location.pathname.split("/").pop() || "index.html").toLowerCase();
-  var nested = location.pathname.indexOf("/legal/") !== -1;
-  var root = nested ? "../" : "";
+  var here = (location.pathname || "").toLowerCase();
+  var parts = here.replace(/\\/g, "/").split("/").filter(Boolean);
+  if (parts.length && /\.[a-z0-9]+$/i.test(parts[parts.length - 1])) parts.pop();
+  var root = parts.length ? "../".repeat(parts.length) : "";
+  var storyOn = /(^|\/)story\.html$/.test(here) || here.indexOf("/stories/") !== -1;
   function a(href, label, eventName) {
-    var cur = path === href.toLowerCase() ? ' aria-current="page"' : "";
+    var on = href === "story.html" ? storyOn : path === href.toLowerCase();
+    var cur = on ? ' aria-current="page"' : "";
     var ev = eventName ? ' data-event="' + eventName + '"' : "";
     return '<a href="' + root + href + '"' + cur + ev + ">" + label + "</a>";
   }
@@ -12,6 +16,7 @@
     '<a class="brand" href="' + root + 'index.html">DTRT</a>' +
     '<nav class="links" id="site-links" aria-label="Primary">' +
     a("game.html", "Lab", "Lab") +
+    a("story.html", "Story", "Story") +
     a("faq.html", "FAQ", "FAQ") +
     a("news.html", "GitHub", "GitHub") +
     a("donate.html", "Support", "Support") +
@@ -62,7 +67,7 @@
       '<a href="' + root + 'faq.html" data-event="FAQ">FAQ</a>' +
       '<a href="' + root + 'index.html#setup" data-event="Setup">Setup</a>' +
       '<a href="' + root + 'press.html" data-event="Press">Press</a>' +
-      '<a href="' + root + 'story.html" data-event="Mission">Mission</a>' +
+      '<a href="' + root + 'story.html" data-event="Story">Story</a>' +
       '<a href="' + root + 'legal/privacy.html">Privacy</a>' +
       '<a href="' + root + 'legal/terms.html">Terms</a>' +
       '<a href="' + root + 'donate.html" data-event="Support">Support</a>' +
