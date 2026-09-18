@@ -5,15 +5,30 @@
     });
   }
   function pretty(iso) {
-    var d = new Date(iso + "T12:00:00Z");
+    var d = new Date(iso);
     if (isNaN(d.getTime())) return iso;
-    return d.toLocaleDateString("en-US", {
+    var date = d.toLocaleDateString("en-US", {
       weekday: "short",
       year: "numeric",
-      month: "long",
+      month: "short",
       day: "numeric",
-      timeZone: "UTC"
+      timeZone: "America/Puerto_Rico"
     });
+    var time = d.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      timeZone: "America/Puerto_Rico",
+      timeZoneName: "short"
+    });
+    return date + " · " + time;
+  }
+  function list(title, items) {
+    if (!items || !items.length) return "";
+    var html = "<p class=\"rel-k\">" + esc(title) + "</p><ul>";
+    items.forEach(function (x) {
+      html += "<li>" + esc(x) + "</li>";
+    });
+    return html + "</ul>";
   }
   window.DTRT = window.DTRT || {};
   DTRT.renderReleases = function (host) {
@@ -24,7 +39,9 @@
         return r.json();
       })
       .then(function (data) {
-        var items = data.items || [];
+        var items = (data.items || []).slice().sort(function (a, b) {
+          return String(a.at).localeCompare(String(b.at));
+        });
         host.innerHTML = "";
         if (data.intro) {
           var intro = document.createElement("p");
@@ -32,20 +49,20 @@
           intro.textContent = data.intro;
           host.appendChild(intro);
         }
-        items.forEach(function (u) {
+        items.forEach(function (u, i) {
           var art = document.createElement("article");
           art.className = "update-card release-note";
           art.innerHTML =
-            '<time datetime="' + esc(u.date) + '">' + esc(pretty(u.date)) + "</time>" +
+            '<p class="rel-step">Step ' + (i + 1) + " of " + items.length + "</p>" +
+            '<time datetime="' + esc(u.at) + '">' + esc(pretty(u.at)) + "</time>" +
             "<h3>" + esc(u.title) + "</h3>" +
-            "<p>" + esc(u.body) + "</p>" +
-            "<p><strong>You can experience:</strong> " + esc(u.canExperience) + "</p>" +
-            "<p><strong>Still in development:</strong> " + esc(u.inDevelopment) + "</p>";
+            list("Added", u.added) +
+            list("Changed", u.changed);
           host.appendChild(art);
         });
       })
       .catch(function () {
-        host.innerHTML = "<p>Release notes could not load. Refresh, or open Updates again.</p>";
+        host.innerHTML = "<p>Updates could not load. Refresh the page.</p>";
       });
   };
 })();

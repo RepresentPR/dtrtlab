@@ -744,6 +744,25 @@ section.band {
   color: var(--accent);
   margin-bottom: 8px;
 }
+.rel-step {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin: 0 0 6px;
+}
+.rel-k {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 16px 0 8px;
+}
+.release-note ul {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+.release-note li { margin: 0 0 6px; }
 .gh-raw {
   margin-top: 48px;
   border-top: 1px solid var(--line);

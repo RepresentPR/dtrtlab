@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Release notes — DTRT AFTERLIGHT</title>
-  <meta name="description" content="DTRT AFTERLIGHT release notes from 28 August 2026 through 18 September 2026. What you can read or request, and what is still in development.">
+  <title>Updates — DTRT AFTERLIGHT</title>
+  <meta name="description" content="DTRT AFTERLIGHT built in order. What was added and changed, with Atlantic timestamps, from 28 August 2026 through 18 September 2026.">
   <link rel="canonical" href="https://dtrtlab.com/news.html">
   <link rel="stylesheet" href="css/lab.css">
   <link rel="stylesheet" href="css/adapt.css">
@@ -16,23 +16,16 @@
   <section>
     <div class="wrap" id="main">
       <p class="kicker">Updates</p>
-      <h2>Release notes</h2>
-      <p class="lead">Newest first, 18 September 2026 back to 28 August 2026. The 28 is August, not September. Days with no landing are listed so a quiet week is not a hole. Nothing here is a public game download.</p>
+      <h2>The game, step by step</h2>
+      <p class="lead">Oldest first. Each step is what landed and when (Atlantic time). Not a commit log.</p>
       <div id="updates"></div>
-      <details class="gh-raw">
-        <summary>Engineering catalog (pull requests and commits)</summary>
-        <p class="caption">Raw GitHub trail for DTRTCore. Prefer the notes above.</p>
-        <div id="github-log"></div>
-      </details>
     </div>
   </section>
   <footer id="site-foot"></footer>
   <script src="js/nav.js"></script>
   <script src="js/releases.js"></script>
-  <script src="js/github.js"></script>
   <script>
     DTRT.renderReleases(document.getElementById("updates"));
-    if (DTRT.renderGithub) DTRT.renderGithub(document.getElementById("github-log"));
   </script>
 </body>
 </html>

@@ -1,127 +1,187 @@
 {
-  "title": "Release notes",
-  "from": "2026-08-28",
-  "through": "2026-09-18",
-  "intro": "Newest first. The first public day is 28 August 2026 (the website). The Unreal project starts 4 September. There is no 28 September note — that date has not happened. Empty calendar days are listed so a quiet week is not a missing week.",
+  "title": "How the game was built",
+  "timezone": "America/Puerto_Rico",
+  "from": "2026-08-28T16:11:31-04:00",
+  "through": "2026-09-18T03:34:36-04:00",
+  "intro": "In order, from the first public day. Each stamp is when that step landed (Atlantic, UTC−4). What was added or changed — not how it was built. There is still no public game download.",
   "items": [
     {
-      "date": "2026-09-18",
-      "title": "AFTERLIGHT is the public game name",
-      "body": "Volume One of the story is on the site (9,489 words, EPUB). Afterlight radio plays on demand. The homepage leads with the Puerto Rico campaign. Training stays a chapter of the game, request-only. No public demo button.",
-      "canExperience": "Read Volume One. Play the site radio. Request access for the range.",
-      "inDevelopment": "Playable campaign island, public demo, in-game radios as unlocks."
+      "at": "2026-08-28T16:11:31-04:00",
+      "title": "Public home for the lab",
+      "added": [
+        "dtrtlab.com",
+        "Contact, FAQ, and legal pages"
+      ],
+      "changed": []
     },
     {
-      "date": "2026-09-17",
-      "title": "Internal range beta candidate",
-      "body": "An internal Windows range candidate exists for studio play. First-bullet credit is the rule on that lane. Hangar and sky are still held. This is not a public demo.",
-      "canExperience": "Internal testers only.",
-      "inDevelopment": "Human-play public demo, hangar finish, campaign."
+      "at": "2026-09-04T17:28:43-04:00",
+      "title": "The range exists",
+      "added": [
+        "First-person training range in Unreal",
+        "Kestrel rifle",
+        "1:1 mouse look",
+        "Range dummies and hit markers"
+      ],
+      "changed": []
     },
     {
-      "date": "2026-09-16",
-      "title": "No public landing",
-      "body": "No website or game commit this calendar day. Work from the 15th and 17th still stands.",
-      "canExperience": "Unchanged.",
-      "inDevelopment": "Unchanged."
+      "at": "2026-09-05T03:31:19-04:00",
+      "title": "The 12 metre lane",
+      "added": [
+        "Named 12 m training lane",
+        "Session score and reset",
+        "Look-sensitivity options",
+        "Knife as a secondary"
+      ],
+      "changed": [
+        "Dummy and rifle materials so the lane reads as a place, not a gray box"
+      ]
     },
     {
-      "date": "2026-09-15",
-      "title": "Hangar polish, still internal",
-      "body": "Tip-only hangar declutter and impact-rim polish on the internal shipping range. Sign-off stays in the studio. Not a public build.",
-      "canExperience": "Request-only range if you already have a yes.",
-      "inDevelopment": "Public download, campaign island."
+      "at": "2026-09-06T00:37:17-04:00",
+      "title": "Lobby, settings, credit law",
+      "added": [
+        "Lobby before the range",
+        "Mouse and FOV settings",
+        "Score, time, and accuracy on the HUD",
+        "Credit only on a stopped head — walking heads do not count"
+      ],
+      "changed": [
+        "Each shot fires its own sound"
+      ]
     },
     {
-      "date": "2026-09-14",
-      "title": "Hangar and dummy presentation",
-      "body": "Internal shipping-style range drops: clearer impacts, less clutter in the hangar, combat dummy presentation. Studio packages, not Steam.",
-      "canExperience": "Request-only range if you already have a yes.",
-      "inDevelopment": "Public download, campaign island."
+      "at": "2026-09-07T21:49:53-04:00",
+      "title": "Range stays on screen",
+      "added": [],
+      "changed": [
+        "The lane no longer drops to a black screen"
+      ]
     },
     {
-      "date": "2026-09-13",
-      "title": "Hardware lighting path and range structure",
-      "body": "Packaged range work: hangar floor edges, observation tower, native 12 m head kept live in the micro-correction mode. Hardware lighting path for RTX machines. Internal.",
-      "canExperience": "Internal range.",
-      "inDevelopment": "Public demo, campaign."
+      "at": "2026-09-09T01:07:15-04:00",
+      "title": "Menus and saved results",
+      "added": [
+        "Production menus",
+        "Saved session results"
+      ],
+      "changed": [
+        "Range light and color",
+        "Rifle barrel sits correctly",
+        "Fast trigger taps register as separate shots"
+      ]
     },
     {
-      "date": "2026-09-12",
-      "title": "No public landing",
-      "body": "No game or site commit this calendar day.",
-      "canExperience": "Unchanged.",
-      "inDevelopment": "Unchanged."
+      "at": "2026-09-10T01:05:16-04:00",
+      "title": "Kestrel and the hangar fill in",
+      "added": [
+        "Original Kestrel in the hands — stock, mag, optic, rails",
+        "First-person hands",
+        "Range backstop, crates, lamps, sky",
+        "Home command center",
+        "Accuracy bars after a session",
+        "Local music and range sound"
+      ],
+      "changed": [
+        "Human targets no longer wear a real-world army identity"
+      ]
     },
     {
-      "date": "2026-09-11",
-      "title": "The site tells the lab clearly",
-      "body": "First website commits since 28 August. Homepage uses a range still. Support via Ko-fi. Development catalog published. The quiet stretch on dtrtlab.com was not idle: the Unreal range was moving in the game repo from 4 September.",
-      "canExperience": "The public site, including how to request access.",
-      "inDevelopment": "Playable campaign. Public demo."
+      "at": "2026-09-11T12:46:42-04:00",
+      "title": "The website shows the range",
+      "added": [
+        "Range still on the homepage",
+        "Support via Ko-fi",
+        "Request-access path"
+      ],
+      "changed": [
+        "Site copy names an original lab, not another product"
+      ]
     },
     {
-      "date": "2026-09-10",
-      "title": "Kestrel and the lane get real materials",
-      "body": "Original Kestrel viewmodel (hands, rails, optic, PBR). Range backstop, crates, clouds. Command-center home in the build. Still no public installer.",
-      "canExperience": "Website only, unless Ian already granted a build.",
-      "inDevelopment": "Everything players would call a game besides the lane."
+      "at": "2026-09-13T10:31:33-04:00",
+      "title": "The hangar becomes a building",
+      "added": [
+        "Observation tower",
+        "Thrown spent mag",
+        "Hardware lighting path for RTX"
+      ],
+      "changed": [
+        "Hangar floor edges close",
+        "12 m head stays live in micro-correction",
+        "Unlimited ammo on the range"
+      ]
     },
     {
-      "date": "2026-09-09",
-      "title": "Menus, results, range light",
-      "body": "Production menus, session lifecycle, persistent results. Range palette and barrel orientation fixes. Fast trigger taps keep timestamps. Internal.",
-      "canExperience": "Internal range.",
-      "inDevelopment": "Hangar look, public access, campaign."
+      "at": "2026-09-14T04:14:44-04:00",
+      "title": "Impacts, dummy, and a quieter hangar",
+      "added": [
+        "Combat dummy on the pad",
+        "Daylight-visible hit and miss marks"
+      ],
+      "changed": [
+        "Fewer props in the hangar",
+        "Rifle combat HUD no longer shows always-on equip slots",
+        "Magazine dump and low-ready on the rifle"
+      ]
     },
     {
-      "date": "2026-09-08",
-      "title": "No public landing",
-      "body": "No game or site commit this calendar day (Monday after the 6–7 range burst).",
-      "canExperience": "Unchanged.",
-      "inDevelopment": "Unchanged."
+      "at": "2026-09-15T00:00:02-04:00",
+      "title": "Hangar and impact rims",
+      "added": [],
+      "changed": [
+        "Hangar even cleaner at the far end",
+        "Impact rims read at range"
+      ]
     },
     {
-      "date": "2026-09-07",
-      "title": "Keep the lane on screen",
-      "body": "Visual dressing that went black is turned off so the range stays visible.",
-      "canExperience": "Internal range.",
-      "inDevelopment": "Hangar look, campaign, public build."
+      "at": "2026-09-17T19:39:02-04:00",
+      "title": "Internal range build",
+      "added": [
+        "A Windows range build for testers"
+      ],
+      "changed": [
+        "Audio bound to that candidate"
+      ]
     },
     {
-      "date": "2026-09-06",
-      "title": "Lobby, settings, honest shots",
-      "body": "A simple lobby and mouse/FOV settings. Each shot can retrigger fire sound. Walking heads do not count.",
-      "canExperience": "Internal range only.",
-      "inDevelopment": "Campaign, public demo, polished hangar."
+      "at": "2026-09-18T00:59:09-04:00",
+      "title": "Afterlight Volume One",
+      "added": [
+        "Volume One on the site — 9,489 words",
+        "Chapter reader and EPUB",
+        "People and island pages"
+      ],
+      "changed": []
     },
     {
-      "date": "2026-09-05",
-      "title": "A named 12 m lane",
-      "body": "The range gets a clear 12-metre purpose: acquire, still, first bullet. Session score and reset exist in the build.",
-      "canExperience": "Still request-only internals.",
-      "inDevelopment": "Look of the hangar, public access, campaign."
+      "at": "2026-09-18T02:20:23-04:00",
+      "title": "Afterlight radio",
+      "added": [
+        "Seven shop-bench tracks on the site",
+        "Play, pause, shuffle, seek, volume knob"
+      ],
+      "changed": []
     },
     {
-      "date": "2026-09-04",
-      "title": "The Windows range begins",
-      "body": "The official Unreal project starts this day. First-person range, Kestrel rifle, 1:1 mouse look. Internal. The public website from 28 August is unchanged.",
-      "canExperience": "Nothing public to play. The site is still the only public surface.",
-      "inDevelopment": "The range, credit law, and everything else."
+      "at": "2026-09-18T02:40:21-04:00",
+      "title": "Character stills",
+      "added": [],
+      "changed": [
+        "Gabriel, Camila, and the rest of the stills"
+      ]
     },
     {
-      "date": "2026-08-29",
-      "title": "Quiet week — no game repo yet",
-      "body": "29 August through 3 September: no dtrtlab.com commits and no Unreal repository. The site from 28 August stays up. Game engineering starts 4 September. This is not a missing September 28 entry.",
-      "canExperience": "The website from 28 August.",
-      "inDevelopment": "The Unreal game, which does not exist on disk yet."
-    },
-    {
-      "date": "2026-08-28",
-      "title": "The lab site opens",
-      "body": "Friday 28 August 2026. dtrtlab.com goes live. Contact, FAQ, and legal pages. There is no game download.",
-      "canExperience": "The website.",
-      "inDevelopment": "The Unreal game itself."
+      "at": "2026-09-18T03:28:50-04:00",
+      "title": "AFTERLIGHT is the game on the site",
+      "added": [
+        "Game, World, Training, Media, and Updates as their own pages",
+        "Labeled in-engine vs story stills"
+      ],
+      "changed": [
+        "Homepage leads with the Puerto Rico campaign, not only the range"
+      ]
     }
   ]
 }
