@@ -30,7 +30,36 @@
       <p class="lede">His mother has been dead for fifteen years. Someone has learned how to make her ask for help.</p>
       <div class="actions">
         <a class="cta" href="stories/afterlight/volume-one/" data-event="AfterlightRead">Read Volume One</a>
+        <a class="cta ghost" href="#radio" data-event="AfterlightRadio">Play the radio</a>
         <a class="cta ghost" href="stories/afterlight/Afterlight.epub" data-event="AfterlightEpub">Download EPUB</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="radio">
+    <div class="wrap">
+      <p class="kicker">Radio</p>
+      <h2>A modest broadcast</h2>
+      <p>Seven cuts from the shop bench. Play them in order, shuffle the set, and turn the volume knob.</p>
+      <div class="al-radio" id="al-radio">
+        <audio id="al-radio-audio" preload="metadata"></audio>
+        <div class="al-radio-now">
+          <p class="n">Now</p>
+          <h3 id="al-radio-now">—</h3>
+          <p class="al-radio-time" id="al-radio-time">0:00 / 0:00</p>
+          <input id="al-radio-seek" type="range" min="0" max="1000" value="0" aria-label="Seek">
+        </div>
+        <div class="al-radio-controls">
+          <button type="button" id="al-radio-prev">Prev</button>
+          <button type="button" id="al-radio-play" aria-pressed="false">Play</button>
+          <button type="button" id="al-radio-next">Next</button>
+          <button type="button" id="al-radio-shuffle" aria-pressed="false">Shuffle</button>
+          <div class="al-radio-volwrap">
+            <button type="button" class="al-radio-knob" id="al-radio-knob" role="slider" aria-label="Volume" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80"></button>
+            <span id="al-radio-vol">80%</span>
+          </div>
+        </div>
+        <ol class="al-radio-list" id="al-radio-list"></ol>
       </div>
     </div>
   </section>
@@ -157,5 +186,6 @@
   <footer id="site-foot"></footer>
   <script src="js/nav.js"></script>
   <script src="js/afterlight.js"></script>
+  <script src="js/radio.js"></script>
 </body>
 </html>
