@@ -1,0 +1,103 @@
+/* Device adaptation on top of lab.css / afterlight.css */
+
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+img, video, canvas, svg { max-width: 100%; height: auto; }
+iframe { max-width: 100%; }
+audio { width: 100%; max-width: 100%; }
+
+.al-radio { width: 100%; box-sizing: border-box; }
+.al-radio-now input[type="range"] { max-width: 100%; }
+
+@media (max-width: 1100px) {
+  .nav-row { grid-template-columns: 1fr auto !important; }
+  .menu-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+  nav.links {
+    display: none !important;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(52px + env(safe-area-inset-top));
+    background: var(--bg, #12110f);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 8px max(20px, env(safe-area-inset-left)) calc(16px + env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-right));
+    gap: 0;
+    border-bottom: 1px solid var(--line);
+    justify-self: stretch;
+    max-height: calc(100dvh - 52px);
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  nav.links a {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    opacity: 1;
+  }
+  header.nav.open {
+    background: var(--bg, #12110f);
+    border-bottom-color: var(--line);
+  }
+  header.nav.open nav.links { display: flex !important; }
+}
+
+@media (max-width: 720px) {
+  .al-radio { padding: 16px 14px 12px; }
+  .al-radio-now h3 { font-size: clamp(18px, 6vw, 24px); }
+  .al-radio-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .al-radio-controls button {
+    width: 100%;
+    min-height: 44px;
+  }
+  .al-radio-volwrap {
+    margin-left: 0;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .al-objects { grid-template-columns: 1fr 1fr; }
+  .isa-letter { padding: 88px 0 48px; }
+  .isa-letter h1 { font-size: clamp(40px, 16vw, 68px); }
+  .isa-letter-body { font-size: 16px; }
+  .isa-radio.al-radio { border-radius: 14px; }
+}
+
+@media (max-width: 420px) {
+  .wrap {
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+  }
+  .al-objects { grid-template-columns: 1fr; }
+  .al-people { grid-template-columns: 1fr; }
+  .cta, button.cta { min-width: 0; width: 100%; }
+}
+
+@media (hover: none) {
+  .card:hover,
+  a.al-chapter:hover { transform: none; }
+}
+
+@media (pointer: coarse) {
+  .al-radio-knob { width: 64px; height: 64px; }
+  .al-radio-list button { min-height: 44px; }
+}
+
+@media (orientation: landscape) and (max-height: 520px) {
+  .hero,
+  .al-hero { min-height: 100dvh; }
+  .hero .copy,
+  .al-hero .copy { padding-bottom: calc(28px + env(safe-area-inset-bottom)); }
+  .hero h1 { font-size: clamp(28px, 8vw, 48px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .al-hero .still img,
+  .isa-sky { animation: none; }
+}

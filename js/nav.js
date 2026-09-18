@@ -28,6 +28,12 @@
     '<button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-links">Menu</button>' +
     "</div>" +
     "</div>";
+  if (!document.querySelector('link[href*="css/adapt.css"]')) {
+    var adapt = document.createElement("link");
+    adapt.rel = "stylesheet";
+    adapt.href = root + "css/adapt.css";
+    document.head.appendChild(adapt);
+  }
   var host = document.getElementById("site-nav");
   if (host) host.innerHTML = html;
   var btn = host && host.querySelector(".menu-btn");
