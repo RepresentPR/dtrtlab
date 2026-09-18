@@ -18,6 +18,7 @@
     a("game.html", "Lab", "Lab") +
     a("story.html", "Story", "Story") +
     a("radio.html", "Radio", "Radio") +
+    a("isabella.html", "Isabella", "Isabella") +
     a("faq.html", "FAQ", "FAQ") +
     a("news.html", "GitHub", "GitHub") +
     a("donate.html", "Support", "Support") +
@@ -70,6 +71,7 @@
       '<a href="' + root + 'press.html" data-event="Press">Press</a>' +
       '<a href="' + root + 'story.html" data-event="Story">Story</a>' +
       '<a href="' + root + 'radio.html" data-event="Radio">Radio</a>' +
+      '<a href="' + root + 'isabella.html" data-event="Isabella">Isabella</a>' +
       '<a href="' + root + 'legal/privacy.html">Privacy</a>' +
       '<a href="' + root + 'legal/terms.html">Terms</a>' +
       '<a href="' + root + 'donate.html" data-event="Support">Support</a>' +

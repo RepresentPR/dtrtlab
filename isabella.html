@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>For Isabella — DTRT Lab</title>
+  <meta name="description" content="Two songs a father made for his daughter. A tu pasito and At Your Own Pace, Daddy’s Voice Edition.">
+  <link rel="canonical" href="https://dtrtlab.com/isabella.html">
+  <link rel="stylesheet" href="css/lab.css">
+  <link rel="stylesheet" href="css/afterlight.css">
+  <link rel="icon" href="img/icon.svg">
+</head>
+<body class="isa-page">
+  <a class="skip" href="#isabella">Skip to songs</a>
+  <header class="nav" id="site-nav"></header>
+  <main class="isa-letter" id="isabella">
+    <div class="isa-sky" aria-hidden="true"></div>
+    <div class="wrap isa-inner">
+      <p class="isa-from">From dad</p>
+      <h1>Isabella</h1>
+      <p class="isa-vow">A tu pasito. At your own pace.</p>
+      <p class="isa-letter-body">These are not Afterlight radio cuts. They are two songs I made for you — one in the language of home, one in English — in my voice, so you can hear me when the room is quiet. Same promise both ways: you do not have to hurry.</p>
+      <div class="al-radio isa-radio" id="isa-radio">
+        <audio id="isa-radio-audio" preload="metadata"></audio>
+        <div class="al-radio-now">
+          <p class="n">Playing for you</p>
+          <h3 id="isa-radio-now">—</h3>
+          <p class="al-radio-note" id="isa-radio-note"></p>
+          <p class="al-radio-time" id="isa-radio-time">0:00 / 0:00</p>
+          <input id="isa-radio-seek" type="range" min="0" max="1000" value="0" aria-label="Seek">
+        </div>
+        <div class="al-radio-controls">
+          <button type="button" id="isa-radio-prev">Prev</button>
+          <button type="button" id="isa-radio-play" aria-pressed="false">Play</button>
+          <button type="button" id="isa-radio-next">Next</button>
+          <button type="button" id="isa-radio-shuffle" aria-pressed="false">Shuffle</button>
+          <div class="al-radio-volwrap">
+            <button type="button" class="al-radio-knob" id="isa-radio-knob" role="slider" aria-label="Volume" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80"></button>
+            <span id="isa-radio-vol">80%</span>
+          </div>
+        </div>
+        <ol class="al-radio-list isa-tracks" id="isa-radio-list"></ol>
+      </div>
+      <p class="isa-sign">— Ian</p>
+    </div>
+  </main>
+  <footer id="site-foot"></footer>
+  <script src="js/nav.js"></script>
+  <script src="js/radio.js"></script>
+</body>
+</html>
