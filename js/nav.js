@@ -15,16 +15,15 @@
     '<div class="wrap nav-row">' +
     '<a class="brand" href="' + root + 'index.html">DTRT</a>' +
     '<nav class="links" id="site-links" aria-label="Primary">' +
-    a("game.html", "Lab", "Lab") +
+    a("game.html", "Game", "Game") +
     a("story.html", "Story", "Story") +
-    a("radio.html", "Radio", "Radio") +
-    a("isabella.html", "Isabella", "Isabella") +
-    a("faq.html", "FAQ", "FAQ") +
-    a("news.html", "GitHub", "GitHub") +
-    a("donate.html", "Support", "Support") +
+    a("worlds.html", "World", "World") +
+    a("training.html", "Training", "Training") +
+    a("media.html", "Media", "Media") +
+    a("news.html", "Updates", "Updates") +
     "</nav>" +
     '<div class="nav-end">' +
-    '<a class="nav-cta" href="' + root + 'contact.html" data-event="Access">Access</a>' +
+    '<a class="nav-cta" href="' + root + 'news.html" data-event="Updates">Follow development</a>' +
     '<button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-links">Menu</button>' +
     "</div>" +
     "</div>";
@@ -43,6 +42,12 @@
     document.body.classList.toggle("nav-open", open);
     btn.setAttribute("aria-expanded", open ? "true" : "false");
     btn.textContent = open ? "Close" : "Menu";
+    if (open) {
+      var first = host.querySelector("nav.links a");
+      if (first) first.focus();
+    } else {
+      btn.focus();
+    }
   }
   if (btn && host) {
     btn.addEventListener("click", function () {
@@ -57,7 +62,7 @@
       if (e.key === "Escape") setOpen(false);
     });
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 900) setOpen(false);
+      if (window.innerWidth > 1100) setOpen(false);
     });
   }
   function onScroll() {
@@ -70,17 +75,19 @@
   if (foot) {
     foot.innerHTML =
       '<div class="wrap">' +
-      "<span>DTRT Lab</span>" +
-      '<a href="' + root + 'contact.html" data-event="Contact">Contact</a>' +
-      '<a href="' + root + 'faq.html" data-event="FAQ">FAQ</a>' +
-      '<a href="' + root + 'index.html#setup" data-event="Setup">Setup</a>' +
-      '<a href="' + root + 'press.html" data-event="Press">Press</a>' +
-      '<a href="' + root + 'story.html" data-event="Story">Story</a>' +
-      '<a href="' + root + 'radio.html" data-event="Radio">Radio</a>' +
-      '<a href="' + root + 'isabella.html" data-event="Isabella">Isabella</a>' +
+      "<span>DTRT Lab · DTRT AFTERLIGHT</span>" +
+      '<a href="' + root + 'game.html">Game</a>' +
+      '<a href="' + root + 'story.html">Story</a>' +
+      '<a href="' + root + 'worlds.html">World</a>' +
+      '<a href="' + root + 'training.html">Training</a>' +
+      '<a href="' + root + 'media.html">Media</a>' +
+      '<a href="' + root + 'news.html">Updates</a>' +
+      '<a href="' + root + 'radio.html">Radio</a>' +
+      '<a href="' + root + 'contact.html">Contact</a>' +
+      '<a href="' + root + 'faq.html">FAQ</a>' +
+      '<a href="' + root + 'donate.html">Support</a>' +
       '<a href="' + root + 'legal/privacy.html">Privacy</a>' +
       '<a href="' + root + 'legal/terms.html">Terms</a>' +
-      '<a href="' + root + 'donate.html" data-event="Support">Support</a>' +
       "</div>" +
       '<div class="wrap socials">' +
       '<a href="https://x.com/DTRTLab" rel="noopener noreferrer" target="_blank">X</a>' +

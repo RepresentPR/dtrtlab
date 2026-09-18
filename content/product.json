@@ -1,0 +1,94 @@
+{
+  "parent": "DTRT Lab",
+  "publicName": "DTRT AFTERLIGHT",
+  "tagline": "A story-driven FPS rooted in Puerto Rico. Skill, survival, and what you choose to record.",
+  "oneSentence": "DTRT AFTERLIGHT is an original Windows FPS campaign in development, with a readable Volume One and an internal first-bullet training range. There is no public download.",
+  "status": "in-development",
+  "statusLabel": "In development",
+  "statusDetail": "Windows Unreal Engine 5. Internal range lab is the playable slice today. The campaign is not a public demo. Volume One of the story is readable on this site.",
+  "verifiedDate": "2026-09-18",
+  "build": "UE 5.8 internal range (request-only)",
+  "platforms": ["Windows, offline, request-only"],
+  "languages": ["English site", "Spanish in Volume One dialogue and radio titles"],
+  "downloadUrl": null,
+  "primaryCta": { "label": "Follow development", "href": "news.html" },
+  "secondaryCta": { "label": "Read Volume One", "href": "story.html" },
+  "accessCta": { "label": "Request access", "href": "contact.html" },
+  "features": [
+    {
+      "id": "campaign",
+      "title": "Campaign and story",
+      "status": "in-development",
+      "today": "Volume One (9,489 words) is complete and public. The playable campaign is not released.",
+      "blurb": "Gabriel Vélez, Añasco, 2032. A radio. A call that should not be possible. The island remembers."
+    },
+    {
+      "id": "combat",
+      "title": "Combat and movement",
+      "status": "in-development",
+      "today": "First-bullet credit law is implemented on the internal training range. Campaign encounters are not public.",
+      "blurb": "Move, stop, earn the shot. A walking head never counts."
+    },
+    {
+      "id": "world",
+      "title": "Puerto Rican locations",
+      "status": "in-development",
+      "today": "Story stills and a regional route exist on the site. These are not complete playable maps.",
+      "blurb": "Añasco, Mayagüez, Cabo Rojo, Rincón, and the road east. Interiors invented. Regions real."
+    },
+    {
+      "id": "training",
+      "title": "Training",
+      "status": "in-production",
+      "today": "Internal 12 m range: acquire, still, first bullet, UNIT 12. Access is request-only. Not a public trainer download.",
+      "blurb": "Practice, review, find a weakness, train it, retest. Original rifle: Kestrel."
+    },
+    {
+      "id": "discoveries",
+      "title": "Discoveries and music",
+      "status": "in-development",
+      "today": "Afterlight radio cuts play on this site. In-game radios and unlocks are not verified as a public feature.",
+      "blurb": "Optional finds and a modest broadcast. Not an open-world checklist."
+    }
+  ],
+  "places": [
+    { "id": "anasco", "name": "Añasco", "status": "story", "img": "img/afterlight/shop-dawn.jpg", "alt": "Pre-dawn electronics shop on a wet street, rolling door half open.", "blurb": "Gabriel’s shop and the west-coast start. Real municipality. Invented interiors." },
+    { "id": "mayaguez", "name": "Mayagüez", "status": "story", "img": "img/afterlight/blue-door.jpg", "alt": "A weathered blue wooden door strapped to a flatbed.", "blurb": "Street work and a door that records a family. Not a playable city map." },
+    { "id": "cabo", "name": "Cabo Rojo", "status": "story", "img": "img/afterlight/cabo.jpg", "alt": "Dry coastal agricultural yard and pickup truck.", "blurb": "Southwest light. Scenes sit outside protected habitat. Story still, not a finished level." },
+    { "id": "rincon", "name": "Rincón", "status": "story", "img": "img/afterlight/rincon.jpg", "alt": "Cluttered radio workshop with stairs to a living space.", "blurb": "Workshop over a kitchen. Ordinary household. Not a tourist map copy." },
+    { "id": "relay", "name": "West relay", "status": "story", "img": "img/afterlight/relay.jpg", "alt": "Open gate at a quiet communications compound.", "blurb": "A station that has gone quiet. Fictional compound on a real coast." },
+    { "id": "range", "name": "Training range", "status": "in-production", "img": "img/north-star-home-1920.jpg", "alt": "UNIT 12 dummy at the far end of an indoor range hangar.", "blurb": "Internal 12 m lane. In-engine lookdev. This is the playable slice, not the campaign island." }
+  ],
+  "media": [
+    { "src": "img/north-star-home-1920.jpg", "srcset": "img/north-star-home-1280.jpg 1280w, img/north-star-home-1920.jpg 1920w", "kind": "in-engine", "caption": "Training range lookdev. UNIT 12 at the far dummy. Not a campaign screenshot.", "alt": "Indoor range hangar, UNIT 12 dummy downrange.", "w": 1920, "h": 1080 },
+    { "src": "img/afterlight/shop-dawn.jpg", "kind": "concept", "caption": "Story still: Añasco shop at dawn. Concept / narrative art, not captured gameplay.", "alt": "Pre-dawn electronics shop, radio on the workbench.", "w": 1920, "h": 1080 },
+    { "src": "img/afterlight/relay.jpg", "kind": "concept", "caption": "Story still: west relay. Concept art for Volume One.", "alt": "Quiet communications compound at an open gate.", "w": 1920, "h": 1080 },
+    { "src": "img/afterlight/cabo.jpg", "kind": "concept", "caption": "Story still: Cabo Rojo dry yard.", "alt": "Coastal agricultural yard in bright southwest light.", "w": 1920, "h": 1080 },
+    { "src": "img/afterlight/gabriel.jpg", "kind": "concept", "caption": "Character still: Gabriel Vélez. Documentary-style portrait, not in-engine.", "alt": "Gabriel Vélez in the Añasco shop.", "w": 1200, "h": 1600 },
+    { "src": "img/range-lane.png", "kind": "in-engine", "caption": "Range lane. In-engine work in progress.", "alt": "Range lane with target dummy.", "w": 1920, "h": 1080 }
+  ],
+  "updates": [
+    {
+      "date": "2026-09-18",
+      "title": "Site tracks the campaign, not only the range",
+      "canExperience": "Read Afterlight Volume One. Play Afterlight radio on the site. Request access for the internal Windows range.",
+      "inDevelopment": "Playable campaign island, public demo, and in-game radios as unlocks.",
+      "body": "Public pages now name DTRT AFTERLIGHT as the campaign. Training remains real and request-only. No Steam page, no public build, no invented player counts."
+    },
+    {
+      "date": "2026-09-17",
+      "title": "Internal range lab",
+      "canExperience": "First-bullet credit on the internal 12 m range (not a public download).",
+      "inDevelopment": "Hangar/sky lookdev and campaign encounters.",
+      "body": "UE 5.8 range remains the verified playable slice. Human-play of a public demo is not available."
+    }
+  ],
+  "faq": [
+    { "q": "What is DTRT AFTERLIGHT?", "a": "A story-driven FPS campaign in development, set in Puerto Rico, under the DTRT Lab parent identity. Training is part of the game, not the whole product." },
+    { "q": "Can I play it today?", "a": "There is no public download. Request access and wait for a yes. Volume One of the story is readable now." },
+    { "q": "Is it only an aim trainer?", "a": "No. The public story, world stills, and radio exist alongside an internal first-bullet range. The campaign is not finished." },
+    { "q": "Is it CS2, Valorant, or Tarkov?", "a": "No. Original game, original rifle (Kestrel), original map work. Not a clone, overlay, or cheat." },
+    { "q": "Open world? Multiplayer?", "a": "Not claimed. The story follows a regional route. No public multiplayer." },
+    { "q": "Can I buy it?", "a": "Store and preorder are off. Ko-fi is support, not a key." }
+  ]
+}

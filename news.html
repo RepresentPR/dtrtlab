@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>GitHub — DTRT Lab</title>
-  <meta name="description" content="DTRTCore update catalog from the first commit.">
+  <title>Updates — DTRT AFTERLIGHT</title>
+  <meta name="description" content="Human-readable DTRT AFTERLIGHT development updates. What you can experience now versus what is still in development.">
+  <link rel="canonical" href="https://dtrtlab.com/news.html">
   <link rel="stylesheet" href="css/lab.css">
   <link rel="stylesheet" href="css/adapt.css">
   <link rel="icon" href="img/icon.svg">
@@ -14,15 +15,30 @@
   <header class="nav" id="site-nav"></header>
   <section>
     <div class="wrap" id="main">
-      <p class="kicker">GitHub</p>
-      <h2>Update catalog.</h2>
-      <p class="lead">Production commits and pull requests from the first DTRTCore commit.</p>
-      <div id="github-log"><p class="muted">RepresentPR/DTRTCore</p></div>
+      <p class="kicker">Updates</p>
+      <h2>What changed</h2>
+      <p class="lead">Dated notes from the public product file. Commits do not auto-promote a feature to “available now.”</p>
+      <div id="updates"></div>
+      <p class="caption">Optional GitHub catalog below. If the API is private or rate-limited, the dated notes above still stand.</p>
+      <div id="github-log"></div>
     </div>
   </section>
   <footer id="site-foot"></footer>
   <script src="js/nav.js"></script>
+  <script src="js/product.js"></script>
   <script src="js/github.js"></script>
-  <script>DTRT.renderGithub(document.getElementById("github-log"));</script>
+  <script>
+    DTRT.loadProduct().then(function (p) {
+      DTRT.applyProductMeta(p);
+      var host = document.getElementById("updates");
+      p.updates.forEach(function (u) {
+        var art = document.createElement("article");
+        art.className = "update-card";
+        art.innerHTML = "<time datetime=\"" + u.date + "\">" + u.date + "</time><h3>" + u.title + "</h3><p>" + u.body + "</p><p><strong>You can experience:</strong> " + u.canExperience + "</p><p><strong>Still in development:</strong> " + u.inDevelopment + "</p>";
+        host.appendChild(art);
+      });
+    }).catch(function () {});
+    if (window.DTRT && DTRT.renderGithub) DTRT.renderGithub(document.getElementById("github-log"));
+  </script>
 </body>
 </html>

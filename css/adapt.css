@@ -9,7 +9,9 @@ audio { width: 100%; max-width: 100%; }
 .al-radio-now input[type="range"] { max-width: 100%; }
 
 @media (max-width: 1100px) {
+  header.nav { background: rgba(18, 17, 15, 0.82); }
   .nav-row { grid-template-columns: 1fr auto !important; }
+  .nav-cta { display: none !important; }
   .menu-btn {
     display: inline-flex !important;
     align-items: center;
