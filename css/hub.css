@@ -758,10 +758,6 @@ body.hub footer a:hover {
   color: var(--formalin);
 }
 
-body.hub .unverified-flag {
-  color: var(--formalin);
-}
-
 @keyframes hub-glitch {
   0%,
   86%,

@@ -31,11 +31,7 @@ window.DTRT_SOCIALS = {
       label: "X",
       handle: "DTRTLab",
       url: "https://x.com/DTRTLab",
-      enabled: true,
-      /* Public lookup did not confirm this account (x.com returned 403,
-         and search did not surface a profile). Kept from the previous site. */
-      unverified: true,
-      note: "Handle not confirmed. @DTRTLab is carried over from the previous site."
+      enabled: true
     },
     {
       id: "kofi",
