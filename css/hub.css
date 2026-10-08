@@ -451,6 +451,10 @@ body.hub .offline-panel .actions {
   margin-top: 14px;
 }
 
+body.hub .offline-panel p.fine {
+  margin-top: 12px;
+}
+
 body.hub .section-head {
   display: flex;
   flex-wrap: wrap;

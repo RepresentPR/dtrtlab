@@ -1,13 +1,4 @@
 (function () {
-  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  function parents() {
-    var list = ["dtrtlab.com", "www.dtrtlab.com"];
-    var host = (location.hostname || "").toLowerCase();
-    if (host && list.indexOf(host) === -1) list.push(host);
-    return list;
-  }
-
   function clipSrc(slug) {
     var src =
       "https://clips.twitch.tv/embed?clip=" +
@@ -113,102 +104,172 @@
     var slot = document.getElementById("twitch-slot");
     var pill = document.getElementById("live-pill");
     var pillText = document.getElementById("live-pill-text");
-    var panel = document.getElementById("offline-panel");
     var panelTitle = document.getElementById("offline-title");
     var panelCopy = document.getElementById("offline-copy");
     if (!frame || !slot || !pill || !pillText) return;
 
+    var STATUS_URL = "https://decapi.me/twitch/uptime/dtrtc";
+    var KICK_URL = "https://kick.com/api/v2/channels/movebro";
+    var CACHE_KEY = "dtrtc-twitch-live";
+    var CACHE_MS = 45000;
     var mode = "checking";
+    var requestSeq = 0;
+
+    function playerSrc() {
+      var parts = [
+        "channel=dtrtc",
+        "parent=dtrtlab.com",
+        "parent=www.dtrtlab.com",
+        "muted=true",
+        "autoplay=true"
+      ];
+      var host = (location.hostname || "").toLowerCase();
+      if (host && host !== "dtrtlab.com" && host !== "www.dtrtlab.com") {
+        parts.push("parent=" + encodeURIComponent(host));
+      }
+      return "https://player.twitch.tv/?" + parts.join("&");
+    }
+
+    function readCache() {
+      try {
+        var raw = sessionStorage.getItem(CACHE_KEY);
+        if (!raw) return null;
+        var data = JSON.parse(raw);
+        if (!data || (data.status !== "live" && data.status !== "offline")) return null;
+        if (Date.now() - data.at > CACHE_MS) return null;
+        return data.status;
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function writeCache(status) {
+      try {
+        sessionStorage.setItem(CACHE_KEY, JSON.stringify({ at: Date.now(), status: status }));
+      } catch (error) {}
+    }
+
+    function interpret(text) {
+      var body = String(text || "").replace(/^\uFEFF/, "").trim().toLowerCase();
+      if (!body) return "unknown";
+      if (body.indexOf("offline") !== -1) return "offline";
+      if (/\d/.test(body) && /hour|minute|second/.test(body)) return "live";
+      return "unknown";
+    }
+
+    function mountPlayer() {
+      var src = playerSrc();
+      var iframe = slot.querySelector("iframe");
+      if (iframe && iframe.getAttribute("src") === src) return;
+      iframe = document.createElement("iframe");
+      iframe.src = src;
+      iframe.title = "Live Twitch stream for DTRTC";
+      iframe.allow = "autoplay; fullscreen; encrypted-media";
+      iframe.allowFullscreen = true;
+      iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+      slot.replaceChildren ? slot.replaceChildren(iframe) : (slot.innerHTML = "", slot.appendChild(iframe));
+    }
+
+    function clearPlayer() {
+      if (slot.replaceChildren) slot.replaceChildren();
+      else slot.innerHTML = "";
+    }
 
     function paint() {
+      var showPlayer = mode === "live" || mode === "unknown";
       pill.classList.toggle("is-live", mode === "live");
       pill.classList.toggle("is-offline", mode === "offline");
-      frame.classList.toggle("is-live", mode === "live");
+      frame.classList.toggle("is-live", showPlayer);
       frame.setAttribute("aria-busy", mode === "checking" ? "true" : "false");
+      if (mode === "live") pillText.textContent = "Live on Twitch";
+      else if (mode === "offline") pillText.textContent = "Offline";
+      else if (mode === "unknown") pillText.textContent = "Twitch";
+      else pillText.textContent = "Checking Twitch";
     }
 
-    function setLive() {
-      mode = "live";
-      pillText.textContent = "Live on Twitch";
+    function showPlayer(liveKnown) {
+      mode = liveKnown ? "live" : "unknown";
+      mountPlayer();
       paint();
     }
 
-    function setOffline(kind) {
-      if (mode === "live") return;
+    function showOffline() {
       mode = "offline";
-      pillText.textContent = "Offline";
-      if (panelTitle && panelCopy) {
-        if (kind === "event") {
-          panelTitle.textContent = "Signal lost";
-          panelCopy.textContent = "DTRTC is not live on Twitch right now. The queue starts when the channel goes live. Kick is linked if the show is over there.";
-        } else {
-          panelTitle.textContent = "Player unavailable";
-          panelCopy.textContent = "This page could not confirm a Twitch signal. Open the channel directly, or try Kick.";
+      clearPlayer();
+      if (panelTitle) panelTitle.textContent = "Offline — catch the clips";
+      if (panelCopy) panelCopy.textContent = "DTRTC is not live on Twitch. The highlights on this page stay up.";
+      paint();
+      noteKick();
+    }
+
+    function noteKick() {
+      fetch(KICK_URL, { cache: "no-store" })
+        .then(function (response) {
+          return response.ok ? response.json() : null;
+        })
+        .then(function (data) {
+          if (mode !== "offline" || !panelCopy) return;
+          var stream = data && data.livestream;
+          if (stream && stream.is_live) {
+            panelCopy.textContent = "DTRTC is not live on Twitch. Kick is live, and the highlights on this page stay up.";
+          }
+        })
+        .catch(function () {});
+    }
+
+    function checkStatus() {
+      var controller = typeof AbortController === "function" ? new AbortController() : null;
+      var timer = controller
+        ? window.setTimeout(function () {
+            controller.abort();
+          }, 8000)
+        : 0;
+      return fetch(STATUS_URL, {
+        cache: "no-store",
+        signal: controller ? controller.signal : undefined
+      })
+        .then(function (response) {
+          if (!response.ok) throw new Error("status");
+          return response.text();
+        })
+        .then(interpret)
+        .catch(function () {
+          return "unknown";
+        })
+        .then(function (status) {
+          if (timer) window.clearTimeout(timer);
+          return status;
+        });
+    }
+
+    function apply(status) {
+      if (status === "offline") showOffline();
+      else showPlayer(status === "live");
+    }
+
+    function refresh(force) {
+      if (!force) {
+        var cached = readCache();
+        if (cached) {
+          apply(cached);
+          return;
         }
       }
-      if (panel) panel.hidden = false;
-      paint();
+      var seq = ++requestSeq;
+      checkStatus().then(function (status) {
+        if (seq !== requestSeq) return;
+        if (status === "live" || status === "offline") writeCache(status);
+        apply(status);
+      });
     }
 
-    paint();
-
-    function start(player) {
-      var sawOffline = false;
-      try {
-        player.addEventListener(Twitch.Player.ONLINE, function () {
-          setLive();
-          if (!reduceMotion) {
-            try {
-              player.setMuted(true);
-              player.play();
-            } catch (error) {}
-          }
-        });
-        player.addEventListener(Twitch.Player.OFFLINE, function () {
-          sawOffline = true;
-          setOffline("event");
-        });
-        player.addEventListener(Twitch.Player.READY, function () {
-          var iframe = slot.querySelector("iframe");
-          if (iframe) iframe.title = "Twitch player for DTRTC";
-        });
-      } catch (error) {
-        setOffline("error");
-        return;
-      }
-      window.setTimeout(function () {
-        if (mode === "checking") setOffline(sawOffline ? "event" : "timeout");
-      }, 12000);
-    }
-
-    var script = document.createElement("script");
-    script.src = "https://player.twitch.tv/js/embed/v1.js";
-    script.async = true;
-    script.onload = function () {
-      if (!window.Twitch || !window.Twitch.Player) {
-        setOffline("error");
-        return;
-      }
-      var width = slot.clientWidth || frame.clientWidth || 640;
-      var height = slot.clientHeight || frame.clientHeight || Math.round((width * 9) / 16);
-      try {
-        var player = new Twitch.Player("twitch-slot", {
-          width: width,
-          height: height,
-          channel: "dtrtc",
-          parent: parents(),
-          autoplay: false,
-          muted: true
-        });
-        start(player);
-      } catch (error) {
-        setOffline("error");
-      }
-    };
-    script.onerror = function () {
-      setOffline("error");
-    };
-    document.head.appendChild(script);
+    var cached = readCache();
+    if (cached) apply(cached);
+    else paint();
+    refresh(true);
+    window.setInterval(function () {
+      refresh(true);
+    }, 60000);
   }
 
   initTrailer();
