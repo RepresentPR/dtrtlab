@@ -61,14 +61,14 @@ body.hub header.nav.scrolled {
 }
 
 body.hub .brand {
-  font-family: "Anton", Impact, sans-serif;
+  font-family: "Anton", "Anton Fallback", Impact, sans-serif;
   font-weight: 400;
   font-size: 1.25rem;
   letter-spacing: 0.16em;
 }
 
 body.hub nav.links a {
-  font-family: "VT323", "Courier New", monospace;
+  font-family: "VT323", "VT323 Fallback", "Courier New", monospace;
   font-size: 1.25rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -84,7 +84,7 @@ body.hub .nav-cta {
   background: var(--orange);
   border-color: var(--orange);
   color: var(--on-orange);
-  font-family: "Anton", Impact, sans-serif;
+  font-family: "Anton", "Anton Fallback", Impact, sans-serif;
   font-weight: 400;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -104,7 +104,7 @@ body.hub .nav-socials a:hover {
 }
 
 body.hub .menu-btn {
-  font-family: "VT323", "Courier New", monospace;
+  font-family: "VT323", "VT323 Fallback", "Courier New", monospace;
   font-size: 1.35rem;
   letter-spacing: 0.04em;
 }
@@ -121,7 +121,7 @@ body.hub main section + section {
 body.hub h1,
 body.hub h2,
 body.hub .wordmark {
-  font-family: "Anton", Impact, sans-serif;
+  font-family: "Anton", "Anton Fallback", Impact, sans-serif;
   font-weight: 400;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -136,7 +136,7 @@ body.hub h2 {
 
 body.hub .hud {
   margin: 0 0 10px;
-  font-family: "VT323", "Courier New", monospace;
+  font-family: "VT323", "VT323 Fallback", "Courier New", monospace;
   font-size: 1.35rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -161,7 +161,7 @@ body.hub .cta,
 body.hub button.cta {
   min-width: 0;
   border-radius: 2px;
-  font-family: "Anton", Impact, sans-serif;
+  font-family: "Anton", "Anton Fallback", Impact, sans-serif;
   font-weight: 400;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -205,7 +205,7 @@ body.hub .hero-watermark {
   right: -0.06em;
   bottom: -0.12em;
   margin: 0;
-  font-family: "Anton", Impact, sans-serif;
+  font-family: "Anton", "Anton Fallback", Impact, sans-serif;
   font-size: clamp(7rem, 24vw, 18rem);
   line-height: 0.8;
   letter-spacing: -0.04em;
@@ -250,7 +250,8 @@ body.hub .hero-top {
 }
 
 body.hub .wordmark {
-  font-family: "Dela Gothic One", "Anton", Impact, sans-serif;
+  font-family: "Dela Gothic One", "Dela Fallback", "Anton", "Anton Fallback", Impact, sans-serif;
+  white-space: nowrap;
   font-size: clamp(3.2rem, 6.1vw, 6.1rem);
   line-height: 0.88;
   letter-spacing: -0.03em;
@@ -266,7 +267,7 @@ body.hub .tagline {
   margin: 0 0 12px;
   max-width: 16em;
   color: var(--orange);
-  font-family: "Anton", Impact, sans-serif;
+  font-family: "Anton", "Anton Fallback", Impact, sans-serif;
   font-size: clamp(1.35rem, 2.4vw, 1.85rem);
   line-height: 1.05;
   letter-spacing: 0.03em;
@@ -288,7 +289,7 @@ body.hub .live-pill {
   padding: 4px 10px 4px 8px;
   border: 1px solid rgba(255, 122, 26, 0.55);
   background: rgba(7, 8, 12, 0.55);
-  font-family: "VT323", "Courier New", monospace;
+  font-family: "VT323", "VT323 Fallback", "Courier New", monospace;
   font-size: 1.25rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -318,8 +319,10 @@ body.hub .live-pill.is-live .live-dot {
 body.hub .hero-socials {
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
   gap: 8px;
   margin-top: 18px;
+  min-height: 96px;
 }
 
 body.hub .hero-social {
@@ -331,7 +334,7 @@ body.hub .hero-social {
   border: 1px solid var(--line);
   color: var(--ink);
   text-decoration: none;
-  font-family: "VT323", "Courier New", monospace;
+  font-family: "VT323", "VT323 Fallback", "Courier New", monospace;
   font-size: 1.2rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -420,7 +423,6 @@ body.hub .offline-panel {
 }
 
 body.hub .live-frame.is-live {
-  min-height: 0;
   aspect-ratio: 16 / 9;
 }
 
@@ -434,7 +436,7 @@ body.hub .live-frame.is-live .offline-panel {
 
 body.hub .offline-title {
   margin: 0 0 6px;
-  font-family: "Anton", Impact, sans-serif;
+  font-family: "Anton", "Anton Fallback", Impact, sans-serif;
   font-size: clamp(1.6rem, 3vw, 2.2rem);
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -512,7 +514,7 @@ body.hub .trailer-copy {
 }
 
 body.hub .trailer-title {
-  font-family: "Anton", Impact, sans-serif;
+  font-family: "Anton", "Anton Fallback", Impact, sans-serif;
   font-size: clamp(1.6rem, 4vw, 3rem);
   letter-spacing: 0.03em;
   text-transform: uppercase;
@@ -600,19 +602,31 @@ body.hub .clip-facade {
   cursor: pointer;
 }
 
+body.hub .clip-facade img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
 body.hub .clip-idx {
   position: absolute;
   top: 8px;
   left: 12px;
-  font-family: "VT323", "Courier New", monospace;
+  z-index: 1;
+  font-family: "VT323", "VT323 Fallback", "Courier New", monospace;
   font-size: 1.3rem;
   color: var(--purple-2);
+  text-shadow: 0 1px 2px #000;
 }
 
 body.hub .clip-facade .play {
   position: absolute;
   top: 50%;
   left: 50%;
+  z-index: 1;
   width: 56px;
   height: 56px;
   transform: translate(-50%, -50%);
@@ -621,7 +635,7 @@ body.hub .clip-facade .play {
 body.hub .clip-card h3 {
   margin: 0;
   padding: 12px 14px 14px;
-  font-family: "Anton", Impact, sans-serif;
+  font-family: "Anton", "Anton Fallback", Impact, sans-serif;
   font-size: 1.15rem;
   font-weight: 400;
   letter-spacing: 0.04em;
@@ -642,7 +656,7 @@ body.hub .al-grid {
 body.hub .edit-hint {
   margin: 18px 0 0;
   color: var(--dim);
-  font-family: "VT323", "Courier New", monospace;
+  font-family: "VT323", "VT323 Fallback", "Courier New", monospace;
   font-size: 1.15rem;
   letter-spacing: 0.03em;
 }
@@ -656,7 +670,7 @@ body.hub .term {
 
 body.hub .term p {
   margin: 0 0 8px;
-  font-family: "VT323", "Courier New", monospace;
+  font-family: "VT323", "VT323 Fallback", "Courier New", monospace;
   font-size: 1.35rem;
   color: var(--purple-2);
 }
@@ -700,7 +714,7 @@ body.hub .find-card svg {
 
 body.hub .find-label {
   margin-top: 8px;
-  font-family: "Anton", Impact, sans-serif;
+  font-family: "Anton", "Anton Fallback", Impact, sans-serif;
   font-size: 1.35rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -709,7 +723,7 @@ body.hub .find-label {
 
 body.hub .find-handle,
 body.hub .find-note {
-  font-family: "VT323", "Courier New", monospace;
+  font-family: "VT323", "VT323 Fallback", "Courier New", monospace;
   font-size: 1.15rem;
   color: var(--dim);
 }
@@ -808,6 +822,10 @@ body.hub .unverified-flag {
 
   body.hub .clip-grid {
     grid-template-columns: 1fr;
+  }
+
+  body.hub .hero-socials {
+    min-height: 148px;
   }
 
   body.hub .offline-panel .actions {

@@ -1,4 +1,5 @@
 (function () {
+  var ASSET_V = "20261008a";
   var here = (location.pathname || "").toLowerCase();
   var parts = here.replace(/\\/g, "/").split("/").filter(Boolean);
   if (parts.length && /\.[a-z0-9]+$/i.test(parts[parts.length - 1])) parts.pop();
@@ -194,7 +195,7 @@
       return;
     }
     var script = document.createElement("script");
-    script.src = root + "content/socials.js";
+    script.src = root + "content/socials.js?v=" + ASSET_V;
     script.onload = done;
     script.onerror = done;
     document.head.appendChild(script);
@@ -261,7 +262,50 @@
     .catch(function () {});
 
   var analytics = document.createElement("script");
-  analytics.src = root + "js/analytics.js";
-  analytics.defer = true;
+  analytics.src = root + "js/analytics.js?v=" + ASSET_V;
+  analytics.async = true;
   document.head.appendChild(analytics);
+
+  var seen = Object.create(null);
+  function prefetch(href) {
+    if (!href || seen[href]) return;
+    var url;
+    try {
+      url = new URL(href, location.href);
+    } catch (error) {
+      return;
+    }
+    if (url.origin !== location.origin) return;
+    if (url.pathname === location.pathname && url.search === location.search) return;
+    if (url.protocol !== "http:" && url.protocol !== "https:") return;
+    seen[href] = 1;
+    var link = document.createElement("link");
+    link.rel = "prefetch";
+    link.href = url.href;
+    link.as = "document";
+    document.head.appendChild(link);
+  }
+
+  document.addEventListener(
+    "mouseover",
+    function (event) {
+      var anchor = event.target && event.target.closest && event.target.closest("a[href]");
+      if (anchor) prefetch(anchor.href);
+    },
+    { passive: true, capture: true }
+  );
+  document.addEventListener(
+    "touchstart",
+    function (event) {
+      var anchor = event.target && event.target.closest && event.target.closest("a[href]");
+      if (anchor) prefetch(anchor.href);
+    },
+    { passive: true, capture: true }
+  );
+
+  if ("serviceWorker" in navigator && location.protocol !== "file:") {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register(root + "sw.js?v=" + ASSET_V).catch(function () {});
+    });
+  }
 })();
