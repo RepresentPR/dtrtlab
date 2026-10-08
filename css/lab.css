@@ -776,3 +776,61 @@ section.band {
 .loop { max-width: 36rem; padding-left: 1.2rem; }
 .loop li { margin: 0 0 10px; }
 .hero .chip { display: inline-block; }
+
+/* Shared chrome. AFTERLIGHT pages keep their own article colors.
+   Header and footer use The Lab Files on every page. */
+header.nav,
+header.nav.scrolled,
+header.nav.open {
+  background: rgba(13, 14, 11, 0.94);
+  border-bottom-color: rgba(234, 228, 211, 0.14);
+  color: #eae4d3;
+  font-family: "IBM Plex Mono", "IBM Plex Fallback", ui-monospace, monospace;
+}
+header.nav :focus-visible {
+  outline-color: #cfe35a;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #eae4d3;
+  font-family: "IBM Plex Mono", "IBM Plex Fallback", ui-monospace, monospace;
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+}
+.brand-mark {
+  width: 36px;
+  height: 36px;
+  display: block;
+  flex: none;
+}
+nav.links a,
+.menu-btn {
+  font-family: "IBM Plex Mono", "IBM Plex Fallback", ui-monospace, monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #eae4d3;
+}
+nav.links a[aria-current="page"] {
+  color: #8fb3c7;
+  opacity: 1;
+}
+.nav-cta {
+  background: #cfe35a;
+  border-color: #cfe35a;
+  color: #0d0e0b;
+  font-family: "IBM Plex Mono", "IBM Plex Fallback", ui-monospace, monospace;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+footer {
+  background: #0d0e0b;
+  color: #7e8174;
+  border-top-color: rgba(234, 228, 211, 0.18);
+  font-family: "IBM Plex Mono", "IBM Plex Fallback", ui-monospace, monospace;
+}
+footer a { color: #eae4d3; }
+footer a:hover { color: #cfe35a; }

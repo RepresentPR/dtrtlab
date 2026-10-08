@@ -1,41 +1,42 @@
 /* DTRTC creator hub. Loaded after lab.css so the stream pages can keep their own look. */
 
 body.hub {
-  --bg: #07080c;
-  --panel: #121018;
-  --ink: #f6f3ff;
-  --muted: #d2ccdf;
-  --dim: #b4adc4;
-  --line: rgba(246, 243, 255, 0.16);
-  --purple: #9146ff;
-  --purple-2: #d2c4ff;
-  --orange: #ff7a1a;
-  --on-orange: #1a0c04;
+  --bg: #0d0e0b;
+  --panel: #161814;
+  --ink: #eae4d3;
+  --muted: #d5d0c2;
+  --dim: #7e8174;
+  --line: rgba(234, 228, 211, 0.18);
+  --formalin: #cfe35a;
+  --redact: #e5361f;
+  --steel: #7e8174;
+  --haze: #8fb3c7;
+  --on-formalin: #0d0e0b;
   --max: 1120px;
   color: var(--ink);
   background:
-    radial-gradient(900px 420px at 8% -10%, rgba(145, 70, 255, 0.28), transparent 60%),
-    radial-gradient(720px 380px at 100% 0%, rgba(255, 122, 26, 0.12), transparent 55%),
+    radial-gradient(900px 420px at 8% -10%, rgba(207, 227, 90, 0.08), transparent 60%),
+    radial-gradient(720px 380px at 100% 0%, rgba(207, 227, 90, 0.05), transparent 55%),
     var(--bg);
   color-scheme: dark;
-  font-family: "Segoe UI", system-ui, sans-serif;
+  font-family: "IBM Plex Mono", "IBM Plex Fallback", ui-monospace, monospace;
   font-size: 1.0625rem;
   line-height: 1.6;
 }
 
 body.hub ::selection {
-  background: var(--purple);
-  color: #fff;
+  background: var(--formalin);
+  color: var(--on-formalin);
 }
 
 body.hub :focus-visible {
-  outline: 3px solid var(--orange);
+  outline: 3px solid var(--formalin);
   outline-offset: 3px;
 }
 
 body.hub .skip:focus {
-  background: var(--orange);
-  color: var(--on-orange);
+  background: var(--formalin);
+  color: var(--on-formalin);
 }
 
 body.hub .sr-only {
@@ -51,42 +52,36 @@ body.hub .sr-only {
 }
 
 body.hub header.nav {
-  background: rgba(7, 8, 12, 0.78);
-  border-bottom: 1px solid rgba(246, 243, 255, 0.1);
+  background: rgba(13, 14, 11, 0.88);
+  border-bottom: 1px solid rgba(234, 228, 211, 0.12);
   backdrop-filter: blur(12px);
 }
 
 body.hub header.nav.scrolled {
-  background: rgba(7, 8, 12, 0.94);
-}
-
-body.hub .brand {
-  font-family: "Anton", "Anton Fallback", Impact, sans-serif;
-  font-weight: 400;
-  font-size: 1.25rem;
-  letter-spacing: 0.16em;
+  background: rgba(13, 14, 11, 0.96);
 }
 
 body.hub nav.links a {
-  font-family: "VT323", "VT323 Fallback", "Courier New", monospace;
-  font-size: 1.25rem;
-  letter-spacing: 0.04em;
+  font-family: "IBM Plex Mono", "IBM Plex Fallback", ui-monospace, monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   opacity: 0.92;
 }
 
 body.hub nav.links a[aria-current="page"] {
-  color: var(--orange);
+  color: var(--formalin);
   opacity: 1;
 }
 
 body.hub .nav-cta {
-  background: var(--orange);
-  border-color: var(--orange);
-  color: var(--on-orange);
-  font-family: "Anton", "Anton Fallback", Impact, sans-serif;
-  font-weight: 400;
-  letter-spacing: 0.08em;
+  background: var(--formalin);
+  border-color: var(--formalin);
+  color: var(--on-formalin);
+  font-family: "IBM Plex Mono", "IBM Plex Fallback", ui-monospace, monospace;
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
@@ -100,13 +95,14 @@ body.hub .nav-socials a {
 }
 
 body.hub .nav-socials a:hover {
-  color: var(--orange);
+  color: var(--formalin);
 }
 
 body.hub .menu-btn {
-  font-family: "VT323", "VT323 Fallback", "Courier New", monospace;
-  font-size: 1.35rem;
-  letter-spacing: 0.04em;
+  font-family: "IBM Plex Mono", "IBM Plex Fallback", ui-monospace, monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 body.hub main section {
@@ -121,8 +117,8 @@ body.hub main section + section {
 body.hub h1,
 body.hub h2,
 body.hub .wordmark {
-  font-family: "Anton", "Anton Fallback", Impact, sans-serif;
-  font-weight: 400;
+  font-family: "Big Shoulders Stencil Display", "Big Shoulders Fallback", "Arial Narrow", sans-serif;
+  font-weight: 800;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: var(--ink);
@@ -136,11 +132,11 @@ body.hub h2 {
 
 body.hub .hud {
   margin: 0 0 10px;
-  font-family: "VT323", "VT323 Fallback", "Courier New", monospace;
-  font-size: 1.35rem;
-  letter-spacing: 0.06em;
+  font-family: "IBM Plex Mono", "IBM Plex Fallback", ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--purple-2);
+  color: var(--formalin);
 }
 
 body.hub .lede,
@@ -161,20 +157,21 @@ body.hub .cta,
 body.hub button.cta {
   min-width: 0;
   border-radius: 2px;
-  font-family: "Anton", "Anton Fallback", Impact, sans-serif;
-  font-weight: 400;
-  letter-spacing: 0.06em;
+  font-family: "IBM Plex Mono", "IBM Plex Fallback", ui-monospace, monospace;
+  font-weight: 500;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  background: var(--orange);
-  border-color: var(--orange);
-  color: var(--on-orange);
+  background: var(--formalin);
+  border-color: var(--formalin);
+  color: var(--on-formalin);
 }
 
 body.hub .cta.ghost,
 body.hub a.cta.ghost {
   background: transparent;
   color: var(--ink);
-  border-color: rgba(246, 243, 255, 0.45);
+  border-color: rgba(234, 228, 211, 0.45);
 }
 
 body.hub .cta:hover {
@@ -197,7 +194,7 @@ body.hub .hero-atmosphere {
   pointer-events: none;
   background:
     radial-gradient(ellipse 55% 70% at 78% 42%, rgba(48, 72, 48, 0.28), transparent 70%),
-    radial-gradient(ellipse 40% 50% at 12% 80%, rgba(145, 70, 255, 0.18), transparent 70%);
+    radial-gradient(ellipse 40% 50% at 12% 80%, rgba(207, 227, 90, 0.06), transparent 70%);
 }
 
 body.hub .hero-watermark {
@@ -205,12 +202,12 @@ body.hub .hero-watermark {
   right: -0.06em;
   bottom: -0.12em;
   margin: 0;
-  font-family: "Anton", "Anton Fallback", Impact, sans-serif;
+  font-family: "Big Shoulders Stencil Display", "Big Shoulders Fallback", "Arial Narrow", sans-serif;
   font-size: clamp(7rem, 24vw, 18rem);
   line-height: 0.8;
   letter-spacing: -0.04em;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(145, 70, 255, 0.28);
+  -webkit-text-stroke: 1px rgba(207, 227, 90, 0.08);
   user-select: none;
 }
 
@@ -222,13 +219,13 @@ body.hub .scanlines {
 }
 
 body.hub .grain {
-  opacity: 0.18;
+  opacity: 0.1;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   mix-blend-mode: overlay;
 }
 
 body.hub .scanlines {
-  opacity: 0.22;
+  opacity: 0;
   background: repeating-linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0.28) 0px,
@@ -250,7 +247,9 @@ body.hub .hero-top {
 }
 
 body.hub .wordmark {
-  font-family: "Dela Gothic One", "Dela Fallback", "Anton", "Anton Fallback", Impact, sans-serif;
+  font-family: "Big Shoulders Stencil Display", "Big Shoulders Fallback", "Arial Narrow", sans-serif;
+  color: var(--ink);
+  text-shadow: 0.045em 0.045em 0 var(--redact);
   white-space: nowrap;
   font-size: clamp(3.2rem, 6.1vw, 6.1rem);
   line-height: 0.88;
@@ -260,18 +259,20 @@ body.hub .wordmark {
 }
 
 body.hub .wordmark.glitch {
-  animation: hub-glitch 8s steps(1, end) infinite;
+  animation: none;
 }
 
 body.hub .tagline {
   margin: 0 0 12px;
-  max-width: 16em;
-  color: var(--orange);
-  font-family: "Anton", "Anton Fallback", Impact, sans-serif;
-  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
-  line-height: 1.05;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
+  max-width: 18em;
+  color: var(--formalin);
+  font-family: "Instrument Serif", "Instrument Fallback", Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.45rem, 2.6vw, 2rem);
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 body.hub .hero .lede {
@@ -287,10 +288,10 @@ body.hub .live-pill {
   gap: 8px;
   margin: 0 0 8px;
   padding: 4px 10px 4px 8px;
-  border: 1px solid rgba(255, 122, 26, 0.55);
-  background: rgba(7, 8, 12, 0.55);
-  font-family: "VT323", "VT323 Fallback", "Courier New", monospace;
-  font-size: 1.25rem;
+  border: 1px solid rgba(207, 227, 90, 0.55);
+  background: rgba(13, 14, 11, 0.72);
+  font-family: "IBM Plex Mono", "IBM Plex Fallback", ui-monospace, monospace;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink);
@@ -300,7 +301,7 @@ body.hub .live-dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--orange);
+  background: var(--redact);
 }
 
 body.hub .live-pill.is-offline {
@@ -334,8 +335,8 @@ body.hub .hero-social {
   border: 1px solid var(--line);
   color: var(--ink);
   text-decoration: none;
-  font-family: "VT323", "VT323 Fallback", "Courier New", monospace;
-  font-size: 1.2rem;
+  font-family: "IBM Plex Mono", "IBM Plex Fallback", ui-monospace, monospace;
+  font-size: 0.78rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -346,17 +347,29 @@ body.hub .hero-social svg {
 }
 
 body.hub .hero-social:hover {
-  border-color: var(--orange);
-  color: var(--orange);
+  border-color: var(--formalin);
+  color: var(--formalin);
+}
+
+body.hub .live-col {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+
+body.hub .live-col > .hud {
+  margin: 0;
 }
 
 body.hub .live-frame {
   position: relative;
   aspect-ratio: 16 / 9;
   min-height: 300px;
-  background: #05060a;
-  border: 1px solid rgba(255, 122, 26, 0.55);
-  box-shadow: 0 0 0 1px rgba(145, 70, 255, 0.25), 0 24px 60px rgba(0, 0, 0, 0.35);
+  background: #0d0e0b;
+  border: 1px solid rgba(207, 227, 90, 0.55);
+  box-shadow: 0 0 0 1px rgba(126, 129, 116, 0.35), 0 24px 60px rgba(0, 0, 0, 0.35);
   overflow: hidden;
 }
 
@@ -370,7 +383,7 @@ body.hub .trailer-frame:after {
   height: 16px;
   z-index: 3;
   pointer-events: none;
-  border: 2px solid var(--orange);
+  border: 2px solid var(--formalin);
 }
 
 body.hub .live-frame:before,
@@ -412,7 +425,7 @@ body.hub .offline-panel {
   flex-direction: column;
   justify-content: flex-end;
   padding: 22px;
-  background-color: #07080c;
+  background-color: #0d0e0b;
   background-image: repeating-linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0.035) 0px,
@@ -436,7 +449,7 @@ body.hub .live-frame.is-live .offline-panel {
 
 body.hub .offline-title {
   margin: 0 0 6px;
-  font-family: "Anton", "Anton Fallback", Impact, sans-serif;
+  font-family: "Big Shoulders Stencil Display", "Big Shoulders Fallback", "Arial Narrow", sans-serif;
   font-size: clamp(1.6rem, 3vw, 2.2rem);
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -473,8 +486,8 @@ body.hub .section-head h2 {
 body.hub .trailer-frame {
   position: relative;
   aspect-ratio: 16 / 9;
-  background: #05060a;
-  border: 1px solid rgba(145, 70, 255, 0.45);
+  background: #0d0e0b;
+  border: 1px solid rgba(207, 227, 90, 0.45);
   overflow: hidden;
 }
 
@@ -485,7 +498,7 @@ body.hub .trailer-facade {
   display: block;
   padding: 0;
   border: 0;
-  background: #05060a;
+  background: #0d0e0b;
   color: var(--ink);
   cursor: pointer;
   text-align: left;
@@ -501,6 +514,7 @@ body.hub .trailer-facade img {
 body.hub .trailer-shade {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background: linear-gradient(180deg, rgba(7, 8, 12, 0.05) 20%, rgba(7, 8, 12, 0.82) 100%);
 }
 
@@ -509,12 +523,13 @@ body.hub .trailer-copy {
   left: 20px;
   right: 20px;
   bottom: 18px;
+  z-index: 2;
   display: grid;
   gap: 4px;
 }
 
 body.hub .trailer-title {
-  font-family: "Anton", "Anton Fallback", Impact, sans-serif;
+  font-family: "Big Shoulders Stencil Display", "Big Shoulders Fallback", "Arial Narrow", sans-serif;
   font-size: clamp(1.6rem, 4vw, 3rem);
   letter-spacing: 0.03em;
   text-transform: uppercase;
@@ -522,10 +537,11 @@ body.hub .trailer-title {
 }
 
 body.hub .play {
+  z-index: 2;
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  border: 2px solid var(--orange);
+  border: 2px solid var(--formalin);
   display: grid;
   place-items: center;
   color: var(--ink);
@@ -555,8 +571,8 @@ body.hub .trailer-facade:hover .play,
 body.hub .trailer-facade:focus-visible .play,
 body.hub .clip-facade:hover .play,
 body.hub .clip-facade:focus-visible .play {
-  background: var(--orange);
-  color: var(--on-orange);
+  background: var(--formalin);
+  color: var(--on-formalin);
 }
 
 body.hub .fine {
@@ -573,8 +589,9 @@ body.hub .clip-grid {
 
 body.hub .clip-card {
   margin: 0;
-  background: rgba(18, 16, 24, 0.85);
-  border: 1px solid var(--line);
+  background: var(--ink);
+  color: var(--on-formalin);
+  border: 1px solid var(--ink);
   min-width: 0;
 }
 
@@ -582,12 +599,8 @@ body.hub .clip-stage {
   position: relative;
   aspect-ratio: 16 / 9;
   background:
-    linear-gradient(155deg, rgba(145, 70, 255, 0.38), rgba(7, 8, 12, 0.1) 46%, rgba(255, 122, 26, 0.22));
-}
-
-body.hub .clip-card:nth-child(3n) .clip-stage {
-  background:
-    linear-gradient(200deg, rgba(255, 122, 26, 0.28), rgba(7, 8, 12, 0.15) 50%, rgba(145, 70, 255, 0.32));
+    repeating-linear-gradient(135deg, rgba(207, 227, 90, 0.16) 0 1px, transparent 1px 14px),
+    #12140f;
 }
 
 body.hub .clip-facade {
@@ -616,9 +629,9 @@ body.hub .clip-idx {
   top: 8px;
   left: 12px;
   z-index: 1;
-  font-family: "VT323", "VT323 Fallback", "Courier New", monospace;
+  font-family: "IBM Plex Mono", "IBM Plex Fallback", ui-monospace, monospace;
   font-size: 1.3rem;
-  color: var(--purple-2);
+  color: var(--formalin);
   text-shadow: 0 1px 2px #000;
 }
 
@@ -634,14 +647,14 @@ body.hub .clip-facade .play {
 
 body.hub .clip-card h3 {
   margin: 0;
-  padding: 12px 14px 14px;
-  font-family: "Anton", "Anton Fallback", Impact, sans-serif;
+  padding: 4px 14px 14px;
+  font-family: "Big Shoulders Stencil Display", "Big Shoulders Fallback", "Arial Narrow", sans-serif;
   font-size: 1.15rem;
-  font-weight: 400;
+  font-weight: 800;
   letter-spacing: 0.04em;
-  line-height: 1.15;
+  line-height: 1.05;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--on-formalin);
   text-wrap: balance;
 }
 
@@ -656,27 +669,27 @@ body.hub .al-grid {
 body.hub .edit-hint {
   margin: 18px 0 0;
   color: var(--dim);
-  font-family: "VT323", "VT323 Fallback", "Courier New", monospace;
-  font-size: 1.15rem;
+  font-family: "IBM Plex Mono", "IBM Plex Fallback", ui-monospace, monospace;
+  font-size: 0.75rem;
   letter-spacing: 0.03em;
 }
 
 body.hub .schedule-card,
 body.hub .term {
   border: 1px solid var(--line);
-  background: rgba(8, 8, 12, 0.72);
+  background: rgba(13, 14, 11, 0.72);
   padding: 22px;
 }
 
 body.hub .term p {
   margin: 0 0 8px;
-  font-family: "VT323", "VT323 Fallback", "Courier New", monospace;
-  font-size: 1.35rem;
-  color: var(--purple-2);
+  font-family: "IBM Plex Mono", "IBM Plex Fallback", ui-monospace, monospace;
+  font-size: 0.82rem;
+  color: var(--formalin);
 }
 
 body.hub .term p span {
-  color: var(--orange);
+  color: var(--formalin);
 }
 
 body.hub .al-grid img {
@@ -702,19 +715,19 @@ body.hub .find-card {
   padding: 16px;
   text-decoration: none;
   color: var(--ink);
-  background: rgba(18, 16, 24, 0.9);
+  background: var(--bg);
   border: 1px solid var(--line);
 }
 
 body.hub .find-card svg {
   width: 28px;
   height: 28px;
-  color: var(--orange);
+  color: var(--formalin);
 }
 
 body.hub .find-label {
   margin-top: 8px;
-  font-family: "Anton", "Anton Fallback", Impact, sans-serif;
+  font-family: "Big Shoulders Stencil Display", "Big Shoulders Fallback", "Arial Narrow", sans-serif;
   font-size: 1.35rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -723,30 +736,26 @@ body.hub .find-label {
 
 body.hub .find-handle,
 body.hub .find-note {
-  font-family: "VT323", "VT323 Fallback", "Courier New", monospace;
-  font-size: 1.15rem;
+  font-family: "IBM Plex Mono", "IBM Plex Fallback", ui-monospace, monospace;
+  font-size: 0.78rem;
   color: var(--dim);
 }
 
 body.hub .find-note {
-  color: var(--orange);
+  color: var(--formalin);
 }
 
 body.hub .find-card:hover {
-  border-color: var(--orange);
+  border-color: var(--formalin);
 }
 
 body.hub footer {
-  background: #05060a;
+  background: #0d0e0b;
   border-top: 1px solid var(--line);
 }
 
 body.hub footer a:hover {
-  color: var(--orange);
-}
-
-body.hub .unverified-flag {
-  color: var(--orange);
+  color: var(--formalin);
 }
 
 @keyframes hub-glitch {
@@ -757,21 +766,21 @@ body.hub .unverified-flag {
     transform: none;
   }
   88% {
-    text-shadow: -2px 0 var(--orange), 2px 0 var(--purple);
+    text-shadow: -2px 0 var(--formalin), 2px 0 var(--formalin);
     transform: translateX(-1px);
   }
   92% {
-    text-shadow: 2px 0 var(--purple), -2px 0 var(--orange);
+    text-shadow: 2px 0 var(--formalin), -2px 0 var(--formalin);
     transform: translateX(1px);
   }
 }
 
 @keyframes hub-pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(255, 122, 26, 0.45);
+    box-shadow: 0 0 0 0 rgba(229, 54, 31, 0.45);
   }
   100% {
-    box-shadow: 0 0 0 8px rgba(255, 122, 26, 0);
+    box-shadow: 0 0 0 8px rgba(229, 54, 31, 0);
   }
 }
 
@@ -840,12 +849,155 @@ body.hub .unverified-flag {
   body.hub .wordmark {
     font-size: clamp(2.8rem, 15vw, 4.4rem);
   }
+
+  body.hub nav.links a {
+    font-size: 1rem;
+  }
+}
+
+body.hub {
+  background-color: var(--bg);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cg fill='none' stroke='%237E8174' stroke-width='0.7' opacity='0.45'%3E%3Cellipse cx='150' cy='130' rx='46' ry='30'/%3E%3Cellipse cx='150' cy='130' rx='78' ry='50'/%3E%3Cellipse cx='150' cy='130' rx='112' ry='72'/%3E%3Cellipse cx='40' cy='220' rx='36' ry='22'/%3E%3Cellipse cx='40' cy='220' rx='62' ry='38'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+body.hub .ruler {
+  height: 14px;
+  margin-top: 8px;
+  background:
+    linear-gradient(var(--steel), var(--steel)) 0 100% / 100% 1px no-repeat,
+    repeating-linear-gradient(90deg, var(--steel) 0 1px, transparent 1px 18px);
+  opacity: 0.7;
+}
+
+body.hub .file-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+body.hub .file-chips li {
+  margin: 0;
+  padding: 6px 10px;
+  background: var(--formalin);
+  color: var(--on-formalin);
+  font-family: "Big Shoulders Stencil Display", "Big Shoulders Fallback", "Arial Narrow", sans-serif;
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-right: 2px solid var(--bg);
+}
+
+body.hub .rubber {
+  position: absolute;
+  z-index: 4;
+  right: 18px;
+  top: 16px;
+  padding: 2px 8px 0;
+  border: 3px solid var(--redact);
+  color: var(--redact);
+  font-family: "Big Shoulders Stencil Display", "Big Shoulders Fallback", "Arial Narrow", sans-serif;
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transform: rotate(-8deg);
+  pointer-events: none;
+  background: transparent;
+}
+
+body.hub .live-frame:not(.is-live) .rubber { display: none; }
+
+body.hub .tone,
+body.hub .trailer-facade .tone {
+  position: absolute;
+  inset: 0;
+  background: var(--formalin);
+  mix-blend-mode: color;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body.hub .clip-facade,
+body.hub .trailer-facade {
+  isolation: isolate;
+}
+
+body.hub .clip-facade img,
+body.hub .trailer-facade img {
+  filter: grayscale(1) contrast(1.15) brightness(0.78);
+}
+
+body.hub .evidence {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px 0;
+  font-family: "IBM Plex Mono", "IBM Plex Fallback", ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--on-formalin);
+}
+
+body.hub .evidence p {
+  margin: 0;
+}
+
+body.hub .exhibit-stamp {
+  padding: 2px 6px;
+  background: var(--formalin);
+  color: var(--on-formalin);
+}
+
+body.hub .t-stamp {
+  color: var(--on-formalin);
+}
+
+body.hub #afterlight {
+  background: rgba(143, 179, 199, 0.06);
+}
+
+body.hub #afterlight .hud,
+body.hub #afterlight h2 { color: var(--haze); }
+
+body.hub #afterlight .cta {
+  background: var(--haze);
+  border-color: var(--haze);
+  color: var(--on-formalin);
+}
+
+body.hub #afterlight .cta.ghost {
+  background: transparent;
+  color: var(--haze);
+  border-color: var(--haze);
+}
+
+body.hub .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "IBM Plex Mono", "IBM Plex Fallback", ui-monospace, monospace;
+  font-weight: 500;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+}
+
+@media (max-width: 1100px) {
+  body.hub nav.links a {
+    font-size: 1rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   body.hub .wordmark.glitch,
   body.hub .live-pill.is-live .live-dot,
-  body.hub .play {
+  body.hub .play,
+  body.hub .rubber {
     animation: none;
     transition: none;
   }
