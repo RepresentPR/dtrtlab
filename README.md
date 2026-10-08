@@ -10,7 +10,7 @@ Clip cards on the homepage read `content/clips.js`. Append one object to `window
 { title: "short title", slug: "TwitchClipSlugHere" }
 ```
 
-`slug` is the last part of a `https://clips.twitch.tv/SLUG` URL. Save the file and reload the homepage. There is no build step. Without a thumbnail the card stays on the purple gradient and still plays on click.
+`slug` is the last part of a `https://clips.twitch.tv/SLUG` URL. Save the file and reload the homepage. There is no build step. Without a thumbnail the card stays on the formalin hatch and still plays on click.
 
 ## Add a clip thumbnail
 
@@ -27,7 +27,7 @@ scripts/fetch-clip-thumbs
 
 The script needs `ffmpeg` and Python 3. It reads `content/clips.js`, requests `og:image` from `https://clips.twitch.tv/SLUG`, and if that image is missing or is only the generic Twitch logo it uses Twitch's public clip metadata (`thumbnailURL`). It writes the two WebP files and fills in `thumb`. Clips that already have both files are left alone.
 
-Stylesheets and scripts are loaded with `?v=20261008a` because GitHub Pages cannot set cache headers. The service worker in `sw.js` uses that same version in its cache name. HTML is network-first, so a new page still arrives. Other files are stale-while-revalidate. When you change CSS, JS, fonts, or thumbnails, bump the version in `sw.js`, `js/nav.js`, and `css/fonts.css` together with the `?v=` query on the pages.
+Stylesheets and scripts are loaded with `?v=20261008b` because GitHub Pages cannot set cache headers. The service worker in `sw.js` uses that same version in its cache name. HTML is network-first, so a new page still arrives. Other files are stale-while-revalidate. When you change CSS, JS, fonts, or thumbnails, bump the version in `sw.js`, `js/nav.js`, and `css/fonts.css` together with the `?v=` query on the pages.
 
 ## Turn a social on
 

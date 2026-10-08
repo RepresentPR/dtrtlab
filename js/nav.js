@@ -1,5 +1,5 @@
 (function () {
-  var ASSET_V = "20261008a";
+  var ASSET_V = "20261008b";
   var here = (location.pathname || "").toLowerCase();
   var parts = here.replace(/\\/g, "/").split("/").filter(Boolean);
   if (parts.length && /\.[a-z0-9]+$/i.test(parts[parts.length - 1])) parts.pop();
@@ -24,7 +24,9 @@
 
   var html =
     '<div class="wrap nav-row">' +
-    '<a class="brand" href="' + root + 'index.html">DTRTC</a>' +
+    '<a class="brand" href="' + root + 'index.html"><img class="brand-mark" src="' +
+    root +
+    'img/reticle.svg" alt="" width="36" height="36"><span>DTRTC</span></a>' +
     '<nav class="links" id="site-links" aria-label="Primary">' +
     link("index.html#clips", "Clips", false) +
     link("index.html#about", "About", false) +
@@ -54,7 +56,7 @@
   if (foot) {
     foot.innerHTML =
       '<div class="wrap">' +
-      "<span>DTRTC · DTRT Lab</span>" +
+      "<span>DTRTC · File Nº 0247</span>" +
       '<a href="' + root + 'index.html">Home</a>' +
       '<a href="' + root + 'index.html#clips">Clips</a>' +
       '<a href="' + root + 'index.html#schedule">Schedule</a>' +
