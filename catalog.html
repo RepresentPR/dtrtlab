@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Catalog — DTRT Lab</title>
   <meta name="description" content="DTRT Lab systems.">
-  <link rel="stylesheet" href="css/lab.css">
-  <link rel="stylesheet" href="css/adapt.css">
+  <link rel="stylesheet" href="css/fonts.css?v=20261008a">
+  <link rel="stylesheet" href="css/lab.css?v=20261008a">
+  <link rel="stylesheet" href="css/adapt.css?v=20261008a">
   <link rel="icon" href="img/icon.svg">
 </head>
 <body>
@@ -20,9 +21,10 @@
     </div>
   </section>
   <footer id="site-foot"></footer>
-  <script src="js/nav.js"></script>
-  <script src="js/content.js"></script>
+  <script defer src="js/nav.js?v=20261008a"></script>
+  <script defer src="js/content.js?v=20261008a"></script>
   <script>
+document.addEventListener('DOMContentLoaded', function () {
     function row(item) {
       return "<tr><th>" + item.title + "</th><td>" + DTRT.statusLabel(item.status) + "</td></tr>";
     }
@@ -32,6 +34,8 @@
     }).catch(function () {
       document.getElementById("weapons").innerHTML = '<p><a href="contact.html">Contact</a></p>';
     });
-  </script>
+  
+});
+</script>
 </body>
 </html>

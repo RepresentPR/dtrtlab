@@ -316,7 +316,7 @@ body.isa-page header.nav .nav-cta { color: #f6eee4; }
   margin: 0 0 10px;
 }
 .isa-letter h1 {
-  font-family: "Source Serif 4", Georgia, serif;
+  font-family: "Source Serif 4", "Source Serif Fallback", Georgia, serif;
   font-size: clamp(48px, 10vw, 84px);
   font-weight: 500;
   letter-spacing: -0.04em;
@@ -326,7 +326,7 @@ body.isa-page header.nav .nav-cta { color: #f6eee4; }
   line-height: .95;
 }
 .isa-vow {
-  font-family: "Source Serif 4", Georgia, serif;
+  font-family: "Source Serif 4", "Source Serif Fallback", Georgia, serif;
   font-style: italic;
   font-size: 22px;
   color: #c47a4a;
@@ -340,7 +340,7 @@ body.isa-page header.nav .nav-cta { color: #f6eee4; }
   margin: 0 0 28px;
 }
 .isa-sign {
-  font-family: "Source Serif 4", Georgia, serif;
+  font-family: "Source Serif 4", "Source Serif Fallback", Georgia, serif;
   font-style: italic;
   font-size: 20px;
   color: #2b1c16;
@@ -356,7 +356,7 @@ body.isa-page header.nav .nav-cta { color: #f6eee4; }
 }
 .isa-radio .al-radio-now .n { color: #8a5a3a; }
 .isa-radio .al-radio-now h3 {
-  font-family: "Source Serif 4", Georgia, serif;
+  font-family: "Source Serif 4", "Source Serif Fallback", Georgia, serif;
   font-size: 28px;
   color: #2b1c16;
 }

@@ -15,9 +15,35 @@
     return n < 10 ? "0" + n : String(n);
   }
 
+  var warmedTwitch = false;
+
+  function preconnect(href) {
+    if (document.head.querySelector('link[rel="preconnect"][href="' + href + '"]')) return;
+    var link = document.createElement("link");
+    link.rel = "preconnect";
+    link.href = href;
+    link.crossOrigin = "anonymous";
+    document.head.appendChild(link);
+  }
+
+  function warmTwitch() {
+    if (warmedTwitch) return;
+    warmedTwitch = true;
+    preconnect("https://clips.twitch.tv");
+    preconnect("https://player.twitch.tv");
+    preconnect("https://static-cdn.jtvnw.net");
+  }
+
+  function warmYouTube() {
+    preconnect("https://www.youtube-nocookie.com");
+  }
+
   function initTrailer() {
     var button = document.getElementById("trailer-play");
     if (!button) return;
+    button.addEventListener("pointerover", warmYouTube);
+    button.addEventListener("pointerdown", warmYouTube);
+    button.addEventListener("focus", warmYouTube);
     button.addEventListener("click", function () {
       var id = button.getAttribute("data-video") || "";
       if (!/^[A-Za-z0-9_-]{6,}$/.test(id)) return;
@@ -40,12 +66,35 @@
     var button = document.createElement("button");
     button.type = "button";
     button.className = "clip-facade";
-    button.innerHTML =
-      '<span class="clip-idx">' +
-      pad(index + 1) +
-      '</span><span class="play" aria-hidden="true"></span><span class="sr-only">Play clip: ' +
-      clip.title.replace(/&/g, "&amp;").replace(/</g, "&lt;") +
-      "</span>";
+    if (clip.thumb) {
+      var img = document.createElement("img");
+      var small = String(clip.thumb).replace(/\.webp(\?.*)?$/, "-320.webp$1");
+      img.src = clip.thumb;
+      img.srcset = small + " 320w, " + clip.thumb + " 640w";
+      img.sizes = "(max-width: 640px) 100vw, (max-width: 900px) 50vw, 360px";
+      img.width = 640;
+      img.height = 360;
+      img.alt = "";
+      img.decoding = "async";
+      img.loading = index < 3 ? "eager" : "lazy";
+      if (index >= 3) img.setAttribute("fetchpriority", "low");
+      img.addEventListener("error", function () {
+        if (img.parentNode) img.parentNode.removeChild(img);
+      });
+      button.appendChild(img);
+    }
+    var idx = document.createElement("span");
+    idx.className = "clip-idx";
+    idx.textContent = pad(index + 1);
+    var play = document.createElement("span");
+    play.className = "play";
+    play.setAttribute("aria-hidden", "true");
+    var sr = document.createElement("span");
+    sr.className = "sr-only";
+    sr.textContent = "Play clip: " + clip.title;
+    button.appendChild(idx);
+    button.appendChild(play);
+    button.appendChild(sr);
     return button;
   }
 
@@ -77,9 +126,14 @@
       grid.appendChild(card);
     });
 
+    grid.addEventListener("pointerover", warmTwitch, { passive: true });
+    grid.addEventListener("pointerdown", warmTwitch, { passive: true });
+    grid.addEventListener("focusin", warmTwitch);
+
     grid.addEventListener("click", function (event) {
       var button = event.target.closest ? event.target.closest(".clip-facade") : null;
       if (!button || !grid.contains(button)) return;
+      warmTwitch();
       var stage = button.parentNode;
       var card = stage.parentNode;
       var index = Array.prototype.indexOf.call(grid.children, card);
@@ -166,6 +220,7 @@
       iframe.title = "Live Twitch stream for DTRTC";
       iframe.allow = "autoplay; fullscreen; encrypted-media";
       iframe.allowFullscreen = true;
+      iframe.setAttribute("fetchpriority", "low");
       iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
       slot.replaceChildren ? slot.replaceChildren(iframe) : (slot.innerHTML = "", slot.appendChild(iframe));
     }
@@ -271,6 +326,16 @@
       refresh(true);
     }, 60000);
   }
+
+  function onFirstInteraction() {
+    warmTwitch();
+    document.removeEventListener("pointerdown", onFirstInteraction);
+    document.removeEventListener("keydown", onFirstInteraction);
+    document.removeEventListener("touchstart", onFirstInteraction);
+  }
+  document.addEventListener("pointerdown", onFirstInteraction, { passive: true });
+  document.addEventListener("keydown", onFirstInteraction);
+  document.addEventListener("touchstart", onFirstInteraction, { passive: true });
 
   initTrailer();
   initClips();

@@ -22,12 +22,16 @@
   <meta name="twitter:image:alt" content="DTRTC wordmark on a dark night-vision still. The Cursed Queue, live on Twitch.">
   <link rel="canonical" href="https://dtrtlab.com/">
   <link rel="icon" href="img/icon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Dela+Gothic+One&family=VT323&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/lab.css">
-  <link rel="stylesheet" href="css/adapt.css">
-  <link rel="stylesheet" href="css/hub.css">
+  <link rel="preload" href="assets/fonts/dela-gothic-one-latin.woff2?v=20261008a" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/anton-latin.woff2?v=20261008a" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css?v=20261008a">
+  <link rel="stylesheet" href="css/lab.css?v=20261008a">
+  <link rel="stylesheet" href="css/adapt.css?v=20261008a">
+  <link rel="stylesheet" href="css/hub.css?v=20261008a">
+  <style>
+    html { background: #07080c; }
+    body.hub { margin: 0; background: #07080c; color: #f6f3ff; }
+  </style>
 </head>
 <body class="hub">
   <a class="skip" href="#main">Skip to content</a>
@@ -84,7 +88,11 @@
         </div>
         <div class="trailer-frame">
           <button class="trailer-facade" id="trailer-play" type="button" data-video="0XxDrMvsCgE">
+            <picture>
+              <source type="image/avif" srcset="img/cursed-queue-poster.avif">
+              <source type="image/webp" srcset="img/cursed-queue-poster.webp">
             <img src="img/cursed-queue-poster.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
+            </picture>
             <span class="trailer-shade" aria-hidden="true"></span>
             <span class="play" aria-hidden="true"></span>
             <span class="trailer-copy">
@@ -152,7 +160,11 @@
 
     <section id="afterlight" aria-labelledby="afterlight-title">
       <div class="wrap al-grid">
+        <picture>
+          <source type="image/avif" srcset="img/afterlight/shop-dawn.avif">
+          <source type="image/webp" srcset="img/afterlight/shop-dawn.webp">
         <img src="img/afterlight/shop-dawn.jpg" alt="Pre-dawn electronics shop on a wet street in Añasco. Story still from DTRT AFTERLIGHT, not a stream screenshot." width="1920" height="1080" loading="lazy" decoding="async">
+        </picture>
         <div>
           <p class="hud">05 // DTRT Lab</p>
           <h2 id="afterlight-title">AFTERLIGHT stays up.</h2>
@@ -184,9 +196,9 @@
   <noscript>
     <p class="wrap">JavaScript is off. Open <a href="https://www.twitch.tv/dtrtc">Twitch</a>, <a href="https://kick.com/movebro">Kick</a>, or the <a href="https://www.youtube.com/watch?v=0XxDrMvsCgE">Cursed Queue trailer</a> directly. AFTERLIGHT is on <a href="afterlight.html">its own page</a>.</p>
   </noscript>
-  <script src="content/socials.js"></script>
-  <script src="content/clips.js"></script>
-  <script src="js/nav.js"></script>
-  <script src="js/hub.js"></script>
+  <script defer src="content/socials.js?v=20261008a"></script>
+  <script defer src="content/clips.js?v=20261008a"></script>
+  <script defer src="js/nav.js?v=20261008a"></script>
+  <script defer src="js/hub.js?v=20261008a"></script>
 </body>
 </html>

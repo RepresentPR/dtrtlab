@@ -1,0 +1,211 @@
+#!/usr/bin/env python3
+"""Download missing DTRTC clip thumbnails into the repo.
+
+Reads content/clips.js. For each clip without assets/clips/SLUG.webp (and the
+320-wide variant), fetches the public clip page and uses og:image when that
+URL is a real thumbnail. The clip page often only exposes the generic Twitch
+logo, so the script then asks Twitch's public clip metadata for thumbnailURL.
+
+Writes:
+  assets/clips/SLUG.webp      640px wide
+  assets/clips/SLUG-320.webp  320px wide
+
+Then sets the thumb field in content/clips.js. Requires ffmpeg on PATH.
+There is no site build step; run this when you add a clip.
+"""
+
+from __future__ import annotations
+
+import json
+import re
+import subprocess
+import sys
+import tempfile
+import urllib.request
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+CLIPS_JS = ROOT / "content" / "clips.js"
+OUT_DIR = ROOT / "assets" / "clips"
+GQL = "https://gql.twitch.tv/gql"
+CLIENT_ID = "kimne78kx3ncx6brgo4mv6wki5h1ko"
+UA = (
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+    "(KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+)
+
+CLIP_RE = re.compile(
+    r'\{\s*title:\s*"((?:\\.|[^"\\])*)"\s*,\s*slug:\s*"((?:\\.|[^"\\])*)"'
+    r'(?:\s*,\s*thumb:\s*"((?:\\.|[^"\\])*)")?\s*\}',
+    re.S,
+)
+
+
+def unescape(value: str) -> str:
+    return json.loads('"' + value + '"')
+
+
+def fetch(url: str, data: bytes | None = None, headers: dict | None = None) -> bytes:
+    req = urllib.request.Request(url, data=data, headers=headers or {"User-Agent": UA})
+    with urllib.request.urlopen(req, timeout=30) as response:
+        return response.read()
+
+
+def og_image(slug: str) -> str:
+    try:
+        html = fetch(f"https://clips.twitch.tv/{slug}").decode("utf-8", "replace")
+    except Exception as error:
+        print(f"  og:image request failed: {error}")
+        return ""
+    match = re.search(
+        r'<meta[^>]+(?:property|name)=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']',
+        html,
+        re.I,
+    )
+    if not match:
+        match = re.search(
+            r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+(?:property|name)=["\']og:image["\']',
+            html,
+            re.I,
+        )
+    url = match.group(1).strip() if match else ""
+    lowered = url.lower()
+    if not url or "twitch_logo" in lowered or "ttv-static" in lowered or lowered.endswith(".svg"):
+        print("  og:image is missing or generic; using clip metadata")
+        return ""
+    print(f"  og:image {url}")
+    return url
+
+
+def gql_thumb(slug: str) -> str:
+    body = json.dumps(
+        {
+            "query": "query($slug:ID!){clip(slug:$slug){thumbnailURL title}}",
+            "variables": {"slug": slug},
+        }
+    ).encode()
+    raw = fetch(
+        GQL,
+        data=body,
+        headers={
+            "User-Agent": UA,
+            "Client-ID": CLIENT_ID,
+            "Content-Type": "application/json",
+        },
+    )
+    payload = json.loads(raw.decode())
+    clip = ((payload.get("data") or {}).get("clip")) or {}
+    return (clip.get("thumbnailURL") or "").strip()
+
+
+def encode(src: Path, dest: Path, width: int) -> None:
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    subprocess.check_call(
+        [
+            "ffmpeg",
+            "-y",
+            "-hide_banner",
+            "-loglevel",
+            "error",
+            "-i",
+            str(src),
+            "-vf",
+            f"scale={width}:-2:flags=lanczos",
+            "-c:v",
+            "libwebp",
+            "-quality",
+            "82",
+            "-compression_level",
+            "6",
+            str(dest),
+        ]
+    )
+
+
+def load_clips(text: str) -> list[dict]:
+    clips = []
+    for match in CLIP_RE.finditer(text):
+        clips.append(
+            {
+                "title": unescape(match.group(1)),
+                "slug": unescape(match.group(2)),
+                "thumb": unescape(match.group(3)) if match.group(3) else "",
+            }
+        )
+    return clips
+
+
+def write_clips(text: str, clips: list[dict]) -> str:
+    rendered = []
+    for clip in clips:
+        lines = [
+            "  {",
+            f"    title: {json.dumps(clip['title'])},",
+            f"    slug: {json.dumps(clip['slug'])},",
+        ]
+        if clip.get("thumb"):
+            lines.append(f"    thumb: {json.dumps(clip['thumb'])}")
+        lines.append("  }")
+        rendered.append("\n".join(lines))
+    body = "[\n" + ",\n".join(rendered) + "\n];"
+    updated, count = re.subn(
+        r"window\.DTRT_CLIPS\s*=\s*\[[\s\S]*?\];",
+        "window.DTRT_CLIPS = " + body,
+        text,
+        count=1,
+    )
+    if count != 1:
+        raise SystemExit("Could not rewrite window.DTRT_CLIPS in content/clips.js")
+    return updated
+
+
+def main() -> int:
+    text = CLIPS_JS.read_text(encoding="utf-8")
+    clips = load_clips(text)
+    if not clips:
+        raise SystemExit("No clips found in content/clips.js")
+    failures = 0
+    for clip in clips:
+        slug = clip["slug"]
+        if not re.fullmatch(r"[A-Za-z0-9_-]+", slug):
+            print(f"skip unsafe slug: {slug}")
+            failures += 1
+            continue
+        large = OUT_DIR / f"{slug}.webp"
+        small = OUT_DIR / f"{slug}-320.webp"
+        clip["thumb"] = f"assets/clips/{slug}.webp"
+        if large.exists() and small.exists() and large.stat().st_size > 0 and small.stat().st_size > 0:
+            print(f"keep {slug}")
+            continue
+        print(f"fetch {slug}")
+        remote = og_image(slug) or gql_thumb(slug)
+        if not remote:
+            print(f"  no thumbnail for {slug}")
+            failures += 1
+            clip["thumb"] = ""
+            continue
+        if not remote.startswith("https://"):
+            print(f"  refused non-https thumbnail for {slug}")
+            failures += 1
+            clip["thumb"] = ""
+            continue
+        try:
+            data = fetch(remote)
+            with tempfile.NamedTemporaryFile(suffix=".img", delete=False) as handle:
+                handle.write(data)
+                temp = Path(handle.name)
+            encode(temp, large, 640)
+            encode(temp, small, 320)
+            temp.unlink(missing_ok=True)
+            print(f"  wrote {large.name} ({large.stat().st_size} bytes) and {small.name}")
+        except Exception as error:
+            print(f"  failed {slug}: {error}")
+            failures += 1
+            clip["thumb"] = ""
+    CLIPS_JS.write_text(write_clips(text, clips), encoding="utf-8")
+    print(f"updated {CLIPS_JS.relative_to(ROOT)}")
+    return 1 if failures else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
