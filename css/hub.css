@@ -356,10 +356,20 @@ body.hub .live-col {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 8px;
+  gap: 0;
 }
 
-body.hub .live-col > .hud {
+body.hub .live-kicker {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  position: relative;
+  z-index: 5;
+  min-height: 34px;
+}
+
+body.hub .live-kicker > .hud {
   margin: 0;
 }
 
@@ -400,6 +410,19 @@ body.hub .trailer-frame:after {
   bottom: 6px;
   border-left: 0;
   border-top: 0;
+}
+
+body.hub .frame-corner {
+  position: absolute;
+  z-index: 3;
+  top: 6px;
+  right: 6px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--formalin);
+  border-left: 0;
+  border-bottom: 0;
+  pointer-events: none;
 }
 
 body.hub #twitch-slot {
@@ -892,10 +915,10 @@ body.hub .file-chips li {
 }
 
 body.hub .rubber {
-  position: absolute;
-  z-index: 4;
-  right: 18px;
-  top: 16px;
+  position: relative;
+  z-index: 5;
+  flex: none;
+  margin: 0 8px 4px 0;
   padding: 2px 8px 0;
   border: 3px solid var(--redact);
   color: var(--redact);
@@ -903,13 +926,13 @@ body.hub .rubber {
   font-weight: 800;
   font-size: 1.35rem;
   letter-spacing: 0.14em;
+  line-height: 1;
   text-transform: uppercase;
   transform: rotate(-8deg);
+  transform-origin: 80% 100%;
   pointer-events: none;
   background: transparent;
 }
-
-body.hub .live-frame:not(.is-live) .rubber { display: none; }
 
 body.hub .tone,
 body.hub .trailer-facade .tone {

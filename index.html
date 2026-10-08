@@ -25,12 +25,12 @@
   <link rel="icon" href="img/icon.svg" type="image/svg+xml">
   <link rel="icon" href="img/icon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-  <link rel="preload" href="assets/fonts/big-shoulders-stencil-latin.woff2?v=20261008c" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/fonts/ibm-plex-mono-400-latin.woff2?v=20261008c" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/fonts.css?v=20261008c">
-  <link rel="stylesheet" href="css/lab.css?v=20261008c">
-  <link rel="stylesheet" href="css/adapt.css?v=20261008c">
-  <link rel="stylesheet" href="css/hub.css?v=20261008c">
+  <link rel="preload" href="assets/fonts/big-shoulders-stencil-latin.woff2?v=20261008d" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-mono-400-latin.woff2?v=20261008d" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css?v=20261008d">
+  <link rel="stylesheet" href="css/lab.css?v=20261008d">
+  <link rel="stylesheet" href="css/adapt.css?v=20261008d">
+  <link rel="stylesheet" href="css/hub.css?v=20261008d">
   <style>
     html { background: #0d0e0b; }
     body.hub { margin: 0; background: #0d0e0b; color: #eae4d3; }
@@ -71,10 +71,13 @@
         </div>
 
         <div class="live-col">
-          <p class="hud">Signal // Live</p>
+          <div class="live-kicker">
+            <p class="hud">Signal // Live</p>
+            <p class="rubber" aria-hidden="true">Verified</p>
+          </div>
         <div class="live-frame" id="live-frame" role="region" aria-label="Twitch player" aria-busy="true">
           <div id="twitch-slot"></div>
-          <p class="rubber" aria-hidden="true">Verified</p>
+          <span class="frame-corner" aria-hidden="true"></span>
           <div class="offline-panel" id="offline-panel">
             <p class="hud">Channel // dtrtc</p>
             <p class="offline-title" id="offline-title">Checking Twitch</p>
@@ -211,9 +214,9 @@
   <noscript>
     <p class="wrap">JavaScript is off. Open <a href="https://www.twitch.tv/dtrtc">Twitch</a>, <a href="https://kick.com/movebro">Kick</a>, or the <a href="https://www.youtube.com/watch?v=0XxDrMvsCgE">Cursed Queue trailer</a> directly. AFTERLIGHT is on <a href="afterlight.html">its own page</a>.</p>
   </noscript>
-  <script defer src="content/socials.js?v=20261008c"></script>
-  <script defer src="content/clips.js?v=20261008c"></script>
-  <script defer src="js/nav.js?v=20261008c"></script>
-  <script defer src="js/hub.js?v=20261008c"></script>
+  <script defer src="content/socials.js?v=20261008d"></script>
+  <script defer src="content/clips.js?v=20261008d"></script>
+  <script defer src="js/nav.js?v=20261008d"></script>
+  <script defer src="js/hub.js?v=20261008d"></script>
 </body>
 </html>
