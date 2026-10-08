@@ -1,0 +1,835 @@
+/* DTRTC creator hub. Loaded after lab.css so the stream pages can keep their own look. */
+
+body.hub {
+  --bg: #07080c;
+  --panel: #121018;
+  --ink: #f6f3ff;
+  --muted: #d2ccdf;
+  --dim: #b4adc4;
+  --line: rgba(246, 243, 255, 0.16);
+  --purple: #9146ff;
+  --purple-2: #d2c4ff;
+  --orange: #ff7a1a;
+  --on-orange: #1a0c04;
+  --max: 1120px;
+  color: var(--ink);
+  background:
+    radial-gradient(900px 420px at 8% -10%, rgba(145, 70, 255, 0.28), transparent 60%),
+    radial-gradient(720px 380px at 100% 0%, rgba(255, 122, 26, 0.12), transparent 55%),
+    var(--bg);
+  color-scheme: dark;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+body.hub ::selection {
+  background: var(--purple);
+  color: #fff;
+}
+
+body.hub :focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+}
+
+body.hub .skip:focus {
+  background: var(--orange);
+  color: var(--on-orange);
+}
+
+body.hub .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+body.hub header.nav {
+  background: rgba(7, 8, 12, 0.78);
+  border-bottom: 1px solid rgba(246, 243, 255, 0.1);
+  backdrop-filter: blur(12px);
+}
+
+body.hub header.nav.scrolled {
+  background: rgba(7, 8, 12, 0.94);
+}
+
+body.hub .brand {
+  font-family: "Anton", Impact, sans-serif;
+  font-weight: 400;
+  font-size: 1.25rem;
+  letter-spacing: 0.16em;
+}
+
+body.hub nav.links a {
+  font-family: "VT323", "Courier New", monospace;
+  font-size: 1.25rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.92;
+}
+
+body.hub nav.links a[aria-current="page"] {
+  color: var(--orange);
+  opacity: 1;
+}
+
+body.hub .nav-cta {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: var(--on-orange);
+  font-family: "Anton", Impact, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+body.hub .nav-cta:hover {
+  filter: brightness(1.08);
+}
+
+body.hub .nav-socials a {
+  color: var(--ink);
+  border-radius: 4px;
+}
+
+body.hub .nav-socials a:hover {
+  color: var(--orange);
+}
+
+body.hub .menu-btn {
+  font-family: "VT323", "Courier New", monospace;
+  font-size: 1.35rem;
+  letter-spacing: 0.04em;
+}
+
+body.hub main section {
+  padding: 72px 0;
+  border-top: 0;
+}
+
+body.hub main section + section {
+  border-top: 1px solid var(--line);
+}
+
+body.hub h1,
+body.hub h2,
+body.hub .wordmark {
+  font-family: "Anton", Impact, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+body.hub h2 {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 0.95;
+  margin: 0 0 16px;
+}
+
+body.hub .hud {
+  margin: 0 0 10px;
+  font-family: "VT323", "Courier New", monospace;
+  font-size: 1.35rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--purple-2);
+}
+
+body.hub .lede,
+body.hub .prose {
+  max-width: 40rem;
+  color: var(--muted);
+  font-size: 1.075rem;
+}
+
+body.hub .prose a,
+body.hub .edit-hint a,
+body.hub .fine a {
+  color: var(--ink);
+  text-underline-offset: 3px;
+}
+
+body.hub .cta,
+body.hub button.cta {
+  min-width: 0;
+  border-radius: 2px;
+  font-family: "Anton", Impact, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--orange);
+  border-color: var(--orange);
+  color: var(--on-orange);
+}
+
+body.hub .cta.ghost,
+body.hub a.cta.ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: rgba(246, 243, 255, 0.45);
+}
+
+body.hub .cta:hover {
+  filter: brightness(1.08);
+}
+
+body.hub .hero {
+  position: relative;
+  display: block;
+  min-height: 0;
+  overflow: hidden;
+  color: var(--ink);
+  padding: 0;
+  border-top: 0;
+}
+
+body.hub .hero-atmosphere {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 70% at 78% 42%, rgba(48, 72, 48, 0.28), transparent 70%),
+    radial-gradient(ellipse 40% 50% at 12% 80%, rgba(145, 70, 255, 0.18), transparent 70%);
+}
+
+body.hub .hero-watermark {
+  position: absolute;
+  right: -0.06em;
+  bottom: -0.12em;
+  margin: 0;
+  font-family: "Anton", Impact, sans-serif;
+  font-size: clamp(7rem, 24vw, 18rem);
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(145, 70, 255, 0.28);
+  user-select: none;
+}
+
+body.hub .grain,
+body.hub .scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+body.hub .grain {
+  opacity: 0.18;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+body.hub .scanlines {
+  opacity: 0.22;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.28) 0px,
+    rgba(0, 0, 0, 0.28) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+}
+
+body.hub .hero-top {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 1fr);
+  gap: 36px;
+  align-items: center;
+  min-height: calc(100dvh - 8px);
+  padding-top: calc(96px + env(safe-area-inset-top));
+  padding-bottom: 48px;
+}
+
+body.hub .wordmark {
+  font-family: "Dela Gothic One", "Anton", Impact, sans-serif;
+  font-size: clamp(3.2rem, 6.1vw, 6.1rem);
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+  margin: 8px 0 12px;
+  text-transform: uppercase;
+}
+
+body.hub .wordmark.glitch {
+  animation: hub-glitch 8s steps(1, end) infinite;
+}
+
+body.hub .tagline {
+  margin: 0 0 12px;
+  max-width: 16em;
+  color: var(--orange);
+  font-family: "Anton", Impact, sans-serif;
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+  line-height: 1.05;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+body.hub .hero .lede {
+  margin: 0;
+  max-width: 36rem;
+  color: var(--muted);
+  animation: none;
+}
+
+body.hub .live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  padding: 4px 10px 4px 8px;
+  border: 1px solid rgba(255, 122, 26, 0.55);
+  background: rgba(7, 8, 12, 0.55);
+  font-family: "VT323", "Courier New", monospace;
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+body.hub .live-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--orange);
+}
+
+body.hub .live-pill.is-offline {
+  border-color: var(--line);
+  color: var(--dim);
+}
+
+body.hub .live-pill.is-offline .live-dot {
+  background: var(--dim);
+}
+
+body.hub .live-pill.is-live .live-dot {
+  animation: hub-pulse 2.6s ease-out infinite;
+}
+
+body.hub .hero-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+body.hub .hero-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  text-decoration: none;
+  font-family: "VT323", "Courier New", monospace;
+  font-size: 1.2rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+body.hub .hero-social svg {
+  width: 18px;
+  height: 18px;
+}
+
+body.hub .hero-social:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+
+body.hub .live-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  min-height: 300px;
+  background: #05060a;
+  border: 1px solid rgba(255, 122, 26, 0.55);
+  box-shadow: 0 0 0 1px rgba(145, 70, 255, 0.25), 0 24px 60px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+body.hub .live-frame:before,
+body.hub .live-frame:after,
+body.hub .trailer-frame:before,
+body.hub .trailer-frame:after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  z-index: 3;
+  pointer-events: none;
+  border: 2px solid var(--orange);
+}
+
+body.hub .live-frame:before,
+body.hub .trailer-frame:before {
+  top: 6px;
+  left: 6px;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+body.hub .live-frame:after,
+body.hub .trailer-frame:after {
+  right: 6px;
+  bottom: 6px;
+  border-left: 0;
+  border-top: 0;
+}
+
+body.hub #twitch-slot {
+  position: absolute;
+  inset: 0;
+}
+
+body.hub #twitch-slot iframe,
+body.hub .clip-stage iframe,
+body.hub .trailer-frame iframe {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: 0 !important;
+}
+
+body.hub .offline-panel {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 22px;
+  background-color: #07080c;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.035) 0px,
+    rgba(255, 255, 255, 0.035) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+}
+
+body.hub .live-frame.is-live {
+  min-height: 0;
+  aspect-ratio: 16 / 9;
+}
+
+body.hub .live-frame:not(.is-live) #twitch-slot {
+  visibility: hidden;
+}
+
+body.hub .live-frame.is-live .offline-panel {
+  display: none;
+}
+
+body.hub .offline-title {
+  margin: 0 0 6px;
+  font-family: "Anton", Impact, sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+body.hub .offline-panel p {
+  margin: 0;
+  max-width: 36rem;
+  color: var(--muted);
+}
+
+body.hub .offline-panel .actions {
+  margin-top: 14px;
+}
+
+body.hub .section-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px 24px;
+  align-items: end;
+  margin-bottom: 22px;
+}
+
+body.hub .section-head h2 {
+  margin: 0;
+}
+
+body.hub .trailer-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #05060a;
+  border: 1px solid rgba(145, 70, 255, 0.45);
+  overflow: hidden;
+}
+
+body.hub .trailer-facade {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: #05060a;
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+}
+
+body.hub .trailer-facade img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.88;
+}
+
+body.hub .trailer-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(7, 8, 12, 0.05) 20%, rgba(7, 8, 12, 0.82) 100%);
+}
+
+body.hub .trailer-copy {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 18px;
+  display: grid;
+  gap: 4px;
+}
+
+body.hub .trailer-title {
+  font-family: "Anton", Impact, sans-serif;
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 0.95;
+}
+
+body.hub .play {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid var(--orange);
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  background: rgba(7, 8, 12, 0.45);
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+body.hub .play:before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  margin-left: 4px;
+  border-style: solid;
+  border-width: 9px 0 9px 16px;
+  border-color: transparent transparent transparent currentColor;
+}
+
+body.hub .trailer-facade .play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+body.hub .trailer-facade:hover .play,
+body.hub .trailer-facade:focus-visible .play,
+body.hub .clip-facade:hover .play,
+body.hub .clip-facade:focus-visible .play {
+  background: var(--orange);
+  color: var(--on-orange);
+}
+
+body.hub .fine {
+  margin: 14px 0 0;
+  color: var(--dim);
+  font-size: 0.95rem;
+}
+
+body.hub .clip-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+body.hub .clip-card {
+  margin: 0;
+  background: rgba(18, 16, 24, 0.85);
+  border: 1px solid var(--line);
+  min-width: 0;
+}
+
+body.hub .clip-stage {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background:
+    linear-gradient(155deg, rgba(145, 70, 255, 0.38), rgba(7, 8, 12, 0.1) 46%, rgba(255, 122, 26, 0.22));
+}
+
+body.hub .clip-card:nth-child(3n) .clip-stage {
+  background:
+    linear-gradient(200deg, rgba(255, 122, 26, 0.28), rgba(7, 8, 12, 0.15) 50%, rgba(145, 70, 255, 0.32));
+}
+
+body.hub .clip-facade {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+body.hub .clip-idx {
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  font-family: "VT323", "Courier New", monospace;
+  font-size: 1.3rem;
+  color: var(--purple-2);
+}
+
+body.hub .clip-facade .play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 56px;
+  height: 56px;
+  transform: translate(-50%, -50%);
+}
+
+body.hub .clip-card h3 {
+  margin: 0;
+  padding: 12px 14px 14px;
+  font-family: "Anton", Impact, sans-serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+body.hub .about-grid,
+body.hub .al-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 36px;
+  align-items: center;
+}
+
+body.hub .edit-hint {
+  margin: 18px 0 0;
+  color: var(--dim);
+  font-family: "VT323", "Courier New", monospace;
+  font-size: 1.15rem;
+  letter-spacing: 0.03em;
+}
+
+body.hub .schedule-card,
+body.hub .term {
+  border: 1px solid var(--line);
+  background: rgba(8, 8, 12, 0.72);
+  padding: 22px;
+}
+
+body.hub .term p {
+  margin: 0 0 8px;
+  font-family: "VT323", "Courier New", monospace;
+  font-size: 1.35rem;
+  color: var(--purple-2);
+}
+
+body.hub .term p span {
+  color: var(--orange);
+}
+
+body.hub .al-grid img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border: 1px solid var(--line);
+}
+
+body.hub .find-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+body.hub .find-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  min-height: 132px;
+  padding: 16px;
+  text-decoration: none;
+  color: var(--ink);
+  background: rgba(18, 16, 24, 0.9);
+  border: 1px solid var(--line);
+}
+
+body.hub .find-card svg {
+  width: 28px;
+  height: 28px;
+  color: var(--orange);
+}
+
+body.hub .find-label {
+  margin-top: 8px;
+  font-family: "Anton", Impact, sans-serif;
+  font-size: 1.35rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+body.hub .find-handle,
+body.hub .find-note {
+  font-family: "VT323", "Courier New", monospace;
+  font-size: 1.15rem;
+  color: var(--dim);
+}
+
+body.hub .find-note {
+  color: var(--orange);
+}
+
+body.hub .find-card:hover {
+  border-color: var(--orange);
+}
+
+body.hub footer {
+  background: #05060a;
+  border-top: 1px solid var(--line);
+}
+
+body.hub footer a:hover {
+  color: var(--orange);
+}
+
+body.hub .unverified-flag {
+  color: var(--orange);
+}
+
+@keyframes hub-glitch {
+  0%,
+  86%,
+  100% {
+    text-shadow: none;
+    transform: none;
+  }
+  88% {
+    text-shadow: -2px 0 var(--orange), 2px 0 var(--purple);
+    transform: translateX(-1px);
+  }
+  92% {
+    text-shadow: 2px 0 var(--purple), -2px 0 var(--orange);
+    transform: translateX(1px);
+  }
+}
+
+@keyframes hub-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 122, 26, 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0 8px rgba(255, 122, 26, 0);
+  }
+}
+
+@media (max-width: 900px) {
+  body.hub .hero-top,
+  body.hub .about-grid,
+  body.hub .al-grid {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    align-items: stretch;
+  }
+
+  body.hub .hero-top {
+    padding-top: calc(84px + env(safe-area-inset-top));
+  }
+
+  body.hub .hero-watermark {
+    font-size: 8rem;
+    right: -0.2em;
+  }
+
+  body.hub .clip-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  body.hub .offline-panel .actions {
+    flex-direction: row;
+  }
+
+  body.hub .offline-panel .cta {
+    width: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  body.hub main section {
+    padding: 52px 0;
+  }
+
+  body.hub .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  body.hub .actions .cta {
+    width: 100%;
+  }
+
+  body.hub .clip-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body.hub .offline-panel .actions {
+    flex-direction: column;
+  }
+
+  body.hub .hero-social {
+    flex: 1 1 calc(50% - 8px);
+    justify-content: center;
+  }
+
+  body.hub .wordmark {
+    font-size: clamp(2.8rem, 15vw, 4.4rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.hub .wordmark.glitch,
+  body.hub .live-pill.is-live .live-dot,
+  body.hub .play {
+    animation: none;
+    transition: none;
+  }
+
+  body.hub .trailer-facade:hover .play,
+  body.hub .clip-facade:hover .play {
+    transform: translate(-50%, -50%);
+  }
+}
