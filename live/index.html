@@ -93,8 +93,11 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #CF
  <section class="kp" id="kp" aria-label="Key numbers"></section>
  <section class="card gr" id="gr" aria-label="Audience growth"></section>
  <section class="card tn" id="then-now" aria-label="Then vs now audience report"><h2>Then vs. now</h2><p>Loading dated public measurements…</p></section>
+ <section class="card tn" id="stream-gain" aria-label="Gains during verified portion of stream"><h2>Gained this stream</h2><p>Loading verified readings…</p></section>
+ <section class="card tn" id="progress-report" aria-label="Audience progress report card"><h2>Progress report card</h2><p>Loading dated report…</p></section>
  <div class="two"><section class="card" id="race" aria-label="Platform reach"></section><section class="card" id="goals" aria-label="Follower goals"></section></div>
  <section class="card" id="clipsfeed" aria-label="Latest clips" style="margin-top:20px;padding:20px 22px"><div class="ch" style="padding:0 0 14px"><h2>Latest clips</h2><span class="s">Newest first</span><p class="wi">What is this? The newest short videos from the stream.</p></div><div data-latest-clips></div></section>
+ <section class="card tn" id="viewer-pick" aria-label="Viewer clip pick"><h2>Your clip pick</h2><p class="tn-note">Watch both moments, then tell us in the Twitch chat beside the stream which one deserves a breakdown next. Type “Clip pick: Literally Unlosable” or “Clip pick: Good Old-Fashioned Cutscene.” Chat is the existing place to share your choice; this page does not count votes.</p><p><a href="https://www.youtube.com/watch?v=sU9MiiJXcak" target="_blank" rel="noopener noreferrer">Watch Literally Unlosable</a> · <a href="https://www.youtube.com/watch?v=i8eLyEjHbsQ" target="_blank" rel="noopener noreferrer">Watch Good Old-Fashioned Cutscene</a></p><p class="tn-note">Want something different? Suggest a moment or question in chat.</p></section>
  <section id="rewards" data-goals style="margin-top:28px" aria-label="Follower goal rewards"></section>
  <section class="card" id="mcredits" aria-label="Music credits" style="margin-top:20px;padding:20px 22px" hidden><div class="ch" style="padding:0 0 10px"><h2>Music credits</h2><span class="s" id="mcs">MUSIC ON STREAM</span></div><p class="fine" style="margin:0 0 10px" id="mcn"></p><details><summary style="cursor:pointer;font-weight:600;color:var(--acid)">Show all tracks</summary><div id="mcl" style="margin-top:12px;font-size:14px;line-height:1.7"></div></details></section>
  <nav class="foot" aria-label="Channels">
@@ -157,6 +160,8 @@ liveCheck();setInterval(liveCheck,120000);
 })();
 </script>
 <script defer src="../js/then-now.js?v=1"></script>
+<script defer src="../js/stream-gain.js?v=1"></script>
+<script defer src="../js/progress-report.js?v=1"></script>
 <script defer src="music-credits.js?v=1"></script>
 <script defer src="schedule.js?v=2"></script>
 <script defer src="../js/goals.js?v=20261009b"></script>
