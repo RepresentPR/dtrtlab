@@ -6,3 +6,8 @@
   [headers.values]
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[redirects]]
+  from = "/donate"
+  to = "/donate.html"
+  status = 302
