@@ -49,6 +49,8 @@
     document.head.appendChild(adapt);
   }
 
+  if (!window.__donateInit) { var ds = document.createElement("script"); ds.src = root + "js/donate.js?v=20261009"; ds.defer = true; document.head.appendChild(ds); }
+
   var host = document.getElementById("site-nav");
   if (host) host.innerHTML = html;
 
