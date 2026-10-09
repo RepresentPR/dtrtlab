@@ -5,7 +5,8 @@
   "baseline_blob_sha": "1a964c7fd93ddb8f6427624d1dfb61f0b69364cd",
   "baseline_commit": "a7f400036eebba7aafeade1f23ecc65a7579b159",
   "staged_page": "live/showcase.html",
-  "staged_commit": "de37cdaf56875fc7827da678ca41c841e2c7018f",
-  "obs_scene_backup": "No OBS scene data accessed or modified. Existing OBS scene remains the live rollback path.",
-  "rollback": "Restore live/index.html from baseline commit only if this staged design is later promoted. The staged page can be removed or unlinked without changing the current dashboard."
+  "staged_commit": "509cd0a2d99250a12ae7d194189fcf6f75e5f50c",
+  "obs_scene_backup": "OBS process was observed running, but no scene control or screen verification was available. No OBS scene, audio, output, or recording settings were changed.",
+  "rollback": "Restore live/index.html from baseline commit only if this staged design is later promoted. The staged page can be removed or unlinked without changing the current dashboard.",
+  "staged_blob_sha": "7e22661b85486f1bb3fc049a92e654333176927b"
 }
