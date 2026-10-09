@@ -1,16 +1,32 @@
 {
   "schema": 1,
-  "report_at": "2026-10-09T07:57:27Z",
+  "report_at": "2026-10-09T08:05:53Z",
   "title": "Audience and site progress",
   "metrics": {
-    "latest_observation_at": "2026-10-09T01:52:29-04:00",
-    "previous_observation_at": "2026-10-09T01:44:24-04:00",
+    "previous_observation_at": "2026-10-09T01:52:29-04:00",
+    "latest_observation_at": "2026-10-09T03:37:53-04:00",
     "tracked_views_previous": 5640,
-    "tracked_views_latest": 5640,
-    "change": 0,
+    "tracked_views_latest": 6864,
+    "change": 1224,
+    "scope": "Saved sum of tracked short-post view counters across YouTube, TikTok, Instagram and X; not unique viewers or Lab File 002 views.",
+    "period_minutes": 105,
     "stream_baseline_at": "2026-10-09T01:44:24-04:00",
     "stream_partial_change": 0,
-    "note": "No new saved audience reading after 1:52 AM ET. Zero here describes the two verified saved readings, not the subsequent unseen period."
+    "stream_note": "Only 1:44–1:52 AM ET was assigned to the verified partial stream interval. Later post views cannot be attributed to that stream.",
+    "lab_file_002_public": {
+      "observed_at": "2026-10-09T08:05:03Z",
+      "url": "https://www.youtube.com/watch?v=3nDFZ0ZcJ1E",
+      "views": 0,
+      "scope": "Public YouTube watch-page counter; newly published video, count can lag."
+    },
+    "twitch_public": {
+      "observed_at": "2026-10-09T08:05:03Z",
+      "live": true,
+      "category": "Just Chatting",
+      "concurrent_viewers": 3,
+      "scope": "Momentary public player reading; not cumulative audience gained."
+    },
+    "note": "Saved tracked short-post views rose by 1,224 from 1:52 to 3:37 AM ET (about 105 minutes). No verified 20-minute baseline or source for retention, CTR, or traffic attribution. Lab File 002's public watch page showed 0 views at 4:05 AM ET; this separate counter may lag."
   },
   "completed": [
     {
@@ -58,13 +74,13 @@
       "reason": "No verified Ian-owned FACEIT match/demo or supported Grok Bot job interface was found."
     },
     {
-      "item": "Fresh audience gains",
-      "reason": "Saved audience stats still end at 1:52 AM ET; later gains are unknown."
+      "item": "20-minute and long-form analytics",
+      "reason": "Saved post-view readings are 105 minutes apart, not 20. Lab File 002 public watch counter was 0 at 4:05 AM ET; retention, CTR, traffic and conversion data are unavailable."
     }
   ],
   "next_focus": [
-    "Obtain a verified owned match/demo or new recorded footage before editing a distinct Lab File 003.",
-    "Listen to candidate raw tracks and confirm voice/game-only rights before using their audio; do not assume AAC means music-free.",
-    "Measure the published Lab File 002 only when a newer dated analytics source becomes available."
+    "Compare another same-definition tracked-post snapshot after its source timestamp advances; keep the 105-minute interval explicit.",
+    "Recheck Lab File 002 only after public/Studio analytics have had time to process; do not infer quality from a 0-view initial counter.",
+    "Acquire verified new owned footage and clear audio rights before a distinct follow-up episode."
   ]
 }
