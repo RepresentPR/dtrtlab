@@ -1,0 +1,17 @@
+{
+  "url": "https://ko-fi.com/dtrtlab",
+  "short": "ko-fi.com/dtrtlab",
+  "label": "Support the stream",
+  "labelEs": "Apoya el stream",
+  "purposeEn": "Funds go to DTRT Lab funding, personal growth funding, and helping support small businesses in Puerto Rico. Voluntary. Not a purchase. Not tax-deductible.",
+  "purposeEs": "Los fondos van a la financiación de DTRT Lab, al crecimiento personal y a ayudar a apoyar pequeños negocios en Puerto Rico. Voluntario. No es una compra. No es deducible de impuestos.",
+  "methods": [
+    {"id":"kofi","name":"Ko-fi","url":"https://ko-fi.com/dtrtlab","noteEn":"One-time tips and monthly memberships. Card, Apple Pay, PayPal.","noteEs":"Propinas únicas y membresías mensuales. Tarjeta, Apple Pay, PayPal.","recurring":true},
+    {"id":"paypal","name":"PayPal.me","url":"","noteEn":"Pay with PayPal or card.","noteEs":"Paga con PayPal o tarjeta."},
+    {"id":"cashapp","name":"Cash App","url":"","noteEn":"Quick send in the US.","noteEs":"Envío rápido en EE. UU."},
+    {"id":"venmo","name":"Venmo","url":"","noteEn":"Quick send in the US.","noteEs":"Envío rápido en EE. UU."},
+    {"id":"stripe","name":"Card / Apple Pay (Stripe link)","url":"","noteEn":"One hosted page. Can offer monthly tiers.","noteEs":"Una página alojada. Puede ofrecer niveles mensuales.","recurring":true},
+    {"id":"bmc","name":"Buy Me a Coffee","url":"","noteEn":"Tips and monthly memberships.","noteEs":"Propinas y membresías mensuales.","recurring":true}
+  ],
+  "tiers": {"enabled": false, "note": "Monthly tiers appear only after Ian creates them on Ko-fi/Stripe/BMC; amounts are set there, never on this site."}
+}
