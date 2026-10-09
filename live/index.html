@@ -77,7 +77,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #CF
 @media(max-width:640px){body{font-size:18px}.rw{grid-template-columns:24px minmax(70px,1fr) auto;font-size:17px;padding:0 16px}.rw .bar{grid-column:2/-1;grid-row:2;margin-bottom:10px}.rw svg{grid-row:1}.kp{grid-template-columns:1fr 1fr}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
-<link rel="stylesheet" href="schedule.css?v=2"><link rel="stylesheet" href="../css/calm.css?v=20261009c"></head>
+<link rel="stylesheet" href="../css/then-now.css?v=1"><link rel="stylesheet" href="schedule.css?v=2"><link rel="stylesheet" href="../css/calm.css?v=20261009c"></head>
 <body>
 <header class="top"><a class="mark" href="../index.html"><i></i>DTRTLab.com <span>THE LAB FILES</span></a><span class="pill off" id="lp">Checking…</span><span class="clock"><small id="dt"></small><span id="tm"></span></span></header>
 <main class="wrap">
@@ -92,6 +92,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #CF
  <section class="card sc" id="sched" aria-label="Up next on stream"></section>
  <section class="kp" id="kp" aria-label="Key numbers"></section>
  <section class="card gr" id="gr" aria-label="Audience growth"></section>
+ <section class="card tn" id="then-now" aria-label="Then vs now audience report"><h2>Then vs. now</h2><p>Loading dated public measurements…</p></section>
  <div class="two"><section class="card" id="race" aria-label="Platform reach"></section><section class="card" id="goals" aria-label="Follower goals"></section></div>
  <section class="card" id="clipsfeed" aria-label="Latest clips" style="margin-top:20px;padding:20px 22px"><div class="ch" style="padding:0 0 14px"><h2>Latest clips</h2><span class="s">Newest first</span><p class="wi">What is this? The newest short videos from the stream.</p></div><div data-latest-clips></div></section>
  <section id="rewards" data-goals style="margin-top:28px" aria-label="Follower goal rewards"></section>
@@ -155,6 +156,7 @@ async function liveCheck(){try{const t=await (await fetch('https://decapi.me/twi
 liveCheck();setInterval(liveCheck,120000);
 })();
 </script>
+<script defer src="../js/then-now.js?v=1"></script>
 <script defer src="music-credits.js?v=1"></script>
 <script defer src="schedule.js?v=2"></script>
 <script defer src="../js/goals.js?v=20261009b"></script>
