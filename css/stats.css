@@ -93,3 +93,4 @@ body.hub .stats-fine { margin-top: 16px; }
   body.hub .seg { width: 100%; }
   body.hub .seg-b { flex: 1; }
 }
+body.hub .br-val small { white-space: normal; max-width: 22ch; margin-left: auto; font-size: 0.8rem; }
