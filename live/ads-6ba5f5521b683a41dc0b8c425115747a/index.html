@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive"><meta name="referrer" content="no-referrer">
+<title>Ad spend · private</title>
+<style>
+:root{--bg:#0D0E10;--card:#15171A;--line:#25282D;--bone:#ECE7DA;--mute:#8C9097;--acid:#CFE35A;--warn:#E8B04A}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--bone);font-family:Inter,"Segoe UI",Arial,sans-serif;padding:20px;max-width:900px;margin:0 auto;font-variant-numeric:tabular-nums}
+h1{font-size:28px;margin-bottom:4px}h2{font-size:14px;letter-spacing:.14em;color:var(--acid);margin:26px 0 10px}
+.m{color:var(--mute);font-size:13px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.c{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}.c b{display:block;font-size:30px;margin-top:4px}
+.u{color:var(--warn)}.ok{color:var(--acid)}
+table{width:100%;border-collapse:collapse;font-size:15px}th,td{text-align:left;padding:9px 6px;border-bottom:1px solid var(--line)}th{color:var(--mute);font-size:12px;letter-spacing:.08em;font-weight:600}
+.scroll{overflow-x:auto}
+</style></head><body>
+<h1>Ad spend &amp; results</h1>
+<p class="m" id="upd">Loading…</p>
+<h2>BUDGET</h2><div class="grid" id="bud"></div>
+<h2>PER PLATFORM</h2><div class="scroll"><table><thead><tr><th>Platform</th><th>Planned</th><th>Spent</th><th>Promo</th><th>Views gained</th><th>Followers gained</th><th>$/follower</th><th>$/1K views</th></tr></thead><tbody id="rows"></tbody></table></div>
+<p class="m" id="basel" style="margin-top:8px"></p>
+<h2>GOAL</h2><div class="grid" id="goal"></div>
+<h2>DONATIONS</h2><div class="grid" id="don"></div>
+<p class="m" style="margin-top:28px">Only confirmed spend is counted. "unknown" = Ian hasn't reported the app figure yet. Gains are measured from the baseline time above; cost per result shows "—" until there is both spend and a gain. Private page, not for stream.</p>
+<script>
+(function(){
+var u="/content/ads-6ba5f5521b683a41dc0b8c425115747a.json";
+function $(i){return document.getElementById(i)}
+function usd(n){return n==null?'<span class="u">unknown</span>':'$'+Number(n).toFixed(2)}
+function dash(n,f){return n==null?'—':(f?f(n):n)}
+function card(l,v,s){return '<div class="c"><span class="m">'+l+'</span><b>'+v+'</b><span class="m">'+(s||'')+'</span></div>'}
+function t(s){try{return new Date(s).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+' ET'}catch(e){return s}}
+function load(){fetch(u+"?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){
+$('upd').textContent='Updated '+t(d.generated_at)+' · refreshes every minute on this page';
+$('bud').innerHTML=card('Total budget','$'+d.budget.total_usd,'$'+d.budget.base_usd+' base + $'+d.budget.extra_usd+' extra')+
+ card('Confirmed spend','<span class="ok">$'+d.confirmed_spend_usd.toFixed(2)+'</span>','X only (API). Unknown: '+d.unknown_platforms.join(', '))+
+ card('X Ads','$'+(d.x_status.spend_usd||0).toFixed(2)+' / $5 cap','status '+(d.x_status.campaign||'?')+' · as of '+t(d.x_status.as_of));
+$('rows').innerHTML=d.platforms.map(function(p){
+ var sp=p.spent_usd==null?'<span class="u">unknown</span>':usd(p.spent_usd)+' <span class="m">'+(p.verified?'verified':'manual/unverified')+'</span>';
+ var pl=p.planned_usd==null?'—':'$'+p.planned_usd+(p.cap_usd?' (cap $'+p.cap_usd+')':'');
+ return '<tr><td>'+p.label+'</td><td>'+pl+'</td><td>'+sp+'</td><td>'+p.status+'</td><td>'+dash(p.views_gained,function(n){return '+'+n})+'</td><td>'+dash(p.followers_gained,function(n){return '+'+n})+'</td><td>'+dash(p.cost_per_follower,function(n){return '$'+n})+'</td><td>'+dash(p.cost_per_1k_views,function(n){return '$'+n})+'</td></tr>'}).join('');
+$('basel').textContent='Baseline taken '+t(d.baseline_taken_at)+'. Promo start times are unconfirmed until Ian reports them.';
+$('goal').innerHTML=card('Twitch followers',d.totals.twitch_followers,d.totals.twitch_to_affiliate+' to go for Affiliate (50)')+card('All followers',d.totals.followers)+card('Tracked views',d.totals.views.toLocaleString());
+$('don').innerHTML=card('This month','$'+Number(d.donations.month_total_usd||0).toFixed(2),d.donations.status);
+}).catch(function(){$('upd').textContent='Could not load data.'})}
+load();setInterval(load,60000);
+})();
+</script></body></html>
