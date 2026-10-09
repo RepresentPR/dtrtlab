@@ -66,7 +66,7 @@ body.hub .growth-axis span { position: absolute; top: 4px; transform: translateX
 body.hub .growth-axis span:first-child { transform: none; }
 body.hub .growth-axis span:last-child { transform: translateX(-100%); }
 body.hub .growth-note { margin: 6px 0 0; font-size: 0.68rem; color: var(--dim); }
-@media (max-width: 720px) { body.hub .growth-chart { height: 150px; margin-right: 52px; } body.hub .growth-axis { margin-right: 52px; } }
+@media (max-width: 720px) { body.hub .growth-chart { height: 150px; margin-right: 52px; } body.hub .growth-axis { margin-right: 52px; } body.hub .growth-axis span:nth-child(2), body.hub .growth-axis span:nth-child(4) { display: none; } }
 
 body.hub .plat-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-top: 12px; }
 body.hub .plat-card {
@@ -112,7 +112,7 @@ body.hub .stats-fine { margin-top: 10px; }
   body.hub .stats-status { justify-items: start; }
   body.hub .stats-kpis { grid-template-columns: 1fr 1fr; }
   body.hub .kpi-main { grid-column: 1 / -1; }
-  body.hub .plat-grid { grid-template-columns: repeat(3, 1fr); }
+  body.hub .plat-grid { grid-template-columns: repeat(2, 1fr); }
   body.hub .clip-pair { grid-template-columns: 1fr; }
   body.hub .kpi { padding: 14px 14px 12px; }
   body.hub .kpi-num { font-size: 2.3rem; }
