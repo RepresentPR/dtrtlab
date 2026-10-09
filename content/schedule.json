@@ -3,110 +3,92 @@
   "timezone": "America/New_York",
   "mode": "clock",
   "approximate": true,
-  "note": "Times are approximate (ET) and shift with the stream.",
-  "updated_at": "2026-10-09T01:35:00-04:00",
+  "note": "Times are approximate (ET). Only confirmed items are listed; live stream times are announced on the day.",
+  "updated_at": "2026-10-09T10:30:00-04:00",
   "items": [
     {
-      "id": "live-now",
-      "time": "2026-10-09 01:30",
-      "title": "Live from the Lab",
-      "desc": "CS2 on stream with the channel dashboard, live chat and copyright-free music.",
-      "status": "now"
+      "id": "clip-v01",
+      "time": "2026-10-10 16:00",
+      "title": "New clip drops: V01 · He's Gonna Win This",
+      "desc": "One stream clip, posted across YouTube, TikTok, Instagram and X.",
+      "group": "Oct 10 · Hourly clip drops"
     },
     {
-      "id": "clip-replay",
-      "time": "2026-10-09 01:40",
-      "title": "Clip highlights replay",
-      "desc": "The best moments from last stream's VOD, replayed and voted on by chat.",
-      "status": "next"
+      "id": "clip-v07",
+      "time": "2026-10-10 17:00",
+      "title": "New clip drops: V07 · Literally Unlosable (Again)",
+      "desc": "One stream clip, posted across YouTube, TikTok, Instagram and X.",
+      "group": "Oct 10 · Hourly clip drops"
     },
     {
-      "id": "lf001-push",
-      "time": "2026-10-09 01:50",
-      "title": "Lab File #001 push",
-      "desc": "Watch the first Lab File together. Link drops in chat: youtu.be/lsExh8z7fVI",
-      "url": "https://youtu.be/lsExh8z7fVI",
-      "status": "later"
+      "id": "clip-v02",
+      "time": "2026-10-10 18:00",
+      "title": "New clip drops: V02 · Make It Out",
+      "desc": "One stream clip, posted across YouTube, TikTok, Instagram and X.",
+      "group": "Oct 10 · Hourly clip drops"
     },
     {
-      "id": "qa",
-      "time": "2026-10-09 02:00",
-      "title": "Live Q&A with chat",
-      "desc": "Ask anything: the stream, the Lab, CS2, the book. Drop questions in Twitch chat.",
-      "status": "later"
+      "id": "clip-v04",
+      "time": "2026-10-10 19:00",
+      "title": "New clip drops: V04 · One More",
+      "desc": "One stream clip, posted across YouTube, TikTok, Instagram and X.",
+      "group": "Oct 10 · Hourly clip drops"
     },
     {
-      "id": "aah-0",
-      "group": "Afterlight After Hours · Ep. 01",
-      "time": "2026-10-09 02:15",
-      "title": "Cold open",
-      "desc": "A radio on the workbench picks up a voice that shouldn't exist.",
-      "status": "later"
+      "id": "clip-v03",
+      "time": "2026-10-10 20:00",
+      "title": "New clip drops: V03 · What a Way to End It",
+      "desc": "One stream clip, posted across YouTube, TikTok, Instagram and X.",
+      "group": "Oct 10 · Hourly clip drops"
     },
     {
-      "id": "aah-1",
-      "group": "Afterlight After Hours · Ep. 01",
-      "time": "2026-10-09 02:16",
-      "title": "Who is Ian + the journey",
-      "desc": "Meet the author and how the Lab got here.",
-      "status": "later"
+      "id": "clip-v05",
+      "time": "2026-10-10 21:00",
+      "title": "New clip drops: V05 · So Positive",
+      "desc": "One stream clip, posted across YouTube, TikTok, Instagram and X.",
+      "group": "Oct 10 · Hourly clip drops"
     },
     {
-      "id": "aah-2",
-      "group": "Afterlight After Hours · Ep. 01",
-      "time": "2026-10-09 02:20",
-      "title": "The premise",
-      "desc": "What Afterlight Vol. One is about. A work of fiction.",
-      "status": "later"
+      "id": "lf001-test-1247",
+      "time": "2026-10-09 12:47",
+      "title": "Lab File #001 title/thumbnail test",
+      "desc": "A/B test swap on the first Lab File. Watching which version gets clicked.",
+      "url": "https://youtu.be/lsExh8z7fVI"
     },
     {
-      "id": "aah-3",
-      "group": "Afterlight After Hours · Ep. 01",
-      "time": "2026-10-09 02:22",
-      "title": "Act One · Ch. 1–4",
-      "desc": "The story begins, with a chat check-in at the end.",
-      "status": "later"
+      "id": "lf001-test-1547",
+      "time": "2026-10-09 15:47",
+      "title": "Lab File #001 title/thumbnail test",
+      "desc": "A/B test swap on the first Lab File. Watching which version gets clicked.",
+      "url": "https://youtu.be/lsExh8z7fVI"
     },
     {
-      "id": "aah-4",
-      "group": "Afterlight After Hours · Ep. 01",
-      "time": "2026-10-09 02:26",
-      "title": "Act Two · Ch. 5–8",
-      "desc": "The story continues.",
-      "status": "later"
+      "id": "lf001-test-1847",
+      "time": "2026-10-09 18:47",
+      "title": "Lab File #001 title/thumbnail test",
+      "desc": "A/B test swap on the first Lab File. Watching which version gets clicked.",
+      "url": "https://youtu.be/lsExh8z7fVI"
     },
     {
-      "id": "aah-5",
-      "group": "Afterlight After Hours · Ep. 01",
-      "time": "2026-10-09 02:30",
-      "title": "Act Three · Ch. 9–Epilogue",
-      "desc": "Chat votes: spoil the ending live, or read it on DTRTLab.com.",
-      "status": "later"
+      "id": "lf001-test-2147",
+      "time": "2026-10-09 21:47",
+      "title": "Lab File #001 title/thumbnail test",
+      "desc": "A/B test swap on the first Lab File. Watching which version gets clicked.",
+      "url": "https://youtu.be/lsExh8z7fVI"
     },
     {
-      "id": "aah-6",
-      "group": "Afterlight After Hours · Ep. 01",
-      "time": "2026-10-09 02:35",
-      "title": "What we built + the numbers",
-      "desc": "Everything built for the channel, with the real numbers on screen.",
-      "status": "later"
+      "id": "nsn-shorts",
+      "time": "2026-10-11 12:00",
+      "title": "Night Shift Neon shorts start",
+      "desc": "New shorts from the Night Shift stream start rolling out across the platforms.",
+      "group": "Night Shift Neon"
     },
     {
-      "id": "aah-7",
-      "group": "Afterlight After Hours · Ep. 01",
-      "time": "2026-10-09 02:39",
-      "title": "Shifting + improving",
-      "desc": "What failed, what we changed, and chat picks the next fix.",
-      "status": "later"
-    },
-    {
-      "id": "aah-8",
-      "group": "Afterlight After Hours · Ep. 01",
-      "time": "2026-10-09 02:42",
-      "title": "Outro + sign-off",
-      "desc": "Lab File #001, where to follow, and the stream wraps.",
-      "end": "2026-10-09 02:45",
-      "status": "later"
+      "id": "nsn-long",
+      "time": "2026-10-14 12:00",
+      "title": "Night Shift Highlights (long-form)",
+      "desc": "Long-form highlight video on YouTube.",
+      "group": "Night Shift Neon"
     }
   ],
   "goals": [
@@ -124,7 +106,7 @@
       "desc": "Needed to go live on TikTok from PC",
       "platform": "tiktok",
       "metric": "followers",
-      "target": 1000
+      "target": 50
     }
   ]
 }
