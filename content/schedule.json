@@ -106,7 +106,7 @@
       "desc": "Needed to go live on TikTok from PC",
       "platform": "tiktok",
       "metric": "followers",
-      "target": 50
+      "target": 1000
     }
   ]
 }
