@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "report_at": "2026-10-09T07:04:29Z",
+  "title": "Audience and site progress",
+  "metrics": {
+    "latest_observation_at": "2026-10-09T01:52:29-04:00",
+    "previous_observation_at": "2026-10-09T01:44:24-04:00",
+    "tracked_views_previous": 5640,
+    "tracked_views_latest": 5640,
+    "change": 0,
+    "stream_baseline_at": "2026-10-09T01:44:24-04:00",
+    "stream_partial_change": 0,
+    "note": "No new saved audience reading after 1:52 AM ET. Zero here describes the two verified saved readings, not the subsequent unseen period."
+  },
+  "completed": [
+    {
+      "item": "Published dated Then vs. Now segment with preserved baseline and observation log",
+      "evidence": "GitHub commit bd35b907d328c23e3c60a65298b61969117c3c71; source file live/index.html",
+      "verification": "Repository source confirmed; public browser rendering has not been independently checked."
+    },
+    {
+      "item": "Added partial-stream graph data and locked first live reading",
+      "evidence": "content/stream-session.json, first saved live reading 1:44 AM ET",
+      "verification": "Stream start and ID unavailable; graph integration pending at this report time."
+    }
+  ],
+  "blocked": [
+    {
+      "item": "Fresh 20-minute audience gain",
+      "reason": "Saved content/stats.json last updated 1:52 AM ET. No authenticated analytics refresh mechanism or owner of stats writer is verified."
+    },
+    {
+      "item": "Full 30-day comparison",
+      "reason": "Saved measurement series begins Oct 8; Sep 10 baseline absent."
+    }
+  ],
+  "next_focus": [
+    "Verify source updater and obtain newer public platform readings before making gain claims.",
+    "Capture an actual Twitch stream ID and start baseline for the next stream.",
+    "Check the published page in a browser when screen/browser access is available."
+  ]
+}
