@@ -6,107 +6,40 @@
   "note": "Times are approximate (ET). Only confirmed items are listed; live stream times are announced on the day.",
   "updated_at": "2026-10-09T10:30:00-04:00",
   "items": [
-    {
-      "id": "clip-v01",
-      "time": "2026-10-10 16:00",
-      "title": "New clip drops: V01 · He's Gonna Win This",
-      "desc": "One stream clip, posted across YouTube, TikTok, Instagram and X.",
-      "group": "Oct 10 · Hourly clip drops"
-    },
-    {
-      "id": "clip-v07",
-      "time": "2026-10-10 17:00",
-      "title": "New clip drops: V07 · Literally Unlosable (Again)",
-      "desc": "One stream clip, posted across YouTube, TikTok, Instagram and X.",
-      "group": "Oct 10 · Hourly clip drops"
-    },
-    {
-      "id": "clip-v02",
-      "time": "2026-10-10 18:00",
-      "title": "New clip drops: V02 · Make It Out",
-      "desc": "One stream clip, posted across YouTube, TikTok, Instagram and X.",
-      "group": "Oct 10 · Hourly clip drops"
-    },
-    {
-      "id": "clip-v04",
-      "time": "2026-10-10 19:00",
-      "title": "New clip drops: V04 · One More",
-      "desc": "One stream clip, posted across YouTube, TikTok, Instagram and X.",
-      "group": "Oct 10 · Hourly clip drops"
-    },
-    {
-      "id": "clip-v03",
-      "time": "2026-10-10 20:00",
-      "title": "New clip drops: V03 · What a Way to End It",
-      "desc": "One stream clip, posted across YouTube, TikTok, Instagram and X.",
-      "group": "Oct 10 · Hourly clip drops"
-    },
-    {
-      "id": "clip-v05",
-      "time": "2026-10-10 21:00",
-      "title": "New clip drops: V05 · So Positive",
-      "desc": "One stream clip, posted across YouTube, TikTok, Instagram and X.",
-      "group": "Oct 10 · Hourly clip drops"
-    },
-    {
-      "id": "lf001-test-1247",
-      "time": "2026-10-09 12:47",
-      "title": "Lab File #001 title/thumbnail test",
-      "desc": "A/B test swap on the first Lab File. Watching which version gets clicked.",
-      "url": "https://youtu.be/lsExh8z7fVI"
-    },
-    {
-      "id": "lf001-test-1547",
-      "time": "2026-10-09 15:47",
-      "title": "Lab File #001 title/thumbnail test",
-      "desc": "A/B test swap on the first Lab File. Watching which version gets clicked.",
-      "url": "https://youtu.be/lsExh8z7fVI"
-    },
-    {
-      "id": "lf001-test-1847",
-      "time": "2026-10-09 18:47",
-      "title": "Lab File #001 title/thumbnail test",
-      "desc": "A/B test swap on the first Lab File. Watching which version gets clicked.",
-      "url": "https://youtu.be/lsExh8z7fVI"
-    },
-    {
-      "id": "lf001-test-2147",
-      "time": "2026-10-09 21:47",
-      "title": "Lab File #001 title/thumbnail test",
-      "desc": "A/B test swap on the first Lab File. Watching which version gets clicked.",
-      "url": "https://youtu.be/lsExh8z7fVI"
-    },
-    {
-      "id": "nsn-shorts",
-      "time": "2026-10-11 12:00",
-      "title": "Night Shift Neon shorts start",
-      "desc": "New shorts from the Night Shift stream start rolling out across the platforms.",
-      "group": "Night Shift Neon"
-    },
-    {
-      "id": "nsn-long",
-      "time": "2026-10-14 12:00",
-      "title": "Night Shift Highlights (long-form)",
-      "desc": "Long-form highlight video on YouTube.",
-      "group": "Night Shift Neon"
-    }
+    {"id": "nsn-01-instagram", "time": "2026-10-09 10:29", "title": "Night Shift Neon short: Pep Talk To A Dead Team", "desc": "New short on Instagram.", "group": "Night Shift Neon · Today"},
+    {"id": "nsn-02-instagram", "time": "2026-10-09 10:49", "title": "Night Shift Neon short: Where Is My Veteran Medal", "desc": "New short on Instagram.", "group": "Night Shift Neon · Today"},
+    {"id": "nsn-03-instagram", "time": "2026-10-09 11:09", "title": "Night Shift Neon short: Somebody Said Rush B", "desc": "New short on Instagram.", "group": "Night Shift Neon · Today"},
+    {"id": "nsn-04-instagram", "time": "2026-10-09 11:29", "title": "Night Shift Neon short: I Was Gonna Get That Kill", "desc": "New short on Instagram.", "group": "Night Shift Neon · Today"},
+    {"id": "nsn-05-instagram", "time": "2026-10-09 11:49", "title": "Night Shift Neon short: Six On One", "desc": "New short on Instagram.", "group": "Night Shift Neon · Today"},
+    {"id": "nsn-01-tiktok", "time": "2026-10-09 12:09", "title": "Night Shift Neon short: Pep Talk To A Dead Team", "desc": "New short on TikTok.", "group": "Night Shift Neon · Today"},
+    {"id": "nsn-02-tiktok", "time": "2026-10-09 12:29", "title": "Night Shift Neon short: Where Is My Veteran Medal", "desc": "New short on TikTok.", "group": "Night Shift Neon · Today"},
+    {"id": "lf001-test-1247", "time": "2026-10-09 12:47", "title": "Lab File #001 title/thumbnail test", "desc": "A/B test swap on the first Lab File. Watching which version gets clicked.", "url": "https://youtu.be/lsExh8z7fVI"},
+    {"id": "nsn-03-tiktok", "time": "2026-10-09 12:49", "title": "Night Shift Neon short: Somebody Said Rush B", "desc": "New short on TikTok.", "group": "Night Shift Neon · Today"},
+    {"id": "nsn-04-tiktok", "time": "2026-10-09 13:09", "title": "Night Shift Neon short: I Was Gonna Get That Kill", "desc": "New short on TikTok.", "group": "Night Shift Neon · Today"},
+    {"id": "nsn-05-tiktok", "time": "2026-10-09 13:29", "title": "Night Shift Neon short: Six On One", "desc": "New short on TikTok.", "group": "Night Shift Neon · Today"},
+    {"id": "nsn-01-youtube", "time": "2026-10-09 13:49", "title": "Night Shift Neon short: Pep Talk To A Dead Team", "desc": "New short on YouTube Shorts.", "group": "Night Shift Neon · Today"},
+    {"id": "nsn-02-youtube", "time": "2026-10-09 14:09", "title": "Night Shift Neon short: Where Is My Veteran Medal", "desc": "New short on YouTube Shorts.", "group": "Night Shift Neon · Today"},
+    {"id": "nsn-03-youtube", "time": "2026-10-09 14:29", "title": "Night Shift Neon short: Somebody Said Rush B", "desc": "New short on YouTube Shorts.", "group": "Night Shift Neon · Today"},
+    {"id": "nsn-04-youtube", "time": "2026-10-09 14:49", "title": "Night Shift Neon short: I Was Gonna Get That Kill", "desc": "New short on YouTube Shorts.", "group": "Night Shift Neon · Today"},
+    {"id": "nsn-05-youtube", "time": "2026-10-09 15:09", "title": "Night Shift Neon short: Six On One", "desc": "New short on YouTube Shorts.", "group": "Night Shift Neon · Today"},
+    {"id": "nsn-01-x", "time": "2026-10-09 15:29", "title": "Night Shift Neon short: Pep Talk To A Dead Team", "desc": "New short on X.", "group": "Night Shift Neon · Today"},
+    {"id": "lf001-test-1547", "time": "2026-10-09 15:47", "title": "Lab File #001 title/thumbnail test", "desc": "A/B test swap on the first Lab File. Watching which version gets clicked.", "url": "https://youtu.be/lsExh8z7fVI"},
+    {"id": "nsn-02-x", "time": "2026-10-09 15:49", "title": "Night Shift Neon short: Where Is My Veteran Medal", "desc": "New short on X.", "group": "Night Shift Neon · Today"},
+    {"id": "nsn-03-x", "time": "2026-10-09 16:09", "title": "Night Shift Neon short: Somebody Said Rush B", "desc": "New short on X.", "group": "Night Shift Neon · Today"},
+    {"id": "nsn-04-x", "time": "2026-10-09 16:29", "title": "Night Shift Neon short: I Was Gonna Get That Kill", "desc": "New short on X.", "group": "Night Shift Neon · Today"},
+    {"id": "nsn-05-x", "time": "2026-10-09 16:49", "title": "Night Shift Neon short: Six On One", "desc": "New short on X.", "group": "Night Shift Neon · Today"},
+    {"id": "nsn-long", "time": "2026-10-09 17:09", "title": "Night Shift Highlights (long-form)", "desc": "Long-form highlight video on YouTube.", "group": "Night Shift Neon · Today"},
+    {"id": "lf001-test-1847", "time": "2026-10-09 18:47", "title": "Lab File #001 title/thumbnail test", "desc": "A/B test swap on the first Lab File. Watching which version gets clicked.", "url": "https://youtu.be/lsExh8z7fVI"},
+    {"id": "lf001-test-2147", "time": "2026-10-09 21:47", "title": "Lab File #001 title/thumbnail test", "desc": "A/B test swap on the first Lab File. Watching which version gets clicked.", "url": "https://youtu.be/lsExh8z7fVI"},
+    {"id": "clip-v01", "time": "2026-10-10 16:00", "title": "New clip drops: V01 · He's Gonna Win This", "desc": "One stream clip, posted across YouTube, TikTok, Instagram and X.", "group": "Oct 10 · Hourly clip drops"},
+    {"id": "clip-v07", "time": "2026-10-10 17:00", "title": "New clip drops: V07 · Literally Unlosable (Again)", "desc": "One stream clip, posted across YouTube, TikTok, Instagram and X.", "group": "Oct 10 · Hourly clip drops"},
+    {"id": "clip-v02", "time": "2026-10-10 18:00", "title": "New clip drops: V02 · Make It Out", "desc": "One stream clip, posted across YouTube, TikTok, Instagram and X.", "group": "Oct 10 · Hourly clip drops"},
+    {"id": "clip-v04", "time": "2026-10-10 19:00", "title": "New clip drops: V04 · One More", "desc": "One stream clip, posted across YouTube, TikTok, Instagram and X.", "group": "Oct 10 · Hourly clip drops"},
+    {"id": "clip-v03", "time": "2026-10-10 20:00", "title": "New clip drops: V03 · What a Way to End It", "desc": "One stream clip, posted across YouTube, TikTok, Instagram and X.", "group": "Oct 10 · Hourly clip drops"},
+    {"id": "clip-v05", "time": "2026-10-10 21:00", "title": "New clip drops: V05 · So Positive", "desc": "One stream clip, posted across YouTube, TikTok, Instagram and X.", "group": "Oct 10 · Hourly clip drops"}
   ],
   "goals": [
-    {
-      "id": "twitch-affiliate",
-      "title": "Twitch Affiliate",
-      "desc": "50 followers is the first Affiliate requirement",
-      "platform": "twitch",
-      "metric": "followers",
-      "target": 50
-    },
-    {
-      "id": "tiktok-live",
-      "title": "TikTok LIVE access",
-      "desc": "Needed to go live on TikTok from PC",
-      "platform": "tiktok",
-      "metric": "followers",
-      "target": 1000
-    }
+    {"id": "twitch-affiliate", "title": "Twitch Affiliate", "desc": "50 followers is the first Affiliate requirement", "platform": "twitch", "metric": "followers", "target": 50},
+    {"id": "tiktok-live", "title": "TikTok LIVE access", "desc": "Needed to go live on TikTok from PC", "platform": "tiktok", "metric": "followers", "target": 1000}
   ]
 }
