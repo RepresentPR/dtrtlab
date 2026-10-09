@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "report_at": "2026-10-09T07:52:08Z",
+  "report_at": "2026-10-09T07:57:27Z",
   "title": "Audience and site progress",
   "metrics": {
     "latest_observation_at": "2026-10-09T01:52:29-04:00",
@@ -37,6 +37,11 @@
       "item": "Featured the published episode on the live showcase",
       "evidence": "https://dtrtlab.com/live/showcase.html#new-episode",
       "verification": "Public browser returned HTTP 200 and found the new episode link to YouTube video 3nDFZ0ZcJ1E."
+    },
+    {
+      "item": "Inventoried unused owned footage for a distinct follow-up episode",
+      "evidence": "Local lab-file-003-source-inventory.md; eight inspected DTRTC-branded clips totaling about 2:24",
+      "verification": "Postiz media library URLs, dimensions/durations and representative frames checked; already-published long video and trailer variants held out of the new-source count."
     }
   ],
   "blocked": [
@@ -46,7 +51,7 @@
     },
     {
       "item": "Two-hour release cadence",
-      "reason": "One episode has been released. Source discovery, rights checks, editing and upload cadence for another distinct episode have not been validated."
+      "reason": "One 3:50 episode is verified public. Eight remaining distinct short uploads total about 2:24; a new 3–5 minute story needs additional meaningful owned footage or a verified demo. Audio rights and a repeatable release pipeline are not cleared."
     },
     {
       "item": "FACEIT and Grok collaboration",
@@ -58,8 +63,8 @@
     }
   ],
   "next_focus": [
-    "Collect meaningful post-publication views and retention once a newer verified analytics snapshot exists.",
-    "Acquire verified new owned footage and clear audio rights before a distinct follow-up episode.",
-    "Use an authorized signed-in Twitch stream-info control to set Counter-Strike 2 and verify publicly."
+    "Obtain a verified owned match/demo or new recorded footage before editing a distinct Lab File 003.",
+    "Listen to candidate raw tracks and confirm voice/game-only rights before using their audio; do not assume AAC means music-free.",
+    "Measure the published Lab File 002 only when a newer dated analytics source becomes available."
   ]
 }
