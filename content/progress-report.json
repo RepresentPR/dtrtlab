@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "report_at": "2026-10-09T07:04:29Z",
+  "report_at": "2026-10-09T07:06:46Z",
   "title": "Audience and site progress",
   "metrics": {
     "latest_observation_at": "2026-10-09T01:52:29-04:00",
@@ -14,14 +14,19 @@
   },
   "completed": [
     {
-      "item": "Published dated Then vs. Now segment with preserved baseline and observation log",
-      "evidence": "GitHub commit bd35b907d328c23e3c60a65298b61969117c3c71; source file live/index.html",
-      "verification": "Repository source confirmed; public browser rendering has not been independently checked."
+      "item": "Published dated Then vs. Now growth segment with locked baseline, dated observations and platform drilldown",
+      "evidence": "live/index.html and content/growth-baseline.json at commit bd35b907d328c23e3c60a65298b61969117c3c71",
+      "verification": "Committed source and linked data files fetched from main; public browser rendering could not be checked."
     },
     {
-      "item": "Added partial-stream graph data and locked first live reading",
-      "evidence": "content/stream-session.json, first saved live reading 1:44 AM ET",
-      "verification": "Stream start and ID unavailable; graph integration pending at this report time."
+      "item": "Added partial-session gain card next to the audience graph",
+      "evidence": "content/stream-session.json and js/stream-gain.js, wired in live/index.html at commit a7f400036eebba7aafeade1f23ecc65a7579b159",
+      "verification": "First saved live reading 1:44 AM ET; latest verified 1:52 AM ET. Actual stream start and ID unavailable."
+    },
+    {
+      "item": "Added viewer clip pick using two public clips and existing Twitch chat",
+      "evidence": "live/index.html at commit a7f400036eebba7aafeade1f23ecc65a7579b159",
+      "verification": "Source links and chat instructions checked; no vote backend or invented count."
     }
   ],
   "blocked": [
@@ -32,11 +37,15 @@
     {
       "item": "Full 30-day comparison",
       "reason": "Saved measurement series begins Oct 8; Sep 10 baseline absent."
+    },
+    {
+      "item": "Published page visual check",
+      "reason": "Current browser/screen tool is unavailable and the web opener cannot access DTRTLab.com. Repository source is verified, but public rendering remains unchecked."
     }
   ],
   "next_focus": [
-    "Verify source updater and obtain newer public platform readings before making gain claims.",
-    "Capture an actual Twitch stream ID and start baseline for the next stream.",
-    "Check the published page in a browser when screen/browser access is available."
+    "Verify the stats updater and obtain a newer public reading before claiming fresh gains.",
+    "Capture a stream ID and stream-start snapshot for the next session.",
+    "Visually check the published dashboard when browser access returns."
   ]
 }
