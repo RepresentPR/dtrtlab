@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "report_at": "2026-10-09T07:06:46Z",
+  "report_at": "2026-10-09T07:23:56Z",
   "title": "Audience and site progress",
   "metrics": {
     "latest_observation_at": "2026-10-09T01:52:29-04:00",
@@ -14,38 +14,41 @@
   },
   "completed": [
     {
-      "item": "Published dated Then vs. Now growth segment with locked baseline, dated observations and platform drilldown",
-      "evidence": "live/index.html and content/growth-baseline.json at commit bd35b907d328c23e3c60a65298b61969117c3c71",
-      "verification": "Committed source and linked data files fetched from main; public browser rendering could not be checked."
+      "item": "Staged an autonomous cinematic page with Dot's silent clip rundown",
+      "evidence": "live/showcase.html, commit 509cd0a2d99250a12ae7d194189fcf6f75e5f50c",
+      "verification": "GitHub source and JavaScript syntax checked; public rendering and OBS output unverified."
     },
     {
-      "item": "Added partial-session gain card next to the audience graph",
-      "evidence": "content/stream-session.json and js/stream-gain.js, wired in live/index.html at commit a7f400036eebba7aafeade1f23ecc65a7579b159",
-      "verification": "First saved live reading 1:44 AM ET; latest verified 1:52 AM ET. Actual stream start and ID unavailable."
-    },
-    {
-      "item": "Added viewer clip pick using two public clips and existing Twitch chat",
-      "evidence": "live/index.html at commit a7f400036eebba7aafeade1f23ecc65a7579b159",
-      "verification": "Source links and chat instructions checked; no vote backend or invented count."
+      "item": "Assembled a 3:31 review cut from 12 DTRTC-branded Postiz uploads",
+      "evidence": "Higgsfield media ed749b56-3899-49f9-8cd9-8c6515e251a9; source list in local lab-file-002-source-manifest.md",
+      "verification": "720×1280 H.264/AAC upload confirmed; unpublished, visual/audio final review pending."
     }
   ],
   "blocked": [
     {
-      "item": "Fresh 20-minute audience gain",
-      "reason": "Saved content/stats.json last updated 1:52 AM ET. No authenticated analytics refresh mechanism or owner of stats writer is verified."
+      "item": "Counter-Strike 2 stream category and title change",
+      "reason": "Connected Twitch Postiz capability supports chat posts only. Kick integration absent. OBS WebSocket/control endpoint unavailable. No metadata was changed."
     },
     {
-      "item": "Full 30-day comparison",
-      "reason": "Saved measurement series begins Oct 8; Sep 10 baseline absent."
+      "item": "FACEIT demo inclusion",
+      "reason": "No verified Ian-owned FACEIT account, match ID, or demo link was found."
     },
     {
-      "item": "Published page visual check",
-      "reason": "Current browser/screen tool is unavailable and the web opener cannot access DTRTLab.com. Repository source is verified, but public rendering remains unchecked."
+      "item": "Grok Bot collaboration",
+      "reason": "Processes are running, but no supported task interface or listener was found; no job was sent."
+    },
+    {
+      "item": "Fresh audience gains",
+      "reason": "content/stats.json still has its latest saved reading at 1:52 AM ET; later gains cannot be measured."
+    },
+    {
+      "item": "Broadcast and public page verification",
+      "reason": "OBS scene was not changed and site browser/open access is unavailable."
     }
   ],
   "next_focus": [
-    "Verify the stats updater and obtain a newer public reading before claiming fresh gains.",
-    "Capture a stream ID and stream-start snapshot for the next session.",
-    "Visually check the published dashboard when browser access returns."
+    "Inspect the uploaded review cut for visual pacing and audio rights/levels before release.",
+    "Find supported stream metadata control and verify the saved category/title.",
+    "Capture a verified FACEIT source and Grok task interface before adding either to production."
   ]
 }
