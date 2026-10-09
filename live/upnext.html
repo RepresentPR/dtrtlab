@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>Up Next · OBS card</title>
+<style>
+/* OBS browser source: 520x170, transparent background. ?bg=1 adds a dark page background for previewing. */
+:root{--card:#15171A;--line:#25282D;--bone:#ECE7DA;--mute:#8C9097;--dim:#5E626A;--acid:#CFE35A}
+*{box-sizing:border-box;margin:0;padding:0}html,body{background:transparent}body.bg{background:#0D0E10;padding:20px}
+body{color:var(--bone);font-family:Inter,"Segoe UI Variable Text","Segoe UI",-apple-system,Arial,sans-serif;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+.c{width:520px;background:rgba(21,23,26,.94);border:1px solid var(--line);border-radius:14px;padding:16px 20px;display:none}
+.k{display:flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.14em;font-weight:700;color:var(--acid);text-transform:uppercase}.k i{width:8px;height:8px;border-radius:50%;background:var(--acid)}
+.r{display:flex;align-items:baseline;gap:14px;margin-top:8px}.t{font-size:24px;font-weight:700;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.cd{font-size:26px;font-weight:700}
+.s{font-size:13px;color:var(--mute);margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.n{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:13px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.n b{color:var(--mute);font-weight:600}
+</style></head><body>
+<div class="c" id="c"></div>
+<script>
+(function(){
+if(/[?&]bg=1/.test(location.search))document.body.className='bg';
+const TZ='America/New_York',esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function off(ms){const p={};new Intl.DateTimeFormat('en-US',{timeZone:TZ,hourCycle:'h23',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'}).formatToParts(new Date(ms)).forEach(x=>p[x.type]=x.value);return Date.UTC(+p.year,p.month-1,+p.day,+p.hour%24,+p.minute,+p.second)-ms;}
+function etMs(s){if(!s)return NaN;s=String(s);if(/[zZ]|[+-]\d\d:?\d\d$/.test(s))return Date.parse(s);const m=s.match(/^(\d{4})-(\d\d)-(\d\d)[ T](\d{1,2}):(\d\d)/);if(!m)return NaN;const g=Date.UTC(+m[1],m[2]-1,+m[3],+m[4],+m[5]);let t=g-off(g);t=g-off(t);return t;}
+const hm=ms=>new Date(ms).toLocaleTimeString('en-US',{timeZone:TZ,hour:'numeric',minute:'2-digit'});
+let D=null;
+function compute(now){const it=(D.items||[]).map(x=>Object.assign({},x,{t:etMs(x.time)})).filter(x=>!isNaN(x.t)).sort((a,b)=>a.t-b.t);
+ it.forEach((x,i)=>{x.e=x.end?etMs(x.end):(it[i+1]?it[i+1].t:x.t+30*60000);});
+ const manual=D.mode==='manual';
+ if(manual){it.forEach(x=>x.s=x.status||'later');}
+ else{it.forEach(x=>{const fixed=x.status==='done'||x.status==='skipped';x.s=fixed?'done':(now>=x.e?'done':(now>=x.t?'now':'later'));});
+  const nx=it.find(x=>x.s==='later');if(nx)nx.s='next';}
+ return it;}
+function cd(ms){if(ms<=0)return'soon';const s=Math.floor(ms/1000),h=Math.floor(s/3600),m=Math.floor(s%3600/60),p=n=>String(n).padStart(2,'0');return h?`${h}:${p(m)}:${p(s%60)}`:`${m}:${p(s%60)}`;}
+function render(){const c=document.getElementById('c');if(!D)return;const now=Date.now(),it=compute(now),nx=it.find(x=>x.s==='next'),cur=it.find(x=>x.s==='now');
+ if(!nx){c.style.display='none';return;}const after=it[it.indexOf(nx)+1];const ap=D.approximate===false?'':'~';
+ c.innerHTML=`<div class="k"><i></i>Up next · ${ap}${hm(nx.t)} ET</div><div class="r"><div class="t">${esc(nx.title)}</div><div class="cd">${cd(nx.t-now)}</div></div><div class="s">${esc(nx.group?nx.group+' · ':'')}${esc(nx.desc||'')}</div>${after?`<div class="n"><b>Then ${ap}${hm(after.t)}</b> · ${esc(after.title)}</div>`:''}`;c.style.display='block';}
+async function load(){try{const r=await fetch('/content/schedule.json?t='+Date.now(),{cache:'no-store'});if(r.ok)D=await r.json();}catch(e){}render();}
+load();setInterval(load,60000);setInterval(render,1000);
+})();
+</script></body></html>
