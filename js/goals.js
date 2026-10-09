@@ -25,7 +25,7 @@ var css='.gl{--a:#CFE35A;--c:#15171A;--l:#25282D;--t:#ECE7DA;--m:#8C9097;--d:#5E
 '.gl-p{font-size:10.5px;letter-spacing:.1em;font-weight:700;color:var(--m);border:1px solid var(--l);border-radius:9px;padding:2px 8px}'+
 '.gl-f{font-size:12px;color:var(--d);margin-top:12px;line-height:1.6}'+
 '@media(max-width:640px){.gl-t li{grid-template-columns:44px 1fr auto}}';
-function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&','<':'<','>':'>','"':'"'}[c]})}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return '&#'+c.charCodeAt(0)+';'})}
 function fmt(n){return n==null?'—':Number(n).toLocaleString('en-US')}
 function get(u){return fetch(u+(u.indexOf('?')<0?'?':'&')+'t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null})}
 function counts(G,S){var c={};var sn=(G&&G.snapshot)||{};Object.keys(sn).forEach(function(k){if(typeof sn[k]==='number')c[k]=sn[k]});
