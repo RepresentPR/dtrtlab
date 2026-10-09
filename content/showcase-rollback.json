@@ -5,8 +5,9 @@
   "baseline_blob_sha": "1a964c7fd93ddb8f6427624d1dfb61f0b69364cd",
   "baseline_commit": "a7f400036eebba7aafeade1f23ecc65a7579b159",
   "staged_page": "live/showcase.html",
-  "staged_commit": "509cd0a2d99250a12ae7d194189fcf6f75e5f50c",
+  "staged_commit": "5f76be4118e32969d9ecb02e1a53f831de7c5ed2",
   "obs_scene_backup": "OBS process was observed running, but no scene control or screen verification was available. No OBS scene, audio, output, or recording settings were changed.",
   "rollback": "Restore live/index.html from baseline commit only if this staged design is later promoted. The staged page can be removed or unlinked without changing the current dashboard.",
-  "staged_blob_sha": "7e22661b85486f1bb3fc049a92e654333176927b"
+  "staged_blob_sha": "bbac60aede18cbdb666627f32ef198fb844b18c7",
+  "note": "The staged public showcase now includes muted recorded replay and a link to the verified Lab File 002 YouTube release. OBS remains unchanged."
 }
