@@ -27,6 +27,13 @@ window.DTRT_SOCIALS = {
       enabled: true
     },
     {
+      id: "shorts",
+      label: "Shorts",
+      handle: "@DTRTLabYT",
+      url: "https://www.youtube.com/@DTRTLabYT/shorts",
+      enabled: true
+    },
+    {
       id: "x",
       label: "X",
       handle: "DTRTLab",
@@ -75,6 +82,8 @@ window.DTRT_ICONS = {
     '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 3h4.2v7.1L14.6 3H19l-7.3 8.1L19.2 21h-4.5l-6.5-7.4V21H4V3z"/></svg>',
   youtube:
     '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M23 12.2s0-3.2-.4-4.6c-.2-.9-.9-1.6-1.8-1.8C19.2 5.4 12 5.4 12 5.4s-7.2 0-8.8.4c-.9.2-1.6.9-1.8 1.8C1 9 1 12.2 1 12.2s0 3.2.4 4.6c.2.9.9 1.6 1.8 1.8 1.6.4 8.8.4 8.8.4s7.2 0 8.8-.4c.9-.2 1.6-.9 1.8-1.8.4-1.4.4-4.6.4-4.6zM9.8 15.5v-6.6l6.2 3.3-6.2 3.3z"/></svg>',
+  shorts:
+    '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M17.8 8.4 9 3.6a3.5 3.5 0 0 0-3.4 6.1l1 .5-1 .5A3.5 3.5 0 0 0 9 16.8l8.8 4.8a3.5 3.5 0 0 0 3.4-6.1l-1-.5 1-.5a3.5 3.5 0 0 0-3.4-6.1zM10 14.6V9.4l4.6 2.6-4.6 2.6z"/></svg>',
   x:
     '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M17.6 3H20.4l-6.6 7.5L21.5 21h-6.2l-4.8-6.3L5.4 21H2.6l7.1-8.1L2.2 3h6.3l4.4 5.8L17.6 3zm-1.1 16.2h1.7L7.6 4.7H5.8l10.7 14.5z"/></svg>',
   kofi:
