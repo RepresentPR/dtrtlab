@@ -1,0 +1,14 @@
+{
+ "_help": "Free Promo spotlight: Puerto Rico small businesses and creators. Only verified handles/URLs (Growth's verified rows). Add entries only with real, verified links.",
+ "hashtag": "#FreePromoPR",
+ "minutes": 20,
+ "show_seconds": 45,
+ "entries": [
+  {"name":"Loteria Movil","what":"Consumer app / lottery","links":{"website":"https://loteriamovil.com"},"tag":null},
+  {"name":"Raya Power","what":"Climate/energy","links":{"website":"https://rayapower.com","instagram":"https://www.instagram.com/rayapower_official/","linkedin":"https://www.linkedin.com/company/raya-power/"},"tag":"@rayapower_official"},
+  {"name":"Cultimar Technologies","what":"Aquaculture / climate","links":{"website":"https://cultimartechnologies.com","linkedin":"https://www.linkedin.com/company/cultimar-technologies/"},"tag":null},
+  {"name":"Diversia Health","what":"HealthTech / clinical trials","links":{"website":"https://diversiahealth.com","instagram":"https://www.instagram.com/diversiahealth/","linkedin":"https://www.linkedin.com/company/diversia-health/"},"tag":"@diversiahealth"},
+  {"name":"MBQ Pharma","what":"Biopharma","links":{"website":"https://mbqpharma.com"},"tag":null},
+  {"name":"Parallel18","what":"Accelerator (PR Science Trust)","links":{"website":"https://parallel18.com","instagram":"https://www.instagram.com/parallel18startups","linkedin":"https://www.linkedin.com/company/parallel18","youtube":"https://www.youtube.com/channel/UC7DhsLie2qLz3rFe4FqUGrQ"},"tag":"@parallel18startups"}
+ ]
+}
