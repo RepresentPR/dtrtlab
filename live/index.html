@@ -53,7 +53,8 @@ h1{font-size:clamp(36px,5vw,56px);font-weight:700;letter-spacing:-.02em;line-hei
 .fine{margin-top:16px;font-size:12px;color:var(--dim);line-height:1.6}
 @media (max-width:1100px){.stage{grid-template-columns:1fr}.chatf{min-height:460px;flex:none}.kp{grid-template-columns:repeat(3,minmax(0,1fr))}.two{grid-template-columns:1fr}}
 @media (max-width:640px){.kp{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.k{padding:16px}.rw{grid-template-columns:20px minmax(70px,1fr) 70px auto;font-size:14px;padding:0 16px}.ch{padding:16px 16px 0}.clock small,.mark span{display:none}.foot{gap:16px 28px}}
-</style></head>
+</style>
+<link rel="stylesheet" href="schedule.css?v=1"></head>
 <body>
 <header class="top"><a class="mark" href="../index.html"><i></i>DTRTLab.com <span>THE LAB FILES</span></a><span class="pill off" id="lp">CHECKING…</span><span class="clock"><small id="dt"></small><span id="tm"></span></span></header>
 <main class="wrap">
@@ -65,6 +66,7 @@ h1{font-size:clamp(36px,5vw,56px);font-weight:700;letter-spacing:-.02em;line-hei
    <div class="chatf"><iframe src="https://www.twitch.tv/embed/dtrtc/chat?parent=dtrtlab.com&parent=www.dtrtlab.com&darkpopout" title="DTRTC Twitch chat" loading="lazy"></iframe></div>
   </div>
  </section>
+ <section class="card sc" id="sched" aria-label="Up next on stream"></section>
  <section class="kp" id="kp" aria-label="Key numbers"></section>
  <section class="card gr" id="gr" aria-label="Audience growth"></section>
  <div class="two"><section class="card" id="race" aria-label="Platform reach"></section><section class="card" id="goals" aria-label="Follower goals"></section></div>
@@ -88,7 +90,7 @@ const ICON={twitch:'<svg viewBox="0 0 24 24"><path d="M4 2 2.5 6v14h5v3h3l3-3h4l
  flag:'<svg viewBox="0 0 24 24"><path d="M5 2h2v20H5zm3 1h12l-3 4 3 4H8z"/></svg>',
  goal:'<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 16a6 6 0 1 1 6-6 6 6 0 0 1-6 6zm0-9a3 3 0 1 0 3 3 3 3 0 0 0-3-3z"/></svg>'};
 const NM={youtube:'YouTube',tiktok:'TikTok',instagram:'Instagram',x:'X',twitch:'Twitch',kick:'Kick'};
-const fmt=n=>n==null?'—':Number(n).toLocaleString('en-US');const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt=n=>n==null?'—':Number(n).toLocaleString('en-US');const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&','<':'<','>':'>','"':'"'}[c]));
 const $=id=>document.getElementById(id);const et=(d,o)=>d.toLocaleString('en-US',Object.assign({timeZone:'America/New_York'},o));
 function tick(){const d=new Date();$('tm').textContent=et(d,{hour:'numeric',minute:'2-digit',second:'2-digit'})+' ET';$('dt').textContent=et(d,{weekday:'short',month:'short',day:'numeric'}).toUpperCase();}
 tick();setInterval(tick,1000);
@@ -127,5 +129,6 @@ async function liveCheck(){try{const t=await (await fetch('https://decapi.me/twi
 liveCheck();setInterval(liveCheck,120000);
 })();
 </script>
+<script defer src="schedule.js?v=1"></script>
 <script async src="../js/analytics.js?v=20261008e"></script>
 </body></html>
