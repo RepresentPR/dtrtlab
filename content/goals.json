@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "updated_at": "2026-10-09T01:45:00-04:00",
+  "title": "Follower Goals = Rewards",
+  "subtitle": "Every milestone unlocks something live on stream. Free to join, nothing to buy.",
+  "counts_source": "content/stats.json platforms[].followers (read live; snapshot below is only a fallback)",
+  "snapshot": { "at": "2026-10-09T00:57:56-04:00", "twitch": 37, "kick": 27, "youtube": 1300, "tiktok": 64 },
+  "fine_print": "Rewards are free live segments. Anything marked TBA is confirmed by Ian on stream before it happens. No purchase necessary for anything, ever.",
+  "ladders": [
+    {
+      "platform": "twitch", "label": "Twitch", "url": "https://www.twitch.tv/dtrtc", "auto_trigger": "live",
+      "tiers": [
+        { "at": 50,  "reward": "Open Q&A + Affiliate push", "detail": "Ask anything in chat for 15 minutes, plus the Twitch Affiliate unlock countdown.", "announce": "Q&A OPEN", "needs_approval": false },
+        { "at": 75,  "reward": "Chat picks the map", "detail": "Chat votes the next CS2 map and loadout, and Ian plays it.", "announce": "CHAT PICKS THE MAP", "needs_approval": false },
+        { "at": 100, "reward": "AFTERLIGHT reading + you pick Lab File #002", "detail": "A live chapter reading from AFTERLIGHT, then chat votes the next Lab File topic.", "announce": "STORY TIME + VOTE OPEN", "needs_approval": false },
+        { "at": 150, "reward": "Viewer games night", "detail": "Ian plays community lobbies with chat.", "announce": "VIEWER GAMES UNLOCKED", "needs_approval": false, "optional_addon": { "reward": "Small CS2 skin giveaway (never the knife)", "needs_approval": true, "approved": false } },
+        { "at": 250, "reward": "Q&A marathon", "detail": "A full hour of your questions, anything goes.", "announce": "Q&A MARATHON UNLOCKED", "needs_approval": false, "optional_addon": { "reward": "Behind-the-scenes shop / setup tour", "needs_approval": true, "approved": false } },
+        { "at": 500, "reward": "Lab Files Festival night", "detail": "A special event stream. Date and format announced by Ian.", "announce": "FESTIVAL NIGHT UNLOCKED", "needs_approval": true, "approved": false }
+      ]
+    },
+    {
+      "platform": "tiktok", "label": "TikTok", "url": "https://www.tiktok.com/@iananthonyfc", "auto_trigger": "stats",
+      "tiers": [
+        { "at": 100,  "reward": "How the Shop Board was built", "detail": "A behind-the-build video of the stream board and site.", "announce": "TIKTOK 100: BUILD VIDEO UNLOCKED", "needs_approval": false },
+        { "at": 250,  "reward": "Comment Q&A video", "detail": "Ian answers your TikTok comments in a reply video.", "announce": "Q&A OPEN", "needs_approval": false },
+        { "at": 500,  "reward": "Comments pick the next series", "detail": "Comment votes decide the next TikTok clip series.", "announce": "TIKTOK PICKS NEXT", "needs_approval": false },
+        { "at": 1000, "reward": "First TikTok LIVE", "detail": "1,000 followers unlocks TikTok LIVE from PC. First one is a Q&A.", "announce": "TIKTOK LIVE UNLOCKED", "needs_approval": false }
+      ]
+    },
+    {
+      "platform": "youtube", "label": "YouTube", "url": "https://www.youtube.com/@DTRTLabYT", "auto_trigger": "stats", "rounded": true,
+      "tiers": [
+        { "at": 1500, "reward": "You pick the Lab File thumbnail", "detail": "A community poll picks the title and thumbnail for the next Lab File.", "announce": "THUMBNAIL VOTE OPEN", "needs_approval": false },
+        { "at": 2000, "reward": "Afterlight After Hours premiere", "detail": "The AFTERLIGHT podcast episode premieres with live chat.", "announce": "PODCAST PREMIERE UNLOCKED", "needs_approval": true, "approved": false },
+        { "at": 2500, "reward": "Lab File #002 live premiere", "detail": "Watch the next Lab File together, with Ian in chat.", "announce": "PREMIERE NIGHT UNLOCKED", "needs_approval": false }
+      ]
+    },
+    {
+      "platform": "kick", "label": "Kick", "url": "https://kick.com/movebro", "auto_trigger": "live", "paused": true,
+      "tiers": [
+        { "at": 50,  "reward": "Kick-only Q&A", "detail": "15 minutes answering Kick chat first.", "announce": "Q&A OPEN", "needs_approval": false },
+        { "at": 75,  "reward": "Kick chat picks the map", "detail": "Kick chat votes the next CS2 map.", "announce": "KICK PICKS THE MAP", "needs_approval": false },
+        { "at": 100, "reward": "Kick viewer games night", "detail": "Ian plays with Kick viewers.", "announce": "VIEWER GAMES UNLOCKED", "needs_approval": false }
+      ]
+    }
+  ]
+}
