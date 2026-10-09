@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-09T07:07:00Z",
+  "site": "https://dtrtlab.com/live/",
+  "baseline_file": "live/index.html",
+  "baseline_blob_sha": "1a964c7fd93ddb8f6427624d1dfb61f0b69364cd",
+  "baseline_commit": "a7f400036eebba7aafeade1f23ecc65a7579b159",
+  "staged_page": "live/showcase.html",
+  "staged_commit": "de37cdaf56875fc7827da678ca41c841e2c7018f",
+  "obs_scene_backup": "No OBS scene data accessed or modified. Existing OBS scene remains the live rollback path.",
+  "rollback": "Restore live/index.html from baseline commit only if this staged design is later promoted. The staged page can be removed or unlinked without changing the current dashboard."
+}
