@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "report_at": "2026-10-09T07:49:20Z",
+  "report_at": "2026-10-09T07:50:06Z",
   "title": "Audience and site progress",
   "metrics": {
     "latest_observation_at": "2026-10-09T01:52:29-04:00",
@@ -16,7 +16,7 @@
     {
       "item": "Published Lab File 002 on the verified YouTube channel",
       "evidence": "https://www.youtube.com/watch?v=3nDFZ0ZcJ1E ; Postiz post cmv0nw9th01imp60ydlt7h4xf",
-      "verification": "Postiz state PUBLISHED with no error; public @DTRTLabYT Videos page shows the new 3:51 video and exact title."
+      "verification": "Postiz state PUBLISHED with no error; public @DTRTLabYT Videos page shows the new 3:51 video; YouTube watch page player status OK, length 230 seconds, 720p available."
     },
     {
       "item": "Revised the 12-clip review into a caption-led episode",
@@ -53,8 +53,8 @@
     }
   ],
   "next_focus": [
-    "Verify the published video's processing and viewer-facing playback after YouTube finishes transcoding.",
-    "Acquire verified new owned footage and clear audio rights before the next distinct episode.",
+    "Collect meaningful post-publication views and retention once a newer verified analytics snapshot exists.",
+    "Acquire verified new owned footage and clear audio rights before a distinct follow-up episode.",
     "Use an authorized signed-in Twitch stream-info control to set Counter-Strike 2 and verify publicly."
   ]
 }
