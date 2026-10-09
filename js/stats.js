@@ -13,6 +13,9 @@
     '<div class="kpi"><p class="kpi-label">Followers \u00b7 6 platforms</p><p class="kpi-num" id="kpi-followers">\u2014</p><p class="kpi-sub">Twitch \u00b7 Kick \u00b7 YouTube \u00b7 TikTok \u00b7 IG \u00b7 X</p></div>',
     '<a class="kpi kpi-link" id="kpi-lf001" href="https://www.youtube.com/watch?v=lsExh8z7fVI" rel="noopener noreferrer" target="_blank"><p class="kpi-label">Lab File #001 \u00b7 YouTube</p><p class="kpi-num" id="kpi-lf001-views">New</p><p class="kpi-sub">Come On, Code \u25b8 watch</p></a>',
     '</div>',
+    '<div class="growth" id="growth"><div class="growth-head"><p class="kpi-label">Growth // Total views</p><p class="growth-delta" id="growth-delta">\u2014</p></div>',
+    '<div class="growth-chart" id="growth-chart"><svg class="growth-svg" id="growth-svg" viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true"></svg><div class="growth-pins" id="growth-pins"></div></div>',
+    '<div class="growth-axis" id="growth-axis"></div><p class="growth-note" id="growth-note"></p></div>',
     '<div class="plat-grid" id="plat-grid"></div>',
     '<div class="clip-pair">',
     '<a class="exhibit-card" id="top-clip" href="#clips" rel="noopener noreferrer" target="_blank"><span class="kpi-label">Top clip</span><span class="ex-title" id="top-clip-title">\u2014</span><span class="ex-meta" id="top-clip-meta"></span></a>',
@@ -72,6 +75,53 @@
       '<circle class="spark-dot" r="2.4" cx="' + last[0] + '" cy="' + last[1] + '"/>';
   }
 
+
+  function tparse(s) { // "YYYY-MM-DD HH:MM" in ET
+    var m = /^(\d{4})-(\d\d)-(\d\d) (\d\d):(\d\d)/.exec(s || "");
+    return m ? Date.parse(m[1] + "-" + m[2] + "-" + m[3] + "T" + m[4] + ":" + m[5] + ":00-04:00") : NaN;
+  }
+  function tlabel(ms, withDay) {
+    var d = new Date(ms - 4 * 3600e3), h = d.getUTCHours(), mi = d.getUTCMinutes();
+    var hh = (h % 12 || 12) + (mi ? ":" + (mi < 10 ? "0" : "") + mi : "") + (h < 12 ? "a" : "p");
+    var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    return withDay ? days[d.getUTCDay()] + " " + hh : hh;
+  }
+  function growth(points) {
+    var svg = $("growth-svg"), pins = $("growth-pins"), axis = $("growth-axis");
+    if (!svg) return;
+    var P = (points || []).map(function (p) { return { t: tparse(p.at), v: p.views }; })
+      .filter(function (p) { return !isNaN(p.t) && p.v != null; });
+    if (P.length < 2) { $("growth").style.display = "none"; return; }
+    $("growth").style.display = "";
+    var t0 = P[0].t, t1 = P[P.length - 1].t, ts = (t1 - t0) || 1;
+    var vmax = Math.max.apply(null, P.map(function (p) { return p.v; })) || 1;
+    var top = vmax * 1.12;
+    function X(t) { return ((t - t0) / ts) * 1000; }
+    function Y(v) { return 196 - (v / top) * 186; }
+    var line = P.map(function (p, i) { return (i ? "L" : "M") + X(p.t).toFixed(1) + " " + Y(p.v).toFixed(1); }).join(" ");
+    var grid = [0.25, 0.5, 0.75, 1].map(function (f) {
+      var y = Y(vmax * f).toFixed(1); return '<line class="g-grid" x1="0" x2="1000" y1="' + y + '" y2="' + y + '"/>';
+    }).join("");
+    svg.innerHTML = grid + '<path class="g-area" d="' + line + " L1000 200 L0 200Z" + '"/><path class="g-line" d="' + line + '"/>';
+    pins.innerHTML = P.map(function (p, i) {
+      var last = i === P.length - 1;
+      return '<span class="g-pin' + (last ? " is-last" : "") + '" style="left:' + (X(p.t) / 10) + "%;top:" + (Y(p.v) / 2) + '%"></span>';
+    }).join("") +
+      '<span class="g-val g-start" style="top:' + (Y(P[0].v) / 2) + '%">' + fmt(P[0].v) + "</span>" +
+      '<span class="g-val g-end" style="top:' + (Y(P[P.length - 1].v) / 2) + '%">' + fmt(P[P.length - 1].v) + "</span>" +
+      '<span class="g-max">' + fmt(vmax) + "</span>";
+    var n = 4, ticks = [];
+    for (var i = 0; i <= n; i++) ticks.push(t0 + (ts * i) / n);
+    var lastDay = null;
+    axis.innerHTML = ticks.map(function (t, i) {
+      var day = new Date(t - 4 * 3600e3).getUTCDate(), wd = day !== lastDay; lastDay = day;
+      return '<span style="left:' + (i * 100 / n) + '%">' + tlabel(t, wd) + "</span>";
+    }).join("");
+    var d = P[P.length - 1].v - P[0].v;
+    $("growth-delta").innerHTML = "<b>+" + fmt(d) + "</b> views since first post";
+    $("growth-note").textContent = P.length + " data points \u00b7 ET \u00b7 views summed across tracked posts";
+  }
+
   function badges() {
     [["twitch", live.twitch, live.tv], ["kick", live.kick, live.kv]].forEach(function (b) {
       var el = $("badge-" + b[0]);
@@ -98,6 +148,7 @@
     var lf = data.lab_file_001 || {};
     $("kpi-lf001-views").textContent = lf.views != null ? fmt(lf.views) : "New";
     spark(data.history);
+    growth(data.history);
 
     $("plat-grid").innerHTML = (data.platforms || []).map(function (p) {
       var f = p.followers != null ? fmt(p.followers) : "\u2014";
