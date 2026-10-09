@@ -14,23 +14,23 @@ function compute(now){const it=(D.items||[]).map(x=>Object.assign({},x,{t:etMs(x
   const nx=it.find(x=>x.s==='later');if(nx)nx.s='next';}
  return it;}
 function goals(){const G=D.goals||[];if(!G.length)return'';const P=(stats&&stats.platforms)||[];
- return '<div class="sc-gl"><div class="sc-k">Milestones</div>'+G.map(g=>{const p=P.find(q=>q.id===g.platform)||{},n=p[g.metric||'followers'];const has=n!=null&&g.target;const pct=has?Math.max(3,Math.min(100,n/g.target*100)):0;
- return `<div class="sc-gr"><div><b>${esc(g.title)}</b>${g.desc?`<small>${esc(g.desc)}</small>`:''}</div><div class="v">${has?(n>=g.target?'Reached ✓':Number(n).toLocaleString('en-US')+`<small> / ${Number(g.target).toLocaleString('en-US')}</small>`):'Goal: '+Number(g.target).toLocaleString('en-US')}</div>${has?`<div class="sc-bar"><i style="width:${pct.toFixed(1)}%"></i></div>`:''}</div>`}).join('')+'</div>';}
+ return '<div class="sc-gl"><div class="sc-k">Goals</div>'+G.map(g=>{const p=P.find(q=>q.id===g.platform)||{},n=p[g.metric||'followers'];const has=n!=null&&g.target;const pct=has?Math.max(3,Math.min(100,n/g.target*100)):0;
+ return `<div class="sc-gr"><div><b>${esc(g.title)}</b>${g.desc?`<small>${esc(g.desc)}</small>`:''}</div><div class="v">${has?(n>=g.target?'Reached ✓':Number(n).toLocaleString('en-US')+` ${g.metric==='views'?'views':'followers'}<small>goal ${Number(g.target).toLocaleString('en-US')}</small>`):'Goal: '+Number(g.target).toLocaleString('en-US')}</div>${has?`<div class="sc-bar"><i style="width:${pct.toFixed(1)}%"></i></div>`:''}</div>`}).join('')+'</div>';}
 function cd(ms){if(ms<=0)return'any minute';const s=Math.floor(ms/1000),h=Math.floor(s/3600),m=Math.floor(s%3600/60),ss=s%60,p=n=>String(n).padStart(2,'0');return h?`${h}:${p(m)}:${p(ss)}`:`${m}:${p(ss)}`;}
 const ap=()=>D.approximate===false?'':'~';
 function render(){if(!D)return;const now=Date.now(),it=compute(now),cur=it.find(x=>x.s==='now'),nx=it.find(x=>x.s==='next');
- const lbl={now:'NOW',next:'NEXT',later:'LATER',done:'DONE'};
+ const lbl={now:'On now',next:'Next',later:'Later',done:'Done'};
  let hero='';
  if(cur)hero+=`<div class="sc-hero on"><div class="sc-k"><i></i>On now · since ${ap()}${hm(cur.t)} ET</div><div class="sc-t">${esc(cur.title)}</div>${cur.group?`<div class="sc-g">${esc(cur.group)}</div>`:''}${cur.desc?`<div class="sc-d">${esc(cur.desc)}</div>`:''}</div>`;
- if(nx)hero+=`<div class="sc-hero"><div class="sc-k">Up next · ${ap()}${hm(nx.t)} ET</div><div class="sc-t">${esc(nx.title)}</div>${nx.group?`<div class="sc-g">${esc(nx.group)}</div>`:''}<div class="sc-cd"><b data-cd="${nx.t}">${cd(nx.t-now)}</b><span>${nx.t-now>0?'COUNTDOWN':''}</span></div></div>`;
- if(!cur&&!nx)hero=`<div class="sc-hero"><div class="sc-k">Schedule</div><div class="sc-t">That's a wrap for tonight</div><div class="sc-d">The next run of show will be posted here. Follow on Twitch to catch it live.</div></div>`;
+ if(nx)hero+=`<div class="sc-hero"><div class="sc-k">Up next · ${ap()}${hm(nx.t)} ET</div><div class="sc-t">${esc(nx.title)}</div>${nx.group?`<div class="sc-g">${esc(nx.group)}</div>`:''}<div class="sc-cd"><b data-cd="${nx.t}">${cd(nx.t-now)}</b><span>${nx.t-now>0?'until it starts':''}</span></div></div>`;
+ if(!cur&&!nx)hero=`<div class="sc-hero"><div class="sc-k">Schedule</div><div class="sc-t">That's all for tonight</div><div class="sc-d">The next plan will be posted here. Follow on Twitch to catch it live.</div></div>`;
  const done=it.filter(x=>x.s==='done'),hid=showDone?0:Math.max(0,done.length-1);let g=null,rows='';
  if(hid)rows+=`<button class="sc-more" data-more>Show ${hid} earlier item${hid>1?'s':''}</button>`;
  it.forEach((x,i)=>{if(x.s==='done'&&!showDone&&done.indexOf(x)<hid)return;const grp=x.group||null;if(grp&&grp!==g)rows+=`<div class="sc-grp">${esc(grp)}</div>`;g=grp;
   const t=x.url&&/^https:/.test(x.url)?`<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.title)}</a>`:esc(x.title);
   rows+=`<div class="sc-it ${x.s}"><span class="tm">${ap()}${hm(x.t)}</span><span class="dt"></span><div><div class="tt">${t}</div>${x.desc?`<div class="ds">${esc(x.desc)}</div>`:''}</div><span class="st">${lbl[x.s]||''}</span></div>`;});
  const up=D.updated_at?new Date(etMs(D.updated_at)):null;
- box.innerHTML=`<div class="ch"><h2>${esc(D.title||'Up Next on Stream')}</h2><span class="s">RUN OF SHOW · EASTERN TIME</span><span class="b">${it.length} ITEMS</span></div><div class="sc-in"><div class="sc-l">${hero}${goals()}<p class="sc-fine">${esc(D.note||'Times are approximate (ET).')}${up&&!isNaN(up)?' Updated '+hm(+up)+' ET.':''}</p></div><div class="sc-r">${rows}</div></div>`;
+ box.innerHTML=`<div class="ch"><h2>${esc(D.title||'Up Next on Stream')}</h2><span class="s">What is this? What Ian streams today. Times are Eastern (New York).</span><span class="b">${it.length} items</span></div><div class="sc-in"><div class="sc-l">${hero}${goals()}<p class="sc-fine">${esc(D.note||'Times are approximate (ET).')}${up&&!isNaN(up)?' Updated '+hm(+up)+' ET.':''}</p></div><div class="sc-r">${rows}</div></div>`;
  const b=box.querySelector('[data-more]');if(b)b.onclick=()=>{showDone=true;render();};
  box.style.display='';}
 let last='';

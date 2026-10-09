@@ -53,12 +53,35 @@ h1{font-size:clamp(36px,5vw,56px);font-weight:700;letter-spacing:-.02em;line-hei
 .fine{margin-top:16px;font-size:12px;color:var(--dim);line-height:1.6}
 @media (max-width:1100px){.stage{grid-template-columns:1fr}.chatf{min-height:460px;flex:none}.kp{grid-template-columns:repeat(3,minmax(0,1fr))}.two{grid-template-columns:1fr}}
 @media (max-width:640px){.kp{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.k{padding:16px}.rw{grid-template-columns:20px minmax(70px,1fr) 70px auto;font-size:14px;padding:0 16px}.ch{padding:16px 16px 0}.clock small,.mark span{display:none}.foot{gap:16px 28px}}
+
+/* calm + accessible layer (WCAG AA contrast, 18px text, big taps, no pulsing) */
+:root{--mute:#b3b7be;--dim:#a2a6ad}
+body{font-size:18px;line-height:1.6}
+.eb{font-size:17px;letter-spacing:0;font-weight:500;color:var(--bone);max-width:44rem}
+.sub{font-size:19px;color:#d0d3d8}
+.upd,.fine,.ch .s,.ch .b,.clock small,.mark span,.cap,.foot small,.k .l,.sp .cap{font-size:16px;letter-spacing:0;text-transform:none}
+.fine{color:var(--mute);line-height:1.6}
+.k .l{color:#d0d3d8}.k .n{font-size:clamp(30px,3.4vw,44px)}
+.ch h2{font-size:24px;line-height:1.2}.ch .b{border:0;padding:0;color:var(--acid);font-weight:600}
+.ch .wi{flex-basis:100%;margin:2px 0 0;font-size:17px;color:#d0d3d8}
+.rw{font-size:17px;min-height:56px}.rw svg{width:22px;height:22px}.rw .v{font-size:17px}.rw .v small{display:block;font-size:15px;color:var(--mute);text-align:right}
+.rw{grid-template-columns:26px minmax(90px,130px) minmax(50px,1fr) auto}
+.bar{height:12px;border-radius:6px}.bar i{border-radius:6px}.tag{font-size:15px;letter-spacing:0}
+.pill{height:34px;font-size:15px;letter-spacing:0;padding:0 14px}
+.live i,.pu{animation:none!important}
+.foot a{font-size:18px;min-height:48px}.foot svg{width:24px;height:24px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #CFE35A;outline-offset:3px;border-radius:4px}
+.card{border-radius:12px}
+.wrap{padding-bottom:64px}
+.two,.kp,.stage{gap:24px}
+@media(max-width:640px){body{font-size:18px}.rw{grid-template-columns:24px minmax(70px,1fr) auto;font-size:17px;padding:0 16px}.rw .bar{grid-column:2/-1;grid-row:2;margin-bottom:10px}.rw svg{grid-row:1}.kp{grid-template-columns:1fr 1fr}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
-<link rel="stylesheet" href="schedule.css?v=1"></head>
+<link rel="stylesheet" href="schedule.css?v=2"><link rel="stylesheet" href="../css/calm.css?v=20261009c"></head>
 <body>
-<header class="top"><a class="mark" href="../index.html"><i></i>DTRTLab.com <span>THE LAB FILES</span></a><span class="pill off" id="lp">CHECKING…</span><span class="clock"><small id="dt"></small><span id="tm"></span></span></header>
+<header class="top"><a class="mark" href="../index.html"><i></i>DTRTLab.com <span>THE LAB FILES</span></a><span class="pill off" id="lp">Checking…</span><span class="clock"><small id="dt"></small><span id="tm"></span></span></header>
 <main class="wrap">
- <section class="hero"><div><div class="eb">LIVE BROADCAST</div><h1>Channel Dashboard</h1><p class="sub">Watch DTRTC live, plus the latest recorded audience growth across platforms.</p></div><span class="upd" id="upd"></span></section>
+ <section class="hero"><div><div class="eb">What is this? Watch Ian live, then see how the channel is growing.</div><h1>Channel Dashboard</h1><p class="sub">The stream is below. Under it are real numbers, in plain words.</p></div><span class="upd" id="upd"></span></section>
  <section class="stage" aria-label="Live stream">
   <div class="frame"><iframe src="https://player.twitch.tv/?channel=dtrtc&parent=dtrtlab.com&parent=www.dtrtlab.com&muted=true" allowfullscreen title="DTRTC live on Twitch" loading="lazy"></iframe></div>
   <div class="side">
@@ -70,7 +93,7 @@ h1{font-size:clamp(36px,5vw,56px);font-weight:700;letter-spacing:-.02em;line-hei
  <section class="kp" id="kp" aria-label="Key numbers"></section>
  <section class="card gr" id="gr" aria-label="Audience growth"></section>
  <div class="two"><section class="card" id="race" aria-label="Platform reach"></section><section class="card" id="goals" aria-label="Follower goals"></section></div>
- <section class="card" id="clipsfeed" aria-label="Latest clips" style="margin-top:20px;padding:20px 22px"><div class="ch" style="padding:0 0 14px"><h2>Latest clips</h2><span class="s">FRESH FROM THE STREAM · NEWEST FIRST</span></div><div data-latest-clips></div></section>
+ <section class="card" id="clipsfeed" aria-label="Latest clips" style="margin-top:20px;padding:20px 22px"><div class="ch" style="padding:0 0 14px"><h2>Latest clips</h2><span class="s">Newest first</span><p class="wi">What is this? The newest short videos from the stream.</p></div><div data-latest-clips></div></section>
  <section id="rewards" data-goals style="margin-top:28px" aria-label="Follower goal rewards"></section>
  <nav class="foot" aria-label="Channels">
   <a href="https://www.twitch.tv/dtrtc" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M4 2 2.5 6v14h5v3h3l3-3h4l5-5V2H4zm16 12-3 3h-4.5l-3 3v-3H5.5V4H20v10zM16 7.5h2v5.5h-2zm-5.5 0h2v5.5h-2z"/></svg><span><small>TWITCH</small>twitch.tv/dtrtc</span></a>
@@ -78,7 +101,7 @@ h1{font-size:clamp(36px,5vw,56px);font-weight:700;letter-spacing:-.02em;line-hei
   <a href="../index.html"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 2c.9 1.2 1.6 2.5 2 4h-4c.4-1.5 1.1-2.8 2-4zM4.3 14a8 8 0 0 1 0-4h3.5a16 16 0 0 0 0 4zm5.5 0a14 14 0 0 1 0-4h4.4a14 14 0 0 1 0 4zm6.4 0a16 16 0 0 0 0-4h3.5a8 8 0 0 1 0 4z"/></svg><span><small>WEBSITE</small>DTRTLab.com</span></a>
   <a href="https://kick.com/movebro" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M3 2h6v6h2V5h2V2h6v7h-2v2h-2v2h2v2h2v7h-6v-3h-2v-3H9v6H3z"/></svg><span><small>KICK</small>kick.com/movebro</span></a>
  </nav>
- <p class="fine" id="fine">Public counts only, refreshed from <a href="../content/stats.json">content/stats.json</a>. Views are summed from tracked posts; YouTube rounds subscriber counts.</p>
+ <p class="fine" id="fine">Only public counts. Views add up our clips on each site. YouTube rounds its follower number, so it has a + sign. Raw numbers: <a href="../content/stats.json">stats file</a>.</p>
 </main>
 <script>
 (function(){
@@ -94,28 +117,28 @@ const ICON={twitch:'<svg viewBox="0 0 24 24"><path d="M4 2 2.5 6v14h5v3h3l3-3h4l
 const NM={youtube:'YouTube',tiktok:'TikTok',instagram:'Instagram',x:'X',twitch:'Twitch',kick:'Kick'};
 const fmt=n=>n==null?'—':Number(n).toLocaleString('en-US');const esc=s=>String(s??'').replace(/[&<>"]/g,c=>'&#'+c.charCodeAt(0)+';');
 const $=id=>document.getElementById(id);const et=(d,o)=>d.toLocaleString('en-US',Object.assign({timeZone:'America/New_York'},o));
-function tick(){const d=new Date();$('tm').textContent=et(d,{hour:'numeric',minute:'2-digit',second:'2-digit'})+' ET';$('dt').textContent=et(d,{weekday:'short',month:'short',day:'numeric'}).toUpperCase();}
+function tick(){const d=new Date();$('tm').textContent=et(d,{hour:'numeric',minute:'2-digit',second:'2-digit'})+' ET';$('dt').textContent=et(d,{weekday:'short',month:'short',day:'numeric'});}
 tick();setInterval(tick,1000);
 const MS=[10,25,50,75,100,150,200,250,500,750,1000,1500,2000,2500,5000,7500,10000,25000,50000,100000];const nextMs=n=>MS.find(m=>m>n)||Math.ceil((n+1)/50000)*50000;
-const ch=(t,s,b)=>`<div class="ch"><h2>${t}</h2>${s?`<span class="s">${s}</span>`:''}${b!=null?`<span class="b">${b}</span>`:''}</div>`;
+const ch=(t,s,b,w)=>`<div class="ch"><h2>${t}</h2>${s?`<span class="s">${s}</span>`:''}${b!=null?`<span class="b">${b}</span>`:''}${w?`<p class="wi">What is this? ${w}</p>`:''}</div>`;
 function render(S){const T=S.totals||{},P=S.platforms||[],R=P.filter(p=>p.views!=null).sort((a,b)=>b.views-a.views),tw=P.find(p=>p.id==='twitch')||{},lf=S.lab_file_001;
- const tiles=[[fmt(T.views),'Total views',1],[fmt(T.followers),'Total followers'],[R[0]?NM[R[0].id]:'—','Top platform'],[fmt(tw.followers),'Twitch followers'],[lf&&lf.views!=null?fmt(lf.views):'Out now','Lab File #001']];
+ const tiles=[[fmt(T.views),'Total views (all sites)',1],[fmt(T.followers),'Total followers (all sites)'],[R[0]?NM[R[0].id]:'—','Site with most views'],[fmt(tw.followers),'Followers on Twitch'],[lf&&lf.views!=null?fmt(lf.views):'Out now','Views on first video (Lab File #001)']];
  $('kp').innerHTML=tiles.map(t=>`<div class="card k${t[2]?' acc':''}"><div class="l">${t[1]}</div><div class="n">${esc(t[0])}</div></div>`).join('');
  const tt=x=>Date.parse(String(x.at).replace(' ','T')+(String(x.at).length<=16?':00-04:00':''));
  const H=(S.history||[]).filter(p=>p.views!=null).map(p=>({t:tt(p),v:p.views})).filter(p=>!isNaN(p.t));
  if(H.length>=2){const t0=H[0].t,t1=H[H.length-1].t,v1=Math.max(...H.map(p=>p.v))||1,W=1200,Hh=200,x=t=>50+(t-t0)/Math.max(1,t1-t0)*(W-150),y=v=>Hh-10-v/v1*(Hh-30);
   const pts=H.map(p=>[x(p.t),y(p.v)]),line=pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');
-  const grid=[0,.5,1].map(f=>`<line x1="50" x2="${W-100}" y1="${y(v1*f)}" y2="${y(v1*f)}" stroke="#23262b"/><text x="0" y="${y(v1*f)+4}" fill="#5E626A" font-size="13">${fmt(Math.round(v1*f))}</text>`).join('');
+  const grid=[0,.5,1].map(f=>`<line x1="50" x2="${W-100}" y1="${y(v1*f)}" y2="${y(v1*f)}" stroke="#23262b"/><text x="0" y="${y(v1*f)+4}" fill="#b3b7be" font-size="22">${fmt(Math.round(v1*f))}</text>`).join('');
   const tl=ms=>et(new Date(ms),{weekday:'short',hour:'numeric',minute:'2-digit'});const mins=Math.round((t1-t0)/60000),dur=(mins>=60?Math.floor(mins/60)+'h ':'')+(mins%60)+'m',lp=pts[pts.length-1];
-  $('gr').innerHTML=ch('Audience growth','TOTAL VIEWS ACROSS PLATFORMS',`+${fmt(H[H.length-1].v-H[0].v)} IN ${dur.toUpperCase()}`)+`<svg viewBox="0 0 ${W} ${Hh+28}" role="img" aria-label="Total views over time"><defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CFE35A" stop-opacity=".18"/><stop offset="1" stop-color="#CFE35A" stop-opacity="0"/></linearGradient></defs>${grid}<path d="${line} L${lp[0]} ${Hh} L${pts[0][0]} ${Hh} Z" fill="url(#ga)"/><path d="${line}" fill="none" stroke="#CFE35A" stroke-width="2.5" stroke-linejoin="round"/>${pts.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="${i==pts.length-1?6:3.5}" fill="${i==pts.length-1?'#CFE35A':'#15171A'}" stroke="#CFE35A" stroke-width="2"/>`).join('')}<text x="${lp[0]+14}" y="${lp[1]+6}" fill="#ECE7DA" font-size="20" font-weight="700">${fmt(H[H.length-1].v)}</text><text x="50" y="${Hh+24}" fill="#5E626A" font-size="13">${tl(t0)}</text><text x="${W-100}" y="${Hh+24}" fill="#5E626A" font-size="13" text-anchor="end">${tl(t1)}</text></svg>`;}
+  $('gr').innerHTML=ch('Views over time','All sites added together',`+${fmt(H[H.length-1].v-H[0].v)} views in ${dur}`,'A line that goes up when more people watch our clips.')+`<svg viewBox="0 0 ${W} ${Hh+28}" role="img" aria-label="Total views over time"><defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CFE35A" stop-opacity=".18"/><stop offset="1" stop-color="#CFE35A" stop-opacity="0"/></linearGradient></defs>${grid}<path d="${line} L${lp[0]} ${Hh} L${pts[0][0]} ${Hh} Z" fill="url(#ga)"/><path d="${line}" fill="none" stroke="#CFE35A" stroke-width="2.5" stroke-linejoin="round"/>${pts.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="${i==pts.length-1?6:3.5}" fill="${i==pts.length-1?'#CFE35A':'#15171A'}" stroke="#CFE35A" stroke-width="2"/>`).join('')}<text x="${lp[0]+14}" y="${lp[1]+6}" fill="#ECE7DA" font-size="20" font-weight="700">${fmt(H[H.length-1].v)}</text><text x="50" y="${Hh+24}" fill="#b3b7be" font-size="22">${tl(t0)}</text><text x="${W-100}" y="${Hh+24}" fill="#b3b7be" font-size="22" text-anchor="end">${tl(t1)}</text></svg>`;}
  else $('gr').style.display='none';
  const mx=(R[0]&&R[0].views)||1;
- $('race').innerHTML=ch('Platform reach','VIEWS BY PLATFORM',R.length+' PLATFORMS')+'<div class="rows">'+R.map((p,i)=>`<div class="rw${i==0?' lead':''}">${ICON[p.id]||''}<span>${esc(NM[p.id]||p.label)}${i==0?'<span class="tag">#1</span>':''}</span><span class="bar"><i data-w="${Math.max(2,p.views/mx*100).toFixed(1)}"></i></span><span class="v">${fmt(p.views)}</span></div>`).join('')+'</div>';
+ $('race').innerHTML=ch('Which site gets the most views?','Biggest first',R.length+' sites','Bars show views on each site. A longer bar means more views.')+'<div class="rows">'+R.map((p,i)=>`<div class="rw${i==0?' lead':''}">${ICON[p.id]||''}<span>${esc(NM[p.id]||p.label)}${i==0?'<span class="tag">#1</span>':''}</span><span class="bar"><i data-w="${Math.max(2,p.views/mx*100).toFixed(1)}"></i></span><span class="v">${fmt(p.views)} views</span></div>`).join('')+'</div>';
  const G=P.filter(p=>p.followers!=null);
- $('goals').innerHTML=ch('Follower goals','NEXT MILESTONE',G.length+' PLATFORMS')+'<div class="rows">'+G.map(p=>{const n=p.followers,g=nextMs(n),prev=[0,...MS].filter(m=>m<=n).pop()||0,pct=Math.max(3,Math.min(100,(n-prev)/((g-prev)||1)*100));return `<div class="rw">${ICON[p.id]||''}<span>${esc(NM[p.id]||p.label)}</span><span class="bar"><i data-w="${pct.toFixed(1)}"></i></span><span class="v">${fmt(n)}${p.followers_rounded?'+':''}<small> / ${fmt(g)}</small></span></div>`}).join('')+'</div>';
+ $('goals').innerHTML=ch('Follower goals','Followers now, and the next goal',G.length+' sites','A follower is someone who chose to follow us. Each goal is the next round number.')+'<div class="rows">'+G.map(p=>{const n=p.followers,g=nextMs(n),prev=[0,...MS].filter(m=>m<=n).pop()||0,pct=Math.max(3,Math.min(100,(n-prev)/((g-prev)||1)*100));return `<div class="rw">${ICON[p.id]||''}<span>${esc(NM[p.id]||p.label)}</span><span class="bar"><i data-w="${pct.toFixed(1)}"></i></span><span class="v">${fmt(n)}${p.followers_rounded?'+':''} followers<small>goal ${fmt(g)}</small></span></div>`}).join('')+'</div>';
  setTimeout(()=>document.querySelectorAll('[data-w]').forEach(e=>e.style.width=e.dataset.w+'%'),150);
- if(S.generated_at){const d=new Date(S.generated_at);if(!isNaN(d))$('upd').textContent='DATA SNAPSHOT UPDATED '+et(d,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}).toUpperCase()+' ET';}}
-async function load(){try{const r=await fetch('../content/stats.json?t='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('stats unavailable');render(await r.json());}catch(e){$('upd').textContent=$('kp').childElementCount?'DATA REFRESH UNAVAILABLE · LAST RECORDED COUNTS':'DATA UNAVAILABLE';}}
+ if(S.generated_at){const d=new Date(S.generated_at);if(!isNaN(d))$('upd').textContent='Numbers updated '+et(d,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+' Eastern time';}}
+async function load(){try{const r=await fetch('../content/stats.json?t='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('stats unavailable');render(await r.json());}catch(e){$('upd').textContent=$('kp').childElementCount?'Could not refresh. Showing the last numbers we saved.':'Numbers are not available right now.';}}
 load();setInterval(load,5*60*1000);
 let SP={label:'Presented by',rotate_seconds:8,sponsors:[]},spI=0;
 const spList=()=>(SP.sponsors||[]).filter(s=>s&&(s.logo||s.name)&&s.active!==false);
@@ -127,12 +150,13 @@ function spShow(){const L=spList(),a=$('spa');$('splbl').textContent=SP.label||'
 async function sponsors(){try{const r=await fetch('../content/sponsors.json?t='+Date.now(),{cache:'no-store'});if(r.ok)SP=Object.assign(SP,await r.json());}catch(e){}spShow();}
 sponsors();setInterval(()=>{if(spList().length>1){spI++;spShow();}},8000);
 async function liveCheck(){try{const t=await (await fetch('https://decapi.me/twitch/uptime/dtrtc?t='+Date.now(),{cache:'no-store'})).text();const on=!/offline|error|not found/i.test(t)&&/\d/.test(t);
- $('lp').className='pill '+(on?'live':'off');$('lp').innerHTML=on?'<i></i>LIVE · '+esc(t.replace(/,.*$/,'').toUpperCase()):'OFFLINE';}catch(e){$('lp').className='pill off';$('lp').textContent='TWITCH';}}
+ $('lp').className='pill '+(on?'live':'off');$('lp').innerHTML=on?'<i></i>Live now · '+esc(t.replace(/,.*$/,'')):'Not live right now';}catch(e){$('lp').className='pill off';$('lp').textContent='Twitch';}}
 liveCheck();setInterval(liveCheck,120000);
 })();
 </script>
-<script defer src="schedule.js?v=1"></script>
+<script defer src="schedule.js?v=2"></script>
 <script defer src="../js/goals.js?v=20261009b"></script>
+<script defer src="../js/calm.js?v=20261009c"></script>
 <script async src="../js/analytics.js?v=20261008e"></script>
 <script defer src="../js/latest-clips.js?v=20261009a"></script>
 </body></html>

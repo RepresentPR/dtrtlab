@@ -65,6 +65,7 @@
   <link rel="stylesheet" href="css/lab.css?v=20261008e">
   <link rel="stylesheet" href="css/adapt.css?v=20261008e">
   <link rel="stylesheet" href="css/hub.css?v=20261008e">
+  <link rel="stylesheet" href="css/calm.css?v=20261009c">
   <style>
     html { background: #0d0e0b; }
     body.hub { margin: 0; background: #0d0e0b; color: #eae4d3; }
@@ -89,45 +90,45 @@
       </div>
       <div class="wrap hero-top">
         <div class="hero-copy">
-          <p class="hud">DTRT Lab // Case file Nº 0247 // Live subject</p>
+          <p class="hud">Welcome. This is the home of DTRTC, a gaming streamer named Ian.</p>
           <p class="live-pill" id="live-pill" role="status" aria-live="polite">
             <span class="live-dot" aria-hidden="true"></span>
             <span id="live-pill-text">Checking Twitch</span>
           </p>
           <h1 id="hero-title" class="wordmark">DTRTC</h1>
-          <p class="tagline">Every stream is an experiment. Every clip is evidence.</p>
-          <p class="lede">One subject. Counter-Strike 2, Aim Lab, and marathon queues, filed as they happen. The weekly clock stays on Twitch.</p>
+          <p class="tagline">Every stream is an experiment. Every clip is proof.</p>
+          <p class="lede">Ian plays Counter-Strike 2 and Aim Lab live. Some streams last 24 hours. Check Twitch for the times.</p>
           <ul class="file-chips">
-            <li>CS2 clutches</li>
+            <li>CS2 big plays</li>
             <li>Aim Lab</li>
-            <li>24h marathons</li>
+            <li>24-hour streams</li>
             <li>Cursed Queue</li>
           </ul>
           <div class="actions">
             <a class="cta" data-social-href="twitch" href="https://www.twitch.tv/dtrtc" rel="noopener noreferrer" target="_blank">Follow on Twitch</a>
             <a class="cta ghost" data-social-href="kick" href="https://kick.com/movebro" rel="noopener noreferrer" target="_blank">Follow on Kick</a>
-            <a class="cta ghost" href="live/" data-event="live-board">Shop Board · Live</a>
+            <a class="cta ghost" href="live/" data-event="live-board">See the live page</a>
           </div>
           <div class="hero-socials" data-social-slot="hero"></div>
         </div>
 
         <div class="live-col">
           <div class="live-kicker">
-            <p class="hud">Signal // Live</p>
+            <p class="hud">Live video: this is the stream. If it is off, press Follow to get a message when it starts.</p>
             <p class="rubber" aria-hidden="true">Verified</p>
           </div>
         <div class="live-frame" id="live-frame" role="region" aria-label="Twitch player" aria-busy="true">
           <div id="twitch-slot"></div>
           <span class="frame-corner" aria-hidden="true"></span>
           <div class="offline-panel" id="offline-panel">
-            <p class="hud">Channel // dtrtc</p>
+            <p class="hud">Twitch channel: dtrtc</p>
             <p class="offline-title" id="offline-title">Checking Twitch</p>
             <p id="offline-copy">Looking up the channel.</p>
             <div class="actions">
               <a class="cta" data-social-href="twitch" href="https://www.twitch.tv/dtrtc" rel="noopener noreferrer" target="_blank">Follow on Twitch</a>
               <a class="cta ghost" data-social-href="kick" href="https://kick.com/movebro" rel="noopener noreferrer" target="_blank">Follow on Kick</a>
             </div>
-            <p class="fine"><a href="#clips">Catch the exhibits</a></p>
+            <p class="fine"><a href="#clips">Watch past clips</a></p>
           </div>
         </div>
         </div>
@@ -139,17 +140,17 @@
       <div class="wrap">
         <div class="section-head">
           <div>
-            <p class="hud">Exhibit // Trailer</p>
+            <p class="hud">What is this? A short Halloween trailer for our special stream.</p>
             <h2 id="trailer-title">The Cursed Queue</h2>
           </div>
-          <p class="lede">Exhibit still. The player loads only after you press it.</p>
+          <p class="lede">Press play to watch. The video loads only after you press.</p>
         </div>
         <div class="trailer-frame">
           <button class="trailer-facade" id="trailer-play" type="button" data-video="0XxDrMvsCgE">
             <picture>
               <source type="image/avif" srcset="img/cursed-queue-poster.avif">
               <source type="image/webp" srcset="img/cursed-queue-poster.webp">
-            <img src="img/cursed-queue-poster.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
+            <img src="img/cursed-queue-poster.jpg" alt="Poster for the Cursed Queue Halloween trailer" width="1280" height="720" loading="lazy" decoding="async">
             </picture>
             <span class="tone" aria-hidden="true"></span>
             <span class="trailer-shade" aria-hidden="true"></span>
@@ -172,10 +173,10 @@
       <div class="wrap">
         <div class="section-head">
           <div>
-            <p class="hud">Live feed // Latest clips</p>
+            <p class="hud">What is this? The newest short videos from the stream.</p>
             <h2 id="latest-clips-title">Latest Clips</h2>
           </div>
-          <p class="lede">Fresh from the stream, newest first. Views update as the posts grow.</p>
+          <p class="lede">Newest first. The view counts go up as more people watch.</p>
         </div>
         <div data-latest-clips></div>
       </div>
@@ -185,10 +186,10 @@
       <div class="wrap">
         <div class="section-head">
           <div>
-            <p class="hud">Exhibit // Clips</p>
-            <h2 id="clips-title">Evidence</h2>
+            <p class="hud">What is this? Clips from the stream you can play here.</p>
+            <h2 id="clips-title">Watch the clips</h2>
           </div>
-          <p class="lede">Each card is a filed clip. The Twitch player loads only after you press it.</p>
+          <p class="lede">Press a clip to play it. The video loads only after you press.</p>
         </div>
         <div class="clip-grid" id="clip-grid"></div>
         <p class="fine"><a href="https://www.twitch.tv/dtrtc/clips" rel="noopener noreferrer" target="_blank">More clips on Twitch</a>.</p>
@@ -198,9 +199,9 @@
     <section id="about" aria-labelledby="about-title">
       <div class="wrap about-grid">
         <div>
-          <p class="hud">Subject // About</p>
-          <h2 id="about-title">One subject.</h2>
-          <p class="prose" id="creator-bio">DTRT Lab is a research facility with one subject. Ian streams as DTRTC: Counter-Strike 2, Aim Lab, marathon queues, and the chats that start because nobody left. The Cursed Queue is one of the experiments. The weekly schedule is posted on Twitch, not pinned on this page.</p>
+          <p class="hud">What is this? A short note about who Ian is.</p>
+          <h2 id="about-title">About Ian</h2>
+          <p class="prose" id="creator-bio">Ian streams as DTRTC. He plays Counter-Strike 2 and Aim Lab, and sometimes streams all day. The Cursed Queue is a special Halloween stream. The weekly times are posted on Twitch.</p>
         </div>
         <div class="term" aria-hidden="true">
           <p><span>></span> file: Nº 0247</p>
@@ -215,18 +216,17 @@
     <section id="schedule" aria-labelledby="schedule-title">
       <div class="wrap about-grid">
         <div>
-          <p class="hud">Log // Schedule</p>
-          <h2 id="schedule-title">Times live on Twitch.</h2>
-          <p class="lede">This page does not store a clock. The T+ stamp on the exhibits is a file mark, not the week. The schedule is posted on the channel, and it can change when a marathon runs long.</p>
+          <p class="hud">What is this? When Ian goes live.</p>
+          <h2 id="schedule-title">When he streams</h2>
+          <p class="lede">The schedule lives on Twitch. It can change if a long stream runs late.</p>
           <div class="actions">
-            <a class="cta" data-schedule-link href="https://www.twitch.tv/dtrtc/schedule" rel="noopener noreferrer" target="_blank">Open the Twitch schedule</a>
+            <a class="cta" data-schedule-link href="https://www.twitch.tv/dtrtc/schedule" rel="noopener noreferrer" target="_blank">Open the schedule on Twitch</a>
           </div>
         </div>
         <div class="schedule-card term">
-          <p><span>></span> schedule --source twitch</p>
-          <p><span>></span> channel: dtrtc</p>
-          <p><span>></span> stored locally: none</p>
-          <p><span>></span> status: posted on the channel</p>
+          <p>Where: Twitch, channel dtrtc</p>
+          <p>Times: posted on Twitch</p>
+          <p>Can change: yes, if a stream runs long</p>
         </div>
       </div>
     </section>
@@ -239,13 +239,13 @@
         <img src="img/afterlight/shop-dawn.jpg" alt="Pre-dawn electronics shop on a wet street in Añasco. Story still from DTRT AFTERLIGHT, not a stream screenshot." width="1920" height="1080" loading="lazy" decoding="async">
         </picture>
         <div>
-          <p class="hud">Case files // Afterlight</p>
-          <h2 id="afterlight-title">The other file.</h2>
-          <p class="lede">The story-driven FPS campaign still lives here. Volume One is readable. The playable island is in development. There is no public download.</p>
+          <p class="hud">What is this? A story game and book we are making.</p>
+          <h2 id="afterlight-title">The story game</h2>
+          <p class="lede">AFTERLIGHT is a story game we are building. You can read Volume One now. The game is not ready to play yet, and there is no download.</p>
           <div class="actions">
-            <a class="cta" href="afterlight.html">Enter AFTERLIGHT</a>
+            <a class="cta" href="afterlight.html">Learn about AFTERLIGHT</a>
             <a class="cta ghost" href="stories/afterlight/volume-one/">Read Volume One</a>
-            <a class="cta ghost" href="radio.html">Play the radio</a>
+            <a class="cta ghost" href="radio.html">Listen to the radio</a>
           </div>
         </div>
       </div>
@@ -255,10 +255,10 @@
       <div class="wrap">
         <div class="section-head">
           <div>
-            <p class="hud">Channels // Find</p>
-            <h2 id="find-title">Where the signal goes</h2>
+            <p class="hud">What is this? Links to every place Ian posts.</p>
+            <h2 id="find-title">Find Ian online</h2>
           </div>
-          <p class="lede">Find Ian across the channels below. Watch live on Twitch, and catch the Lab Files on YouTube.</p>
+          <p class="lede">Watch live on Twitch. Watch the Lab Files videos on YouTube.</p>
         </div>
         <div class="find-grid" data-social-slot="find"></div>
       </div>
@@ -275,5 +275,6 @@
   <script defer src="js/goals.js?v=20261009b"></script>
   <script defer src="js/hub.js?v=20261008e"></script>
   <script defer src="js/latest-clips.js?v=20261009a"></script>
+  <script defer src="js/calm.js?v=20261009c"></script>
 </body>
 </html>
