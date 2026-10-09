@@ -25,3 +25,17 @@
   new MutationObserver(both).observe(document.body, { childList: true, subtree: true });
   both();
 })();
+
+/* Live page: visible "Main site" button back to the homepage (?main=1 stops the live redirect for this visit). */
+(function () {
+  if (!/^\/live\/?(index\.html)?$/.test(location.pathname)) return;
+  var top = document.querySelector("header.top");
+  if (!top || top.querySelector(".mainsite")) return;
+  var a = document.createElement("a");
+  a.className = "mainsite";
+  a.href = "/?main=1";
+  a.textContent = "Main site \u2192";
+  a.style.cssText = "color:#CFE35A;font-weight:700;border:1px solid #CFE35A;border-radius:999px;padding:6px 14px;text-decoration:none;white-space:nowrap;min-height:34px;display:inline-flex;align-items:center";
+  var mark = top.querySelector(".mark");
+  top.insertBefore(a, mark ? mark.nextSibling : top.firstChild);
+})();
