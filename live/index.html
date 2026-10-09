@@ -90,7 +90,7 @@ const ICON={twitch:'<svg viewBox="0 0 24 24"><path d="M4 2 2.5 6v14h5v3h3l3-3h4l
  flag:'<svg viewBox="0 0 24 24"><path d="M5 2h2v20H5zm3 1h12l-3 4 3 4H8z"/></svg>',
  goal:'<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 16a6 6 0 1 1 6-6 6 6 0 0 1-6 6zm0-9a3 3 0 1 0 3 3 3 3 0 0 0-3-3z"/></svg>'};
 const NM={youtube:'YouTube',tiktok:'TikTok',instagram:'Instagram',x:'X',twitch:'Twitch',kick:'Kick'};
-const fmt=n=>n==null?'—':Number(n).toLocaleString('en-US');const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&','<':'<','>':'>','"':'"'}[c]));
+const fmt=n=>n==null?'—':Number(n).toLocaleString('en-US');const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const $=id=>document.getElementById(id);const et=(d,o)=>d.toLocaleString('en-US',Object.assign({timeZone:'America/New_York'},o));
 function tick(){const d=new Date();$('tm').textContent=et(d,{hour:'numeric',minute:'2-digit',second:'2-digit'})+' ET';$('dt').textContent=et(d,{weekday:'short',month:'short',day:'numeric'}).toUpperCase();}
 tick();setInterval(tick,1000);
