@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "locked": "Baseline snapshots are historical observations. Append later measurements to growth-observations.json; do not replace these values.",
+  "period_requested": {
+    "start_et": "2026-09-10",
+    "end_et": "2026-10-09",
+    "label": "Sep 10–Oct 9, 2026 ET"
+  },
+  "first_tracked_post_at": "2026-10-08T16:30:00-04:00",
+  "first_measured_views": {
+    "at": "2026-10-08T20:09:00-04:00",
+    "views": 1958
+  },
+  "first_measured_followers": {
+    "at": "2026-10-08T20:09:00-04:00",
+    "followers": 1453,
+    "note": "Combined saved count includes YouTube's rounded 1,300+ and is unsuitable for precise net growth."
+  },
+  "first_platform_snapshot": {
+    "at": "2026-10-09T01:44:24-04:00",
+    "source": "content/stats.json at commit 7aa7aa2eee915b0392cd2b329a7f450f1ca4acef",
+    "platforms": [
+      {
+        "id": "twitch",
+        "url": "https://www.twitch.tv/dtrtc",
+        "views": null,
+        "followers": 37,
+        "followers_rounded": false
+      },
+      {
+        "id": "kick",
+        "url": "https://kick.com/movebro",
+        "views": null,
+        "followers": 27,
+        "followers_rounded": false
+      },
+      {
+        "id": "youtube",
+        "url": "https://www.youtube.com/@DTRTLabYT",
+        "views": 2771,
+        "followers": 1300,
+        "followers_rounded": true
+      },
+      {
+        "id": "tiktok",
+        "url": "https://www.tiktok.com/@iananthonyfc",
+        "views": 1395,
+        "followers": 64,
+        "followers_rounded": false
+      },
+      {
+        "id": "instagram",
+        "url": "https://www.instagram.com/officiallydtrt/",
+        "views": 1440,
+        "followers": 17,
+        "followers_rounded": false
+      },
+      {
+        "id": "x",
+        "url": "https://x.com/DTRTLab",
+        "views": 34,
+        "followers": 11,
+        "followers_rounded": false
+      }
+    ]
+  },
+  "limitations": [
+    "No Sep 10 baseline or full 30-day post-view series was found.",
+    "Twitch and Kick clip views are not tracked.",
+    "YouTube followers are rounded. Saved Instagram followers conflict with a later public profile observation (32 at about 1:25 AM ET Oct 9 versus 17 in the stats file).",
+    "Public clip views are sums of post counters, not unique viewers."
+  ]
+}
