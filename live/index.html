@@ -72,6 +72,7 @@ h1{font-size:clamp(36px,5vw,56px);font-weight:700;letter-spacing:-.02em;line-hei
  <div class="two"><section class="card" id="race" aria-label="Platform reach"></section><section class="card" id="goals" aria-label="Follower goals"></section></div>
  <section class="card" id="clipsfeed" aria-label="Latest clips" style="margin-top:20px;padding:20px 22px"><div class="ch" style="padding:0 0 14px"><h2>Latest clips</h2><span class="s">FRESH FROM THE STREAM · NEWEST FIRST</span></div><div data-latest-clips></div></section>
  <section id="rewards" data-goals style="margin-top:28px" aria-label="Follower goal rewards"></section>
+ <section class="card" id="mcredits" aria-label="Music credits" style="margin-top:20px;padding:20px 22px" hidden><div class="ch" style="padding:0 0 10px"><h2>Music credits</h2><span class="s" id="mcs">MUSIC ON STREAM</span></div><p class="fine" style="margin:0 0 10px" id="mcn"></p><details><summary style="cursor:pointer;font-weight:600;color:var(--acid)">Show all tracks</summary><div id="mcl" style="margin-top:12px;font-size:14px;line-height:1.7"></div></details></section>
  <nav class="foot" aria-label="Channels">
   <a href="https://www.twitch.tv/dtrtc" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M4 2 2.5 6v14h5v3h3l3-3h4l5-5V2H4zm16 12-3 3h-4.5l-3 3v-3H5.5V4H20v10zM16 7.5h2v5.5h-2zm-5.5 0h2v5.5h-2z"/></svg><span><small>TWITCH</small>twitch.tv/dtrtc</span></a>
   <a href="https://www.youtube.com/@DTRTLabYT" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15.1V8.9l5.8 3.1-5.8 3.1z"/></svg><span><small>YOUTUBE</small>@DTRTLabYT</span></a>
@@ -131,6 +132,7 @@ async function liveCheck(){try{const t=await (await fetch('https://decapi.me/twi
 liveCheck();setInterval(liveCheck,120000);
 })();
 </script>
+<script defer src="music-credits.js?v=1"></script>
 <script defer src="schedule.js?v=1"></script>
 <script defer src="../js/goals.js?v=20261009b"></script>
 <script async src="../js/analytics.js?v=20261008e"></script>
