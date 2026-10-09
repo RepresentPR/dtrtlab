@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "session_key": "twitch-dtrtc-2026-10-09-first-live-reading",
+  "channel": "https://www.twitch.tv/dtrtc",
+  "stream_id": null,
+  "actual_stream_start": null,
+  "first_verified_live_reading_at": "2026-10-09T01:44:24-04:00",
+  "last_verified_same_session_at": "2026-10-09T01:52:29-04:00",
+  "note": "The saved stats marked Twitch live at the first reading. A stream ID and actual start time were not captured. Coverage is partial; later readings cannot be assigned to this same stream without new verification.",
+  "baseline": {
+    "tracked_post_views": 5640,
+    "platforms": [
+      {
+        "id": "twitch",
+        "views": null,
+        "followers": 37,
+        "followers_rounded": false
+      },
+      {
+        "id": "kick",
+        "views": null,
+        "followers": 27,
+        "followers_rounded": false
+      },
+      {
+        "id": "youtube",
+        "views": 2771,
+        "followers": 1300,
+        "followers_rounded": true
+      },
+      {
+        "id": "tiktok",
+        "views": 1395,
+        "followers": 64,
+        "followers_rounded": false
+      },
+      {
+        "id": "instagram",
+        "views": 1440,
+        "followers": 17,
+        "followers_rounded": false
+      },
+      {
+        "id": "x",
+        "views": 34,
+        "followers": 11,
+        "followers_rounded": false
+      }
+    ]
+  }
+}
