@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "report_at": "2026-10-09T07:23:56Z",
+  "report_at": "2026-10-09T07:35:39Z",
   "title": "Audience and site progress",
   "metrics": {
     "latest_observation_at": "2026-10-09T01:52:29-04:00",
@@ -14,41 +14,42 @@
   },
   "completed": [
     {
-      "item": "Staged an autonomous cinematic page with Dot's silent clip rundown",
-      "evidence": "live/showcase.html, commit 509cd0a2d99250a12ae7d194189fcf6f75e5f50c",
-      "verification": "GitHub source and JavaScript syntax checked; public rendering and OBS output unverified."
+      "item": "Public showcase plays an inspected recorded CS2 clip and labels Dot's automated segment",
+      "evidence": "live/showcase.html; public browser returned HTTP 200 and 206 decoded frames during playback",
+      "verification": "Desktop and mobile rendering checked. Reduced-motion browser check paused autoplay and cleared the opening immediately."
     },
     {
-      "item": "Assembled a 3:31 review cut from 12 DTRTC-branded Postiz uploads",
-      "evidence": "Higgsfield media ed749b56-3899-49f9-8cd9-8c6515e251a9; source list in local lab-file-002-source-manifest.md",
-      "verification": "720×1280 H.264/AAC upload confirmed; unpublished, visual/audio final review pending."
+      "item": "Assembled a 3:31 DTRTC CS2 review cut from 12 owned-library uploads",
+      "evidence": "Higgsfield media ed749b56-3899-49f9-8cd9-8c6515e251a9; local lab-file-002-source-manifest.md",
+      "verification": "Playable 720×1280 H.264/AAC file; six-frame visual sample, decode check, integrated and per-clip audio checks."
+    },
+    {
+      "item": "Prepared an audio-free fallback review cut",
+      "evidence": "Higgsfield media 09480fbd-d043-4a3b-84c3-b776ccad38b0",
+      "verification": "Uploaded 211.2-second video has no audio stream. Unpublished."
     }
   ],
   "blocked": [
     {
       "item": "Counter-Strike 2 stream category and title change",
-      "reason": "Connected Twitch Postiz capability supports chat posts only. Kick integration absent. OBS WebSocket/control endpoint unavailable. No metadata was changed."
+      "reason": "Public Twitch player still showed Just Chatting at the verified check. Postiz Twitch integration supports chat posts only; no supported metadata or OBS control endpoint is available."
     },
     {
-      "item": "FACEIT demo inclusion",
-      "reason": "No verified Ian-owned FACEIT account, match ID, or demo link was found."
+      "item": "Long-form YouTube release",
+      "reason": "The 3:31 cut has abrupt joins, no connective episode structure, a 6 dB per-clip audio swing, and unverified music rights. The silent fallback is safe from soundtrack rights but not a finished long-form episode."
     },
     {
-      "item": "Grok Bot collaboration",
-      "reason": "Processes are running, but no supported task interface or listener was found; no job was sent."
+      "item": "FACEIT and Grok collaboration",
+      "reason": "No verified Ian-owned FACEIT source or supported Grok Bot job interface was found."
     },
     {
       "item": "Fresh audience gains",
-      "reason": "content/stats.json still has its latest saved reading at 1:52 AM ET; later gains cannot be measured."
-    },
-    {
-      "item": "Broadcast and public page verification",
-      "reason": "OBS scene was not changed and site browser/open access is unavailable."
+      "reason": "Saved stats still end at 1:52 AM ET; later gains are unknown."
     }
   ],
   "next_focus": [
-    "Inspect the uploaded review cut for visual pacing and audio rights/levels before release.",
-    "Find supported stream metadata control and verify the saved category/title.",
-    "Capture a verified FACEIT source and Grok task interface before adding either to production."
+    "Build a coherent episode from the inspected sources with original intro/chapter context and checked audio before publishing.",
+    "Use a signed-in Twitch Creator Dashboard or an authorized metadata API to set Counter-Strike 2, then verify it publicly.",
+    "Locate Ian's exact FACEIT profile/demo and a supported Grok task interface before assigning new source work."
   ]
 }
