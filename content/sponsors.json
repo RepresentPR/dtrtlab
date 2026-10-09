@@ -1,0 +1,8 @@
+{
+  "label": "Presented by",
+  "rotate_seconds": 8,
+  "placeholder": "Partner slot available",
+  "placeholder_sub": "Your logo here · DTRTLab.com",
+  "sponsors": [],
+  "_help": "Add sponsors as {\"name\":\"Brand\",\"logo\":\"assets/sponsors/brand.png\",\"url\":\"https://...\",\"active\":true}. Logos: transparent PNG/SVG, ~380x64 area (wide). Empty list shows the placeholder."
+}
