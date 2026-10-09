@@ -81,7 +81,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #CF
 <body>
 <header class="top"><a class="mark" href="../index.html"><i></i>DTRTLab.com <span>THE LAB FILES</span></a><span class="pill off" id="lp">Checking…</span><span class="clock"><small id="dt"></small><span id="tm"></span></span></header>
 <main class="wrap">
- <section class="hero"><div><div class="eb">What is this? Watch Ian live, then see how the channel is growing.</div><h1>Channel Dashboard</h1><p class="sub">The stream is below. Under it are real numbers, in plain words.</p></div><span class="upd" id="upd"></span></section>
+ <section class="hero"><div><div class="eb">What is this? Watch Ian live, then see how the channel is growing.</div><h1>Channel Dashboard</h1><p class="sub">The stream is below. Under it are real numbers, in plain words.</p></div><span class="upd" id="upd"></span><div data-donate hidden style="width:100%"></div></section>
  <section class="stage" aria-label="Live stream">
   <div class="frame"><iframe src="https://player.twitch.tv/?channel=dtrtc&parent=dtrtlab.com&parent=www.dtrtlab.com&muted=true" allowfullscreen title="DTRTC live on Twitch" loading="lazy"></iframe></div>
   <div class="side">
@@ -159,6 +159,7 @@ async function liveCheck(){try{const t=await (await fetch('https://decapi.me/twi
 liveCheck();setInterval(liveCheck,120000);
 })();
 </script>
+<script defer src="../js/donate.js?v=20261009"></script>
 <script defer src="../js/then-now.js?v=1"></script>
 <script defer src="../js/stream-gain.js?v=1"></script>
 <script defer src="../js/progress-report.js?v=1"></script>
