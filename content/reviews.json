@@ -1,7 +1,7 @@
 {
- "_help": "Real reviews only, supplied by the shop owner. Fill shop_name, google_url, yelp_url (https only), then add reviews as {\"name\":\"First L.\",\"stars\":5,\"text\":\"...\",\"show_name\":true,\"date\":\"2026-10-01\"}. Only 5-star, show_name:true reviews render. No incentives for reviews.",
- "shop_name": null,
- "google_url": null,
+ "_help": "Real reviews only, supplied by the shop owner. Add reviews as {\"name\":\"First L.\",\"stars\":5,\"text\":\"...\",\"show_name\":true,\"date\":\"2026-10-01\"}. Only 5-star, show_name:true reviews render. No incentives for reviews.",
+ "shop_name": "Caliber Collision",
+ "google_url": "https://www.google.com/search?q=caliber+collision+8000+old+branch+avenue+clinton+md&rlz=1C1GCER_enUS1221US1221&oq=caliber+collision+8000+old+bran&sourceid=chrome&ie=UTF-8#lrd=0x89b7b295a8512ad1:0xe59c5ebcff0b2f50,1,,,,",
  "yelp_url": null,
  "reviews": []
 }
