@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "report_at": "2026-10-09T07:38:08Z",
+  "report_at": "2026-10-09T07:49:20Z",
   "title": "Audience and site progress",
   "metrics": {
     "latest_observation_at": "2026-10-09T01:52:29-04:00",
@@ -14,47 +14,47 @@
   },
   "completed": [
     {
-      "item": "Public showcase plays an inspected recorded CS2 clip and labels Dot's automated segment",
-      "evidence": "live/showcase.html; public browser returned HTTP 200 and 206 decoded frames during playback",
-      "verification": "Desktop and mobile rendering checked. Reduced-motion browser check paused autoplay and cleared the opening immediately."
+      "item": "Published Lab File 002 on the verified YouTube channel",
+      "evidence": "https://www.youtube.com/watch?v=3nDFZ0ZcJ1E ; Postiz post cmv0nw9th01imp60ydlt7h4xf",
+      "verification": "Postiz state PUBLISHED with no error; public @DTRTLabYT Videos page shows the new 3:51 video and exact title."
     },
     {
-      "item": "Assembled a 3:31 DTRTC CS2 review cut from 12 owned-library uploads",
-      "evidence": "Higgsfield media ed749b56-3899-49f9-8cd9-8c6515e251a9; local lab-file-002-source-manifest.md",
-      "verification": "Playable 720×1280 H.264/AAC file; six-frame visual sample, decode check, integrated and per-clip audio checks."
+      "item": "Revised the 12-clip review into a caption-led episode",
+      "evidence": "Higgsfield media 6d54acf4-4f06-4d23-970c-4d7bdf0e1c7b; Library video libfile_264164f3c2fc819191678202990ffd23 version 1",
+      "verification": "Original intro, three chapter cards, ending, chapter fades, full decode, sampled start/middle/end frames; silent audio track measured -91 dB."
     },
     {
-      "item": "Prepared an audio-free fallback review cut",
-      "evidence": "Higgsfield media 09480fbd-d043-4a3b-84c3-b776ccad38b0",
-      "verification": "Uploaded 211.2-second video has no audio stream. Unpublished."
+      "item": "Saved source and QC manifest",
+      "evidence": "Library report libfile_2c002e18091c8191889859bde7f0f5fd version 2",
+      "verification": "12 selected DTRTC-branded Postiz source URLs retained; no FACEIT or third-party music claimed."
     },
     {
-      "item": "Saved the review cut and source/QC manifest in ChatGPT Library",
-      "evidence": "Video libfile_264164f3c2fc819191678202990ffd23; manifest libfile_2c002e18091c8191889859bde7f0f5fd",
-      "verification": "Library create and versioned manifest replacement both returned succeeded."
+      "item": "Verified public showcase replay and reduced-motion behavior",
+      "evidence": "https://dtrtlab.com/live/showcase.html",
+      "verification": "Public browser returned HTTP 200; replay decoded frames; reduced-motion browser paused automatic playback."
     }
   ],
   "blocked": [
     {
       "item": "Counter-Strike 2 stream category and title change",
-      "reason": "Public Twitch player still showed Just Chatting at the verified check. Postiz Twitch integration supports chat posts only; no supported metadata or OBS control endpoint is available."
+      "reason": "Public Twitch player still showed Just Chatting at the verified check. Postiz Twitch integration only supports chat posts; no supported metadata or OBS control endpoint is available."
     },
     {
-      "item": "Long-form YouTube release",
-      "reason": "The 3:31 cut has abrupt joins, no connective episode structure, a 6 dB per-clip audio swing, and unverified music rights. The silent fallback is safe from soundtrack rights but not a finished long-form episode."
+      "item": "Two-hour release cadence",
+      "reason": "One episode has been released. Source discovery, rights checks, editing and upload cadence for another distinct episode have not been validated."
     },
     {
       "item": "FACEIT and Grok collaboration",
-      "reason": "No verified Ian-owned FACEIT source or supported Grok Bot job interface was found."
+      "reason": "No verified Ian-owned FACEIT match/demo or supported Grok Bot job interface was found."
     },
     {
       "item": "Fresh audience gains",
-      "reason": "Saved stats still end at 1:52 AM ET; later gains are unknown."
+      "reason": "Saved audience stats still end at 1:52 AM ET; later gains are unknown."
     }
   ],
   "next_focus": [
-    "Build a coherent episode from the inspected sources with original intro/chapter context and checked audio before publishing.",
-    "Use a signed-in Twitch Creator Dashboard or an authorized metadata API to set Counter-Strike 2, then verify it publicly.",
-    "Locate Ian's exact FACEIT profile/demo and a supported Grok task interface before assigning new source work."
+    "Verify the published video's processing and viewer-facing playback after YouTube finishes transcoding.",
+    "Acquire verified new owned footage and clear audio rights before the next distinct episode.",
+    "Use an authorized signed-in Twitch stream-info control to set Counter-Strike 2 and verify publicly."
   ]
 }
