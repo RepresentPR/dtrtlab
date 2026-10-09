@@ -39,7 +39,35 @@
   var data = null, mode = "views";
   var live = { twitch: null, kick: null, tv: null, kv: null };
   var MS = [10, 25, 50, 75, 100, 150, 200, 250, 500, 750, 1000, 1500, 2000, 2500, 5000, 7500, 10000, 25000, 50000, 100000];
-  var NAMES = { twitch: "Twitch", kick: "Kick", youtube: "YouTube", tiktok: "TikTok", instagram: "Instagram", x: "X" };
+  var NAMES = { twitch: "Twitch", kick: "Kick", youtube: "YouTube", shorts: "YouTube Shorts", tiktok: "TikTok", instagram: "Instagram", x: "X" };
+  /* Every platform is always listed, in this order. Missing or unverified data is labelled, never hidden. */
+  var ALL = [
+    { id: "instagram", handle: "@officiallydtrt", url: "https://www.instagram.com/officiallydtrt/" },
+    { id: "tiktok", handle: "@iananthonyfc", url: "https://www.tiktok.com/@iananthonyfc" },
+    { id: "x", handle: "@DTRTLab", url: "https://x.com/DTRTLab" },
+    { id: "youtube", handle: "@DTRTLabYT", url: "https://www.youtube.com/@DTRTLabYT" },
+    { id: "shorts", handle: "@DTRTLabYT", url: "https://www.youtube.com/@DTRTLabYT/shorts" },
+    { id: "kick", handle: "movebro", url: "https://kick.com/movebro" },
+    { id: "twitch", handle: "dtrtc", url: "https://www.twitch.tv/dtrtc" }
+  ];
+  function merged(P) {
+    return ALL.map(function (a) {
+      var p = (P || []).filter(function (x) { return x.id === a.id; })[0] || {};
+      var o = {}; for (var k in p) o[k] = p[k];
+      o.id = a.id; o.url = p.url || a.url; o.handle = p.handle || a.handle; o.label = NAMES[a.id];
+      return o;
+    });
+  }
+  function viewsVal(p) {
+    if (p.views != null) return "<b>" + num(p.views) + "</b> views<small>" + esc((p.views_src || "") + " \u00b7 " + (p.views_asof || "")) + "</small>";
+    return "<b>not connected</b><small>" + esc((p.views_src || "Views not publicly readable; owner analytics not connected") + (p.views_asof ? " \u00b7 checked " + p.views_asof : "")) + "</small>";
+  }
+  function folVal(p, goal) {
+    if (p.followers != null) return "<b>" + num(p.followers) + (p.followers_rounded ? "+" : "") + "</b> followers<small>" + esc((p.followers_src || "") + " \u00b7 " + (p.followers_asof || "")) + "</small>" + (goal ? "<small>goal " + num(goal) + "</small>" : "");
+    if (p.followers_last_known != null) return "<b>" + num(p.followers_last_known) + "</b> followers (last known, not verified)<small>" + esc((p.followers_src || "last read") + " \u00b7 " + (p.followers_last_known_asof || "time unknown")) + "</small>";
+    if (p.followers_status === "shared") return "<b>same as YouTube</b><small>" + esc(p.followers_src || "") + "</small>";
+    return "<b>not connected</b><small>" + esc(p.followers_src || "Follower count not readable") + "</small>";
+  }
 
   function $(id) { return document.getElementById(id); }
   function esc(v) {
@@ -114,7 +142,7 @@
     box.innerHTML = svg;
     $("growth-note").textContent = mode === "views"
       ? "Verified views only (YouTube + TikTok public counters). Starts when verified tracking began. Times are Eastern."
-      : "Followers on all six sites added together. Times are Eastern. Counts start when we began tracking.";
+      : "Followers added together for every site with a verified count (X is not verified, so it is left out). Times are Eastern. Counts start when we began tracking.";
   }
 
   function bars(id, rows) {
@@ -152,20 +180,18 @@
     $("kpi-fol-sub").innerHTML = fd != null ? (fd > 0 ? "<b>+" + num(fd) + " followers</b> since " + tlabel(tparse(fs[0].at)) : "Same as " + tlabel(tparse(fs[0].at))) : "Verified sites only; unverified ones are left out";
     chart();
 
-    var R = P.filter(function (p) { return p.views != null; }).sort(function (a, b) { return b.views - a.views; });
-    var UNV = P.filter(function (p) { return p.views == null && p.views_status === "unverified" && (p.id === "instagram" || p.id === "x"); });
+    var M = merged(P);
+    var R = M.filter(function (p) { return p.views != null; }).sort(function (a, b) { return b.views - a.views; });
+    var UNV = M.filter(function (p) { return p.views == null; });
     var mx = (R[0] && R[0].views) || 1;
-    bars("race-bars", R.map(function (p) {
-      return { id: p.id, name: NAMES[p.id] || p.label, url: p.url, pct: Math.max(2, p.views / mx * 100), val: "<b>" + num(p.views) + "</b> views<small>" + esc((p.views_src || "") + " \u00b7 " + (p.views_asof || "")) + "</small>", lead: true };
-    }).concat(UNV.map(function (p) {
-      return { id: p.id, name: NAMES[p.id] || p.label, url: p.url, pct: 2, val: "<b>unverified</b><small>" + esc(p.views_src || "not publicly readable") + "</small>", lead: false };
-    })));
-    var F = P.filter(function (p) { return p.followers != null; }).sort(function (a, b) { return b.followers - a.followers; });
+    bars("race-bars", R.concat(UNV).map(function (p, i) {
+      return { id: p.id, name: p.label, url: p.url, pct: p.views != null ? Math.max(2, p.views / mx * 100) : 2, val: viewsVal(p), lead: p.views != null };
+    }));
+    var F = M.filter(function (p) { return p.followers != null; }).sort(function (a, b) { return b.followers - a.followers; });
     var fm = (F[0] && F[0].followers) || 1;
-    bars("fol-bars", F.map(function (p) {
-      var g = MS.filter(function (m) { return m > p.followers; })[0];
-      return { id: p.id, name: NAMES[p.id] || p.label, url: p.url, pct: Math.max(2, p.followers / fm * 100),
-        val: "<b>" + num(p.followers) + (p.followers_rounded ? "+" : "") + "</b> followers<small>" + esc((p.followers_src || "") + " \u00b7 " + (p.followers_asof || "")) + "</small>" + (g ? '<small>goal ' + num(g) + "</small>" : ""), lead: false };
+    bars("fol-bars", F.concat(M.filter(function (p) { return p.followers == null; })).map(function (p) {
+      var g = p.followers != null ? MS.filter(function (m) { return m > p.followers; })[0] : null;
+      return { id: p.id, name: p.label, url: p.url, pct: p.followers != null ? Math.max(2, p.followers / fm * 100) : 2, val: folVal(p, g), lead: false };
     }));
 
     [["top", data.top_clip], ["latest", data.latest_clip]].forEach(function (c) {
