@@ -44,4 +44,4 @@ box.style.display='none';load();setInterval(load,60000);setInterval(tick,1000);
 })();
 /* live extras loader: supporters strip, Google review card, Free Promo spotlight (see js/live-extras.js) */
 (function(){const s=document.getElementById('sched');if(!s||document.getElementById('lfx'))return;const d=document.createElement('div');d.id='lfx';s.parentNode.insertBefore(d,s);
-const l=document.createElement('link');l.rel='stylesheet';l.href='../css/live-extras.css?v=1';document.head.appendChild(l);const j=document.createElement('script');j.src='../js/live-extras.js?v=1';document.head.appendChild(j);})();
+const l=document.createElement('link');l.rel='stylesheet';l.href='../css/live-extras.css?v=1';document.head.appendChild(l);const j=document.createElement('script');j.src='../js/live-extras.js?v=1';document.body.appendChild(j);})();
