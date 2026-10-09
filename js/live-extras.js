@@ -31,5 +31,6 @@ function promo(){const s=promoState(Date.now());if(!s)return '';const e=s.e,L=e.
 function render(){const parts=[['sup',supporters()],['rev',review()],['pro',promo()]];
  root.innerHTML=parts.filter(p=>p[1]).map(p=>`<section class="lfx-card lfx-${p[0]}">${p[1]}</section>`).join('');}
 async function load(){[SUP,REV,PRO]=[await get('supporters.json')||{},await get('reviews.json')||{reviews:[]},await get('promo.json')||{entries:[]}];render();}
-load();setInterval(load,120000);setInterval(render,1000);setInterval(()=>{ri++},9000);
+load();setInterval(load,30000);setInterval(render,1000);setInterval(()=>{ri++},9000);
+if(document.getElementById('lp')&&!window.DTRTLive){const l=document.createElement('link');l.rel='stylesheet';l.href='/css/live-pulse.css?v=1';document.head.appendChild(l);const j=document.createElement('script');j.src='/js/live-pulse.js?v=1';document.body.appendChild(j);}
 })();
