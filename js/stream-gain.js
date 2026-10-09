@@ -6,7 +6,7 @@ const et=s=>new Date(s).toLocaleString("en-US",{timeZone:"America/New_York",mont
 async function get(p){const r=await fetch(p+"?t="+Date.now(),{cache:"no-store"});if(!r.ok)throw Error(p);return r.json()}
 function render(B,S){
  const t=new Date(S.generated_at).getTime(),start=new Date(B.first_verified_live_reading_at).getTime(),end=new Date(B.last_verified_same_session_at).getTime();
- const verified=Number.isFinite(t)&&t>=start&&t<=end;
+ const verified=Number.isFinite(t)&&t>=start&&t<=end&&!!(S.totals&&B.baseline&&S.totals.basis&&S.totals.basis===B.baseline.basis);
  const pts=[{t:start,v:B.baseline.tracked_post_views}].concat((S.history||[]).map(h=>({t:new Date(h.at.replace(" ","T")+":00-04:00").getTime(),v:h.views})).filter(p=>p.t>start&&p.t<=Math.min(t,end)&&Number.isFinite(p.v))).sort((a,b)=>a.t-b.t);
  const last=pts[pts.length-1],diff=verified&&Number.isFinite(last.v)?last.v-B.baseline.tracked_post_views:null;
  const values=pts.map(p=>p.v),lo=Math.min(...values),hi=Math.max(...values),span=Math.max(1,hi-lo);

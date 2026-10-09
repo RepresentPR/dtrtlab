@@ -17,14 +17,15 @@ async function json(path){const r=await fetch(path+"?t="+Date.now(),{cache:"no-s
 function draw(B,O,S,C){
  const latest=new Date(S.generated_at),snap=new Date(B.first_platform_snapshot.at),hasLatest=!isNaN(latest)&&latest>snap;
  const baseline=B.first_measured_views.views,now=S.totals&&S.totals.views;
- const measured=Number.isFinite(now)&&now>=baseline&&new Date(S.generated_at)>new Date(B.first_measured_views.at);
+ const sameBasis=!!(S.totals&&B.first_measured_views&&S.totals.basis&&S.totals.basis===B.first_measured_views.basis);
+ const measured=sameBasis&&Number.isFinite(now)&&now>=baseline&&new Date(S.generated_at)>new Date(B.first_measured_views.at);
  const caption="Saved public snapshot: "+date(S.generated_at)+". Page checks the saved files every 5 minutes.";
- const summary=measured?change(baseline,now)+" tracked post views since "+date(B.first_measured_views.at):"A later comparable view count is unavailable";
+ const summary=measured?change(baseline,now)+" tracked post views since "+date(B.first_measured_views.at):"Earlier view totals used an unverified counting method (summed Postiz reports) and are not comparable with today's verified public counters";
  const platforms=(S.platforms||[]).map(p=>{
   const old=(B.first_platform_snapshot.platforms||[]).find(q=>q.id===p.id)||{};
   const exact=!p.followers_rounded&&!old.followers_rounded&&p.id!=="instagram";
   const follower=exact&&hasLatest?change(old.followers,p.followers):"Unavailable";
-  const view=hasLatest&&Number.isFinite(p.views)&&Number.isFinite(old.views)?change(old.views,p.views):"Unavailable";
+  const view=sameBasis&&hasLatest&&Number.isFinite(p.views)&&Number.isFinite(old.views)?change(old.views,p.views):"Unavailable";
   const caution=p.id==="instagram"?" Saved follower count conflicts with a later public observation.":p.followers_rounded?" Follower count rounded by platform.":"";
   return '<tr><th scope="row"><a href="'+safeUrl(p.url)+'" target="_blank" rel="noopener noreferrer">'+esc(name[p.id]||p.label||p.id)+'</a></th><td>'+num(old.views)+' → '+num(p.views)+'<br><small>'+esc(view)+'</small></td><td>'+num(old.followers)+(old.followers_rounded?"+":"")+' → '+num(p.followers)+(p.followers_rounded?"+":"")+'<br><small>'+esc(follower+caution)+'</small></td></tr>';
  }).join("");

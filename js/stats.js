@@ -9,7 +9,7 @@
     '<a class="stat-badge" id="badge-kick" href="https://kick.com/movebro" rel="noopener noreferrer" target="_blank"><span class="dot" aria-hidden="true"></span><span class="b-txt">Kick</span></a></p>',
     '<p class="stats-updated" id="stats-updated">Loading the numbers\u2026</p></div></div>',
     '<div class="stats-kpis">',
-    '<div class="kpi kpi-main"><p class="kpi-label">Total views</p><p class="kpi-num" id="kpi-views">\u2014</p><p class="kpi-sub" id="kpi-views-sub"></p></div>',
+    '<div class="kpi kpi-main"><p class="kpi-label">Verified views \u00b7 YouTube + TikTok</p><p class="kpi-num" id="kpi-views">\u2014</p><p class="kpi-sub" id="kpi-views-sub"></p></div>',
     '<div class="kpi"><p class="kpi-label">Total followers</p><p class="kpi-num" id="kpi-followers">\u2014</p><p class="kpi-sub" id="kpi-fol-sub"></p></div>',
     '</div>',
     '<div class="growth" id="growth"><div class="growth-head"><h3 class="growth-title" id="growth-title">Total views over time</h3>',
@@ -23,7 +23,7 @@
     '<a class="exhibit-card" id="top-clip" href="#clips" rel="noopener noreferrer" target="_blank"><span class="kpi-label">Most watched clip</span><span class="ex-title" id="top-clip-title">\u2014</span><span class="ex-meta" id="top-clip-meta"></span></a>',
     '<a class="exhibit-card" id="latest-clip" href="#clips" rel="noopener noreferrer" target="_blank"><span class="kpi-label">Newest clip</span><span class="ex-title" id="latest-clip-title">\u2014</span><span class="ex-meta" id="latest-clip-meta"></span></a>',
     '</div>',
-    '<p class="fine stats-fine">Only public counts. Views add up our clips on TikTok, Instagram, YouTube Shorts and X. YouTube rounds its follower number, so it has a + sign.</p>',
+    '<p class="fine stats-fine">Every number below comes from a free public page or API and shows its source and time. \u201cUnverified\u201d means the platform does not publish it, so we do not guess. YouTube rounds its follower number, so it has a + sign.</p>',
     '</div></section>'
   ].join("");
 
@@ -113,7 +113,7 @@
       '<text class="g-ax" text-anchor="end" x="' + (lx + 4).toFixed(1) + '" y="' + (H - 8) + '" font-size="' + fs + '">' + tlabel(t1) + '</text></svg>';
     box.innerHTML = svg;
     $("growth-note").textContent = mode === "views"
-      ? "Views from all our clips added together. Times are Eastern."
+      ? "Verified views only (YouTube + TikTok public counters). Starts when verified tracking began. Times are Eastern."
       : "Followers on all six sites added together. Times are Eastern. Counts start when we began tracking.";
   }
 
@@ -143,31 +143,36 @@
     if (!data) return;
     var t = data.totals || {}, P = data.platforms || [];
     $("kpi-views").textContent = num(t.views);
-    $("kpi-views-sub").innerHTML = t.views_week != null ? "<b>+" + num(t.views_week) + " views</b> in the last 7 days" : "";
+    var ys = data.youtube_studio;
+    $("kpi-views-sub").innerHTML = "Verified public counters: YouTube + TikTok only" + (t.asof ? " \u00b7 as of " + esc(t.asof) : "") +
+      (ys && ys.value != null ? "<br>YouTube Studio (owner-reported, last 28 days): <b>" + num(ys.value) + "</b> views \u00b7 as of " + esc(ys.as_of) : "");
     $("kpi-followers").textContent = num(t.followers);
     var fs = ((data.history || []).filter(function (p) { return p.followers != null; }));
     var fd = fs.length > 1 ? fs[fs.length - 1].followers - fs[0].followers : null;
-    $("kpi-fol-sub").innerHTML = fd != null ? (fd > 0 ? "<b>+" + num(fd) + " followers</b> since " + tlabel(tparse(fs[0].at)) : "Same as " + tlabel(tparse(fs[0].at))) : "On all six sites";
+    $("kpi-fol-sub").innerHTML = fd != null ? (fd > 0 ? "<b>+" + num(fd) + " followers</b> since " + tlabel(tparse(fs[0].at)) : "Same as " + tlabel(tparse(fs[0].at))) : "Verified sites only; unverified ones are left out";
     chart();
 
     var R = P.filter(function (p) { return p.views != null; }).sort(function (a, b) { return b.views - a.views; });
+    var UNV = P.filter(function (p) { return p.views == null && p.views_status === "unverified" && (p.id === "instagram" || p.id === "x"); });
     var mx = (R[0] && R[0].views) || 1;
     bars("race-bars", R.map(function (p) {
-      return { id: p.id, name: NAMES[p.id] || p.label, url: p.url, pct: Math.max(2, p.views / mx * 100), val: "<b>" + num(p.views) + "</b> views", lead: true };
-    }));
+      return { id: p.id, name: NAMES[p.id] || p.label, url: p.url, pct: Math.max(2, p.views / mx * 100), val: "<b>" + num(p.views) + "</b> views<small>" + esc((p.views_src || "") + " \u00b7 " + (p.views_asof || "")) + "</small>", lead: true };
+    }).concat(UNV.map(function (p) {
+      return { id: p.id, name: NAMES[p.id] || p.label, url: p.url, pct: 2, val: "<b>unverified</b><small>" + esc(p.views_src || "not publicly readable") + "</small>", lead: false };
+    })));
     var F = P.filter(function (p) { return p.followers != null; }).sort(function (a, b) { return b.followers - a.followers; });
     var fm = (F[0] && F[0].followers) || 1;
     bars("fol-bars", F.map(function (p) {
       var g = MS.filter(function (m) { return m > p.followers; })[0];
       return { id: p.id, name: NAMES[p.id] || p.label, url: p.url, pct: Math.max(2, p.followers / fm * 100),
-        val: "<b>" + num(p.followers) + (p.followers_rounded ? "+" : "") + "</b> followers" + (g ? '<small>goal ' + num(g) + "</small>" : ""), lead: false };
+        val: "<b>" + num(p.followers) + (p.followers_rounded ? "+" : "") + "</b> followers<small>" + esc((p.followers_src || "") + " \u00b7 " + (p.followers_asof || "")) + "</small>" + (g ? '<small>goal ' + num(g) + "</small>" : ""), lead: false };
     }));
 
     [["top", data.top_clip], ["latest", data.latest_clip]].forEach(function (c) {
       var clip = c[1], a = $(c[0] + "-clip");
       if (!clip || !a) return;
       $(c[0] + "-clip-title").textContent = clip.title;
-      $(c[0] + "-clip-meta").textContent = num(clip.views) + " views" + (clip.posted ? " \u00b7 posted " + ago(clip.posted) : "");
+      $(c[0] + "-clip-meta").textContent = num(clip.views) + " views" + (clip.src ? " \u00b7 " + clip.src : "") + (clip.asof ? " \u00b7 as of " + clip.asof : "") + (clip.posted ? " \u00b7 posted " + ago(clip.posted) : "");
       if (clip.url) a.href = clip.url;
     });
     if (live.twitch == null && data.live) { live.twitch = data.live.twitch; live.tv = data.live.twitch_viewers; }
