@@ -70,6 +70,7 @@ h1{font-size:clamp(36px,5vw,56px);font-weight:700;letter-spacing:-.02em;line-hei
  <section class="kp" id="kp" aria-label="Key numbers"></section>
  <section class="card gr" id="gr" aria-label="Audience growth"></section>
  <div class="two"><section class="card" id="race" aria-label="Platform reach"></section><section class="card" id="goals" aria-label="Follower goals"></section></div>
+ <section id="rewards" data-goals style="margin-top:28px" aria-label="Follower goal rewards"></section>
  <nav class="foot" aria-label="Channels">
   <a href="https://www.twitch.tv/dtrtc" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M4 2 2.5 6v14h5v3h3l3-3h4l5-5V2H4zm16 12-3 3h-4.5l-3 3v-3H5.5V4H20v10zM16 7.5h2v5.5h-2zm-5.5 0h2v5.5h-2z"/></svg><span><small>TWITCH</small>twitch.tv/dtrtc</span></a>
   <a href="https://www.youtube.com/@DTRTLabYT" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15.1V8.9l5.8 3.1-5.8 3.1z"/></svg><span><small>YOUTUBE</small>@DTRTLabYT</span></a>
@@ -90,7 +91,7 @@ const ICON={twitch:'<svg viewBox="0 0 24 24"><path d="M4 2 2.5 6v14h5v3h3l3-3h4l
  flag:'<svg viewBox="0 0 24 24"><path d="M5 2h2v20H5zm3 1h12l-3 4 3 4H8z"/></svg>',
  goal:'<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 16a6 6 0 1 1 6-6 6 6 0 0 1-6 6zm0-9a3 3 0 1 0 3 3 3 3 0 0 0-3-3z"/></svg>'};
 const NM={youtube:'YouTube',tiktok:'TikTok',instagram:'Instagram',x:'X',twitch:'Twitch',kick:'Kick'};
-const fmt=n=>n==null?'—':Number(n).toLocaleString('en-US');const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt=n=>n==null?'—':Number(n).toLocaleString('en-US');const esc=s=>String(s??'').replace(/[&<>"]/g,c=>'&#'+c.charCodeAt(0)+';');
 const $=id=>document.getElementById(id);const et=(d,o)=>d.toLocaleString('en-US',Object.assign({timeZone:'America/New_York'},o));
 function tick(){const d=new Date();$('tm').textContent=et(d,{hour:'numeric',minute:'2-digit',second:'2-digit'})+' ET';$('dt').textContent=et(d,{weekday:'short',month:'short',day:'numeric'}).toUpperCase();}
 tick();setInterval(tick,1000);
@@ -130,5 +131,6 @@ liveCheck();setInterval(liveCheck,120000);
 })();
 </script>
 <script defer src="schedule.js?v=1"></script>
+<script defer src="../js/goals.js?v=20261009b"></script>
 <script async src="../js/analytics.js?v=20261008e"></script>
 </body></html>
