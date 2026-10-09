@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "report_at": "2026-10-09T07:50:06Z",
+  "report_at": "2026-10-09T07:52:08Z",
   "title": "Audience and site progress",
   "metrics": {
     "latest_observation_at": "2026-10-09T01:52:29-04:00",
@@ -32,6 +32,11 @@
       "item": "Verified public showcase replay and reduced-motion behavior",
       "evidence": "https://dtrtlab.com/live/showcase.html",
       "verification": "Public browser returned HTTP 200; replay decoded frames; reduced-motion browser paused automatic playback."
+    },
+    {
+      "item": "Featured the published episode on the live showcase",
+      "evidence": "https://dtrtlab.com/live/showcase.html#new-episode",
+      "verification": "Public browser returned HTTP 200 and found the new episode link to YouTube video 3nDFZ0ZcJ1E."
     }
   ],
   "blocked": [
