@@ -6,43 +6,124 @@
   <title>DTRT Lab</title>
   <link rel="canonical" href="https://dtrtlab.com/">
   <style>
-    body { margin: 0; background: #F4F7FF; color: #1A1A1A; font: 16px/1.2 "Segoe UI", Helvetica, Arial, sans-serif; }
-    a { text-decoration: none; }
-    nav { display: flex; gap: 22px; padding: 18px 28px; font-size: 15px; }
-    nav a:nth-child(1) { color: #2F6BFF; }
-    nav a:nth-child(2) { color: #FF5A5F; }
-    nav a:nth-child(3) { color: #C4840A; }
-    nav a:nth-child(4) { color: #2F6BFF; }
-    .hero { padding: 6vh 6vw 3vh; }
-    h1 { margin: 0; font-size: clamp(56px, 9vw, 104px); font-weight: 650; letter-spacing: -0.045em; }
-    .line { margin: 8px 0 0; font-size: 22px; }
-    .blocks { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 0 6vw 10vh; }
-    .blocks a { display: flex; flex-direction: column; justify-content: space-between; min-height: 28vh; padding: 24px; background: #fff; color: #1A1A1A; font-size: clamp(28px, 4vw, 44px); letter-spacing: -0.03em; border-radius: 16px; box-shadow: 0 8px 24px rgba(26,26,26,0.06); }
-    .blocks a span { font-size: 40px; }
-    .blocks a:nth-child(1) { border-bottom: 8px solid #2F6BFF; }
-    .blocks a:nth-child(2) { border-bottom: 8px solid #FF5A5F; }
-    .blocks a:nth-child(3) { border-bottom: 8px solid #FFC857; }
-    .blocks a:nth-child(4) { border-bottom: 8px solid #2F6BFF; }
-    .blocks a:hover, .blocks a:active { filter: brightness(1.08); transform: translateY(-2px); }
-    @media (max-width: 700px) { .blocks { grid-template-columns: 1fr; } }
+    :root { --bg: #12141a; --card: #1c1f27; --ink: #f4f6fb; --muted: #b7bec9; --blue: #2F6BFF; --coral: #FF5A5F; --yellow: #FFC857; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.3 "Segoe UI", Helvetica, Arial, sans-serif; }
+    a { color: inherit; text-decoration: none; }
+    .home { max-width: 1080px; margin: 0 auto; padding: 36px 20px 72px; }
+    .searchwrap { display: flex; justify-content: center; }
+    .searchwrap label { position: relative; width: min(640px, 100%); }
+    .searchwrap input { width: 100%; box-sizing: border-box; background: var(--card); color: var(--ink); border: 0; border-radius: 999px; padding: 14px 18px 14px 46px; font: 16px "Segoe UI", Helvetica, Arial, sans-serif; }
+    .searchwrap input::placeholder { color: var(--muted); }
+    .searchwrap .mark { position: absolute; left: 18px; top: 13px; color: var(--muted); }
+    .shortcuts { display: flex; justify-content: center; gap: 18px; margin: 28px 0 8px; flex-wrap: wrap; }
+    .shortcuts a { width: 72px; text-align: center; font-size: 12px; color: var(--ink); }
+    .bubble { width: 48px; height: 48px; margin: 0 auto 8px; border-radius: 50%; background: var(--card); display: flex; align-items: center; justify-content: center; font-size: 22px; }
+    .shortcuts a:nth-child(1) .bubble { box-shadow: inset 0 -3px 0 var(--blue); }
+    .shortcuts a:nth-child(2) .bubble { box-shadow: inset 0 -3px 0 var(--coral); }
+    .shortcuts a:nth-child(3) .bubble { box-shadow: inset 0 -3px 0 var(--yellow); }
+    .shortcuts a:nth-child(4) .bubble { box-shadow: inset 0 -3px 0 var(--blue); }
+    .shortcuts a:nth-child(5) .bubble { box-shadow: inset 0 -3px 0 var(--coral); }
+    h1 { margin: 22px 0 16px; font-size: 28px; font-weight: 650; letter-spacing: -0.03em; }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .card { display: flex; flex-direction: column; background: var(--card); border-radius: 16px; overflow: hidden; min-height: 150px; }
+    .card.featured { grid-column: span 2; grid-row: span 2; }
+    .media { background: #0d0f14; aspect-ratio: 16/9; }
+    .card.featured .media { aspect-ratio: auto; flex: 1; min-height: 280px; }
+    .media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .card h2 { margin: 0; padding: 12px 14px 14px; font-size: 15px; font-weight: 650; }
+    .card.featured h2 { font-size: 22px; }
+    .card:hover { outline: 2px solid var(--blue); }
+    .empty { display: none; margin: 12px 0 0; color: var(--muted); }
+    @media (max-width: 800px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+      .card.featured { grid-column: span 2; grid-row: auto; }
+      .card.featured .media { min-height: 180px; }
+    }
   </style>
 </head>
 <body>
-<nav aria-label="Main">
-  <a href="/clips/">Clips</a>
-  <a href="/partner/">Partner</a>
-  <a href="/contact.html">Contact</a>
-  <a href="/live/">Live</a>
-</nav>
-<section class="hero">
-  <h1>DTRT Lab</h1>
-  <p class="line">Watch the clips.</p>
-</section>
-<section class="blocks" aria-label="Sections">
-  <a href="/clips/"><span aria-hidden="true">▶️</span>Clips</a>
-  <a href="/partner/"><span aria-hidden="true">🤝</span>Partner</a>
-  <a href="/contact.html"><span aria-hidden="true">✉️</span>Contact</a>
-  <a href="/live/"><span aria-hidden="true">📊</span>Live</a>
-</section>
+<main class="home">
+  <div class="searchwrap">
+    <label>
+      <span class="mark" aria-hidden="true">⌕</span>
+      <input id="q" type="search" placeholder="Search clips" aria-label="Search clips">
+    </label>
+  </div>
+  <nav class="shortcuts" aria-label="Main">
+    <a href="/clips/"><span class="bubble" aria-hidden="true">▶️</span>Clips</a>
+    <a href="/live/"><span class="bubble" aria-hidden="true">📊</span>Live</a>
+    <a href="/partner/"><span class="bubble" aria-hidden="true">🤝</span>Partner</a>
+    <a href="/contact.html"><span class="bubble" aria-hidden="true">✉️</span>Contact</a>
+    <a href="/radio.html"><span class="bubble" aria-hidden="true">🎵</span>Radio</a>
+  </nav>
+  <h1 id="greet">Good evening</h1>
+  <section class="grid" id="grid" aria-label="Clips">
+    <a class="card featured" href="/clips/#oh-my-god-i-am-so-slow" data-title="Oh my god, I am so slow">
+      <span class="media"><img src="/img/thumbs/oh-my-god-i-am-so-slow.jpg" alt=""></span>
+      <h2>Oh my god, I am so slow</h2>
+    </a>
+    <a class="card" href="/clips/#lurk-king" data-title="Lurk King"><span class="media"></span><h2>Lurk King</h2></a>
+    <a class="card" href="/clips/#skitz-ladder" data-title="Skitz Ladder"><span class="media"></span><h2>Skitz Ladder</h2></a>
+    <a class="card" href="/clips/#somebody-said-rush-b" data-title="Somebody Said Rush B"><span class="media"></span><h2>Somebody Said Rush B</h2></a>
+    <a class="card" href="/clips/#come-on-code" data-title="Come On, Code"><span class="media"></span><h2>Come On, Code</h2></a>
+    <a class="card" href="/clips/#why-dont-you" data-title="Why don’t you don’t like that, bro">
+      <span class="media"><img src="/img/thumbs/why-dont-you.jpg" alt=""></span>
+      <h2>Why don’t you don’t like that, bro</h2>
+    </a>
+    <a class="card" href="/clips/#blind-by-black" data-title="Blind by black">
+      <span class="media"><img src="/img/thumbs/blind-by-black.jpg" alt=""></span>
+      <h2>Blind by black</h2>
+    </a>
+    <a class="card" href="/clips/#happened-to-you" data-title="Happened to you, bro">
+      <span class="media"><img src="/img/thumbs/happened-to-you.jpg" alt=""></span>
+      <h2>Happened to you, bro</h2>
+    </a>
+    <a class="card" href="/clips/#move-it" data-title="Move it">
+      <span class="media"><img src="/img/thumbs/move-it.jpg" alt=""></span>
+      <h2>Move it</h2>
+    </a>
+    <a class="card" href="/clips/#nice-literally-un-lucable" data-title="Nice, literally un-lucable">
+      <span class="media"><img src="/img/thumbs/nice-literally-un-lucable.jpg" alt=""></span>
+      <h2>Nice, literally un-lucable</h2>
+    </a>
+    <a class="card" href="/clips/#two-superpowers" data-title="Two superpowers">
+      <span class="media"><img src="/img/thumbs/two-superpowers.jpg" alt=""></span>
+      <h2>Two superpowers</h2>
+    </a>
+    <a class="card" href="/clips/#oh-what-a-lie" data-title="Oh, what a lie">
+      <span class="media"><img src="/img/thumbs/oh-what-a-lie.jpg" alt=""></span>
+      <h2>Oh, what a lie</h2>
+    </a>
+  </section>
+  <p class="empty" id="empty">No clip title matches.</p>
+</main>
+<script>
+(function () {
+  var zone = "America/New_York";
+  function hour() {
+    var fmt = new Intl.DateTimeFormat("en-US", { timeZone: zone, hourCycle: "h23", hour: "2-digit" });
+    var h = 0;
+    fmt.formatToParts(new Date()).forEach(function (p) { if (p.type === "hour") h = Number(p.value); });
+    return h;
+  }
+  var h = hour();
+  var line = "Good night";
+  if (h >= 5 && h < 12) line = "Good morning";
+  else if (h >= 12 && h < 17) line = "Good afternoon";
+  else if (h >= 17 && h < 22) line = "Good evening";
+  document.getElementById("greet").textContent = line;
+  var q = document.getElementById("q");
+  q.addEventListener("input", function () {
+    var needle = q.value.trim().toLowerCase();
+    var shown = 0;
+    Array.prototype.forEach.call(document.querySelectorAll(".card"), function (card) {
+      var ok = !needle || card.getAttribute("data-title").toLowerCase().indexOf(needle) !== -1;
+      card.hidden = !ok;
+      if (ok) shown += 1;
+    });
+    document.getElementById("empty").style.display = shown ? "none" : "block";
+  });
+})();
+</script>
 </body>
 </html>

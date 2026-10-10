@@ -34,18 +34,18 @@
   <h1>Lurk King</h1>
   <video id="player" controls playsinline preload="metadata"></video>
   <ul id="list">
-    <li><button type="button" data-title="Lurk King">Lurk King</button></li>
-    <li><button type="button" data-title="Skitz Ladder">Skitz Ladder</button></li>
-    <li><button type="button" data-title="Somebody Said Rush B">Somebody Said Rush B</button></li>
-    <li><button type="button" data-title="Come On, Code">Come On, Code</button></li>
-    <li><button type="button" data-src="/watch/media/oh-my-god-i-am-so-slow.mp4" data-title="Oh my god, I am so slow"><img class="thumb" src="/img/thumbs/oh-my-god-i-am-so-slow.jpg" alt="">Oh my god, I am so slow</button></li>
-    <li><button type="button" data-src="/watch/media/why-dont-you.mp4" data-title="Why don’t you don’t like that, bro"><img class="thumb" src="/img/thumbs/why-dont-you.jpg" alt="">Why don’t you don’t like that, bro</button></li>
-    <li><button type="button" data-src="/watch/media/blind-by-black.mp4" data-title="Blind by black"><img class="thumb" src="/img/thumbs/blind-by-black.jpg" alt="">Blind by black</button></li>
-    <li><button type="button" data-src="/watch/media/happened-to-you.mp4" data-title="Happened to you, bro"><img class="thumb" src="/img/thumbs/happened-to-you.jpg" alt="">Happened to you, bro</button></li>
-    <li><button type="button" data-src="/watch/media/move-it.mp4" data-title="Move it"><img class="thumb" src="/img/thumbs/move-it.jpg" alt="">Move it</button></li>
-    <li><button type="button" data-src="/watch/media/nice-literally-un-lucable.mp4" data-title="Nice, literally un-lucable"><img class="thumb" src="/img/thumbs/nice-literally-un-lucable.jpg" alt="">Nice, literally un-lucable</button></li>
-    <li><button type="button" data-src="/watch/media/two-superpowers.mp4" data-title="Two superpowers"><img class="thumb" src="/img/thumbs/two-superpowers.jpg" alt="">Two superpowers</button></li>
-    <li><button type="button" data-src="/watch/media/oh-what-a-lie.mp4" data-title="Oh, what a lie"><img class="thumb" src="/img/thumbs/oh-what-a-lie.jpg" alt="">Oh, what a lie</button></li>
+    <li><button type="button" data-id="lurk-king" data-title="Lurk King">Lurk King</button></li>
+    <li><button type="button" data-id="skitz-ladder" data-title="Skitz Ladder">Skitz Ladder</button></li>
+    <li><button type="button" data-id="somebody-said-rush-b" data-title="Somebody Said Rush B">Somebody Said Rush B</button></li>
+    <li><button type="button" data-id="come-on-code" data-title="Come On, Code">Come On, Code</button></li>
+    <li><button type="button" data-id="oh-my-god-i-am-so-slow" data-src="/watch/media/oh-my-god-i-am-so-slow.mp4" data-title="Oh my god, I am so slow"><img class="thumb" src="/img/thumbs/oh-my-god-i-am-so-slow.jpg" alt="">Oh my god, I am so slow</button></li>
+    <li><button type="button" data-id="why-dont-you" data-src="/watch/media/why-dont-you.mp4" data-title="Why don’t you don’t like that, bro"><img class="thumb" src="/img/thumbs/why-dont-you.jpg" alt="">Why don’t you don’t like that, bro</button></li>
+    <li><button type="button" data-id="blind-by-black" data-src="/watch/media/blind-by-black.mp4" data-title="Blind by black"><img class="thumb" src="/img/thumbs/blind-by-black.jpg" alt="">Blind by black</button></li>
+    <li><button type="button" data-id="happened-to-you" data-src="/watch/media/happened-to-you.mp4" data-title="Happened to you, bro"><img class="thumb" src="/img/thumbs/happened-to-you.jpg" alt="">Happened to you, bro</button></li>
+    <li><button type="button" data-id="move-it" data-src="/watch/media/move-it.mp4" data-title="Move it"><img class="thumb" src="/img/thumbs/move-it.jpg" alt="">Move it</button></li>
+    <li><button type="button" data-id="nice-literally-un-lucable" data-src="/watch/media/nice-literally-un-lucable.mp4" data-title="Nice, literally un-lucable"><img class="thumb" src="/img/thumbs/nice-literally-un-lucable.jpg" alt="">Nice, literally un-lucable</button></li>
+    <li><button type="button" data-id="two-superpowers" data-src="/watch/media/two-superpowers.mp4" data-title="Two superpowers"><img class="thumb" src="/img/thumbs/two-superpowers.jpg" alt="">Two superpowers</button></li>
+    <li><button type="button" data-id="oh-what-a-lie" data-src="/watch/media/oh-what-a-lie.mp4" data-title="Oh, what a lie"><img class="thumb" src="/img/thumbs/oh-what-a-lie.jpg" alt="">Oh, what a lie</button></li>
   </ul>
 </main>
 <script>
@@ -66,6 +66,12 @@
     });
     btn.setAttribute("aria-current", "true");
   });
+  var id = decodeURIComponent(location.hash.replace(/^#/, ""));
+  if (id) {
+    Array.prototype.forEach.call(document.querySelectorAll("#list button"), function (b) {
+      if (b.getAttribute("data-id") === id) b.click();
+    });
+  }
 })();
 </script>
 </body>

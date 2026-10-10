@@ -6,71 +6,91 @@
   <title>Live — DTRT Lab</title>
   <link rel="canonical" href="https://dtrtlab.com/live/">
   <style>
-    :root { --bg: #F4F7FF; --ink: #1A1A1A; --accent: #2F6BFF; }
+    :root { --bg: #12141a; --card: #1c1f27; --ink: #f4f6fb; --muted: #b7bec9; --blue: #2F6BFF; --coral: #FF5A5F; --yellow: #FFC857; }
     body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.3 "Segoe UI", Helvetica, Arial, sans-serif; }
-    a { color: var(--accent); text-decoration: none; }
-    nav { display: flex; gap: 28px; padding: 18px 28px; font-size: 14px; }
-    main { max-width: 52rem; margin: 0 auto; padding: 12px 28px 80px; }
-    h1 { margin: 8px 0 8px; font-size: clamp(40px, 6vw, 64px); font-weight: 500; letter-spacing: -0.04em; }
-    .timer { font-size: clamp(28px, 4vw, 40px); font-variant-numeric: tabular-nums; margin: 0 0 8px; }
-    .when { margin: 0 0 28px; }
-    .row { display: grid; grid-template-columns: 11rem 1fr auto; gap: 12px; align-items: center; margin: 10px 0; }
-    .name { font-size: 16px; }
-    .track { background: #fff; border-radius: 4px; height: 28px; }
-    .bar { height: 28px; background: #2F6BFF; border-radius: 4px; }
-    .row:nth-child(2) .bar, .row:nth-child(5) .bar { background: #FF5A5F; }
-    .row:nth-child(3) .bar, .row:nth-child(6) .bar { background: #FFC857; }
-    .n { font-variant-numeric: tabular-nums; }
-    .math, .money { font-size: 22px; margin: 28px 0 0; }
-    @media (max-width: 700px) {
-      .row { grid-template-columns: 1fr; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 28px 20px 72px; }
+    nav { display: flex; gap: 18px; font-size: 14px; margin-bottom: 22px; }
+    nav a:nth-child(1) { color: var(--blue); }
+    nav a:nth-child(2) { color: var(--coral); }
+    nav a:nth-child(3) { color: var(--yellow); }
+    nav a:nth-child(4) { color: var(--blue); }
+    nav a[aria-current="page"] { color: var(--ink); }
+    h1 { margin: 0; font-size: 28px; font-weight: 650; letter-spacing: -0.03em; }
+    .sub { margin: 6px 0 18px; color: var(--muted); }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip { background: var(--card); border-radius: 14px; padding: 12px 14px; min-width: 140px; }
+    .chip strong { display: block; font-size: 28px; font-variant-numeric: tabular-nums; letter-spacing: -0.03em; }
+    .chip span { display: block; color: var(--muted); font-size: 13px; margin-top: 4px; }
+    .chip:nth-child(3n+1) strong { color: var(--blue); }
+    .chip:nth-child(3n+2) strong { color: var(--coral); }
+    .chip:nth-child(3n) strong { color: var(--yellow); }
+    .stage { display: grid; grid-template-columns: 1fr 240px; gap: 16px; margin-top: 18px; align-items: stretch; }
+    .timeline { background: var(--card); border-radius: 16px; padding: 22px 18px; display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; }
+    .readout { font-size: 28px; font-variant-numeric: tabular-nums; letter-spacing: -0.03em; }
+    .readout small { display: block; color: var(--muted); font-size: 12px; letter-spacing: 0; margin-top: 4px; }
+    .rail { position: relative; height: 4px; background: #2a3140; border-radius: 999px; }
+    .fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--yellow); border-radius: 999px; }
+    .head { position: absolute; top: 50%; width: 14px; height: 14px; margin: -7px 0 0 -7px; left: 0; border-radius: 50%; background: var(--yellow); box-shadow: 0 0 0 4px rgba(255,200,87,0.25); }
+    .preview { background: var(--card); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; }
+    .preview img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; background: #0d0f14; }
+    .preview span { padding: 12px 14px 14px; font-weight: 650; }
+    .math { margin: 18px 0 0; color: var(--muted); }
+    @media (max-width: 800px) {
+      .stage { grid-template-columns: 1fr; }
+      .timeline { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-<nav aria-label="Main">
-  <a href="/">DTRT</a>
-  <a href="/clips/">Clips</a>
-  <a href="/partner/">Partner</a>
-  <a href="/contact.html">Contact</a>
-  <a href="/live/" aria-current="page">Live</a>
-</nav>
-<main>
-  <h1>Live</h1>
-  <p class="timer" id="goal-timer">Next update</p>
-  <p class="when">Eastern time. 12:00 AM, 4:00 AM, 8:00 AM, 12:00 PM, 4:00 PM, 8:00 PM.</p>
-  <div class="chart" role="img" aria-label="Saved views, one scale, best to worst">
-    <div class="row"><span class="name">Lurk King, YouTube</span><span class="track"><span class="bar" style="width:100%"></span></span><span class="n">1,454</span></div>
-    <div class="row"><span class="name">Lurk King, Instagram</span><span class="track"><span class="bar" style="width:99.9%"></span></span><span class="n">1,453</span></div>
-    <div class="row"><span class="name">Skitz Ladder, Instagram</span><span class="track"><span class="bar" style="width:93.3%"></span></span><span class="n">1,357</span></div>
-    <div class="row"><span class="name">Somebody Said Rush B, Instagram</span><span class="track"><span class="bar" style="width:88.7%"></span></span><span class="n">1,290</span></div>
-    <div class="row"><span class="name">Skitz Ladder, YouTube</span><span class="track"><span class="bar" style="width:84.5%"></span></span><span class="n">1,228</span></div>
-    <div class="row"><span class="name">Come On, Code, YouTube</span><span class="track"><span class="bar" style="width:1.2%"></span></span><span class="n">18</span></div>
+<main class="wrap">
+  <nav aria-label="Main">
+    <a href="/">DTRT</a>
+    <a href="/clips/">Clips</a>
+    <a href="/partner/">Partner</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/live/" aria-current="page">Live</a>
+  </nav>
+  <h1>Channel Dashboard</h1>
+  <p class="sub">Saved clip counts from October 9, 2026. Money is October 10, 2026.</p>
+  <section class="chips" aria-label="Saved counts">
+    <article class="chip"><strong>1,454</strong><span>Lurk King, YouTube views</span></article>
+    <article class="chip"><strong>1,453</strong><span>Lurk King, Instagram plays</span></article>
+    <article class="chip"><strong>1,357</strong><span>Skitz Ladder, Instagram plays</span></article>
+    <article class="chip"><strong>1,290</strong><span>Somebody Said Rush B, Instagram plays</span></article>
+    <article class="chip"><strong>1,228</strong><span>Skitz Ladder, YouTube views</span></article>
+    <article class="chip"><strong>18</strong><span>Come On, Code, YouTube views</span></article>
+    <article class="chip"><strong>$0</strong><span>October 10, 2026</span></article>
+  </section>
+  <div class="stage">
+    <section class="timeline" aria-label="Next update and Eastern time">
+      <p class="readout" id="countdown">--:--:--<small>Next update</small></p>
+      <div class="rail" aria-hidden="true"><div class="fill" id="fill"></div><div class="head" id="head"></div></div>
+      <p class="readout" id="clock">--:--:--<small>Eastern</small></p>
+    </section>
+    <a class="preview" href="/clips/#oh-my-god-i-am-so-slow">
+      <img src="/img/thumbs/oh-my-god-i-am-so-slow.jpg" alt="">
+      <span>Oh my god, I am so slow</span>
+    </a>
   </div>
   <p class="math">Lurk King leads YouTube by 226 views over Skitz Ladder (1,454 − 1,228).</p>
-  <p class="money">$0. October 10, 2026.</p>
 </main>
 <script>
 (function () {
   var zone = "America/New_York";
   var slots = [0, 4, 8, 12, 16, 20];
-  var el = document.getElementById("goal-timer");
+  var windowSec = 4 * 3600;
   var reloaded = false;
   function parts(date) {
     var fmt = new Intl.DateTimeFormat("en-US", {
-      timeZone: zone,
-      hourCycle: "h23",
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit"
+      timeZone: zone, hourCycle: "h23",
+      hour: "2-digit", minute: "2-digit", second: "2-digit"
     });
     var map = {};
     fmt.formatToParts(date).forEach(function (p) { map[p.type] = p.value; });
     return { h: Number(map.hour), min: Number(map.minute), s: Number(map.second) };
   }
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
   function secondsLeft(now) {
     var p = parts(now);
     var next = null;
@@ -90,17 +110,23 @@
     return sec;
   }
   function paint() {
-    var sec = secondsLeft(new Date());
+    var now = new Date();
+    var sec = secondsLeft(now);
     if (sec <= 1 && !reloaded) {
       reloaded = true;
-      el.textContent = "Updating";
       location.reload();
       return;
     }
     var h = Math.floor(sec / 3600);
     var m = Math.floor((sec % 3600) / 60);
     var s = sec % 60;
-    el.textContent = "Next update in " + h + ":" + (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s + " Eastern";
+    document.getElementById("countdown").firstChild.textContent = pad(h) + ":" + pad(m) + ":" + pad(s);
+    var p = parts(now);
+    document.getElementById("clock").firstChild.textContent = pad(p.h) + ":" + pad(p.min) + ":" + pad(p.s);
+    var done = Math.max(0, Math.min(1, (windowSec - sec) / windowSec));
+    var pct = (done * 100) + "%";
+    document.getElementById("fill").style.width = pct;
+    document.getElementById("head").style.left = pct;
   }
   paint();
   setInterval(paint, 1000);
