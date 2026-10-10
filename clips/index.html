@@ -5,34 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Clips — DTRT Lab</title>
   <link rel="canonical" href="https://dtrtlab.com/clips/">
-  <style>
-    body { margin: 0; background: #F4F7FF; color: #1A1A1A; font: 16px/1.4 "Segoe UI", Helvetica, Arial, sans-serif; }
-    a { color: #2F6BFF; text-decoration: none; }
-    nav { display: flex; gap: 22px; padding: 18px 28px; font-size: 15px; }
-    nav a:nth-child(2) { color: #FF5A5F; }
-    nav a:nth-child(3) { color: #C4840A; }
-    nav a:nth-child(4) { color: #2F6BFF; }
-    main { max-width: 52rem; margin: 0 auto; padding: 12px 28px 80px; }
-    h1 { margin: 12px 0 16px; font-size: clamp(36px, 5vw, 56px); font-weight: 650; letter-spacing: -0.03em; }
-    video { width: 100%; background: #1A1A1A; border-radius: 12px; }
-    button { display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; margin: 8px 0; padding: 10px; background: #fff; color: #1A1A1A; border: 0; border-radius: 12px; font: inherit; font-size: 18px; cursor: pointer; }
-    button:hover, button:active, button[aria-current="true"] { filter: brightness(1.08); outline: 3px solid #2F6BFF; }
-    img.thumb { width: 128px; height: 72px; object-fit: cover; border-radius: 8px; flex: none; background: #1A1A1A; }
-    li { list-style: none; }
-    ul { margin: 20px 0 0; padding: 0; }
-  </style>
+  <link rel="stylesheet" href="/css/site.css?v=20261010p">
 </head>
 <body>
-<nav aria-label="Main">
-  <a href="/">DTRT</a>
-  <a href="/clips/" aria-current="page">Clips</a>
-  <a href="/partner/">Partner</a>
-  <a href="/contact.html">Contact</a>
-  <a href="/live/">Live</a>
-</nav>
-<main>
-  <h1>Lurk King</h1>
-  <video id="player" controls playsinline preload="metadata"></video>
+<main class="page clips">
+  <nav class="shortcuts" aria-label="Main">
+    <a href="/clips/" aria-current="page"><span class="bubble" aria-hidden="true">▶️</span>Clips</a>
+    <a href="/live/"><span class="bubble" aria-hidden="true">📊</span>Live</a>
+    <a href="/partner/"><span class="bubble" aria-hidden="true">🤝</span>Partner</a>
+    <a href="/contact.html"><span class="bubble" aria-hidden="true">✉️</span>Contact</a>
+    <a href="/radio.html"><span class="bubble" aria-hidden="true">🎵</span>Radio</a>
+  </nav>
+  <h1 id="title">Lurk King</h1>
+  <video id="player" controls playsinline preload="none"></video>
   <ul id="list">
     <li><button type="button" data-id="lurk-king" data-title="Lurk King">Lurk King</button></li>
     <li><button type="button" data-id="skitz-ladder" data-title="Skitz Ladder">Skitz Ladder</button></li>
@@ -51,25 +36,27 @@
 <script>
 (function () {
   var player = document.getElementById("player");
-  var title = document.querySelector("h1");
-  document.getElementById("list").addEventListener("click", function (e) {
-    var btn = e.target.closest("button");
-    if (!btn) return;
+  var title = document.getElementById("title");
+  function choose(btn, play) {
     var src = btn.getAttribute("data-src");
     title.textContent = btn.getAttribute("data-title");
     if (src) {
-      player.src = src;
-      player.play();
+      if (player.getAttribute("src") !== src) player.src = src;
+      if (play) player.play();
     }
     Array.prototype.forEach.call(document.querySelectorAll("#list button"), function (b) {
       b.removeAttribute("aria-current");
     });
     btn.setAttribute("aria-current", "true");
+  }
+  document.getElementById("list").addEventListener("click", function (e) {
+    var btn = e.target.closest("button");
+    if (btn) choose(btn, true);
   });
   var id = decodeURIComponent(location.hash.replace(/^#/, ""));
   if (id) {
     Array.prototype.forEach.call(document.querySelectorAll("#list button"), function (b) {
-      if (b.getAttribute("data-id") === id) b.click();
+      if (b.getAttribute("data-id") === id) choose(b, false);
     });
   }
 })();

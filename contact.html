@@ -5,53 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact — DTRT Lab</title>
   <link rel="canonical" href="https://dtrtlab.com/contact.html">
-  <style>
-    body { margin: 0; background: #F4F7FF; color: #1A1A1A; font: 18px/1.5 "Segoe UI", Helvetica, Arial, sans-serif; }
-    a { color: #2F6BFF; }
-    nav { display: flex; gap: 28px; padding: 18px 28px; font-size: 14px; }
-    main { max-width: 40rem; margin: 0 auto; padding: 48px 28px 80px; }
-    label { display: block; margin: 12px 0; }
-    input, select, textarea { width: 100%; box-sizing: border-box; font: inherit; padding: 8px; }
-    button { font: inherit; padding: 8px 12px; }
-  </style>
+  <link rel="stylesheet" href="/css/site.css?v=20261010p">
 </head>
 <body>
-<header>
-  <nav aria-label="Main">
-    <a href="/">DTRT</a>
-    <a href="/clips/">Clips</a>
-    <a href="/partner/">Partner</a>
-    <a href="/contact.html" aria-current="page">Contact</a>
-    <a href="/live/">Live</a>
+<main class="page stack">
+  <nav class="shortcuts" aria-label="Main">
+    <a href="/clips/"><span class="bubble" aria-hidden="true">▶️</span>Clips</a>
+    <a href="/live/"><span class="bubble" aria-hidden="true">📊</span>Live</a>
+    <a href="/partner/"><span class="bubble" aria-hidden="true">🤝</span>Partner</a>
+    <a href="/contact.html" aria-current="page"><span class="bubble" aria-hidden="true">✉️</span>Contact</a>
+    <a href="/radio.html"><span class="bubble" aria-hidden="true">🎵</span>Radio</a>
   </nav>
-</header>
-<main>
   <h1>Contact</h1>
-  <p>Email <a href="mailto:DTRTCollision@outlook.com">DTRTCollision@outlook.com</a>.</p>
-  <h2>Categories</h2>
-  <ul>
-    <li>Highlight — about a clip on the site.</li>
-    <li>Partner — sponsor ad or upload.</li>
-    <li>Website — something broken or a question about the site.</li>
-    <li>Other — anything else.</li>
-  </ul>
-  <form id="contact-form">
-    <label>Category
-      <select name="category" required>
-        <option value="">Choose one</option>
-        <option>Highlight</option>
-        <option>Partner</option>
-        <option>Website</option>
-        <option>Other</option>
-      </select>
-    </label>
-    <label>Subject <input name="subject" required></label>
-    <label>Name <input name="name" autocomplete="name" required></label>
-    <label>Email <input name="email" type="email" autocomplete="email" required></label>
-    <label>Message <textarea name="message" required></textarea></label>
-    <button type="submit">Send email</button>
-  </form>
-  <p>This opens your email app. The message is not stored on this site.</p>
+  <section class="panel">
+    <p>Email <a href="mailto:DTRTCollision@outlook.com">DTRTCollision@outlook.com</a>.</p>
+    <h2>Categories</h2>
+    <ul>
+      <li>Highlight — about a clip on the site.</li>
+      <li>Partner — sponsor ad or upload.</li>
+      <li>Website — something broken or a question about the site.</li>
+      <li>Other — anything else.</li>
+    </ul>
+    <form id="contact-form">
+      <label>Category
+        <select name="category" required>
+          <option value="">Choose one</option>
+          <option>Highlight</option>
+          <option>Partner</option>
+          <option>Website</option>
+          <option>Other</option>
+        </select>
+      </label>
+      <label>Subject <input name="subject" required></label>
+      <label>Name <input name="name" autocomplete="name" required></label>
+      <label>Email <input name="email" type="email" autocomplete="email" required></label>
+      <label>Message <textarea name="message" required></textarea></label>
+      <button type="submit">Send email</button>
+    </form>
+    <p class="muted">This opens your email app. The message is not stored on this site.</p>
+  </section>
 </main>
 <script>
 (function () {

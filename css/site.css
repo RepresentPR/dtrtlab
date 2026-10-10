@@ -1,0 +1,133 @@
+:root {
+  --bg: #12141a;
+  --card: #1c1f27;
+  --ink: #f4f6fb;
+  --muted: #b7bec9;
+  --blue: #2F6BFF;
+  --coral: #FF5A5F;
+  --yellow: #FFC857;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.4 "Segoe UI", Helvetica, Arial, sans-serif;
+}
+a { color: var(--blue); }
+.page, .home { max-width: 1080px; margin: 0 auto; padding: 28px 20px 72px; }
+.home { padding-top: 36px; }
+h1 { margin: 8px 0 12px; font-size: 28px; font-weight: 650; letter-spacing: -0.03em; }
+.shortcuts { display: flex; justify-content: center; gap: 18px; margin: 0 0 22px; flex-wrap: wrap; }
+.shortcuts a { width: 72px; text-align: center; font-size: 12px; color: var(--ink); text-decoration: none; }
+.bubble {
+  width: 48px; height: 48px; margin: 0 auto 8px; border-radius: 50%;
+  background: var(--card); display: flex; align-items: center; justify-content: center; font-size: 22px;
+}
+.shortcuts a:nth-child(1) .bubble { box-shadow: inset 0 -3px 0 var(--blue); }
+.shortcuts a:nth-child(2) .bubble { box-shadow: inset 0 -3px 0 var(--coral); }
+.shortcuts a:nth-child(3) .bubble { box-shadow: inset 0 -3px 0 var(--yellow); }
+.shortcuts a:nth-child(4) .bubble { box-shadow: inset 0 -3px 0 var(--blue); }
+.shortcuts a:nth-child(5) .bubble { box-shadow: inset 0 -3px 0 var(--coral); }
+.shortcuts a:hover .bubble { filter: brightness(1.18); }
+.shortcuts a:active .bubble { filter: brightness(1.35); outline: 3px solid var(--yellow); }
+.shortcuts a[aria-current="page"] .bubble { outline: 3px solid var(--blue); }
+.card, .chip, .panel, .timeline, .preview {
+  background: var(--card);
+  border-radius: 16px;
+}
+.card { color: var(--ink); text-decoration: none; }
+.card:hover, .preview:hover, .panel:hover { filter: brightness(1.12); }
+.card:active, .preview:active, button:active {
+  filter: brightness(1.28);
+  outline: 3px solid var(--yellow);
+}
+button, .hit {
+  min-height: 44px;
+  min-width: 44px;
+  background: var(--blue);
+  color: #fff;
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font: inherit;
+  cursor: pointer;
+}
+button:hover { filter: brightness(1.12); }
+input, select, textarea {
+  width: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  border: 0;
+  border-radius: 12px;
+  min-height: 44px;
+  padding: 12px;
+  font: inherit;
+}
+textarea { min-height: 120px; }
+input:focus, select:focus, textarea:focus, button:focus-visible, a:focus-visible {
+  outline: 3px solid var(--blue);
+}
+label { display: block; margin: 14px 0; }
+.searchwrap { display: flex; justify-content: center; }
+.searchwrap label { position: relative; width: min(640px, 100%); margin: 0; }
+.searchwrap input { border-radius: 999px; padding: 14px 18px 14px 46px; background: var(--card); }
+.searchwrap input::placeholder { color: var(--muted); }
+.searchwrap .mark { position: absolute; left: 18px; top: 13px; color: var(--muted); }
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.card { display: flex; flex-direction: column; overflow: hidden; min-height: 150px; }
+.card.featured { grid-column: span 2; grid-row: span 2; }
+.media { background: #0d0f14; aspect-ratio: 16/9; }
+.card.featured .media { aspect-ratio: auto; flex: 1; min-height: 280px; }
+.media img, .preview img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.card h2, .card h3 { margin: 0; padding: 12px 14px 14px; font-size: 15px; font-weight: 650; color: var(--ink); }
+.card.featured h2 { font-size: 22px; }
+.muted { color: var(--muted); }
+.clips video { width: 100%; background: #0d0f14; border-radius: 16px; }
+.clips ul { margin: 16px 0 0; padding: 0; }
+.clips li { list-style: none; }
+.clips button {
+  display: flex; align-items: center; gap: 14px; width: 100%;
+  text-align: left; margin: 8px 0; background: var(--card); color: var(--ink);
+}
+.clips img.thumb { width: 128px; height: 72px; object-fit: cover; border-radius: 8px; background: #0d0f14; }
+.clips button[aria-current="true"] { outline: 3px solid var(--blue); }
+.chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.chip { padding: 12px 14px; min-width: 140px; }
+.chip strong { display: block; font-size: 28px; font-variant-numeric: tabular-nums; letter-spacing: -0.03em; color: var(--ink); }
+.chip span { display: block; color: var(--muted); font-size: 13px; margin-top: 4px; }
+.stage { display: grid; grid-template-columns: 1fr 240px; gap: 16px; margin-top: 18px; }
+.timeline { padding: 22px 18px; display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; }
+.readout { margin: 0; font-size: 28px; font-variant-numeric: tabular-nums; }
+.readout small { display: block; color: var(--muted); font-size: 12px; margin-top: 4px; }
+.rail { position: relative; height: 8px; background: #2a3140; border-radius: 999px; }
+.fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--yellow); border-radius: 999px; }
+.head {
+  position: absolute; top: 50%; width: 16px; height: 16px; margin: -8px 0 0 -8px; left: 0;
+  border-radius: 50%; background: var(--coral);
+}
+.preview { overflow: hidden; display: flex; flex-direction: column; text-decoration: none; color: var(--ink); }
+.preview img { aspect-ratio: 16/9; height: auto; }
+.preview span { padding: 12px 14px 14px; font-weight: 650; }
+.panel { padding: 8px 20px 20px; }
+.stack { max-width: 40rem; }
+.al-radio { background: var(--card); border-radius: 16px; padding: 16px; margin-top: 12px; }
+.al-radio-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 12px 0; }
+.al-radio-list { margin: 12px 0 0; padding: 0; }
+.al-radio-list li { list-style: none; }
+.al-radio-list button {
+  width: 100%; text-align: left; margin: 8px 0; background: var(--bg); color: var(--ink);
+  border-left: 4px solid var(--blue);
+}
+.al-radio-list button[aria-current="true"] { border-left-color: var(--yellow); }
+.al-radio-knob {
+  width: 48px; height: 48px; border-radius: 50%; padding: 0;
+  background: var(--bg); box-shadow: inset 0 0 0 4px var(--yellow);
+}
+.remind { margin: 0 0 8px; }
+@media (max-width: 800px) {
+  .grid { grid-template-columns: 1fr 1fr; }
+  .card.featured { grid-column: span 2; grid-row: auto; }
+  .card.featured .media { min-height: 180px; }
+  .stage, .timeline { grid-template-columns: 1fr; }
+}

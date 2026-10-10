@@ -2,55 +2,48 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Radio — DTRT Lab</title>
-  <meta name="description" content="Original music for the DTRT game in development. Seven cuts. The game is not finished, not for sale, and not online.">
+  <meta name="description" content="This audio is for the game in development, not finished, not for sale, not online.">
   <link rel="canonical" href="https://dtrtlab.com/radio.html">
-  <link rel="stylesheet" href="css/fonts.css?v=20261010n">
-  <link rel="stylesheet" href="css/lab.css?v=20261010n">
-  <link rel="stylesheet" href="css/adapt.css?v=20261010n">
-  <link rel="stylesheet" href="css/afterlight.css?v=20261010n">
-
-
-
-
-
-  <link rel="manifest" href="/site.webmanifest">
-<link rel="icon" href="/img/brand/mark.svg?v=20261010n" type="image/svg+xml"><link rel="apple-touch-icon" href="/img/brand/dtrt-avatar.png"><link rel="stylesheet" href="/css/identity.css?v=20261010n"><meta property="og:title" content="Radio — DTRT Lab"><meta property="og:description" content="This audio is for the game we are developing. DTRT is still being built. It is not finished, not for sale, and not online."><meta property="og:url" content="https://dtrtlab.com/radio.html"><meta property="og:site_name" content="DTRT"><meta property="og:type" content="website"><meta property="og:image" content="https://dtrtlab.com/img/brand/dtrt-social.png"><meta name="twitter:card" content="summary_large_image"></head>
+  <link rel="stylesheet" href="/css/site.css?v=20261010p">
+  <meta property="og:title" content="Radio — DTRT Lab">
+  <meta property="og:description" content="This audio is for the game in development, not finished, not for sale, not online.">
+  <meta property="og:url" content="https://dtrtlab.com/radio.html">
+</head>
 <body>
-  <a class="skip" href="#radio">Skip to radio</a>
-  <header class="nav" id="site-nav"></header>
-  <section id="radio">
-    <div class="wrap">
-<p class="kicker">For the game</p>
-      <h1 class="page-heading">Radio</h1>
-      <p>This audio is for the game we are developing. DTRT is a training range and a story set in Puerto Rico. It is still being built. It is not finished, not for sale, and not online.</p>
-      <p>Seven cuts from that world. Play them in order, shuffle the set, and turn the volume knob. Songs made for Isabella live on their own page. Those are not game music.</p>
-      <p><a href="isabella.html">Songs for Isabella</a></p>
-      <div class="al-radio" id="al-radio">
-        <audio id="al-radio-audio" preload="metadata"></audio>
-        <div class="al-radio-now">
-          <p class="n">Now</p>
-          <h3 id="al-radio-now">—</h3>
-          <p class="al-radio-time" id="al-radio-time">0:00 / 0:00</p>
-          <input id="al-radio-seek" type="range" min="0" max="1000" value="0" aria-label="Seek">
-        </div>
-        <div class="al-radio-controls">
-          <button type="button" id="al-radio-prev">Prev</button>
-          <button type="button" id="al-radio-play" aria-pressed="false">Play</button>
-          <button type="button" id="al-radio-next">Next</button>
-          <button type="button" id="al-radio-shuffle" aria-pressed="false">Shuffle</button>
-          <div class="al-radio-volwrap">
-            <button type="button" class="al-radio-knob" id="al-radio-knob" role="slider" aria-label="Volume" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80"></button>
-            <span id="al-radio-vol">80%</span>
-          </div>
-        </div>
-        <ol class="al-radio-list" id="al-radio-list"></ol>
+<main class="page stack">
+  <nav class="shortcuts" aria-label="Main">
+    <a href="/clips/"><span class="bubble" aria-hidden="true">▶️</span>Clips</a>
+    <a href="/live/"><span class="bubble" aria-hidden="true">📊</span>Live</a>
+    <a href="/partner/"><span class="bubble" aria-hidden="true">🤝</span>Partner</a>
+    <a href="/contact.html"><span class="bubble" aria-hidden="true">✉️</span>Contact</a>
+    <a href="/radio.html" aria-current="page"><span class="bubble" aria-hidden="true">🎵</span>Radio</a>
+  </nav>
+  <h1>Radio</h1>
+  <p>Seven cuts for the game. DTRT is a training range and a story set in Puerto Rico. It is still being built. <a href="isabella.html">Songs for Isabella</a> are not game music.</p>
+  <div class="al-radio" id="al-radio">
+    <p class="remind">This audio is for the game in development, not finished, not for sale, not online.</p>
+    <audio id="al-radio-audio" preload="metadata"></audio>
+    <div class="al-radio-now">
+      <p class="muted">Now</p>
+      <h2 id="al-radio-now">—</h2>
+      <p id="al-radio-time">0:00 / 0:00</p>
+      <input id="al-radio-seek" type="range" min="0" max="1000" value="0" aria-label="Seek">
+    </div>
+    <div class="al-radio-controls">
+      <button type="button" id="al-radio-prev">Prev</button>
+      <button type="button" id="al-radio-play" aria-pressed="false">Play</button>
+      <button type="button" id="al-radio-next">Next</button>
+      <button type="button" id="al-radio-shuffle" aria-pressed="false">Shuffle</button>
+      <div class="al-radio-volwrap">
+        <button type="button" class="al-radio-knob" id="al-radio-knob" role="slider" aria-label="Volume" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80"></button>
+        <span id="al-radio-vol">80%</span>
       </div>
     </div>
-  </section>
-  <footer id="site-foot"></footer>
-  <script defer src="js/nav.js?v=20261010n"></script>
-  <script defer src="js/radio.js?v=20261010n"></script>
-<script src="/js/experience.js?v=20261010n" defer></script></body>
+    <ol class="al-radio-list" id="al-radio-list"></ol>
+  </div>
+</main>
+<script src="js/radio.js?v=20261010p"></script>
+</body>
 </html>

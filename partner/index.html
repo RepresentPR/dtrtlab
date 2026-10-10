@@ -5,40 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Partner — DTRT Lab</title>
   <link rel="canonical" href="https://dtrtlab.com/partner/">
-  <style>
-    body { margin: 0; background: #F4F7FF; color: #1A1A1A; font: 18px/1.5 "Segoe UI", Helvetica, Arial, sans-serif; }
-    a { color: #FF5A5F; }
-    nav { display: flex; gap: 28px; padding: 18px 28px; font-size: 14px; }
-    main { max-width: 40rem; margin: 0 auto; padding: 48px 28px 80px; }
-    label { display: block; margin: 12px 0; }
-    button { font: inherit; padding: 8px 12px; }
-  </style>
+  <link rel="stylesheet" href="/css/site.css?v=20261010p">
 </head>
 <body>
-<header>
-  <nav aria-label="Main">
-    <a href="/">DTRT</a>
-    <a href="/clips/">Clips</a>
-    <a href="/partner/" aria-current="page">Partner</a>
-    <a href="/contact.html">Contact</a>
-    <a href="/live/">Live</a>
+<main class="page stack">
+  <nav class="shortcuts" aria-label="Main">
+    <a href="/clips/"><span class="bubble" aria-hidden="true">▶️</span>Clips</a>
+    <a href="/live/"><span class="bubble" aria-hidden="true">📊</span>Live</a>
+    <a href="/partner/" aria-current="page"><span class="bubble" aria-hidden="true">🤝</span>Partner</a>
+    <a href="/contact.html"><span class="bubble" aria-hidden="true">✉️</span>Contact</a>
+    <a href="/radio.html"><span class="bubble" aria-hidden="true">🎵</span>Radio</a>
   </nav>
-</header>
-<main>
   <h1>Partner</h1>
-  <p>Our clips are the highlight. A sponsor ad does not replace them.</p>
-  <p>Tip to highlight one of our clips inside the sponsor slot.</p>
-  <p>Or upload your own highlight for that same slot. Video files only. A pasted link is not accepted.</p>
-  <p>Timed Paid Sponsor. Runs for the 15 minutes before each 4-hour update. Under $1 does not run.</p>
-  <p>One sponsor ad at a time, labeled Sponsor. It runs only in the 15 minutes before 12:00 AM, 4:00 AM, 8:00 AM, 12:00 PM, 4:00 PM, and 8:00 PM America/New_York, then it comes off. Outside that window the slot is empty, even if someone paid. A new paid sponsor replaces the current one, and its own window is the next open 15 minutes.</p>
-  <p id="viewers-now">Viewers now: not counted yet</p>
-  <p>Viewers means people on dtrtlab.com right now. They are not counted, so the count used here is 0. 30s = max($1, round viewers × $0.10). 60s = max($1, round viewers × $0.25). Longer = max($1, round viewers × $0.50). At 0 viewers every price shows $1.</p>
-  <p>Sponsor slot: empty. No payment is recorded. Started at $0. Still $0. October 10, 2026. An upload does not go on the site unless a real payment of at least the shown price is already written down. This page does not take card numbers.</p>
-  <form id="sponsor-upload">
-    <label>Your video file <input id="sponsor-file" type="file" accept="video/*"></label>
-    <button type="submit">Send sponsor video</button>
-  </form>
-  <p id="sponsor-note"></p>
+  <section class="panel">
+    <p>Our clips are the highlight. A sponsor ad does not replace them.</p>
+    <p>Tip to highlight one of our clips inside the sponsor slot.</p>
+    <p>Or upload your own highlight for that same slot. Video files only. A pasted link is not accepted.</p>
+    <p>Timed Paid Sponsor. Runs for the 15 minutes before each 4-hour update. Under $1 does not run.</p>
+    <p>One sponsor ad at a time, labeled Sponsor. It runs only in the 15 minutes before 12:00 AM, 4:00 AM, 8:00 AM, 12:00 PM, 4:00 PM, and 8:00 PM America/New_York, then it comes off. Outside that window the slot is empty, even if someone paid. A new paid sponsor replaces the current one, and its own window is the next open 15 minutes.</p>
+    <p id="viewers-now">Viewers now: not counted yet</p>
+    <p>Viewers means people on dtrtlab.com right now. They are not counted, so the count used here is 0. 30s = max($1, round viewers × $0.10). 60s = max($1, round viewers × $0.25). Longer = max($1, round viewers × $0.50). At 0 viewers every price shows $1.</p>
+    <p>Sponsor slot: empty. No payment is recorded. Started at $0. Still $0. October 10, 2026. An upload does not go on the site unless a real payment of at least the shown price is already written down. This page does not take card numbers.</p>
+    <form id="sponsor-upload">
+      <label>Your video file <input id="sponsor-file" type="file" accept="video/*"></label>
+      <button type="submit">Send sponsor video</button>
+    </form>
+    <p id="sponsor-note"></p>
+  </section>
 </main>
 <script>
 (function () {

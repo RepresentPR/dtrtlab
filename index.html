@@ -5,41 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DTRT Lab</title>
   <link rel="canonical" href="https://dtrtlab.com/">
-  <style>
-    :root { --bg: #12141a; --card: #1c1f27; --ink: #f4f6fb; --muted: #b7bec9; --blue: #2F6BFF; --coral: #FF5A5F; --yellow: #FFC857; }
-    body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.3 "Segoe UI", Helvetica, Arial, sans-serif; }
-    a { color: inherit; text-decoration: none; }
-    .home { max-width: 1080px; margin: 0 auto; padding: 36px 20px 72px; }
-    .searchwrap { display: flex; justify-content: center; }
-    .searchwrap label { position: relative; width: min(640px, 100%); }
-    .searchwrap input { width: 100%; box-sizing: border-box; background: var(--card); color: var(--ink); border: 0; border-radius: 999px; padding: 14px 18px 14px 46px; font: 16px "Segoe UI", Helvetica, Arial, sans-serif; }
-    .searchwrap input::placeholder { color: var(--muted); }
-    .searchwrap .mark { position: absolute; left: 18px; top: 13px; color: var(--muted); }
-    .shortcuts { display: flex; justify-content: center; gap: 18px; margin: 28px 0 8px; flex-wrap: wrap; }
-    .shortcuts a { width: 72px; text-align: center; font-size: 12px; color: var(--ink); }
-    .bubble { width: 48px; height: 48px; margin: 0 auto 8px; border-radius: 50%; background: var(--card); display: flex; align-items: center; justify-content: center; font-size: 22px; }
-    .shortcuts a:nth-child(1) .bubble { box-shadow: inset 0 -3px 0 var(--blue); }
-    .shortcuts a:nth-child(2) .bubble { box-shadow: inset 0 -3px 0 var(--coral); }
-    .shortcuts a:nth-child(3) .bubble { box-shadow: inset 0 -3px 0 var(--yellow); }
-    .shortcuts a:nth-child(4) .bubble { box-shadow: inset 0 -3px 0 var(--blue); }
-    .shortcuts a:nth-child(5) .bubble { box-shadow: inset 0 -3px 0 var(--coral); }
-    h1 { margin: 22px 0 16px; font-size: 28px; font-weight: 650; letter-spacing: -0.03em; }
-    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-    .card { display: flex; flex-direction: column; background: var(--card); border-radius: 16px; overflow: hidden; min-height: 150px; }
-    .card.featured { grid-column: span 2; grid-row: span 2; }
-    .media { background: #0d0f14; aspect-ratio: 16/9; }
-    .card.featured .media { aspect-ratio: auto; flex: 1; min-height: 280px; }
-    .media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .card h2 { margin: 0; padding: 12px 14px 14px; font-size: 15px; font-weight: 650; }
-    .card.featured h2 { font-size: 22px; }
-    .card:hover { outline: 2px solid var(--blue); }
-    .empty { display: none; margin: 12px 0 0; color: var(--muted); }
-    @media (max-width: 800px) {
-      .grid { grid-template-columns: 1fr 1fr; }
-      .card.featured { grid-column: span 2; grid-row: auto; }
-      .card.featured .media { min-height: 180px; }
-    }
-  </style>
+  <link rel="stylesheet" href="/css/site.css?v=20261010p">
 </head>
 <body>
 <main class="home">
