@@ -6,68 +6,63 @@
   <title>Live — DTRT Lab</title>
   <link rel="canonical" href="https://dtrtlab.com/live/">
   <link rel="stylesheet" href="/css/site.css?v=20261010v">
+  <style>
+    .chart { margin-top: 18px; }
+    .row { display: grid; grid-template-columns: 16rem 1fr 4rem; gap: 8px; align-items: center; margin: 8px 0; }
+    .track { height: 14px; background: #2a3140; border-radius: 999px; overflow: hidden; }
+    .bar { height: 100%; background: #2F6BFF; }
+    .bar.ig { background: #FF5A5F; }
+    .readout { font-size: 28px; font-variant-numeric: tabular-nums; }
+  </style>
 </head>
 <body>
 <main class="page">
   <nav class="shortcuts" aria-label="Main">
-    <a href="/"><span class="bubble">DTRT</span>Home</a>
-    <a href="/clips/"><span class="bubble mark-blue" aria-hidden="true">▶️</span>Clips</a>
-    <a href="/live/" aria-current="page"><span class="bubble mark-coral" aria-hidden="true">📊</span>Live</a>
-    <a href="/partner/"><span class="bubble mark-yellow" aria-hidden="true">🤝</span>Partner</a>
-    <a href="/contact.html"><span class="bubble mark-blue" aria-hidden="true">✉️</span>Contact</a>
-    <a href="/radio.html"><span class="bubble mark-coral" aria-hidden="true">🎵</span>Radio</a>
-    <a href="/versions/"><span class="bubble mark-pop" aria-hidden="true">🗂️</span>Versions</a>
+    <a href="/">Highlights</a>
+    <a href="/partner/">Partner</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/live/" aria-current="page">Live</a>
   </nav>
-  <h1>Channel Dashboard</h1>
-  <p class="muted">Saved clip counts from October 9, 2026. Money is October 10, 2026.</p>
+  <h1>Phase 1 and Phase 2</h1>
+  <p class="readout" id="countdown">Next update<small> Eastern time</small></p>
   <section class="chips" aria-label="Saved counts">
-    <article class="chip"><strong>1,454</strong><span>Lurk King, YouTube views</span></article>
-    <article class="chip"><strong>1,453</strong><span>Lurk King, Instagram plays</span></article>
+    <article class="chip"><strong>1,454</strong><span>Lurk King, YouTube views, October 9, 2026, 10:17 PM ET</span></article>
+    <article class="chip"><strong>1,453</strong><span>Lurk King, Instagram plays, October 9, 2026, 10:17 PM ET</span></article>
     <article class="chip"><strong>1,357</strong><span>Skitz Ladder, Instagram plays</span></article>
-    <article class="chip"><strong>1,290</strong><span>Somebody Said Rush B, Instagram plays</span></article>
     <article class="chip"><strong>1,228</strong><span>Skitz Ladder, YouTube views</span></article>
+    <article class="chip"><strong>1,290</strong><span>Somebody Said Rush B, Instagram plays, 9:49 PM ET</span></article>
     <article class="chip"><strong>18</strong><span>Come On, Code, YouTube views</span></article>
-    <article class="chip"><strong>$0</strong><span>October 10, 2026</span></article>
+    <article class="chip"><strong>$0</strong><span>Started at $0. Still $0. October 10, 2026.</span></article>
   </section>
-  <div class="stage">
-    <section class="timeline" aria-label="Next update and Eastern time">
-      <p class="readout" id="countdown">--:--:--<small>Next update</small></p>
-      <div class="rail" aria-hidden="true"><div class="fill" id="fill"></div><div class="head" id="head"></div></div>
-      <p class="readout" id="clock">--:--:--<small>Eastern</small></p>
-    </section>
-    <a class="preview" href="/clips/#oh-my-god-i-am-so-slow">
-      <img src="/img/thumbs/oh-my-god-i-am-so-slow.jpg" alt="">
-      <span>Oh my god, I am so slow</span>
-    </a>
+  <div class="chart" role="img" aria-label="Bar scale to 1454. Lurk King 1454 YouTube. Skitz Ladder 1228 YouTube. Come On, Code 18 YouTube. Lurk King 1453 Instagram. Skitz Ladder 1357 Instagram. Somebody Said Rush B 1290 Instagram.">
+    <div class="row"><span>Lurk King · YouTube</span><div class="track"><div class="bar" style="width:100%"></div></div><span>1454</span></div>
+    <div class="row"><span>Skitz Ladder · YouTube</span><div class="track"><div class="bar" style="width:84.46%"></div></div><span>1228</span></div>
+    <div class="row"><span>Come On, Code · YouTube</span><div class="track"><div class="bar" style="width:1.24%"></div></div><span>18</span></div>
+    <div class="row"><span>Lurk King · Instagram</span><div class="track"><div class="bar ig" style="width:99.93%"></div></div><span>1453</span></div>
+    <div class="row"><span>Skitz Ladder · Instagram</span><div class="track"><div class="bar ig" style="width:93.33%"></div></div><span>1357</span></div>
+    <div class="row"><span>Somebody Said Rush B · Instagram</span><div class="track"><div class="bar ig" style="width:88.72%"></div></div><span>1290</span></div>
   </div>
-  <p class="muted">Lurk King leads YouTube by 226 views over Skitz Ladder (1,454 − 1,228).</p>
+  <p>Lurk King leads YouTube by 226 views over Skitz Ladder (1,454 minus 1,228). Lurk King leads Instagram by 96 plays over Skitz Ladder (1,453 minus 1,357). Come On, Code is 18 YouTube views. That is a count, not a growth story.</p>
+  <p>No per-post comments or saves were saved. Started at $0. Still $0. October 10, 2026. The highlight “Oh my god, I am so slow” is not up. Social posts stay at 17. The website shows all the best clips.</p>
 </main>
 <script>
 (function () {
   var zone = "America/New_York";
   var slots = [0, 4, 8, 12, 16, 20];
-  var windowSec = 4 * 3600;
+  var el = document.getElementById("countdown");
   var reloaded = false;
   function parts(date) {
-    var fmt = new Intl.DateTimeFormat("en-US", {
-      timeZone: zone, hourCycle: "h23",
-      hour: "2-digit", minute: "2-digit", second: "2-digit"
-    });
+    var fmt = new Intl.DateTimeFormat("en-US", { timeZone: zone, hourCycle: "h23", hour: "2-digit", minute: "2-digit", second: "2-digit" });
     var map = {};
     fmt.formatToParts(date).forEach(function (p) { map[p.type] = p.value; });
     return { h: Number(map.hour), min: Number(map.minute), s: Number(map.second) };
   }
-  function pad(n) { return (n < 10 ? "0" : "") + n; }
   function secondsLeft(now) {
     var p = parts(now);
-    var next = null;
-    var i;
-    if (p.min === 0 && p.s === 0 && slots.indexOf(p.h) !== -1) {
-      next = slots[(slots.indexOf(p.h) + 1) % slots.length];
-    } else {
-      for (i = 0; i < slots.length; i++) {
-        if (slots[i] > p.h) { next = slots[i]; break; }
-      }
+    var next = null, i;
+    if (p.min === 0 && p.s === 0 && slots.indexOf(p.h) !== -1) next = slots[(slots.indexOf(p.h) + 1) % slots.length];
+    else {
+      for (i = 0; i < slots.length; i++) { if (slots[i] > p.h) { next = slots[i]; break; } }
       if (next === null) next = 24;
     }
     var add = next - p.h;
@@ -77,23 +72,10 @@
     return sec;
   }
   function paint() {
-    var now = new Date();
-    var sec = secondsLeft(now);
-    if (sec <= 1 && !reloaded) {
-      reloaded = true;
-      location.reload();
-      return;
-    }
-    var h = Math.floor(sec / 3600);
-    var m = Math.floor((sec % 3600) / 60);
-    var s = sec % 60;
-    document.getElementById("countdown").firstChild.textContent = pad(h) + ":" + pad(m) + ":" + pad(s);
-    var p = parts(now);
-    document.getElementById("clock").firstChild.textContent = pad(p.h) + ":" + pad(p.min) + ":" + pad(p.s);
-    var done = Math.max(0, Math.min(1, (windowSec - sec) / windowSec));
-    var pct = (done * 100) + "%";
-    document.getElementById("fill").style.width = pct;
-    document.getElementById("head").style.left = pct;
+    var sec = secondsLeft(new Date());
+    if (sec <= 1 && !reloaded) { reloaded = true; location.reload(); return; }
+    var h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s = sec % 60;
+    el.firstChild.textContent = "Next update in " + h + ":" + (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
   }
   paint();
   setInterval(paint, 1000);

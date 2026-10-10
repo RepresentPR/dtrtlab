@@ -7,57 +7,50 @@
   <link rel="canonical" href="https://dtrtlab.com/contact.html">
   <link rel="stylesheet" href="/css/site.css?v=20261010v">
 </head>
-<body class="theme-contact">
-<main class="page stack">
+<body>
+<main class="page">
   <nav class="shortcuts" aria-label="Main">
-    <a href="/"><span class="bubble">DTRT</span>Home</a>
-    <a href="/clips/"><span class="bubble mark-blue" aria-hidden="true">▶️</span>Clips</a>
-    <a href="/live/"><span class="bubble mark-coral" aria-hidden="true">📊</span>Live</a>
-    <a href="/partner/"><span class="bubble mark-yellow" aria-hidden="true">🤝</span>Partner</a>
-    <a href="/contact.html" aria-current="page"><span class="bubble mark-yellow" aria-hidden="true">✉️</span>Contact</a>
-    <a href="/radio.html"><span class="bubble mark-coral" aria-hidden="true">🎵</span>Radio</a>
-    <a href="/versions/"><span class="bubble mark-pop" aria-hidden="true">🗂️</span>Versions</a>
+    <a href="/">Highlights</a>
+    <a href="/partner/">Partner</a>
+    <a href="/contact.html" aria-current="page">Contact</a>
+    <a href="/live/">Live</a>
   </nav>
   <h1>Contact</h1>
-  <section class="panel">
-    <p>Email <a href="mailto:DTRTCollision@outlook.com">DTRTCollision@outlook.com</a>.</p>
-    <h2>Categories</h2>
-    <ul>
-      <li>Highlight — about a clip on the site.</li>
-      <li>Partner — sponsor ad or upload.</li>
-      <li>Website — something broken or a question about the site.</li>
-      <li>Other — anything else.</li>
-    </ul>
-    <form id="contact-form">
-      <label>Category
-        <select name="category" required>
-          <option value="">Choose one</option>
-          <option>Highlight</option>
-          <option>Partner</option>
-          <option>Website</option>
-          <option>Other</option>
-        </select>
-      </label>
-      <label>Subject <input name="subject" required></label>
-      <label>Name <input name="name" autocomplete="name" required></label>
-      <label>Email <input name="email" type="email" autocomplete="email" required></label>
-      <label>Message <textarea name="message" required></textarea></label>
-      <button type="submit">Send email</button>
-    </form>
-    <p class="muted">This opens your email app. The message is not stored on this site.</p>
-  </section>
+  <p>Email <a href="mailto:DTRTCollision@outlook.com">DTRTCollision@outlook.com</a>.</p>
+  <h2>Categories</h2>
+  <ul>
+    <li>Highlight — about a clip on the site.</li>
+    <li>Partner — sponsor ad or upload.</li>
+    <li>Website — something broken or a question about the site.</li>
+    <li>Other — anything else.</li>
+  </ul>
+  <form id="contact-form">
+    <label>Category
+      <select name="category" required>
+        <option value="">Choose one</option>
+        <option>Highlight</option>
+        <option>Partner</option>
+        <option>Website</option>
+        <option>Other</option>
+      </select>
+    </label>
+    <label>Subject <input name="subject" required></label>
+    <label>Name <input name="name" autocomplete="name" required></label>
+    <label>Email <input name="email" type="email" autocomplete="email" required></label>
+    <label>Message <textarea name="message" required></textarea></label>
+    <button type="submit">Send email</button>
+  </form>
+  <p>This opens your email app. The message is not stored on this site.</p>
 </main>
 <script>
-(function () {
-  document.getElementById("contact-form").addEventListener("submit", function (e) {
-    e.preventDefault();
-    var data = new FormData(e.target);
-    var category = String(data.get("category") || "");
-    var subject = "[" + category + "] " + String(data.get("subject") || "");
-    var body = "Category: " + category + "\nName: " + data.get("name") + "\nEmail: " + data.get("email") + "\n\n" + data.get("message");
-    window.location.href = "mailto:DTRTCollision@outlook.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-  });
-})();
+document.getElementById("contact-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+  var data = new FormData(e.target);
+  var category = String(data.get("category") || "");
+  var subject = "[" + category + "] " + String(data.get("subject") || "");
+  var body = "Category: " + category + "\nName: " + data.get("name") + "\nEmail: " + data.get("email") + "\n\n" + data.get("message");
+  window.location.href = "mailto:DTRTCollision@outlook.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+});
 </script>
 </body>
 </html>

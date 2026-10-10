@@ -3,95 +3,35 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DTRT Lab</title>
+  <title>Highlights — DTRT Lab</title>
   <link rel="canonical" href="https://dtrtlab.com/">
   <link rel="stylesheet" href="/css/site.css?v=20261010v">
+  <style>
+    .play { display: block; width: 100%; min-height: 64px; margin: 8px 0 28px; border: 0; border-radius: 14px; background: #2F6BFF; color: #fff; font: inherit; font-size: 1.25rem; cursor: pointer; }
+    video { width: 100%; background: #000; border-radius: 14px; min-height: 12rem; }
+    h1 { font-size: 2.4rem; }
+  </style>
 </head>
 <body>
-<main class="home">
-  <div class="searchwrap">
-    <label>
-      <span class="mark" aria-hidden="true">⌕</span>
-      <input id="q" type="search" placeholder="Search clips" aria-label="Search clips">
-    </label>
-  </div>
+<main class="page">
   <nav class="shortcuts" aria-label="Main">
-    <a href="/" aria-current="page"><span class="bubble">DTRT</span>Home</a>
-    <a href="/clips/"><span class="bubble mark-blue" aria-hidden="true">▶️</span>Clips</a>
-    <a href="/live/"><span class="bubble mark-coral" aria-hidden="true">📊</span>Live</a>
-    <a href="/partner/"><span class="bubble mark-yellow" aria-hidden="true">🤝</span>Partner</a>
-    <a href="/contact.html"><span class="bubble mark-blue" aria-hidden="true">✉️</span>Contact</a>
-    <a href="/radio.html"><span class="bubble mark-coral" aria-hidden="true">🎵</span>Radio</a>
-    <a href="/versions/"><span class="bubble mark-pop" aria-hidden="true">🗂️</span>Versions</a>
+    <a href="/" aria-current="page">Highlights</a>
+    <a href="/partner/">Partner</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/live/">Live</a>
   </nav>
-  <h1 id="greet">Good evening</h1>
-  <section class="grid" id="grid" aria-label="Clips">
-    <a class="card featured" href="/clips/#oh-my-god-i-am-so-slow" data-title="Oh my god, I am so slow">
-      <span class="media"><img src="/img/thumbs/oh-my-god-i-am-so-slow.jpg" alt=""></span>
-      <h2>Oh my god, I am so slow</h2>
-    </a>
-    <a class="card" href="/clips/#lurk-king" data-title="Lurk King"><span class="media"></span><h2>Lurk King</h2></a>
-    <a class="card" href="/clips/#skitz-ladder" data-title="Skitz Ladder"><span class="media"></span><h2>Skitz Ladder</h2></a>
-    <a class="card" href="/clips/#somebody-said-rush-b" data-title="Somebody Said Rush B"><span class="media"></span><h2>Somebody Said Rush B</h2></a>
-    <a class="card" href="/clips/#come-on-code" data-title="Come On, Code"><span class="media"></span><h2>Come On, Code</h2></a>
-    <a class="card" href="/clips/#why-dont-you" data-title="Why don’t you don’t like that, bro">
-      <span class="media"><img src="/img/thumbs/why-dont-you.jpg" alt=""></span>
-      <h2>Why don’t you don’t like that, bro</h2>
-    </a>
-    <a class="card" href="/clips/#blind-by-black" data-title="Blind by black">
-      <span class="media"><img src="/img/thumbs/blind-by-black.jpg" alt=""></span>
-      <h2>Blind by black</h2>
-    </a>
-    <a class="card" href="/clips/#happened-to-you" data-title="Happened to you, bro">
-      <span class="media"><img src="/img/thumbs/happened-to-you.jpg" alt=""></span>
-      <h2>Happened to you, bro</h2>
-    </a>
-    <a class="card" href="/clips/#move-it" data-title="Move it">
-      <span class="media"><img src="/img/thumbs/move-it.jpg" alt=""></span>
-      <h2>Move it</h2>
-    </a>
-    <a class="card" href="/clips/#nice-literally-un-lucable" data-title="Nice, literally un-lucable">
-      <span class="media"><img src="/img/thumbs/nice-literally-un-lucable.jpg" alt=""></span>
-      <h2>Nice, literally un-lucable</h2>
-    </a>
-    <a class="card" href="/clips/#two-superpowers" data-title="Two superpowers">
-      <span class="media"><img src="/img/thumbs/two-superpowers.jpg" alt=""></span>
-      <h2>Two superpowers</h2>
-    </a>
-    <a class="card" href="/clips/#oh-what-a-lie" data-title="Oh, what a lie">
-      <span class="media"><img src="/img/thumbs/oh-what-a-lie.jpg" alt=""></span>
-      <h2>Oh, what a lie</h2>
-    </a>
-  </section>
-  <p class="empty" id="empty">No clip title matches.</p>
+  <h1>Lurk King</h1>
+  <p>Wait for the opening.</p>
+  <button class="play" type="button" id="watch">Play</button>
+  <h2>Oh my god, I am so slow</h2>
+  <video id="next" controls playsinline preload="metadata" src="/watch/media/oh-my-god-i-am-so-slow.mp4"></video>
 </main>
 <script>
-(function () {
-  var zone = "America/New_York";
-  function hour() {
-    var fmt = new Intl.DateTimeFormat("en-US", { timeZone: zone, hourCycle: "h23", hour: "2-digit" });
-    var h = 0;
-    fmt.formatToParts(new Date()).forEach(function (p) { if (p.type === "hour") h = Number(p.value); });
-    return h;
-  }
-  var h = hour();
-  var line = "Good night";
-  if (h >= 5 && h < 12) line = "Good morning";
-  else if (h >= 12 && h < 17) line = "Good afternoon";
-  else if (h >= 17 && h < 22) line = "Good evening";
-  document.getElementById("greet").textContent = line;
-  var q = document.getElementById("q");
-  q.addEventListener("input", function () {
-    var needle = q.value.trim().toLowerCase();
-    var shown = 0;
-    Array.prototype.forEach.call(document.querySelectorAll(".card"), function (card) {
-      var ok = !needle || card.getAttribute("data-title").toLowerCase().indexOf(needle) !== -1;
-      card.hidden = !ok;
-      if (ok) shown += 1;
-    });
-    document.getElementById("empty").style.display = shown ? "none" : "block";
-  });
-})();
+document.getElementById("watch").addEventListener("click", function () {
+  var video = document.getElementById("next");
+  video.scrollIntoView({ block: "center" });
+  video.play();
+});
 </script>
 </body>
 </html>
