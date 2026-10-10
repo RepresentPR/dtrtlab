@@ -3,70 +3,58 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Highlights — DTRT Lab</title>
+  <title>DTRT Lab</title>
   <link rel="canonical" href="https://dtrtlab.com/">
   <style>
-    body { margin: 0; background: #080808; color: #f4f1ea; font: 18px/1.45 Georgia, "Times New Roman", serif; }
-    a { color: #f4f1ea; }
-    header, main { max-width: 46rem; margin: 0 auto; padding: 20px; }
-    nav a { margin-right: 16px; }
-    video { width: 100%; background: #000; }
-    button { display: block; width: 100%; text-align: left; margin: 8px 0; padding: 10px 12px; background: #161616; color: #f4f1ea; border: 1px solid #333; font: inherit; cursor: pointer; }
-    button[aria-current="true"] { border-color: #f4f1ea; }
+    html { scroll-snap-type: y mandatory; }
+    body { margin: 0; background: #000; color: #fff; font: 16px/1.3 "Segoe UI", Helvetica, Arial, sans-serif; }
+    a { color: #fff; text-decoration: none; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 2; display: flex; gap: 28px; padding: 18px 28px; font-size: 14px; letter-spacing: 0.02em; }
+    nav a[aria-current="page"] { opacity: 1; }
+    nav a { opacity: 0.82; }
+    .clip { position: relative; height: 100vh; scroll-snap-align: start; background: #000; }
+    video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: #000; }
+    h1 { position: absolute; left: 6vw; bottom: 12vh; margin: 0; font-size: clamp(40px, 6vw, 72px); font-weight: 500; letter-spacing: -0.03em; }
   </style>
 </head>
 <body>
-<header>
-  <nav aria-label="Main">
-    <a href="/" aria-current="page">Highlights</a>
-    <a href="/partner/">Partner</a>
-    <a href="/contact.html">Contact</a>
-    <a href="/live/">Live</a>
-  </nav>
-</header>
-<main>
-  <h1>Highlights</h1>
-  <p>Our clips are the highlight.</p>
-  <video id="player" controls playsinline preload="metadata" src="/watch/media/oh-my-god-i-am-so-slow.mp4"></video>
-  <p id="now-playing">Oh my god, I am so slow</p>
-  <p id="now-counts">Views: none saved. Likes: none saved. Comments: none saved. Checked October 10, 2026.</p>
-  <div id="list">
-    <button type="button" data-src="/watch/media/oh-my-god-i-am-so-slow.mp4" data-counts="Views: none saved. Likes: none saved. Comments: none saved. Checked October 10, 2026." aria-current="true">Oh my god, I am so slow</button>
-    <button type="button" data-src="/watch/media/why-dont-you.mp4" data-counts="Views: none saved. Likes: none saved. Comments: none saved. Checked October 10, 2026.">Why don’t you don’t like that, bro</button>
-    <button type="button" data-src="/watch/media/blind-by-black.mp4" data-counts="Views: none saved. Likes: none saved. Comments: none saved. Checked October 10, 2026.">Blind by black</button>
-    <button type="button" data-src="/watch/media/happened-to-you.mp4" data-counts="Views: none saved. Likes: none saved. Comments: none saved. Checked October 10, 2026.">Happened to you, bro. This team is entirely so.</button>
-    <button type="button" data-src="/watch/media/move-it.mp4" data-counts="Views: none saved. Likes: none saved. Comments: none saved. Checked October 10, 2026.">Move it</button>
-    <button type="button" data-src="/watch/media/nice-literally-un-lucable.mp4" data-counts="Views: none saved. Likes: none saved. Comments: none saved. Checked October 10, 2026.">Nice, literally un-lucable</button>
-    <button type="button" data-src="/watch/media/two-superpowers.mp4" data-counts="Views: none saved. Likes: none saved. Comments: none saved. Checked October 10, 2026.">The I think follow recall the two superpowers</button>
-    <button type="button" data-src="/watch/media/oh-what-a-lie.mp4" data-counts="Views: none saved. Likes: none saved. Comments: none saved. Checked October 10, 2026.">Oh, what a lie</button>
-  </div>
-  <h2>Saved counts</h2>
-  <p>These are the saved readings. Instagram plays are not likes. Likes and comments were not saved.</p>
-  <ul>
-    <li>Lurk King. Views: 1,454 YouTube and 1,453 Instagram plays. October 9, 2026, 10:17 PM ET. Likes: none saved. Comments: none saved. Checked October 10, 2026.</li>
-    <li>Skitz Ladder. Views: 1,228 YouTube and 1,357 Instagram plays. October 9, 2026. Likes: none saved. Comments: none saved. Checked October 10, 2026.</li>
-    <li>Somebody Said Rush B. Views: 1,290 Instagram plays. October 9, 2026, 9:49 PM ET. Likes: none saved. Comments: none saved. Checked October 10, 2026.</li>
-    <li>Come On, Code. Views: 18 YouTube. Likes: none saved. Comments: none saved. Checked October 10, 2026.</li>
-  </ul>
-  <p>© 2026 DTRT Lab.</p>
-</main>
-<script>
-(function () {
-  var player = document.getElementById("player");
-  var now = document.getElementById("now-playing");
-  document.getElementById("list").addEventListener("click", function (e) {
-    var btn = e.target.closest("button");
-    if (!btn) return;
-    player.src = btn.getAttribute("data-src");
-    now.textContent = btn.textContent;
-    document.getElementById("now-counts").textContent = btn.getAttribute("data-counts");
-    Array.prototype.forEach.call(document.querySelectorAll("#list button"), function (b) {
-      b.removeAttribute("aria-current");
-    });
-    btn.setAttribute("aria-current", "true");
-    player.play();
-  });
-})();
-</script>
+<nav aria-label="Main">
+  <a href="/" aria-current="page">Highlights</a>
+  <a href="/partner/">Partner</a>
+  <a href="/contact.html">Contact</a>
+  <a href="/live/">Live</a>
+</nav>
+<section class="clip">
+  <video controls playsinline preload="metadata" src="/watch/media/oh-my-god-i-am-so-slow.mp4"></video>
+  <h1>Oh my god, I am so slow</h1>
+</section>
+<section class="clip">
+  <video controls playsinline preload="none" src="/watch/media/why-dont-you.mp4"></video>
+  <h1>Why don’t you don’t like that, bro</h1>
+</section>
+<section class="clip">
+  <video controls playsinline preload="none" src="/watch/media/blind-by-black.mp4"></video>
+  <h1>Blind by black</h1>
+</section>
+<section class="clip">
+  <video controls playsinline preload="none" src="/watch/media/happened-to-you.mp4"></video>
+  <h1>Happened to you, bro</h1>
+</section>
+<section class="clip">
+  <video controls playsinline preload="none" src="/watch/media/move-it.mp4"></video>
+  <h1>Move it</h1>
+</section>
+<section class="clip">
+  <video controls playsinline preload="none" src="/watch/media/nice-literally-un-lucable.mp4"></video>
+  <h1>Nice, literally un-lucable</h1>
+</section>
+<section class="clip">
+  <video controls playsinline preload="none" src="/watch/media/two-superpowers.mp4"></video>
+  <h1>Two superpowers</h1>
+</section>
+<section class="clip">
+  <video controls playsinline preload="none" src="/watch/media/oh-what-a-lie.mp4"></video>
+  <h1>Oh, what a lie</h1>
+</section>
 </body>
 </html>
