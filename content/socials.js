@@ -97,7 +97,7 @@ window.DTRT_ICONS = {
 /* Persistent socials rail, injected on every page that loads this file. */
 (function () {
   function build() {
-    if (document.getElementById("social-rail") || !document.body) return;
+    if (!document.body || !document.body.hasAttribute("data-social-rail") || document.getElementById("social-rail")) return;
     var css = document.createElement("style");
     css.textContent =
       ".social-rail{position:fixed;left:50%;bottom:max(10px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:6px;padding:5px 8px 5px 12px;background:rgba(13,14,11,.92);border:1px solid rgba(234,228,211,.22);border-radius:999px;box-shadow:0 8px 28px rgba(0,0,0,.45);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font-family:'IBM Plex Mono',ui-monospace,monospace}" +

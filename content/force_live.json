@@ -1,4 +1,4 @@
 {
-  "force": true,
-  "note": "Marathon switch. force:true sends homepage visitors to /live/ even if the Twitch check fails. Set false when the stream ends. Visitors can always use 'Main site' (/?main=1)."
+  "force": false,
+  "note": "Homepage stays available. Visitors choose the stream hub explicitly."
 }

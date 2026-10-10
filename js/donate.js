@@ -25,14 +25,14 @@
     if (list) {
       var h = '<p class="lead">' + (es ? d.purposeEs : d.purposeEn) + '</p><ul class="donate-list" style="list-style:none;padding:0;display:grid;gap:12px">';
       ms.forEach(function (m) {
-        h += '<li><a class="cta" target="_blank" rel="noopener noreferrer" href="' + encodeURI(m.url) + '">' + m.name + (m.recurring ? (es ? " · mensual" : " · monthly") : "") + '</a> <span>' + ((es ? m.noteEs : m.noteEn) || "") + '</span></li>';
+        h += '<li><a class="cta" target="_blank" rel="noopener noreferrer" href="' + encodeURI(m.url) + '">' + m.name + (m.recurring ? (es ? " Â· mensual" : " Â· monthly") : "") + '</a> <span>' + ((es ? m.noteEs : m.noteEn) || "") + '</span></li>';
       });
       list.innerHTML = h + "</ul>";
     }
     document.querySelectorAll("[data-donate-href]").forEach(function (a) { a.href = url; a.hidden = false; });
     document.querySelectorAll("[data-donate-short]").forEach(function (a) { a.textContent = d.short || url; });
-    // sticky floating button on every page
-    if (!document.getElementById("donate-fab")) {
+    // Optional floating button; support links remain available in navigation.
+    if (document.body.hasAttribute("data-donate-floating") && !document.getElementById("donate-fab")) {
       var f = btn("donate-fab"); f.id = "donate-fab";
       f.style.cssText = "position:fixed;right:14px;bottom:14px;z-index:9999;background:#ff5e5b;color:#fff;padding:12px 18px;border-radius:999px;font:700 15px system-ui,sans-serif;text-decoration:none;box-shadow:0 4px 18px rgba(0,0,0,.4)";
       document.body.appendChild(f);
