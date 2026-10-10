@@ -1,0 +1,101 @@
+{
+  "reviewed_at": "2026-10-09T21:11:00-04:00",
+  "timezone": "America/New_York",
+  "kind": "dated-owner-dashboard-review",
+  "note": "Windows and metric definitions differ across platforms. Do not sum these views or treat them as unique people. This file is a saved observation, not a live analytics feed.",
+  "platforms": {
+    "youtube": {
+      "source": "https://studio.youtube.com/channel/UCWH_UFuL2Dt1b6iGROMifHw/analytics/tab-overview/period-default",
+      "window": "2026-09-11 to 2026-10-08",
+      "channel_views": 5173,
+      "watch_hours": 7.0,
+      "subscriber_net_change": 1,
+      "subscribers_realtime": 1310,
+      "views_last_48_hours_at_review": 11821,
+      "shorts": {
+        "views_displayed_rounded": "5.1K",
+        "engaged_views_displayed_rounded": "1.5K",
+        "net_likes": 16,
+        "stayed_to_watch_percent": 26.9,
+        "swiped_away_percent": 73.1,
+        "shorts_feed_share_percent": 94.2
+      },
+      "recent_comments_observed": [
+        {"video": "Come On, Code: My First Lab File", "theme": "enthusiastic response"},
+        {"video": "Skitz Hit the Ladder", "theme": "question about whether the clip was AI generated"}
+      ],
+      "recent_comment_sample_size": 2,
+      "comment_total": null
+    },
+    "instagram": {
+      "source": "https://www.instagram.com/accounts/insights/?timeframe=30",
+      "window": "last 30 days as displayed 2026-10-09",
+      "views": 2407,
+      "viewers": 1992,
+      "interactions": 9,
+      "accounts_engaged": 10,
+      "profile_visits": 149,
+      "followers_at_review": 58,
+      "non_follower_view_share_percent": 96.3,
+      "reels_view_share_percent": 98.8,
+      "like_total": null,
+      "comment_total": null
+    },
+    "tiktok": {
+      "source": "https://www.tiktok.com/tiktokstudio/analytics",
+      "window": "last 28 days as displayed 2026-10-09",
+      "video_views": 761,
+      "profile_views": 5,
+      "likes": 6,
+      "comments": 0,
+      "shares": 0,
+      "followers_at_review": 65,
+      "lifetime_profile_likes_at_review": 25,
+      "for_you_traffic_share_percent": 99.3,
+      "search_traffic_share_percent": 0.7,
+      "comment_caveat": "One heart-emoji comment appeared on the Studio home screen; it is not reconciled with the period comment metric."
+    },
+    "twitch": {
+      "source": "https://dashboard.twitch.tv/u/dtrtc/analytics",
+      "window": "2026-09-10 to 2026-10-09",
+      "unique_viewers": 402,
+      "average_concurrent_viewers": 1.4,
+      "time_streamed": "170h 17m",
+      "follows": 33,
+      "unique_chatters": 64,
+      "followers_at_review": 38,
+      "latest_completed_stream_card": {"unique_viewers": 102, "follows": 3, "duration_displayed": "1d 1h"}
+    },
+    "x": {
+      "source": "https://x.com/DTRTLab",
+      "window": "profile and three newest visible posts at review",
+      "followers_at_review": 12,
+      "profile_posts_at_review": 80,
+      "recent_post_views": [1, 2, 1],
+      "recent_post_likes": [0, 0, 0],
+      "recent_post_replies": [0, 0, 0],
+      "recent_post_reposts": [0, 0, 0],
+      "account_wide_impressions": null
+    }
+  },
+  "website": {
+    "source": "https://analytics.google.com/analytics/web/#/a407782816p553862813/reports/explorer?r=all-pages-and-screens",
+    "property": "DTRT Lab",
+    "window": "2026-09-11 to 2026-10-08",
+    "page_views": 50,
+    "active_users": 5,
+    "events": 119,
+    "key_events": 0,
+    "page_views_by_path": [
+      {"path": "home: / and /index.html", "views": 24},
+      {"path": "/story.html", "views": 8},
+      {"path": "/live/", "views": 6},
+      {"path": "/radio.html", "views": 5},
+      {"path": "/stories/afterlight/volume-one/", "views": 3},
+      {"path": "/media.html", "views": 2},
+      {"path": "/isabella.html", "views": 1},
+      {"path": "/worlds.html", "views": 1}
+    ],
+    "tracking_note": "Plausible script is installed, but the dashboard did not open in the current browser login."
+  }
+}
