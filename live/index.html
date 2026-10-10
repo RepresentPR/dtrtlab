@@ -1,246 +1,113 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DTRT Live — Streams, Clips & Community</title>
-<meta name="description" content="Join DTRT with Ian. Watch streams and The Lab Files, discover clips, and explore dated audience insights.">
-<link rel="canonical" href="https://dtrtlab.com/live/">
-<meta property="og:title" content="DTRT Live — Streams, Clips & Community"><meta property="og:url" content="https://dtrtlab.com/live/"><meta name="theme-color" content="#0D0E10">
-
-<style>
-:root{--bg:#0D0E10;--card:#15171A;--line:#25282D;--bone:#ECE7DA;--mute:#8C9097;--dim:#5E626A;--acid:#CFE35A}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:radial-gradient(1200px 700px at 15% -10%,#17191d 0%,transparent 60%),var(--bg);color:var(--bone);font-family:Inter,"Segoe UI Variable Text","Segoe UI",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums;min-height:100vh}
-a{color:inherit}
-.top{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;padding:12px clamp(16px,4vw,48px);background:rgba(13,14,16,.92);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
-.mark{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.06em;font-size:15px;text-decoration:none}.mark i{width:9px;height:9px;border-radius:2px;background:var(--acid)}.mark span{color:var(--mute);font-weight:500;letter-spacing:.12em;font-size:12px}
-.pill{display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px;border-radius:12px;font-size:11px;font-weight:700;letter-spacing:.12em;white-space:nowrap}
-.live{background:rgba(207,227,90,.12);color:var(--acid);border:1px solid rgba(207,227,90,.35)}.live i{width:7px;height:7px;border-radius:50%;background:var(--acid);animation:pu 2s infinite}
-.off{background:#1b1d21;color:var(--mute);border:1px solid var(--line)}
-@keyframes pu{50%{opacity:.35}}
-.clock{margin-left:auto;display:flex;gap:10px;align-items:baseline}.clock small{color:var(--mute);font-size:12px;letter-spacing:.12em;font-weight:600}.clock span{font-size:16px;font-weight:600}
-.wrap{max-width:1440px;margin:0 auto;padding:0 clamp(16px,4vw,48px) 48px}
-.hero{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;padding:36px 0 24px}
-.eb{font-size:13px;letter-spacing:.18em;color:var(--acid);font-weight:700}
-h1{font-size:clamp(36px,5vw,56px);font-weight:700;letter-spacing:-.02em;line-height:1.05;margin-top:6px}
-.sub{font-size:clamp(16px,1.6vw,19px);color:var(--mute);margin-top:10px}
-.upd{font-size:12px;color:var(--dim);letter-spacing:.08em}
-.stage{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:20px}
-.frame{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#000}
-.frame iframe,.chatf iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.side{display:flex;flex-direction:column;gap:20px;min-height:0}
-.chatf{position:relative;flex:1;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#18181b;min-height:360px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px}
-.sp{padding:16px 18px}.cap{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:600}
-.spa{margin-top:10px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:10px}
-.spa.ph{border:1.5px dashed #33363c;color:var(--dim);font-size:13px;flex-direction:column;gap:2px;text-align:center}.spa.ph b{color:var(--mute);font-weight:600;font-size:14px}
-.spa img{max-width:100%;max-height:100%;object-fit:contain}.spa .nmx{font-size:22px;font-weight:700}
-.kp{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px;margin-top:20px}
-.k{padding:20px 22px}.k .l{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);font-weight:600}
-.k .n{font-size:clamp(26px,2.8vw,40px);font-weight:700;margin-top:12px;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.k.acc{border-color:rgba(207,227,90,.35)}.k.acc .n{color:var(--acid)}
-.ch{display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px;padding:20px 22px 0}.ch h2{font-size:17px;font-weight:600}.ch .s{font-size:12px;color:var(--mute);letter-spacing:.06em}
-.ch .b{margin-left:auto;font-size:11px;color:var(--mute);letter-spacing:.1em;font-weight:600;border:1px solid var(--line);border-radius:11px;padding:3px 10px}
-.gr{margin-top:20px}.gr svg{display:block;width:100%;height:auto;padding:10px 22px 18px}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px}
-.rows{padding:10px 0 14px}
-.rw{display:grid;grid-template-columns:22px minmax(80px,110px) minmax(60px,1fr) auto;align-items:center;column-gap:12px;min-height:44px;padding:0 22px;font-size:15px}
-.rw svg{width:17px;height:17px;fill:var(--mute)}.rw .v{text-align:right;font-weight:600;white-space:nowrap}.rw .v small{color:var(--dim);font-weight:500}
-.bar{height:6px;border-radius:3px;background:#22252a;overflow:hidden}.bar i{display:block;height:100%;width:0;border-radius:3px;background:#B9BDC4;transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
-.rw.lead .bar i{background:var(--acid)}.tag{font-size:11px;letter-spacing:.1em;color:var(--acid);margin-left:6px;font-weight:700}
-.foot{display:flex;flex-wrap:wrap;gap:16px 40px;align-items:center;margin-top:32px;padding-top:24px;border-top:1px solid var(--line)}
-.foot a{text-decoration:none;display:flex;gap:10px;align-items:center;font-size:17px;font-weight:600}.foot svg{width:20px;height:20px;fill:var(--mute)}
-.foot small{display:block;font-size:11px;letter-spacing:.14em;color:var(--dim);font-weight:600}
-.foot a:hover{color:var(--acid)}
-.fine{margin-top:16px;font-size:12px;color:var(--dim);line-height:1.6}
-@media (max-width:1100px){.stage{grid-template-columns:1fr}.chatf{min-height:460px;flex:none}.kp{grid-template-columns:repeat(3,minmax(0,1fr))}.two{grid-template-columns:1fr}}
-@media (max-width:640px){.kp{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.k{padding:16px}.rw{grid-template-columns:20px minmax(70px,1fr) 70px auto;font-size:14px;padding:0 16px}.ch{padding:16px 16px 0}.clock small,.mark span{display:none}.foot{gap:16px 28px}}
-
-/* calm + accessible layer (WCAG AA contrast, 18px text, big taps, no pulsing) */
-:root{--mute:#b3b7be;--dim:#a2a6ad}
-body{font-size:18px;line-height:1.6}
-.eb{font-size:17px;letter-spacing:0;font-weight:500;color:var(--bone);max-width:44rem}
-.sub{font-size:19px;color:#d0d3d8}
-.upd,.fine,.ch .s,.ch .b,.clock small,.mark span,.cap,.foot small,.k .l,.sp .cap{font-size:16px;letter-spacing:0;text-transform:none}
-.fine{color:var(--mute);line-height:1.6}
-.k .l{color:#d0d3d8}.k .n{font-size:clamp(30px,3.4vw,44px)}
-.ch h2{font-size:24px;line-height:1.2}.ch .b{border:0;padding:0;color:var(--acid);font-weight:600}
-.ch .wi{flex-basis:100%;margin:2px 0 0;font-size:17px;color:#d0d3d8}
-.rw{font-size:17px;min-height:56px}.rw svg{width:22px;height:22px}.rw .v{font-size:17px}.rw .v small{display:block;font-size:15px;color:var(--mute);text-align:right}
-.rw{grid-template-columns:26px minmax(90px,130px) minmax(50px,1fr) auto}
-.bar{height:12px;border-radius:6px}.bar i{border-radius:6px}.tag{font-size:15px;letter-spacing:0}
-.pill{height:34px;font-size:15px;letter-spacing:0;padding:0 14px}
-.live i,.pu{animation:none!important}
-.foot a{font-size:18px;min-height:48px}.foot svg{width:24px;height:24px}
-a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #CFE35A;outline-offset:3px;border-radius:4px}
-.card{border-radius:12px}
-.wrap{padding-bottom:64px}
-.two,.kp,.stage{gap:24px}
-@media(max-width:640px){body{font-size:18px}.rw{grid-template-columns:24px minmax(70px,1fr) auto;font-size:17px;padding:0 16px}.rw .bar{grid-column:2/-1;grid-row:2;margin-bottom:10px}.rw svg{grid-row:1}.kp{grid-template-columns:1fr 1fr}}
-.rw .v{white-space:normal;max-width:min(46vw,380px)}.rw>span:nth-child(2) small{display:block;color:var(--mute);font-size:14px}.rw{padding-top:6px;padding-bottom:6px}a.rw:hover{background:rgba(207,227,90,.06)}
-.owner-review{margin-top:20px;padding:24px}.owner-review h2{font-size:26px;line-height:1.2}.owner-review h3{font-size:20px;margin:24px 0 10px}.owner-review p{margin-top:10px}.owner-review .stamp{color:var(--acid);font-size:16px;font-weight:700}.owner-review .note{color:#d0d3d8}.owner-review .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:16px}.owner-review .metric{background:#202329;border:1px solid #383d44;border-radius:8px;padding:14px}.owner-review .metric strong{display:block;font-size:26px;line-height:1.2;color:var(--bone)}.owner-review .metric span{display:block;color:#d0d3d8;font-size:15px}.owner-review .table-wrap{overflow-x:auto;margin-top:12px}.owner-review table{width:100%;border-collapse:collapse;min-width:600px}.owner-review th,.owner-review td{text-align:left;padding:10px 12px;border-bottom:1px solid #383d44;vertical-align:top}.owner-review th{color:var(--acid);font-size:15px}.owner-review td{font-size:16px}.owner-review td.num{text-align:right;font-variant-numeric:tabular-nums}.owner-review .source{color:var(--mute);font-size:15px}.owner-review .source a{color:var(--acid)}.owner-review ul{padding-left:22px;margin-top:10px}.owner-review li{margin-top:6px}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
-</style>
-<link rel="stylesheet" href="../css/then-now.css?v=1"><link rel="stylesheet" href="schedule.css?v=2"><link rel="stylesheet" href="../css/calm.css?v=20261009c"><link rel="stylesheet" href="../css/growth-monitor.css?v=20261010g"><link rel="stylesheet" href="../css/live-studio.css?v=20261010h"><link rel="stylesheet" href="../css/identity.css?v=20261010n"><link rel="icon" href="/img/brand/mark.svg?v=20261010n" type="image/svg+xml"><link rel="apple-touch-icon" href="/img/brand/dtrt-avatar.png"><link rel="stylesheet" href="/css/identity.css?v=20261010n"><meta property="og:description" content="Join DTRT with Ian. Watch streams and The Lab Files, discover clips, and explore dated audience insights."><meta property="og:site_name" content="DTRT"><meta property="og:type" content="website"><meta property="og:image" content="https://dtrtlab.com/img/brand/dtrt-social.png"><meta name="twitter:card" content="summary_large_image"></head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Goals — DTRT Lab</title>
+  <link rel="canonical" href="https://dtrtlab.com/live/">
+  <style>
+    body { margin: 0; background: #080808; color: #f4f1ea; font: 18px/1.5 Georgia, "Times New Roman", serif; }
+    main { max-width: 42rem; margin: 0 auto; padding: 32px 20px 64px; }
+    a { color: #f4f1ea; }
+    h1 { font-size: 2.2rem; line-height: 1.1; margin: 0 0 12px; }
+    h2 { font-size: 1.4rem; margin: 28px 0 8px; }
+    .timer { font-size: 2rem; font-variant-numeric: tabular-nums; }
+    ol { padding-left: 1.2rem; }
+    li { margin: 8px 0; }
+  </style>
+</head>
 <body>
-<header class="top"><a class="mark" href="../index.html"><i></i>DTRTLab.com <span>THE LAB FILES</span></a><a class="identity-support-link" href="../support.html">Support &amp; Partner</a><span class="pill off" id="lp">Checking…</span><span class="clock"><small id="dt"></small><span id="tm"></span></span></header>
-<main class="wrap">
- <section class="hero studio-hero"><div><p class="studio-kicker">DTRTC / THE LAB FILES</p><h1>Good games.<br>Great company.</h1><p class="sub">CS2, unexpected moments, and the people who make every round worth watching. Welcome to the Lab.</p><div class="studio-actions"><a class="studio-button" href="#watch">Watch the stream <span aria-hidden="true">↗</span></a><a class="studio-link" href="#featured">Explore the clips <span aria-hidden="true">↓</span></a></div></div><a class="studio-feature" href="https://www.youtube.com/watch?v=lsExh8z7fVI"><img src="../img/brand/lab-files.svg" alt="The Lab Files artwork" width="1200" height="630"><div><span>THE FIRST EPISODE · 6:26</span><h2>Come On, Code.</h2><p>Watch Lab File #001 <span aria-hidden="true">↗</span></p></div></a></section>
- <div class="studio-section-title" id="watch"><div><p class="studio-kicker">THE LIVE ROOM</p><h2>Pull up a chair.</h2></div><a href="https://www.twitch.tv/dtrtc">Open Twitch ↗</a></div>
- <section class="stage" aria-label="Live stream">
-  <div class="frame"><iframe src="https://player.twitch.tv/?channel=dtrtc&parent=dtrtlab.com&parent=www.dtrtlab.com&muted=true" allowfullscreen title="DTRTC live on Twitch" loading="lazy"></iframe></div>
-  <div class="side">
-   <section class="card sp" aria-label="Partner"><div class="cap" id="splbl">Presented by</div><div class="spa ph" id="spa"><b>Partner slot available</b>Your logo here · DTRTLab.com</div></section>
-   <div class="chatf"><iframe src="https://www.twitch.tv/embed/dtrtc/chat?parent=dtrtlab.com&parent=www.dtrtlab.com&darkpopout" title="DTRTC Twitch chat" loading="lazy"></iframe></div>
-  </div>
- </section>
- <section id="featured" class="studio-featured"><div class="studio-section-title"><div><p class="studio-kicker">FROM THE STREAM</p><h2>Small moments. Big reactions.</h2></div><a href="https://www.youtube.com/@DTRTLabYT/shorts">All Shorts ↗</a></div><div class="studio-clips">
-<a href="https://www.youtube.com/shorts/LcDUdmS0EPw"><span class="studio-index">01 / THE PLAY</span><h3>Lurk King</h3><p>Wait for the opening.</p><span class="studio-play">Watch on YouTube ↗</span></a>
-<a href="https://www.youtube.com/shorts/197ccicfV5M"><span class="studio-index">02 / THE REACTION</span><h3>Skitz Hit<br>the Ladder</h3><p>200 IQ. Zero aim.</p><span class="studio-play">Watch on YouTube ↗</span></a>
-<a href="https://www.youtube.com/shorts/sU9MiiJXcak"><span class="studio-index">03 / THE REVERSAL</span><h3>“No way I<br>lose the 3v1.”</h3><p>Famous last words.</p><span class="studio-play">Watch on YouTube ↗</span></a>
-</div></section>
-<section class="studio-connect"><div><p class="studio-kicker">STAY IN THE LOOP</p><h2>Be here for the next one.</h2><p>Follow on Twitch for stream notifications. Find new clips on YouTube and Instagram.</p></div><a class="studio-button" href="https://www.twitch.tv/dtrtc">Follow DTRTC ↗</a></section>
-<details class="studio-insights" id="insights"><summary><span><small>BEHIND THE CHANNEL</small><strong>Audience &amp; insights</strong><span>Dated metrics, platform coverage, and the ongoing content review.</span></span><b aria-hidden="true">+</b></summary><div class="studio-insights-body"><p class="upd" id="upd"></p>
- <section class="card sc" id="sched" aria-label="Up next on stream"></section>
- <section class="kp" id="kp" aria-label="Key numbers"></section>
- <section class="card owner-review" id="creator-checkpoint" aria-label="Latest creator analytics checkpoint">
-  <p class="stamp">CREATOR ANALYTICS · OCT 10, 2026 · MANUAL READINGS, 1:24–1:31 PM ET</p>
-  <h2>Latest audience checkpoint</h2>
-  <p>Each platform keeps its own reporting window. These account readings are separate from the historical 26,086 cumulative plays across 84 identified posts below; they are never added together or treated as unique people.</p>
-  <div class="table-wrap"><table><thead><tr><th>Platform / window</th><th>Verified reading</th><th>Comparison / limits</th></tr></thead><tbody>
-   <tr><td>YouTube · Sep 12–Oct 9</td><td>13,756 views; 20.8 watch hours; +2 subscribers in the report. Current subscribers: 1,310.</td><td>The same fixed report previously showed 13,755 views: a +1 report revision, not daily growth.</td></tr>
-   <tr><td>Instagram · displayed Last 30 days</td><td>13,514 account views; 9,732 viewers; 85 interactions; 43 accounts engaged; 300 profile visits. Current followers: 63; posts: 34.</td><td>Earlier Oct 9 follower reading: 58 → current 63 (+5). Calendar endpoints were not exposed; no account-view growth subtraction or paid/organic split inferred.</td></tr>
-   <tr><td>TikTok · displayed Last 7 days</td><td>761 video views; 2 profile views; 6 likes; 0 shares. Current followers: 66.</td><td>Earlier Oct 9 follower reading: 65 → current 66 (+1). Comments displayed “--”, meaning unavailable. Calendar endpoints were not exposed.</td></tr>
-   <tr><td>X · current profile</td><td>12 followers; 80 posts.</td><td>Account-wide engagement is unavailable: the analytics dashboard requires 50 followers.</td></tr>
-   <tr><td>Twitch · Sep 11–Oct 10</td><td>397 unique viewers; 1.4 average viewers; 31 follows; 61 unique chatters; 168h 21m streamed. Current public followers: 37.</td><td>Stream audience and current follower totals have different definitions. The earlier report covers a different window.</td></tr>
-   <tr><td>Website · Sep 12–Oct 9</td><td>88 page views; 9 active users; 195 events. /live/: 34 page views; homepage /: 21.</td><td>Small measured sample. Operator visits were not quantified or excluded; no conversion claim. Page users may overlap.</td></tr>
-  </tbody></table></div>
-  <p class="source">Saved observations, not an automatic analytics feed. <a href="../content/growth-ledger.json">Dated readings, windows and historical post cohorts</a>.</p>
- </section>
- <section class="card" id="growth-monitor" aria-label="Growth monitor">Loading saved growth observations…</section>
- <section class="card tn" id="then-now" aria-label="Then vs now audience report"><h2>Then vs. now</h2><p>Loading dated public measurements…</p></section>
- <section class="card owner-review" id="owner-review" aria-label="Owner analytics review">
-  <p class="stamp">OWNER ANALYTICS · OCT 9, 2026 · SOCIAL AUDIT UPDATED 9:53 PM ET</p>
-  <h2>Historical Oct 9 dashboard review</h2>
-  <p class="note">A dated review of the open creator dashboards, public post grids and Google Analytics. Reporting windows and counter types differ, so these numbers are shown by source and are not added together. The older public tracker on this page saved its YouTube + TikTok view series at 5:35 PM ET; it excluded Instagram.</p>
-  <div class="metrics" aria-label="Selected owner analytics">
-   <div class="metric"><strong>12,277</strong><span>Instagram plays · sum of 34 visible Reel counters, Oct 9</span></div>
-   <div class="metric"><strong>2,407</strong><span>Instagram Insights views · last 30 days, shown separately</span></div>
-   <div class="metric"><strong>12,077</strong><span>YouTube realtime views · rolling last 48 hours at recheck</span></div>
-   <div class="metric"><strong>5,173</strong><span>YouTube channel views · Sep 11–Oct 8 report</span></div>
-   <div class="metric"><strong>1,749</strong><span>TikTok plays · sum of 16 public video counters, Oct 9</span></div>
-   <div class="metric"><strong>761</strong><span>TikTok Studio video views · last 28 days, shown separately</span></div>
-   <div class="metric"><strong>403</strong><span>Twitch unique viewers · Sep 10–Oct 9, rechecked 9:52 PM</span></div>
-   <div class="metric"><strong>50</strong><span>Website page views · Sep 11–Oct 8</span></div>
-  </div>
-  <h3>Views, reactions and conversation</h3>
-  <div class="table-wrap"><table><thead><tr><th>Platform and window</th><th>Views / audience</th><th>Likes, comments and other signals</th></tr></thead><tbody>
-   <tr><td>YouTube · Sep 11–Oct 8; public grid rechecked Oct 9</td><td>Studio: 5,173 channel views, 7.0 watch hours and +1 subscriber in its 28-day report. The live card later showed 12,077 views in the last 48 hours. The public channel showed 36 videos, including 32 Shorts. These are different scopes.</td><td>Shorts report: 16 net likes; 26.9% stayed to watch and 73.1% swiped away. 94.2% of Short views came from the Shorts feed. Two recent comments were visible in the inbox, not an account-wide total. The public tracker previously summed only 27 videos and is incomplete for the later grid.</td></tr>
-   <tr><td>Instagram · Reel grid checked Oct 9, 9:49 PM ET; Insights set to last 30 days</td><td><strong>12,277 displayed plays across 34 Reels</strong> when their profile-grid counters are summed. Separately, the Insights overview says 2,407 views, 1,992 viewers, 149 profile visits and 58 current followers.</td><td>Insights says 9 interactions and 10 accounts engaged. Those are not play counts. It also says 96.3% of views came from non-followers and 98.8% were Reels. The overview did not show a separate account-wide like or comment total.</td></tr>
-   <tr><td>TikTok · public grid checked Oct 9; Studio last 28 days</td><td><strong>1,749 displayed plays across 16 public videos</strong>. Separately, Studio shows 761 video views and 5 profile views in its selected 28 days; the profile shows 65 followers.</td><td>Studio shows 6 likes, 0 comments and 0 shares for the period; the profile shows 25 lifetime likes. For You supplied 99.3% of reported traffic. One recent heart-emoji comment was visible on Studio Home despite the period's 0-comment metric. The <a href="../content/owner-analytics-2026-10-09.json">source data</a> lists all 16 video counters.</td></tr>
-   <tr><td>Twitch · Sep 10–Oct 9, rechecked 9:52 PM</td><td>403 unique viewers, up from 402 at the first reading; 1.4 average concurrent viewers; 170h 17m streamed; 38 public followers.</td><td>33 follows and 64 unique chatters. The latest completed stream card showed 102 unique viewers and 3 follows. These are stream metrics, not post plays or likes.</td></tr>
-   <tr><td>Kick · public channel checked Oct 9</td><td>27 followers; channel offline at check time. A comparable view or unique-viewer total was not visible.</td><td>Likes and comments were not available from the open channel view. Kick is excluded from view sums.</td></tr>
-   <tr><td>X · profile checked Oct 9, 9:52 PM</td><td>12 followers; 80 posts on the profile.</td><td>The four newest visible posts showed 3, 4, 1 and 1 views, with 0 likes, replies and reposts on each. This is a four-post sample; account-wide impressions and engagement were not available in the open profile.</td></tr>
-  </tbody></table></div>
-  <h3>Posts driving the visible reach</h3>
-  <p class="note"><strong>Instagram count check:</strong> The 34 displayed Reel play counters sum to <strong>12,277</strong>. The six largest are <a href="https://www.instagram.com/officiallydtrt/reel/DeQz7IHmb83/">1,453</a>, <a href="https://www.instagram.com/officiallydtrt/reel/DeQ2O0rAbBt/">1,357</a>, <a href="https://www.instagram.com/officiallydtrt/reel/DeRy-rPD7ek/">1,290</a>, <a href="https://www.instagram.com/officiallydtrt/reel/DeQtD2uCnVn/">1,246</a>, <a href="https://www.instagram.com/officiallydtrt/reel/DeRuZt1DEYi/">1,098</a> and <a href="https://www.instagram.com/officiallydtrt/reel/DeQxogJlRfO/">829</a> plays. The <a href="../content/owner-analytics-2026-10-09.json">source data</a> lists all 34 counters. These are plays, not likes or comments.</p>
-  <p class="note">Instagram's last-30-days Insights overview still shows 2,407 views and 9 interactions. Its own top-content cards show individual Reel counts above 1,000. The two Instagram surfaces do not explain why their totals differ, so neither figure is substituted for the other.</p>
-  <p class="note">YouTube Studio's live card showed 12,077 views in the last 48 hours at recheck. Its leading Shorts were <a href="https://www.youtube.com/watch?v=LcDUdmS0EPw">Lurk King</a> (1,464), <a href="https://www.youtube.com/watch?v=197ccicfV5M">Skitz Hit the Ladder</a> (1,229), and <a href="https://www.youtube.com/watch?v=bu6ra-pDYt0">Come On, Code</a> (1,224). This rolling live card includes Oct 9 activity and should not be compared as a growth rate with the 28-day report ending Oct 8.</p>
-  <p class="note"><strong>Tracker blind spot:</strong> The older 13,041-view card above is a saved sum of 11,296 tracked YouTube post views and 1,745 TikTok post views at 5:35 PM ET. It omitted Instagram, X, Twitch and Kick; it also predated newer YouTube and TikTok posts. It is a partial tracked-post snapshot, not “all sites” or unique viewers. The 12,277 Instagram Reel plays and 1,749 TikTok public plays above were checked later and are intentionally not added to that older series.</p>
-  <p class="source">Sources: <a href="https://www.youtube.com/@DTRTLabYT/shorts">YouTube public Shorts</a> and <a href="https://studio.youtube.com/channel/UCWH_UFuL2Dt1b6iGROMifHw/analytics/tab-overview/period-default">YouTube Studio</a>; <a href="https://www.instagram.com/officiallydtrt/reels/">Instagram Reels</a> and <a href="https://www.instagram.com/accounts/insights/?timeframe=30">Insights</a>; <a href="https://www.tiktok.com/@iananthonyfc">TikTok profile</a> and <a href="https://www.tiktok.com/tiktokstudio/analytics">Studio</a>; <a href="https://www.twitch.tv/dtrtc">Twitch channel</a> and <a href="https://dashboard.twitch.tv/u/dtrtc/analytics">Analytics</a>; <a href="https://kick.com/movebro">Kick</a>; <a href="https://x.com/DTRTLab">X</a>. Owner dashboard links require the relevant account login.</p>
-  <h3>Website visitor pages</h3>
-  <p class="note">Google Analytics recorded 50 page views from 5 active users, 119 events and 0 key events for Sep 11–Oct 8. Page titles changed during the period, so the rows below combine titles by path. A view is a page load or screen view, not a unique visitor.</p>
-  <div class="table-wrap"><table><thead><tr><th>Page path</th><th>Page views</th><th>Share of site views</th></tr></thead><tbody>
-   <tr><td><a href="../index.html">Home (/ and /index.html)</a></td><td class="num">24</td><td class="num">48%</td></tr>
-   <tr><td><a href="../story.html">/story.html</a></td><td class="num">8</td><td class="num">16%</td></tr>
-   <tr><td><a href="./">/live/</a></td><td class="num">6</td><td class="num">12%</td></tr>
-   <tr><td><a href="../radio.html">/radio.html</a></td><td class="num">5</td><td class="num">10%</td></tr>
-   <tr><td><a href="../stories/afterlight/volume-one/">/stories/afterlight/volume-one/</a></td><td class="num">3</td><td class="num">6%</td></tr>
-   <tr><td><a href="../media.html">/media.html</a></td><td class="num">2</td><td class="num">4%</td></tr>
-   <tr><td><a href="../isabella.html">/isabella.html</a></td><td class="num">1</td><td class="num">2%</td></tr>
-   <tr><td><a href="../worlds.html">/worlds.html</a></td><td class="num">1</td><td class="num">2%</td></tr>
-  </tbody></table></div>
-  <p class="source">Source: Google Analytics · Pages and screens. Website page views are reported separately from social video plays; unavailable visitor counts are not treated as zero.</p>
-  <h3>What to act on next</h3>
-  <ul><li>Short clips are finding new people: Instagram's view mix is 96.3% non-followers, while YouTube and TikTok discovery is concentrated in their short-video feeds.</li><li>Improve the opening seconds before increasing clip volume: YouTube Shorts showed 73.1% swiping away in its selected window.</li><li>Measure whether social viewers reach this site with tagged links. The current website sample is only 5 active users, so it cannot support a conversion claim.</li><li>Review the AI-generated-clip concern and explain the recorded footage and any editing tools clearly where that clip is shared.</li></ul>
-  <p class="source">This is a saved point-in-time review, not a live connection to owner analytics. The <a href="../content/owner-analytics-2026-10-09.json">source data file</a> records each window and measurement.</p>
- </section>
- <section class="card tn" id="stream-gain" aria-label="Gains during verified portion of stream"><h2>Gained this stream</h2><p>Loading verified readings…</p></section>
- <section class="card tn" id="progress-report" aria-label="Audience progress report card"><h2>Progress report card</h2><p>Loading dated report…</p></section>
- <div class="two"><section class="card" id="race" aria-label="Platform reach"></section><section class="card" id="goals" aria-label="Follower goals"></section></div>
- <section class="card" id="clipsfeed" aria-label="Latest clips" style="margin-top:20px;padding:20px 22px"><div class="ch" style="padding:0 0 14px"><h2>Latest clips</h2><span class="s">Newest first</span><p class="wi">What is this? The newest short videos from the stream.</p></div><div data-latest-clips></div></section>
- <section class="card tn" id="viewer-pick" aria-label="Viewer clip pick"><h2>Your clip pick</h2><p class="tn-note">Watch both moments, then tell us in the Twitch chat beside the stream which one deserves a breakdown next. Type “Clip pick: Literally Unlosable” or “Clip pick: Good Old-Fashioned Cutscene.” Chat is the existing place to share your choice; this page does not count votes.</p><p><a href="https://www.youtube.com/watch?v=sU9MiiJXcak" target="_blank" rel="noopener noreferrer">Watch Literally Unlosable</a> · <a href="https://www.youtube.com/watch?v=i8eLyEjHbsQ" target="_blank" rel="noopener noreferrer">Watch Good Old-Fashioned Cutscene</a></p><p class="tn-note">Want something different? Suggest a moment or question in chat.</p></section>
- <section id="rewards" data-goals style="margin-top:28px" aria-label="Follower goal rewards"></section>
-</div></details>
- <section class="card" id="mcredits" aria-label="Music credits" style="margin-top:20px;padding:20px 22px" hidden><div class="ch" style="padding:0 0 10px"><h2>Music credits</h2><span class="s" id="mcs">MUSIC ON STREAM</span></div><p class="fine" style="margin:0 0 10px" id="mcn"></p><details><summary style="cursor:pointer;font-weight:600;color:var(--acid)">Show all tracks</summary><div id="mcl" style="margin-top:12px;font-size:14px;line-height:1.7"></div></details></section>
- <nav class="foot" aria-label="Channels">
-  <a href="https://www.twitch.tv/dtrtc" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M4 2 2.5 6v14h5v3h3l3-3h4l5-5V2H4zm16 12-3 3h-4.5l-3 3v-3H5.5V4H20v10zM16 7.5h2v5.5h-2zm-5.5 0h2v5.5h-2z"/></svg><span><small>TWITCH</small>twitch.tv/dtrtc</span></a>
-  <a href="https://www.youtube.com/@DTRTLabYT" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15.1V8.9l5.8 3.1-5.8 3.1z"/></svg><span><small>YOUTUBE</small>@DTRTLabYT</span></a>
-  <a href="https://www.instagram.com/officiallydtrt/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM16.5 1.5h-9a6 6 0 0 0-6 6v9a6 6 0 0 0 6 6h9a6 6 0 0 0 6-6v-9a6 6 0 0 0-6-6zm4.2 15a4.2 4.2 0 0 1-4.2 4.2h-9a4.2 4.2 0 0 1-4.2-4.2v-9a4.2 4.2 0 0 1 4.2-4.2h9a4.2 4.2 0 0 1 4.2 4.2z"/></svg><span><small>INSTAGRAM</small>@officiallydtrt</span></a>
-  <a href="https://www.tiktok.com/@iananthonyfc" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M16.6 2h-3.4v13.4a2.9 2.9 0 1 1-2.1-2.8V9.1a6.4 6.4 0 1 0 5.5 6.3V8.7a8 8 0 0 0 4.7 1.5V6.8a4.7 4.7 0 0 1-4.7-4.8z"/></svg><span><small>TIKTOK</small>@iananthonyfc</span></a>
-  <a href="https://x.com/DTRTLab" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M17.8 2.5h3.3l-7.2 8.2 8.5 10.8h-6.6l-5.2-6.6-5.9 6.6H1.4l7.7-8.8L1 2.5h6.8l4.7 6.1zm-1.2 17h1.8L7.1 4.3h-2z"/></svg><span><small>X</small>@DTRTLab</span></a>
-  <a href="https://www.youtube.com/@DTRTLabYT/shorts" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15.1V8.9l5.8 3.1-5.8 3.1z"/></svg><span><small>SHORTS</small>@DTRTLabYT/shorts</span></a>
-  <a href="../index.html"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 2c.9 1.2 1.6 2.5 2 4h-4c.4-1.5 1.1-2.8 2-4zM4.3 14a8 8 0 0 1 0-4h3.5a16 16 0 0 0 0 4zm5.5 0a14 14 0 0 1 0-4h4.4a14 14 0 0 1 0 4zm6.4 0a16 16 0 0 0 0-4h3.5a8 8 0 0 1 0 4z"/></svg><span><small>WEBSITE</small>DTRTLab.com</span></a>
-  <a href="https://kick.com/movebro" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M3 2h6v6h2V5h2V2h6v7h-2v2h-2v2h2v2h2v7h-6v-3h-2v-3H9v6H3z"/></svg><span><small>KICK</small>kick.com/movebro</span></a>
- </nav>
- <p class="fine" id="fine">The saved tracker uses partial post-counter snapshots; the dated owner review above shows later readings and their gaps. Post plays are not unique viewers, and platform followers can overlap. YouTube rounds its public subscriber display. Raw files: <a href="../content/stats.json">tracker snapshot</a> and <a href="../content/owner-analytics-2026-10-09.json">owner audit</a>.</p>
+<main>
+  <p>DTRT Lab</p>
+  <h1>Phase 1 and Phase 2</h1>
+  <p>The main place is this site. Stay in the browser. <a href="https://dtrtlab.com">Watch more at https://dtrtlab.com</a>.</p>
+  <p class="timer" id="goal-timer" aria-live="polite">Next update: calculating</p>
+  <p>Timezone: America/New_York. Updates at 12:00 AM, 4:00 AM, 8:00 AM, 12:00 PM, 4:00 PM, and 8:00 PM.</p>
+
+  <h2>Phase 1</h2>
+  <p>On October 10, 2026 the public homepage title was DTRT - Play. Create. Repeat. The featured episode was Come On, Code, a 6:26 Lab File. It had 18 YouTube views on October 9, 2026 at 10:17 PM ET, then 25 on October 10. It did not grow like the shorts.</p>
+  <p>Lurk King: 1,454 YouTube views on October 9, 2026 at 10:17 PM ET, and 1,453 Instagram plays at 9:49 PM ET. Skitz Ladder: 1,357 Instagram plays and 1,228 YouTube views, those same times. Somebody Said Rush B: 1,290 Instagram plays at 9:49 PM ET.</p>
+  <p>No per-post comments or saves were saved. Started at $0. Still $0. October 10, 2026. The highlight “Oh my god, I am so slow” is not up.</p>
+
+  <h2>Phase 2</h2>
+  <ol>
+    <li>The website is the main place. Watch more at https://dtrtlab.com.</li>
+    <li>Short clips are what is working. Lurk King: 1,454 YouTube views on October 9, 2026 at 10:17 PM ET, and 1,453 Instagram plays at 9:49 PM ET. Skitz Ladder: 1,357 Instagram plays and 1,228 YouTube views, those same times. Somebody Said Rush B: 1,290 Instagram plays at 9:49 PM ET.</li>
+    <li>The website shows all the best clips. Social posts stay at 17.</li>
+    <li>Started at $0. Still $0. October 10, 2026.</li>
+    <li>Twitch is only the temporary live video. People stay on this site.</li>
+  </ol>
+
+  <h2>Working</h2>
+  <p>Lurk King, Skitz Ladder, and Somebody Said Rush B grew. The counts and dates are above. The money line is still Started at $0. Still $0.</p>
+
+  <h2>Not working</h2>
+  <p>“Oh my god, I am so slow” is not up. Revenue is still $0. No per-post comments or saves are on record.</p>
+
+  <h2>Tip</h2>
+  <p>A tip under $5 waits. $5 or more updates the goals now.</p>
+  <p>Tip $5 or more to highlight one of our clips.</p>
+  <p>Or upload your own highlight. 30s, 60s, and longer are priced from viewers on the site right now. Under $5 does not run.</p>
+  <p>Viewers now: not counted yet. 30s = max($5, round viewers × $0.10). 60s = max($5, round viewers × $0.25). Longer = max($5, round viewers × $0.50). Every band is $5 until viewers are counted.</p>
+  <p>No dated tip of $5 or more is written down. The total stays Started at $0. Still $0. A reload only shows these saved facts.</p>
+  <p><a href="https://ko-fi.com/dtrtlab">Ko-fi</a> is the support link already on the site. Opening it is not a recorded payment.</p>
+  <p>© 2026 DTRT Lab.</p>
 </main>
 <script>
-(function(){
-const ICON={twitch:'<svg viewBox="0 0 24 24"><path d="M4 2 2.5 6v14h5v3h3l3-3h4l5-5V2H4zm16 12-3 3h-4.5l-3 3v-3H5.5V4H20v10zM16 7.5h2v5.5h-2zm-5.5 0h2v5.5h-2z"/></svg>',
- kick:'<svg viewBox="0 0 24 24"><path d="M3 2h6v6h2V5h2V2h6v7h-2v2h-2v2h2v2h2v7h-6v-3h-2v-3H9v6H3z"/></svg>',
- youtube:'<svg viewBox="0 0 24 24"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15.1V8.9l5.8 3.1-5.8 3.1z"/></svg>',
- tiktok:'<svg viewBox="0 0 24 24"><path d="M16.6 2h-3.4v13.4a2.9 2.9 0 1 1-2.1-2.8V9.1a6.4 6.4 0 1 0 5.5 6.3V8.7a8 8 0 0 0 4.7 1.5V6.8a4.7 4.7 0 0 1-4.7-4.8z"/></svg>',
- instagram:'<svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM16.5 1.5h-9a6 6 0 0 0-6 6v9a6 6 0 0 0 6 6h9a6 6 0 0 0 6-6v-9a6 6 0 0 0-6-6zm4.2 15a4.2 4.2 0 0 1-4.2 4.2h-9a4.2 4.2 0 0 1-4.2-4.2v-9a4.2 4.2 0 0 1 4.2-4.2h9a4.2 4.2 0 0 1 4.2 4.2z"/></svg>',
- x:'<svg viewBox="0 0 24 24"><path d="M17.8 2.5h3.3l-7.2 8.2 8.5 10.8h-6.6l-5.2-6.6-5.9 6.6H1.4l7.7-8.8L1 2.5h6.8l4.7 6.1zm-1.2 17h1.8L7.1 4.3h-2z"/></svg>',
- bars:'<svg viewBox="0 0 24 24"><path d="M3 20h18v2H3zM5 10h3v8H5zm5.5-6h3v14h-3zM16 13h3v5h-3z"/></svg>',
- flag:'<svg viewBox="0 0 24 24"><path d="M5 2h2v20H5zm3 1h12l-3 4 3 4H8z"/></svg>',
- goal:'<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 16a6 6 0 1 1 6-6 6 6 0 0 1-6 6zm0-9a3 3 0 1 0 3 3 3 3 0 0 0-3-3z"/></svg>'};
-const NM={shorts:'YouTube Shorts',youtube:'YouTube',tiktok:'TikTok',instagram:'Instagram',x:'X',twitch:'Twitch',kick:'Kick'};
-const ALL=[{id:'instagram',handle:'@officiallydtrt',url:'https://www.instagram.com/officiallydtrt/'},{id:'tiktok',handle:'@iananthonyfc',url:'https://www.tiktok.com/@iananthonyfc'},{id:'x',handle:'@DTRTLab',url:'https://x.com/DTRTLab'},{id:'youtube',handle:'@DTRTLabYT',url:'https://www.youtube.com/@DTRTLabYT'},{id:'shorts',handle:'@DTRTLabYT',url:'https://www.youtube.com/@DTRTLabYT/shorts'},{id:'kick',handle:'movebro',url:'https://kick.com/movebro'},{id:'twitch',handle:'dtrtc',url:'https://www.twitch.tv/dtrtc'}];
-ICON.shorts=ICON.youtube;
-const merged=P=>ALL.map(a=>Object.assign({},(P||[]).find(p=>p.id===a.id)||{},{id:a.id,label:NM[a.id],handle:a.handle,url:a.url}));
-const fmt=n=>n==null?'—':Number(n).toLocaleString('en-US');const esc=s=>String(s??'').replace(/[&<>"]/g,c=>'&#'+c.charCodeAt(0)+';');
-const $=id=>document.getElementById(id);const et=(d,o)=>d.toLocaleString('en-US',Object.assign({timeZone:'America/New_York'},o));
-function tick(){const d=new Date();$('tm').textContent=et(d,{hour:'numeric',minute:'2-digit',second:'2-digit'})+' ET';$('dt').textContent=et(d,{weekday:'short',month:'short',day:'numeric'});}
-tick();setInterval(tick,1000);
-const MS=[10,25,50,75,100,150,200,250,500,750,1000,1500,2000,2500,5000,7500,10000,25000,50000,100000];const nextMs=n=>MS.find(m=>m>n)||Math.ceil((n+1)/50000)*50000;
-const ch=(t,s,b,w)=>`<div class="ch"><h2>${t}</h2>${s?`<span class="s">${s}</span>`:''}${b!=null?`<span class="b">${b}</span>`:''}${w?`<p class="wi">What is this? ${w}</p>`:''}</div>`;
-function render(S){const T=S.totals||{},P=S.platforms||[],R=P.filter(p=>p.views!=null).sort((a,b)=>b.views-a.views),tw=P.find(p=>p.id==='twitch')||{},lf=S.lab_file_001;
- const tiles=[[fmt(T.followers),'Platform follows (sum, not people)'],[R[0]?NM[R[0].id]:'—','Leader among saved post counters'],[fmt(tw.followers),'Followers on Twitch'],[lf&&lf.views!=null?fmt(lf.views):'Out now','Saved views · Lab File #001 · Oct 9']];
- $('kp').innerHTML=tiles.map(t=>`<div class="card k${t[2]?' acc':''}"><div class="l">${t[1]}</div><div class="n">${esc(t[0])}</div></div>`).join('');
- const M=merged(P),RV=M.filter(p=>p.views!=null).sort((a,b)=>b.views-a.views),NV=M.filter(p=>p.views==null),mx=(RV[0]&&RV[0].views)||1;
- const src=(s,t)=>`<small>${esc(s||'')}${t?' · '+esc(t):''}</small>`;
- $('race').innerHTML=ch('Saved post counters by site','Largest counter sum first',M.length+' sites','Each row names its source and time. Bars compare cumulative post counters where observed; they do not compare equal reporting windows or unique people.')+'<div class="rows">'+RV.map((p,i)=>`<a class="rw${i==0?' lead':''}" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none">${ICON[p.id]||''}<span>${esc(p.label)} <small>${esc(p.handle)}</small>${i==0?'<span class="tag">#1</span>':''}</span><span class="bar"><i data-w="${Math.max(2,p.views/mx*100).toFixed(1)}"></i></span><span class="v">${fmt(p.views)} post plays${src(p.views_src,p.views_asof)}</span></a>`).join('')+NV.map(p=>`<a class="rw" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none">${ICON[p.id]||''}<span>${esc(p.label)} <small>${esc(p.handle)}</small></span><span class="bar"><i data-w="2"></i></span><span class="v">not available${src(p.views_src||'Comparable post counters unavailable',p.views_asof?'checked '+p.views_asof:'')}</span></a>`).join('')+'</div>';
- const fv=p=>{if(p.followers!=null){const n=p.followers,g=nextMs(n);return `${fmt(n)}${p.followers_rounded?'+':''} followers${src(p.followers_src,p.followers_asof)}<small>goal ${fmt(g)}</small>`}
-  if(p.followers_last_known!=null)return `${fmt(p.followers_last_known)} followers (last known, not verified)${src(p.followers_src||'last read',p.followers_last_known_asof||'time unknown')}`;
-  if(p.followers_status==='shared')return `same as YouTube${src(p.followers_src)}`;return `not connected${src(p.followers_src||'Follower count not readable')}`};
- const pctf=p=>{if(p.followers==null)return 2;const n=p.followers,g=nextMs(n),prev=[0,...MS].filter(m=>m<=n).pop()||0;return Math.max(3,Math.min(100,(n-prev)/((g-prev)||1)*100))};
- $('goals').innerHTML=ch('Follower goals','Followers now, and the next goal',M.length+' sites','A follower is someone who chose to follow us. Each goal is the next round number. Unverified or unreadable counts are labelled, not guessed.')+'<div class="rows">'+M.map(p=>`<a class="rw" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none">${ICON[p.id]||''}<span>${esc(p.label)}</span><span class="bar"><i data-w="${pctf(p).toFixed(1)}"></i></span><span class="v">${fv(p)}</span></a>`).join('')+'</div>';
- setTimeout(()=>document.querySelectorAll('[data-w]').forEach(e=>e.style.width=e.dataset.w+'%'),150);
- if(S.generated_at){const d=new Date(S.generated_at),a=S.audit_at?new Date(S.audit_at):null;if(!isNaN(d))$('upd').textContent='Tracker saved '+et(d,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+' ET'+(a&&!isNaN(a)?' · social audit '+et(a,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+' ET':'');}}
-async function load(){try{const r=await fetch('../content/stats.json?t='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('stats unavailable');render(await r.json());}catch(e){$('upd').textContent=$('kp').childElementCount?'Could not refresh. Showing the last numbers we saved.':'Numbers are not available right now.';}}
-load();setInterval(load,5*60*1000);
-let SP={label:'Presented by',rotate_seconds:8,sponsors:[]},spI=0;
-const spList=()=>(SP.sponsors||[]).filter(s=>s&&(s.logo||s.name)&&s.active!==false);
-function spShow(){const L=spList(),a=$('spa');$('splbl').textContent=SP.label||'Presented by';
- if(!L.length){a.className='spa ph';a.innerHTML=`<b>${esc(SP.placeholder||'Partner slot available')}</b>${esc(SP.placeholder_sub||'Your logo here · DTRTLab.com')}`;return;}
- const s=L[spI%L.length];a.className='spa';const logo=s.logo?(/^https?:/.test(s.logo)?s.logo:'../'+s.logo.replace(/^\/+/,'')):'';
- const inner=logo?`<img src="${esc(logo)}" alt="${esc(s.name||'Partner')}">`:`<span class="nmx">${esc(s.name)}</span>`;
- a.innerHTML=s.url&&/^https:/.test(s.url)?`<a href="${esc(s.url)}" target="_blank" rel="noopener sponsored">${inner}</a>`:inner;}
-async function sponsors(){try{const r=await fetch('../content/sponsors.json?t='+Date.now(),{cache:'no-store'});if(r.ok)SP=Object.assign(SP,await r.json());}catch(e){}spShow();}
-sponsors();setInterval(()=>{if(spList().length>1){spI++;spShow();}},8000);
-async function liveCheck(){try{const t=await (await fetch('https://decapi.me/twitch/uptime/dtrtc?t='+Date.now(),{cache:'no-store'})).text();const on=!/offline|error|not found/i.test(t)&&/\d/.test(t);
- $('lp').className='pill '+(on?'live':'off');$('lp').innerHTML=on?'<i></i>Live now · '+esc(t.replace(/,.*$/,'')):'Not live right now';}catch(e){$('lp').className='pill off';$('lp').textContent='Twitch';}}
-liveCheck();setInterval(liveCheck,120000);
+(function () {
+  var zone = "America/New_York";
+  var slots = [0, 4, 8, 12, 16, 20];
+  var el = document.getElementById("goal-timer");
+  var reloaded = false;
+  function parts(date) {
+    var fmt = new Intl.DateTimeFormat("en-US", {
+      timeZone: zone,
+      hourCycle: "h23",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit"
+    });
+    var map = {};
+    fmt.formatToParts(date).forEach(function (p) { map[p.type] = p.value; });
+    return { h: Number(map.hour), min: Number(map.minute), s: Number(map.second) };
+  }
+  function secondsLeft(now) {
+    var p = parts(now);
+    var next = null;
+    var i;
+    if (p.min === 0 && p.s === 0 && slots.indexOf(p.h) !== -1) {
+      next = slots[(slots.indexOf(p.h) + 1) % slots.length];
+    } else {
+      for (i = 0; i < slots.length; i++) {
+        if (slots[i] > p.h) { next = slots[i]; break; }
+      }
+      if (next === null) next = 24;
+    }
+    var add = next - p.h;
+    if (add <= 0) add += 24;
+    var sec = add * 3600 - p.min * 60 - p.s;
+    if (sec <= 0) sec += 24 * 3600;
+    return sec;
+  }
+  function paint() {
+    var sec = secondsLeft(new Date());
+    if (sec <= 1 && !reloaded) {
+      reloaded = true;
+      el.textContent = "Updating saved goals.";
+      location.reload();
+      return;
+    }
+    var h = Math.floor(sec / 3600);
+    var m = Math.floor((sec % 3600) / 60);
+    var s = sec % 60;
+    el.textContent = "Next update in " + h + ":" + (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s + " America/New_York";
+  }
+  paint();
+  setInterval(paint, 1000);
 })();
 </script>
-<script defer src="../js/donate.js?v=20261009"></script>
-<script defer src="../js/then-now.js?v=1"></script>
-<script defer src="../js/stream-gain.js?v=1"></script>
-<script defer src="../js/progress-report.js?v=1"></script>
-<script defer src="music-credits.js?v=1"></script>
-<script defer src="schedule.js?v=2"></script>
-<script defer src="../js/goals.js?v=20261009b"></script>
-<script defer src="../js/calm.js?v=20261009c"></script>
-<script async src="../js/analytics.js?v=20261010n"></script>
-<script defer src="../js/latest-clips.js?v=20261009a"></script>
-<script src="../js/growth-model.js?v=20261010g"></script><script src="../js/growth-monitor.js?v=20261010g"></script><script src="../js/live-studio.js?v=20261010h"></script><script src="/js/experience.js?v=20261010n" defer></script></body></html>
+</body>
+</html>
