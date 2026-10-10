@@ -6,46 +6,41 @@
   <title>Radio — DTRT Lab</title>
   <meta name="description" content="This audio is for the game in development, not finished, not for sale, not online.">
   <link rel="canonical" href="https://dtrtlab.com/radio.html">
-  <link rel="stylesheet" href="/css/site.css?v=20261010v">
-  <meta property="og:title" content="Radio — DTRT Lab">
-  <meta property="og:description" content="This audio is for the game in development, not finished, not for sale, not online.">
-  <meta property="og:url" content="https://dtrtlab.com/radio.html">
+  <link rel="stylesheet" href="/css/site.css?v=20261010c">
 </head>
-<body class="theme-radio">
-<main class="page stack">
-  <nav class="shortcuts" aria-label="Main">
-    <a href="/"><span class="bubble">DTRT</span>Home</a>
-    <a href="/clips/"><span class="bubble mark-blue" aria-hidden="true">▶️</span>Clips</a>
-    <a href="/live/"><span class="bubble mark-coral" aria-hidden="true">📊</span>Live</a>
-    <a href="/partner/"><span class="bubble mark-yellow" aria-hidden="true">🤝</span>Partner</a>
-    <a href="/contact.html"><span class="bubble mark-blue" aria-hidden="true">✉️</span>Contact</a>
-    <a href="/radio.html" aria-current="page"><span class="bubble mark-coral" aria-hidden="true">🎵</span>Radio</a>
-    <a href="/versions/"><span class="bubble mark-pop" aria-hidden="true">🗂️</span>Versions</a>
+<body>
+<header class="top">
+  <a class="brand" href="/">DTRT Lab</a>
+  <nav aria-label="Main">
+    <a href="/clips/">Clips</a>
+    <a href="/live/">Live</a>
+    <a href="/partner/">Partner</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/radio.html" aria-current="page">Radio</a>
+    <a href="/versions/">Versions</a>
   </nav>
+</header>
+<main class="wrap">
   <h1>Radio</h1>
   <p>Seven cuts for the game. DTRT is a training range and a story set in Puerto Rico. It is still being built. <a href="isabella.html">Songs for Isabella</a> are not game music.</p>
-  <div class="al-radio" id="al-radio">
-    <p class="remind">This audio is for the game in development, not finished, not for sale, not online.</p>
+  <div class="card pad" id="al-radio">
+    <p>This audio is for the game in development, not finished, not for sale, not online.</p>
     <audio id="al-radio-audio" preload="metadata"></audio>
-    <div class="al-radio-now">
-      <p class="muted">Now</p>
-      <h2 id="al-radio-now">—</h2>
-      <p id="al-radio-time">0:00 / 0:00</p>
-      <input id="al-radio-seek" type="range" min="0" max="1000" value="0" aria-label="Seek">
-    </div>
+    <p class="muted">Now</p>
+    <h2 id="al-radio-now">—</h2>
+    <p id="al-radio-time">0:00 / 0:00</p>
+    <input id="al-radio-seek" type="range" min="0" max="1000" value="0" aria-label="Seek">
     <div class="al-radio-controls">
       <button type="button" id="al-radio-prev">Prev</button>
       <button type="button" id="al-radio-play" aria-pressed="false">Play</button>
       <button type="button" id="al-radio-next">Next</button>
       <button type="button" id="al-radio-shuffle" aria-pressed="false">Shuffle</button>
-      <div class="al-radio-volwrap">
-        <button type="button" class="al-radio-knob" id="al-radio-knob" role="slider" aria-label="Volume" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80"></button>
-        <span id="al-radio-vol">80%</span>
-      </div>
+      <button type="button" class="al-radio-knob" id="al-radio-knob" role="slider" aria-label="Volume" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80"></button>
+      <span id="al-radio-vol">80%</span>
     </div>
     <ol class="al-radio-list" id="al-radio-list"></ol>
   </div>
 </main>
-<script src="js/radio.js?v=20261010p"></script>
+<script src="js/radio.js?v=20261010c"></script>
 </body>
 </html>

@@ -5,41 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Partner — DTRT Lab</title>
   <link rel="canonical" href="https://dtrtlab.com/partner/">
-  <link rel="stylesheet" href="/css/site.css?v=20261010v">
+  <link rel="stylesheet" href="/css/site.css?v=20261010c">
 </head>
 <body>
-<main class="page">
-  <nav class="shortcuts" aria-label="Main">
-    <a href="/">Highlights</a>
+<header class="top">
+  <a class="brand" href="/">DTRT Lab</a>
+  <nav aria-label="Main">
+    <a href="/clips/">Clips</a>
+    <a href="/live/">Live</a>
     <a href="/partner/" aria-current="page">Partner</a>
     <a href="/contact.html">Contact</a>
-    <a href="/live/">Live</a>
+    <a href="/radio.html">Radio</a>
+    <a href="/versions/">Versions</a>
   </nav>
+</header>
+<main class="wrap">
   <h1>Sponsor the next update.</h1>
-  <p>Our clips are the highlight. A sponsor ad does not replace them.</p>
+  <p>Revenue is $0 as of October 10, 2026.</p>
   <p>Viewers now: not counted yet. Under $1 does not run.</p>
-  <p>30s = max($1, round viewers × $0.10). 60s = max($1, round viewers × $0.25). Longer = max($1, round viewers × $0.50). At 0 viewers every price shows $1.</p>
-  <p>Timed Paid Sponsor. Runs for the 15 minutes before each 4-hour update. Under $1 does not run.</p>
-  <p>Those updates are 12:00 AM, 4:00 AM, 8:00 AM, 12:00 PM, 4:00 PM, and 8:00 PM Eastern time. One sponsor at a time. Outside that window the slot is empty.</p>
-  <p>Tip to highlight one of our clips, or send a video file. No outside links. No card numbers.</p>
-  <p>The slot stays empty until a real payment of at least the shown price is recorded. Started at $0. Still $0. October 10, 2026.</p>
-  <form id="sponsor-upload">
-    <label>Your video file <input id="sponsor-file" type="file" accept="video/*"></label>
-    <button type="submit">Send sponsor video</button>
-  </form>
-  <p id="sponsor-note"></p>
+  <section class="prices">
+    <article class="card pad"><strong>$1</strong><span>30 seconds</span></article>
+    <article class="card pad"><strong>$1</strong><span>60 seconds</span></article>
+    <article class="card pad"><strong>$1</strong><span>Longer</span></article>
+  </section>
+  <p>30 seconds is $1 or 10 cents per viewer, whichever is higher. 60 seconds is $1 or 25 cents per viewer. Longer is $1 or 50 cents per viewer. At 0 counted viewers, each price is $1.</p>
+  <p>You get 15 minutes on the site, in the sponsor slot, before the next update at 12:00 AM, 4:00 AM, 8:00 AM, 12:00 PM, 4:00 PM, or 8:00 PM Eastern. One sponsor at a time. His clips stay the highlight.</p>
+  <p>Lurk King has 1,454 YouTube views and 1,453 Instagram plays, saved October 9, 2026.</p>
+  <p>The slot stays empty until a real payment of at least the shown price is recorded.</p>
+  <p><a class="offer" href="mailto:DTRTCollision@outlook.com?subject=%5BPartner%5D%20Sponsor%20the%20next%20update">Sponsor the next update</a></p>
 </main>
-<script>
-document.getElementById("sponsor-upload").addEventListener("submit", function (e) {
-  e.preventDefault();
-  var file = document.getElementById("sponsor-file").files[0];
-  var note = document.getElementById("sponsor-note");
-  if (!file || !file.type || file.type.indexOf("video/") !== 0) {
-    note.textContent = "Video files only. That file was not accepted.";
-    return;
-  }
-  note.textContent = "Video file only. It is not live. No payment of the shown price is recorded. The sponsor slot stays empty.";
-});
-</script>
 </body>
 </html>

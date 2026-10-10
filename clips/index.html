@@ -5,26 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Clips — DTRT Lab</title>
   <link rel="canonical" href="https://dtrtlab.com/clips/">
-  <link rel="stylesheet" href="/css/site.css?v=20261010v">
+  <link rel="stylesheet" href="/css/site.css?v=20261010c">
 </head>
-<body class="theme-clips">
-<main class="page clips">
-  <nav class="shortcuts" aria-label="Main">
-    <a href="/"><span class="bubble">DTRT</span>Home</a>
-    <a href="/clips/" aria-current="page"><span class="bubble mark-coral" aria-hidden="true">▶️</span>Clips</a>
-    <a href="/live/"><span class="bubble mark-blue" aria-hidden="true">📊</span>Live</a>
-    <a href="/partner/"><span class="bubble mark-yellow" aria-hidden="true">🤝</span>Partner</a>
-    <a href="/contact.html"><span class="bubble mark-blue" aria-hidden="true">✉️</span>Contact</a>
-    <a href="/radio.html"><span class="bubble mark-coral" aria-hidden="true">🎵</span>Radio</a>
-    <a href="/versions/"><span class="bubble mark-pop" aria-hidden="true">🗂️</span>Versions</a>
+<body>
+<header class="top">
+  <a class="brand" href="/">DTRT Lab</a>
+  <nav aria-label="Main">
+    <a href="/clips/" aria-current="page">Clips</a>
+    <a href="/live/">Live</a>
+    <a href="/partner/">Partner</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/radio.html">Radio</a>
+    <a href="/versions/">Versions</a>
   </nav>
+</header>
+<main class="wrap clips">
   <h1 id="title">Lurk King</h1>
   <video id="player" controls playsinline preload="none"></video>
   <ul id="list">
-    <li><button type="button" data-id="lurk-king" data-title="Lurk King">Lurk King</button></li>
-    <li><button type="button" data-id="skitz-ladder" data-title="Skitz Ladder">Skitz Ladder</button></li>
-    <li><button type="button" data-id="somebody-said-rush-b" data-title="Somebody Said Rush B">Somebody Said Rush B</button></li>
-    <li><button type="button" data-id="come-on-code" data-title="Come On, Code">Come On, Code</button></li>
+    <li><button type="button" data-id="lurk-king" data-title="Lurk King">1. Lurk King</button></li>
+    <li><button type="button" data-id="skitz-ladder" data-title="Skitz Ladder">2. Skitz Ladder</button></li>
+    <li><button type="button" data-id="somebody-said-rush-b" data-title="Somebody Said Rush B">3. Somebody Said Rush B</button></li>
+    <li><button type="button" data-id="come-on-code" data-title="Come On, Code">4. Come On, Code</button></li>
     <li><button type="button" data-id="oh-my-god-i-am-so-slow" data-src="/watch/media/oh-my-god-i-am-so-slow.mp4" data-title="Oh my god, I am so slow"><img class="thumb" src="/img/thumbs/oh-my-god-i-am-so-slow.jpg" alt="">Oh my god, I am so slow</button></li>
     <li><button type="button" data-id="why-dont-you" data-src="/watch/media/why-dont-you.mp4" data-title="Why don’t you don’t like that, bro"><img class="thumb" src="/img/thumbs/why-dont-you.jpg" alt="">Why don’t you don’t like that, bro</button></li>
     <li><button type="button" data-id="blind-by-black" data-src="/watch/media/blind-by-black.mp4" data-title="Blind by black"><img class="thumb" src="/img/thumbs/blind-by-black.jpg" alt="">Blind by black</button></li>
@@ -46,9 +48,7 @@
       if (player.getAttribute("src") !== src) player.src = src;
       if (play) player.play();
     }
-    Array.prototype.forEach.call(document.querySelectorAll("#list button"), function (b) {
-      b.removeAttribute("aria-current");
-    });
+    document.querySelectorAll("#list button").forEach(function (b) { b.removeAttribute("aria-current"); });
     btn.setAttribute("aria-current", "true");
   }
   document.getElementById("list").addEventListener("click", function (e) {
@@ -56,11 +56,7 @@
     if (btn) choose(btn, true);
   });
   var id = decodeURIComponent(location.hash.replace(/^#/, ""));
-  if (id) {
-    Array.prototype.forEach.call(document.querySelectorAll("#list button"), function (b) {
-      if (b.getAttribute("data-id") === id) choose(b, false);
-    });
-  }
+  if (id) document.querySelectorAll("#list button").forEach(function (b) { if (b.getAttribute("data-id") === id) choose(b, false); });
 })();
 </script>
 </body>

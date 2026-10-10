@@ -3,35 +3,56 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Highlights — DTRT Lab</title>
+  <title>DTRT Lab</title>
   <link rel="canonical" href="https://dtrtlab.com/">
-  <link rel="stylesheet" href="/css/site.css?v=20261010v">
-  <style>
-    .play { display: block; width: 100%; min-height: 64px; margin: 8px 0 28px; border: 0; border-radius: 14px; background: #2F6BFF; color: #fff; font: inherit; font-size: 1.25rem; cursor: pointer; }
-    video { width: 100%; background: #000; border-radius: 14px; min-height: 12rem; }
-    h1 { font-size: 2.4rem; }
-  </style>
+  <link rel="stylesheet" href="/css/site.css?v=20261010c">
 </head>
 <body>
-<main class="page">
-  <nav class="shortcuts" aria-label="Main">
-    <a href="/" aria-current="page">Highlights</a>
+<header class="top">
+  <a class="brand" href="/">DTRT Lab</a>
+  <nav aria-label="Main">
+    <a href="/clips/">Clips</a>
+    <a href="/live/">Live</a>
     <a href="/partner/">Partner</a>
     <a href="/contact.html">Contact</a>
-    <a href="/live/">Live</a>
+    <a href="/radio.html">Radio</a>
+    <a href="/versions/">Versions</a>
   </nav>
-  <h1>Lurk King</h1>
-  <p>Wait for the opening.</p>
-  <button class="play" type="button" id="watch">Play</button>
-  <h2>Oh my god, I am so slow</h2>
-  <video id="next" controls playsinline preload="metadata" src="/watch/media/oh-my-god-i-am-so-slow.mp4"></video>
+</header>
+<main class="wrap">
+  <h1>Ranked clips</h1>
+  <input id="q" class="search" type="search" placeholder="Search clips" aria-label="Search clips">
+  <div class="layout">
+    <a class="card featured" href="/clips/#lurk-king" data-title="Lurk King">
+      <span class="media"></span>
+      <span class="pad"><h2>Lurk King</h2><p class="muted">Featured. No thumbnail file on the site.</p></span>
+    </a>
+    <ol class="rank" id="rank">
+      <li><a class="row" href="/clips/#lurk-king" data-title="Lurk King"><b>1</b>Lurk King</a></li>
+      <li><a class="row" href="/clips/#skitz-ladder" data-title="Skitz Ladder"><b>2</b>Skitz Ladder</a></li>
+      <li><a class="row" href="/clips/#somebody-said-rush-b" data-title="Somebody Said Rush B"><b>3</b>Somebody Said Rush B</a></li>
+      <li><a class="row" href="/clips/#come-on-code" data-title="Come On, Code"><b>4</b>Come On, Code</a></li>
+      <li><a class="row" href="/clips/#oh-my-god-i-am-so-slow" data-title="Oh my god, I am so slow"><b>5</b><img src="/img/thumbs/oh-my-god-i-am-so-slow.jpg" alt="">Oh my god, I am so slow</a></li>
+      <li><a class="row" href="/clips/#why-dont-you" data-title="Why don’t you don’t like that, bro"><b>6</b><img src="/img/thumbs/why-dont-you.jpg" alt="">Why don’t you don’t like that, bro</a></li>
+      <li><a class="row" href="/clips/#blind-by-black" data-title="Blind by black"><b>7</b><img src="/img/thumbs/blind-by-black.jpg" alt="">Blind by black</a></li>
+      <li><a class="row" href="/clips/#happened-to-you" data-title="Happened to you, bro"><b>8</b><img src="/img/thumbs/happened-to-you.jpg" alt="">Happened to you, bro</a></li>
+      <li><a class="row" href="/clips/#move-it" data-title="Move it"><b>9</b><img src="/img/thumbs/move-it.jpg" alt="">Move it</a></li>
+      <li><a class="row" href="/clips/#nice-literally-un-lucable" data-title="Nice, literally un-lucable"><b>10</b><img src="/img/thumbs/nice-literally-un-lucable.jpg" alt="">Nice, literally un-lucable</a></li>
+      <li><a class="row" href="/clips/#two-superpowers" data-title="Two superpowers"><b>11</b><img src="/img/thumbs/two-superpowers.jpg" alt="">Two superpowers</a></li>
+      <li><a class="row" href="/clips/#oh-what-a-lie" data-title="Oh, what a lie"><b>12</b><img src="/img/thumbs/oh-what-a-lie.jpg" alt="">Oh, what a lie</a></li>
+    </ol>
+  </div>
 </main>
 <script>
-document.getElementById("watch").addEventListener("click", function () {
-  var video = document.getElementById("next");
-  video.scrollIntoView({ block: "center" });
-  video.play();
-});
+(function () {
+  var q = document.getElementById("q");
+  q.addEventListener("input", function () {
+    var n = q.value.trim().toLowerCase();
+    document.querySelectorAll("[data-title]").forEach(function (el) {
+      el.hidden = n && el.getAttribute("data-title").toLowerCase().indexOf(n) === -1;
+    });
+  });
+})();
 </script>
 </body>
 </html>
