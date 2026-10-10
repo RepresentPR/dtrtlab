@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Partner — DTRT Lab</title>
+  <link rel="canonical" href="https://dtrtlab.com/partner/">
+  <style>
+    body { margin: 0; background: #080808; color: #f4f1ea; font: 18px/1.5 Georgia, "Times New Roman", serif; }
+    a { color: #f4f1ea; }
+    header, main { max-width: 42rem; margin: 0 auto; padding: 20px; }
+    nav a { margin-right: 16px; }
+    label { display: block; margin: 12px 0; }
+    button { font: inherit; padding: 8px 12px; }
+  </style>
+</head>
+<body>
+<header>
+  <nav aria-label="Main">
+    <a href="/">Highlights</a>
+    <a href="/partner/" aria-current="page">Partner</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/live/">Live</a>
+  </nav>
+</header>
+<main>
+  <h1>Partner</h1>
+  <p>Our clips are the highlight. A sponsor ad does not replace them.</p>
+  <p>Tip to highlight one of our clips inside the sponsor slot.</p>
+  <p>Or upload your own highlight for that same slot. Video files only. A pasted link is not accepted.</p>
+  <p>Timed Paid Sponsor. Runs for the 15 minutes before each 4-hour update. Under $1 does not run.</p>
+  <p>One sponsor ad at a time, labeled Sponsor. It runs only in the 15 minutes before 12:00 AM, 4:00 AM, 8:00 AM, 12:00 PM, 4:00 PM, and 8:00 PM America/New_York, then it comes off. Outside that window the slot is empty, even if someone paid. A new paid sponsor replaces the current one, and its own window is the next open 15 minutes.</p>
+  <p id="viewers-now">Viewers now: not counted yet</p>
+  <p>Viewers means people on dtrtlab.com right now. They are not counted, so the count used here is 0. 30s = max($1, round viewers × $0.10). 60s = max($1, round viewers × $0.25). Longer = max($1, round viewers × $0.50). At 0 viewers every price shows $1.</p>
+  <p>Sponsor slot: empty. No payment is recorded. Started at $0. Still $0. October 10, 2026. An upload does not go on the site unless a real payment of at least the shown price is already written down. This page does not take card numbers.</p>
+  <form id="sponsor-upload">
+    <label>Your video file <input id="sponsor-file" type="file" accept="video/*"></label>
+    <button type="submit">Send sponsor video</button>
+  </form>
+  <p id="sponsor-note"></p>
+</main>
+<script>
+(function () {
+  var form = document.getElementById("sponsor-upload");
+  var note = document.getElementById("sponsor-note");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var file = document.getElementById("sponsor-file").files[0];
+    if (!file || !file.type || file.type.indexOf("video/") !== 0) {
+      note.textContent = "Video files only. That file was not accepted.";
+      return;
+    }
+    note.textContent = "Video file only. It is not live. No payment of the shown price is recorded. The sponsor slot stays empty. Started at $0. Still $0.";
+  });
+})();
+</script>
+</body>
+</html>
