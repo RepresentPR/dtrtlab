@@ -6,16 +6,24 @@
   <title>DTRT Lab</title>
   <link rel="canonical" href="https://dtrtlab.com/">
   <style>
-    :root { --bg: #0A0A0A; --ink: #F5F5F5; --accent: #E31937; }
-    body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.2 "Segoe UI", Helvetica, Arial, sans-serif; }
-    a { color: var(--accent); text-decoration: none; }
-    nav { display: flex; gap: 28px; padding: 18px 28px; font-size: 14px; }
-    .hero { padding: 8vh 6vw 4vh; }
-    h1 { margin: 0; color: var(--ink); font-size: clamp(56px, 9vw, 104px); font-weight: 500; letter-spacing: -0.045em; }
-    .line { margin: 12px 0 0; color: var(--ink); font-size: 22px; }
+    body { margin: 0; background: #F4F7FF; color: #1A1A1A; font: 16px/1.2 "Segoe UI", Helvetica, Arial, sans-serif; }
+    a { text-decoration: none; }
+    nav { display: flex; gap: 22px; padding: 18px 28px; font-size: 15px; }
+    nav a:nth-child(1) { color: #2F6BFF; }
+    nav a:nth-child(2) { color: #FF5A5F; }
+    nav a:nth-child(3) { color: #C4840A; }
+    nav a:nth-child(4) { color: #2F6BFF; }
+    .hero { padding: 6vh 6vw 3vh; }
+    h1 { margin: 0; font-size: clamp(56px, 9vw, 104px); font-weight: 650; letter-spacing: -0.045em; }
+    .line { margin: 8px 0 0; font-size: 22px; }
     .blocks { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 0 6vw 10vh; }
-    .blocks a { display: flex; align-items: flex-end; min-height: 28vh; padding: 24px; background: #161616; color: var(--accent); font-size: clamp(28px, 4vw, 44px); letter-spacing: -0.03em; border-radius: 8px; }
-    .blocks a:hover, .blocks a:active { background: var(--accent); color: #F5F5F5; }
+    .blocks a { display: flex; flex-direction: column; justify-content: space-between; min-height: 28vh; padding: 24px; background: #fff; color: #1A1A1A; font-size: clamp(28px, 4vw, 44px); letter-spacing: -0.03em; border-radius: 16px; box-shadow: 0 8px 24px rgba(26,26,26,0.06); }
+    .blocks a span { font-size: 40px; }
+    .blocks a:nth-child(1) { border-bottom: 8px solid #2F6BFF; }
+    .blocks a:nth-child(2) { border-bottom: 8px solid #FF5A5F; }
+    .blocks a:nth-child(3) { border-bottom: 8px solid #FFC857; }
+    .blocks a:nth-child(4) { border-bottom: 8px solid #2F6BFF; }
+    .blocks a:hover, .blocks a:active { filter: brightness(1.08); transform: translateY(-2px); }
     @media (max-width: 700px) { .blocks { grid-template-columns: 1fr; } }
   </style>
 </head>
@@ -31,10 +39,10 @@
   <p class="line">Watch the clips.</p>
 </section>
 <section class="blocks" aria-label="Sections">
-  <a href="/clips/">Clips</a>
-  <a href="/partner/">Partner</a>
-  <a href="/contact.html">Contact</a>
-  <a href="/live/">Live</a>
+  <a href="/clips/"><span aria-hidden="true">▶️</span>Clips</a>
+  <a href="/partner/"><span aria-hidden="true">🤝</span>Partner</a>
+  <a href="/contact.html"><span aria-hidden="true">✉️</span>Contact</a>
+  <a href="/live/"><span aria-hidden="true">📊</span>Live</a>
 </section>
 </body>
 </html>
