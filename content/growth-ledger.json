@@ -4,7 +4,7 @@
     {
       "id": "youtube-recent-posts",
       "platform": "youtube",
-      "label": "YouTube Â· fixed 34-post cohort",
+      "label": "YouTube · fixed 34-post cohort",
       "cohort": [
         "Z00dqeOOdBc",
         "7owx3ck3vRY",
@@ -197,7 +197,7 @@
     {
       "id": "instagram-recent-posts",
       "platform": "instagram",
-      "label": "Instagram Â· fixed 34-post cohort",
+      "label": "Instagram · fixed 34-post cohort",
       "cohort": [
         "DeS7OXYCj1-",
         "DeS2ny6kiIN",
@@ -390,7 +390,7 @@
     {
       "id": "tiktok-recent-posts",
       "platform": "tiktok",
-      "label": "TikTok Â· fixed 16-post cohort",
+      "label": "TikTok · fixed 16-post cohort",
       "cohort": [
         "7694793803584048398",
         "7694678392779689229",
@@ -493,7 +493,7 @@
     {
       "id": "instagram-account-period",
       "platform": "instagram",
-      "label": "Instagram Â· dated account report",
+      "label": "Instagram · dated account report",
       "cohort": [
         "account"
       ],
@@ -515,7 +515,7 @@
     {
       "id": "tiktok-account-period",
       "platform": "tiktok",
-      "label": "TikTok Â· dated account report",
+      "label": "TikTok · dated account report",
       "cohort": [
         "account"
       ],
@@ -537,7 +537,7 @@
     {
       "id": "youtube-lab001",
       "platform": "youtube",
-      "label": "YouTube Â· Lab File 001 only",
+      "label": "YouTube · Lab File 001 only",
       "cohort": [
         "lsExh8z7fVI"
       ],
