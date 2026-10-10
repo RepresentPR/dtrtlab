@@ -12,6 +12,11 @@
       "subscriber_net_change": 1,
       "subscribers_realtime": 1310,
       "views_last_48_hours_at_review": 11821,
+      "last_48_hours_top_shorts": [
+        {"title": "Lurk King", "url": "https://www.youtube.com/watch?v=LcDUdmS0EPw", "views": 1459},
+        {"title": "Skitz Hit the Ladder", "url": "https://www.youtube.com/watch?v=197ccicfV5M", "views": 1229},
+        {"title": "Come On, Code", "url": "https://www.youtube.com/watch?v=bu6ra-pDYt0", "views": 1225}
+      ],
       "shorts": {
         "views_displayed_rounded": "5.1K",
         "engaged_views_displayed_rounded": "1.5K",
@@ -53,6 +58,8 @@
       "lifetime_profile_likes_at_review": 25,
       "for_you_traffic_share_percent": 99.3,
       "search_traffic_share_percent": 0.7,
+      "public_profile_top_visible_play_counts": [330, 297, 291],
+      "public_profile_vs_studio_note": "Visible public post counters and the Studio period total were not reconciled; definitions, update timing or window may differ.",
       "comment_caveat": "One heart-emoji comment appeared on the Studio home screen; it is not reconciled with the period comment metric."
     },
     "twitch": {
