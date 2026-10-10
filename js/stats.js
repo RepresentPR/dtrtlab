@@ -9,21 +9,21 @@
     '<a class="stat-badge" id="badge-kick" href="https://kick.com/movebro" rel="noopener noreferrer" target="_blank"><span class="dot" aria-hidden="true"></span><span class="b-txt">Kick</span></a></p>',
     '<p class="stats-updated" id="stats-updated">Loading the numbers\u2026</p></div></div>',
     '<div class="stats-kpis">',
-    '<div class="kpi kpi-main"><p class="kpi-label">Verified views \u00b7 YouTube + TikTok</p><p class="kpi-num" id="kpi-views">\u2014</p><p class="kpi-sub" id="kpi-views-sub"></p></div>',
-    '<div class="kpi"><p class="kpi-label">Total followers</p><p class="kpi-num" id="kpi-followers">\u2014</p><p class="kpi-sub" id="kpi-fol-sub"></p></div>',
+    '<div class="kpi kpi-main"><p class="kpi-label">Saved YouTube + TikTok post views</p><p class="kpi-num" id="kpi-views">\u2014</p><p class="kpi-sub" id="kpi-views-sub"></p></div>',
+    '<div class="kpi"><p class="kpi-label">Platform follows (sum)</p><p class="kpi-num" id="kpi-followers">\u2014</p><p class="kpi-sub" id="kpi-fol-sub"></p></div>',
     '</div>',
-    '<div class="growth" id="growth"><div class="growth-head"><h3 class="growth-title" id="growth-title">Total views over time</h3>',
+    '<div class="growth" id="growth"><div class="growth-head"><h3 class="growth-title" id="growth-title">Saved YouTube + TikTok views over time</h3>',
     '<div class="seg" role="group" aria-label="Choose what the chart shows"><button type="button" class="seg-b is-on" data-m="views" aria-pressed="true">Views</button><button type="button" class="seg-b" data-m="followers" aria-pressed="false">Followers</button></div></div>',
     '<p class="growth-take" id="growth-take"></p>',
     '<div class="growth-chart" id="growth-chart"></div>',
     '<p class="growth-note" id="growth-note"></p></div>',
-    '<div class="race"><h3 class="blk-title">Which site gets the most views?</h3><p class="blk-sub">Views on each site, biggest first.</p><div class="bars" id="race-bars"></div></div>',
+    '<div class="race"><h3 class="blk-title">Saved post counters by site</h3><p class="blk-sub">Dated per-site snapshots; reporting times differ and these are not unique people.</p><div class="bars" id="race-bars"></div></div>',
     '<details class="more"><summary>Show followers on each site</summary><p class="blk-sub">Followers are people who chose to follow us. The goal is the next round number.</p><div class="bars" id="fol-bars"></div></details>',
     '<div class="clip-pair">',
     '<a class="exhibit-card" id="top-clip" href="#clips" rel="noopener noreferrer" target="_blank"><span class="kpi-label">Most watched clip</span><span class="ex-title" id="top-clip-title">\u2014</span><span class="ex-meta" id="top-clip-meta"></span></a>',
     '<a class="exhibit-card" id="latest-clip" href="#clips" rel="noopener noreferrer" target="_blank"><span class="kpi-label">Newest clip</span><span class="ex-title" id="latest-clip-title">\u2014</span><span class="ex-meta" id="latest-clip-meta"></span></a>',
     '</div>',
-    '<p class="fine stats-fine">Every number below comes from a free public page or API and shows its source and time. \u201cUnverified\u201d means the platform does not publish it, so we do not guess. YouTube rounds its follower number, so it has a + sign.</p>',
+    '<p class="fine stats-fine">The view total is the older YouTube + TikTok tracked-post sum; Instagram Reel plays are a separate later snapshot. Per-platform counts show sources and times. Followers across sites can be the same people. YouTube rounds its public subscriber display.</p>',
     '</div></section>'
   ].join("");
 
@@ -113,10 +113,18 @@
   function chart() {
     var box = $("growth-chart"), P = series();
     if (!box) return;
+    if (mode === "followers" && data?.totals?.followers_method_changed) {
+      $("growth").style.display = "";
+      $("growth-title").textContent = "Follower trend needs a new baseline";
+      $("growth-take").textContent = "The older series omitted X and used an earlier Instagram count. Its change cannot measure audience growth against the current audited sum.";
+      box.textContent = "A comparable follower trend will start with the next reading using the same six-platform method.";
+      $("growth-note").textContent = "Current platform follows sum to " + num(data.totals.followers) + "; people can follow on more than one platform.";
+      return;
+    }
     if (P.length < 2) { $("growth").style.display = "none"; return; }
     $("growth").style.display = "";
     var unit = mode === "views" ? "views" : "followers";
-    $("growth-title").textContent = mode === "views" ? "Total views over time" : "Total followers over time";
+    $("growth-title").textContent = mode === "views" ? "Saved YouTube + TikTok views over time" : "Total followers over time";
     $("growth-take").textContent = takeaway(P);
     var W = Math.max(280, box.clientWidth || 600), small = W < 520;
     var H = small ? 220 : 280, padL = 8, padR = small ? 74 : 96, padT = 22, padB = 34;
@@ -142,7 +150,7 @@
     box.innerHTML = svg;
     $("growth-note").textContent = mode === "views"
       ? "Verified views only (YouTube + TikTok public counters). Starts when verified tracking began. Times are Eastern."
-      : "Followers added together for every site with a verified count (X is not verified, so it is left out). Times are Eastern. Counts start when we began tracking.";
+      : "Older follower readings used the verified sources available at each snapshot. Times are Eastern.";
   }
 
   function bars(id, rows) {
@@ -177,7 +185,7 @@
     $("kpi-followers").textContent = num(t.followers);
     var fs = ((data.history || []).filter(function (p) { return p.followers != null; }));
     var fd = fs.length > 1 ? fs[fs.length - 1].followers - fs[0].followers : null;
-    $("kpi-fol-sub").innerHTML = fd != null ? (fd > 0 ? "<b>+" + num(fd) + " followers</b> since " + tlabel(tparse(fs[0].at)) : "Same as " + tlabel(tparse(fs[0].at))) : "Verified sites only; unverified ones are left out";
+    $("kpi-fol-sub").innerHTML = t.followers_method_changed ? esc((t.followers_src || "Sum of platform follows; people may overlap") + " · " + (t.followers_asof || "dated audit")) : (fd != null ? (fd > 0 ? "<b>+" + num(fd) + " followers</b> since " + tlabel(tparse(fs[0].at)) : "Same as " + tlabel(tparse(fs[0].at))) : "Verified sites only; unverified ones are left out");
     chart();
 
     var M = merged(P);

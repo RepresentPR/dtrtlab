@@ -23,10 +23,10 @@ function draw(B,O,S,C){
  const summary=measured?change(baseline,now)+" tracked post views since "+date(B.first_measured_views.at):"Earlier view totals used an unverified counting method (summed Postiz reports) and are not comparable with today's verified public counters";
  const platforms=(S.platforms||[]).map(p=>{
   const old=(B.first_platform_snapshot.platforms||[]).find(q=>q.id===p.id)||{};
-  const exact=!p.followers_rounded&&!old.followers_rounded&&p.id!=="instagram";
+  const exact=!p.followers_rounded&&!old.followers_rounded&&p.id!=="instagram"&&p.id!=="x";
   const follower=exact&&hasLatest?change(old.followers,p.followers):"Unavailable";
-  const view=sameBasis&&hasLatest&&Number.isFinite(p.views)&&Number.isFinite(old.views)?change(old.views,p.views):"Unavailable";
-  const caution=p.id==="instagram"?" Saved follower count conflicts with a later public observation.":p.followers_rounded?" Follower count rounded by platform.":"";
+  const view=sameBasis&&hasLatest&&p.id!=="instagram"&&Number.isFinite(p.views)&&Number.isFinite(old.views)?change(old.views,p.views):"Unavailable";
+  const caution=p.id==="instagram"?" Later Reel-grid and follower readings use a different snapshot and scope.":p.id==="x"?" Later follower reading has no comparable baseline.":p.followers_rounded?" Follower count rounded by platform.":"";
   return '<tr><th scope="row"><a href="'+safeUrl(p.url)+'" target="_blank" rel="noopener noreferrer">'+esc(name[p.id]||p.label||p.id)+'</a></th><td>'+num(old.views)+' → '+num(p.views)+'<br><small>'+esc(view)+'</small></td><td>'+num(old.followers)+(old.followers_rounded?"+":"")+' → '+num(p.followers)+(p.followers_rounded?"+":"")+'<br><small>'+esc(follower+caution)+'</small></td></tr>';
  }).join("");
  const clips=(C.clips||[]).filter(c=>Number.isFinite(c.views)).sort((a,b)=>b.views-a.views).slice(0,5).map(c=>'<li><a href="'+safeUrl(c.links&&c.links.youtube)+'" target="_blank" rel="noopener noreferrer">'+esc(c.title)+'</a>: '+num(c.views)+' saved views <small>(posted '+esc(c.posted_et||date(c.posted_utc))+')</small></li>').join("");
