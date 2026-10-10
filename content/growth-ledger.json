@@ -1,0 +1,620 @@
+{
+  "schema": 1,
+  "series": [
+    {
+      "id": "youtube-recent-posts",
+      "platform": "youtube",
+      "label": "YouTube · fixed 34-post cohort",
+      "cohort": [
+        "Z00dqeOOdBc",
+        "7owx3ck3vRY",
+        "6pnFUd1_TT4",
+        "NRlRvR-zZtE",
+        "8BDDTkjN9aM",
+        "OL--lV0YW9Q",
+        "Q05amc0VF5c",
+        "7pszGtoVSY0",
+        "EO8yEJptWDQ",
+        "QVrRYGpO_VI",
+        "YTNFlHeYbBc",
+        "eTuX5W8UuzU",
+        "AuFwZJH7-jw",
+        "5B3w5FwWTno",
+        "gRUCO9WJt7M",
+        "lZ-COdVdNgk",
+        "wu3M-Te360E",
+        "197ccicfV5M",
+        "LcDUdmS0EPw",
+        "nst_spyTD9c",
+        "QRAHYY1UT7Q",
+        "eUrto6-GD5Q",
+        "JNrT4BKjRGg",
+        "ol3FCKxb514",
+        "bu6ra-pDYt0",
+        "nsLLaY8GUrQ",
+        "sU9MiiJXcak",
+        "6MHdhASOxMo",
+        "wqZKnR4LbmE",
+        "i8eLyEjHbsQ",
+        "SySyK0pNnqA",
+        "bjVLRl-mK68",
+        "lsExh8z7fVI",
+        "0XxDrMvsCgE"
+      ],
+      "metric": "post_plays",
+      "window": "Cumulative lifetime counters of the listed posts",
+      "definition": "Sum of individually observed post counters; cohort fixed to exact IDs in this dataset.",
+      "include_in_snapshot": true,
+      "source_url": "https://www.youtube.com/@DTRTLabYT",
+      "points": [
+        {
+          "captured_at": "2026-10-09T22:17:00-04:00",
+          "capture_started_at": "2026-10-09T22:15:00-04:00",
+          "views": 12060,
+          "interactions": null,
+          "method": "Saved native platform inventory, Oct 9 audit",
+          "posts": [
+            {
+              "id": "Z00dqeOOdBc",
+              "views": 311
+            },
+            {
+              "id": "7owx3ck3vRY",
+              "views": 54
+            },
+            {
+              "id": "6pnFUd1_TT4",
+              "views": 2
+            },
+            {
+              "id": "NRlRvR-zZtE",
+              "views": 4
+            },
+            {
+              "id": "8BDDTkjN9aM",
+              "views": 3
+            },
+            {
+              "id": "OL--lV0YW9Q",
+              "views": 1
+            },
+            {
+              "id": "Q05amc0VF5c",
+              "views": 2
+            },
+            {
+              "id": "7pszGtoVSY0",
+              "views": 1
+            },
+            {
+              "id": "EO8yEJptWDQ",
+              "views": 2
+            },
+            {
+              "id": "QVrRYGpO_VI",
+              "views": 6
+            },
+            {
+              "id": "YTNFlHeYbBc",
+              "views": 3
+            },
+            {
+              "id": "eTuX5W8UuzU",
+              "views": 2
+            },
+            {
+              "id": "AuFwZJH7-jw",
+              "views": 1
+            },
+            {
+              "id": "5B3w5FwWTno",
+              "views": 1
+            },
+            {
+              "id": "gRUCO9WJt7M",
+              "views": 1
+            },
+            {
+              "id": "lZ-COdVdNgk",
+              "views": 3
+            },
+            {
+              "id": "wu3M-Te360E",
+              "views": 2
+            },
+            {
+              "id": "197ccicfV5M",
+              "views": 1228
+            },
+            {
+              "id": "LcDUdmS0EPw",
+              "views": 1454
+            },
+            {
+              "id": "nst_spyTD9c",
+              "views": 1127
+            },
+            {
+              "id": "QRAHYY1UT7Q",
+              "views": 484
+            },
+            {
+              "id": "eUrto6-GD5Q",
+              "views": 1140
+            },
+            {
+              "id": "JNrT4BKjRGg",
+              "views": 1174
+            },
+            {
+              "id": "ol3FCKxb514",
+              "views": 675
+            },
+            {
+              "id": "bu6ra-pDYt0",
+              "views": 1217
+            },
+            {
+              "id": "nsLLaY8GUrQ",
+              "views": 354
+            },
+            {
+              "id": "sU9MiiJXcak",
+              "views": 1020
+            },
+            {
+              "id": "6MHdhASOxMo",
+              "views": 356
+            },
+            {
+              "id": "wqZKnR4LbmE",
+              "views": 418
+            },
+            {
+              "id": "i8eLyEjHbsQ",
+              "views": 452
+            },
+            {
+              "id": "SySyK0pNnqA",
+              "views": 516
+            },
+            {
+              "id": "bjVLRl-mK68",
+              "views": 1
+            },
+            {
+              "id": "lsExh8z7fVI",
+              "views": 18
+            },
+            {
+              "id": "0XxDrMvsCgE",
+              "views": 27
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "instagram-recent-posts",
+      "platform": "instagram",
+      "label": "Instagram · fixed 34-post cohort",
+      "cohort": [
+        "DeS7OXYCj1-",
+        "DeS2ny6kiIN",
+        "DeSsYxwghQJ",
+        "DeSsUUDlAAX",
+        "DeSiBleAMxZ",
+        "DeSg3HmiZT0",
+        "DeSeiyRCjBl",
+        "DeSeQIAE8Oq",
+        "DeSbwvQEcqE",
+        "DeSOzY5E1Vq",
+        "DeSNbemDLwr",
+        "DeSHpKND6kF",
+        "DeSDHwvim1_",
+        "DeR42syChth",
+        "DeR3jxwitft",
+        "DeR1RBmDkAO",
+        "DeRy-rPD7ek",
+        "DeRww63AP3I",
+        "DeRv9e-jzbu",
+        "DeRuZt1DEYi",
+        "DeQ2O0rAbBt",
+        "DeQz7IHmb83",
+        "DeQxogJlRfO",
+        "DeQvbxCE2TY",
+        "DeQtD2uCnVn",
+        "DeQqxXDIDaL",
+        "DeQoetKCVQ8",
+        "DeQmT--CWEx",
+        "DeQVUPeE9Ys",
+        "DeQObQ1jX-H",
+        "DeQHiAoCZ8-",
+        "DeP3gRxj6tR",
+        "DeP1NwTioDs",
+        "DePzBDXDseG"
+      ],
+      "metric": "post_plays",
+      "window": "Cumulative lifetime counters of the listed posts",
+      "definition": "Sum of individually observed post counters; cohort fixed to exact IDs in this dataset.",
+      "include_in_snapshot": true,
+      "source_url": "https://www.instagram.com/officiallydtrt/reels/",
+      "points": [
+        {
+          "captured_at": "2026-10-09T21:49:00-04:00",
+          "capture_started_at": "2026-10-09T21:49:00-04:00",
+          "views": 12277,
+          "interactions": null,
+          "method": "Saved native platform inventory, Oct 9 audit",
+          "posts": [
+            {
+              "id": "DeS7OXYCj1-",
+              "views": 12
+            },
+            {
+              "id": "DeS2ny6kiIN",
+              "views": 129
+            },
+            {
+              "id": "DeSsYxwghQJ",
+              "views": 164
+            },
+            {
+              "id": "DeSsUUDlAAX",
+              "views": 132
+            },
+            {
+              "id": "DeSiBleAMxZ",
+              "views": 170
+            },
+            {
+              "id": "DeSg3HmiZT0",
+              "views": 213
+            },
+            {
+              "id": "DeSeiyRCjBl",
+              "views": 189
+            },
+            {
+              "id": "DeSeQIAE8Oq",
+              "views": 146
+            },
+            {
+              "id": "DeSbwvQEcqE",
+              "views": 125
+            },
+            {
+              "id": "DeSOzY5E1Vq",
+              "views": 146
+            },
+            {
+              "id": "DeSNbemDLwr",
+              "views": 141
+            },
+            {
+              "id": "DeSHpKND6kF",
+              "views": 218
+            },
+            {
+              "id": "DeSDHwvim1_",
+              "views": 190
+            },
+            {
+              "id": "DeR42syChth",
+              "views": 143
+            },
+            {
+              "id": "DeR3jxwitft",
+              "views": 191
+            },
+            {
+              "id": "DeR1RBmDkAO",
+              "views": 157
+            },
+            {
+              "id": "DeRy-rPD7ek",
+              "views": 1290
+            },
+            {
+              "id": "DeRww63AP3I",
+              "views": 209
+            },
+            {
+              "id": "DeRv9e-jzbu",
+              "views": 122
+            },
+            {
+              "id": "DeRuZt1DEYi",
+              "views": 1098
+            },
+            {
+              "id": "DeQ2O0rAbBt",
+              "views": 1357
+            },
+            {
+              "id": "DeQz7IHmb83",
+              "views": 1453
+            },
+            {
+              "id": "DeQxogJlRfO",
+              "views": 829
+            },
+            {
+              "id": "DeQvbxCE2TY",
+              "views": 186
+            },
+            {
+              "id": "DeQtD2uCnVn",
+              "views": 1246
+            },
+            {
+              "id": "DeQqxXDIDaL",
+              "views": 312
+            },
+            {
+              "id": "DeQoetKCVQ8",
+              "views": 174
+            },
+            {
+              "id": "DeQmT--CWEx",
+              "views": 233
+            },
+            {
+              "id": "DeQVUPeE9Ys",
+              "views": 163
+            },
+            {
+              "id": "DeQObQ1jX-H",
+              "views": 233
+            },
+            {
+              "id": "DeQHiAoCZ8-",
+              "views": 219
+            },
+            {
+              "id": "DeP3gRxj6tR",
+              "views": 251
+            },
+            {
+              "id": "DeP1NwTioDs",
+              "views": 247
+            },
+            {
+              "id": "DePzBDXDseG",
+              "views": 189
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tiktok-recent-posts",
+      "platform": "tiktok",
+      "label": "TikTok · fixed 16-post cohort",
+      "cohort": [
+        "7694793803584048398",
+        "7694678392779689229",
+        "7694548238900169998",
+        "7694543150303481102",
+        "7694538040634576142",
+        "7694532940843207949",
+        "7694527753877589261",
+        "7694522613841890574",
+        "7694517453845531918",
+        "7694512614205836557",
+        "7694474266703662349",
+        "7694458787666660622",
+        "7694443385016306958",
+        "7694407208775208205",
+        "7694402085751688461",
+        "7694396907698933006"
+      ],
+      "metric": "post_plays",
+      "window": "Cumulative lifetime counters of the listed posts",
+      "definition": "Sum of individually observed post counters; cohort fixed to exact IDs in this dataset.",
+      "include_in_snapshot": true,
+      "source_url": "https://www.tiktok.com/@iananthonyfc",
+      "points": [
+        {
+          "captured_at": "2026-10-09T21:51:00-04:00",
+          "capture_started_at": "2026-10-09T21:51:00-04:00",
+          "views": 1749,
+          "interactions": null,
+          "method": "Saved native platform inventory, Oct 9 audit",
+          "posts": [
+            {
+              "id": "7694793803584048398",
+              "views": 2
+            },
+            {
+              "id": "7694678392779689229",
+              "views": 9
+            },
+            {
+              "id": "7694548238900169998",
+              "views": 4
+            },
+            {
+              "id": "7694543150303481102",
+              "views": 1
+            },
+            {
+              "id": "7694538040634576142",
+              "views": 85
+            },
+            {
+              "id": "7694532940843207949",
+              "views": 6
+            },
+            {
+              "id": "7694527753877589261",
+              "views": 3
+            },
+            {
+              "id": "7694522613841890574",
+              "views": 2
+            },
+            {
+              "id": "7694517453845531918",
+              "views": 1
+            },
+            {
+              "id": "7694512614205836557",
+              "views": 2
+            },
+            {
+              "id": "7694474266703662349",
+              "views": 272
+            },
+            {
+              "id": "7694458787666660622",
+              "views": 281
+            },
+            {
+              "id": "7694443385016306958",
+              "views": 291
+            },
+            {
+              "id": "7694407208775208205",
+              "views": 297
+            },
+            {
+              "id": "7694402085751688461",
+              "views": 330
+            },
+            {
+              "id": "7694396907698933006",
+              "views": 163
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "instagram-account-period",
+      "platform": "instagram",
+      "label": "Instagram · dated account report",
+      "cohort": [
+        "account"
+      ],
+      "metric": "account_views",
+      "window": "Last 30 days displayed Oct 9, 2026",
+      "definition": "Separate account-period analytics, overlapping the post counters; excluded from snapshot sum.",
+      "interaction_definition": "Instagram reported interactions; component reconciliation unavailable.",
+      "include_in_snapshot": false,
+      "source_url": "https://www.instagram.com/accounts/insights/?timeframe=30",
+      "points": [
+        {
+          "captured_at": "2026-10-09T21:11:00-04:00",
+          "views": 2407,
+          "interactions": 9,
+          "method": "Saved owner dashboard observation"
+        }
+      ]
+    },
+    {
+      "id": "tiktok-account-period",
+      "platform": "tiktok",
+      "label": "TikTok · dated account report",
+      "cohort": [
+        "account"
+      ],
+      "metric": "account_views",
+      "window": "Last 28 days displayed Oct 9, 2026",
+      "definition": "Separate account-period analytics, overlapping the post counters; excluded from snapshot sum.",
+      "interaction_definition": "Likes + comments + shares: 6 + 0 + 0. Saves unavailable and excluded.",
+      "include_in_snapshot": false,
+      "source_url": "https://www.tiktok.com/tiktokstudio/analytics",
+      "points": [
+        {
+          "captured_at": "2026-10-09T21:11:00-04:00",
+          "views": 761,
+          "interactions": 6,
+          "method": "Saved owner dashboard observation"
+        }
+      ]
+    },
+    {
+      "id": "youtube-lab001",
+      "platform": "youtube",
+      "label": "YouTube · Lab File 001 only",
+      "cohort": [
+        "lsExh8z7fVI"
+      ],
+      "metric": "post_plays",
+      "window": "Cumulative lifetime of one video",
+      "definition": "Single-video counter; already included in YouTube cohort, excluded from combined snapshot to avoid overlap.",
+      "include_in_snapshot": false,
+      "interaction_definition": "Public likes only; comments/shares/saves unavailable in these observations. Not a complete engagement total.",
+      "source_url": "https://www.youtube.com/watch?v=lsExh8z7fVI",
+      "points": [
+        {
+          "captured_at": "2026-10-10T14:59:16Z",
+          "views": 25,
+          "interactions": 4,
+          "method": "Manual native public watch-page read; interactions = likes only"
+        },
+        {
+          "captured_at": "2026-10-10T15:03:35Z",
+          "method": "Manual native public watch-page read; interactions = likes only",
+          "views": 25,
+          "interactions": 4,
+          "evidence": "YouTube watch page lsExh8z7fVI reloaded; native accessibility tree reports 25 views and like this video along with 4 other people."
+        }
+      ]
+    }
+  ],
+  "platforms": [
+    {
+      "id": "youtube",
+      "label": "YouTube",
+      "primary_series": "youtube-recent-posts",
+      "metric_label": "Post views / plays",
+      "status": "Public readings saved. No automatic analytics collector connected."
+    },
+    {
+      "id": "instagram",
+      "label": "Instagram",
+      "primary_series": "instagram-recent-posts",
+      "metric_label": "Post views / plays",
+      "status": "34 Reels included: 12,277 plays. Account Insights 2,407 is a different scope, not added."
+    },
+    {
+      "id": "tiktok",
+      "label": "TikTok",
+      "primary_series": "tiktok-recent-posts",
+      "metric_label": "Post views / plays",
+      "status": "16 counters saved. Later native playback failures; automatic analytics not connected."
+    },
+    {
+      "id": "x",
+      "label": "X",
+      "primary_series": null,
+      "metric_label": "Comparable views unavailable",
+      "status": "Publishing connection exists; account-wide impressions unavailable."
+    },
+    {
+      "id": "twitch",
+      "label": "Twitch",
+      "primary_series": null,
+      "metric_label": "Comparable views unavailable",
+      "status": "Unique viewers and concurrency are separate metrics, excluded from post-view sum."
+    },
+    {
+      "id": "kick",
+      "label": "Kick",
+      "primary_series": null,
+      "metric_label": "Comparable views unavailable",
+      "status": "No comparable view report connected."
+    },
+    {
+      "id": "website",
+      "label": "Website",
+      "primary_series": null,
+      "metric_label": "Comparable views unavailable",
+      "status": "GA page views are separate from social video views. Owner reporting connection unavailable."
+    }
+  ],
+  "connection_note": "Postiz publishing connections verified for YouTube, Instagram, TikTok, X and Twitch. Exposed connector tools do not provide an analytics collector; Instagram provider schema has no callable analytics helper. Automatic collection needs an authorized read-only analytics interface or owner-export delivery plus a scheduled ingestion service. No credentials or new permissions were accessed.",
+  "history_note": "Earlier tracker totals changed coverage and omitted Instagram. They remain in growth-observations.json as historical evidence, but are not joined to these fixed-cohort lines. No historical zero baseline invented."
+}

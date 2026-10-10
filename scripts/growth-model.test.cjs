@@ -1,0 +1,11 @@
+const assert = require('node:assert/strict');
+const g = require('../js/growth-model.js');
+const s={id:'ig',platform:'instagram',cohort:['a','b'],metric:'post_plays',window:'lifetime',points:[{captured_at:'2026-10-09T00:00:00Z',views:4,interactions:null}]};
+assert.equal(g.latest(s).views,4);
+assert.equal(g.total([s,{...s,id:'account',metric:'account_views',points:[{views:100}]}]),4,'account totals must not be added to post totals');
+assert.throws(()=>g.total([s,{...s,id:'duplicate'}]),/overlap/);
+assert.equal(g.total([{...s,points:[{views:null}]}]),null,'missing is not zero');
+assert.equal(g.compatible({...s,cohort:['b','a']},s),true);
+assert.equal(g.compatible({...s,cohort:['a']},s),false);
+assert.equal(g.compatible({...s,window:'last30'},s),false);
+console.log('growth model: 7 assertions passed');

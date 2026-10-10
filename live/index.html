@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Live · DTRTC Channel Dashboard</title>
-<meta name="description" content="Watch DTRTC live on Twitch with chat, plus a real-time dashboard of audience growth, platform reach and follower goals.">
+<meta name="description" content="Watch DTRTC live on Twitch with chat, plus dated audience observations, source collection status and follower goals.">
 <link rel="canonical" href="https://dtrtlab.com/live/">
 <meta property="og:title" content="Live · DTRTC Channel Dashboard"><meta property="og:url" content="https://dtrtlab.com/live/"><meta name="theme-color" content="#0D0E10">
 <link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/img/icon.svg" type="image/svg+xml">
@@ -79,7 +79,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #CF
 .owner-review{margin-top:20px;padding:24px}.owner-review h2{font-size:26px;line-height:1.2}.owner-review h3{font-size:20px;margin:24px 0 10px}.owner-review p{margin-top:10px}.owner-review .stamp{color:var(--acid);font-size:16px;font-weight:700}.owner-review .note{color:#d0d3d8}.owner-review .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:16px}.owner-review .metric{background:#202329;border:1px solid #383d44;border-radius:8px;padding:14px}.owner-review .metric strong{display:block;font-size:26px;line-height:1.2;color:var(--bone)}.owner-review .metric span{display:block;color:#d0d3d8;font-size:15px}.owner-review .table-wrap{overflow-x:auto;margin-top:12px}.owner-review table{width:100%;border-collapse:collapse;min-width:600px}.owner-review th,.owner-review td{text-align:left;padding:10px 12px;border-bottom:1px solid #383d44;vertical-align:top}.owner-review th{color:var(--acid);font-size:15px}.owner-review td{font-size:16px}.owner-review td.num{text-align:right;font-variant-numeric:tabular-nums}.owner-review .source{color:var(--mute);font-size:15px}.owner-review .source a{color:var(--acid)}.owner-review ul{padding-left:22px;margin-top:10px}.owner-review li{margin-top:6px}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
-<link rel="stylesheet" href="../css/then-now.css?v=1"><link rel="stylesheet" href="schedule.css?v=2"><link rel="stylesheet" href="../css/calm.css?v=20261009c"></head>
+<link rel="stylesheet" href="../css/then-now.css?v=1"><link rel="stylesheet" href="schedule.css?v=2"><link rel="stylesheet" href="../css/calm.css?v=20261009c"><link rel="stylesheet" href="../css/growth-monitor.css?v=20261010g"></head>
 <body>
 <header class="top"><a class="mark" href="../index.html"><i></i>DTRTLab.com <span>THE LAB FILES</span></a><span class="pill off" id="lp">Checking…</span><span class="clock"><small id="dt"></small><span id="tm"></span></span></header>
 <main class="wrap">
@@ -93,7 +93,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #CF
  </section>
  <section class="card sc" id="sched" aria-label="Up next on stream"></section>
  <section class="kp" id="kp" aria-label="Key numbers"></section>
- <section class="card gr" id="gr" aria-label="Audience growth"></section>
+ <section class="card" id="growth-monitor" aria-label="Growth monitor">Loading saved growth observations…</section>
  <section class="card tn" id="then-now" aria-label="Then vs now audience report"><h2>Then vs. now</h2><p>Loading dated public measurements…</p></section>
  <section class="card owner-review" id="owner-review" aria-label="Owner analytics review">
   <p class="stamp">OWNER ANALYTICS · OCT 9, 2026 · SOCIAL AUDIT UPDATED 9:53 PM ET</p>
@@ -182,16 +182,8 @@ tick();setInterval(tick,1000);
 const MS=[10,25,50,75,100,150,200,250,500,750,1000,1500,2000,2500,5000,7500,10000,25000,50000,100000];const nextMs=n=>MS.find(m=>m>n)||Math.ceil((n+1)/50000)*50000;
 const ch=(t,s,b,w)=>`<div class="ch"><h2>${t}</h2>${s?`<span class="s">${s}</span>`:''}${b!=null?`<span class="b">${b}</span>`:''}${w?`<p class="wi">What is this? ${w}</p>`:''}</div>`;
 function render(S){const T=S.totals||{},P=S.platforms||[],R=P.filter(p=>p.views!=null).sort((a,b)=>b.views-a.views),tw=P.find(p=>p.id==='twitch')||{},lf=S.lab_file_001;
- const tiles=[[fmt(T.views),'Saved YouTube + TikTok post views',1],[fmt(T.followers),'Platform follows (sum, not people)'],[R[0]?NM[R[0].id]:'—','Leader among saved post counters'],[fmt(tw.followers),'Followers on Twitch'],[lf&&lf.views!=null?fmt(lf.views):'Out now','Views on first video (Lab File #001)']];
+ const tiles=[[fmt(T.followers),'Platform follows (sum, not people)'],[R[0]?NM[R[0].id]:'—','Leader among saved post counters'],[fmt(tw.followers),'Followers on Twitch'],[lf&&lf.views!=null?fmt(lf.views):'Out now','Saved views · Lab File #001 · Oct 9']];
  $('kp').innerHTML=tiles.map(t=>`<div class="card k${t[2]?' acc':''}"><div class="l">${t[1]}</div><div class="n">${esc(t[0])}</div></div>`).join('');
- const tt=x=>Date.parse(String(x.at).replace(' ','T')+(String(x.at).length<=16?':00-04:00':''));
- const H=(S.history||[]).filter(p=>p.views!=null).map(p=>({t:tt(p),v:p.views})).filter(p=>!isNaN(p.t));
- if(H.length>=2){const t0=H[0].t,t1=H[H.length-1].t,v1=Math.max(...H.map(p=>p.v))||1,W=1200,Hh=200,x=t=>50+(t-t0)/Math.max(1,t1-t0)*(W-150),y=v=>Hh-10-v/v1*(Hh-30);
-  const pts=H.map(p=>[x(p.t),y(p.v)]),line=pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');
-  const grid=[0,.5,1].map(f=>`<line x1="50" x2="${W-100}" y1="${y(v1*f)}" y2="${y(v1*f)}" stroke="#23262b"/><text x="0" y="${y(v1*f)+4}" fill="#b3b7be" font-size="22">${fmt(Math.round(v1*f))}</text>`).join('');
-  const tl=ms=>et(new Date(ms),{weekday:'short',hour:'numeric',minute:'2-digit'});const mins=Math.round((t1-t0)/60000),dur=(mins>=60?Math.floor(mins/60)+'h ':'')+(mins%60)+'m',lp=pts[pts.length-1];
-  $('gr').innerHTML=ch('Saved YouTube + TikTok views over time','Tracked posts only',`+${fmt(H[H.length-1].v-H[0].v)} views in ${dur}`,'This saved partial series excludes Instagram, X, Twitch and Kick. It is not a total audience count.')+`<svg viewBox="0 0 ${W} ${Hh+28}" role="img" aria-label="Saved YouTube and TikTok post views over time"><defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CFE35A" stop-opacity=".18"/><stop offset="1" stop-color="#CFE35A" stop-opacity="0"/></linearGradient></defs>${grid}<path d="${line} L${lp[0]} ${Hh} L${pts[0][0]} ${Hh} Z" fill="url(#ga)"/><path d="${line}" fill="none" stroke="#CFE35A" stroke-width="2.5" stroke-linejoin="round"/>${pts.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="${i==pts.length-1?6:3.5}" fill="${i==pts.length-1?'#CFE35A':'#15171A'}" stroke="#CFE35A" stroke-width="2"/>`).join('')}<text x="${lp[0]+14}" y="${lp[1]+6}" fill="#ECE7DA" font-size="20" font-weight="700">${fmt(H[H.length-1].v)}</text><text x="50" y="${Hh+24}" fill="#b3b7be" font-size="22">${tl(t0)}</text><text x="${W-100}" y="${Hh+24}" fill="#b3b7be" font-size="22" text-anchor="end">${tl(t1)}</text></svg>`;}
- else $('gr').style.display='none';
  const M=merged(P),RV=M.filter(p=>p.views!=null).sort((a,b)=>b.views-a.views),NV=M.filter(p=>p.views==null),mx=(RV[0]&&RV[0].views)||1;
  const src=(s,t)=>`<small>${esc(s||'')}${t?' · '+esc(t):''}</small>`;
  $('race').innerHTML=ch('Saved post counters by site','Largest counter sum first',M.length+' sites','Each row names its source and time. Bars compare cumulative post counters where observed; they do not compare equal reporting windows or unique people.')+'<div class="rows">'+RV.map((p,i)=>`<a class="rw${i==0?' lead':''}" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none">${ICON[p.id]||''}<span>${esc(p.label)} <small>${esc(p.handle)}</small>${i==0?'<span class="tag">#1</span>':''}</span><span class="bar"><i data-w="${Math.max(2,p.views/mx*100).toFixed(1)}"></i></span><span class="v">${fmt(p.views)} post plays${src(p.views_src,p.views_asof)}</span></a>`).join('')+NV.map(p=>`<a class="rw" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none">${ICON[p.id]||''}<span>${esc(p.label)} <small>${esc(p.handle)}</small></span><span class="bar"><i data-w="2"></i></span><span class="v">not available${src(p.views_src||'Comparable post counters unavailable',p.views_asof?'checked '+p.views_asof:'')}</span></a>`).join('')+'</div>';
@@ -228,4 +220,4 @@ liveCheck();setInterval(liveCheck,120000);
 <script defer src="../js/calm.js?v=20261009c"></script>
 <script async src="../js/analytics.js?v=20261008e"></script>
 <script defer src="../js/latest-clips.js?v=20261009a"></script>
-</body></html>
+<script src="../js/growth-model.js?v=20261010g"></script><script src="../js/growth-monitor.js?v=20261010g"></script></body></html>

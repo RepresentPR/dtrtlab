@@ -1,5 +1,5 @@
 (function () {
-  var ASSET_V = "20261009f";
+  var ASSET_V = "20261010g";
   var here = (location.pathname || "").toLowerCase();
   var parts = here.replace(/\\/g, "/").split("/").filter(Boolean);
   if (parts.length && /\.[a-z0-9]+$/i.test(parts[parts.length - 1])) parts.pop();
