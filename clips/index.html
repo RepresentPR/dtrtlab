@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clips — DTRT Lab</title>
+  <link rel="canonical" href="https://dtrtlab.com/clips/">
+  <style>
+    body { margin: 0; background: #12110f; color: #f6f1e7; font: 16px/1.4 "Segoe UI", Helvetica, Arial, sans-serif; }
+    a { color: #E8A317; text-decoration: none; }
+    nav { display: flex; gap: 28px; padding: 18px 28px; font-size: 14px; }
+    nav a { opacity: 0.82; }
+    nav a[aria-current="page"] { opacity: 1; }
+    main { max-width: 52rem; margin: 0 auto; padding: 12px 28px 80px; }
+    h1 { margin: 12px 0 20px; font-size: clamp(36px, 5vw, 56px); font-weight: 500; letter-spacing: -0.03em; }
+    video { width: 100%; background: #000; }
+    button { display: block; width: 100%; text-align: left; margin: 0; padding: 16px 0; background: transparent; color: #f6f1e7; border: 0; border-top: 1px solid #2a261f; font: inherit; font-size: 20px; cursor: pointer; }
+    button:hover, button:active, button[aria-current="true"] { color: #E8A317; }
+    li { list-style: none; }
+    ul { margin: 28px 0 0; padding: 0; }
+  </style>
+</head>
+<body>
+<nav aria-label="Main">
+  <a href="/">DTRT</a>
+  <a href="/clips/" aria-current="page">Clips</a>
+  <a href="/partner/">Partner</a>
+  <a href="/contact.html">Contact</a>
+  <a href="/live/">Live</a>
+</nav>
+<main>
+  <h1>Lurk King</h1>
+  <video id="player" controls playsinline preload="metadata"></video>
+  <ul id="list">
+    <li><button type="button" data-title="Lurk King">Lurk King</button></li>
+    <li><button type="button" data-title="Skitz Ladder">Skitz Ladder</button></li>
+    <li><button type="button" data-title="Somebody Said Rush B">Somebody Said Rush B</button></li>
+    <li><button type="button" data-title="Come On, Code">Come On, Code</button></li>
+    <li><button type="button" data-src="/watch/media/oh-my-god-i-am-so-slow.mp4" data-title="Oh my god, I am so slow">Oh my god, I am so slow</button></li>
+    <li><button type="button" data-src="/watch/media/why-dont-you.mp4" data-title="Why don’t you don’t like that, bro">Why don’t you don’t like that, bro</button></li>
+    <li><button type="button" data-src="/watch/media/blind-by-black.mp4" data-title="Blind by black">Blind by black</button></li>
+    <li><button type="button" data-src="/watch/media/happened-to-you.mp4" data-title="Happened to you, bro">Happened to you, bro</button></li>
+    <li><button type="button" data-src="/watch/media/move-it.mp4" data-title="Move it">Move it</button></li>
+    <li><button type="button" data-src="/watch/media/nice-literally-un-lucable.mp4" data-title="Nice, literally un-lucable">Nice, literally un-lucable</button></li>
+    <li><button type="button" data-src="/watch/media/two-superpowers.mp4" data-title="Two superpowers">Two superpowers</button></li>
+    <li><button type="button" data-src="/watch/media/oh-what-a-lie.mp4" data-title="Oh, what a lie">Oh, what a lie</button></li>
+  </ul>
+</main>
+<script>
+(function () {
+  var player = document.getElementById("player");
+  var title = document.querySelector("h1");
+  document.getElementById("list").addEventListener("click", function (e) {
+    var btn = e.target.closest("button");
+    if (!btn) return;
+    var src = btn.getAttribute("data-src");
+    title.textContent = btn.getAttribute("data-title");
+    if (src) {
+      player.src = src;
+      player.play();
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#list button"), function (b) {
+      b.removeAttribute("aria-current");
+    });
+    btn.setAttribute("aria-current", "true");
+  });
+})();
+</script>
+</body>
+</html>
