@@ -29,16 +29,25 @@
   <p>Our clips are the highlight.</p>
   <video id="player" controls playsinline preload="metadata" src="/watch/media/oh-my-god-i-am-so-slow.mp4"></video>
   <p id="now-playing">Oh my god, I am so slow</p>
+  <p id="now-counts">Views: none saved. Likes: none saved. Comments: none saved. Checked October 10, 2026.</p>
   <div id="list">
-    <button type="button" data-src="/watch/media/oh-my-god-i-am-so-slow.mp4" aria-current="true">Oh my god, I am so slow</button>
-    <button type="button" data-src="/watch/media/why-dont-you.mp4">Why don’t you don’t like that, bro</button>
-    <button type="button" data-src="/watch/media/blind-by-black.mp4">Blind by black</button>
-    <button type="button" data-src="/watch/media/happened-to-you.mp4">Happened to you, bro. This team is entirely so.</button>
-    <button type="button" data-src="/watch/media/move-it.mp4">Move it</button>
-    <button type="button" data-src="/watch/media/nice-literally-un-lucable.mp4">Nice, literally un-lucable</button>
-    <button type="button" data-src="/watch/media/two-superpowers.mp4">The I think follow recall the two superpowers</button>
-    <button type="button" data-src="/watch/media/oh-what-a-lie.mp4">Oh, what a lie</button>
+    <button type="button" data-src="/watch/media/oh-my-god-i-am-so-slow.mp4" data-counts="Views: none saved. Likes: none saved. Comments: none saved. Checked October 10, 2026." aria-current="true">Oh my god, I am so slow</button>
+    <button type="button" data-src="/watch/media/why-dont-you.mp4" data-counts="Views: none saved. Likes: none saved. Comments: none saved. Checked October 10, 2026.">Why don’t you don’t like that, bro</button>
+    <button type="button" data-src="/watch/media/blind-by-black.mp4" data-counts="Views: none saved. Likes: none saved. Comments: none saved. Checked October 10, 2026.">Blind by black</button>
+    <button type="button" data-src="/watch/media/happened-to-you.mp4" data-counts="Views: none saved. Likes: none saved. Comments: none saved. Checked October 10, 2026.">Happened to you, bro. This team is entirely so.</button>
+    <button type="button" data-src="/watch/media/move-it.mp4" data-counts="Views: none saved. Likes: none saved. Comments: none saved. Checked October 10, 2026.">Move it</button>
+    <button type="button" data-src="/watch/media/nice-literally-un-lucable.mp4" data-counts="Views: none saved. Likes: none saved. Comments: none saved. Checked October 10, 2026.">Nice, literally un-lucable</button>
+    <button type="button" data-src="/watch/media/two-superpowers.mp4" data-counts="Views: none saved. Likes: none saved. Comments: none saved. Checked October 10, 2026.">The I think follow recall the two superpowers</button>
+    <button type="button" data-src="/watch/media/oh-what-a-lie.mp4" data-counts="Views: none saved. Likes: none saved. Comments: none saved. Checked October 10, 2026.">Oh, what a lie</button>
   </div>
+  <h2>Saved counts</h2>
+  <p>These are the saved readings. Instagram plays are not likes. Likes and comments were not saved.</p>
+  <ul>
+    <li>Lurk King. Views: 1,454 YouTube and 1,453 Instagram plays. October 9, 2026, 10:17 PM ET. Likes: none saved. Comments: none saved. Checked October 10, 2026.</li>
+    <li>Skitz Ladder. Views: 1,228 YouTube and 1,357 Instagram plays. October 9, 2026. Likes: none saved. Comments: none saved. Checked October 10, 2026.</li>
+    <li>Somebody Said Rush B. Views: 1,290 Instagram plays. October 9, 2026, 9:49 PM ET. Likes: none saved. Comments: none saved. Checked October 10, 2026.</li>
+    <li>Come On, Code. Views: 18 YouTube. Likes: none saved. Comments: none saved. Checked October 10, 2026.</li>
+  </ul>
   <p>© 2026 DTRT Lab.</p>
 </main>
 <script>
@@ -50,6 +59,7 @@
     if (!btn) return;
     player.src = btn.getAttribute("data-src");
     now.textContent = btn.textContent;
+    document.getElementById("now-counts").textContent = btn.getAttribute("data-counts");
     Array.prototype.forEach.call(document.querySelectorAll("#list button"), function (b) {
       b.removeAttribute("aria-current");
     });
