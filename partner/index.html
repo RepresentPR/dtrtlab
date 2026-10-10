@@ -6,6 +6,25 @@
   <title>Partner — DTRT Lab</title>
   <link rel="canonical" href="https://dtrtlab.com/partner/">
   <link rel="stylesheet" href="/css/site.css?v=20261010v">
+  <style>
+    .prices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+    .prices article { padding: 16px; }
+    .prices strong { display: block; font-size: 36px; letter-spacing: -0.03em; }
+    .prices span { color: var(--muted); }
+    body.theme-partner a.offer {
+      display: inline-block;
+      margin-top: 8px;
+      background: #2F6BFF;
+      color: #fff;
+      text-decoration: none;
+      min-height: 44px;
+      padding: 12px 16px;
+      border-radius: 12px;
+    }
+    body.theme-partner a.offer:hover { filter: brightness(1.12); }
+    body.theme-partner a.offer:active { filter: brightness(1.28); outline: 3px solid #FFC857; }
+    @media (max-width: 700px) { .prices { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body class="theme-partner">
 <main class="page stack">
@@ -18,37 +37,19 @@
     <a href="/radio.html"><span class="bubble mark-coral" aria-hidden="true">🎵</span>Radio</a>
     <a href="/versions/"><span class="bubble mark-pop" aria-hidden="true">🗂️</span>Versions</a>
   </nav>
-  <h1>Partner</h1>
-  <section class="panel">
-    <p>Our clips are the highlight. A sponsor ad does not replace them.</p>
-    <p>Tip to highlight one of our clips inside the sponsor slot.</p>
-    <p>Or upload your own highlight for that same slot. Video files only. A pasted link is not accepted.</p>
-    <p>Timed Paid Sponsor. Runs for the 15 minutes before each 4-hour update. Under $1 does not run.</p>
-    <p>One sponsor ad at a time, labeled Sponsor. It runs only in the 15 minutes before 12:00 AM, 4:00 AM, 8:00 AM, 12:00 PM, 4:00 PM, and 8:00 PM America/New_York, then it comes off. Outside that window the slot is empty, even if someone paid. A new paid sponsor replaces the current one, and its own window is the next open 15 minutes.</p>
-    <p id="viewers-now">Viewers now: not counted yet</p>
-    <p>Viewers means people on dtrtlab.com right now. They are not counted, so the count used here is 0. 30s = max($1, round viewers × $0.10). 60s = max($1, round viewers × $0.25). Longer = max($1, round viewers × $0.50). At 0 viewers every price shows $1.</p>
-    <p>Sponsor slot: empty. No payment is recorded. Started at $0. Still $0. October 10, 2026. An upload does not go on the site unless a real payment of at least the shown price is already written down. This page does not take card numbers.</p>
-    <form id="sponsor-upload">
-      <label>Your video file <input id="sponsor-file" type="file" accept="video/*"></label>
-      <button type="submit">Send sponsor video</button>
-    </form>
-    <p id="sponsor-note"></p>
+  <h1>Sponsor the next update.</h1>
+  <p>Revenue is $0 as of October 10, 2026.</p>
+  <p>Viewers now: not counted yet. Under $1 does not run.</p>
+  <section class="prices" aria-label="Prices">
+    <article class="card"><strong>$1</strong><span>30 seconds</span></article>
+    <article class="card"><strong>$1</strong><span>60 seconds</span></article>
+    <article class="card"><strong>$1</strong><span>Longer</span></article>
   </section>
+  <p>30 seconds is $1 or 10 cents per viewer, whichever is higher. 60 seconds is $1 or 25 cents per viewer. Longer is $1 or 50 cents per viewer. At 0 counted viewers, each price is $1.</p>
+  <p>You get 15 minutes on the site, in the sponsor slot, before the next update at 12:00 AM, 4:00 AM, 8:00 AM, 12:00 PM, 4:00 PM, or 8:00 PM Eastern. One sponsor at a time. His clips stay the highlight.</p>
+  <p>Lurk King has 1,454 YouTube views and 1,453 Instagram plays, saved October 9, 2026.</p>
+  <p>Feature one of his clips, or send your own video file. No outside links. Nothing goes on until a real payment of at least the shown price is recorded. Until then the slot is empty.</p>
+  <p><a class="offer" href="mailto:DTRTCollision@outlook.com?subject=%5BPartner%5D%20Sponsor%20the%20next%20update">Sponsor the next update</a></p>
 </main>
-<script>
-(function () {
-  var form = document.getElementById("sponsor-upload");
-  var note = document.getElementById("sponsor-note");
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    var file = document.getElementById("sponsor-file").files[0];
-    if (!file || !file.type || file.type.indexOf("video/") !== 0) {
-      note.textContent = "Video files only. That file was not accepted.";
-      return;
-    }
-    note.textContent = "Video file only. It is not live. No payment of the shown price is recorded. The sponsor slot stays empty. Started at $0. Still $0.";
-  });
-})();
-</script>
 </body>
 </html>
