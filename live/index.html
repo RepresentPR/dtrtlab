@@ -6,6 +6,19 @@
   <title>Live — DTRT Lab</title>
   <link rel="canonical" href="https://dtrtlab.com/live/">
   <link rel="stylesheet" href="/css/site.css?v=20261010c">
+  <style>
+    .profile { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+    .profile h1 { margin: 0; }
+    .big { font-size: 42px; letter-spacing: -0.04em; }
+    table { width: 100%; border-collapse: collapse; margin-top: 18px; }
+    th, td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+    th { color: var(--muted); font-weight: 600; font-size: 13px; }
+    .track { display: block; height: 10px; background: #2a2d34; border-radius: 99px; margin: 4px 0; }
+    .bar { display: block; height: 10px; background: #f25c2a; border-radius: 99px; }
+    .clocks { display: flex; gap: 16px; margin-top: 18px; }
+    .clocks p { margin: 0; font-size: 28px; font-variant-numeric: tabular-nums; }
+    .clocks small { display: block; color: var(--muted); font-size: 12px; }
+  </style>
 </head>
 <body>
 <header class="top">
@@ -20,31 +33,47 @@
   </nav>
 </header>
 <main class="wrap">
-  <h1>Channel Dashboard</h1>
-  <section class="chips" aria-label="Saved counts">
-    <article class="chip"><strong>1,454</strong><span>Lurk King, YouTube views. October 9, 2026, 10:17 PM ET.</span></article>
-    <article class="chip"><strong>1,453</strong><span>Lurk King, Instagram plays. October 9, 2026, 10:17 PM ET.</span></article>
-    <article class="chip"><strong>1,357</strong><span>Skitz Ladder, Instagram plays.</span></article>
-    <article class="chip"><strong>1,290</strong><span>Somebody Said Rush B, Instagram plays. October 9, 2026, 9:49 PM ET.</span></article>
-    <article class="chip"><strong>1,228</strong><span>Skitz Ladder, YouTube views.</span></article>
-    <article class="chip"><strong>18</strong><span>Come On, Code, YouTube views. Lab File. It did not grow like the shorts.</span></article>
-    <article class="chip"><strong>$0</strong><span>October 10, 2026. Started at $0. Still $0.</span></article>
-  </section>
-  <div class="stage">
-    <section class="card timeline" aria-label="Next update and Eastern time">
-      <p class="readout" id="countdown">--:--:--<small>Next update</small></p>
-      <div class="rail" aria-hidden="true"><div class="fill" id="fill"></div><div class="head" id="head"></div></div>
-      <p class="readout" id="clock">--:--:--<small>Eastern</small></p>
-    </section>
-    <a class="card" href="/clips/#oh-my-god-i-am-so-slow"><img src="/img/thumbs/oh-my-god-i-am-so-slow.jpg" alt=""><span class="pad">Oh my god, I am so slow</span></a>
+  <div class="profile">
+    <h1>DTRT Lab</h1>
+    <p>October 9, 2026</p>
   </div>
-  <p>Lurk King leads YouTube by 226 views over Skitz Ladder (1,454 − 1,228).</p>
+  <section class="chips" aria-label="Top clip and money">
+    <article class="chip"><strong class="big">1,454</strong><span>Lurk King, YouTube views. 10:17 PM ET.</span></article>
+    <article class="chip"><strong class="big">1,453</strong><span>Lurk King, Instagram plays. 10:17 PM ET.</span></article>
+    <article class="chip"><strong class="big">$0</strong><span>October 10, 2026.</span></article>
+  </section>
+  <table>
+    <thead>
+      <tr><th>Rank</th><th>Clip</th><th>YouTube</th><th>Instagram</th><th>Bar</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td><td>Lurk King</td><td>1,454</td><td>1,453</td>
+        <td><span class="track"><span class="bar" style="width:100%"></span></span><span class="track"><span class="bar" style="width:99.9%"></span></span></td>
+      </tr>
+      <tr>
+        <td>2</td><td>Skitz Ladder</td><td>1,228</td><td>1,357</td>
+        <td><span class="track"><span class="bar" style="width:90.5%"></span></span><span class="track"><span class="bar" style="width:100%"></span></span></td>
+      </tr>
+      <tr>
+        <td>3</td><td>Somebody Said Rush B</td><td></td><td>1,290</td>
+        <td><span class="track"><span class="bar" style="width:100%"></span></span></td>
+      </tr>
+      <tr>
+        <td>4</td><td>Come On, Code</td><td>18</td><td></td>
+        <td><span class="track"><span class="bar" style="width:100%"></span></span></td>
+      </tr>
+    </tbody>
+  </table>
+  <section class="clocks" aria-label="Next update and Eastern time">
+    <p id="countdown">--:--:--<small>Next update</small></p>
+    <p id="clock">--:--:--<small>Eastern</small></p>
+  </section>
 </main>
 <script>
 (function () {
   var zone = "America/New_York";
   var slots = [0, 4, 8, 12, 16, 20];
-  var windowSec = 4 * 3600;
   function parts(date) {
     var fmt = new Intl.DateTimeFormat("en-US", { timeZone: zone, hourCycle: "h23", hour: "2-digit", minute: "2-digit", second: "2-digit" });
     var map = {};
@@ -70,9 +99,6 @@
     document.getElementById("countdown").firstChild.textContent = pad(h) + ":" + pad(m) + ":" + pad(s);
     var p = parts(now);
     document.getElementById("clock").firstChild.textContent = pad(p.h) + ":" + pad(p.min) + ":" + pad(p.s);
-    var pct = (Math.max(0, Math.min(1, (windowSec - sec) / windowSec)) * 100) + "%";
-    document.getElementById("fill").style.width = pct;
-    document.getElementById("head").style.left = pct;
   }
   paint();
   setInterval(paint, 1000);
