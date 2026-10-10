@@ -33,18 +33,18 @@
   "completed": [
     {
       "item": "Published Lab File 002 on the verified YouTube channel",
-      "evidence": "https://www.youtube.com/watch?v=3nDFZ0ZcJ1E ; Postiz post cmv0nw9th01imp60ydlt7h4xf",
-      "verification": "Postiz state PUBLISHED with no error; public @DTRTLabYT Videos page shows the new 3:51 video; YouTube watch page player status OK, length 230 seconds, 720p available."
+      "evidence": "https://www.youtube.com/watch?v=3nDFZ0ZcJ1E",
+      "verification": "Public channel and watch page showed the episode; player status OK, length 230 seconds, 720p available."
     },
     {
       "item": "Revised the 12-clip review into a caption-led episode",
-      "evidence": "Higgsfield media 6d54acf4-4f06-4d23-970c-4d7bdf0e1c7b; Library video libfile_264164f3c2fc819191678202990ffd23 version 1",
+      "evidence": "Episode edit and media quality checks recorded.",
       "verification": "Original intro, three chapter cards, ending, chapter fades, full decode, sampled start/middle/end frames; silent audio track measured -91 dB."
     },
     {
       "item": "Saved source and QC manifest",
-      "evidence": "Library report libfile_2c002e18091c8191889859bde7f0f5fd version 2",
-      "verification": "12 selected DTRTC-branded Postiz source URLs retained; no FACEIT or third-party music claimed."
+      "evidence": "Source and quality review manifest saved.",
+      "verification": "12 selected creator-branded source clips retained; no third-party match footage or music ownership claimed."
     },
     {
       "item": "Verified public showcase replay and reduced-motion behavior",
@@ -58,14 +58,14 @@
     },
     {
       "item": "Inventoried unused owned footage for a distinct follow-up episode",
-      "evidence": "Local lab-file-003-source-inventory.md; eight inspected DTRTC-branded clips totaling about 2:24",
-      "verification": "Postiz media library URLs, dimensions/durations and representative frames checked; already-published long video and trailer variants held out of the new-source count."
+      "evidence": "Eight inspected creator-branded clips totaling about 2:24.",
+      "verification": "Source dimensions, durations and representative frames checked; already-published episode and trailer variants excluded from new-source count."
     }
   ],
   "blocked": [
     {
       "item": "Counter-Strike 2 stream category and title change",
-      "reason": "Public Twitch player still showed Just Chatting at the verified check. Postiz Twitch integration only supports chat posts; no supported metadata or OBS control endpoint is available."
+      "reason": "The public Twitch player showed Just Chatting at the recorded check; a category or title change was not verified."
     },
     {
       "item": "Two-hour release cadence",
@@ -73,7 +73,7 @@
     },
     {
       "item": "FACEIT and Grok collaboration",
-      "reason": "No verified Ian-owned FACEIT match/demo or supported Grok Bot job interface was found."
+      "reason": "Additional owned match footage and production coordination remain unverified."
     },
     {
       "item": "20-minute and long-form analytics",

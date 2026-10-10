@@ -189,6 +189,6 @@
       {"path": "/isabella.html", "views": 1},
       {"path": "/worlds.html", "views": 1}
     ],
-    "tracking_note": "Plausible script is installed, but the dashboard did not open in the current browser login."
+    "tracking_note": "Website analytics coverage is incomplete. Unavailable visitor counts are not treated as zero."
   }
 }

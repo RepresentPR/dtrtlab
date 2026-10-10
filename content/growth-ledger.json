@@ -615,6 +615,6 @@
       "status": "GA page views are separate from social video views. Automatic GA report ingestion unavailable."
     }
   ],
-  "connection_note": "Postiz publishing connections verified for YouTube, Instagram, TikTok, X and Twitch. Exposed connector tools do not provide an analytics collector; Instagram provider schema has no callable analytics helper. Automatic collection needs an authorized read-only analytics interface or owner-export delivery plus a scheduled ingestion service. No credentials or new permissions were accessed.",
+  "connection_note": "Charts use dated, reviewed observations. Automatic analytics refresh is not connected; capture dates and metric definitions describe what each reading covers.",
   "history_note": "Earlier tracker totals changed coverage and omitted Instagram. They remain in growth-observations.json as historical evidence, but are not joined to these fixed-cohort lines. No historical zero baseline invented."
 }
