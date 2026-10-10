@@ -1,5 +1,5 @@
 (function () {
-  var ASSET_V = "20261010j";
+  var ASSET_V = "20261010l";
   var here = (location.pathname || "").toLowerCase();
   var parts = here.replace(/\\/g, "/").split("/").filter(Boolean);
   if (parts.length && /\.[a-z0-9]+$/i.test(parts[parts.length - 1])) parts.pop();
@@ -26,7 +26,7 @@
     '<div class="wrap nav-row">' +
     '<a class="brand" href="' + root + 'index.html"><img class="brand-mark" src="' +
     root +
-    'img/reticle.svg" alt="" width="36" height="36"><span>DTRT LAB</span></a>' +
+    'img/brand/mark.svg" alt="" width="36" height="36"><span>DTRT LAB</span></a>' +
     '<nav class="links" id="site-links" aria-label="Primary">' +
     link("index.html#clips", "Watch", false) +
     link("index.html#about", "About", false) +
@@ -49,7 +49,7 @@
     document.head.appendChild(adapt);
   }
 
-  var identity = document.createElement("link"); identity.rel="stylesheet"; identity.href=root+"css/identity.css?v=20261010j"; document.head.appendChild(identity);
+  var identity = document.createElement("link"); identity.rel="stylesheet"; identity.href=root+"css/identity.css?v=20261010l"; document.head.appendChild(identity);
 
   if (!window.__donateInit) { var ds = document.createElement("script"); ds.src = root + "js/donate.js?v=20261009"; ds.defer = true; document.head.appendChild(ds); }
 

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Inside the Lab · DTRTLab</title><meta name="description" content="Watch DTRTC live, follow verified audience progress, and help choose what happens next.">
-<link rel="canonical" href="https://dtrtlab.com/live/showcase.html"><link rel="icon" href="/img/icon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://dtrtlab.com/live/showcase.html">
 <style>
 :root{color-scheme:dark;--bg:#090c10;--panel:#11181d;--line:#304149;--ink:#eff5f2;--muted:#b4c6c7;--signal:#d8ed71;--cyan:#82e5df}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.55 Inter,"Segoe UI",Arial,sans-serif}a{color:var(--signal)}button{font:inherit}a:focus-visible,button:focus-visible{outline:3px solid var(--signal);outline-offset:4px}button{cursor:pointer}
@@ -25,7 +25,7 @@ footer{padding:30px clamp(16px,4vw,48px);border-top:1px solid var(--line);color:
 @media(max-width:1050px){.stage{grid-template-columns:1fr}.chat{min-height:360px}.hero{grid-template-columns:1fr}}
 @media(max-width:700px){.cols,.metrics{grid-template-columns:1fr}.hero{padding-top:32px}.open-center h1{font-size:clamp(36px,10vw,56px)}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
-</style></head><body>
+</style><link rel="icon" href="/img/brand/mark.svg?v=20261010l" type="image/svg+xml"><link rel="apple-touch-icon" href="/img/brand/dtrt-avatar.png"><link rel="stylesheet" href="/css/identity.css?v=20261010l"></head><body>
 <div id="opening" role="region" aria-label="Opening title"><div class="open-center"><div class="eyebrow">DTRT LAB · FIELD SIGNAL 001</div><h1>You’re not watching the experiment.<br><em>You’re inside it.</em></h1><p>A live world built from the moments you help shape.</p></div><div class="open-controls"><button class="ghost" id="skip" type="button">Skip opening</button></div></div>
 <header><a class="brand" href="../index.html">DTRT<span>LAB</span> / LIVE</a><nav class="navlinks" aria-label="Site"><a href="#watch">Watch</a><a href="#your-pick">Clip Court</a><a href="#field-report">Field report</a><a href="./">Full dashboard</a></nav></header>
 <main><section class="hero"><div><div class="eyebrow">THE LAB FILES · LIVE DOCUMENTARY</div><h2>The next moment<br>is already moving.</h2><p>Follow the stream and a silent, automated clip rundown hosted by Dot. The numbers below are dated public snapshots, not a live audience feed.</p></div><aside><span class="status">Open to everyone</span><strong>Dot has the next segment.</strong><p>The clip rundown advances on its own. Watch whenever you arrive.</p></aside></section>
@@ -43,4 +43,4 @@ const reel=document.getElementById("dot-reel"),reels=[{url:"https://uploads.post
 function showClips(c){featured=(c.clips||[]).filter(x=>Number.isFinite(x.views)&&x.links&&/^https:\/\/www.youtube.com\//.test(x.links.youtube)).sort((a,b)=>b.views-a.views).slice(0,2);if(!featured.length){set("dot-line","No verified clips are available yet.");return}idx=0;showOne()}
 function showOne(){if(!featured.length)return;const x=featured[idx%featured.length],leader=featured[0];set("dot-line","Dot's saved-count leader: "+leader.title+" · "+leader.views.toLocaleString("en-US")+" views.");set("dot-clip","Featured public clip: "+x.title+" · "+x.views.toLocaleString("en-US")+" saved views. Open its link below; the silent replay above is a separate recorded moment.");const links=document.getElementById("dot-links");links.replaceChildren();featured.forEach(y=>{const a=document.createElement("a");a.href=y.links.youtube;a.target="_blank";a.rel="noopener noreferrer";a.textContent="Watch "+y.title;links.appendChild(a)});idx++}
 setInterval(showOne,8000);load();setInterval(load,300000);})();
-</script></body></html>
+</script><script src="/js/experience.js?v=20261010l" defer></script></body></html>
