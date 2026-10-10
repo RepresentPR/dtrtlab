@@ -4,7 +4,7 @@
     {
       "id": "youtube-recent-posts",
       "platform": "youtube",
-      "label": "YouTube · fixed 34-post cohort",
+      "label": "YouTube Â· fixed 34-post cohort",
       "cohort": [
         "Z00dqeOOdBc",
         "7owx3ck3vRY",
@@ -197,7 +197,7 @@
     {
       "id": "instagram-recent-posts",
       "platform": "instagram",
-      "label": "Instagram · fixed 34-post cohort",
+      "label": "Instagram Â· fixed 34-post cohort",
       "cohort": [
         "DeS7OXYCj1-",
         "DeS2ny6kiIN",
@@ -390,7 +390,7 @@
     {
       "id": "tiktok-recent-posts",
       "platform": "tiktok",
-      "label": "TikTok · fixed 16-post cohort",
+      "label": "TikTok Â· fixed 16-post cohort",
       "cohort": [
         "7694793803584048398",
         "7694678392779689229",
@@ -493,7 +493,7 @@
     {
       "id": "instagram-account-period",
       "platform": "instagram",
-      "label": "Instagram · dated account report",
+      "label": "Instagram Â· dated account report",
       "cohort": [
         "account"
       ],
@@ -515,7 +515,7 @@
     {
       "id": "tiktok-account-period",
       "platform": "tiktok",
-      "label": "TikTok · dated account report",
+      "label": "TikTok Â· dated account report",
       "cohort": [
         "account"
       ],
@@ -537,7 +537,7 @@
     {
       "id": "youtube-lab001",
       "platform": "youtube",
-      "label": "YouTube · Lab File 001 only",
+      "label": "YouTube Â· Lab File 001 only",
       "cohort": [
         "lsExh8z7fVI"
       ],
@@ -616,5 +616,103 @@
     }
   ],
   "connection_note": "Charts use dated, reviewed observations. Automatic analytics refresh is not connected; capture dates and metric definitions describe what each reading covers.",
-  "history_note": "Earlier tracker totals changed coverage and omitted Instagram. They remain in growth-observations.json as historical evidence, but are not joined to these fixed-cohort lines. No historical zero baseline invented."
+  "history_note": "Earlier tracker totals changed coverage and omitted Instagram. They remain in growth-observations.json as historical evidence, but are not joined to these fixed-cohort lines. No historical zero baseline invented.",
+  "account_checkpoints": [
+    {
+      "kind": "dated manual creator analytics observation",
+      "note": "Windows differ. Account views, viewers and interactions are separate from historical post plays. No automatic source ingestion.",
+      "observations": [
+        {
+          "platform": "youtube",
+          "captured_at": "2026-10-10T17:24:31.400Z",
+          "window": "2026-09-12 through 2026-10-09",
+          "views": 13756,
+          "watch_hours": 20.8,
+          "subscriber_net_change": 2,
+          "subscribers_realtime": 1310
+        },
+        {
+          "platform": "instagram",
+          "captured_at": "2026-10-10T17:28:57.763Z",
+          "window": "Last 30 days as displayed; calendar endpoints not exposed",
+          "views": 13514,
+          "viewers": 9732,
+          "interactions": 85,
+          "accounts_engaged": 43,
+          "profile_visits": 300,
+          "followers": 63,
+          "posts": 34
+        },
+        {
+          "platform": "tiktok",
+          "captured_at": "2026-10-10T17:29:40.836Z",
+          "window": "Last 7 days as displayed; calendar endpoints not exposed",
+          "video_views": 761,
+          "profile_views": 2,
+          "likes": 6,
+          "comments": null,
+          "comments_display": "--",
+          "shares": 0,
+          "followers": 66
+        },
+        {
+          "platform": "x",
+          "captured_at": "2026-10-10T17:24:49.921Z",
+          "window": "Current profile counts and single exact public post at capture",
+          "followers": 12,
+          "posts": 80,
+          "account_wide_impressions": null,
+          "account_wide_engagement": null
+        },
+        {
+          "platform": "twitch",
+          "captured_at": "2026-10-10T17:29:46.206Z",
+          "window": "2026-09-11 through 2026-10-10",
+          "average_viewers": 1.4,
+          "follows": 31,
+          "time_streamed": "168h21m",
+          "unique_viewers": 397,
+          "unique_chatters": 61,
+          "public_followers": 37
+        },
+        {
+          "platform": "website",
+          "captured_at": "2026-10-10T17:29:15.252Z",
+          "window": "2026-09-12 through 2026-10-09",
+          "page_views": 88,
+          "active_users": 9,
+          "events": 195,
+          "key_events": 0
+        }
+      ],
+      "comparisons": [
+        {
+          "metric": "Instagram current followers",
+          "prior": 58,
+          "current": 63,
+          "difference": 5,
+          "prior_observed_at": "2026-10-09T21:11:00-04:00",
+          "current_observed_at": "2026-10-10T17:28:57.763Z"
+        },
+        {
+          "metric": "TikTok current followers",
+          "prior": 65,
+          "current": 66,
+          "difference": 1,
+          "prior_observed_at": "2026-10-09T21:11:00-04:00",
+          "current_observed_at": "2026-10-10T17:29:46.331Z"
+        },
+        {
+          "metric": "YouTube fixed Sep 12–Oct 9 report views",
+          "prior": 13755,
+          "current": 13756,
+          "difference": 1,
+          "prior_capture_date": "2026-10-10",
+          "prior_capture_time": null,
+          "current_observed_at": "2026-10-10T17:24:31.400Z",
+          "note": "Fixed-window report revision, not daily growth. Earlier capture has date only."
+        }
+      ]
+    }
+  ]
 }
