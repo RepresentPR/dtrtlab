@@ -1,5 +1,5 @@
 (function () {
-  var ASSET_V = "20261010l";
+  var ASSET_V = "20261010n";
   var here = (location.pathname || "").toLowerCase();
   var parts = here.replace(/\\/g, "/").split("/").filter(Boolean);
   if (parts.length && /\.[a-z0-9]+$/i.test(parts[parts.length - 1])) parts.pop();
@@ -49,7 +49,7 @@
     document.head.appendChild(adapt);
   }
 
-  var identity = document.createElement("link"); identity.rel="stylesheet"; identity.href=root+"css/identity.css?v=20261010l"; document.head.appendChild(identity);
+  var identity = document.createElement("link"); identity.rel="stylesheet"; identity.href=root+"css/identity.css?v=20261010n"; document.head.appendChild(identity);
 
   if (!window.__donateInit) { var ds = document.createElement("script"); ds.src = root + "js/donate.js?v=20261009"; ds.defer = true; document.head.appendChild(ds); }
 
@@ -60,10 +60,10 @@
   if (foot) {
     foot.innerHTML =
       '<div class="wrap">' +
-      "<span>DTRTC Â· File NÂº 0247</span>" +
+      "<span>DTRT / Play. Create. Repeat.</span>" +
       '<a href="' + root + 'index.html">Home</a>' +
       '<a href="' + root + 'index.html#clips">Clips</a>' +
-      '<a href="' + root + 'index.html#schedule">Schedule</a>' +
+      '<a href="' + root + 'live/">Live</a>' +
       '<a href="' + root + 'afterlight.html">AFTERLIGHT</a>' +
       '<a href="' + root + 'game.html">Game</a>' +
       '<a href="' + root + 'story.html">Story</a>' +
@@ -75,7 +75,7 @@
       '<a href="' + root + 'radio.html">Radio</a>' +
       '<a href="' + root + 'contact.html">Contact</a>' +
       '<a href="' + root + 'faq.html">FAQ</a>' +
-      '<a href="' + root + 'donate.html">Support</a>' +
+      '<a href="' + root + 'support.html">Support & Partner</a>' +
       '<a href="' + root + 'legal/privacy.html">Privacy</a>' +
       '<a href="' + root + 'legal/terms.html">Terms</a>' +
       "</div>" +
