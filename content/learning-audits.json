@@ -43,6 +43,25 @@
       ],
       "test": "Approved direct-exchange variant after control24h checkpoint; no duplicate render",
       "nextAuditDueAt": "2026-10-11T19:00:00Z"
+    },
+    {
+      "kind": "initial_weekly_assessment",
+      "completedAt": "2026-10-11T18:50:02.500752Z",
+      "sourceObservedFrom": "2026-10-11T11:25:55.340Z",
+      "sourceObservedThrough": "2026-10-11T17:31:04.869Z",
+      "window": "Initial synthesis of dated post observations and the September 13 through October 10 YouTube report; no matched weekly series collected.",
+      "decision": "Inconclusive. Keep the existing direct-exchange opening test; no winning format or week-over-week trend established.",
+      "bottleneck": "The control loses the most viewers around two seconds. Immediate action is a hypothesis to test, not a proven remedy.",
+      "test": "Use the already approved 7.85-second direct-exchange variant after the control 24-hour checkpoint. Keep the control wording, layout and replay disclosure.",
+      "evaluation": "Compare supported same-age native retention, average watch, views and followers at actual publication +4/24/72/168 hours. Runtime and sequential audiences limit interpretation.",
+      "limits": [
+        "No two completed comparable seven-day windows were collected.",
+        "Period views, lifetime totals and publication-age metrics have different scopes.",
+        "A shorter runtime can raise completion percentage without improving absolute watch time.",
+        "No verified receipts or paid/organic attribution; no creative winner established."
+      ],
+      "nextGraphAuditDueAt": "2026-10-11T19:00:00Z",
+      "nextWeeklyReviewDueAt": "2026-10-18T13:00:00Z"
     }
   ]
 }
