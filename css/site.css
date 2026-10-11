@@ -1,20 +1,30 @@
 :root {
-  --bg: #0c0d10;
-  --card: #17191f;
-  --ink: #f3f1ec;
-  --muted: #c8c4bb;
-  --line: #2a2d34;
-  --accent: #f25c2a;
+  --bg: #120814;
+  --card: #1c1024;
+  --ink: #f4efe8;
+  --muted: #d2c6cf;
+  --line: #3a2444;
+  --accent: #d6ff3c;
+  --hot: #ff6a14;
 }
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.4 "Segoe UI", Helvetica, Arial, sans-serif; }
+body {
+  margin: 0;
+  color: var(--ink);
+  font: 16px/1.4 "Segoe UI", Helvetica, Arial, sans-serif;
+  background: repeating-linear-gradient(-18deg, #120814 0 22px, #1a0c22 22px 24px);
+}
 a { color: var(--accent); }
 .top {
   display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
-  padding: 14px 22px; border-bottom: 1px solid var(--line); background: #101114;
+  padding: 14px 22px; border-bottom: 3px solid var(--accent); background: #100612;
   position: sticky; top: 0; z-index: 2;
 }
-.brand { color: var(--ink); text-decoration: none; font-weight: 750; letter-spacing: -0.03em; font-size: 18px; min-height: 44px; display: flex; align-items: center; }
+.mark { display: flex; flex-direction: column; gap: 2px; }
+.theme-line, .theme-sub { margin: 0; font-weight: 800; text-transform: uppercase; }
+.theme-line { color: var(--accent); letter-spacing: 0.16em; font-size: 13px; }
+.theme-sub { color: var(--hot); letter-spacing: 0.08em; font-size: 12px; }
+.brand { color: var(--ink); text-decoration: none; font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; font-size: 18px; min-height: 44px; display: flex; align-items: center; }
 .top nav { display: flex; flex-wrap: wrap; gap: 6px; }
 .top nav a {
   color: var(--ink); text-decoration: none; min-height: 44px; padding: 10px 12px;
@@ -23,7 +33,7 @@ a { color: var(--accent); }
 .top nav a:hover { background: #22252c; }
 .top nav a:active, .top nav a[aria-current="page"] { background: var(--accent); color: #140804; }
 .wrap { max-width: 1080px; margin: 0 auto; padding: 22px 20px 72px; }
-h1 { margin: 8px 0 14px; font-size: 34px; letter-spacing: -0.04em; }
+h1 { margin: 8px 0 14px; font-size: 34px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 800; }
 h2 { margin: 0 0 6px; font-size: 18px; }
 .search { width: min(520px, 100%); background: var(--card); color: var(--ink); border: 1px solid var(--line); border-radius: 10px; min-height: 48px; padding: 12px 14px; font: inherit; }
 .layout { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 16px; margin-top: 16px; }
