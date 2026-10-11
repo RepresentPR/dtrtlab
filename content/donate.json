@@ -3,8 +3,8 @@
   "short": "ko-fi.com/dtrtlab",
   "label": "Support the stream",
   "labelEs": "Apoya el stream",
-  "purposeEn": "Funds go to DTRT Lab funding, personal growth funding, and helping support small businesses in Puerto Rico. Voluntary. Not a purchase. Not tax-deductible.",
-  "purposeEs": "Los fondos van a la financiación de DTRT Lab, al crecimiento personal y a ayudar a apoyar pequeños negocios en Puerto Rico. Voluntario. No es una compra. No es deducible de impuestos.",
+  "purposeEn": "Tips support Ian's work on DTRT Lab. Voluntary. Not a purchase. Not tax-deductible.",
+  "purposeEs": "Las propinas apoyan el trabajo de Ian en DTRT Lab. Son voluntarias. No son una compra ni deducibles de impuestos.",
   "methods": [
     {"id":"kofi","name":"Ko-fi","url":"https://ko-fi.com/dtrtlab","noteEn":"One-time and monthly tips. Available payment methods appear at checkout.","noteEs":"Propinas únicas y mensuales. Los métodos de pago disponibles aparecen al pagar.","recurring":true},
     {"id":"paypal","name":"PayPal.me","url":"","noteEn":"Pay with PayPal or card.","noteEs":"Paga con PayPal o tarjeta."},

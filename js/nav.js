@@ -1,5 +1,5 @@
 (function () {
-  var ASSET_V = "20261011-hub2";
+  var ASSET_V = "20261011-credibility1";
   var here = (location.pathname || "").toLowerCase();
   var parts = here.replace(/\\/g, "/").split("/").filter(Boolean);
   if (parts.length && /\.[a-z0-9]+$/i.test(parts[parts.length - 1])) parts.pop();
@@ -71,7 +71,6 @@
       '<a href="' + root + 'partners.html">Partner</a>' +
       '<a href="' + root + 'contact.html">Contact</a>' +
       '<a href="' + root + 'legal/privacy.html">Privacy</a>' +
-      '<a href="' + root + 'legal/terms.html">Terms</a>' +
       "</div>" +
       '<div class="wrap socials" data-social-slot="footer"></div>';
   }

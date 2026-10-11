@@ -50,7 +50,7 @@
   }
 
   function startGa(id) {
-    if (!id || optedOut) return;
+    if (!id || optedOut || gaOn) return;
     gaOn = true;
     window.dataLayer = window.dataLayer || [];
     window.gtag =
@@ -74,6 +74,53 @@
     if (bar && bar.parentNode) bar.parentNode.removeChild(bar);
   }
 
+  var status = document.getElementById("analytics-status");
+  var allow = document.getElementById("analytics-allow");
+  var withdraw = document.getElementById("analytics-withdraw");
+
+  function showChoice(choice) {
+    if (!status || !allow || !withdraw || typeof allow.addEventListener !== "function") return;
+    if (optedOut) status.textContent = "Your browser privacy signal blocks site analytics.";
+    else if (!gaId) status.textContent = "Google Analytics is not configured on this site.";
+    else if (choice === "yes") status.textContent = "Google Analytics is allowed in this browser.";
+    else status.textContent = "Google Analytics is off in this browser.";
+    allow.hidden = optedOut || !gaId || choice === "yes";
+    withdraw.hidden = optedOut || !gaId || choice !== "yes";
+  }
+
+  function clearGaCookies() {
+    String(document.cookie || "").split(";").forEach(function (entry) {
+      var name = entry.split("=")[0].trim();
+      if (!/^_ga(?:_|$)|^_gid$|^_gat(?:_|$)/.test(name)) return;
+      var expired = name + "=; Max-Age=0; path=/; SameSite=Lax";
+      document.cookie = expired;
+      document.cookie = expired + "; domain=.dtrtlab.com";
+    });
+  }
+
+  function setChoice(choice) {
+    try { localStorage.setItem(KEY, choice); } catch (err) {}
+    if (choice === "yes") {
+      startGa(gaId);
+    } else if (gaOn) {
+      gaOn = false;
+      window["ga-disable-" + gaId] = true;
+      if (window.gtag) window.gtag("consent", "update", { analytics_storage: "denied" });
+      clearGaCookies();
+      showChoice(choice);
+      location.reload();
+      return;
+    }
+    showChoice(choice);
+  }
+
+  if (allow && typeof allow.addEventListener === "function") {
+    allow.addEventListener("click", function () { setChoice("yes"); });
+  }
+  if (withdraw && typeof withdraw.addEventListener === "function") {
+    withdraw.addEventListener("click", function () { setChoice("no"); });
+  }
+
   function askGa(id) {
     var bar = document.createElement("div");
     bar.className = "consent";
@@ -93,11 +140,8 @@
       var btn = e.target && e.target.closest && e.target.closest("[data-ga]");
       if (!btn) return;
       var choice = btn.getAttribute("data-ga");
-      try {
-        localStorage.setItem(KEY, choice);
-      } catch (err) {}
       hideBar(bar);
-      if (choice === "yes") startGa(id);
+      setChoice(choice);
     });
   }
 
@@ -110,13 +154,19 @@
     })
     .then(function (site) {
       gaId = site && site.gaMeasurementId ? String(site.gaMeasurementId).trim() : "";
-      if (!gaId || optedOut) return;
+      if (!gaId || optedOut) {
+        showChoice("");
+        return;
+      }
       var choice = "";
       try {
         choice = localStorage.getItem(KEY) || "";
       } catch (err) {}
       if (choice === "yes") startGa(gaId);
       else if (choice !== "no") askGa(gaId);
+      showChoice(choice);
     })
-    .catch(function () {});
+    .catch(function () {
+      if (status) status.textContent = "Analytics settings could not be loaded. Google Analytics was not started.";
+    });
 })();

@@ -47,7 +47,7 @@
       "id": "discoveries",
       "title": "Discoveries and music",
       "status": "in-development",
-      "today": "Afterlight radio cuts play on this site. In-game radios and unlocks are not verified as a public feature.",
+      "today": "AFTERLIGHT audio previews are paused while commercial-use rights are verified. In-game radios and unlocks are not verified as a public feature.",
       "blurb": "Optional finds and a modest broadcast. Not an open-world checklist."
     }
   ],
@@ -71,7 +71,7 @@
     {
       "date": "2026-09-18",
       "title": "Site tracks the campaign, not only the range",
-      "canExperience": "Read Afterlight Volume One. Play Afterlight radio on the site. Request access for the internal Windows range.",
+      "canExperience": "Read AFTERLIGHT Volume One. Audio previews are paused pending a rights review. Request access for the internal Windows range.",
       "inDevelopment": "Playable campaign island, public demo, and in-game radios as unlocks.",
       "body": "Public pages now name DTRT AFTERLIGHT as the campaign. Training remains real and request-only. No Steam page, no public build, no invented player counts."
     },
@@ -86,7 +86,7 @@
   "faq": [
     { "q": "What is DTRT AFTERLIGHT?", "a": "A story-driven FPS campaign in development, set in Puerto Rico, under the DTRT Lab parent identity. Training is part of the game, not the whole product." },
     { "q": "Can I play it today?", "a": "There is no public download. Request access and wait for a yes. Volume One of the story is readable now." },
-    { "q": "Is it only an aim trainer?", "a": "No. The public story, world stills, and radio exist alongside an internal first-bullet range. The campaign is not finished." },
+    { "q": "Is it only an aim trainer?", "a": "No. The public story and world stills exist alongside an internal first-bullet range; audio previews are paused pending a rights review. The campaign is not finished." },
     { "q": "Is it CS2, Valorant, or Tarkov?", "a": "No. Original game, original rifle (Kestrel), original map work. Not a clone, overlay, or cheat." },
     { "q": "Open world? Multiplayer?", "a": "Not claimed. The story follows a regional route. No public multiplayer." },
     { "q": "Can I buy it?", "a": "Store and preorder are off. Ko-fi is support, not a key." }

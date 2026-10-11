@@ -66,7 +66,6 @@
       '<a href="' + root + 'partners.html">Partner</a>' +
       '<a href="' + root + 'contact.html">Contact</a>' +
       '<a href="' + root + 'legal/privacy.html">Privacy</a>' +
-      '<a href="' + root + 'legal/terms.html">Terms</a>' +
       "</div>" +
       '<div class="wrap socials" data-social-slot="footer"></div>';
   }
