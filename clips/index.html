@@ -26,14 +26,17 @@
   </nav>
 </header>
 <main class="wrap clips">
-  <h1 id="title">Oh my god, I am so slow</h1>
-  <video id="player" controls playsinline preload="metadata" src="/watch/media/oh-my-god-i-am-so-slow.mp4"></video>
+  <p class="eyebrow">PHASE 2 / REVIEWED CLIPS</p><h1 id="title">One bullet left</h1><p>Watch our reviewed edits here. Queue entries are upcoming social posts; website previews are editorial selections.</p><p>Already public: <a href="https://www.tiktok.com/@iananthonyfc/video/7695303665602612493">One bullet left on TikTok</a> · <a href="https://x.com/DTRTLab/status/2109179695862530284">Watch on X</a> · <a href="/live/">Performance database</a></p>
+  <video id="player" controls playsinline preload="metadata" src="/assets/campaign/01-one-bullet-left.mp4"></video>
   <p id="unavailable" class="card pad" role="status" hidden>This clip's video file is not on DTRT Lab yet. Choose another clip to watch here.</p>
   <ul id="list">
-    <li><button type="button" data-id="lurk-king" data-title="Lurk King">1. Lurk King · video pending</button></li>
-    <li><button type="button" data-id="skitz-ladder" data-title="Skitz Ladder">2. Skitz Ladder · video pending</button></li>
-    <li><button type="button" data-id="somebody-said-rush-b" data-title="Somebody Said Rush B">3. Somebody Said Rush B · video pending</button></li>
-    <li><button type="button" data-id="come-on-code" data-title="Come On, Code">4. Come On, Code · video pending</button></li>
+<li><button type="button" data-id="one-bullet-left" data-src="/assets/campaign/01-one-bullet-left.mp4" data-title="One bullet left">One bullet left</button></li>
+<li><button type="button" data-id="knife-round-got-crowded" data-src="/assets/campaign/02-knife-round-got-crowded.mp4" data-title="Knife round got crowded">Knife round got crowded</button></li>
+<li><button type="button" data-id="the-next-corner-was-not-clear" data-src="/assets/campaign/03-the-next-corner-was-not-clear.mp4" data-title="The next corner was not clear">The next corner was not clear</button></li>
+<li><button type="button" data-id="smoke-changed-the-fight" data-src="/assets/campaign/04-smoke-changed-the-fight.mp4" data-title="Smoke changed the fight">Smoke changed the fight</button></li>
+<li><button type="button" data-id="fire-at-the-doorway" data-src="/assets/campaign/05-fire-at-the-doorway.mp4" data-title="Fire at the doorway">Fire at the doorway</button></li>
+<li><button type="button" data-id="bomb-down-now-survive" data-src="/assets/campaign/06-bomb-down-now-survive.mp4" data-title="Bomb down now survive">Bomb down now survive</button></li>
+<li><button type="button" data-id="the-door-was-already-covered" data-src="/assets/campaign/07-the-door-was-already-covered.mp4" data-title="The door was already covered">The door was already covered</button></li>
     <li><button type="button" data-id="oh-my-god-i-am-so-slow" data-src="/watch/media/oh-my-god-i-am-so-slow.mp4" data-title="Oh my god, I am so slow"><img class="thumb" src="/img/thumbs/oh-my-god-i-am-so-slow.jpg" alt="">Oh my god, I am so slow</button></li>
     <li><button type="button" data-id="why-dont-you" data-src="/watch/media/why-dont-you.mp4" data-title="Why don’t you don’t like that, bro"><img class="thumb" src="/img/thumbs/why-dont-you.jpg" alt="">Why don’t you don’t like that, bro</button></li>
     <li><button type="button" data-id="blind-by-black" data-src="/watch/media/blind-by-black.mp4" data-title="Blind by black"><img class="thumb" src="/img/thumbs/blind-by-black.jpg" alt="">Blind by black</button></li>
@@ -56,7 +59,7 @@
       if (player.getAttribute("src") !== src) player.src = src;
       player.hidden = false;
       unavailable.hidden = true;
-      if (play) player.play();
+      if (play) player.play().catch(function () { unavailable.textContent="Press play to start this video."; unavailable.hidden=false; });
     } else {
       player.pause();
       player.removeAttribute("src");
