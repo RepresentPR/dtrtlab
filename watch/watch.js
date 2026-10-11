@@ -8,7 +8,7 @@ const note = document.getElementById('countdown-note');
 function updateCountdown() {
   const remaining = Math.max(0, Math.ceil((start - Date.now()) / 1000));
   if (remaining === 0) {
-    label.textContent = 'SCHEDULED START REACHED';
+    label.textContent = 'SCHEDULED PROGRAM START REACHED';
     countdown.textContent = 'Check YouTube';
     note.textContent = 'The YouTube event page has the current stream status.';
     return;
