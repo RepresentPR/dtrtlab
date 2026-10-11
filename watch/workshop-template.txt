@@ -1,0 +1,62 @@
+WORKED EXAMPLE — FICTIONAL PROJECT
+This is a reusable practice structure, not evidence of real customer work.
+
+1. BRIEF
+Audience:
+One action the viewer should take:
+Exact output files:
+Approved facts and source/version:
+Service days/hours and business time zone:
+Public destination:
+Items outside scope:
+
+2. ASSET / PERMISSION NOTE
+Asset or fact:
+Source:
+Intended use:
+Permission/reference:
+Unresolved issue:
+Decision: hold / omit / approved for specified use
+
+3. ACCEPTANCE CHECKLIST
+[ ] Menu, days and hours match the approved source.
+[ ] Export opens and reads at the intended small preview size.
+[ ] Image, caption and alternative text have consistent facts.
+[ ] Essential text survives the intended crop.
+[ ] Destination opens and matches the announcement.
+[ ] Contact button behavior matches its label.
+[ ] Language and asset permissions have an actual review decision.
+[ ] Owner approval references the exact final version.
+
+4. PUBLICATION PLAN
+Destination account:
+Asset version:
+Caption version:
+Scheduled time and time zone:
+Provider job reference:
+State: draft / ready / scheduled / attempted / pending verification / native verified
+Native public URL: UNKNOWN until opened and checked
+Observation time:
+Verification outcome:
+
+5. UNCERTAIN OUTCOME / RECOVERY
+Original attempt reference:
+Observed issue:
+Native duplicate check:
+Confirmed outcome:
+Correction:
+Retry decision and evidence:
+Final native receipt:
+
+6. DATED REVIEW
+Metric name and exact platform/source:
+Observation time:
+Post age / review window:
+Value: UNKNOWN until collected
+Known scope and limitations:
+Relevant inquiries: count only; exclude duplicates, tests and spam
+Concrete defect or learning:
+One proposed change:
+Next comparable review checkpoint:
+
+Keep credentials, customer records, personal message contents and financial data out.
