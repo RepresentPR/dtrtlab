@@ -49,6 +49,7 @@
     return {
       capturedAt: captured === null ? null : new Date(captured).toISOString(),
       freshness: captured === null ? 'unknown' : now - captured > 21600000 ? 'stale' : 'recent',
+      lifetimeViews: metric((data.results || {}).lifetimeViews, 1, now),
       views: metric((data.results || {}).views, amount(campaign.viewsGoal) || 250000, now),
       revenue: metric((data.results || {}).revenue, amount(campaign.revenueGoalUsd) || 10000, now),
       spend: { newAuthorizedUsd: 0, newVerifiedUsd: amount((data.spend || {}).newVerifiedUsd) },
@@ -82,6 +83,8 @@
     }
     function render(data) {
       var view = createViewModel(data);
+      set('lifetime-value', view.lifetimeViews.value === null ? '\u2014' : number.format(view.lifetimeViews.value));
+      set('lifetime-note', (view.lifetimeViews.note || 'Inventory totals pending.') + (view.lifetimeViews.observedAt ? ' Earliest component measured ' + dateLabel(view.lifetimeViews.observedAt) + '.' : ''));
       renderMetric('views', view.views); renderMetric('revenue', view.revenue);
       var status = doc.getElementById('data-status');
       status.dataset.state = view.freshness;

@@ -13,10 +13,9 @@ import {
   decodeShareCode,
   paintCrosshair,
   describeCrosshair,
-  commandsFor,
   rotationIndex,
   nextRotationAt,
-} from "./cs2-crosshair.mjs";
+} from "./cs2-crosshair.mjs?v=20261011-preview2";
 
 const cs2 = await fetch("content/cs2.json", { cache: "no-store" }).then(function (res) {
   if (!res.ok) throw new Error("content/cs2.json");
@@ -42,7 +41,6 @@ const els = {
   stageNote: document.getElementById("xh-note"),
   stageMeta: document.getElementById("xh-meta"),
   stageCode: document.getElementById("xh-code"),
-  stageCmds: document.getElementById("xh-cmds"),
   stageCanvas: document.getElementById("xh-canvas"),
   stageBadge: document.getElementById("xh-badge"),
   countdown: document.getElementById("xh-countdown"),
@@ -85,7 +83,6 @@ async function boot() {
     renderGallery();
   });
   document.getElementById("xh-copy").addEventListener("click", copyCode);
-  document.getElementById("xh-copy-cmds").addEventListener("click", copyCommands);
   document.getElementById("xh-form").addEventListener("submit", onSubmitCode);
   document.getElementById("account-create").addEventListener("submit", onCreate);
   document.getElementById("account-unlock").addEventListener("submit", onUnlock);
@@ -165,7 +162,6 @@ function renderStage() {
   els.stageNote.textContent = item.note;
   els.stageMeta.textContent = describeCrosshair(item.decoded);
   els.stageCode.textContent = item.code;
-  els.stageCmds.textContent = commandsFor(item.decoded);
   els.stageBadge.hidden = item.id !== featured.id;
   paintCrosshair(els.stageCanvas, item.decoded);
 }
@@ -674,12 +670,6 @@ async function copyCode() {
   const item = findCrosshair(previewId);
   await navigator.clipboard.writeText(item.code);
   flash(document.getElementById("xh-copy"), "Copied");
-}
-
-async function copyCommands() {
-  const item = findCrosshair(previewId);
-  await navigator.clipboard.writeText(commandsFor(item.decoded).replace(/\n/g, "; "));
-  flash(document.getElementById("xh-copy-cmds"), "Copied");
 }
 
 function flash(button, text) {

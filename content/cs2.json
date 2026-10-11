@@ -2,59 +2,220 @@
   "updated": "2026-10-10",
   "poolAsOf": "2026-07-08",
   "poolTitle": "Active Duty, Season 5",
-  "poolNote": "On 8 July 2026 Cache replaced Overpass. Premier pick-ban uses these seven maps. Overpass, Train, and Vertigo stay playable in Competitive, Deathmatch, and community servers.",
+  "poolNote": "On 8 July 2026 Cache replaced Overpass. Premier uses these seven maps; teams pick four maps and the server selects one at random. Overpass, Train, and Vertigo stay playable in Competitive, Deathmatch, and community servers.",
   "maps": [
-    {"id": "mirage", "name": "Mirage", "pool": "active", "blurb": "Mid control and window. The map Premier votes pile onto."},
-    {"id": "inferno", "name": "Inferno", "pool": "active", "blurb": "Banana and apartments. Utility matters more than a dry aim duel."},
-    {"id": "dust2", "name": "Dust II", "pool": "active", "blurb": "Long, cat, mid doors. The other map the veto refuses to drop."},
-    {"id": "anubis", "name": "Anubis", "pool": "active", "blurb": "Water, mid, and camera. A real default when the lobby will leave Mirage."},
-    {"id": "ancient", "name": "Ancient", "pool": "active", "blurb": "Donut and cave. Timing and a smoke beat a dry swing."},
-    {"id": "nuke", "name": "Nuke", "pool": "active", "blurb": "Outside and hut. Vertical, loud, and unforgiving without a plan."},
-    {"id": "cache", "name": "Cache", "pool": "active", "blurb": "Back in the pool since July 2026. Mid and garage are the round."}
+    {
+      "id": "mirage",
+      "name": "Mirage",
+      "pool": "active",
+      "blurb": "Mid control and window. The map Premier votes pile onto."
+    },
+    {
+      "id": "inferno",
+      "name": "Inferno",
+      "pool": "active",
+      "blurb": "Banana and apartments. Utility matters more than a dry aim duel."
+    },
+    {
+      "id": "dust2",
+      "name": "Dust II",
+      "pool": "active",
+      "blurb": "Long, cat and mid doors. Control the crossing angles."
+    },
+    {
+      "id": "anubis",
+      "name": "Anubis",
+      "pool": "active",
+      "blurb": "Water, mid, and camera. A real default when the lobby will leave Mirage."
+    },
+    {
+      "id": "ancient",
+      "name": "Ancient",
+      "pool": "active",
+      "blurb": "Donut and cave. Timing and a smoke beat a dry swing."
+    },
+    {
+      "id": "nuke",
+      "name": "Nuke",
+      "pool": "active",
+      "blurb": "Outside and hut. Vertical, loud, and unforgiving without a plan."
+    },
+    {
+      "id": "cache",
+      "name": "Cache",
+      "pool": "active",
+      "blurb": "Back in the pool since July 2026. Mid and garage are the round."
+    }
   ],
   "reserve": [
-    {"id": "overpass", "name": "Overpass", "blurb": "Left the Premier pool when Cache came in. Still the map a lot of people want back."},
-    {"id": "train", "name": "Train", "blurb": "The other name that shows up every time someone asks for a map to return."},
-    {"id": "vertigo", "name": "Vertigo", "blurb": "Still in the client. Ramp and stairs, if the lobby will queue it."}
+    {
+      "id": "overpass",
+      "name": "Overpass",
+      "blurb": "Left the Premier pool when Cache came in. Still the map a lot of people want back."
+    },
+    {
+      "id": "train",
+      "name": "Train",
+      "blurb": "The other name that shows up every time someone asks for a map to return."
+    },
+    {
+      "id": "vertigo",
+      "name": "Vertigo",
+      "blurb": "Still in the client. Ramp and stairs, if the lobby will queue it."
+    }
   ],
   "wants": [
-    {"title": "A veto that is not two maps", "detail": "Premier votes collapse onto Dust II and Mirage. The complaint, all year, is that the rest of the pool never gets played. People ask for Train and Overpass, and for a veto that cannot ban everything else."},
-    {"title": "A crosshair you can actually finish", "detail": "Outline transparency still moves with the crosshair, and gap still jumps in coarse steps. Players want those split apart so a clip crosshair can be copied instead of approximated."},
-    {"title": "One useful throw, not a spreadsheet", "detail": "The thing that wins a round is the smoke that closes the angle you keep dying to. Learn that one before a forty-lineup pack."},
-    {"title": "Somewhere to put the code from a clip", "detail": "Highlight pages are where crosshairs spread. The four-hour bench keeps one code on stage. You can preview a code from a clip here. Voting returns when the community board is online."}
+    {
+      "title": "Know the Premier selection",
+      "detail": "Teams pick four maps and the server selects one at random. Prepare more than one map."
+    },
+    {
+      "title": "Copy the crosshair share code",
+      "detail": "Use Settings \u2192 Crosshair/Scopes \u2192 Share or Import. Check the imported crosshair in game; this site shows an enlarged static preview."
+    },
+    {
+      "title": "One useful throw, not a spreadsheet",
+      "detail": "The thing that wins a round is the smoke that closes the angle you keep dying to. Learn that one before a forty-lineup pack."
+    },
+    {
+      "title": "Somewhere to put the code from a clip",
+      "detail": "Highlight pages are where crosshairs spread. The four-hour bench keeps one code on stage. You can preview a code from a clip here. Voting returns when the community board is online."
+    }
   ],
   "utility": [
-    {"id": "mirage-window", "map": "Mirage", "throw": "Window smoke", "why": "Closes CT window so a mid or cat take is not shot from above."},
-    {"id": "inferno-banana", "map": "Inferno", "throw": "Banana smoke", "why": "Stops the CT who plays car from shooting you out of T ramp."},
-    {"id": "dust2-xbox", "map": "Dust II", "throw": "Xbox smoke", "why": "Lets you cross mid without the CT angle from Xbox."},
-    {"id": "anubis-mid", "map": "Anubis", "throw": "Mid smoke", "why": "Breaks the default mid fight so the side you actually want can move."},
-    {"id": "ancient-donut", "map": "Ancient", "throw": "Donut smoke", "why": "Takes the donut player out of the cave or temple fight."},
-    {"id": "nuke-outside", "map": "Nuke", "throw": "Outside smoke", "why": "Closes the yard so a secret or main take is not shot from heaven."},
-    {"id": "cache-mid", "map": "Cache", "throw": "Mid smoke", "why": "The garage and highway cross. Cache rounds still start here."}
+    {
+      "id": "mirage-window",
+      "map": "Mirage",
+      "throw": "Window smoke",
+      "why": "Closes CT window so a mid or cat take is not shot from above."
+    },
+    {
+      "id": "inferno-banana",
+      "map": "Inferno",
+      "throw": "Banana smoke",
+      "why": "Stops the CT who plays car from shooting you out of T ramp."
+    },
+    {
+      "id": "dust2-xbox",
+      "map": "Dust II",
+      "throw": "Xbox smoke",
+      "why": "Lets you cross mid without the CT angle from Xbox."
+    },
+    {
+      "id": "anubis-mid",
+      "map": "Anubis",
+      "throw": "Mid smoke",
+      "why": "Breaks the default mid fight so the side you actually want can move."
+    },
+    {
+      "id": "ancient-donut",
+      "map": "Ancient",
+      "throw": "Donut smoke",
+      "why": "Takes the donut player out of the cave or temple fight."
+    },
+    {
+      "id": "nuke-outside",
+      "map": "Nuke",
+      "throw": "Outside smoke",
+      "why": "Closes the yard so a secret or main take is not shot from heaven."
+    },
+    {
+      "id": "cache-mid",
+      "map": "Cache",
+      "throw": "Mid smoke",
+      "why": "The garage and highway cross. Cache rounds still start here."
+    }
   ],
   "queues": [
-    {"id": "premier", "name": "Premier", "why": "The ranked veto. Season rating, and the seven-map pool."},
-    {"id": "faceit", "name": "FACEIT", "why": "The ladder people switch to when they want a stricter client and a set map pool."},
-    {"id": "competitive", "name": "Competitive", "why": "Reserve maps still live here. Overpass and Train are this queue, not Premier."},
-    {"id": "deathmatch", "name": "Deathmatch", "why": "Aim volume before a real game. Where a new crosshair gets a fair test."},
-    {"id": "retake", "name": "Retake", "why": "Community servers. Post-plant and site holds, which matchmaking does not drill."},
-    {"id": "wingman", "name": "Wingman", "why": "Two versus two when the five-stack is not online."}
+    {
+      "id": "premier",
+      "name": "Premier",
+      "why": "Season rating and the seven-map pool. Teams pick four maps, then one is selected at random."
+    },
+    {
+      "id": "faceit",
+      "name": "FACEIT",
+      "why": "The ladder people switch to when they want a stricter client and a set map pool."
+    },
+    {
+      "id": "competitive",
+      "name": "Competitive",
+      "why": "Reserve maps still live here. Overpass and Train are this queue, not Premier."
+    },
+    {
+      "id": "deathmatch",
+      "name": "Deathmatch",
+      "why": "Aim volume before a real game. Where a new crosshair gets a fair test."
+    },
+    {
+      "id": "retake",
+      "name": "Retake",
+      "why": "Community servers. Post-plant and site holds, which matchmaking does not drill."
+    },
+    {
+      "id": "wingman",
+      "name": "Wingman",
+      "why": "Two versus two when the five-stack is not online."
+    }
   ],
   "clips": [
-    {"id": "GeniusSwissOkapiPMSTwin-duYLliqZdd1FzIeF", "name": "insane knife round"},
-    {"id": "SuaveConcernedRaisinEagleEye--Ww8MHcdddZRo8sp", "name": "not the molly"},
-    {"id": "EvilRespectfulMonkeyLeeroyJenkins-5RAFxUmkGSD-t4GC", "name": "poop"},
-    {"id": "AverageApatheticCockroachPJSugar-6Q1neY-R6gdxtciw", "name": "what you see is what you get"},
-    {"id": "MildHandsomeHedgehogSoonerLater-quqE9w-TP1wRRGov", "name": "skitz whiff pov"},
-    {"id": "KawaiiMildAlbatrossDatBoi-wJFt6HdvJx9dZqfN", "name": "skitz 200iq 0 aim"},
-    {"id": "GiantBoringFlyEleGiggle-uUSE5sJQTFBguyu3", "name": "window break"},
-    {"id": "InventiveNastySashimiNononoCat-MxON-cLfRUIgnmoY", "name": "Skitz curse"},
-    {"id": "SmallCalmLlamaImGlitch-E61IvMc563GrIRub", "name": "ninja"}
+    {
+      "id": "GeniusSwissOkapiPMSTwin-duYLliqZdd1FzIeF",
+      "name": "insane knife round"
+    },
+    {
+      "id": "SuaveConcernedRaisinEagleEye--Ww8MHcdddZRo8sp",
+      "name": "not the molly"
+    },
+    {
+      "id": "EvilRespectfulMonkeyLeeroyJenkins-5RAFxUmkGSD-t4GC",
+      "name": "poop"
+    },
+    {
+      "id": "AverageApatheticCockroachPJSugar-6Q1neY-R6gdxtciw",
+      "name": "what you see is what you get"
+    },
+    {
+      "id": "MildHandsomeHedgehogSoonerLater-quqE9w-TP1wRRGov",
+      "name": "skitz whiff pov"
+    },
+    {
+      "id": "KawaiiMildAlbatrossDatBoi-wJFt6HdvJx9dZqfN",
+      "name": "skitz 200iq 0 aim"
+    },
+    {
+      "id": "GiantBoringFlyEleGiggle-uUSE5sJQTFBguyu3",
+      "name": "window break"
+    },
+    {
+      "id": "InventiveNastySashimiNononoCat-MxON-cLfRUIgnmoY",
+      "name": "Skitz curse"
+    },
+    {
+      "id": "SmallCalmLlamaImGlitch-E61IvMc563GrIRub",
+      "name": "ninja"
+    }
   ],
   "polls": [
-    {"id": "crosshair", "question": "Best crosshair on the bench?", "source": "crosshairs"},
-    {"id": "map", "question": "Where should the next queue go?", "source": "maps"},
-    {"id": "queue", "question": "What should this room play?", "source": "queues"},
-    {"id": "clip", "question": "Which clip is the one?", "source": "clips"}
+    {
+      "id": "crosshair",
+      "question": "Best crosshair on the bench?",
+      "source": "crosshairs"
+    },
+    {
+      "id": "map",
+      "question": "Where should the next queue go?",
+      "source": "maps"
+    },
+    {
+      "id": "queue",
+      "question": "What should this room play?",
+      "source": "queues"
+    },
+    {
+      "id": "clip",
+      "question": "Which clip is the one?",
+      "source": "clips"
+    }
   ]
 }

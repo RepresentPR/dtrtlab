@@ -45,7 +45,8 @@
       <div class="wrap">
         <p class="hud">01 // Four-hour bench</p>
         <h2 id="xh-title">One crosshair, four hours.</h2>
-        <p class="lede">The bench walks forward every four hours. Everyone sees the same one. Copy a share code and import it in CS2's crosshair settings. You can also preview a code from a clip here.</p>
+        <p class="lede">Copy a crosshair share code. In CS2, open Settings → Crosshair/Scopes → Share or Import, paste the code, then select Import.</p>
+        <p>Current CS2 codes begin with <strong>CS</strong>. Older <strong>CSGO-</strong> codes can also be previewed here. Previews are enlarged; movement and recoil behavior should be checked in-game.</p>
         <p id="xh-countdown" role="status">Loading the rotation…</p>
         <div class="xh-layout">
           <div class="xh-stage">
@@ -59,16 +60,14 @@
             <p class="xh-code" id="xh-code"></p>
             <div class="actions">
               <button class="cta" id="xh-copy" type="button">Copy code</button>
-              <button class="cta ghost" id="xh-copy-cmds" type="button">Copy commands</button>
             </div>
-            <details class="xh-command-details"><summary>View console commands</summary><pre class="xh-cmds" id="xh-cmds"></pre></details>
           </div>
         </div>
         <div class="xh-grid" id="xh-gallery" style="margin-top:18px"></div>
         <form id="xh-form" class="card" style="margin-top:18px">
           <h3 id="xh-form-title">Paste a code from a clip</h3>
           <label>Name <input name="label" required maxlength="23" autocomplete="off" placeholder="Window tap"></label>
-          <label>Share code <input name="code" required maxlength="80" autocomplete="off" spellcheck="false" placeholder="CS… or CSGO-…"></label>
+          <label>Crosshair share code <input name="code" required maxlength="80" autocomplete="off" spellcheck="false" placeholder="Paste your CS2 share code"></label>
           <button class="cta" id="xh-submit" type="submit">Add it to the vote</button>
           <p class="status" id="xh-submit-status" role="status"></p>
         </form>
@@ -234,6 +233,6 @@
   <footer id="site-foot"></footer>
   <script src="content/socials.js"></script>
   <script src="js/scene-nav.js?v=20261011b"></script>
-  <script type="module" src="js/cs2-community.mjs?v=20261011b"></script>
+  <script type="module" src="js/cs2-community.mjs?v=20261011-preview2"></script>
 </body>
 </html>

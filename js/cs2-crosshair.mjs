@@ -123,7 +123,9 @@ export function paintCrosshair(canvas, crosshair) {
     ["up", 0, -1],
     ["down", 0, 1],
   ];
+  const shapes = [];
   arms.forEach(function (arm) {
+    if (crosshair.style === 6 && crosshair.format !== "legacy-v1") return;
     if (model.tStyle && arm[0] === "down") return;
     const dx = arm[1];
     const dy = arm[2];
@@ -143,23 +145,22 @@ export function paintCrosshair(canvas, crosshair) {
       y = dy > 0 ? cy + start : cy - start - len;
       x = cx - thick / 2;
     }
-    if (outline) {
+    shapes.push([x, y, w, h]);
+  });
+  if (model.dot || (crosshair.style === 6 && crosshair.format !== "legacy-v1")) {
+    const s = Math.max(2, model.thickness);
+    shapes.push([cx - s / 2, cy - s / 2, s, s]);
+  }
+  // Outlines must not overwrite the colored fill of intersecting arms.
+  if (outline) shapes.forEach(function ([x, y, w, h]) {
       const pad = model.outlinePad;
       ctx.fillStyle = outline;
       ctx.fillRect(x - pad, y - pad, w + pad * 2, h + pad * 2);
-    }
+  });
+  shapes.forEach(function ([x, y, w, h]) {
     ctx.fillStyle = color;
     ctx.fillRect(x, y, w, h);
   });
-  if (model.dot) {
-    const s = Math.max(2, model.thickness);
-    if (outline) {
-      ctx.fillStyle = outline;
-      ctx.fillRect(cx - s / 2 - model.outlinePad, cy - s / 2 - model.outlinePad, s + model.outlinePad * 2, s + model.outlinePad * 2);
-    }
-    ctx.fillStyle = color;
-    ctx.fillRect(cx - s / 2, cy - s / 2, s, s);
-  }
 }
 
 export function describeCrosshair(crosshair) {

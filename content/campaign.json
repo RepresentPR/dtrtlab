@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-11T13:32:38.131478Z",
+  "capturedAt": "2026-10-11T14:27:43.000200+00:00",
   "campaign": {
     "name": "Growth. $0 new spend.",
     "startAt": "2026-10-11T06:28:12Z",
@@ -44,6 +44,36 @@
     "revenue": {
       "value": null,
       "status": "baseline_pending"
+    },
+    "lifetimeViews": {
+      "value": 30737,
+      "status": "verified",
+      "observedAt": "2026-10-11T14:18:01.975Z",
+      "coverage": "partial",
+      "components": [
+        {
+          "platform": "YouTube Shorts",
+          "value": 15254,
+          "posts": 32,
+          "scope": "31 public + 1 unlisted",
+          "observedAt": "2026-10-11T14:18:18.750Z"
+        },
+        {
+          "platform": "Instagram Reels",
+          "value": 13419,
+          "posts": 33,
+          "scope": "Public profile grid; archives unavailable",
+          "observedAt": "2026-10-11T14:18:01.975Z"
+        },
+        {
+          "platform": "TikTok videos",
+          "value": 2064,
+          "posts": 17,
+          "scope": "All 17 Everyone posts in native Studio inventory",
+          "observedAt": "2026-10-11T14:20:17.199Z"
+        }
+      ],
+      "note": "Known lifetime total: YouTube Shorts 15,254, Instagram Reels 13,419, TikTok 2,064. Includes 4 unlisted YouTube views. Other platform and archive totals remain unmeasured."
     }
   },
   "spend": {
@@ -170,6 +200,7 @@
     }
   ],
   "evidenceNotes": [
+    "Lifetime total covers 82 observed short-form posts across YouTube, Instagram and TikTok. X, Twitch, FACEIT, unavailable archives and longer videos are not included. Historical views are separate from campaign growth and are not attributed to $0 new spend.",
     "Starting measurement, October 11 at 2:51\u20132:53 AM Eastern: 31 public YouTube Shorts held 14,895 lifetime views; 33 Instagram Reels held 13,337 displayed lifetime views. These opening counters are not campaign gains.",
     "The opening YouTube/Instagram measurement was about 23 minutes after campaign start; that gap and unmeasured posts remain unknown. TikTok is counted from its verified campaign-time creation. Paid-versus-organic attribution and unique audience size are not established.",
     "October 11, 9:29\u20139:31 AM Eastern: net +337 YouTube and +68 Instagram views from opening counters, plus 280 views on the new TikTok post. The partial total of 685 is up 88 from the previous 597. Native downward counter revisions remain included.",
