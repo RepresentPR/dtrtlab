@@ -1,12 +1,14 @@
 {
-  "capturedAt": "2026-10-11T14:27:43.000200+00:00",
+  "capturedAt": "2026-10-11T14:34:10.462710+00:00",
   "campaign": {
     "name": "Growth. $0 new spend.",
     "startAt": "2026-10-11T06:28:12Z",
     "deadlineAt": "2026-12-25T05:00:00Z",
     "timezone": "America/New_York",
     "viewsGoal": 250000,
-    "revenueGoalUsd": 10000
+    "revenueGoalUsd": 10000,
+    "viewsDeadlineAt": "2027-01-01T05:00:00Z",
+    "viewsGoalBasis": "overall_lifetime_platform_video_views"
   },
   "results": {
     "views": {
@@ -200,6 +202,7 @@
     }
   ],
   "evidenceNotes": [
+    "Updated user goal: 250,000 overall lifetime clip views by December 31, 2026 Eastern. Historical measured views count; added campaign views remain separate. Revenue deadline remains December 24.",
     "Lifetime total covers 82 observed short-form posts across YouTube, Instagram and TikTok. X, Twitch, FACEIT, unavailable archives and longer videos are not included. Historical views are separate from campaign growth and are not attributed to $0 new spend.",
     "Starting measurement, October 11 at 2:51\u20132:53 AM Eastern: 31 public YouTube Shorts held 14,895 lifetime views; 33 Instagram Reels held 13,337 displayed lifetime views. These opening counters are not campaign gains.",
     "The opening YouTube/Instagram measurement was about 23 minutes after campaign start; that gap and unmeasured posts remain unknown. TikTok is counted from its verified campaign-time creation. Paid-versus-organic attribution and unique audience size are not established.",
