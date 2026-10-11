@@ -22,16 +22,6 @@
       "review": "Not reviewed in a matched publication-age cohort"
     },
     {
-      "id": "youtube:6pnFUd1_TT4",
-      "platform": "YouTube",
-      "title": "A tu pasito \u00b7 At your own pace \u00b7 Original song by Ian #Shorts",
-      "url": "https://www.youtube.com/shorts/6pnFUd1_TT4",
-      "views": 4,
-      "observedAt": "2026-10-11T18:43:20.812Z",
-      "publicationDate": "Oct 9, 2026",
-      "review": "Not reviewed in a matched publication-age cohort"
-    },
-    {
       "id": "youtube:NRlRvR-zZtE",
       "platform": "YouTube",
       "title": "Where Is My Veteran Medal? \ud83c\udfc5 CS2 #Shorts",
@@ -948,7 +938,7 @@
       "decision": "Inconclusive: possible operator contribution; excluded from campaign growth."
     }
   ],
-  "coverage": "88 public records plus six private/unlisted YouTube records counted only in the aggregate: 94 measured posts. Historical YouTube coverage is not campaign growth. Source timestamps differ. YouTube Live archives, X, Twitch, FACEIT and unavailable archives remain unmeasured.",
+  "coverage": "87 searchable records plus six private/unlisted YouTube records and one privacy-held record counted only in the aggregate: 94 measured posts. Historical YouTube coverage is not campaign growth. Source timestamps differ. YouTube Live archives, X, Twitch, FACEIT and unavailable archives remain unmeasured.",
   "learningAudits": [
     {
       "observedAt": "2026-10-11T15:01:14.433902+00:00",

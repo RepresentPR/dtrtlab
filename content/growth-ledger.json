@@ -4,11 +4,10 @@
     {
       "id": "youtube-recent-posts",
       "platform": "youtube",
-      "label": "YouTube · fixed 34-post cohort",
+      "label": "YouTube · fixed 33-post cohort",
       "cohort": [
         "Z00dqeOOdBc",
         "7owx3ck3vRY",
-        "6pnFUd1_TT4",
         "NRlRvR-zZtE",
         "8BDDTkjN9aM",
         "OL--lV0YW9Q",
@@ -43,14 +42,14 @@
       ],
       "metric": "post_plays",
       "window": "Cumulative lifetime counters of the listed posts",
-      "definition": "Sum of individually observed post counters; cohort fixed to exact IDs in this dataset.",
+      "definition": "Sum of individually observed post counters for the 33 listed posts. One earlier post was excluded for privacy, and this snapshot was recalculated from the same capture.",
       "include_in_snapshot": true,
       "source_url": "https://www.youtube.com/@DTRTLabYT",
       "points": [
         {
           "captured_at": "2026-10-09T22:17:00-04:00",
           "capture_started_at": "2026-10-09T22:15:00-04:00",
-          "views": 12060,
+          "views": 12058,
           "interactions": null,
           "method": "Saved native platform inventory, Oct 9 audit",
           "posts": [
@@ -61,10 +60,6 @@
             {
               "id": "7owx3ck3vRY",
               "views": 54
-            },
-            {
-              "id": "6pnFUd1_TT4",
-              "views": 2
             },
             {
               "id": "NRlRvR-zZtE",
