@@ -110,8 +110,10 @@ function setCommunityAvailability() {
   document.querySelectorAll("[data-community-link]").forEach(function (link) {
     link.hidden = true;
   });
-  document.getElementById("xh-form-title").textContent = "Preview a code from a clip";
-  document.getElementById("xh-submit").textContent = "Preview on this device";
+  const title = document.getElementById("xh-form-title") || document.querySelector("#xh-form h3");
+  const submit = document.getElementById("xh-submit") || document.querySelector('#xh-form button[type="submit"]');
+  if (title) title.textContent = "Preview a code from a clip";
+  if (submit) submit.textContent = "Preview on this device";
 }
 
 async function refreshBoard() {
