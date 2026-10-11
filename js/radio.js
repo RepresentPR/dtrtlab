@@ -1,6 +1,5 @@
 (function () {
   var AFTERLIGHT = [
-    { title: "Antes que crezcas", src: "audio/radios/antes-que-crezcas.mp3" },
     { title: "La isla recuerda", src: "audio/radios/la-isla-recuerda.mp3" },
     { title: "La Silla Vacía", src: "audio/radios/la-silla-vacia.mp3" },
     { title: "No firmé pa’ esto", src: "audio/radios/no-firme-pa-esto.mp3" },
