@@ -14,3 +14,5 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
 .lifetime{border-top:1px solid var(--line,#333);padding:28px 0;margin-bottom:24px}.lifetime .metric-note{max-width:75ch}.highlights-section h3{margin-top:28px}
+
+.published-row{display:block}
