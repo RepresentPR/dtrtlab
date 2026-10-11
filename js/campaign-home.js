@@ -20,7 +20,7 @@
   function time(value) { return typeof value === 'string' && Number.isFinite(Date.parse(value)) ? Date.parse(value) : null; }
   function metric(raw, target) {
     var value = raw && raw.status === 'verified' ? amount(raw.value) : null;
-    return { value: value, target: target, progress: value === null ? null : Math.min(100, value / target * 100) };
+    return { value: value, target: target, progress: value === null ? null : Math.min(100, value / target * 100), note: cleanText(raw && raw.note, 180) };
   }
   function createViewModel(data, now) {
     data = data && typeof data === 'object' ? data : {};
@@ -73,7 +73,7 @@
       var bar = doc.getElementById(name + '-progress');
       bar.hidden = reading.progress === null;
       if (reading.progress !== null) bar.value = reading.progress;
-      set(name + '-note', reading.value === null ? (isMoney ? 'Payment records not connected yet.' : 'Baseline pending. No gain claimed yet.') : (isMoney ? 'Confirmed campaign receipts, net of recorded refunds.' : 'Added views since the campaign baseline.'));
+      set(name + '-note', reading.note || (reading.value === null ? (isMoney ? 'Payment records not connected yet.' : 'Baseline pending. No gain claimed yet.') : (isMoney ? 'Confirmed campaign receipts, net of recorded refunds.' : 'Added views since the campaign baseline.')));
     }
     function render(data) {
       var view = createViewModel(data);
