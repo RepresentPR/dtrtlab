@@ -1,10 +1,10 @@
 /* DTRT Lab service worker.
-   Cache name and ?v= query strings share one version so a new deploy
-   drops the old cache. GitHub Pages cannot set Cache-Control.
+   A new cache name drops old cached files; revised script URLs use a new
+   ?v= key. GitHub Pages cannot set Cache-Control.
    HTML is network-first (updates roll out). Other same-origin files
    are stale-while-revalidate. JSON and third parties are not cached.
 */
-var VERSION = "20261011-privacy1";
+var VERSION = "20261011-credibility1";
 var CACHE = "dtrtlab-" + VERSION;
 var PRECACHE = [
   "/",
@@ -19,10 +19,7 @@ var PRECACHE = [
   "/faq.html",
   "/game.html",
   "/history.html",
-  "/legal/preorder-terms.html",
   "/legal/privacy.html",
-  "/legal/refunds.html",
-  "/legal/terms.html",
   "/media.html",
   "/news.html",
   "/preorder.html",
@@ -43,14 +40,13 @@ var PRECACHE = [
   "/css/adapt.css?v=20261010n",
   "/css/hub.css?v=20261010n",
   "/css/afterlight.css?v=20261010n",
-  "/js/nav.js?v=20261011-hub2",
+  "/js/nav.js?v=20261011-credibility1",
   "/js/hub.js?v=20261010n",
-  "/js/analytics.js?v=20261010n",
+  "/js/analytics.js?v=20261011-credibility1",
   "/js/product.js?v=20261010n",
   "/js/media.js?v=20261010n",
   "/js/content.js?v=20261010n",
   "/js/forms.js?v=20261010n",
-  "/js/radio.js?v=20261010n",
   "/js/afterlight.js?v=20261010n",
   "/js/releases.js?v=20261010n",
   "/content/clips.js?v=20261010n",
@@ -62,7 +58,7 @@ var PRECACHE = [
   "/css/editorial.css?v=20261011-hub2",
   "/css/identity.css?v=20261010n",
   "/css/experience.css?v=20261010n",
-  "/js/experience.js?v=20261010n",
+  "/js/experience.js?v=20261011-credibility1",
   "/img/brand/mark.svg",
   "/img/brand/dtrt-avatar.png",
   "/img/brand/dtrt-social.png",

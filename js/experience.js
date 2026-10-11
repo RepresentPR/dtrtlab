@@ -24,9 +24,9 @@ if(!reduced.matches&&'IntersectionObserver'in window){const observer=new Interse
 const hero=home?document.querySelector('.hero'):null;if(hero){const visual=document.createElement('div');visual.className='orbital-scene';visual.setAttribute('aria-hidden','true');visual.innerHTML='<div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="orbit orbit-c"></div><div class="orb-core"></div>';hero.prepend(visual);const eyebrow=hero.querySelector('.eyebrow');if(eyebrow)eyebrow.textContent='Every round has a turning point.';const hint=document.createElement('a');hint.className='scene-cue';hint.href='#clips';hint.textContent='Find your next moment ↓';hero.append(hint);}
 const hooks={
 '/afterlight.html':['DTRT / AFTERLIGHT','The island remembers. Will you?'],
-'/radio.html':['DTRT / SOUND','A different frequency. Press play.'],
-'/live/':['DTRT / LIVE ROOM','The next moment starts with the people here.'],
-'/support.html':['DTRT / COMMUNITY','Help shape what happens next.'],
+'/radio.html':['DTRT / SOUND','Audio previews are paused.'],
+'/live/':['DTRT / RESULTS','Saved results, open to inspect.'],
+'/support.html':['DTRT / COMMUNITY','Support the work you can see.'],
 '/partners.html':['DTRT / PARTNERSHIPS','Make something worth paying attention to.'],
 '/catalog.html':['DTRT / EXPLORE','Choose your next world.'],
 '/story.html':['DTRT / STORIES','Every place holds a story. Step inside.']};

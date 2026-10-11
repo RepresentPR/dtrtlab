@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../css/fonts.css?v=20261010n">
   <link rel="stylesheet" href="../css/lab.css?v=20261010n">
   <link rel="stylesheet" href="../css/adapt.css?v=20261010n">
+  <style>#analytics-allow[hidden],#analytics-withdraw[hidden]{display:none!important}</style>
 
 
 
@@ -30,14 +31,22 @@
         <tr><th>Cookies and storage</th><td>No DTRT Lab cookie is required to read the site. An analytics choice may be saved in your browser. If you allow Google Analytics, Google may set cookies. External players may use their own storage. Heatmaps and session replay are not used.</td></tr>
         <tr><th>Plausible</th><td>Cookieless counts on dtrtlab.com cover pages, referrers, device categories, outbound links, downloads, and named link or form-intent clicks. Form text is not sent as an analytics event. No ad-network script or sale of visitor data is used.</td></tr>
         <tr><th>Google Analytics</th><td>Optional. Its script loads only after you select Allow Google. It is used for visit, page, source, and event reports. The site configures IP anonymization and turns off Google Signals and ad personalization. See the <a href="https://policies.google.com/privacy" rel="noopener noreferrer" target="_blank">Google Privacy Policy</a>.</td></tr>
-        <tr><th>Analytics choices</th><td>Select No Google cookies to decline Google Analytics. If your browser sends Global Privacy Control or Do Not Track, this site loads neither Plausible nor Google Analytics. These choices do not prevent external players or font services from loading on pages that use them. Clear site data to reset the saved Google choice.</td></tr>
+        <tr><th>Analytics choices</th><td>Select No Google cookies to decline Google Analytics. You can change or withdraw a saved Google Analytics choice below. If your browser sends Global Privacy Control or Do Not Track, this site loads neither Plausible nor Google Analytics. These choices do not prevent external players or font services from loading on pages that use them.</td></tr>
         <tr><th>External services</th><td>The live showcase embeds a Twitch player and chat. Some other pages load Twitch or YouTube players after interaction or when a stream is live, and some query DecAPI or Kick for public stream status. The CS2 and tab pages load Google Fonts. Those services may receive your IP address and browser information and may use their own storage under their policies. Following a social, support, or other external link takes you to that service.</td></tr>
         <tr><th>Search Console</th><td>If connected, Google already has search queries as the search engine. We may view impressions, clicks, and queries. That is not a script on this page.</td></tr>
         <tr><th>Sale</th><td>No. We do not sell personal information.</td></tr>
       </table>
+      <div class="card pad" aria-labelledby="analytics-choices-title">
+        <h2 id="analytics-choices-title">Google Analytics choice</h2>
+        <p id="analytics-status" role="status">Checking your saved choice…</p>
+        <div class="actions">
+          <button type="button" class="cta" id="analytics-allow" hidden>Allow Google Analytics</button>
+          <button type="button" class="cta ghost" id="analytics-withdraw" hidden>Turn off Google Analytics</button>
+        </div>
+      </div>
     </div>
   </section>
   <footer id="site-foot"></footer>
-  <script defer src="../js/nav.js?v=20261011-hub2"></script>
-<script src="/js/experience.js?v=20261010n" defer></script></body>
+  <script defer src="../js/nav.js?v=20261011-credibility1"></script>
+<script src="/js/experience.js?v=20261011-credibility1" defer></script></body>
 </html>
