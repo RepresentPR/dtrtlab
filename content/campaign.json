@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-11T18:45:53.765474Z",
+  "capturedAt": "2026-10-11T19:22:53.773257Z",
   "campaign": {
     "name": "Growth. $0 new spend.",
     "startAt": "2026-10-11T06:28:12Z",
@@ -120,10 +120,22 @@
   },
   "operations": {
     "activePosts": 7,
-    "scheduledPosts": 10,
+    "scheduledPosts": 8,
     "cap": 17,
-    "runwayDays": 7.884794381087962,
-    "queueVerifiedAt": "2026-10-11T18:45:09.796438Z"
+    "runwayDays": 0.11068141203703703,
+    "queueVerifiedAt": "2026-10-11T19:20:37.126Z",
+    "planningHorizonHours": 24,
+    "targetSpacingHours": 2,
+    "requiredPlatforms": [
+      "YouTube",
+      "Instagram",
+      "TikTok",
+      "X"
+    ],
+    "optionalPlatforms": [
+      "Ko-fi"
+    ],
+    "completeScheduledDrops": 2
   },
   "highlights": [
     {
@@ -171,62 +183,66 @@
     {
       "title": "Knife round got crowded",
       "platform": "YouTube",
-      "scheduledAt": "2026-10-15T16:00:00Z",
-      "status": "scheduled"
+      "scheduledAt": "2026-10-11T20:00:00Z",
+      "status": "scheduled",
+      "groupId": "knife-20261011",
+      "verifiedAt": "2026-10-11T19:19:13Z"
     },
     {
       "title": "Knife round got crowded",
       "platform": "Instagram",
-      "scheduledAt": "2026-10-15T16:00:00Z",
-      "status": "scheduled"
+      "scheduledAt": "2026-10-11T20:00:00Z",
+      "status": "scheduled",
+      "groupId": "knife-20261011",
+      "verifiedAt": "2026-10-11T19:19:13Z"
     },
     {
       "title": "Knife round got crowded",
       "platform": "TikTok",
-      "scheduledAt": "2026-10-15T16:00:00Z",
-      "status": "scheduled"
+      "scheduledAt": "2026-10-11T20:00:00Z",
+      "status": "scheduled",
+      "groupId": "knife-20261011",
+      "verifiedAt": "2026-10-11T19:19:13Z"
     },
     {
       "title": "Knife round got crowded",
       "platform": "X",
-      "scheduledAt": "2026-10-15T16:00:00Z",
-      "status": "scheduled"
-    },
-    {
-      "title": "Knife round got crowded",
-      "platform": "Ko-fi \u00b7 watch link",
-      "scheduledAt": "2026-10-15T16:00:00Z",
-      "status": "scheduled"
+      "scheduledAt": "2026-10-11T20:00:00Z",
+      "status": "scheduled",
+      "groupId": "knife-20261011",
+      "verifiedAt": "2026-10-11T19:19:13Z"
     },
     {
       "title": "The door was already covered",
       "platform": "YouTube",
-      "scheduledAt": "2026-10-19T16:00:00Z",
-      "status": "scheduled"
+      "scheduledAt": "2026-10-11T22:00:00Z",
+      "status": "scheduled",
+      "groupId": "door-20261011",
+      "verifiedAt": "2026-10-11T19:19:13Z"
     },
     {
       "title": "The door was already covered",
       "platform": "Instagram",
-      "scheduledAt": "2026-10-19T16:00:00Z",
-      "status": "scheduled"
+      "scheduledAt": "2026-10-11T22:00:00Z",
+      "status": "scheduled",
+      "groupId": "door-20261011",
+      "verifiedAt": "2026-10-11T19:19:13Z"
     },
     {
       "title": "The door was already covered",
       "platform": "TikTok",
-      "scheduledAt": "2026-10-19T16:00:00Z",
-      "status": "scheduled"
+      "scheduledAt": "2026-10-11T22:00:00Z",
+      "status": "scheduled",
+      "groupId": "door-20261011",
+      "verifiedAt": "2026-10-11T19:19:13Z"
     },
     {
       "title": "The door was already covered",
       "platform": "X",
-      "scheduledAt": "2026-10-19T16:00:00Z",
-      "status": "scheduled"
-    },
-    {
-      "title": "The door was already covered",
-      "platform": "Ko-fi \u00b7 watch link",
-      "scheduledAt": "2026-10-19T16:00:00Z",
-      "status": "scheduled"
+      "scheduledAt": "2026-10-11T22:00:00Z",
+      "status": "scheduled",
+      "groupId": "door-20261011",
+      "verifiedAt": "2026-10-11T19:19:13Z"
     }
   ],
   "evidenceNotes": [
@@ -236,8 +252,8 @@
     "Partial added total: 430 YouTube and 131 Instagram matched-counter gains plus 1080 cumulative views on five campaign-created posts. The total rose 173 across the same tracked components; native sources were observed at different times. Startup counts may include operator verification. No creative winner or organic attribution is established.",
     "The fixed opening baseline is 14,895 YouTube Shorts views and 13,337 Instagram Reel views, measured at 2:51-2:53 AM Eastern. The 23-minute start-to-baseline gap remains unmeasured. Negative native corrections are retained.",
     "Anubis is verified public on YouTube, Instagram, TikTok, X and Ko-fi. Lab File 003 is public on YouTube. The common planned release was 12:05 PM Eastern; native precision and processing vary. Ko-fi shows only a date, so its exact publication time is unknown.",
-    "Next cloud releases: Knife on October 15 at noon Eastern and Door on October 19 at noon Eastern, each on five platforms. Ten future schedules + seven active posts = 17/17. Grouped releases replace daily staggered posts; public archives stay available.",
-    "Ko-fi Anubis includes a verified playable YouTube embed. Future Ko-fi posts contain watch links; native embeds can follow verified YouTube publication. Schedules alone do not prove publication.",
+    "Next verified cloud drops: Knife on October 11 at 4 PM Eastern and Door at 6 PM Eastern, each on YouTube, Instagram, TikTok and X. Eight future schedules plus seven active posts = 15/17. Plan only the next 24 hours; the two-hour target depends on quality, capacity and provider readiness.",
+    "Ko-fi Anubis retains its verified playable YouTube embed. Optional Knife/Door schedules were moved to recoverable drafts. Planned times are not actual publication times; no duplicate posts were created.",
     "New timed publications have 4/24/72/168-hour review jobs. First new four-hour checks are due around 4:05 PM Eastern. Ko-fi has a separate conservative observation review around 4:17 PM until its exact time is available. No new winner is established.",
     "Revenue remains unknown pending reconciled payment and refund evidence. Ko-fi financial setup still requests owner location confirmation. Clicks, enquiries and public goal meters are not receipts.",
     "Recorded new spend is $0. Existing equipment, subscriptions and historical promotions are outside this figure. Historical views are not attributed to zero new spend.",

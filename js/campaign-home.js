@@ -2,7 +2,7 @@
   'use strict';
   var api = factory();
   if (typeof module === 'object' && module.exports) module.exports = api;
-  if (root && root.document) api.start(root.document, root);
+  if (root && root.document) { root.DtrtCampaign = api; api.start(root.document, root); }
 })(typeof window === 'undefined' ? null : window, function () {
   'use strict';
   var SITE = 'https://dtrtlab.com';
@@ -40,12 +40,27 @@
     }).slice(0, 5).map(function (entry) {
       return { title: cleanText(entry.title), platform: cleanText(entry.platform, 40), url: safeUrl(entry.url), reason: cleanText(entry.reason, 220), reviewedAt: entry.reviewedAt };
     });
-    var queue = (Array.isArray(data.queue) ? data.queue : []).filter(function (entry) {
+    var allUpcoming = (Array.isArray(data.queue) ? data.queue : []).filter(function (entry) {
       return entry && entry.status === 'scheduled' && cleanText(entry.title) && time(entry.scheduledAt) !== null && time(entry.scheduledAt) >= now;
     }).sort(function (a, b) { return time(a.scheduledAt) - time(b.scheduledAt); }).map(function (entry) {
-      return { title: cleanText(entry.title), platform: cleanText(entry.platform, 40), scheduledAt: entry.scheduledAt };
+      return { groupId: cleanText(entry.groupId, 120), title: cleanText(entry.title), platform: cleanText(entry.platform, 40), scheduledAt: entry.scheduledAt };
     });
-    var runwayDays = queue.length ? Math.max(0, (time(queue[queue.length - 1].scheduledAt) - now) / 86400000) : 0;
+    var queue = allUpcoming.filter(function (entry) { return time(entry.scheduledAt) <= now + 86400000; });
+    var required = ['YouTube', 'Instagram', 'TikTok', 'X'];
+    var aliases = { youtube: 'YouTube', instagram: 'Instagram', 'instagram-standalone': 'Instagram', tiktok: 'TikTok', 'tiktok-business': 'TikTok', x: 'X' };
+    var groups = [], grouped = new Map();
+    allUpcoming.forEach(function (entry) { if (entry.groupId) { if (!grouped.has(entry.groupId)) grouped.set(entry.groupId, []); grouped.get(entry.groupId).push(entry); } });
+    grouped.forEach(function (members, groupId) {
+      var main = members.filter(function (entry) { return required.includes(aliases[entry.platform.toLowerCase()]); });
+      var complete = main.length === 4 && required.every(function (platform) { return main.filter(function (entry) { return aliases[entry.platform.toLowerCase()] === platform; }).length === 1; });
+      if (!complete || !main.every(function (entry) { return time(entry.scheduledAt) === time(main[0].scheduledAt) && time(entry.scheduledAt) <= now + 86400000; })) return;
+      var visible = members.filter(function (entry) { return time(entry.scheduledAt) === time(main[0].scheduledAt); });
+      groups.push({ groupId: groupId, title: main[0].title, scheduledAt: main[0].scheduledAt, platforms: Array.from(new Set(visible.map(function (entry) { return aliases[entry.platform.toLowerCase()] || entry.platform; }))) });
+    });
+    groups.sort(function (a, b) { return time(a.scheduledAt) - time(b.scheduledAt); });
+    var completeDates = new Map(groups.map(function (group) { return [group.groupId, time(group.scheduledAt)]; }));
+    var incompleteQueue = queue.filter(function (entry) { return completeDates.get(entry.groupId) !== time(entry.scheduledAt); });
+    var runwayDays = allUpcoming.length ? Math.max(0, (time(allUpcoming[allUpcoming.length - 1].scheduledAt) - now) / 86400000) : 0;
     return {
       capturedAt: captured === null ? null : new Date(captured).toISOString(),
       freshness: captured === null ? 'unknown' : now - captured > 21600000 ? 'stale' : 'recent',
@@ -54,8 +69,8 @@
       views: metric((data.results || {}).views, amount(campaign.viewsGoal) || 250000, now),
       revenue: metric((data.results || {}).revenue, amount(campaign.revenueGoalUsd) || 10000, now),
       spend: { newAuthorizedUsd: 0, newVerifiedUsd: amount((data.spend || {}).newVerifiedUsd) },
-      operations: { active: active, scheduled: scheduled, used: active === null || scheduled === null ? null : active + scheduled, cap: 17, overCapacity: active !== null && scheduled !== null && active + scheduled > 17, runwayDays: runwayDays, runwayVerified: queueFreshness === 'recent', queueFreshness: queueFreshness, queueVerifiedAt: queueTime === null ? null : new Date(queueTime).toISOString() },
-      highlights: highlights, queue: queue.slice(0, 17),
+      operations: { active: active, scheduled: scheduled, used: active === null || scheduled === null ? null : active + scheduled, cap: 17, overCapacity: active !== null && scheduled !== null && active + scheduled > 17, runwayDays: runwayDays, runwayVerified: queueFreshness === 'recent', queueFreshness: queueFreshness, queueVerifiedAt: queueTime === null ? null : new Date(queueTime).toISOString(), planningHorizonHours: 24, targetSpacingHours: 2, completeDrops: groups.length, outsideHorizonPosts: allUpcoming.length - queue.length },
+      highlights: highlights, queue: queue, groups: groups, incompleteQueue: incompleteQueue,
       evidenceNotes: (Array.isArray(data.evidenceNotes) ? data.evidenceNotes : []).map(function (note) { return cleanText(note, 500); }).filter(Boolean).slice(0, 12)
     };
   }
@@ -64,7 +79,6 @@
     var number = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
     var money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 });
     var moneyGoal = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
-    var days = new Intl.NumberFormat('en-US', { maximumFractionDigits: 1 });
     var date = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York', timeZoneName: 'short' });
     var lastData = null, busy = false;
     function set(id, text) { var node = doc.getElementById(id); if (node) node.textContent = text; }
@@ -99,7 +113,8 @@
       set('spend-note', (view.spend.newVerifiedUsd === null ? 'Actual new spend: verification pending.' : 'Verified new spend: ' + money.format(view.spend.newVerifiedUsd) + '.') + ' This is a campaign budget, not an all-time cost claim.');
       set('roster-count', (view.operations.used === null ? '—' : number.format(view.operations.used)) + ' / 17');
       set('roster-detail', 'Saved: ' + (view.operations.active === null ? 'unknown' : number.format(view.operations.active)) + ' active · ' + (view.operations.scheduled === null ? 'unknown' : number.format(view.operations.scheduled)) + ' scheduled' + (view.operations.queueVerifiedAt ? ' · as of ' + dateLabel(view.operations.queueVerifiedAt) : ' · reconciliation pending'));
-      set('runway-count', days.format(Math.floor(view.operations.runwayDays * 10) / 10) + ' days');
+      set('runway-count', number.format(view.operations.completeDrops) + ' complete ' + (view.operations.completeDrops === 1 ? 'drop' : 'drops'));
+      set('plan-detail', 'Next 24 hours · target every 2 hours when quality and the 17-post cap permit. Ko-fi is optional.');
       set('queue-verification', view.operations.queueFreshness === 'stale' ? 'Saved schedule · checked ' + dateLabel(view.operations.queueVerifiedAt) + ' · over 6 hours old' : view.operations.queueVerifiedAt ? 'Saved schedule · checked ' + dateLabel(view.operations.queueVerifiedAt) : 'Saved schedule · queue verification pending');
       doc.getElementById('queue-verification').classList.toggle('warning', view.operations.queueFreshness === 'stale');
       set('roster-rule', view.operations.overCapacity ? 'Capacity exceeded. Publishing must pause until the roster is reconciled.' : '17 is the ceiling, never a quota. An empty spot is better than a weak clip.');
@@ -116,12 +131,15 @@
         var arrow = element('span', 'arrow', '↗'); arrow.setAttribute('aria-hidden', 'true'); row.append(element('span', 'highlight-number', String(index + 1).padStart(2, '0')), words, arrow); highlights.appendChild(row);
       });
       var queue = doc.getElementById('queue-list'); queue.replaceChildren();
-      if (!view.queue.length) queue.appendChild(element('p', '', 'No upcoming posts in the saved queue. Publishing results must be checked before occupied spots are released.'));
+      if (!view.queue.length) queue.appendChild(element('p', '', 'No scheduled posts in the next 24 hours. All saved reservations still count toward capacity until reconciled.'));
       else {
         var list = element('ul', 'queue-list');
-        view.queue.forEach(function (post) { var row = element('li'), words = element('span', '', post.title), when = element('time', '', dateLabel(post.scheduledAt)); when.dateTime = post.scheduledAt; words.appendChild(element('span', 'platform', post.platform)); row.append(words, when); list.appendChild(row); });
+        view.groups.forEach(function (group) { var row = element('li'), words = element('span', '', group.title), when = element('time', '', dateLabel(group.scheduledAt)); when.dateTime = group.scheduledAt; words.appendChild(element('span', 'platform', group.platforms.join(' · '))); row.append(words, when); list.appendChild(row); });
+        if (view.incompleteQueue.length) queue.appendChild(element('p', '', view.incompleteQueue.length + ' saved platform posts do not form a complete four-platform drop.'));
+        view.incompleteQueue.forEach(function (post) { var row = element('li'), words = element('span', '', post.title), when = element('time', '', dateLabel(post.scheduledAt)); when.dateTime = post.scheduledAt; words.appendChild(element('span', 'platform', post.platform + ' · incomplete drop')); row.append(words, when); list.appendChild(row); });
         queue.appendChild(list);
       }
+      if (view.operations.outsideHorizonPosts) queue.appendChild(element('p', '', view.operations.outsideHorizonPosts + ' later scheduled posts remain counted in saved capacity outside this 24-hour display.'));
     }
     async function refresh() {
       if (busy || doc.hidden) return;

@@ -948,5 +948,210 @@
       "decision": "Inconclusive: possible operator contribution; excluded from campaign growth."
     }
   ],
-  "coverage": "88 public records plus six private/unlisted YouTube records counted only in the aggregate: 94 measured posts. Historical YouTube coverage is not campaign growth. Source timestamps differ. YouTube Live archives, X, Twitch, FACEIT and unavailable archives remain unmeasured."
+  "coverage": "88 public records plus six private/unlisted YouTube records counted only in the aggregate: 94 measured posts. Historical YouTube coverage is not campaign growth. Source timestamps differ. YouTube Live archives, X, Twitch, FACEIT and unavailable archives remain unmeasured.",
+  "learningAudits": [
+    {
+      "observedAt": "2026-10-11T15:01:14.433902+00:00",
+      "window": "YouTube channel, September13\u2013October10,2026",
+      "periodViews": 15037,
+      "watchHours": 22.8,
+      "netSubscribers": 2,
+      "realtime48hViews": 4215,
+      "previousScreenshot48hViews": 4320,
+      "decision": "Views and retention select different candidates. Test direct continuous action; do not declare a winning format from period totals.",
+      "observations": [
+        {
+          "title": "Come On, Code",
+          "periodViews": 1917,
+          "averageWatchSeconds": 17,
+          "averagePercentageViewed": 68.8
+        },
+        {
+          "title": "Lurk King",
+          "periodViews": 1590,
+          "averageWatchSeconds": 11,
+          "averagePercentageViewed": 79.8
+        },
+        {
+          "title": "Not the Molly",
+          "periodViews": 988,
+          "averageWatchSeconds": 15,
+          "averagePercentageViewed": 81.1
+        },
+        {
+          "title": "I Did the Same Thing as Skitz",
+          "periodViews": 1143,
+          "averageWatchSeconds": 11,
+          "averagePercentageViewed": 59.1
+        }
+      ],
+      "limits": [
+        "Selected-period views are not lifetime totals or publication-age windows",
+        "Top-content selection is biased; audience and distribution are not equalized",
+        "Rolling48h total fell105; expiry and revisions can contribute, not proof of failure",
+        "Exact daily final value and traffic sources not collected"
+      ],
+      "test": "Approved direct-exchange variant after control 24h checkpoint; no duplicate render",
+      "nextAuditDueAt": "2026-10-11T19:00:00Z"
+    },
+    {
+      "kind": "initial_weekly_assessment",
+      "completedAt": "2026-10-11T18:50:02.500752Z",
+      "sourceObservedFrom": "2026-10-11T11:25:55.340Z",
+      "sourceObservedThrough": "2026-10-11T17:31:04.869Z",
+      "window": "Initial synthesis of dated post observations and the September 13 through October 10 YouTube report; no matched weekly series collected.",
+      "decision": "Inconclusive. Keep the existing direct-exchange opening test; no winning format or week-over-week trend established.",
+      "bottleneck": "The control loses the most viewers around two seconds. Immediate action is a hypothesis to test, not a proven remedy.",
+      "test": "Use the already approved 7.85-second direct-exchange variant after the control 24-hour checkpoint. Keep the control wording, layout and replay disclosure.",
+      "evaluation": "Compare supported same-age native retention, average watch, views and followers at actual publication +4/24/72/168 hours. Runtime and sequential audiences limit interpretation.",
+      "limits": [
+        "No two completed comparable seven-day windows were collected.",
+        "Period views, lifetime totals and publication-age metrics have different scopes.",
+        "A shorter runtime can raise completion percentage without improving absolute watch time.",
+        "No verified receipts or paid/organic attribution; no creative winner established."
+      ],
+      "nextGraphAuditDueAt": "2026-10-11T19:00:00Z",
+      "nextWeeklyReviewDueAt": "2026-10-18T13:00:00Z"
+    },
+    {
+      "kind": "four_hour_channel_graph_audit",
+      "scheduledAuditAt": "2026-10-11T19:00:00Z",
+      "observedAt": "2026-10-11T19:13:52.409Z",
+      "completedAt": "2026-10-11T19:22:53.773257Z",
+      "window": "YouTube channel, September 13-October 10, 2026; native Last 28 days label",
+      "periodViews": 15037,
+      "watchHours": 22.8,
+      "netSubscribers": 2,
+      "realtime48hViews": 4379,
+      "observations": [
+        {
+          "rank": 1,
+          "title": "Come On, Code. (Lab File 001) #Shorts",
+          "publicationDateDisplay": "Oct 9, 2026",
+          "periodViews": 1917,
+          "averageWatchSeconds": 17,
+          "averagePercentageViewed": 68.8,
+          "metricWindow": "September 13-October 10, 2026",
+          "titleNormalization": "Emoji/punctuation simplified for readable structured labels; exact native text preserved in raw evidence."
+        },
+        {
+          "rank": 2,
+          "title": "Lurk King. (Lab File 001) #Shorts",
+          "publicationDateDisplay": "Oct 9, 2026",
+          "periodViews": 1590,
+          "averageWatchSeconds": 11,
+          "averagePercentageViewed": 79.8,
+          "metricWindow": "September 13-October 10, 2026",
+          "titleNormalization": "Emoji/punctuation simplified for readable structured labels; exact native text preserved in raw evidence."
+        },
+        {
+          "rank": 3,
+          "title": "Skitz Hit the Ladder. 200 IQ, 0 Aim (Lab File 001) #Shorts",
+          "publicationDateDisplay": "Oct 9, 2026",
+          "periodViews": 1255,
+          "averageWatchSeconds": 11,
+          "averagePercentageViewed": 71.9,
+          "metricWindow": "September 13-October 10, 2026",
+          "titleNormalization": "Emoji/punctuation simplified for readable structured labels; exact native text preserved in raw evidence."
+        },
+        {
+          "rank": 4,
+          "title": "26,500 ELO? (Unverified) | Lab File 001 #Shorts",
+          "publicationDateDisplay": "Oct 9, 2026",
+          "periodViews": 1178,
+          "averageWatchSeconds": 11,
+          "averagePercentageViewed": 70.6,
+          "metricWindow": "September 13-October 10, 2026",
+          "titleNormalization": "Emoji/punctuation simplified for readable structured labels; exact native text preserved in raw evidence."
+        },
+        {
+          "rank": 5,
+          "title": "I Did the Same Thing as Skitz (Lab File 001) #Shorts",
+          "publicationDateDisplay": "Oct 9, 2026",
+          "periodViews": 1143,
+          "averageWatchSeconds": 11,
+          "averagePercentageViewed": 59.1,
+          "metricWindow": "September 13-October 10, 2026",
+          "titleNormalization": "Emoji/punctuation simplified for readable structured labels; exact native text preserved in raw evidence."
+        },
+        {
+          "rank": 6,
+          "title": "No Way I Lose the 3v1 (I Lost) #Shorts",
+          "publicationDateDisplay": "Oct 8, 2026",
+          "periodViews": 1142,
+          "averageWatchSeconds": 10,
+          "averagePercentageViewed": 71.6,
+          "metricWindow": "September 13-October 10, 2026",
+          "titleNormalization": "Emoji/punctuation simplified for readable structured labels; exact native text preserved in raw evidence."
+        },
+        {
+          "rank": 7,
+          "title": "Yo Dog, You're Insane. (Lab File 001) #Shorts",
+          "publicationDateDisplay": "Oct 9, 2026",
+          "periodViews": 1129,
+          "averageWatchSeconds": 10,
+          "averagePercentageViewed": 71.8,
+          "metricWindow": "September 13-October 10, 2026",
+          "titleNormalization": "Emoji/punctuation simplified for readable structured labels; exact native text preserved in raw evidence."
+        },
+        {
+          "rank": 8,
+          "title": "One. One More. CS2 Last Guy Alive #Shorts",
+          "publicationDateDisplay": "Oct 9, 2026",
+          "periodViews": 994,
+          "averageWatchSeconds": 13,
+          "averagePercentageViewed": 76.6,
+          "metricWindow": "September 13-October 10, 2026",
+          "titleNormalization": "Emoji/punctuation simplified for readable structured labels; exact native text preserved in raw evidence."
+        },
+        {
+          "rank": 9,
+          "title": "Not the Molly. (Lab File 001) #Shorts",
+          "publicationDateDisplay": "Oct 9, 2026",
+          "periodViews": 988,
+          "averageWatchSeconds": 15,
+          "averagePercentageViewed": 81.1,
+          "metricWindow": "September 13-October 10, 2026",
+          "titleNormalization": "Emoji/punctuation simplified for readable structured labels; exact native text preserved in raw evidence."
+        },
+        {
+          "rank": 10,
+          "title": "The Queue Is Cursed #Shorts",
+          "publicationDateDisplay": "Oct 8, 2026",
+          "periodViews": 715,
+          "averageWatchSeconds": 14,
+          "averagePercentageViewed": 58.8,
+          "metricWindow": "September 13-October 10, 2026",
+          "titleNormalization": "Emoji/punctuation simplified for readable structured labels; exact native text preserved in raw evidence."
+        }
+      ],
+      "limits": [
+        "Selected period ends October10 and excludes today's new release; unchanged selected-period totals do not mean zero current growth.",
+        "Top-content rows are selected by period views; unequal duration, age and exposure prevent a causal format ranking. Average percentage viewed is not watched-full percentage.",
+        "Reported whole-second average duration and one-decimal percentages are display precision, not exact underlying values.",
+        "Native channel watch-time description includes public, private, unlisted and deleted videos; its scope differs from the public inventory.",
+        "Exact daily final-point values, full retention curves, traffic-source breakdown, new-viewer/returning-viewer split and matched weekly comparisons were not collected.",
+        "Realtime figures are rolling and updating live; compare with their own timestamps rather than campaign cumulative totals.",
+        "No winning format, attribution, revenue, source-rights or exact simultaneous-publication conclusion follows from this graph."
+      ],
+      "nextAuditDueAt": "2026-10-11T23:00:00Z",
+      "decision": "Inconclusive. Keep the single direct-exchange test; no winning format established.",
+      "test": "Approved 7.85-second direct-exchange variant after control 24h review; no new variant commissioned.",
+      "bottleneck": "Control retention drops around two seconds in separately dated native evidence. Immediate action remains a hypothesis; the selected YouTube period excludes today.",
+      "rolling48hComparison": {
+        "previous": 4215,
+        "current": 4379,
+        "difference": 164,
+        "note": "Moving-window change is not interval-earned views; expiry, processing and revisions can contribute."
+      },
+      "latestEpisodePre4h": {
+        "observedAt": "2026-10-11T19:13:52.409Z",
+        "views": 6,
+        "thumbnailCtrPercent": 0.7,
+        "averageViewSeconds": 6,
+        "source": "YouTube overview Latest content card",
+        "note": "Different surface from inventory; not included in lifetime/added totals or completed post review."
+      }
+    }
+  ]
 }

@@ -48,10 +48,10 @@ test('only approved dated highlights on allowed destinations appear', () => {
   assert.equal(model.safeUrl('https://www.youtube.com@attacker.test/abc'), null);
   assert.equal(model.safeUrl('/clips/#lurk-king'), 'https://dtrtlab.com/clips/#lurk-king');
 });
-test('queue lists only upcoming scheduled entries in time order', () => {
+test('queue lists upcoming scheduled entries within24h in time order', () => {
   const view = model.createViewModel(campaign({ queue: [
-    { title: 'Later', platform: 'Instagram', scheduledAt: '2026-10-13T12:00:00Z', status: 'scheduled' },
-    { title: 'Earlier', platform: 'YouTube', scheduledAt: '2026-10-12T12:00:00Z', status: 'scheduled' },
+    { title: 'Later', platform: 'Instagram', scheduledAt: '2026-10-12T12:00:00Z', status: 'scheduled' },
+    { title: 'Earlier', platform: 'YouTube', scheduledAt: '2026-10-11T18:00:00Z', status: 'scheduled' },
     { title: 'Draft', platform: 'YouTube', scheduledAt: '2026-10-12T12:00:00Z', status: 'draft' },
     { title: 'Past', platform: 'YouTube', scheduledAt: '2026-10-10T12:00:00Z', status: 'scheduled' }
   ] }), now);
