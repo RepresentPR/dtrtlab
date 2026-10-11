@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-11T11:28:44.117125Z",
+  "capturedAt": "2026-10-11T12:26:43.998716Z",
   "campaign": {
     "name": "Growth. $0 new spend.",
     "startAt": "2026-10-11T06:28:12Z",
@@ -10,31 +10,31 @@
   },
   "results": {
     "views": {
-      "value": 543,
+      "value": 597,
       "status": "verified",
-      "observedAt": "2026-10-11T11:26:22.474Z",
-      "note": "Partial count: 279 on the new TikTok clip, plus 246 YouTube and 18 Instagram views since their opening counters.",
+      "observedAt": "2026-10-11T12:24:36.032Z",
+      "note": "Partial count: 279 on the new TikTok clip, plus 256 YouTube and 62 Instagram views since their opening counters.",
       "metric": "reported_new_campaign_post_views_plus_matched_legacy_counter_deltas",
       "coverage": "31 public YouTube Shorts, 33 Instagram Reels and one campaign-created TikTok post",
       "components": [
         {
           "platform": "YouTube",
-          "value": 246,
-          "basis": "Matched opening-counter net change across 31 public Shorts; includes counter revisions",
-          "observedFrom": "2026-10-11T11:25:28.951Z",
-          "observedAt": "2026-10-11T11:25:36.909Z"
+          "value": 256,
+          "basis": "Matched opening-counter net change across 31 public Shorts",
+          "observedAt": "2026-10-11T12:24:02.597Z",
+          "observedFrom": "2026-10-11T12:23:55.808Z"
         },
         {
           "platform": "Instagram",
-          "value": 18,
-          "basis": "Matched opening-counter change across 33 Reels",
-          "observedAt": "2026-10-11T11:26:22.474Z"
+          "value": 62,
+          "basis": "Matched opening-counter net change across 33 Reels",
+          "observedAt": "2026-10-11T12:24:36.032Z"
         },
         {
           "platform": "TikTok",
           "value": 279,
           "basis": "Native cumulative views on one post created during this campaign",
-          "observedAt": "2026-10-11T11:25:55.340Z",
+          "observedAt": "2026-10-11T12:24:30.552Z",
           "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695303665602612493"
         }
       ],
@@ -54,8 +54,8 @@
     "activePosts": 2,
     "scheduledPosts": 14,
     "cap": 17,
-    "runwayDays": 7.439066108877315,
-    "queueVerifiedAt": "2026-10-11T11:25:32.734Z"
+    "runwayDays": 7.399702971516204,
+    "queueVerifiedAt": "2026-10-11T12:24:03.266Z"
   },
   "highlights": [
     {
@@ -172,7 +172,7 @@
   "evidenceNotes": [
     "Starting measurement, October 11 at 2:51\u20132:53 AM Eastern: 31 public YouTube Shorts held 14,895 lifetime views; 33 Instagram Reels held 13,337 displayed lifetime views. These opening counters are not campaign gains.",
     "The opening YouTube/Instagram measurement was about 23 minutes after campaign start; that gap and unmeasured posts remain unknown. TikTok is counted from its verified campaign-time creation. Paid-versus-organic attribution and unique audience size are not established.",
-    "October 11, about 7:25 AM Eastern: net +246 YouTube and +18 Instagram views from opening counters, plus 279 views on the new TikTok post. The partial total of 543 is up 58 from the previous 485. Native downward counter revisions remain included.",
+    "October 11, about 8:24 AM Eastern: net +256 YouTube and +62 Instagram views from opening counters, plus 279 views on the new TikTok post. The partial total of 597 is up 54 from the previous 543. Native downward counter revisions remain included.",
     "Revenue remains unknown until confirmed payment records are connected. A support click or enquiry is not a payment.",
     "The operator made no purchases, ad buys or paid media-generation orders for this campaign: recorded new spend is $0. Existing equipment, subscriptions and historical promotions are outside this new-spend figure.",
     "Seven finished videos have 14 confirmed cloud schedules: YouTube daily at noon Eastern October 11\u201317, and Instagram daily at 6 PM Eastern October 12\u201318. Scheduled does not yet mean published.",
