@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="180" viewBox="0 0 320 180" role="img" aria-label="Times live on Twitch">
+  <rect width="320" height="180" fill="#07080c"/>
+  <rect width="320" height="3" fill="#ff7a1a"/>
+  <text x="20" y="48" fill="#d2c4ff" font-family="Courier New, monospace" font-size="16">04 // SCHEDULE</text>
+  <text x="20" y="100" fill="#f6f3ff" font-family="Impact, Anton, sans-serif" font-size="28">TIMES LIVE</text>
+  <text x="20" y="134" fill="#f6f3ff" font-family="Impact, Anton, sans-serif" font-size="28">ON TWITCH.</text>
+  <text x="20" y="162" fill="#ff7a1a" font-family="Courier New, monospace" font-size="15">&gt; channel: dtrtc</text>
+</svg>

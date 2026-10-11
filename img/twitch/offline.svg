@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="DTRTC offline card">
+  <rect width="1920" height="1080" fill="#07080c"/>
+  <rect x="0" y="0" width="1920" height="4" fill="#ff7a1a"/>
+  <text x="120" y="360" fill="#d2c4ff" font-family="Courier New, monospace" font-size="42" letter-spacing="6">DTRTC // HALLOWEEN 2026</text>
+  <text x="120" y="500" fill="#f6f3ff" font-family="Impact, Anton, sans-serif" font-size="120">THE LOBBY IS</text>
+  <text x="120" y="630" fill="#f6f3ff" font-family="Impact, Anton, sans-serif" font-size="120">BETWEEN QUEUES.</text>
+  <text x="120" y="760" fill="#d2c4ff" font-family="Courier New, monospace" font-size="40">&gt; scene: halloween 2026</text>
+  <text x="120" y="820" fill="#d2c4ff" font-family="Courier New, monospace" font-size="40">&gt; mode: cs2</text>
+  <text x="120" y="880" fill="#d2c4ff" font-family="Courier New, monospace" font-size="40">&gt; next: twitch.tv/dtrtc</text>
+  <rect x="120" y="930" width="280" height="64" fill="#ff7a1a"/>
+  <text x="260" y="972" text-anchor="middle" fill="#1a0c04" font-family="Impact, Anton, sans-serif" font-size="28">FOLLOW</text>
+</svg>

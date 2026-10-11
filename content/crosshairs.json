@@ -1,0 +1,42 @@
+{
+  "slotHours": 4,
+  "note": "One of these stays on stage for four hours, then the next one takes over. They are small, high-contrast static crosses, the kind that still read when a CS2 clip is compressed. Paste a code you saw in a clip and the room can vote it against this bench. The clock does not change when someone votes.",
+  "bench": [
+    {
+      "id": "cyan-static",
+      "name": "Cyan static",
+      "note": "The small cyan cross that stays readable when a clip is compressed.",
+      "code": "CS5vUNHbfjYkr4Gq3RxAQVk9raV8OFtEWP6wwhhswKpxfG"
+    },
+    {
+      "id": "green-dot",
+      "name": "Green dot",
+      "note": "A short green cross with a center dot. Easy to find on Dust II mid.",
+      "code": "CSHBVRmybjUZ5OnYXeeEHjSKXAnYYx2onpBTzaAtMrv8Gk"
+    },
+    {
+      "id": "white-tight",
+      "name": "White tight",
+      "note": "White, pulled in. The shape people copy when a highlight is just a tap.",
+      "code": "CSsEGiBZMSVeNMxujfQUVPG5NOKSyUpU3DUJYYzrZdMXzB"
+    },
+    {
+      "id": "yellow-classic",
+      "name": "Yellow classic",
+      "note": "A longer yellow static cross. Reads on dark bombsites.",
+      "code": "CSDKGF4pqDyZydT8dO54Ev6db8DLo6CSQYYpObpEJHHd9B"
+    },
+    {
+      "id": "magenta",
+      "name": "Magenta",
+      "note": "High contrast on every map in the active pool, including Cache and Ancient.",
+      "code": "CSYe6YUJHqnzx2rOZpwOJHt44dObTuRFnUhqo6Fbk5bq9f"
+    },
+    {
+      "id": "red-t",
+      "name": "Red T",
+      "note": "No bottom arm, so the head line stays clear.",
+      "code": "CSuXocont2tBcO2TNaY6fOWvTJTeQzcmSvtm2J4asPtArC"
+    }
+  ]
+}

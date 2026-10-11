@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="480" viewBox="0 0 1200 480" role="img" aria-label="DTRTC Halloween 2026 banner">
+  <rect width="1200" height="480" fill="#07080c"/>
+  <rect x="0" y="0" width="1200" height="2" fill="#ff7a1a"/>
+  <text x="72" y="150" fill="#d2c4ff" font-family="Courier New, monospace" font-size="28" letter-spacing="4">DTRTC // HALLOWEEN 2026</text>
+  <text x="72" y="250" fill="#f6f3ff" font-family="Impact, Anton, sans-serif" font-size="84">CHAT CONTROLS</text>
+  <text x="72" y="330" fill="#f6f3ff" font-family="Impact, Anton, sans-serif" font-size="84">THE CHAOS.</text>
+  <rect x="72" y="370" width="220" height="52" fill="#ff7a1a"/>
+  <text x="182" y="404" text-anchor="middle" fill="#1a0c04" font-family="Impact, Anton, sans-serif" font-size="22" letter-spacing="1">TWITCH.TV/DTRTC</text>
+  <text x="860" y="200" fill="#ff7a1a" font-family="Courier New, monospace" font-size="28">&gt; scene: halloween 2026</text>
+  <text x="860" y="244" fill="#d2c4ff" font-family="Courier New, monospace" font-size="28">&gt; mode: cs2</text>
+  <text x="860" y="288" fill="#d2c4ff" font-family="Courier New, monospace" font-size="28">&gt; control: chat</text>
+</svg>

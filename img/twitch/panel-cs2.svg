@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="180" viewBox="0 0 320 180" role="img" aria-label="Enter CS2 heaven">
+  <rect width="320" height="180" fill="#07080c"/>
+  <rect width="320" height="3" fill="#ff7a1a"/>
+  <text x="20" y="48" fill="#d2c4ff" font-family="Courier New, monospace" font-size="16">CS2 // THE ROOM</text>
+  <text x="20" y="100" fill="#f6f3ff" font-family="Impact, Anton, sans-serif" font-size="26">THE LOBBY HAS</text>
+  <text x="20" y="132" fill="#f6f3ff" font-family="Impact, Anton, sans-serif" font-size="26">A CLUBHOUSE.</text>
+  <rect x="20" y="146" width="148" height="22" fill="#ff7a1a"/>
+  <text x="94" y="162" text-anchor="middle" fill="#1a0c04" font-family="Impact, Anton, sans-serif" font-size="12">ENTER CS2 HEAVEN</text>
+</svg>
