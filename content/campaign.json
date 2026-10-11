@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-11T07:11:55.080630Z",
+  "capturedAt": "2026-10-11T07:21:28.898634Z",
   "campaign": {
     "name": "Growth. $0 new spend.",
     "startAt": "2026-10-11T06:28:12Z",
@@ -10,9 +10,14 @@
   },
   "results": {
     "views": {
-      "value": null,
-      "status": "comparison_pending",
-      "note": "YouTube/Instagram starting counts saved. The next growth comparison is pending."
+      "value": 9,
+      "status": "verified",
+      "observedAt": "2026-10-11T07:18:32.486Z",
+      "note": "Partial measurement: +4 YouTube and +5 Instagram since 2:52\u20132:53 AM EDT. Other platforms pending.",
+      "metric": "sum_of_matched_native_displayed_video_view_counter_deltas",
+      "coverage": "31 public YouTube Shorts and 33 Instagram Reels",
+      "organicAttribution": "not_established",
+      "fullCampaignStartTotal": null
     },
     "revenue": {
       "value": null,
@@ -28,7 +33,7 @@
     "scheduledPosts": 14,
     "cap": 17,
     "runwayDays": 7.624198303611111,
-    "queueVerifiedAt": "2026-10-11T07:10:49.839Z"
+    "queueVerifiedAt": "2026-10-11T07:18:49.517Z"
   },
   "highlights": [
     {
@@ -144,7 +149,8 @@
   ],
   "evidenceNotes": [
     "Starting measurement, October 11 at 2:51\u20132:53 AM Eastern: 31 public YouTube Shorts held 14,895 lifetime views; 33 Instagram Reels held 13,337 displayed lifetime views. These opening counters are not campaign gains.",
-    "The starting measurement was about 23 minutes after the campaign began. That gap and other platforms remain unmeasured. A second comparable observation is required before reporting growth.",
+    "The opening measurement was about 23 minutes after campaign start. That gap and other platforms remain unmeasured. The added-view figure covers only matched YouTube and Instagram posts after their first saved counters.",
+    "At 3:17\u20133:18 AM Eastern, a second measurement matched all 31 YouTube Shorts and 33 Instagram Reels: +4 and +5 reported views respectively. No missing posts, rounded counters or counter decreases were used. These are platform-reported view changes, not unique viewers or evidence that the new edits caused growth. Paid-versus-organic attribution is not established.",
     "Revenue remains unknown until confirmed payment records are connected. A support click or enquiry is not a payment.",
     "The operator made no purchases, ad buys or paid media-generation orders for this campaign: recorded new spend is $0. Existing equipment, subscriptions and historical promotions are outside this new-spend figure.",
     "Seven finished videos have 14 confirmed cloud schedules: YouTube daily at noon Eastern October 11\u201317, and Instagram daily at 6 PM Eastern October 12\u201318. Scheduled does not yet mean published.",

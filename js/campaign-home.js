@@ -86,7 +86,7 @@
       var status = doc.getElementById('data-status');
       status.dataset.state = view.freshness;
       var pending = view.views.value === null || view.revenue.value === null;
-      set('data-status', view.freshness === 'stale' ? 'Saved ' + dateLabel(view.capturedAt) + ' · over 6 hours old' : view.freshness === 'unknown' ? 'Update time unavailable · verification pending' : 'Saved ' + dateLabel(view.capturedAt) + (pending ? ' · setup in progress' : ' · measurement dates below'));
+      set('data-status', view.freshness === 'stale' ? 'Saved ' + dateLabel(view.capturedAt) + ' · over 6 hours old' : view.freshness === 'unknown' ? 'Update time unavailable · verification pending' : 'Saved ' + dateLabel(view.capturedAt) + (pending ? ' · some measurements pending' : ' · measurement dates below'));
       set('saved-at', view.capturedAt ? 'Last saved update: ' + dateLabel(view.capturedAt) + '.' : 'Last saved update: unavailable.');
       set('spend-note', (view.spend.newVerifiedUsd === null ? 'Actual new spend: verification pending.' : 'Verified new spend: ' + money.format(view.spend.newVerifiedUsd) + '.') + ' This is a campaign budget, not an all-time cost claim.');
       set('roster-count', (view.operations.used === null ? '—' : number.format(view.operations.used)) + ' / 17');
