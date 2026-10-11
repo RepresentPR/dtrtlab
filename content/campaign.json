@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-11T10:25:48.105111Z",
+  "capturedAt": "2026-10-11T11:28:44.117125Z",
   "campaign": {
     "name": "Growth. $0 new spend.",
     "startAt": "2026-10-11T06:28:12Z",
@@ -10,31 +10,31 @@
   },
   "results": {
     "views": {
-      "value": 485,
+      "value": 543,
       "status": "verified",
-      "observedAt": "2026-10-11T10:24:22.153Z",
-      "note": "Partial count: 250 on the new TikTok clip, plus 223 YouTube and 12 Instagram views since their opening counters.",
+      "observedAt": "2026-10-11T11:26:22.474Z",
+      "note": "Partial count: 279 on the new TikTok clip, plus 246 YouTube and 18 Instagram views since their opening counters.",
       "metric": "reported_new_campaign_post_views_plus_matched_legacy_counter_deltas",
       "coverage": "31 public YouTube Shorts, 33 Instagram Reels and one campaign-created TikTok post",
       "components": [
         {
           "platform": "YouTube",
-          "value": 223,
-          "basis": "Matched opening-counter net change across 31 public Shorts; includes counter corrections",
-          "observedFrom": "2026-10-11T10:22:22.495Z",
-          "observedAt": "2026-10-11T10:22:29.049Z"
+          "value": 246,
+          "basis": "Matched opening-counter net change across 31 public Shorts; includes counter revisions",
+          "observedFrom": "2026-10-11T11:25:28.951Z",
+          "observedAt": "2026-10-11T11:25:36.909Z"
         },
         {
           "platform": "Instagram",
-          "value": 12,
+          "value": 18,
           "basis": "Matched opening-counter change across 33 Reels",
-          "observedAt": "2026-10-11T10:22:55.651Z"
+          "observedAt": "2026-10-11T11:26:22.474Z"
         },
         {
           "platform": "TikTok",
-          "value": 250,
+          "value": 279,
           "basis": "Native cumulative views on one post created during this campaign",
-          "observedAt": "2026-10-11T10:24:22.153Z",
+          "observedAt": "2026-10-11T11:25:55.340Z",
           "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695303665602612493"
         }
       ],
@@ -54,17 +54,17 @@
     "activePosts": 2,
     "scheduledPosts": 14,
     "cap": 17,
-    "runwayDays": 7.4842159146875,
-    "queueVerifiedAt": "2026-10-11T10:22:43.277Z"
+    "runwayDays": 7.439066108877315,
+    "queueVerifiedAt": "2026-10-11T11:25:32.734Z"
   },
   "highlights": [
     {
       "title": "One bullet left",
       "url": "https://dtrtlab.com/assets/campaign/01-one-bullet-left.mp4",
       "platform": "Edited preview",
-      "reviewedAt": "2026-10-11T06:59:38.755Z",
+      "reviewedAt": "2026-10-11T11:27:13.428658Z",
       "status": "approved",
-      "reason": "Editorial selection. Performance review follows publication + four hours."
+      "reason": "Editorial selection. Four-hour review completed; one TikTok post is insufficient to establish a performance winner."
     },
     {
       "title": "Knife round got crowded",
@@ -172,16 +172,17 @@
   "evidenceNotes": [
     "Starting measurement, October 11 at 2:51\u20132:53 AM Eastern: 31 public YouTube Shorts held 14,895 lifetime views; 33 Instagram Reels held 13,337 displayed lifetime views. These opening counters are not campaign gains.",
     "The opening YouTube/Instagram measurement was about 23 minutes after campaign start; that gap and unmeasured posts remain unknown. TikTok is counted from its verified campaign-time creation. Paid-versus-organic attribution and unique audience size are not established.",
-    "At 6:22 AM Eastern, all 31 baseline YouTube Shorts and 33 Instagram Reels matched: net +223 and +12 reported views from opening. At 6:24 AM, native TikTok analytics reported 250 views on the campaign-created clip. The combined 485 is up 189 from the previous tracked total. YouTube includes a -3 counter correction since the previous check; it was not discarded.",
+    "October 11, about 7:25 AM Eastern: net +246 YouTube and +18 Instagram views from opening counters, plus 279 views on the new TikTok post. The partial total of 543 is up 58 from the previous 485. Native downward counter revisions remain included.",
     "Revenue remains unknown until confirmed payment records are connected. A support click or enquiry is not a payment.",
     "The operator made no purchases, ad buys or paid media-generation orders for this campaign: recorded new spend is $0. Existing equipment, subscriptions and historical promotions are outside this new-spend figure.",
     "Seven finished videos have 14 confirmed cloud schedules: YouTube daily at noon Eastern October 11\u201317, and Instagram daily at 6 PM Eastern October 12\u201318. Scheduled does not yet mean published.",
     "The 17-slot rule counts active plus scheduled platform posts. Historical posts stay public in the archive. Two newly published posts plus 14 scheduled posts use 16 slots; one remains available.",
     "The previews are editorial selections, not measured winners. Performance highlights are selected after publication and a four-hour review, with later checks for delayed analytics.",
     "Owned source discovery covers Twitch recordings, local OBS footage and a 12-page FACEIT library. Three FACEIT originals and recovered Twitch clips supplied this batch. Complete archive indexing remains in progress.",
-    "The opening edit is public on X and TikTok, verified in each native interface. Early native counters are available, but the first four-hour reviews are due around 7:10 AM Eastern on October 11; these releases are not measured performance winners.",
-    "The previous X analytics check at 4:19 AM Eastern showed two video views and one unique video viewer. These small counts may include operator verification and remain excluded from the displayed total; X post impressions are a separate metric.",
-    "Pre-review signal, October 11 at 6:24 AM Eastern: the TikTok launch report shows 6.43 seconds average watch time, 9.9% full-video completion and the largest drop at two seconds. This is one post before its four-hour review, not a winning format or a complete retention comparison."
+    "First four-hour reviews completed October 11 at 7:27 AM Eastern. Readings were collected at ages 4.28 hours for TikTok and 4.27 hours for X. The later 24/72/168-hour checkpoints remain scheduled. One local publication-to-review cycle is verified; continued operation requires the PC and app to remain available.",
+    "X analytics at 7:26 AM Eastern showed 3 video views, 1 unique video viewer and 4 post impressions. Small video counts may include operator verification and remain excluded from the displayed total.",
+    "Four-hour review: TikTok has 279 views, 6.52 seconds average watch time, 10.2% full-video completion and its largest drop at 2 seconds. A tighter-opening test is commissioned from this retention signal. No winning format is established.",
+    "Legacy review at 7:25 AM Eastern: Come On, Code (+151 views) and Lurk King (+91) lead observed growth among 25 YouTube Shorts dated October 9. This spans about 4 hours 33 minutes of observation. Exact publication ages, source lineage for editing and attribution remain unverified."
   ],
   "baseline": {
     "capturedFrom": "2026-10-11T06:51:23.161Z",
