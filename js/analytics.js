@@ -14,9 +14,13 @@
   var gaOn = false;
 
   function track(name, props) {
+    if (optedOut) return;
     if (window.plausible) window.plausible(name, props ? { props: props } : undefined);
     if (gaOn && window.gtag) window.gtag("event", name);
   }
+
+  // Reuse the same privacy and consent decisions for validated form intents.
+  window.dtrtTrackEvent = track;
 
   function bindClicks() {
     document.addEventListener(
