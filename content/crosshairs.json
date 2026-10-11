@@ -38,5 +38,32 @@
       "note": "No bottom arm, so the head line stays clear.",
       "code": "CSuXocont2tBcO2TNaY6fOWvTJTeQzcmSvtm2J4asPtArC"
     }
-  ]
+  ],
+  "proCollection": {
+    "name": "Pro / CSStats",
+    "sourceUrl": "https://csstats.gg/crosshairs",
+    "observedOn": "2026-10-11",
+    "entries": [
+      {"id":"csstats-donk","name":"donk","lastUsed":"2026-10-09","resolutionHeight":960,"code":"CSyyzoL6p5V6viP9XbXtuCmROKZpkeYRZPY6wiOTjxnRcU"},
+      {"id":"csstats-zywoo","name":"ZywOo","lastUsed":"2026-09-27","resolutionHeight":768,"code":"CSGO-43Xd3-akOjE-fOHmW-GoRhM-sPcAB"},
+      {"id":"csstats-kyousuke","name":"kyousuke","lastUsed":"2026-10-08","resolutionHeight":960,"code":"CSb7uHXB989YebCcoiuafDiUKZntFPoXCVySN5sMcwOAYF"},
+      {"id":"csstats-m0nesy","name":"m0NESY","lastUsed":"2026-10-05","resolutionHeight":960,"code":"CSEdromTGM7ij4BWeDiWRhvP5pGSYTZoO3TFLyE2uKT4PF"},
+      {"id":"csstats-niko","name":"NiKo","lastUsed":"2026-10-08","resolutionHeight":960,"code":"CSXPrh2QWCP87DYZqQ57oGar2mdCr7UwXKadAYmwi37QSb"},
+      {"id":"csstats-makazze","name":"makazze","lastUsed":"2026-10-05","resolutionHeight":960,"code":"CSNBBqfvVaa72VWX3cekopWpiUaHDUS4aM7Dqv2rO4UGac"},
+      {"id":"csstats-dem0n","name":"dem0n","lastUsed":"2026-10-11","resolutionHeight":960,"code":"CS7nounL8WFGW7sG4C5Db3aRtvzLs5bBNdj76bYy6hZr9f"},
+      {"id":"csstats-magixx","name":"magixx","lastUsed":"2026-10-01","resolutionHeight":1080,"code":"CSaNu4EZPc3NMjJ2MF39sa9eSesCSxMZE8jYQFYCfmEKKb"},
+      {"id":"csstats-zont1x","name":"zont1x","lastUsed":"2026-10-10","resolutionHeight":768,"code":"CSjUSNNAY5RBt2uVjLwEDEBz9ZBtWnA8Of6HWRuZpSjtxH"},
+      {"id":"csstats-sh1ro","name":"sh1ro","lastUsed":"2026-10-10","resolutionHeight":960,"code":"CS5PWqQSbXN9fnThjTKffcss2wz9krMny2DkaULJsj6GpK"},
+      {"id":"csstats-teses","name":"TeSeS","lastUsed":"2026-10-08","resolutionHeight":1080,"code":"CSo5aBAtcmZZtj4jxrCFq25UVuiiaTuveQmT6XFOvWmvAc"},
+      {"id":"csstats-karrigan","name":"karrigan","lastUsed":"2026-09-24","resolutionHeight":1024,"code":"CSGO-utmek-8oCfu-4epwL-MwztV-sMDAA"},
+      {"id":"csstats-apex","name":"apEX","lastUsed":"2026-10-09","resolutionHeight":960,"code":"CSwQ9twv239CyPj4jYzMtxdXLhWUtL5UzTYC4DE2uKT4PF"},
+      {"id":"csstats-flamez","name":"flameZ","lastUsed":"2026-10-10","resolutionHeight":960,"code":"CSCTWJSVydL9ecJ292AFNuNd7tj4qfJTDzV34iQqryCjhj"},
+      {"id":"csstats-mezii","name":"mezii","lastUsed":"2026-10-11","resolutionHeight":960,"code":"CSb7uHXB989YebCcoiuafDiUKZntFPoXCVySN5sMcwOAYF"},
+      {"id":"csstats-molodoy","name":"molodoy","lastUsed":"2026-10-10","resolutionHeight":960,"code":"CSRUXaWTBjUfzzmH2BzzB2GtdpxqMyODDzDFuafsDeOSrB"},
+      {"id":"csstats-heavygod","name":"HeavyGod","lastUsed":"2026-10-08","resolutionHeight":1080,"code":"CSmvCoRjzt9i8m9x72zRBjhLtjOpHd4uMBRetab6kzJrKZ"},
+      {"id":"csstats-matys","name":"matys","lastUsed":"2026-10-08","resolutionHeight":1080,"code":"CSm43VmEBCc6AHJ84Pp7tesm6jTUFpvMkUGhQckhSjhRhk"},
+      {"id":"csstats-nertz","name":"NertZ","lastUsed":"2026-10-10","resolutionHeight":960,"code":"CSf4V7rYms4sudznRPDMemwVCYhsA44tkbwDWbeiLZKGhF"},
+      {"id":"csstats-r1nkle","name":"r1nkle","lastUsed":"2026-10-09","resolutionHeight":960,"code":"CSjVbYTjhXB7ox4RbL3LFxe8AfU3Nc7ki3H9dWzxLXAmHC"}
+    ]
+  }
 }

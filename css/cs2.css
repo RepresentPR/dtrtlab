@@ -135,6 +135,28 @@ body.hub.cs2 .xh-card.is-on {
   border-color: var(--orange);
 }
 
+body.hub.cs2 .xh-collection-title,
+body.hub.cs2 .xh-collection-head {
+  margin-top: 28px;
+}
+
+body.hub.cs2 .xh-collection-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+body.hub.cs2 .xh-collection-head h3 { margin: 0; }
+body.hub.cs2 .xh-source { color: var(--dim); }
+body.hub.cs2 .xh-pro-card { display: grid; grid-template-rows: 1fr auto; gap: 8px; min-width: 0; }
+body.hub.cs2 .xh-pro-card .xh-card { width: 100%; align-content: start; }
+body.hub.cs2 .xh-pro-card canvas.xh-mini { height: 128px; }
+body.hub.cs2 .xh-preview-unavailable { display: flex; align-items: center; min-height: 128px; padding: 12px; background: #1a2420; }
+body.hub.cs2 .xh-card:focus-visible,
+body.hub.cs2 .xh-pro-card button:focus-visible { outline: 3px solid var(--purple-2); outline-offset: 3px; }
+
 body.hub.cs2 .xh-card strong {
   font-family: "Anton", Impact, sans-serif;
   font-weight: 400;

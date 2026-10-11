@@ -86,7 +86,14 @@ export function encodeCs2(spec) {
   return "CS" + bytesToChars(bytes, 44);
 }
 
+export function previewProblem(crosshair) {
+  const supported = crosshair.format === "legacy-v1" ? [2, 3, 4] : [4, 5, 6];
+  return supported.includes(crosshair.style) ? null : "Preview unavailable for this crosshair style. Copy the code to view it in CS2.";
+}
+
 export function paintCrosshair(canvas, crosshair) {
+  const problem = previewProblem(crosshair);
+  if (problem) throw new Error(problem);
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
   const cssW = canvas.clientWidth || 280;
   const cssH = canvas.clientHeight || 280;

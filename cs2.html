@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Dela+Gothic+One&family=VT323&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/scene-base.css">
   <link rel="stylesheet" href="css/scene-hub.css">
-  <link rel="stylesheet" href="css/cs2.css?v=20261011b">
+  <link rel="stylesheet" href="css/cs2.css?v=20261011-pro1">
 <link rel="stylesheet" href="/css/company-theme.css?v=phase2"></head>
 <body class="hub cs2">
   <a class="skip" href="#main">Skip to content</a>
@@ -52,6 +52,7 @@
           <div class="xh-stage">
             <p class="badge" id="xh-badge">On stage</p>
             <canvas id="xh-canvas" width="640" height="360" aria-label="Crosshair preview"></canvas>
+            <p id="xh-preview-status" class="xh-preview-unavailable" role="status" hidden></p>
           </div>
           <div>
             <h3 id="xh-name">Crosshair</h3>
@@ -63,7 +64,16 @@
             </div>
           </div>
         </div>
+        <h3 class="xh-collection-title">DTRT presets</h3>
         <div class="xh-grid" id="xh-gallery" style="margin-top:18px"></div>
+        <div class="xh-collection-head">
+          <h3 id="xh-pro-title">Pro / CSStats</h3>
+          <a class="cta ghost" href="https://leetify.com/app/crosshair/76561198102765763" target="_blank" rel="noopener noreferrer">My crosshair history ↗</a>
+        </div>
+        <p>Browse pro settings, preview a supported style, or copy its exact code. Open my earlier crosshairs on Leetify.</p>
+        <p class="xh-source">Source: <a href="https://csstats.gg/crosshairs" target="_blank" rel="noopener noreferrer">CSStats pro crosshairs</a>. <span id="xh-pro-snapshot"></span></p>
+        <div class="xh-grid" id="xh-pro-gallery" aria-labelledby="xh-pro-title"></div>
+        <p id="xh-pro-status" class="status xh-code" role="status" aria-live="polite"></p>
         <form id="xh-form" class="card" style="margin-top:18px">
           <h3 id="xh-form-title">Paste a code from a clip</h3>
           <label>Name <input name="label" required maxlength="23" autocomplete="off" placeholder="Window tap"></label>
@@ -233,6 +243,6 @@
   <footer id="site-foot"></footer>
   <script src="content/socials.js"></script>
   <script src="js/scene-nav.js?v=phase2"></script>
-  <script type="module" src="js/cs2-community.mjs?v=20261011-preview2"></script>
+  <script type="module" src="js/cs2-community.mjs?v=20261011-pro1"></script>
 </body>
 </html>

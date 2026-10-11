@@ -13,9 +13,10 @@ import {
   decodeShareCode,
   paintCrosshair,
   describeCrosshair,
+  previewProblem,
   rotationIndex,
   nextRotationAt,
-} from "./cs2-crosshair.mjs?v=20261011-preview2";
+} from "./cs2-crosshair.mjs?v=20261011-pro1";
 
 const cs2 = await fetch("content/cs2.json", { cache: "no-store" }).then(function (res) {
   if (!res.ok) throw new Error("content/cs2.json");
@@ -29,6 +30,17 @@ const pack = await fetch("content/crosshairs.json", { cache: "no-store" }).then(
 const bench = pack.bench.map(function (item) {
   return Object.assign({}, item, { decoded: decodeShareCode(item.code) });
 });
+const pros = ((pack.proCollection || {}).entries || []).map(function (item) {
+  try {
+    return Object.assign({}, item, { note: proNote(item), decoded: decodeShareCode(item.code) });
+  } catch (err) {
+    return Object.assign({}, item, { note: proNote(item), previewError: err.message });
+  }
+});
+
+function proNote(item) {
+  return "CSStats last used: " + item.lastUsed + " · " + item.resolutionHeight + "p";
+}
 
 let board = null;
 let live = false;
@@ -42,9 +54,11 @@ const els = {
   stageMeta: document.getElementById("xh-meta"),
   stageCode: document.getElementById("xh-code"),
   stageCanvas: document.getElementById("xh-canvas"),
+  stagePreviewStatus: document.getElementById("xh-preview-status"),
   stageBadge: document.getElementById("xh-badge"),
   countdown: document.getElementById("xh-countdown"),
   gallery: document.getElementById("xh-gallery"),
+  proGallery: document.getElementById("xh-pro-gallery"),
   submitStatus: document.getElementById("xh-submit-status"),
   polls: document.getElementById("polls"),
   maps: document.getElementById("map-board"),
@@ -94,6 +108,8 @@ async function boot() {
   document.getElementById("edpi-form").addEventListener("input", onEdpi);
   document.getElementById("polls").addEventListener("click", onVoteClick);
   document.getElementById("xh-gallery").addEventListener("click", onGalleryClick);
+  els.proGallery.addEventListener("click", onProGalleryClick);
+  document.getElementById("xh-pro-snapshot").textContent = "Observed " + pack.proCollection.observedOn + ". A saved snapshot of CSStats match records; not a live feed.";
   setInterval(tick, 1000);
   tick();
   onEdpi();
@@ -138,7 +154,7 @@ function onStage() {
 }
 
 function findCrosshair(id) {
-  const local = bench.find(function (item) {
+  const local = bench.concat(pros).find(function (item) {
     return item.id === id;
   });
   if (local) return local;
@@ -160,10 +176,14 @@ function renderStage() {
   const featured = onStage();
   els.stageName.textContent = item.name;
   els.stageNote.textContent = item.note;
-  els.stageMeta.textContent = describeCrosshair(item.decoded);
+  els.stageMeta.textContent = item.decoded ? describeCrosshair(item.decoded) : "Code could not be decoded here.";
   els.stageCode.textContent = item.code;
   els.stageBadge.hidden = item.id !== featured.id;
-  paintCrosshair(els.stageCanvas, item.decoded);
+  const problem = item.previewError || previewProblem(item.decoded);
+  els.stageCanvas.hidden = !!problem;
+  els.stagePreviewStatus.textContent = problem || "";
+  els.stagePreviewStatus.hidden = !problem;
+  if (!problem) paintCrosshair(els.stageCanvas, item.decoded);
 }
 
 function renderGallery() {
@@ -184,7 +204,47 @@ function renderGallery() {
     meta.textContent = item.id === featured.id ? "On stage" : item.note;
     card.append(canvas, title, meta);
     els.gallery.append(card);
-    paintCrosshair(canvas, item.decoded);
+    const problem = item.previewError || previewProblem(item.decoded);
+    canvas.hidden = !!problem;
+    if (problem) meta.textContent += " · " + problem;
+    else paintCrosshair(canvas, item.decoded);
+  });
+  renderProGallery();
+}
+
+function renderProGallery() {
+  els.proGallery.innerHTML = "";
+  pros.forEach(function (item) {
+    const article = document.createElement("article");
+    article.className = "xh-pro-card";
+    const preview = document.createElement("button");
+    preview.type = "button";
+    preview.className = "xh-card" + (item.id === previewId ? " is-on" : "");
+    preview.dataset.id = item.id;
+    preview.setAttribute("aria-label", "Preview " + item.name + " crosshair");
+    const canvas = document.createElement("canvas");
+    canvas.className = "xh-mini";
+    canvas.setAttribute("aria-hidden", "true");
+    const name = document.createElement("strong");
+    name.textContent = item.name;
+    const note = document.createElement("span");
+    note.textContent = item.note;
+    const problem = item.previewError || previewProblem(item.decoded);
+    if (problem) {
+      const status = document.createElement("span");
+      status.className = "xh-preview-unavailable";
+      status.textContent = problem;
+      preview.append(status, name, note);
+    } else preview.append(canvas, name, note);
+    const copy = document.createElement("button");
+    copy.type = "button";
+    copy.className = "cta ghost";
+    copy.dataset.copyId = item.id;
+    copy.textContent = "Copy code";
+    copy.setAttribute("aria-label", "Copy " + item.name + " crosshair code");
+    article.append(preview, copy);
+    els.proGallery.append(article);
+    if (!problem) paintCrosshair(canvas, item.decoded);
   });
 }
 
@@ -352,6 +412,23 @@ function onGalleryClick(event) {
   previewId = card.dataset.id;
   renderStage();
   renderGallery();
+}
+
+async function onProGalleryClick(event) {
+  const button = event.target.closest("[data-copy-id]");
+  if (button) {
+    const item = findCrosshair(button.dataset.copyId);
+    try {
+      await navigator.clipboard.writeText(item.code);
+      flash(button, "Copied");
+      document.getElementById("xh-pro-status").textContent = item.name + " code copied.";
+    } catch (err) {
+      document.getElementById("xh-pro-status").textContent = "Copy this code manually: " + item.code;
+    }
+    return;
+  }
+  onGalleryClick(event);
+  els.stageName.scrollIntoView({ behavior: "smooth", block: "center" });
 }
 
 async function onVoteClick(event) {
