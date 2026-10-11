@@ -1,50 +1,184 @@
-"""Public-safe export from the existing private evidence ledger; no publishing."""
+"""Merge explicit private metric snapshots into the saved public export; no publishing."""
+import argparse
+from datetime import datetime, timezone
 import json
 import pathlib
 import re
-import sys
+from urllib.parse import parse_qs, urlparse
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 PRIVATE = pathlib.Path('C:/DTRTWork/dtrt-kept-off-site/clip-growth')
+UNREVIEWED = 'Not reviewed in a matched publication-age cohort'
+
+
 def read(path):
     return json.loads(path.read_text(encoding='utf-8-sig'))
-def build():
-    snapshots = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else PRIVATE / 'observations/site-fix-20261011'
-    posts = []
-    yt = read(snapshots / 'youtube-shorts.json')
-    for row in yt['rows']:
-        if row['cells'][3] != 'Public':
+
+
+def instant(value):
+    date = datetime.fromisoformat(value.replace('Z', '+00:00'))
+    if date.utcoffset() is None:
+        raise ValueError('Observation timestamps require a timezone')
+    return date.astimezone(timezone.utc)
+
+
+def public_post(ident, platform, title, url, views, observed_at, publication_date=None):
+    return dict(id=platform.lower()+':'+ident, platform=platform, title=title.strip(),
+                url=url, views=views, observedAt=observed_at,
+                publicationDate=publication_date, review=UNREVIEWED)
+
+
+def snapshot_records(snapshots):
+    """Nonpublic observations remain internal and never become public tombstones."""
+    posts, nonpublic, found = [], {}, False
+    for name in ('youtube-shorts.json', 'youtube-videos-metric.json'):
+        path = snapshots/name
+        if not path.is_file():
             continue
-        ident = row['url'].split('/video/')[1].split('/')[0]
-        posts.append(dict(id='youtube:'+ident, platform='YouTube', title=row['title'].strip(), url='https://www.youtube.com/shorts/'+ident, views=int(row['cells'][5].replace(',','')), observedAt=yt['observedAt'], publicationDate=row['cells'][4].split('\n')[0], review='Not reviewed in a matched publication-age cohort'))
-    for platform, filename in [('Instagram','instagram.json'),('TikTok','tiktok.json')]:
-        data = read(snapshots / filename)
+        found = True
+        data = read(path)
         for row in data['rows']:
+            standard = name == 'youtube-videos-metric.json'
+            ident = row['id'] if standard else row['url'].split('/video/')[1].split('/')[0]
+            visibility = row['visibility'] if standard else row['cells'][3]
+            if visibility.lower() != 'public':
+                key = 'youtube:'+ident
+                if key not in nonpublic or instant(data['observedAt']) > instant(nonpublic[key]):
+                    nonpublic[key] = data['observedAt']
+                continue
+            posts.append(public_post(ident, 'YouTube', row['title'],
+                'https://www.youtube.com/'+('watch?v=' if standard else 'shorts/')+ident,
+                row['views'] if standard else int(row['cells'][5].replace(',', '')),
+                data['observedAt'], row.get('date') if standard else row['cells'][4].split('\n')[0]))
+    for platform, name in [('Instagram', 'instagram.json'), ('TikTok', 'tiktok.json')]:
+        path = snapshots/name
+        if not path.is_file():
+            continue
+        found = True
+        data = read(path)
+        for row in data['rows']:
+            ident = row['url'].rstrip('/').split('/')[-1]
             if platform == 'TikTok':
-                bits = row['text'].split('\n')
-                title = bits[1]
-                views = int(row['text'].split('Everyone\n')[1].split('\n')[0].replace(',',''))
+                if 'Everyone\n' not in row['text']:
+                    continue
+                title = row['text'].split('\n')[1]
+                views = int(row['text'].split('Everyone\n')[1].split('\n')[0].replace(',', ''))
             else:
-                title = 'Instagram Reel '+row['url'].strip('/').split('/')[-1]
-                views = int(row['text'].replace(',',''))
-            posts.append(dict(id=platform.lower()+':'+row['url'].strip('/').split('/')[-1], platform=platform, title=title, url=row['url'], views=views, observedAt=data['observedAt'], publicationDate=None, review='Not reviewed in a matched publication-age cohort'))
-    for post in posts:
-        if post['id'] == 'tiktok:7695303665602612493':
-            post['review'] = '4h checkpoint completed late; inconclusive one-post cohort'
-        if post['id'] in ('tiktok:7694678392779689229', 'youtube:wu3M-Te360E'):
-            post['review'] = 'Legacy recap; historical total disputed and corrected in Phase 1 audit'
-    history = []
-    for f in sorted((PRIVATE/'observations').glob('heartbeat-*/metric-export.json')):
-        data = read(f)
-        if isinstance(data.get('summedMeasuredPostViews'),int):
-            history.append(dict(observedAt=data['observedThrough'], value=data['summedMeasuredPostViews']))
-    tests = read(PRIVATE/'variant-tests.json')['tests']
-    experiment = [dict(id=x['variantId'], title='One bullet left: direct exchange opening', status=x['status'], hypothesis=x['treatment'], result=x.get('result'), limitation='Shorter duration and different publication time/audience prevent causal attribution.') for x in tests]
-    return dict(schemaVersion=1, posts=posts, campaignAddedHistory=history, experiments=experiment, reviews=[dict(platform='TikTok', observedAt='2026-10-11T11:25:55.340Z', checkpoint='4h review; collected 16.9 minutes late', views=279, averageWatchSeconds=6.52, completionPercent=10.2, decision='Inconclusive: one-post cohort; largest retention drop at 2 seconds. Direct-opening test prepared.'),dict(platform='X',observedAt='2026-10-11T11:26:13.681Z',checkpoint='4h review; collected 16.2 minutes late',views=3,decision='Inconclusive: possible operator contribution; excluded from campaign growth.')], coverage=str(len(posts))+' public short-form posts. Unlisted YouTube views appear only in the overall aggregate. Unavailable archives, X inventory, Twitch, FACEIT and longer videos remain unmeasured. No full library or organic attribution claim.')
+                title = 'Instagram Reel '+ident
+                views = int(row['text'].replace(',', ''))
+            posts.append(public_post(ident, platform, title, row['url'], views, data['observedAt']))
+    if not found:
+        raise ValueError('Snapshot directory contains no supported inventory JSON')
+    return posts, nonpublic
+
+
+def merge_history(existing, private, snapshots):
+    history = {}
+    sources = sorted((private/'observations').glob('heartbeat-*/metric-export.json'))
+    if (snapshots/'metric-export.json').is_file():
+        sources.append(snapshots/'metric-export.json')
+    for path in sources:
+        data = read(path)
+        value = data.get('summedMeasuredPostViews')
+        if type(value) is int and value >= 0:
+            point = dict(observedAt=data['observedThrough'], value=value)
+            history[instant(point['observedAt'])] = point
+    # Existing saved points win same-timestamp conflicts; old exports cannot replace learning.
+    for point in existing:
+        history[instant(point['observedAt'])] = point
+    return [history[key] for key in sorted(history)]
+
+
+def merge_experiments(existing, private):
+    experiments = {item['id']: dict(item) for item in existing}
+    path = private/'variant-tests.json'
+    for item in read(path)['tests'] if path.is_file() else []:
+        candidate = dict(id=item['variantId'], title=item.get('title', item['variantId']),
+            status=item['status'], hypothesis=item['treatment'], result=item.get('result'),
+            limitation='Shorter duration and different publication time/audience prevent causal attribution.')
+        prior = experiments.get(candidate['id'])
+        if prior:
+            saved_at = prior.get('updatedAt') or prior.get('observedAt')
+            incoming_at = item.get('updatedAt') or item.get('observedAt')
+            newer = saved_at and incoming_at and instant(incoming_at) > instant(saved_at)
+            for key, value in candidate.items():
+                if key not in prior or (newer and value is not None):
+                    prior[key] = value
+            if newer:
+                prior['updatedAt'] = incoming_at
+        else:
+            if item.get('updatedAt'):
+                candidate['updatedAt'] = item['updatedAt']
+            experiments[candidate['id']] = candidate
+    return list(experiments.values())
+
+
+def build(snapshots, *, existing=None, private=PRIVATE):
+    snapshots, private = pathlib.Path(snapshots), pathlib.Path(private)
+    if existing is None:
+        path = ROOT/'content/live-performance.json'
+        existing = read(path) if path.is_file() else {}
+    merged = {post['id']: dict(post) for post in existing.get('posts', [])
+              if post.get('visibility', 'public').lower() == 'public'}
+    incoming, nonpublic = snapshot_records(snapshots)
+    for post in incoming:
+        prior = merged.get(post['id'])
+        if not prior or instant(post['observedAt']) > instant(prior['observedAt']):
+            # Metrics can decrease after corrections; editorial conclusions have separate evidence.
+            if prior:
+                post = dict(prior, **{key:value for key,value in post.items() if key != 'review'})
+            merged[post['id']] = post
+    for ident, observed_at in nonpublic.items():
+        if ident in merged and instant(observed_at) >= instant(merged[ident]['observedAt']):
+            del merged[ident]
+    data = dict(existing, schemaVersion=1, posts=list(merged.values()),
+        campaignAddedHistory=merge_history(existing.get('campaignAddedHistory', []), private, snapshots),
+        experiments=merge_experiments(existing.get('experiments', []), private),
+        reviews=existing.get('reviews', []))
+    old_ids = {post['id'] for post in existing.get('posts', [])}
+    if set(merged) != old_ids or not data.get('coverage'):
+        data['coverage'] = (str(len(merged))+' public video records from dated observations. Private/unlisted '
+            'identities are omitted; historical aggregate coverage is separate from campaign growth. '
+            'This is not a full-library, unique-audience or organic-attribution claim.')
+    validate(data)
+    return data
+
+
+def validate(data):
+    seen = set()
+    for post in data['posts']:
+        if post['id'] in seen or type(post['views']) is not int or post['views'] < 0:
+            raise ValueError('Public records require unique IDs and nonnegative integer views')
+        seen.add(post['id'])
+        instant(post['observedAt'])
+        url = urlparse(post['url'])
+        if url.scheme != 'https' or url.username or url.password or url.port:
+            raise ValueError('Public URLs require HTTPS without credentials or explicit ports')
+        ident = None
+        if url.hostname == 'www.youtube.com':
+            match = re.fullmatch(r'/shorts/([A-Za-z0-9_-]+)', url.path)
+            if match:
+                ident = 'youtube:'+match[1]
+            elif url.path == '/watch':
+                values = parse_qs(url.query).get('v', [])
+                if len(values) == 1 and re.fullmatch(r'[A-Za-z0-9_-]+', values[0]):
+                    ident = 'youtube:'+values[0]
+        elif url.hostname == 'www.instagram.com':
+            match = re.fullmatch(r'/(?:[^/]+/)?(?:reel|p)/([A-Za-z0-9_-]+)/?', url.path)
+            if match:
+                ident = 'instagram:'+match[1]
+        elif url.hostname == 'www.tiktok.com':
+            match = re.fullmatch(r'/@[^/]+/video/(\d+)/?', url.path)
+            if match:
+                ident = 'tiktok:'+match[1]
+        if ident != post['id']:
+            raise ValueError('Public URL must match the supported platform and exact post ID')
+
+
 if __name__ == '__main__':
-    data = build()
-    assert len({x['id'] for x in data['posts']}) == len(data['posts'])
-    assert all(isinstance(x['views'],int) and x['views'] >= 0 for x in data['posts'])
-    assert all(x['url'].startswith(('https://www.youtube.com/shorts/','https://www.instagram.com/','https://www.tiktok.com/')) for x in data['posts'])
-    (ROOT/'content/live-performance.json').write_text(json.dumps(data,indent=2)+'\n',encoding='utf-8')
-    print('Export verified:',len(data['posts']),'public records;',sum(x['views'] for x in data['posts']),'public lifetime views.')
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('snapshots', type=pathlib.Path, help='Explicit directory containing saved inventory JSON')
+    args = parser.parse_args()
+    data = build(args.snapshots)
+    (ROOT/'content/live-performance.json').write_text(json.dumps(data, indent=2)+'\n', encoding='utf-8')
+    print('Export verified:', len(data['posts']), 'public records;', sum(x['views'] for x in data['posts']), 'public lifetime views.')
