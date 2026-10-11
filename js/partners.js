@@ -17,4 +17,5 @@
       // Blocked analytics must not interrupt the email handoff.
     }
   });
+  document.getElementById('partner-fields').disabled = false;
 })();

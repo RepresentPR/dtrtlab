@@ -31,6 +31,7 @@
     <article class="card pad"><h2>Work opportunity</h2><p>A role or project where Ian's work could be a fit.</p></article>
   </section>
   <form id="contact-form" class="card pad">
+    <fieldset id="contact-fields" disabled aria-label="Email inquiry" style="border:0;padding:0;margin:0;min-width:0">
     <label>Category
       <select name="category" required>
         <option value="">Choose one</option>
@@ -47,11 +48,14 @@
     <label>Message <textarea name="message" required></textarea></label>
     <button type="submit">Prepare email</button>
     <p class="form-note">This opens your email app with the message. Review and send it there. If nothing opens, use the email link above.</p>
+    </fieldset>
   </form>
+  <noscript><p>The email form needs JavaScript. Email <a href="mailto:DTRTCollision@outlook.com">DTRTCollision@outlook.com</a> directly instead.</p></noscript>
 </main>
 <footer class="site-footer"><div class="site-footer-inner"><p>DTRT Lab · Created by Ian</p><nav aria-label="Footer"><a href="/">Home</a><a href="/about.html">About</a><a href="/clips/">Work</a><a href="/live/">Results</a><a href="/afterlight.html">AFTERLIGHT</a><a href="/partners.html">Partner</a><a href="/legal/privacy.html">Privacy</a></nav></div></footer>
 <script>
-document.getElementById("contact-form").addEventListener("submit", function (e) {
+var contactForm = document.getElementById("contact-form");
+contactForm.addEventListener("submit", function (e) {
   e.preventDefault();
   var data = new FormData(e.target);
   var category = String(data.get("category") || "");
@@ -59,6 +63,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
   var body = "Category: " + category + "\nName: " + data.get("name") + "\nEmail: " + data.get("email") + "\n\n" + data.get("message");
   window.location.href = "mailto:DTRTCollision@outlook.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
 });
+document.getElementById("contact-fields").disabled = false;
 </script>
 </body>
 </html>
