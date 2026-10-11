@@ -18,9 +18,11 @@
   function amount(value) { return typeof value === 'number' && Number.isFinite(value) && value >= 0 ? value : null; }
   function count(value) { return Number.isSafeInteger(value) && value >= 0 ? value : null; }
   function time(value) { return typeof value === 'string' && Number.isFinite(Date.parse(value)) ? Date.parse(value) : null; }
-  function metric(raw, target) {
+  function metric(raw, target, now) {
     var value = raw && raw.status === 'verified' ? amount(raw.value) : null;
-    return { value: value, target: target, progress: value === null ? null : Math.min(100, value / target * 100), note: cleanText(raw && raw.note, 180) };
+    var observed = value === null ? null : time(raw.observedAt);
+    if (observed !== null && observed > now + 300000) observed = null;
+    return { value: value, target: target, progress: value === null ? null : Math.min(100, value / target * 100), note: cleanText(raw && raw.note, 180), observedAt: observed === null ? null : new Date(observed).toISOString(), freshness: observed === null ? 'unknown' : now - observed > 21600000 ? 'stale' : 'recent' };
   }
   function createViewModel(data, now) {
     data = data && typeof data === 'object' ? data : {};
@@ -47,8 +49,8 @@
     return {
       capturedAt: captured === null ? null : new Date(captured).toISOString(),
       freshness: captured === null ? 'unknown' : now - captured > 21600000 ? 'stale' : 'recent',
-      views: metric((data.results || {}).views, amount(campaign.viewsGoal) || 250000),
-      revenue: metric((data.results || {}).revenue, amount(campaign.revenueGoalUsd) || 10000),
+      views: metric((data.results || {}).views, amount(campaign.viewsGoal) || 250000, now),
+      revenue: metric((data.results || {}).revenue, amount(campaign.revenueGoalUsd) || 10000, now),
       spend: { newAuthorizedUsd: 0, newVerifiedUsd: amount((data.spend || {}).newVerifiedUsd) },
       operations: { active: active, scheduled: scheduled, used: active === null || scheduled === null ? null : active + scheduled, cap: 17, overCapacity: active !== null && scheduled !== null && active + scheduled > 17, runwayDays: runwayDays, runwayVerified: queueFreshness === 'recent', queueFreshness: queueFreshness, queueVerifiedAt: queueTime === null ? null : new Date(queueTime).toISOString() },
       highlights: highlights, queue: queue.slice(0, 17),
@@ -73,7 +75,10 @@
       var bar = doc.getElementById(name + '-progress');
       bar.hidden = reading.progress === null;
       if (reading.progress !== null) bar.value = reading.progress;
-      set(name + '-note', reading.note || (reading.value === null ? (isMoney ? 'Payment records not connected yet.' : 'Baseline pending. No gain claimed yet.') : (isMoney ? 'Confirmed campaign receipts, net of recorded refunds.' : 'Added views since the campaign baseline.')));
+      var note = reading.note || (reading.value === null ? (isMoney ? 'Payment records not connected yet.' : 'Baseline pending. No gain claimed yet.') : (isMoney ? 'Confirmed campaign receipts, net of recorded refunds.' : 'Added views since the campaign baseline.'));
+      if (reading.value !== null) note += reading.observedAt ? ' Measured ' + dateLabel(reading.observedAt) + (reading.freshness === 'stale' ? ' · over 6 hours old.' : '.') : ' Measurement time unavailable.';
+      set(name + '-note', note);
+      doc.getElementById(name + '-note').classList.toggle('warning', reading.value !== null && reading.freshness !== 'recent');
     }
     function render(data) {
       var view = createViewModel(data);
@@ -81,7 +86,7 @@
       var status = doc.getElementById('data-status');
       status.dataset.state = view.freshness;
       var pending = view.views.value === null || view.revenue.value === null;
-      set('data-status', view.freshness === 'stale' ? 'Saved ' + dateLabel(view.capturedAt) + ' · over 6 hours old' : view.freshness === 'unknown' ? 'Update time unavailable · verification pending' : 'Saved ' + dateLabel(view.capturedAt) + (pending ? ' · setup in progress' : ' · verified results'));
+      set('data-status', view.freshness === 'stale' ? 'Saved ' + dateLabel(view.capturedAt) + ' · over 6 hours old' : view.freshness === 'unknown' ? 'Update time unavailable · verification pending' : 'Saved ' + dateLabel(view.capturedAt) + (pending ? ' · setup in progress' : ' · measurement dates below'));
       set('saved-at', view.capturedAt ? 'Last saved update: ' + dateLabel(view.capturedAt) + '.' : 'Last saved update: unavailable.');
       set('spend-note', (view.spend.newVerifiedUsd === null ? 'Actual new spend: verification pending.' : 'Verified new spend: ' + money.format(view.spend.newVerifiedUsd) + '.') + ' This is a campaign budget, not an all-time cost claim.');
       set('roster-count', (view.operations.used === null ? '—' : number.format(view.operations.used)) + ' / 17');

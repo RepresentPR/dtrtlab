@@ -85,3 +85,26 @@ test('queue verification expires after six hours even if the overall record was 
   assert.equal(stale.operations.queueFreshness, 'stale');
   assert.equal(stale.operations.runwayVerified, false);
 });
+test('fresh record saves do not refresh old numeric measurements', () => {
+  const view = model.createViewModel(campaign({ capturedAt: '2026-10-11T12:00:00Z', results: {
+    views: { value: 4200, status: 'verified', observedAt: '2026-10-11T04:00:00Z' },
+    revenue: { value: 20, status: 'verified', observedAt: '2026-10-11T11:30:00Z' }
+  } }), now);
+  assert.equal(view.freshness, 'recent');
+  assert.equal(view.views.value, 4200);
+  assert.equal(view.views.observedAt, '2026-10-11T04:00:00.000Z');
+  assert.equal(view.views.freshness, 'stale');
+  assert.equal(view.revenue.freshness, 'recent');
+});
+test('verified metrics without a valid measurement time stay undated', () => {
+  for (const observedAt of [undefined, null, 'invalid', '2027-01-01T00:00:00Z']) {
+    const view = model.createViewModel(campaign({ results: {
+      views: { value: 100, status: 'verified', observedAt },
+      revenue: { value: 0, status: 'verified', observedAt }
+    } }), now);
+    assert.equal(view.views.observedAt, null);
+    assert.equal(view.views.freshness, 'unknown');
+    assert.equal(view.revenue.observedAt, null);
+    assert.equal(view.revenue.freshness, 'unknown');
+  }
+});
