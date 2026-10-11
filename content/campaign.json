@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-11T22:10:30.525586Z",
+  "capturedAt": "2026-10-11T23:11:58.073725Z",
   "campaign": {
     "name": "Growth measured in public.",
     "startAt": "2026-10-11T06:28:12Z",
@@ -10,12 +10,12 @@
   },
   "results": {
     "views": {
-      "value": 2120,
+      "value": 3953,
       "status": "verified",
-      "observedAt": "2026-10-11T20:07:08.985Z",
-      "note": "Focused post updates changed the prior saved campaign total by +152. Opening-cohort counters retain their earlier collection dates. No full inventory refresh, organic attribution or winning format is claimed.",
+      "observedAt": "2026-10-11T23:09:41.327Z",
+      "note": "Focused YouTube and TikTok updates changed the prior saved campaign total by +1,833. Other counters retain their earlier dates. This is a partial campaign total, with no full inventory refresh, unique-audience or distribution-attribution claim.",
       "metric": "reported_new_campaign_post_views_plus_matched_legacy_counter_deltas",
-      "coverage": "Fixed 31 opening YouTube Shorts and 33 opening Instagram Reels plus seven measured campaign-created posts. Knife Instagram counter is unknown; X and Ko-fi excluded from headline views. Private identities omitted.",
+      "coverage": "Fixed 31 opening YouTube Shorts and 33 opening Instagram Reels plus eleven measured campaign-created posts. Newer Instagram counters remain unknown; X and Ko-fi are excluded from headline views.",
       "components": [
         {
           "platform": "YouTube",
@@ -34,21 +34,21 @@
           "platform": "TikTok",
           "value": 285,
           "basis": "Native cumulative views on campaign-created launch post",
-          "observedAt": "2026-10-11T19:52:33.031Z",
+          "observedAt": "2026-10-11T23:06:41.057Z",
           "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695303665602612493"
         },
         {
           "platform": "TikTok Anubis",
-          "value": 307,
+          "value": 310,
           "basis": "Native cumulative views on campaign-created Anubis post",
-          "observedAt": "2026-10-11T20:07:08.985Z",
+          "observedAt": "2026-10-11T23:06:41.057Z",
           "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695441861422451982"
         },
         {
           "platform": "YouTube Anubis",
-          "value": 287,
+          "value": 418,
           "basis": "Native owner Shorts inventory cumulative views on campaign-created post",
-          "observedAt": "2026-10-11T20:06:58.654Z",
+          "observedAt": "2026-10-11T23:09:41.327Z",
           "postUrl": "https://www.youtube.com/shorts/iR3orq__Hn8"
         },
         {
@@ -69,47 +69,87 @@
           "platform": "YouTube Knife",
           "basis": "Native cumulative inventory views on newly published campaign post; may include operator verification",
           "postUrl": "https://www.youtube.com/shorts/oUfVtc-hd0k",
-          "value": 0,
-          "observedAt": "2026-10-11T20:03:57.889Z"
+          "value": 725,
+          "observedAt": "2026-10-11T23:09:41.327Z"
         },
         {
           "platform": "TikTok Knife",
           "basis": "Native cumulative inventory views on newly published campaign post; may include operator verification",
           "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695502513348414734",
-          "value": 5,
-          "observedAt": "2026-10-11T20:04:21.782Z"
+          "value": 294,
+          "observedAt": "2026-10-11T23:06:41.057Z"
+        },
+        {
+          "platform": "YouTube Door",
+          "basis": "Native owner inventory cumulative views on campaign-created post; verification views may be included",
+          "postUrl": "https://www.youtube.com/shorts/qizD1CIUrhQ",
+          "value": 215,
+          "observedAt": "2026-10-11T23:09:41.327Z"
+        },
+        {
+          "platform": "YouTube preview teaser",
+          "basis": "Native owner inventory cumulative views on campaign-created post; verification views may be included",
+          "postUrl": "https://www.youtube.com/shorts/ROFmkh0tZEc",
+          "value": 134,
+          "observedAt": "2026-10-11T23:09:41.327Z"
+        },
+        {
+          "platform": "TikTok Door",
+          "basis": "Native owner inventory cumulative views on campaign-created post; verification views may be included",
+          "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695533442817133838",
+          "value": 217,
+          "observedAt": "2026-10-11T23:06:41.057Z"
+        },
+        {
+          "platform": "TikTok preview teaser",
+          "basis": "Native owner inventory cumulative views on campaign-created post; verification views may be included",
+          "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695514908397440269",
+          "value": 119,
+          "observedAt": "2026-10-11T23:06:41.057Z"
         }
       ],
       "organicAttribution": "not_established",
       "fullCampaignStartTotal": null
     },
     "lifetimeViews": {
-      "value": 146572,
+      "value": 148405,
       "status": "verified",
       "observedAt": "2026-10-11T19:48:51.709Z",
       "coverage": "partial",
       "components": [
         {
           "platform": "YouTube Shorts",
-          "value": 15645,
-          "posts": 34,
-          "scope": "34 measured Shorts; two private/unlisted records aggregate only. Dated full inventory plus focused public updates; each post counted once.",
+          "value": 16850,
+          "posts": 36,
+          "scope": "36 measured Shorts; two private/unlisted records aggregate only. Dated full inventory plus separately dated focused public updates; each post counted once.",
           "observedAt": "2026-10-11T19:49:21.287Z",
           "fullInventoryObservedAt": "2026-10-11T19:49:21.287Z",
-          "observedThrough": "2026-10-11T20:06:58.654Z",
+          "observedThrough": "2026-10-11T23:09:41.327Z",
           "observationType": "Dated full inventory with separately dated focused post updates; other counters not refreshed",
           "focusedUpdates": [
             {
               "postId": "iR3orq__Hn8",
-              "value": 287,
-              "observedAt": "2026-10-11T20:06:58.654Z",
-              "deltaFromPreviousSaved": 16
+              "value": 418,
+              "observedAt": "2026-10-11T23:09:41.327Z",
+              "deltaFromPreviousSaved": 131
             },
             {
               "postId": "oUfVtc-hd0k",
-              "value": 0,
-              "observedAt": "2026-10-11T20:03:57.889Z",
-              "deltaFromPreviousSaved": 0
+              "value": 725,
+              "observedAt": "2026-10-11T23:09:41.327Z",
+              "deltaFromPreviousSaved": 725
+            },
+            {
+              "postId": "qizD1CIUrhQ",
+              "value": 215,
+              "observedAt": "2026-10-11T23:09:41.327Z",
+              "deltaFromPreviousSaved": 215
+            },
+            {
+              "postId": "ROFmkh0tZEc",
+              "value": 134,
+              "observedAt": "2026-10-11T23:09:41.327Z",
+              "deltaFromPreviousSaved": 134
             }
           ]
         },
@@ -133,25 +173,43 @@
         },
         {
           "platform": "TikTok videos",
-          "value": 2388,
-          "posts": 19,
-          "scope": "19 measured Everyone posts; dated owner inventory plus focused native updates, including Knife once.",
+          "value": 3016,
+          "posts": 21,
+          "scope": "21 measured Everyone posts; dated full inventory plus focused updates on control, Anubis, Knife, preview teaser and Door.",
           "observedAt": "2026-10-11T19:52:01.261Z",
           "fullInventoryObservedAt": "2026-10-11T19:52:01.261Z",
-          "observedThrough": "2026-10-11T20:07:08.985Z",
+          "observedThrough": "2026-10-11T23:06:41.057Z",
           "observationType": "Dated full inventory with separately dated focused post updates; other counters not refreshed",
           "focusedUpdates": [
             {
               "postId": "7695441861422451982",
-              "value": 307,
-              "observedAt": "2026-10-11T20:07:08.985Z",
-              "deltaFromPreviousSaved": 0
+              "value": 310,
+              "observedAt": "2026-10-11T23:06:41.057Z",
+              "deltaFromPreviousSaved": 3
             },
             {
               "postId": "7695502513348414734",
-              "value": 5,
-              "observedAt": "2026-10-11T20:04:21.782Z",
-              "deltaFromPreviousSaved": 5
+              "value": 294,
+              "observedAt": "2026-10-11T23:06:41.057Z",
+              "deltaFromPreviousSaved": 289
+            },
+            {
+              "postId": "7695533442817133838",
+              "value": 217,
+              "observedAt": "2026-10-11T23:06:41.057Z",
+              "deltaFromPreviousSaved": 217
+            },
+            {
+              "postId": "7695514908397440269",
+              "value": 119,
+              "observedAt": "2026-10-11T23:06:41.057Z",
+              "deltaFromPreviousSaved": 119
+            },
+            {
+              "postId": "7695303665602612493",
+              "value": 285,
+              "observedAt": "2026-10-11T23:06:41.057Z",
+              "deltaFromPreviousSaved": 0
             }
           ]
         },
@@ -175,7 +233,7 @@
         }
       ],
       "note": "Known lifetime inventory combines the dated full collection with focused updates on named public posts. Unchanged counters retain their earlier times. Historical views are not campaign growth.",
-      "observedThrough": "2026-10-11T20:07:08.985Z"
+      "observedThrough": "2026-10-11T23:09:41.327Z"
     }
   },
   "operations": {
@@ -239,19 +297,19 @@
   ],
   "queue": [],
   "evidenceNotes": [
-    "Lifetime goal: 250,000 overall reported video views by December 31 Eastern. Known total 146,572; historical coverage is not campaign growth.",
-    "89 public measured records plus seven private/unlisted YouTube records in aggregate: 96 measured posts. Four new Knife links verified; only YouTube and TikTok have saved numeric counters. Knife Instagram is unknown and X is excluded from headline totals. Earlier inventory dates remain; this was a focused review refresh.",
-    "Focused native publication and four-hour review observations around 4:00-4:07 PM Eastern updated only the named posts. Full inventory observations remain dated around 3:49-3:52 PM; component times stay separate.",
-    "Focused post updates changed the prior saved campaign total by +152. Opening-cohort counters retain their earlier collection dates. No full inventory refresh, organic attribution or winning format is claimed.",
+    "Lifetime goal: 250,000 overall reported video views by December 31 Eastern. Known total 148,405; historical coverage is not campaign growth.",
+    "93 public measured records plus seven private/unlisted YouTube records in aggregate: 100 measured posts. Focused updates cover four YouTube Shorts and five TikTok posts. Newer Instagram counters remain unknown; X is excluded from headline totals. Other inventory dates remain unchanged.",
+    "Focused owner-inventory observations at 23:06-23:09 UTC on October 11 updated nine public posts. Full inventory observations remain dated around 19:49-19:52 UTC; component times stay separate.",
+    "Focused YouTube and TikTok updates changed the prior saved campaign total by +1,833. Other counters retain their earlier dates. This is a partial campaign total, with no full inventory refresh, unique-audience or distribution-attribution claim.",
     "The fixed opening baseline is 14,895 YouTube Shorts views and 13,337 Instagram Reel views, measured at 2:51-2:53 AM Eastern. The 23-minute start-to-baseline gap remains unmeasured. Negative native corrections are retained.",
     "Anubis is verified public on YouTube, Instagram, TikTok, X and Ko-fi. Lab File 003 is public on YouTube. The common planned release was 12:05 PM Eastern; native precision and processing vary. Ko-fi shows only a date, so its exact publication time is unknown.",
     "Ko-fi Anubis remains a historical publication record; no additional Ko-fi posts are scheduled. Planned times are not actual publication times.",
     "Owned Twitch, FACEIT and OBS source indexing remains incomplete. Editing approval used documented sampled visual and technical audio checks; unavailable listening or continuous playback is not claimed. Local operations require this PC online with Codex open.",
     "Current campaign allocation is reconciled: 17 native-confirmed occupied posts and no future queued reservations. Three retired public experiments remain in historical records. The four Door promos are published; Next Corner posts remain drafts. New scheduling is paused because capacity is full.",
-    "All four launch teasers have native identities. X was published at 20:45:48 UTC; YouTube at 20:48:45 UTC. TikTok shows the 20:48 UTC creation minute with Everyone visibility; precise delivery time is unmeasured. Instagram exact publication time is unknown. Teaser view counters are not included in the dated headline totals.",
+    "All four launch teasers have native identities. X was published at 20:45:48 UTC; YouTube at 20:48:45 UTC. TikTok shows the 20:48 UTC creation minute with Everyone visibility; precise delivery time is unmeasured. Instagram exact publication time is unknown. YouTube and TikTok teaser counters are included with their separate October 11 23:06-23:09 UTC observations; Instagram remains unknown and X is excluded.",
     "Five due four-hour reviews completed, all inconclusive. Anubis and episode retain 24/72/168-hour checks. Knife has new publication-based review jobs; actual times differ slightly across platforms. Ko-fi exact publication time remains unavailable and has a separate observation review.",
     "Instagram followers remain the dated 73 observation. Retention and engagement findings are shown in the review log with their own timestamps. Unknown counters are not zero; X views remain outside headline growth.",
-    "Door publication verified October 11: YouTube at 22:00:50 UTC, X at 22:00:52 UTC, Instagram at 22:01:04 UTC. TikTok shows the 22:00 UTC native creation minute with Everyone visibility; exact public-delivery instant is unmeasured. These publication checks do not refresh the dated headline view totals."
+    "Door publication verified October 11: YouTube at 22:00:50 UTC, X at 22:00:52 UTC, Instagram at 22:01:04 UTC. TikTok shows the 22:00 UTC native creation minute with Everyone visibility; exact public-delivery instant is unmeasured. YouTube and TikTok Door counters were subsequently observed at 23:06-23:09 UTC; Instagram remains unknown and X is excluded."
   ],
   "baseline": {
     "capturedFrom": "2026-10-11T06:51:23.161Z",

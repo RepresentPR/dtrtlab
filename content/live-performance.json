@@ -637,7 +637,7 @@
       "title": "One bullet left. Would you take the shot or reload? My FACEIT round, cut from the demo replay. #CS2 #FACEIT",
       "url": "https://www.tiktok.com/@iananthonyfc/video/7695303665602612493",
       "views": 285,
-      "observedAt": "2026-10-11T19:52:01.261Z",
+      "observedAt": "2026-10-11T23:06:41.057Z",
       "publicationDate": null,
       "review": "4h checkpoint completed late; inconclusive one-post cohort"
     },
@@ -846,8 +846,8 @@
       "platform": "YouTube",
       "title": "Last enemy. Smoke in the way. | CS2 #Shorts",
       "url": "https://www.youtube.com/shorts/iR3orq__Hn8",
-      "views": 287,
-      "observedAt": "2026-10-11T20:06:58.654Z",
+      "views": 418,
+      "observedAt": "2026-10-11T23:09:41.327Z",
       "publicationDate": "Oct 11, 2026",
       "review": "Inconclusive. 287 owner inventory views; 374 analytics views,105 engaged views,29.4% stayed/70.6% swiped. Retention curve processing. Preserve 24/72/168-hour validation; no performance winner established. Inventory and analytics surfaces remain separate. Observed 2026-10-11T20:06:58.654Z."
     },
@@ -856,8 +856,8 @@
       "platform": "TikTok",
       "title": "Last enemy. Smoke in the way. My recorded CS2 round on Anubis. Slow replay is labeled. #CS2 #Anubis",
       "url": "https://www.tiktok.com/@iananthonyfc/video/7695441861422451982",
-      "views": 307,
-      "observedAt": "2026-10-11T20:07:08.985Z",
+      "views": 310,
+      "observedAt": "2026-10-11T23:06:41.057Z",
       "publicationDate": null,
       "review": "Inconclusive. 307 video views,5.77s average watch,19.3% full completion,0 new followers;largest drop at3s. Preserve 24/72/168-hour validation; no performance winner established. Observed 2026-10-11T20:07:08.985Z."
     },
@@ -876,8 +876,8 @@
       "platform": "YouTube",
       "title": "Knife round got crowded",
       "url": "https://www.youtube.com/shorts/oUfVtc-hd0k",
-      "views": 0,
-      "observedAt": "2026-10-11T20:03:57.889Z",
+      "views": 725,
+      "observedAt": "2026-10-11T23:09:41.327Z",
       "publicationDate": "Oct 11, 2026",
       "review": "Newly published; four-hour review pending. Initial counters may include operator verification."
     },
@@ -886,10 +886,50 @@
       "platform": "TikTok",
       "title": "Knife round got crowded",
       "url": "https://www.tiktok.com/@iananthonyfc/video/7695502513348414734",
-      "views": 5,
-      "observedAt": "2026-10-11T20:04:21.782Z",
-      "publicationDate": "Oct 11, 2026",
+      "views": 294,
+      "observedAt": "2026-10-11T23:06:41.057Z",
+      "publicationDate": null,
       "review": "Newly published; four-hour review pending. Initial counters may include operator verification."
+    },
+    {
+      "id": "youtube:qizD1CIUrhQ",
+      "platform": "YouTube",
+      "title": "The door was already covered | CS2 replay #Shorts",
+      "url": "https://www.youtube.com/shorts/qizD1CIUrhQ",
+      "views": 215,
+      "observedAt": "2026-10-11T23:09:41.327Z",
+      "publicationDate": "Oct 11, 2026",
+      "review": "Native publication verified; scheduled publication-age review pending. Initial counters may include operator verification."
+    },
+    {
+      "id": "youtube:ROFmkh0tZEc",
+      "platform": "YouTube",
+      "title": "DTRT Lab LIVE Tonight | Recorded CS2 Preview #Shorts",
+      "url": "https://www.youtube.com/shorts/ROFmkh0tZEc",
+      "views": 134,
+      "observedAt": "2026-10-11T23:09:41.327Z",
+      "publicationDate": "Oct 11, 2026",
+      "review": "Native publication verified; scheduled publication-age review pending. Initial counters may include operator verification."
+    },
+    {
+      "id": "tiktok:7695533442817133838",
+      "platform": "TikTok",
+      "title": "Door",
+      "url": "https://www.tiktok.com/@iananthonyfc/video/7695533442817133838",
+      "views": 217,
+      "observedAt": "2026-10-11T23:06:41.057Z",
+      "publicationDate": null,
+      "review": "Native publication verified; scheduled publication-age review pending. Initial counters may include operator verification."
+    },
+    {
+      "id": "tiktok:7695514908397440269",
+      "platform": "TikTok",
+      "title": "Interactive preview teaser",
+      "url": "https://www.tiktok.com/@iananthonyfc/video/7695514908397440269",
+      "views": 119,
+      "observedAt": "2026-10-11T23:06:41.057Z",
+      "publicationDate": null,
+      "review": "Native publication verified; scheduled publication-age review pending. Initial counters may include operator verification."
     }
   ],
   "campaignAddedHistory": [
@@ -936,6 +976,10 @@
     {
       "observedAt": "2026-10-11T20:07:08.985Z",
       "value": 2120
+    },
+    {
+      "observedAt": "2026-10-11T23:09:41.327Z",
+      "value": 3953
     }
   ],
   "experiments": [
@@ -1011,7 +1055,7 @@
       "decision": "Inconclusive. 6 owner inventory views;7 analytics views,5 engaged views,29s average view duration;318 thumbnail impressions and0.6% CTR. Preserve 24/72/168-hour validation; no performance winner established. Inventory and analytics surfaces remain separate."
     }
   ],
-  "coverage": "89 public measured records plus seven private/unlisted YouTube records in aggregate: 96 measured posts. Four new Knife links verified; only YouTube and TikTok have saved numeric counters. Knife Instagram is unknown and X is excluded from headline totals. Earlier inventory dates remain; this was a focused review refresh.",
+  "coverage": "93 public measured records plus seven private/unlisted YouTube records in aggregate: 100 measured posts. Focused updates cover four YouTube Shorts and five TikTok posts. Newer Instagram counters remain unknown; X is excluded from headline totals. Other inventory dates remain unchanged.",
   "learningAudits": [
     {
       "observedAt": "2026-10-11T15:01:14.433902+00:00",
@@ -1215,6 +1259,260 @@
         "source": "YouTube overview Latest content card",
         "note": "Different surface from inventory; not included in lifetime/added totals or completed post review."
       }
+    },
+    {
+      "kind": "four_hour_channel_graph_audit",
+      "scheduledAuditAt": "2026-10-11T23:00:00Z",
+      "observedAt": "2026-10-11T23:09:06.278Z",
+      "sourceObservedFrom": "2026-10-11T23:06:41.057Z",
+      "sourceObservedThrough": "2026-10-11T23:09:06.278Z",
+      "window": "YouTube channel, September 13-October 10, 2026; native Last 28 days label. TikTok observations are separately dated post-to-date counters.",
+      "periodViews": 15037,
+      "watchHours": 22.8,
+      "netSubscribers": 2,
+      "currentDisplayedSubscribers": 1310,
+      "realtime48hViews": 5837,
+      "observations": [
+        {
+          "rank": 1,
+          "title": "Come On, Code. (Lab File 001) #Shorts",
+          "publicationDateDisplay": "Oct 9, 2026",
+          "periodViews": 1917,
+          "averageWatchSeconds": 17,
+          "averagePercentageViewed": 68.8,
+          "metricWindow": "September 13-October 10, 2026",
+          "titleNormalization": "Emoji/punctuation simplified for readable structured labels; exact native text preserved in raw evidence.",
+          "observedAt": "2026-10-11T23:09:06.278Z"
+        },
+        {
+          "rank": 2,
+          "title": "Lurk King. (Lab File 001) #Shorts",
+          "publicationDateDisplay": "Oct 9, 2026",
+          "periodViews": 1590,
+          "averageWatchSeconds": 11,
+          "averagePercentageViewed": 79.8,
+          "metricWindow": "September 13-October 10, 2026",
+          "titleNormalization": "Emoji/punctuation simplified for readable structured labels; exact native text preserved in raw evidence.",
+          "observedAt": "2026-10-11T23:09:06.278Z"
+        },
+        {
+          "rank": 3,
+          "title": "Skitz Hit the Ladder. 200 IQ, 0 Aim (Lab File 001) #Shorts",
+          "publicationDateDisplay": "Oct 9, 2026",
+          "periodViews": 1255,
+          "averageWatchSeconds": 11,
+          "averagePercentageViewed": 71.9,
+          "metricWindow": "September 13-October 10, 2026",
+          "titleNormalization": "Emoji/punctuation simplified for readable structured labels; exact native text preserved in raw evidence.",
+          "observedAt": "2026-10-11T23:09:06.278Z"
+        },
+        {
+          "rank": 9,
+          "title": "Not the Molly. (Lab File 001) #Shorts",
+          "publicationDateDisplay": "Oct 9, 2026",
+          "periodViews": 988,
+          "averageWatchSeconds": 15,
+          "averagePercentageViewed": 81.1,
+          "metricWindow": "September 13-October 10, 2026",
+          "titleNormalization": "Emoji/punctuation simplified for readable structured labels; exact native text preserved in raw evidence.",
+          "observedAt": "2026-10-11T23:09:06.278Z"
+        }
+      ],
+      "rolling48hComparison": {
+        "previous": 4379,
+        "previousObservedAt": "2026-10-11T19:13:52.409Z",
+        "current": 5837,
+        "currentObservedAt": "2026-10-11T23:09:06.278Z",
+        "difference": 1458,
+        "note": "The moving-window difference is not views earned between audits. Window expiry, processing and revisions can contribute."
+      },
+      "realtimeTopContent": {
+        "observedAt": "2026-10-11T23:09:06.278Z",
+        "metricWindow": "Rolling last 48 hours",
+        "rows": [
+          {
+            "title": "One. One More. CS2 Last Guy Alive",
+            "views": 1036
+          },
+          {
+            "title": "Knife round got crowded",
+            "views": 1025
+          },
+          {
+            "title": "Come On, Code",
+            "views": 847
+          }
+        ],
+        "note": "Selected native realtime rows; not a complete inventory or a matched publication-age ranking."
+      },
+      "latestContentCard": {
+        "title": "The door was already covered",
+        "observedAt": "2026-10-11T23:09:06.278Z",
+        "source": "YouTube overview Latest content card",
+        "views": 264,
+        "ageLabel": "First 1 hour 8 minutes",
+        "averagePercentageViewed": null,
+        "likes": null,
+        "note": "Separate overview surface before its four-hour review. Unavailable fields remain unknown; this card does not refresh the inventory headline."
+      },
+      "additionalPlatformAudit": {
+        "platform": "TikTok",
+        "contentListObservedAt": "2026-10-11T23:06:41.057Z",
+        "metricWindow": "Lifetime counters for five selected campaign posts",
+        "observations": [
+          {
+            "title": "Door",
+            "url": "https://www.tiktok.com/@iananthonyfc/video/7695533442817133838",
+            "views": 217,
+            "likes": 0,
+            "comments": 0,
+            "durationDisplay": "00:16",
+            "observedAt": "2026-10-11T23:06:41.057Z",
+            "publicationMinute": "2026-10-11T22:00:00Z",
+            "approximateAgeHours": 1.111,
+            "agePrecision": "Publication minute only; exact first delivery was not measured."
+          },
+          {
+            "title": "Interactive preview teaser",
+            "url": "https://www.tiktok.com/@iananthonyfc/video/7695514908397440269",
+            "views": 119,
+            "likes": 0,
+            "comments": 0,
+            "durationDisplay": "00:19",
+            "observedAt": "2026-10-11T23:06:41.057Z",
+            "publicationMinute": "2026-10-11T20:48:00Z",
+            "approximateAgeHours": 2.311,
+            "agePrecision": "Publication minute only; exact first delivery was not measured."
+          },
+          {
+            "title": "Knife",
+            "url": "https://www.tiktok.com/@iananthonyfc/video/7695502513348414734",
+            "views": 294,
+            "likes": 3,
+            "comments": 0,
+            "durationDisplay": "00:15",
+            "observedAt": "2026-10-11T23:06:41.057Z",
+            "publicationMinute": "2026-10-11T20:00:00Z",
+            "approximateAgeHours": 3.111,
+            "agePrecision": "Publication minute only; exact first delivery was not measured."
+          },
+          {
+            "title": "Anubis",
+            "url": "https://www.tiktok.com/@iananthonyfc/video/7695441861422451982",
+            "views": 310,
+            "likes": 1,
+            "comments": 0,
+            "durationDisplay": "00:10",
+            "observedAt": "2026-10-11T23:06:41.057Z",
+            "publicationMinute": "2026-10-11T16:05:00Z",
+            "approximateAgeHours": 7.028,
+            "agePrecision": "Publication minute only; exact first delivery was not measured."
+          },
+          {
+            "title": "One bullet left control",
+            "url": "https://www.tiktok.com/@iananthonyfc/video/7695303665602612493",
+            "views": 285,
+            "likes": 4,
+            "comments": 0,
+            "durationDisplay": "00:15",
+            "observedAt": "2026-10-11T23:06:41.057Z",
+            "publicationMinute": "2026-10-11T07:09:00Z",
+            "approximateAgeHours": 15.961,
+            "agePrecision": "Publication minute only; exact first delivery was not measured."
+          }
+        ],
+        "selectedPostViewSum": 1225,
+        "sumMeaning": "Sum of these five distinct post counters only; not unique viewers, an interval gain or a full account inventory.",
+        "detailedAnalytics": [
+          {
+            "title": "One bullet left control",
+            "url": "https://www.tiktok.com/@iananthonyfc/video/7695303665602612493",
+            "observedAt": "2026-10-11T23:06:50.486Z",
+            "metricWindow": "Native displayed post-to-date aggregates",
+            "views": 285,
+            "averageWatchSeconds": 6.49,
+            "fullVideoPercent": 10.3,
+            "totalPlayTimeSeconds": 2026,
+            "newFollowers": 0,
+            "largestDropAtSeconds": 2,
+            "retentionCurveExactPoints": null,
+            "trafficSourceRaw": {
+              "forYou": "99.7%",
+              "personalProfile": "0.3%",
+              "following": "<0.1%",
+              "directMessages": "<0.1%",
+              "sound": "<0.1%",
+              "search": "<0.1%",
+              "other": "<0.1%"
+            },
+            "searchQueries": null,
+            "searchQueriesStatus": "Processing"
+          },
+          {
+            "title": "Anubis",
+            "url": "https://www.tiktok.com/@iananthonyfc/video/7695441861422451982",
+            "observedAt": "2026-10-11T23:06:57.358Z",
+            "metricWindow": "Native displayed post-to-date aggregates",
+            "views": 310,
+            "averageWatchSeconds": 5.77,
+            "fullVideoPercent": 19.4,
+            "totalPlayTimeSeconds": 1813,
+            "newFollowers": 0,
+            "largestDropAtSeconds": 3,
+            "retentionCurveExactPoints": null,
+            "trafficSourceRaw": {
+              "forYou": "99.4%",
+              "following": "0.3%",
+              "personalProfile": "0.3%",
+              "directMessages": "<0.1%",
+              "sound": "<0.1%",
+              "search": "<0.1%",
+              "other": "<0.1%"
+            },
+            "searchQueries": null,
+            "searchQueriesStatus": "Processing"
+          }
+        ]
+      },
+      "supportedFacts": [
+        "The selected YouTube period still reports 15,037 views, 22.8 watch hours and net +2 subscribers. It ends October 10 and excludes today.",
+        "The rolling YouTube 48-hour total is 5,837, compared with 4,379 at 19:13:52 UTC. The difference 1,458 is not an interval-earned view count.",
+        "The control shows 285 TikTok views, 6.49 seconds average watch, 10.3% full video and its largest audience drop at 2 seconds. Anubis shows 310 views, 5.77 seconds average watch, 19.4% full video and its largest drop at 3 seconds.",
+        "Both detailed TikTok posts show 0 new followers. For You accounts for 99.7% of the control distribution and 99.4% for Anubis; smaller source shares retain native less-than precision.",
+        "Door, teaser and Knife TikTok posts are approximately 1.11, 2.31 and 3.11 hours old in the list observation. None of those observations completes a four-hour post review."
+      ],
+      "hypotheses": [
+        "Bringing continuous action into the opening may reduce the control's early audience loss; the existing approved direct-exchange variant is the single test of this idea.",
+        "The shorter Anubis runtime may contribute to its higher full-video percentage. Its lower absolute average watch time and different age, story and distribution prevent a format-winner conclusion."
+      ],
+      "bottleneck": "Audience loss in the opening 2-3 seconds remains the clearest observed creative weakness on the two detailed TikTok posts. Exact curves and comparable same-age cohorts remain incomplete.",
+      "decision": "Inconclusive. Keep the existing single direct-exchange opening test; no winning format, causal improvement or failed format established.",
+      "test": "Use the already approved 7.85-second direct-exchange variant only after the control 24-hour review. Preserve the approved wording, layout and replay disclosure. No new variant commissioned.",
+      "evaluation": "Compare the same platform and native metric definitions at actual publication +4/24/72/168 hours. Use views, absolute average watch, full-video percentage, supported retention and followers together. Shorter runtime and sequential audiences confound interpretation.",
+      "checkpoints": {
+        "nextGraphAuditDueAt": "2026-10-12T03:00:00Z",
+        "publicationAgeHours": [
+          4,
+          24,
+          72,
+          168
+        ],
+        "control24hNominalAt": "2026-10-12T07:09:00Z",
+        "control24hConservativeCollectionNotBefore": "2026-10-12T07:10:00Z",
+        "note": "Use each verified native publication time. The control timestamp is minute precision; collect after the end of that minute. Pending publication-age reviews remain separate from this graph audit."
+      },
+      "limits": [
+        "YouTube selected-period, rolling 48-hour, Latest content and lifetime inventory surfaces have different scopes. Headline totals use the separately saved focused owner-inventory update, not these channel graph or Latest content values.",
+        "Native YouTube reporting timezone is not displayed. Channel watch time includes public, private, unlisted and deleted videos; no private identities are exported.",
+        "Top-content selection is biased. Durations, topics, age and exposure differ; a same-platform list is not a matched same-age cohort.",
+        "YouTube average percentage viewed is not TikTok full-video percentage. Display precision is not exact underlying precision.",
+        "TikTok exact retention-curve points are unavailable and search queries are processing. Missing values stay unknown.",
+        "No exact YouTube daily graph points, fresh video-level retention curves, complete traffic-source breakdown or matched weekly windows were collected.",
+        "Publication minutes are not exact first-delivery times. Observed pre-four-hour cards do not complete scheduled post reviews.",
+        "A shorter clip can increase completion percentage without increasing absolute watch time. These observations do not establish causation."
+      ],
+      "nextAuditDueAt": "2026-10-12T03:00:00Z",
+      "completedAt": "2026-10-11T23:11:58.025930Z"
     }
   ]
 }
