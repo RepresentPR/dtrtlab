@@ -4,6 +4,7 @@
   if (parts.length && /\.[a-z0-9]+$/i.test(parts[parts.length - 1])) parts.pop();
   var root = parts.length ? "../".repeat(parts.length) : "";
   var file = (location.pathname.split("/").pop() || "index.html").toLowerCase();
+  var cs2On = file === "cs2.html";
   var afterlightOn =
     file === "afterlight.html" ||
     file === "game.html" ||
@@ -26,6 +27,7 @@
     '<a class="brand" href="' + root + 'index.html">DTRTC</a>' +
     '<nav class="links" id="site-links" aria-label="Primary">' +
     link("index.html#clips", "Clips", false) +
+    link("cs2.html", "CS2", cs2On) +
     link("index.html#about", "About", false) +
     link("index.html#schedule", "Schedule", false) +
     link("afterlight.html", "AFTERLIGHT", afterlightOn) +
@@ -56,6 +58,7 @@
       "<span>DTRTC · DTRT Lab</span>" +
       '<a href="' + root + 'index.html">Home</a>' +
       '<a href="' + root + 'index.html#clips">Clips</a>' +
+      '<a href="' + root + 'cs2.html">CS2</a>' +
       '<a href="' + root + 'index.html#schedule">Schedule</a>' +
       '<a href="' + root + 'afterlight.html">AFTERLIGHT</a>' +
       '<a href="' + root + 'game.html">Game</a>' +
@@ -246,6 +249,36 @@
     ref.content = "strict-origin-when-cross-origin";
     document.head.appendChild(ref);
   }
+  fetch("/api/community", { cache: "no-store" })
+    .then(function (response) {
+      return response.ok ? response.json() : null;
+    })
+    .then(function (board) {
+      if (!board || !board.tabs) return;
+      var nav = document.getElementById("site-links");
+      var foot = document.getElementById("site-foot");
+      board.tabs.forEach(function (tab) {
+        if (!tab || tab.status !== "live") return;
+        var href = root + "tab.html?id=" + encodeURIComponent(tab.id);
+        if (nav && !nav.querySelector('a[href="' + href + '"]')) {
+          var link = document.createElement("a");
+          link.href = href;
+          link.textContent = tab.title;
+          nav.appendChild(link);
+        }
+        if (foot) {
+          var row = foot.querySelector(".wrap");
+          if (row && !row.querySelector('a[href="' + href + '"]')) {
+            var footLink = document.createElement("a");
+            footLink.href = href;
+            footLink.textContent = tab.title;
+            row.appendChild(footLink);
+          }
+        }
+      });
+    })
+    .catch(function () {});
+
   fetch(root + "content/site.json", { cache: "no-store" })
     .then(function (response) {
       return response.ok ? response.json() : null;

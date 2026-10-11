@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>CS2 heaven — DTRTC</title>
+  <meta name="description" content="A CS2 room for DTRTC. Four-hour crosshair rotation, live votes, map pool, utility, and accounts the site cannot open.">
+  <link rel="icon" href="img/icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Dela+Gothic+One&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/lab.css">
+  <link rel="stylesheet" href="css/adapt.css">
+  <link rel="stylesheet" href="css/hub.css">
+  <link rel="stylesheet" href="css/cs2.css">
+</head>
+<body class="hub cs2">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav" id="site-nav"></header>
+  <main id="main">
+    <section class="hero" aria-labelledby="cs2-title">
+      <div class="wrap hero-top" style="min-height:0;padding-bottom:28px">
+        <div>
+          <p class="hud">CS2 // The room</p>
+          <h1 id="cs2-title" class="wordmark">CS2 heaven</h1>
+          <p class="tagline">Everything the lobby actually argues about.</p>
+          <p class="lede">Crosshairs, the map pool, the first smoke that matters, where to queue, and a board the room can vote on. Accounts are created in your browser. DTRT Lab never receives the password and cannot open the account.</p>
+          <nav class="jump" aria-label="On this page">
+            <a href="#crosshair">Crosshairs</a>
+            <a href="#votes">Votes</a>
+            <a href="#maps">Maps</a>
+            <a href="#utility">Utility</a>
+            <a href="#queues">Queues</a>
+            <a href="#aim">eDPI</a>
+            <a href="#tabs">Tabs</a>
+            <a href="#account">Account</a>
+            <a href="#notes">Notes</a>
+          </nav>
+          <p class="board-mode" id="board-mode" role="status">Loading the board…</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="crosshair" aria-labelledby="xh-title">
+      <div class="wrap">
+        <p class="hud">01 // Four-hour bench</p>
+        <h2 id="xh-title">One crosshair, four hours.</h2>
+        <p class="lede">The bench walks forward every four hours. Everyone sees the same one. These are small, high-contrast static crosses, the shapes that still read when a CS2 clip is compressed. Voting does not change the clock. A code you paste from a clip joins the vote, not the clock.</p>
+        <p id="xh-countdown" role="status">Loading the rotation…</p>
+        <div class="xh-layout">
+          <div class="xh-stage">
+            <p class="badge" id="xh-badge">On stage</p>
+            <canvas id="xh-canvas" width="640" height="360" aria-label="Crosshair preview"></canvas>
+          </div>
+          <div>
+            <h3 id="xh-name">Crosshair</h3>
+            <p id="xh-note"></p>
+            <p id="xh-meta"></p>
+            <p class="xh-code" id="xh-code"></p>
+            <div class="actions">
+              <button class="cta" id="xh-copy" type="button">Copy code</button>
+              <button class="cta ghost" id="xh-copy-cmds" type="button">Copy commands</button>
+            </div>
+            <pre class="xh-cmds" id="xh-cmds"></pre>
+          </div>
+        </div>
+        <div class="xh-grid" id="xh-gallery" style="margin-top:18px"></div>
+        <form id="xh-form" class="card" style="margin-top:18px">
+          <h3>Paste a code from a clip</h3>
+          <label>Name <input name="label" required maxlength="23" autocomplete="off" placeholder="Window tap"></label>
+          <label>Share code <input name="code" required maxlength="80" autocomplete="off" spellcheck="false" placeholder="CS… or CSGO-…"></label>
+          <button class="cta" type="submit">Add it to the vote</button>
+          <p class="status" id="xh-submit-status" role="status"></p>
+        </form>
+      </div>
+    </section>
+
+    <section id="votes" aria-labelledby="vote-title">
+      <div class="wrap">
+        <p class="hud">02 // Live board</p>
+        <h2 id="vote-title">Vote while the queue is up.</h2>
+        <p class="lede">One vote per account, and you can change it. The tally is public. The signing key is not.</p>
+        <div class="want-grid" id="polls"></div>
+      </div>
+    </section>
+
+    <section id="wants" aria-labelledby="wants-title">
+      <div class="wrap">
+        <p class="hud">03 // What the lobby wants</p>
+        <h2 id="wants-title">The arguments, in one place.</h2>
+        <div class="want-grid" id="wants"></div>
+      </div>
+    </section>
+
+    <section id="maps" aria-labelledby="maps-title">
+      <div class="wrap">
+        <p class="hud">04 // Map pool</p>
+        <h2 id="maps-title">Season 5, since 8 July 2026.</h2>
+        <p class="lede">Cache replaced Overpass. Premier uses the seven active maps. Reserve maps are still in the game.</p>
+        <div class="map-grid" id="map-board"></div>
+      </div>
+    </section>
+
+    <section id="utility" aria-labelledby="utility-title">
+      <div class="wrap">
+        <p class="hud">05 // First throw</p>
+        <h2 id="utility-title">One smoke before a lineup pack.</h2>
+        <p class="lede">What the smoke is for. The exact lineup is practiced in a server, not copied from a guess on a web page.</p>
+        <div class="utility-grid" id="utility-board"></div>
+      </div>
+    </section>
+
+    <section id="queues" aria-labelledby="queue-title">
+      <div class="wrap">
+        <p class="hud">06 // Where to play</p>
+        <h2 id="queue-title">Pick the queue on purpose.</h2>
+        <div class="queue-grid" id="queue-board"></div>
+      </div>
+    </section>
+
+    <section id="aim" aria-labelledby="aim-title">
+      <div class="wrap split">
+        <div>
+          <p class="hud">07 // Aim desk</p>
+          <h2 id="aim-title">eDPI, nothing mystical.</h2>
+          <p class="lede">DPI times in-game sensitivity. Compare it with the numbers people post. It does not pick your crosshair.</p>
+        </div>
+        <form id="edpi-form" class="card">
+          <label>Mouse DPI <input name="dpi" type="number" min="100" max="30000" step="50" value="800" inputmode="numeric"></label>
+          <label>In-game sensitivity <input name="sens" type="number" min="0.01" max="20" step="0.01" value="1.0" inputmode="decimal"></label>
+          <p id="edpi-out" role="status"></p>
+        </form>
+      </div>
+    </section>
+
+    <section id="tabs" aria-labelledby="tabs-title">
+      <div class="wrap">
+        <p class="hud">08 // Test panel</p>
+        <h2 id="tabs-title">Propose a tab. The room picks it.</h2>
+        <p class="lede">Attach Grok, ChatGPT, Grok bot, Cursor, or Claude. Local agents are refused. A provider key stays encrypted in this browser and is not uploaded. The room previews every proposal and votes. The tab in the lead can be approved by the site owner, then it waits 72 hours before it is added to the navigation.</p>
+        <div class="split">
+          <form id="agent-form" class="card">
+            <h3>Attach an agent</h3>
+            <label>Provider
+              <select name="provider" required>
+                <option value="grok">Grok</option>
+                <option value="chatgpt">ChatGPT</option>
+                <option value="grok-bot">Grok bot</option>
+                <option value="cursor">Cursor</option>
+                <option value="claude">Claude</option>
+              </select>
+            </label>
+            <label>Provider key <input name="key" type="password" autocomplete="off" minlength="8" placeholder="Stays on this device"></label>
+            <button class="cta" type="submit">Save on this device</button>
+            <p class="status" id="agent-status" role="status"></p>
+            <p id="agent-list"></p>
+          </form>
+          <form id="tab-form" class="card">
+            <h3>Propose a tab</h3>
+            <label>Title <input name="title" required maxlength="40" autocomplete="off"></label>
+            <label>One line <input name="blurb" required maxlength="180" autocomplete="off"></label>
+            <label>Preview copy <textarea name="body" required maxlength="800" rows="4"></textarea></label>
+            <label>Built with
+              <select name="provider" required>
+                <option value="grok">Grok</option>
+                <option value="chatgpt">ChatGPT</option>
+                <option value="grok-bot">Grok bot</option>
+                <option value="cursor">Cursor</option>
+                <option value="claude">Claude</option>
+              </select>
+            </label>
+            <button class="cta" type="submit">Put it up for preview</button>
+            <p class="status" id="tab-status" role="status"></p>
+          </form>
+        </div>
+        <div class="tab-grid" id="tab-board" style="margin-top:16px"></div>
+        <form id="approve-form" class="card" style="margin-top:16px">
+          <h3>Owner approval</h3>
+          <p>Approves the tab that is ahead. This does not open anyone’s account. The 72-hour clock starts when the approval is accepted.</p>
+          <label>Site secret <input name="secret" type="password" autocomplete="off"></label>
+          <button class="cta" type="submit">Approve the leading tab</button>
+          <p class="status" id="approve-status" role="status"></p>
+        </form>
+      </div>
+    </section>
+
+    <section id="account" aria-labelledby="account-title">
+      <div class="wrap">
+        <p class="hud">09 // Your key</p>
+        <h2 id="account-title">An account DTRT Lab cannot open.</h2>
+        <p class="lede">The password encrypts a signing key in this browser. It is not sent, not stored on the server, and there is no reset. Ian cannot sign in as you, read the password, or recover it. Other people see the display name on votes and notes. If you forget the password, the account is gone.</p>
+        <div id="account-panel" class="account-grid">
+          <div data-signed-out>
+            <form id="account-create" class="account-card">
+              <h3>Create</h3>
+              <label>Display name <input name="name" required maxlength="23" autocomplete="nickname"></label>
+              <label>Password <input name="password" type="password" required minlength="8" autocomplete="new-password"></label>
+              <label>Repeat password <input name="again" type="password" required minlength="8" autocomplete="new-password"></label>
+              <button class="cta" type="submit">Create on this device</button>
+            </form>
+            <form id="account-unlock" class="account-card" data-has-vault hidden>
+              <h3>Sign in</h3>
+              <p>An account for <span data-vault-name></span> is already on this browser.</p>
+              <label>Password <input name="password" type="password" required minlength="8" autocomplete="current-password"></label>
+              <button class="cta" type="submit">Unlock</button>
+            </form>
+          </div>
+          <div class="account-card" data-signed-in hidden>
+            <h3>Signed in</h3>
+            <p data-you></p>
+            <div class="actions">
+              <button class="cta ghost" id="account-lock" type="button">Lock</button>
+              <button class="cta ghost" id="account-erase" type="button">Erase from this browser</button>
+            </div>
+          </div>
+        </div>
+        <p class="status" id="account-status" role="status"></p>
+      </div>
+    </section>
+
+    <section id="notes" aria-labelledby="notes-title">
+      <div class="wrap">
+        <p class="hud">10 // The room</p>
+        <h2 id="notes-title">Short notes, signed.</h2>
+        <form id="take-form" class="card">
+          <label>Note <textarea name="text" required maxlength="180" rows="3" placeholder="Cache mid is the round."></textarea></label>
+          <button class="cta" type="submit">Post</button>
+          <p class="status" id="feed-status" role="status"></p>
+        </form>
+        <div class="feed" id="feed" style="margin-top:16px"></div>
+      </div>
+    </section>
+  </main>
+  <footer id="site-foot"></footer>
+  <script src="content/socials.js"></script>
+  <script src="js/nav.js"></script>
+  <script type="module" src="js/cs2-community.mjs"></script>
+</body>
+</html>

@@ -20,6 +20,22 @@ The X link is `https://x.com/DTRTLab`, carried over from the previous site. A pu
 
 The About paragraph is the element with `id="creator-bio"` in `index.html`.
 
+## CS2 room
+
+`cs2.html` is the community page: a crosshair that changes every four hours, the Season 5 map pool, a first smoke per active map, an eDPI check, and a public vote board.
+
+Accounts are created in the browser. The password never leaves the device, and there is no reset. The server stores the public key, the display name, votes, and short notes.
+
+Share the board with:
+
+```
+node tools/community-server.mjs
+```
+
+Set `DTRT_SITE_SECRET` in the environment before approving a community tab. The placeholder in `.env.example` is refused. Approval does not open user accounts. The leading tab waits 72 hours after approval, then it is added to the navigation. Allowed agents are Grok, ChatGPT, Grok bot, Cursor, and Claude. Local agents are refused, and provider keys are not uploaded.
+
+Then open http://127.0.0.1:8787/cs2.html . A plain static server still shows the page. Votes stay on that browser until this server is running.
+
 ## Read only
 
 Open `index.html` in a browser. Catalog/news JSON still load if you serve the folder.
