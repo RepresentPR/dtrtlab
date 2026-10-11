@@ -8,8 +8,8 @@ const now = Date.parse('2026-10-11T12:00:00Z');
 function campaign(overrides = {}) {
   return {
     capturedAt: '2026-10-11T11:00:00Z',
-    campaign: { startAt: '2026-10-11T06:28:12Z', deadlineAt: '2026-12-25T05:00:00Z', viewsGoal: 250000, revenueGoalUsd: 10000 },
-    results: { views: { value: null, status: 'baseline_pending' }, revenue: { value: null, status: 'baseline_pending' } },
+    campaign: { startAt: '2026-10-11T06:28:12Z', viewsGoal: 250000 },
+    results: { views: { value: null, status: 'baseline_pending' } },
     spend: { newAuthorizedUsd: 0, newVerifiedUsd: null },
     operations: { activePosts: 0, scheduledPosts: 0, cap: 17, runwayDays: 0, queueVerifiedAt: null },
     highlights: [], queue: [], evidenceNotes: [], ...overrides
@@ -17,16 +17,15 @@ function campaign(overrides = {}) {
 }
 test('pending campaign metrics never turn null or unverified values into zero', () => {
   assert.equal(typeof model.createViewModel, 'function', 'campaign data model must be implemented');
-  const view = model.createViewModel(campaign({ results: { views: { value: 25000, status: 'baseline_pending' }, revenue: { value: null, status: 'verified' } } }), now);
+  const view = model.createViewModel(campaign({ results: { views: { value: 25000, status: 'baseline_pending' } } }), now);
   assert.equal(view.views.value, null);
-  assert.equal(view.revenue.value, null);
+  assert.equal(Object.hasOwn(view, 'revenue'), false);
   assert.equal(view.views.progress, null);
 });
-test('verified zero and earned progress survive while invalid money is withheld', () => {
-  const view = model.createViewModel(campaign({ results: { views: { value: 125000, status: 'verified' }, revenue: { value: 0, status: 'verified' } } }), now);
+test('earned view progress survives while financial input is ignored', () => {
+  const view = model.createViewModel(campaign({ results: { views: { value: 125000, status: 'verified' } } }), now);
   assert.equal(view.views.progress, 50);
-  assert.equal(view.revenue.value, 0);
-  assert.equal(model.createViewModel(campaign({ results: { revenue: { value: -1, status: 'verified' } } }), now).revenue.value, null);
+  assert.equal(Object.hasOwn(view, 'revenue'), false);
 });
 test('saved observations become stale and malformed future timestamps do not appear fresh', () => {
   assert.equal(model.createViewModel(campaign({ capturedAt: '2026-10-11T00:00:00Z' }), now).freshness, 'stale');
@@ -87,24 +86,21 @@ test('queue verification expires after six hours even if the overall record was 
 });
 test('fresh record saves do not refresh old numeric measurements', () => {
   const view = model.createViewModel(campaign({ capturedAt: '2026-10-11T12:00:00Z', results: {
-    views: { value: 4200, status: 'verified', observedAt: '2026-10-11T04:00:00Z' },
-    revenue: { value: 20, status: 'verified', observedAt: '2026-10-11T11:30:00Z' }
+    views: { value: 4200, status: 'verified', observedAt: '2026-10-11T04:00:00Z' }
   } }), now);
   assert.equal(view.freshness, 'recent');
   assert.equal(view.views.value, 4200);
   assert.equal(view.views.observedAt, '2026-10-11T04:00:00.000Z');
   assert.equal(view.views.freshness, 'stale');
-  assert.equal(view.revenue.freshness, 'recent');
+  assert.equal(Object.hasOwn(view, 'revenue'), false);
 });
 test('verified metrics without a valid measurement time stay undated', () => {
   for (const observedAt of [undefined, null, 'invalid', '2027-01-01T00:00:00Z']) {
     const view = model.createViewModel(campaign({ results: {
-      views: { value: 100, status: 'verified', observedAt },
-      revenue: { value: 0, status: 'verified', observedAt }
+      views: { value: 100, status: 'verified', observedAt }
     } }), now);
     assert.equal(view.views.observedAt, null);
     assert.equal(view.views.freshness, 'unknown');
-    assert.equal(view.revenue.observedAt, null);
-    assert.equal(view.revenue.freshness, 'unknown');
+    assert.equal(Object.hasOwn(view, 'revenue'), false);
   }
 });

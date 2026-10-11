@@ -67,7 +67,6 @@
       lifetimeViews: metric((data.results || {}).lifetimeViews, amount(campaign.viewsGoal) || 250000, now),
       viewPace: (function () { var reading = metric((data.results || {}).lifetimeViews, amount(campaign.viewsGoal) || 250000, now); var end = time(campaign.viewsDeadlineAt); var daysLeft = end === null ? null : Math.max(0, (end - now) / 86400000); var gap = reading.value === null ? null : Math.max(0, reading.target - reading.value); return { gap: gap, daysLeft: daysLeft, daily: gap === null || !daysLeft ? null : Math.ceil(gap / daysLeft), fourHourly: gap === null || !daysLeft ? null : Math.ceil(gap / (daysLeft * 6)) }; })(),
       views: metric((data.results || {}).views, amount(campaign.viewsGoal) || 250000, now),
-      revenue: metric((data.results || {}).revenue, amount(campaign.revenueGoalUsd) || 10000, now),
       spend: { newAuthorizedUsd: 0, newVerifiedUsd: amount((data.spend || {}).newVerifiedUsd) },
       operations: { active: active, scheduled: scheduled, used: active === null || scheduled === null ? null : active + scheduled, cap: 17, overCapacity: active !== null && scheduled !== null && active + scheduled > 17, runwayDays: runwayDays, runwayVerified: queueFreshness === 'recent', queueFreshness: queueFreshness, queueVerifiedAt: queueTime === null ? null : new Date(queueTime).toISOString(), planningHorizonHours: 24, targetSpacingHours: 2, completeDrops: groups.length, outsideHorizonPosts: allUpcoming.length - queue.length },
       highlights: highlights, queue: queue, groups: groups, incompleteQueue: incompleteQueue,
@@ -78,22 +77,20 @@
     if (!doc.getElementById('data-status')) return;
     var number = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
     var money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 });
-    var moneyGoal = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
     var date = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York', timeZoneName: 'short' });
     var lastData = null, busy = false;
     function set(id, text) { var node = doc.getElementById(id); if (node) node.textContent = text; }
     function dateLabel(value) { return date.format(new Date(value)); }
     function element(tag, className, text) { var node = doc.createElement(tag); if (className) node.className = className; if (text !== undefined) node.textContent = text; return node; }
     function renderMetric(name, reading) {
-      var isMoney = name === 'revenue';
-      set(name + '-value', reading.value === null ? '—' : isMoney ? money.format(reading.value) : number.format(reading.value));
-      set(name + '-goal', isMoney ? moneyGoal.format(reading.target) : number.format(reading.target));
+      set(name + '-value', reading.value === null ? '—' : number.format(reading.value));
+      set(name + '-goal', number.format(reading.target));
       var bar = doc.getElementById(name + '-progress');
       bar.hidden = reading.progress === null;
       if (reading.progress !== null) bar.value = reading.progress;
       var note = name === 'views' && reading.value !== null
         ? 'Partial tracked total from matched counters and campaign posts. See Results for coverage.'
-        : reading.note || (reading.value === null ? (isMoney ? 'Payment records not connected yet.' : 'Baseline pending. No gain claimed yet.') : (isMoney ? 'Confirmed campaign receipts, net of recorded refunds.' : 'Added views since the campaign baseline.'));
+        : reading.note || (reading.value === null ? 'Baseline pending. No gain claimed yet.' : 'Added views since the campaign baseline.');
       if (reading.value !== null) note += reading.observedAt ? ' Measured ' + dateLabel(reading.observedAt) + (reading.freshness === 'stale' ? ' · over 6 hours old.' : '.') : ' Measurement time unavailable.';
       set(name + '-note', note);
       doc.getElementById(name + '-note').classList.toggle('warning', reading.value !== null && reading.freshness !== 'recent');
@@ -104,10 +101,10 @@
       set('lifetime-note', (view.lifetimeViews.value === null ? 'Inventory totals pending.' : 'Dated historical and current post inventory. See Results for scope and limits.') + (view.lifetimeViews.observedAt ? ' Earliest component measured ' + dateLabel(view.lifetimeViews.observedAt) + '.' : ''));
       var lifetimeBar = doc.getElementById('lifetime-progress'); if (lifetimeBar) { lifetimeBar.hidden = view.lifetimeViews.value === null; lifetimeBar.value = view.lifetimeViews.progress || 0; }
       set('view-pace', view.viewPace.daily === null ? 'Pace unavailable until dated totals are verified.' : number.format(view.viewPace.gap) + ' views remaining. Required average: ' + number.format(view.viewPace.daily) + ' views/day or ' + number.format(view.viewPace.fourHourly) + ' views per 4 hours, through December 31 Eastern. Recalculated from the latest known total and time remaining; planning targets, not guaranteed results.');
-      renderMetric('views', view.views); renderMetric('revenue', view.revenue);
+      renderMetric('views', view.views);
       var status = doc.getElementById('data-status');
       status.dataset.state = view.freshness;
-      var pending = view.views.value === null || view.revenue.value === null;
+      var pending = view.views.value === null;
       set('data-status', view.freshness === 'stale' ? 'Saved ' + dateLabel(view.capturedAt) + ' · over 6 hours old' : view.freshness === 'unknown' ? 'Update time unavailable · verification pending' : 'Saved ' + dateLabel(view.capturedAt) + (pending ? ' · some measurements pending' : ' · measurement dates below'));
       set('saved-at', view.capturedAt ? 'Last saved update: ' + dateLabel(view.capturedAt) + '.' : 'Last saved update: unavailable.');
       set('spend-note', (view.spend.newVerifiedUsd === null ? 'Actual new spend: verification pending.' : 'Verified new spend: ' + money.format(view.spend.newVerifiedUsd) + '.') + ' This is a campaign budget, not an all-time cost claim.');

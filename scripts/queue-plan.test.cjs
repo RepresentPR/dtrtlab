@@ -13,7 +13,7 @@ function campaign(queue) {
   return {
     capturedAt: '2026-10-11T18:45:00Z',
     campaign: { viewsGoal: 250000, viewsDeadlineAt: '2027-01-01T05:00:00Z' },
-    results: { lifetimeViews: { value: 146093, status: 'verified', observedAt: '2026-10-11T18:42:45.204Z' }, views: { value: 1641, status: 'verified', observedAt: '2026-10-11T18:45:29.470Z' }, revenue: { value: null } },
+    results: { lifetimeViews: { value: 146093, status: 'verified', observedAt: '2026-10-11T18:42:45.204Z' }, views: { value: 1641, status: 'verified', observedAt: '2026-10-11T18:45:29.470Z' } },
     operations: { activePosts: 7, scheduledPosts: 10, queueVerifiedAt: '2026-10-11T18:45:00Z' },
     queue
   };
