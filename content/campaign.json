@@ -1,0 +1,16 @@
+{
+  "capturedAt": "2026-10-11T06:34:53Z",
+  "campaign": { "name": "Growth. $0 new spend.", "startAt": "2026-10-11T06:28:12Z", "deadlineAt": "2026-12-25T05:00:00Z", "timezone": "America/New_York", "viewsGoal": 250000, "revenueGoalUsd": 10000 },
+  "results": { "views": { "value": null, "status": "baseline_pending" }, "revenue": { "value": null, "status": "baseline_pending" } },
+  "spend": { "newAuthorizedUsd": 0, "newVerifiedUsd": null },
+  "operations": { "activePosts": 0, "scheduledPosts": 0, "cap": 17, "runwayDays": 0, "queueVerifiedAt": null },
+  "highlights": [],
+  "queue": [],
+  "evidenceNotes": [
+    "Historical post views are not counted as growth during this campaign. A synchronized starting baseline is pending.",
+    "Revenue remains unknown until confirmed payment records are connected. A support click is not a payment.",
+    "The campaign allows $0 of new spending. This does not claim that existing equipment, software, or historical promotions cost nothing.",
+    "Roster counts describe this campaign. Historical posts can remain public outside the active roster.",
+    "Twitch recordings and local clips have been located. The owned FACEIT library has been accessed across 12 pages and three original clips recovered; full archive indexing is still incomplete."
+  ]
+}
