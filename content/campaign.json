@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-11T20:13:51.129364Z",
+  "capturedAt": "2026-10-11T21:07:56Z",
   "campaign": {
     "name": "Growth measured in public.",
     "startAt": "2026-10-11T06:28:12Z",
@@ -179,11 +179,11 @@
     }
   },
   "operations": {
-    "activePosts": 9,
-    "scheduledPosts": 8,
+    "activePosts": 13,
+    "scheduledPosts": 4,
     "cap": 17,
-    "runwayDays": 0.1570471138425926,
-    "queueVerifiedAt": "2026-10-11T20:12:34Z",
+    "runwayDays": 0.03615740740740741,
+    "queueVerifiedAt": "2026-10-11T21:07:56Z",
     "planningHorizonHours": 24,
     "targetSpacingHours": 2,
     "requiredPlatforms": [
@@ -192,10 +192,8 @@
       "TikTok",
       "X"
     ],
-    "optionalPlatforms": [
-      "Ko-fi"
-    ],
-    "completeScheduledDrops": 2
+    "optionalPlatforms": [],
+    "completeScheduledDrops": 1
   },
   "highlights": [
     {
@@ -236,7 +234,7 @@
       "platform": "Edited preview",
       "reviewedAt": "2026-10-11T06:59:38.755Z",
       "status": "approved",
-      "reason": "Editorial selection. Performance review follows publication + four hours."
+      "reason": "Edit approved; publication remains a draft. No performance claim."
     }
   ],
   "queue": [
@@ -271,38 +269,6 @@
       "status": "scheduled",
       "groupId": "faceit-6ac2d25e2657c8065e72d719-20261011T220000Z",
       "verifiedAt": "2026-10-11T20:12:34Z"
-    },
-    {
-      "title": "The next corner was not clear",
-      "platform": "YouTube",
-      "scheduledAt": "2026-10-12T00:00:00.000000Z",
-      "status": "scheduled",
-      "groupId": "twitch-014-20261012T000000Z",
-      "verifiedAt": "2026-10-11T20:12:34Z"
-    },
-    {
-      "title": "The next corner was not clear",
-      "platform": "Instagram",
-      "scheduledAt": "2026-10-12T00:00:00.000000Z",
-      "status": "scheduled",
-      "groupId": "twitch-014-20261012T000000Z",
-      "verifiedAt": "2026-10-11T20:12:34Z"
-    },
-    {
-      "title": "The next corner was not clear",
-      "platform": "TikTok",
-      "scheduledAt": "2026-10-12T00:00:00.000000Z",
-      "status": "scheduled",
-      "groupId": "twitch-014-20261012T000000Z",
-      "verifiedAt": "2026-10-11T20:12:34Z"
-    },
-    {
-      "title": "The next corner was not clear",
-      "platform": "X",
-      "scheduledAt": "2026-10-12T00:00:00.000000Z",
-      "status": "scheduled",
-      "groupId": "twitch-014-20261012T000000Z",
-      "verifiedAt": "2026-10-11T20:12:34Z"
     }
   ],
   "evidenceNotes": [
@@ -312,9 +278,10 @@
     "Focused post updates changed the prior saved campaign total by +152. Opening-cohort counters retain their earlier collection dates. No full inventory refresh, organic attribution or winning format is claimed.",
     "The fixed opening baseline is 14,895 YouTube Shorts views and 13,337 Instagram Reel views, measured at 2:51-2:53 AM Eastern. The 23-minute start-to-baseline gap remains unmeasured. Negative native corrections are retained.",
     "Anubis is verified public on YouTube, Instagram, TikTok, X and Ko-fi. Lab File 003 is public on YouTube. The common planned release was 12:05 PM Eastern; native precision and processing vary. Ko-fi shows only a date, so its exact publication time is unknown.",
-    "Ko-fi Anubis retains its verified playable YouTube embed. Optional Knife/Door schedules were moved to recoverable drafts. Planned times are not actual publication times; no duplicate posts were created.",
+    "Ko-fi Anubis remains a historical publication record; no additional Ko-fi posts are scheduled. Planned times are not actual publication times.",
     "Owned Twitch, FACEIT and OBS source indexing remains incomplete. Editing approval used documented sampled visual and technical audio checks; unavailable listening or continuous playback is not claimed. Local operations require this PC online with Codex open.",
-    "Current reconciled roster: 9 active and 8 reserved/scheduled out of 17. Future verified schedules appear below. Target two-hour drops only when quality and capacity permit; plan next 24 hours.",
+    "Current active-slot ledger: 13 occupied and four queued out of 17. Three retired public experiments remain visible in historical records but no longer occupy active slots. The four Door posts also announce tonight's recorded showcase; the Next Corner posts are drafts, not scheduled.",
+    "Four stream preview posts are provider-marked published at 4:45–4:48 PM Eastern on X, Instagram, TikTok and YouTube. No new teaser view counts are claimed here.",
     "Five due four-hour reviews completed, all inconclusive. Anubis and episode retain 24/72/168-hour checks. Knife has new publication-based review jobs; actual times differ slightly across platforms. Ko-fi exact publication time remains unavailable and has a separate observation review.",
     "Instagram followers remain the dated 73 observation. Retention and engagement findings are shown in the review log with their own timestamps. Unknown counters are not zero; X views remain outside headline growth."
   ],
