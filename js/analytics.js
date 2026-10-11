@@ -98,8 +98,7 @@
     });
   }
 
-  function setChoice(choice) {
-    try { localStorage.setItem(KEY, choice); } catch (err) {}
+  function applyChoice(choice) {
     if (choice === "yes") {
       startGa(gaId);
     } else if (gaOn) {
@@ -112,6 +111,21 @@
       return;
     }
     showChoice(choice);
+  }
+
+  function setChoice(choice) {
+    try { localStorage.setItem(KEY, choice); } catch (err) {}
+    applyChoice(choice);
+  }
+
+  // Storage events reach other tabs, not the tab that changed the choice.
+  // Apply withdrawal without writing it back and triggering another event.
+  if (typeof window.addEventListener === "function") {
+    window.addEventListener("storage", function (event) {
+      if (event.storageArea !== localStorage) return;
+      if (event.key !== KEY && event.key !== null) return;
+      if (event.newValue !== "yes") applyChoice("no");
+    });
   }
 
   if (allow && typeof allow.addEventListener === "function") {
