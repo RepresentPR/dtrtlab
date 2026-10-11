@@ -1,70 +1,165 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DTRT Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>DTRTC — Halloween 2026</title>
+  <meta name="description" content="DTRTC live. Halloween 2026. CS2, and chat controls the chaos. The clubhouse, the schedule, and tonight's clips.">
+  <meta name="theme-color" content="#07080c">
   <link rel="canonical" href="https://dtrtlab.com/">
-  <link rel="stylesheet" href="/css/site.css?v=20261010h">
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/dtrtc.css?v=20261011a">
+  <link rel="icon" href="img/icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/scene-base.css">
+  <link rel="stylesheet" href="css/scene-hub.css">
 </head>
-<body class="dtrtc">
-<header class="top">
-  <div class="mark">
-    <a class="brand" href="/">DTRT Lab</a>
-    <p class="theme-line">DTRTC // HALLOWEEN 2026</p>
-    <p class="theme-sub">CS2 / CHAT CONTROLS THE CHAOS</p>
-  </div>
-  <nav aria-label="Main">
-    <a href="/clips/">Clips</a>
-    <a href="/live/">Live</a>
-    <a href="/partner/">Partner</a>
-    <a href="/contact.html">Contact</a>
-    <a href="/radio.html">Radio</a>
-    <a href="/versions/">Versions</a>
-  </nav>
-</header>
-<main class="wrap">
-  <h1>Ranked clips</h1>
-  <input id="q" class="search" type="search" placeholder="Search clips" aria-label="Search clips">
-  <div class="layout">
-    <a class="card featured" href="/clips/#lurk-king" data-title="Lurk King">
-      <span class="media"></span>
-      <span class="pad"><h2>Lurk King</h2><p class="muted">Featured. No thumbnail file on the site.</p></span>
-    </a>
-    <ol class="rank" id="rank">
-      <li><a class="row" href="/clips/#lurk-king" data-title="Lurk King"><b>1</b>Lurk King</a></li>
-      <li><a class="row" href="/clips/#skitz-ladder" data-title="Skitz Ladder"><b>2</b>Skitz Ladder</a></li>
-      <li><a class="row" href="/clips/#somebody-said-rush-b" data-title="Somebody Said Rush B"><b>3</b>Somebody Said Rush B</a></li>
-      <li><a class="row" href="/clips/#come-on-code" data-title="Come On, Code"><b>4</b>Come On, Code</a></li>
-      <li><a class="row" href="/clips/#oh-my-god-i-am-so-slow" data-title="Oh my god, I am so slow"><b>5</b><img src="/img/thumbs/oh-my-god-i-am-so-slow.jpg" alt="">Oh my god, I am so slow</a></li>
-      <li><a class="row" href="/clips/#why-dont-you" data-title="Why donâ€™t you donâ€™t like that, bro"><b>6</b><img src="/img/thumbs/why-dont-you.jpg" alt="">Why donâ€™t you donâ€™t like that, bro</a></li>
-      <li><a class="row" href="/clips/#blind-by-black" data-title="Blind by black"><b>7</b><img src="/img/thumbs/blind-by-black.jpg" alt="">Blind by black</a></li>
-      <li><a class="row" href="/clips/#happened-to-you" data-title="Happened to you, bro"><b>8</b><img src="/img/thumbs/happened-to-you.jpg" alt="">Happened to you, bro</a></li>
-      <li><a class="row" href="/clips/#move-it" data-title="Move it"><b>9</b><img src="/img/thumbs/move-it.jpg" alt="">Move it</a></li>
-      <li><a class="row" href="/clips/#nice-literally-un-lucable" data-title="Nice, literally un-lucable"><b>10</b><img src="/img/thumbs/nice-literally-un-lucable.jpg" alt="">Nice, literally un-lucable</a></li>
-      <li><a class="row" href="/clips/#two-superpowers" data-title="Two superpowers"><b>11</b><img src="/img/thumbs/two-superpowers.jpg" alt="">Two superpowers</a></li>
-      <li><a class="row" href="/clips/#oh-what-a-lie" data-title="Oh, what a lie"><b>12</b><img src="/img/thumbs/oh-what-a-lie.jpg" alt="">Oh, what a lie</a></li>
-    </ol>
-  </div>
-  <section class="soon" aria-labelledby="cs2-soon">
-    <p class="tag">CS2 // The room</p>
-    <h2 id="cs2-soon">CS2 Heaven</h2>
-    <p class="muted">Rotating crosshair bench, map pool and live votes.</p>
-    <span class="pending" role="note">Coming soon</span>
-  </section>
-</main>
-<script>
-(function () {
-  var q = document.getElementById("q");
-  q.addEventListener("input", function () {
-    var n = q.value.trim().toLowerCase();
-    document.querySelectorAll("[data-title]").forEach(function (el) {
-      el.hidden = n && el.getAttribute("data-title").toLowerCase().indexOf(n) === -1;
-    });
-  });
-})();
-</script>
+<body class="hub">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav" id="site-nav"></header>
+  <main id="main">
+    <section class="scene-open" id="tonight" aria-labelledby="tonight-title">
+      <div class="wrap about-grid">
+        <div>
+          <p class="hud">DTRTC // Halloween 2026</p>
+          <h1 id="tonight-title">Chat controls the chaos.</h1>
+          <p class="lede">Tonight is CS2. The lobby votes, the queue stays up, and the room is open. Same black, same orange, on the site and on the Twitch profile.</p>
+          <div class="actions">
+            <a class="cta" href="https://www.twitch.tv/dtrtc" rel="noopener noreferrer" target="_blank">Watch on Twitch</a>
+            <a class="cta ghost" href="cs2.html">Enter CS2 heaven</a>
+          </div>
+        </div>
+        <div class="term" aria-hidden="true">
+          <p><span>&gt;</span> scene: halloween 2026</p>
+          <p><span>&gt;</span> mode: cs2</p>
+          <p><span>&gt;</span> control: chat</p>
+          <p><span>&gt;</span> accent: #ff7a1a</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="schedule" aria-labelledby="schedule-title">
+      <div class="wrap about-grid">
+        <div>
+          <p class="hud">04 // Schedule</p>
+          <h2 id="schedule-title">Times live on Twitch.</h2>
+          <p class="lede">This page does not hardcode a clock. The week is posted on the channel schedule, and it can change when a marathon runs long.</p>
+          <div class="actions">
+            <a class="cta" data-schedule-link href="https://www.twitch.tv/dtrtc/schedule" rel="noopener noreferrer" target="_blank">Open the Twitch schedule</a>
+          </div>
+        </div>
+        <div class="schedule-card term">
+          <p><span>&gt;</span> schedule --source twitch</p>
+          <p><span>&gt;</span> channel: dtrtc</p>
+          <p><span>&gt;</span> stored locally: none</p>
+          <p><span>&gt;</span> status: posted on the channel</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="cs2-home" aria-labelledby="cs2-home-title">
+      <div class="wrap about-grid">
+        <div>
+          <p class="hud">CS2 // The room</p>
+          <h2 id="cs2-home-title">The lobby has a clubhouse.</h2>
+          <p class="lede">Crosshairs rotate every four hours. The map pool, the first smoke, and the queue sit on one page. The room votes live. Accounts are created in the browser, and DTRT Lab cannot open them.</p>
+          <div class="actions">
+            <a class="cta" href="cs2.html">Enter CS2 heaven</a>
+          </div>
+        </div>
+        <div class="term" aria-hidden="true">
+          <p><span>&gt;</span> bench: 4-hour crosshair</p>
+          <p><span>&gt;</span> board: live votes</p>
+          <p><span>&gt;</span> pool: Season 5, Cache in</p>
+          <p><span>&gt;</span> key: stays on your device</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="clips" aria-labelledby="clips-title">
+      <div class="wrap about-grid">
+        <div>
+          <p class="hud">Clips // Tonight</p>
+          <h2 id="clips-title">The clips, in order.</h2>
+          <p class="lede">The same ranking that is up today. Lurk King is still first. Open a row to land on that clip.</p>
+          <div class="actions">
+            <a class="cta" href="clips/">Open the clip board</a>
+            <a class="cta ghost" href="live/">Open the live desk</a>
+          </div>
+        </div>
+        <div class="term">
+          <p><span>&gt;</span> <a href="clips/#lurk-king">01 Lurk King</a></p>
+          <p><span>&gt;</span> <a href="clips/#skitz-ladder">02 Skitz Ladder</a></p>
+          <p><span>&gt;</span> <a href="clips/#somebody-said-rush-b">03 Somebody Said Rush B</a></p>
+          <p><span>&gt;</span> <a href="clips/#come-on-code">04 Come On, Code</a></p>
+          <p><span>&gt;</span> <a href="clips/#oh-my-god-i-am-so-slow">05 Oh my god, I am so slow</a></p>
+          <p><span>&gt;</span> <a href="clips/#why-dont-you">06 Why don’t you don’t like that, bro</a></p>
+          <p><span>&gt;</span> <a href="clips/#blind-by-black">07 Blind by black</a></p>
+          <p><span>&gt;</span> <a href="clips/#happened-to-you">08 Happened to you, bro</a></p>
+          <p><span>&gt;</span> <a href="clips/#move-it">09 Move it</a></p>
+          <p><span>&gt;</span> <a href="clips/#nice-literally-un-lucable">10 Nice, literally un-lucable</a></p>
+          <p><span>&gt;</span> <a href="clips/#two-superpowers">11 Two superpowers</a></p>
+          <p><span>&gt;</span> <a href="clips/#oh-what-a-lie">12 Oh, what a lie</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="twitch-profile" aria-labelledby="twitch-title">
+      <div class="wrap">
+        <p class="hud">Profile // Twitch</p>
+        <h2 id="twitch-title">The channel wears this night.</h2>
+        <p class="lede">Banner, offline card, and panels use the same black, lavender labels, and orange buttons as this page. In the Twitch dashboard, set the accent color to #FF7A1A and upload these three panels under the About section.</p>
+        <div class="banner-frame">
+          <img src="img/twitch/banner.svg" width="1200" height="480" alt="Twitch profile banner. DTRTC, Halloween 2026, chat controls the chaos.">
+        </div>
+        <div class="twitch-panels">
+          <img src="img/twitch/panel-chaos.svg" width="320" height="180" alt="Panel. Chat controls the chaos.">
+          <img src="img/twitch/panel-cs2.svg" width="320" height="180" alt="Panel. Enter CS2 heaven.">
+          <img src="img/twitch/panel-schedule.svg" width="320" height="180" alt="Panel. Times live on Twitch.">
+        </div>
+        <div class="about-grid" style="margin-top:28px">
+          <div class="term">
+            <p><span>&gt;</span> accent: #ff7a1a</p>
+            <p><span>&gt;</span> background: #07080c</p>
+            <p><span>&gt;</span> hud: #d2c4ff</p>
+            <p><span>&gt;</span> headline: #f6f3ff</p>
+          </div>
+          <div>
+            <p class="lede">Offline card is the same scene at stream size. Panels are 320 pixels wide, the width Twitch uses.</p>
+            <div class="actions">
+              <a class="cta" href="img/twitch/offline.svg" download>Download offline card</a>
+              <a class="cta ghost" href="img/twitch/banner.svg" download>Download banner</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="afterlight" aria-labelledby="afterlight-title">
+      <div class="wrap al-grid">
+        <img src="img/afterlight/shop-dawn.jpg" alt="Pre-dawn electronics shop on a wet street in Añasco. Story still from DTRT AFTERLIGHT." width="1920" height="1080" loading="lazy" decoding="async">
+        <div>
+          <p class="hud">Lab // AFTERLIGHT</p>
+          <h2 id="afterlight-title">AFTERLIGHT stays up.</h2>
+          <p class="lede">The story-driven FPS campaign still lives here. Volume One is readable. The playable island is in development. There is no public download.</p>
+          <div class="actions">
+            <a class="cta" href="afterlight.html">Enter AFTERLIGHT</a>
+            <a class="cta ghost" href="stories/afterlight/volume-one/">Read Volume One</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="find" aria-labelledby="find-title">
+      <div class="wrap">
+        <p class="hud">07 // Find me</p>
+        <h2 id="find-title">Find me</h2>
+        <div class="find-grid" data-social-slot="find"></div>
+      </div>
+    </section>
+  </main>
+  <footer id="site-foot"></footer>
+  <script src="content/socials.js"></script>
+  <script src="js/scene-nav.js"></script>
 </body>
 </html>

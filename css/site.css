@@ -1,39 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=VT323&display=swap");
+
 :root {
-  --bg: #120814;
-  --card: #1c1024;
-  --ink: #f4efe8;
-  --muted: #d2c6cf;
-  --line: #3a2444;
-  --accent: #d6ff3c;
-  --hot: #ff6a14;
+  --bg: #07080c;
+  --card: #121018;
+  --ink: #f6f3ff;
+  --muted: #d2ccdf;
+  --line: rgba(246, 243, 255, 0.16);
+  --accent: #ff7a1a;
+  --hot: #d2c4ff;
+  --on: #1a0c04;
 }
 * { box-sizing: border-box; }
 body {
   margin: 0;
   color: var(--ink);
   font: 16px/1.4 "Segoe UI", Helvetica, Arial, sans-serif;
-  background: repeating-linear-gradient(-18deg, #120814 0 22px, #1a0c22 22px 24px);
+  background: #07080c;
 }
 a { color: var(--accent); }
 .top {
   display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
-  padding: 14px 22px; border-bottom: 3px solid var(--accent); background: #100612;
+  padding: 14px 22px; border-bottom: 1px solid var(--line); background: rgba(7, 8, 12, 0.94);
   position: sticky; top: 0; z-index: 2;
 }
 .mark { display: flex; flex-direction: column; gap: 2px; }
-.theme-line, .theme-sub { margin: 0; font-weight: 800; text-transform: uppercase; }
-.theme-line { color: var(--accent); letter-spacing: 0.16em; font-size: 13px; }
-.theme-sub { color: var(--hot); letter-spacing: 0.08em; font-size: 12px; }
-.brand { color: var(--ink); text-decoration: none; font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; font-size: 18px; min-height: 44px; display: flex; align-items: center; }
+.theme-line, .theme-sub { margin: 0; font-family: "VT323", "Courier New", monospace; font-weight: 400; text-transform: uppercase; }
+.theme-line { color: var(--hot); letter-spacing: 0.08em; font-size: 1.2rem; }
+.theme-sub { color: var(--accent); letter-spacing: 0.06em; font-size: 1.05rem; }
+.brand { color: var(--ink); text-decoration: none; font-family: "Anton", Impact, sans-serif; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; font-size: 1.25rem; min-height: 44px; display: flex; align-items: center; }
 .top nav { display: flex; flex-wrap: wrap; gap: 6px; }
 .top nav a {
   color: var(--ink); text-decoration: none; min-height: 44px; padding: 10px 12px;
-  border-radius: 8px; display: inline-flex; align-items: center;
+  display: inline-flex; align-items: center;
+  font-family: "VT323", "Courier New", monospace; font-size: 1.2rem; letter-spacing: 0.04em; text-transform: uppercase; border-radius: 2px;
 }
-.top nav a:hover { background: #22252c; }
-.top nav a:active, .top nav a[aria-current="page"] { background: var(--accent); color: #140804; }
+.top nav a:hover { background: #1a1520; color: var(--accent); }
+.top nav a:active, .top nav a[aria-current="page"] { background: var(--accent); color: var(--on); }
 .wrap { max-width: 1080px; margin: 0 auto; padding: 22px 20px 72px; }
-h1 { margin: 8px 0 14px; font-size: 34px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 800; }
+h1 { margin: 8px 0 14px; font-family: "Anton", Impact, sans-serif; font-size: clamp(2rem, 5vw, 3.4rem); letter-spacing: 0.02em; text-transform: uppercase; font-weight: 400; line-height: 0.95; }
 h2 { margin: 0 0 6px; font-size: 18px; }
 .search { width: min(520px, 100%); background: var(--card); color: var(--ink); border: 1px solid var(--line); border-radius: 10px; min-height: 48px; padding: 12px 14px; font: inherit; }
 .layout { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 16px; margin-top: 16px; }
@@ -63,8 +67,8 @@ h2 { margin: 0 0 6px; font-size: 18px; }
 .prices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .prices strong { font-size: 36px; }
 button, .offer {
-  min-height: 48px; background: var(--accent); color: #140804; border: 0; border-radius: 10px;
-  padding: 12px 16px; font: inherit; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center;
+  min-height: 48px; background: var(--accent); color: var(--on); border: 0; border-radius: 2px;
+  padding: 12px 16px; font-family: "Anton", Impact, sans-serif; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center;
 }
 button:hover, .offer:hover { filter: brightness(1.08); }
 input, select, textarea { width: 100%; background: #101114; color: var(--ink); border: 1px solid var(--line); border-radius: 10px; min-height: 48px; padding: 12px; font: inherit; }
