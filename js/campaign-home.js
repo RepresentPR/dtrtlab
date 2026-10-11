@@ -111,7 +111,7 @@
       set('roster-count', (view.operations.used === null ? '—' : number.format(view.operations.used)) + ' / 17');
       set('roster-detail', 'Saved: ' + (view.operations.active === null ? 'unknown' : number.format(view.operations.active)) + ' active · ' + (view.operations.scheduled === null ? 'unknown' : number.format(view.operations.scheduled)) + ' scheduled' + (view.operations.queueVerifiedAt ? ' · as of ' + dateLabel(view.operations.queueVerifiedAt) : ' · reconciliation pending'));
       set('runway-count', number.format(view.operations.completeDrops) + ' complete ' + (view.operations.completeDrops === 1 ? 'drop' : 'drops'));
-      set('plan-detail', 'Next 24 hours · target every 2 hours when quality and the 17-post cap permit. Ko-fi is optional.');
+      set('plan-detail', 'Next 24 hours · target every 2 hours when quality and the 17-post cap permit.');
       set('queue-verification', view.operations.queueFreshness === 'stale' ? 'Saved schedule · checked ' + dateLabel(view.operations.queueVerifiedAt) + ' · over 6 hours old' : view.operations.queueVerifiedAt ? 'Saved schedule · checked ' + dateLabel(view.operations.queueVerifiedAt) : 'Saved schedule · queue verification pending');
       doc.getElementById('queue-verification').classList.toggle('warning', view.operations.queueFreshness === 'stale');
       set('roster-rule', view.operations.overCapacity ? 'Capacity exceeded. Publishing must pause until the roster is reconciled.' : '17 is the ceiling, never a quota. An empty spot is better than a weak clip.');

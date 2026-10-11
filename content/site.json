@@ -12,13 +12,13 @@
   "contactEmail": "DTRTCollision@outlook.com",
   "pressEmail": "DTRTCollision@outlook.com",
   "supportEmail": "DTRTCollision@outlook.com",
-  "donateUrl": "https://ko-fi.com/dtrtlab",
+  "donateUrl": "",
   "social": {
     "x": "https://x.com/DTRTLab",
     "instagram": "https://www.instagram.com/officiallydtrt/",
     "twitch": "https://www.twitch.tv/dtrtc",
     "youtube": "https://www.youtube.com/@DTRTLabYT",
-    "kofi": "https://ko-fi.com/dtrtlab"
+    "kofi": ""
   },
   "releaseWindow": "When Windows export and playtest pass — no date claimed.",
   "googleSiteVerification": "",

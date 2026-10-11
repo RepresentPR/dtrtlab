@@ -31,7 +31,7 @@ Stylesheets and scripts are loaded with `?v=20261008e` because GitHub Pages cann
 
 ## Turn a social on
 
-Header, hero, Find me, and footer all read `content/socials.js`. TikTok, Instagram, and Snapchat are commented out at the bottom of that file. Uncomment the block, fill `handle` and `url`, and reload. Ko-fi stays at `https://ko-fi.com/dtrtlab`.
+Header, hero, Find me, and footer all read `content/socials.js`. TikTok, Instagram, and Snapchat are commented out at the bottom of that file. Uncomment the block, fill `handle` and `url`, and reload. Direct tip links are paused. Review payment privacy before enabling a future support destination.
 
 The X link is `https://x.com/DTRTLab`. Ian confirmed that account, so it shows with the other networks and the homepage sets `twitter:site` to `@DTRTLab`.
 

@@ -45,13 +45,21 @@ async function page({ consent = 'no', optedOut = false, valid = true } = {}) {
   };
 }
 
-test('the two Ko-fi support buttons produce distinct intent events without payment claims', async () => {
+test('public support paths do not send visitors to the paused Ko-fi checkout', async () => {
   const ui = await page();
-  const buttons = Array.from(read('support.html').matchAll(/<a\b([^>]*href="https:\/\/ko-fi\.com\/dtrtlab"[^>]*)>/g));
-  assert.equal(buttons.length, 2);
+  for (const name of ['about.html', 'donate.html', 'faq.html', 'index.html', 'support.html', 'content/donate.json', 'content/site.json', 'content/socials.js']) {
+    assert.doesNotMatch(read(name), /https:\/\/ko-fi\.com\//, name);
+  }
+  const support = read('support.html');
+  const buttons = Array.from(support.matchAll(/<a\b([^>]*data-event="Support(?:Watch|Share)Intent"[^>]*)>/g));
+  assert.equal(buttons.length, 2, 'watch and share paths replace tip buttons');
   for (const [, attributes] of buttons) ui.click(attributes.match(/data-event="([^"]+)"/)?.[1]);
-  assert.deepEqual(ui.plausibleEvents().map(args => args[0]), ['SupportTipIntent', 'SupportMonthlyIntent']);
+  assert.deepEqual(ui.plausibleEvents().map(args => args[0]), ['SupportWatchIntent', 'SupportShareIntent']);
   assert.deepEqual(ui.gaEvents(), [], 'declining GA must not send GA events');
+  const donate = JSON.parse(read('content/donate.json'));
+  assert.equal(donate.url, '');
+  assert.equal(donate.methods.filter(method => method.url).length, 0);
+  assert.doesNotMatch(read('donate.html'), /donate-qr\.svg/, 'retired checkout QR must not render');
 });
 
 test('a valid prepared partnership email emits one intent and no private form fields', async () => {

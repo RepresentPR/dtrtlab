@@ -53,13 +53,6 @@ window.DTRT_SOCIALS = {
       handle: "@officiallydtrt",
       url: "https://www.instagram.com/officiallydtrt/",
       enabled: true
-    },
-    {
-      id: "kofi",
-      label: "Ko-fi",
-      handle: "dtrtlab",
-      url: "https://ko-fi.com/dtrtlab",
-      enabled: true
     }
 
     /* Hidden until a handle is filled in.
