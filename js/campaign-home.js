@@ -72,13 +72,13 @@
     function element(tag, className, text) { var node = doc.createElement(tag); if (className) node.className = className; if (text !== undefined) node.textContent = text; return node; }
     function renderMetric(name, reading) {
       var isMoney = name === 'revenue';
-      set(name + '-value', reading.value === null ? 'â€”' : isMoney ? money.format(reading.value) : number.format(reading.value));
+      set(name + '-value', reading.value === null ? '—' : isMoney ? money.format(reading.value) : number.format(reading.value));
       set(name + '-goal', isMoney ? moneyGoal.format(reading.target) : number.format(reading.target));
       var bar = doc.getElementById(name + '-progress');
       bar.hidden = reading.progress === null;
       if (reading.progress !== null) bar.value = reading.progress;
       var note = reading.note || (reading.value === null ? (isMoney ? 'Payment records not connected yet.' : 'Baseline pending. No gain claimed yet.') : (isMoney ? 'Confirmed campaign receipts, net of recorded refunds.' : 'Added views since the campaign baseline.'));
-      if (reading.value !== null) note += reading.observedAt ? ' Measured ' + dateLabel(reading.observedAt) + (reading.freshness === 'stale' ? ' Â· over 6 hours old.' : '.') : ' Measurement time unavailable.';
+      if (reading.value !== null) note += reading.observedAt ? ' Measured ' + dateLabel(reading.observedAt) + (reading.freshness === 'stale' ? ' · over 6 hours old.' : '.') : ' Measurement time unavailable.';
       set(name + '-note', note);
       doc.getElementById(name + '-note').classList.toggle('warning', reading.value !== null && reading.freshness !== 'recent');
     }
@@ -92,13 +92,13 @@
       var status = doc.getElementById('data-status');
       status.dataset.state = view.freshness;
       var pending = view.views.value === null || view.revenue.value === null;
-      set('data-status', view.freshness === 'stale' ? 'Saved ' + dateLabel(view.capturedAt) + ' Â· over 6 hours old' : view.freshness === 'unknown' ? 'Update time unavailable Â· verification pending' : 'Saved ' + dateLabel(view.capturedAt) + (pending ? ' Â· some measurements pending' : ' Â· measurement dates below'));
+      set('data-status', view.freshness === 'stale' ? 'Saved ' + dateLabel(view.capturedAt) + ' · over 6 hours old' : view.freshness === 'unknown' ? 'Update time unavailable · verification pending' : 'Saved ' + dateLabel(view.capturedAt) + (pending ? ' · some measurements pending' : ' · measurement dates below'));
       set('saved-at', view.capturedAt ? 'Last saved update: ' + dateLabel(view.capturedAt) + '.' : 'Last saved update: unavailable.');
       set('spend-note', (view.spend.newVerifiedUsd === null ? 'Actual new spend: verification pending.' : 'Verified new spend: ' + money.format(view.spend.newVerifiedUsd) + '.') + ' This is a campaign budget, not an all-time cost claim.');
-      set('roster-count', (view.operations.used === null ? 'â€”' : number.format(view.operations.used)) + ' / 17');
-      set('roster-detail', 'Saved: ' + (view.operations.active === null ? 'unknown' : number.format(view.operations.active)) + ' active Â· ' + (view.operations.scheduled === null ? 'unknown' : number.format(view.operations.scheduled)) + ' scheduled' + (view.operations.queueVerifiedAt ? ' Â· as of ' + dateLabel(view.operations.queueVerifiedAt) : ' Â· reconciliation pending'));
+      set('roster-count', (view.operations.used === null ? '—' : number.format(view.operations.used)) + ' / 17');
+      set('roster-detail', 'Saved: ' + (view.operations.active === null ? 'unknown' : number.format(view.operations.active)) + ' active · ' + (view.operations.scheduled === null ? 'unknown' : number.format(view.operations.scheduled)) + ' scheduled' + (view.operations.queueVerifiedAt ? ' · as of ' + dateLabel(view.operations.queueVerifiedAt) : ' · reconciliation pending'));
       set('runway-count', days.format(Math.floor(view.operations.runwayDays * 10) / 10) + ' / 7 days');
-      set('queue-verification', view.operations.queueFreshness === 'stale' ? 'Saved schedule Â· checked ' + dateLabel(view.operations.queueVerifiedAt) + ' Â· over 6 hours old' : view.operations.queueVerifiedAt ? 'Saved schedule Â· checked ' + dateLabel(view.operations.queueVerifiedAt) : 'Saved schedule Â· queue verification pending');
+      set('queue-verification', view.operations.queueFreshness === 'stale' ? 'Saved schedule · checked ' + dateLabel(view.operations.queueVerifiedAt) + ' · over 6 hours old' : view.operations.queueVerifiedAt ? 'Saved schedule · checked ' + dateLabel(view.operations.queueVerifiedAt) : 'Saved schedule · queue verification pending');
       doc.getElementById('queue-verification').classList.toggle('warning', view.operations.queueFreshness === 'stale');
       set('roster-rule', view.operations.overCapacity ? 'Capacity exceeded. Publishing must pause until the roster is reconciled.' : '17 is the ceiling, never a quota. An empty spot is better than a weak clip.');
       doc.getElementById('roster-rule').classList.toggle('warning', view.operations.overCapacity);
@@ -106,12 +106,12 @@
       view.evidenceNotes.forEach(function (note) { notes.appendChild(element('li', '', note)); });
       var highlights = doc.getElementById('highlight-list'); highlights.replaceChildren();
       if (!view.highlights.length) {
-        var empty = element('div', 'empty-state'), icon = element('span', 'empty-icon', 'â–¶'), words = element('div');
+        var empty = element('div', 'empty-state'), icon = element('span', 'empty-icon', '▶'), words = element('div');
         icon.setAttribute('aria-hidden', 'true'); words.append(element('h3', '', 'Reviewed clips being prepared.'), element('p', '', 'The strongest moments appear here after review. Quality earns the space.')); empty.append(icon, words); highlights.appendChild(empty);
       } else view.highlights.forEach(function (clip, index) {
         var row = element('a', 'highlight-row'); row.href = clip.url; row.rel = 'noopener noreferrer';
-        var words = element('div'); words.append(element('h3', '', clip.title), element('p', '', [clip.platform, clip.reason || 'Reviewed ' + dateLabel(clip.reviewedAt)].filter(Boolean).join(' Â· ')));
-        var arrow = element('span', 'arrow', 'â†—'); arrow.setAttribute('aria-hidden', 'true'); row.append(element('span', 'highlight-number', String(index + 1).padStart(2, '0')), words, arrow); highlights.appendChild(row);
+        var words = element('div'); words.append(element('h3', '', clip.title), element('p', '', [clip.platform, clip.reason || 'Reviewed ' + dateLabel(clip.reviewedAt)].filter(Boolean).join(' · ')));
+        var arrow = element('span', 'arrow', '↗'); arrow.setAttribute('aria-hidden', 'true'); row.append(element('span', 'highlight-number', String(index + 1).padStart(2, '0')), words, arrow); highlights.appendChild(row);
       });
       var queue = doc.getElementById('queue-list'); queue.replaceChildren();
       if (!view.queue.length) queue.appendChild(element('p', '', 'No upcoming posts in the saved queue. Publishing results must be checked before occupied spots are released.'));
@@ -133,7 +133,7 @@
         lastData = data; render(data);
       } catch (_) {
         if (lastData) render(lastData);
-        set('data-status', lastData ? 'Refresh unavailable Â· showing the last saved reading' : 'Campaign record unavailable Â· targets shown; results unverified');
+        set('data-status', lastData ? 'Refresh unavailable · showing the last saved reading' : 'Campaign record unavailable · targets shown; results unverified');
         doc.getElementById('data-status').dataset.state = 'error';
       } finally { win.clearTimeout(timeout); busy = false; }
     }
