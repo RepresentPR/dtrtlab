@@ -806,10 +806,10 @@
       "platform": "YouTube",
       "title": "Low Ammo, No Vision, No Room | The Lab Files 003",
       "url": "https://www.youtube.com/watch?v=rPJmQj1Pbpo",
-      "views": 5,
-      "observedAt": "2026-10-11T19:48:51.709Z",
+      "views": 6,
+      "observedAt": "2026-10-11T20:07:07.824Z",
       "publicationDate": "Oct 11, 2026",
-      "review": "Published; first 4h review due. Startup count may include operator verification."
+      "review": "Inconclusive. 6 owner inventory views;7 analytics views,5 engaged views,29s average view duration;318 thumbnail impressions and0.6% CTR. Preserve 24/72/168-hour validation; no performance winner established. Inventory and analytics surfaces remain separate. Observed 2026-10-11T20:07:07.824Z."
     },
     {
       "id": "youtube:lsExh8z7fVI",
@@ -846,10 +846,10 @@
       "platform": "YouTube",
       "title": "Last enemy. Smoke in the way. | CS2 #Shorts",
       "url": "https://www.youtube.com/shorts/iR3orq__Hn8",
-      "views": 271,
-      "observedAt": "2026-10-11T19:49:21.287Z",
+      "views": 287,
+      "observedAt": "2026-10-11T20:06:58.654Z",
       "publicationDate": "Oct 11, 2026",
-      "review": "Published; first 4h review due. Early native owner content count."
+      "review": "Inconclusive. 287 owner inventory views; 374 analytics views,105 engaged views,29.4% stayed/70.6% swiped. Retention curve processing. Preserve 24/72/168-hour validation; no performance winner established. Inventory and analytics surfaces remain separate. Observed 2026-10-11T20:06:58.654Z."
     },
     {
       "id": "tiktok:7695441861422451982",
@@ -857,19 +857,39 @@
       "title": "Last enemy. Smoke in the way. My recorded CS2 round on Anubis. Slow replay is labeled. #CS2 #Anubis",
       "url": "https://www.tiktok.com/@iananthonyfc/video/7695441861422451982",
       "views": 307,
-      "observedAt": "2026-10-11T19:52:01.261Z",
+      "observedAt": "2026-10-11T20:07:08.985Z",
       "publicationDate": null,
-      "review": "Anubis TikTok detail observed Oct 11, 03:52 PM EDT: 307 views, 5.77s average watch, 19.3% full completion and largest drop at 3s. Preliminary before its four-hour review; runtime differs from the control. No winning format established."
+      "review": "Inconclusive. 307 video views,5.77s average watch,19.3% full completion,0 new followers;largest drop at3s. Preserve 24/72/168-hour validation; no performance winner established. Observed 2026-10-11T20:07:08.985Z."
     },
     {
       "id": "instagram:DeXC-ioD-Wc",
       "platform": "Instagram",
       "title": "Instagram Reel DeXC-ioD-Wc",
       "url": "https://www.instagram.com/officiallydtrt/reel/DeXC-ioD-Wc/",
-      "views": 500,
-      "observedAt": "2026-10-11T19:52:01.262Z",
+      "views": 630,
+      "observedAt": "2026-10-11T20:05:58.169Z",
       "publicationDate": null,
-      "review": "Not reviewed in a matched publication-age cohort"
+      "review": "Inconclusive. 630 native views and418 Viewers;98.5% views from nonfollowers;0 displayed follows andReels interactions. Retention unavailable. Preserve 24/72/168-hour validation; no performance winner established. Observed 2026-10-11T20:06:13.397Z."
+    },
+    {
+      "id": "youtube:oUfVtc-hd0k",
+      "platform": "YouTube",
+      "title": "Knife round got crowded",
+      "url": "https://www.youtube.com/shorts/oUfVtc-hd0k",
+      "views": 0,
+      "observedAt": "2026-10-11T20:03:57.889Z",
+      "publicationDate": "Oct 11, 2026",
+      "review": "Newly published; four-hour review pending. Initial counters may include operator verification."
+    },
+    {
+      "id": "tiktok:7695502513348414734",
+      "platform": "TikTok",
+      "title": "Knife round got crowded",
+      "url": "https://www.tiktok.com/@iananthonyfc/video/7695502513348414734",
+      "views": 5,
+      "observedAt": "2026-10-11T20:04:21.782Z",
+      "publicationDate": "Oct 11, 2026",
+      "review": "Newly published; four-hour review pending. Initial counters may include operator verification."
     }
   ],
   "campaignAddedHistory": [
@@ -912,6 +932,10 @@
     {
       "observedAt": "2026-10-11T19:52:33.031Z",
       "value": 1968
+    },
+    {
+      "observedAt": "2026-10-11T20:07:08.985Z",
+      "value": 2120
     }
   ],
   "experiments": [
@@ -940,9 +964,54 @@
       "checkpoint": "4h review; collected 16.2 minutes late",
       "views": 3,
       "decision": "Inconclusive: possible operator contribution; excluded from campaign growth."
+    },
+    {
+      "platform": "TikTok",
+      "postId": "7695441861422451982",
+      "observedAt": "2026-10-11T20:07:08.985Z",
+      "checkpoint": "4h review; Anubis",
+      "checkpointHours": 4,
+      "views": 307,
+      "decision": "Inconclusive. 307 video views,5.77s average watch,19.3% full completion,0 new followers;largest drop at3s. Preserve 24/72/168-hour validation; no performance winner established."
+    },
+    {
+      "platform": "YouTube",
+      "postId": "iR3orq__Hn8",
+      "observedAt": "2026-10-11T20:06:58.654Z",
+      "checkpoint": "4h review; Short",
+      "checkpointHours": 4,
+      "views": 287,
+      "decision": "Inconclusive. 287 owner inventory views; 374 analytics views,105 engaged views,29.4% stayed/70.6% swiped. Retention curve processing. Preserve 24/72/168-hour validation; no performance winner established. Inventory and analytics surfaces remain separate."
+    },
+    {
+      "platform": "X",
+      "postId": "2109314520057532826",
+      "observedAt": "2026-10-11T20:06:39Z",
+      "checkpoint": "4h review; Anubis",
+      "checkpointHours": 4,
+      "views": 3,
+      "decision": "Inconclusive. 6 post impressions,3 video views,2 unique video views and0 displayed engagements. Preserve 24/72/168-hour validation; no performance winner established. Excluded from headline views; possible operator contribution."
+    },
+    {
+      "platform": "Instagram",
+      "postId": "DeXC-ioD-Wc",
+      "observedAt": "2026-10-11T20:06:13.397Z",
+      "checkpoint": "4h review; Anubis",
+      "checkpointHours": 4,
+      "views": 630,
+      "decision": "Inconclusive. 630 native views and418 Viewers;98.5% views from nonfollowers;0 displayed follows andReels interactions. Retention unavailable. Preserve 24/72/168-hour validation; no performance winner established."
+    },
+    {
+      "platform": "YouTube",
+      "postId": "rPJmQj1Pbpo",
+      "observedAt": "2026-10-11T20:07:07.824Z",
+      "checkpoint": "4h review; episode",
+      "checkpointHours": 4,
+      "views": 6,
+      "decision": "Inconclusive. 6 owner inventory views;7 analytics views,5 engaged views,29s average view duration;318 thumbnail impressions and0.6% CTR. Preserve 24/72/168-hour validation; no performance winner established. Inventory and analytics surfaces remain separate."
     }
   ],
-  "coverage": "87 public records plus seven private/unlisted YouTube records counted only in aggregate: 94 measured posts. Historical coverage is not campaign growth. Source timestamps differ. YouTube Live archives, X, Twitch, FACEIT and unavailable archives remain unmeasured.",
+  "coverage": "89 public measured records plus seven private/unlisted YouTube records in aggregate: 96 measured posts. Four new Knife links verified; only YouTube and TikTok have saved numeric counters. Knife Instagram is unknown and X is excluded from headline totals. Earlier inventory dates remain; this was a focused review refresh.",
   "learningAudits": [
     {
       "observedAt": "2026-10-11T15:01:14.433902+00:00",

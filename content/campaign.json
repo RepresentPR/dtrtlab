@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-11T19:54:02.616451Z",
+  "capturedAt": "2026-10-11T20:13:51.129364Z",
   "campaign": {
     "name": "Growth. $0 new spend.",
     "startAt": "2026-10-11T06:28:12Z",
@@ -12,12 +12,12 @@
   },
   "results": {
     "views": {
-      "value": 1968,
+      "value": 2120,
       "status": "verified",
-      "observedAt": "2026-10-11T19:52:33.031Z",
-      "note": "Partial added total: 459 YouTube and 141 Instagram matched-counter gains plus 1368 cumulative views on five campaign-created posts. Change from the prior saved total: +327. Native sources were observed at different times.",
+      "observedAt": "2026-10-11T20:07:08.985Z",
+      "note": "Focused post updates changed the prior saved campaign total by +152. Opening-cohort counters retain their earlier collection dates. No full inventory refresh, organic attribution or winning format is claimed.",
       "metric": "reported_new_campaign_post_views_plus_matched_legacy_counter_deltas",
-      "coverage": "31 matched opening YouTube Shorts (public at baseline, one now private), 33 matched opening Instagram Reels and five measured campaign-created posts; private identity omitted; X/Ko-fi growth and campaign-start gap remain unmeasured.",
+      "coverage": "Fixed 31 opening YouTube Shorts and 33 opening Instagram Reels plus seven measured campaign-created posts. Knife Instagram counter is unknown; X and Ko-fi excluded from headline views. Private identities omitted.",
       "components": [
         {
           "platform": "YouTube",
@@ -43,29 +43,43 @@
           "platform": "TikTok Anubis",
           "value": 307,
           "basis": "Native cumulative views on campaign-created Anubis post",
-          "observedAt": "2026-10-11T19:52:21.175Z",
+          "observedAt": "2026-10-11T20:07:08.985Z",
           "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695441861422451982"
         },
         {
           "platform": "YouTube Anubis",
-          "value": 271,
+          "value": 287,
           "basis": "Native owner Shorts inventory cumulative views on campaign-created post",
-          "observedAt": "2026-10-11T19:49:21.287Z",
+          "observedAt": "2026-10-11T20:06:58.654Z",
           "postUrl": "https://www.youtube.com/shorts/iR3orq__Hn8"
         },
         {
           "platform": "YouTube episode",
-          "value": 5,
+          "value": 6,
           "basis": "Native owner Videos inventory cumulative views on campaign-created episode; may include operator verification",
-          "observedAt": "2026-10-11T19:48:51.709Z",
+          "observedAt": "2026-10-11T20:07:07.824Z",
           "postUrl": "https://www.youtube.com/watch?v=rPJmQj1Pbpo"
         },
         {
           "platform": "Instagram Anubis",
-          "value": 500,
+          "value": 630,
           "basis": "Displayed Reel-grid cumulative counter on campaign-created post",
-          "observedAt": "2026-10-11T19:52:01.262Z",
+          "observedAt": "2026-10-11T20:05:58.169Z",
           "postUrl": "https://www.instagram.com/reel/DeXC-ioD-Wc/"
+        },
+        {
+          "platform": "YouTube Knife",
+          "basis": "Native cumulative inventory views on newly published campaign post; may include operator verification",
+          "postUrl": "https://www.youtube.com/shorts/oUfVtc-hd0k",
+          "value": 0,
+          "observedAt": "2026-10-11T20:03:57.889Z"
+        },
+        {
+          "platform": "TikTok Knife",
+          "basis": "Native cumulative inventory views on newly published campaign post; may include operator verification",
+          "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695502513348414734",
+          "value": 5,
+          "observedAt": "2026-10-11T20:04:21.782Z"
         }
       ],
       "organicAttribution": "not_established",
@@ -76,42 +90,98 @@
       "status": "baseline_pending"
     },
     "lifetimeViews": {
-      "value": 146420,
+      "value": 146572,
       "status": "verified",
       "observedAt": "2026-10-11T19:48:51.709Z",
       "coverage": "partial",
       "components": [
         {
           "platform": "YouTube Shorts",
-          "value": 15629,
-          "posts": 33,
-          "scope": "31 public, one private and one unlisted; nonpublic identities omitted; Anubis counted once",
-          "observedAt": "2026-10-11T19:49:21.287Z"
+          "value": 15645,
+          "posts": 34,
+          "scope": "34 measured Shorts; two private/unlisted records aggregate only. Dated full inventory plus focused public updates; each post counted once.",
+          "observedAt": "2026-10-11T19:49:21.287Z",
+          "fullInventoryObservedAt": "2026-10-11T19:49:21.287Z",
+          "observedThrough": "2026-10-11T20:06:58.654Z",
+          "observationType": "Dated full inventory with separately dated focused post updates; other counters not refreshed",
+          "focusedUpdates": [
+            {
+              "postId": "iR3orq__Hn8",
+              "value": 287,
+              "observedAt": "2026-10-11T20:06:58.654Z",
+              "deltaFromPreviousSaved": 16
+            },
+            {
+              "postId": "oUfVtc-hd0k",
+              "value": 0,
+              "observedAt": "2026-10-11T20:03:57.889Z",
+              "deltaFromPreviousSaved": 0
+            }
+          ]
         },
         {
           "platform": "Instagram Reels",
-          "value": 13978,
+          "value": 14108,
           "posts": 34,
-          "scope": "34 public Reel-grid counters including Anubis; unavailable archives excluded",
-          "observedAt": "2026-10-11T19:52:01.262Z"
+          "scope": "34 measured public Reel counters; focused Anubis update. Knife is published but its unknown counter is not included.",
+          "observedAt": "2026-10-11T19:52:01.262Z",
+          "fullInventoryObservedAt": "2026-10-11T19:52:01.262Z",
+          "observedThrough": "2026-10-11T20:05:58.169Z",
+          "observationType": "Dated full inventory with separately dated focused post updates; other counters not refreshed",
+          "focusedUpdates": [
+            {
+              "postId": "DeXC-ioD-Wc",
+              "value": 630,
+              "observedAt": "2026-10-11T20:05:58.169Z",
+              "deltaFromPreviousSaved": 130
+            }
+          ]
         },
         {
           "platform": "TikTok videos",
-          "value": 2383,
-          "posts": 18,
-          "scope": "18 Everyone posts from owner Studio inventory; both campaign posts counted once; detail observations retain separate timestamps",
-          "observedAt": "2026-10-11T19:52:01.261Z"
+          "value": 2388,
+          "posts": 19,
+          "scope": "19 measured Everyone posts; dated owner inventory plus focused native updates, including Knife once.",
+          "observedAt": "2026-10-11T19:52:01.261Z",
+          "fullInventoryObservedAt": "2026-10-11T19:52:01.261Z",
+          "observedThrough": "2026-10-11T20:07:08.985Z",
+          "observationType": "Dated full inventory with separately dated focused post updates; other counters not refreshed",
+          "focusedUpdates": [
+            {
+              "postId": "7695441861422451982",
+              "value": 307,
+              "observedAt": "2026-10-11T20:07:08.985Z",
+              "deltaFromPreviousSaved": 0
+            },
+            {
+              "postId": "7695502513348414734",
+              "value": 5,
+              "observedAt": "2026-10-11T20:04:21.782Z",
+              "deltaFromPreviousSaved": 5
+            }
+          ]
         },
         {
           "platform": "YouTube other videos",
-          "value": 114430,
+          "value": 114431,
           "posts": 9,
           "scope": "Four public videos including episode 003 and five private archives; private identities omitted",
-          "observedAt": "2026-10-11T19:48:51.709Z"
+          "observedAt": "2026-10-11T19:48:51.709Z",
+          "fullInventoryObservedAt": "2026-10-11T19:48:51.709Z",
+          "observedThrough": "2026-10-11T20:07:07.824Z",
+          "observationType": "Dated full inventory with separately dated focused post updates; other counters not refreshed",
+          "focusedUpdates": [
+            {
+              "postId": "rPJmQj1Pbpo",
+              "value": 6,
+              "observedAt": "2026-10-11T20:07:07.824Z",
+              "deltaFromPreviousSaved": 1
+            }
+          ]
         }
       ],
-      "note": "Known lifetime inventory includes historical videos and private archives. Four disjoint platform inventories count each post once. Historical views are not Phase 2 gains or attributed to $0 spend; coverage remains partial.",
-      "observedThrough": "2026-10-11T19:52:01.262Z"
+      "note": "Known lifetime inventory combines the dated full collection with focused updates on named public posts. Unchanged counters retain their earlier times. Historical views are not campaign growth or attributed to $0 spend.",
+      "observedThrough": "2026-10-11T20:07:08.985Z"
     }
   },
   "spend": {
@@ -119,11 +189,11 @@
     "newVerifiedUsd": 0
   },
   "operations": {
-    "activePosts": 7,
+    "activePosts": 9,
     "scheduledPosts": 8,
     "cap": 17,
-    "runwayDays": 0.11068141203703703,
-    "queueVerifiedAt": "2026-10-11T19:20:37.126Z",
+    "runwayDays": 0.1570471138425926,
+    "queueVerifiedAt": "2026-10-11T20:12:34Z",
     "planningHorizonHours": 24,
     "targetSpacingHours": 2,
     "requiredPlatforms": [
@@ -142,17 +212,17 @@
       "title": "Last enemy. Smoke in the way.",
       "url": "https://www.youtube.com/shorts/iR3orq__Hn8",
       "platform": "Published on five platforms",
-      "reviewedAt": "2026-10-11T14:03:27.484264+00:00",
+      "reviewedAt": "2026-10-11T20:08:44.075530Z",
       "status": "approved",
-      "reason": "Editorial selection. Audio-fixed Anubis clip is public; first four-hour review is due around 4:05 PM Eastern. No performance winner claim."
+      "reason": "Editorial selection. Four-hour review completed; evidence remains inconclusive. No performance-winner designation."
     },
     {
       "title": "Lab File 003: Low ammo. No vision. No room.",
       "url": "https://www.youtube.com/watch?v=rPJmQj1Pbpo",
       "platform": "Published YouTube episode",
-      "reviewedAt": "2026-10-11T15:47:20.945084+00:00",
+      "reviewedAt": "2026-10-11T20:08:44.131086Z",
       "status": "approved",
-      "reason": "Two-minute compilation of seven source stories. Native publication and playable media verified; performance review pending."
+      "reason": "Editorial selection. Four-hour review completed; evidence remains inconclusive. No performance-winner designation."
     },
     {
       "title": "One bullet left",
@@ -164,11 +234,11 @@
     },
     {
       "title": "Knife round got crowded",
-      "url": "https://dtrtlab.com/assets/campaign/02-knife-round-got-crowded.mp4",
-      "platform": "Edited preview",
+      "url": "https://www.youtube.com/shorts/oUfVtc-hd0k",
+      "platform": "Published on four platforms",
       "reviewedAt": "2026-10-11T06:59:38.755Z",
       "status": "approved",
-      "reason": "Editorial selection. Performance review follows publication + four hours."
+      "reason": "Editorial selection. Native publication verified; four-hour review pending. No performance winner claim."
     },
     {
       "title": "The next corner was not clear",
@@ -181,84 +251,84 @@
   ],
   "queue": [
     {
-      "title": "Knife round got crowded",
-      "platform": "YouTube",
-      "scheduledAt": "2026-10-11T20:00:00Z",
-      "status": "scheduled",
-      "groupId": "knife-20261011",
-      "verifiedAt": "2026-10-11T19:19:13Z"
-    },
-    {
-      "title": "Knife round got crowded",
-      "platform": "Instagram",
-      "scheduledAt": "2026-10-11T20:00:00Z",
-      "status": "scheduled",
-      "groupId": "knife-20261011",
-      "verifiedAt": "2026-10-11T19:19:13Z"
-    },
-    {
-      "title": "Knife round got crowded",
-      "platform": "TikTok",
-      "scheduledAt": "2026-10-11T20:00:00Z",
-      "status": "scheduled",
-      "groupId": "knife-20261011",
-      "verifiedAt": "2026-10-11T19:19:13Z"
-    },
-    {
-      "title": "Knife round got crowded",
-      "platform": "X",
-      "scheduledAt": "2026-10-11T20:00:00Z",
-      "status": "scheduled",
-      "groupId": "knife-20261011",
-      "verifiedAt": "2026-10-11T19:19:13Z"
-    },
-    {
       "title": "The door was already covered",
       "platform": "YouTube",
-      "scheduledAt": "2026-10-11T22:00:00Z",
+      "scheduledAt": "2026-10-11T22:00:00.000000Z",
       "status": "scheduled",
-      "groupId": "door-20261011",
-      "verifiedAt": "2026-10-11T19:19:13Z"
+      "groupId": "faceit-6ac2d25e2657c8065e72d719-20261011T220000Z",
+      "verifiedAt": "2026-10-11T20:12:34Z"
     },
     {
       "title": "The door was already covered",
       "platform": "Instagram",
-      "scheduledAt": "2026-10-11T22:00:00Z",
+      "scheduledAt": "2026-10-11T22:00:00.000000Z",
       "status": "scheduled",
-      "groupId": "door-20261011",
-      "verifiedAt": "2026-10-11T19:19:13Z"
+      "groupId": "faceit-6ac2d25e2657c8065e72d719-20261011T220000Z",
+      "verifiedAt": "2026-10-11T20:12:34Z"
     },
     {
       "title": "The door was already covered",
       "platform": "TikTok",
-      "scheduledAt": "2026-10-11T22:00:00Z",
+      "scheduledAt": "2026-10-11T22:00:00.000000Z",
       "status": "scheduled",
-      "groupId": "door-20261011",
-      "verifiedAt": "2026-10-11T19:19:13Z"
+      "groupId": "faceit-6ac2d25e2657c8065e72d719-20261011T220000Z",
+      "verifiedAt": "2026-10-11T20:12:34Z"
     },
     {
       "title": "The door was already covered",
       "platform": "X",
-      "scheduledAt": "2026-10-11T22:00:00Z",
+      "scheduledAt": "2026-10-11T22:00:00.000000Z",
       "status": "scheduled",
-      "groupId": "door-20261011",
-      "verifiedAt": "2026-10-11T19:19:13Z"
+      "groupId": "faceit-6ac2d25e2657c8065e72d719-20261011T220000Z",
+      "verifiedAt": "2026-10-11T20:12:34Z"
+    },
+    {
+      "title": "The next corner was not clear",
+      "platform": "YouTube",
+      "scheduledAt": "2026-10-12T00:00:00.000000Z",
+      "status": "scheduled",
+      "groupId": "twitch-014-20261012T000000Z",
+      "verifiedAt": "2026-10-11T20:12:34Z"
+    },
+    {
+      "title": "The next corner was not clear",
+      "platform": "Instagram",
+      "scheduledAt": "2026-10-12T00:00:00.000000Z",
+      "status": "scheduled",
+      "groupId": "twitch-014-20261012T000000Z",
+      "verifiedAt": "2026-10-11T20:12:34Z"
+    },
+    {
+      "title": "The next corner was not clear",
+      "platform": "TikTok",
+      "scheduledAt": "2026-10-12T00:00:00.000000Z",
+      "status": "scheduled",
+      "groupId": "twitch-014-20261012T000000Z",
+      "verifiedAt": "2026-10-11T20:12:34Z"
+    },
+    {
+      "title": "The next corner was not clear",
+      "platform": "X",
+      "scheduledAt": "2026-10-12T00:00:00.000000Z",
+      "status": "scheduled",
+      "groupId": "twitch-014-20261012T000000Z",
+      "verifiedAt": "2026-10-11T20:12:34Z"
     }
   ],
   "evidenceNotes": [
-    "Lifetime goal: 250,000 overall reported video views by December 31 Eastern. The known 146,420 includes historical YouTube inventory, including 114,425 older video views first indexed earlier today; that coverage is not Phase 2 growth.",
-    "Known inventory: 94 posts across YouTube, Instagram and TikTok. Seven private/unlisted YouTube records appear only in the aggregate; 87 public records are searchable. YouTube Live archives, X, Twitch, FACEIT and unavailable archives remain uncounted.",
-    "Fresh native inventory and post-detail observations span Oct 11, 03:48 PM EDT to Oct 11, 03:52 PM EDT. Component timestamps and metric definitions remain separate. Views are not unique people.",
-    "Partial added total: 459 YouTube and 141 Instagram matched-counter gains plus 1368 cumulative views on five campaign-created posts. Change from the prior saved total: +327. Native sources were observed at different times. Startup counts may include operator verification. No creative winner or organic attribution is established.",
+    "Lifetime goal: 250,000 overall reported video views by December 31 Eastern. Known total 146,572; historical coverage is not campaign growth.",
+    "89 public measured records plus seven private/unlisted YouTube records in aggregate: 96 measured posts. Four new Knife links verified; only YouTube and TikTok have saved numeric counters. Knife Instagram is unknown and X is excluded from headline totals. Earlier inventory dates remain; this was a focused review refresh.",
+    "Focused native publication and four-hour review observations around 4:00-4:07 PM Eastern updated only the named posts. Full inventory observations remain dated around 3:49-3:52 PM; component times stay separate.",
+    "Focused post updates changed the prior saved campaign total by +152. Opening-cohort counters retain their earlier collection dates. No full inventory refresh, organic attribution or winning format is claimed.",
     "The fixed opening baseline is 14,895 YouTube Shorts views and 13,337 Instagram Reel views, measured at 2:51-2:53 AM Eastern. The 23-minute start-to-baseline gap remains unmeasured. Negative native corrections are retained.",
     "Anubis is verified public on YouTube, Instagram, TikTok, X and Ko-fi. Lab File 003 is public on YouTube. The common planned release was 12:05 PM Eastern; native precision and processing vary. Ko-fi shows only a date, so its exact publication time is unknown.",
-    "Next verified cloud drops: Knife on October 11 at 4 PM Eastern and Door at 6 PM Eastern, each on YouTube, Instagram, TikTok and X. Eight future schedules plus seven active posts = 15/17. Plan only the next 24 hours; the two-hour target depends on quality, capacity and provider readiness.",
     "Ko-fi Anubis retains its verified playable YouTube embed. Optional Knife/Door schedules were moved to recoverable drafts. Planned times are not actual publication times; no duplicate posts were created.",
-    "New timed publications have 4/24/72/168-hour review jobs. First new four-hour checks are due around 4:05 PM Eastern. Ko-fi has a separate conservative observation review around 4:17 PM until its exact time is available. No new winner is established.",
     "Revenue remains unknown pending reconciled payment and refund evidence. Ko-fi financial setup still requests owner location confirmation. Clicks, enquiries and public goal meters are not receipts.",
     "Recorded new spend is $0. Existing equipment, subscriptions and historical promotions are outside this figure. Historical views are not attributed to zero new spend.",
     "Owned Twitch, FACEIT and OBS source indexing remains incomplete. Editing approval used documented sampled visual and technical audio checks; unavailable listening or continuous playback is not claimed. Local operations require this PC online with Codex open.",
-    "Instagram followers: 73 displayed, +5 from opening 68; separate from views and not attributed to a particular clip. Anubis TikTok detail observed Oct 11, 03:52 PM EDT: 307 views, 5.77s average watch, 19.3% full completion and largest drop at 3s. Preliminary before its four-hour review; runtime differs from the control."
+    "Current reconciled roster: 9 active and 8 reserved/scheduled out of 17. Future verified schedules appear below. Target two-hour drops only when quality and capacity permit; plan next 24 hours.",
+    "Five due four-hour reviews completed, all inconclusive. Anubis and episode retain 24/72/168-hour checks. Knife has new publication-based review jobs; actual times differ slightly across platforms. Ko-fi exact publication time remains unavailable and has a separate observation review.",
+    "Instagram followers remain the dated 73 observation. Retention and engagement findings are shown in the review log with their own timestamps. Unknown counters are not zero; X views remain outside headline growth."
   ],
   "baseline": {
     "capturedFrom": "2026-10-11T06:51:23.161Z",
@@ -332,6 +402,38 @@
       "publishedAt": null,
       "verifiedAt": "2026-10-11T16:20:33.145Z",
       "timestampBasis": "Native Published status and October11 date; exact publication time unavailable. Planned16:05 is not actual timestamp."
+    },
+    {
+      "title": "Knife round got crowded",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/shorts/oUfVtc-hd0k",
+      "publishedAt": "2026-10-11T20:00:54.000Z",
+      "verifiedAt": "2026-10-11T20:04:09.127Z",
+      "timestampBasis": "Native public watch-page datePublished/uploadDate metadata, matched owner Studio Public/Published row"
+    },
+    {
+      "title": "Knife round got crowded",
+      "platform": "Instagram",
+      "url": "https://www.instagram.com/reel/DeXd40Ylgsc/",
+      "publishedAt": "2026-10-11T20:00:58.000Z",
+      "verifiedAt": "2026-10-11T20:03:55.782Z",
+      "timestampBasis": "Native displayed time element datetime attribute; duplicate caption/detail times agree"
+    },
+    {
+      "title": "Knife round got crowded",
+      "platform": "TikTok",
+      "url": "https://www.tiktok.com/@iananthonyfc/video/7695502513348414734",
+      "publishedAt": "2026-10-11T20:00:00Z",
+      "verifiedAt": "2026-10-11T20:04:21.782Z",
+      "timestampBasis": "Native TikTok Studio Created on Oct11 4:00PM Eastern, Everyone; minute precision, actual processing time unmeasured"
+    },
+    {
+      "title": "Knife round got crowded",
+      "platform": "X",
+      "url": "https://x.com/DTRTLab/status/2109373786583920696",
+      "publishedAt": "2026-10-11T20:01:15.000Z",
+      "verifiedAt": "2026-10-11T20:04:44Z",
+      "timestampBasis": "time[datetime] inside the matching native X article on the DTRTLab profile"
     }
   ]
 }
