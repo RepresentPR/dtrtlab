@@ -2,3 +2,4 @@
 .context-note{max-width:920px;font-size:13px;line-height:1.6;color:#c4c2ba;margin:14px 0 30px}
 header nav a[aria-current=page]{color:var(--accent);text-decoration:underline;text-underline-offset:5px}
 header nav a:focus-visible{outline:3px solid var(--accent);outline-offset:5px}
+.skip{position:absolute;left:14px;top:-80px;z-index:5;background:var(--accent);color:#101010;padding:10px 14px;font-weight:700}.skip:focus{top:10px}.skip:focus-visible{outline:3px solid #fff;outline-offset:3px}
