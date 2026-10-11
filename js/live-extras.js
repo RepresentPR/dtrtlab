@@ -16,10 +16,10 @@ function supporters(){
  return `<div class="lfx-k">Latest supporters</div>${row('follower','Follower')}${row('subscriber','Subscriber')}${row('donation','Donation')}`;}
 function review(){
  const shop=REV.shop_name,g=REV.google_url;if(!shop||!https(g))return '';
- const R=(REV.reviews||[]).filter(r=>r&&r.stars===5&&r.show_name===true&&r.name&&r.text);
+ const R=(REV.reviews||[]).filter(r=>r&&Number.isInteger(r.stars)&&r.stars>=1&&r.stars<=5&&r.show_name===true&&r.name&&r.text);
  let h=`<div class="lfx-k">Review us</div><div class="lfx-t">Enjoying the stream? A Google review of ${esc(shop)} truly helps grow our business.</div><a class="lfx-b" href="${esc(g)}" target="_blank" rel="noopener">Leave a Google review</a>`;
  if(https(REV.yelp_url))h+=` <a class="lfx-y" href="${esc(REV.yelp_url)}" target="_blank" rel="noopener">Find us on Yelp</a>`;
- if(R.length){const r=R[ri%R.length];h+=`<blockquote class="lfx-q" key="${ri}">★★★★★ “${esc(r.text)}” <cite>${esc(r.name)}</cite></blockquote>`;}
+ if(R.length){const r=R[ri%R.length];h+=`<blockquote class="lfx-q" key="${ri}">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)} “${esc(r.text)}” <cite>${esc(r.name)}</cite></blockquote>`;}
  return h;}
 const MIN=()=>(PRO.minutes||20)*60000;
 function promoState(now){const E=PRO.entries||[];if(!E.length)return null;const slot=Math.floor(now/MIN()),e=E[slot%E.length],into=now-slot*MIN(),nextIn=MIN()-into;return{e,slot,on:into<(PRO.show_seconds||45)*1000,nextIn};}
