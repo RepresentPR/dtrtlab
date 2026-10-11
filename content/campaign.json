@@ -1,16 +1,165 @@
 {
-  "capturedAt": "2026-10-11T06:34:53Z",
-  "campaign": { "name": "Growth. $0 new spend.", "startAt": "2026-10-11T06:28:12Z", "deadlineAt": "2026-12-25T05:00:00Z", "timezone": "America/New_York", "viewsGoal": 250000, "revenueGoalUsd": 10000 },
-  "results": { "views": { "value": null, "status": "baseline_pending" }, "revenue": { "value": null, "status": "baseline_pending" } },
-  "spend": { "newAuthorizedUsd": 0, "newVerifiedUsd": null },
-  "operations": { "activePosts": 0, "scheduledPosts": 0, "cap": 17, "runwayDays": 0, "queueVerifiedAt": null },
-  "highlights": [],
-  "queue": [],
+  "capturedAt": "2026-10-11T07:01:09.266568Z",
+  "campaign": {
+    "name": "Growth. $0 new spend.",
+    "startAt": "2026-10-11T06:28:12Z",
+    "deadlineAt": "2026-12-25T05:00:00Z",
+    "timezone": "America/New_York",
+    "viewsGoal": 250000,
+    "revenueGoalUsd": 10000
+  },
+  "results": {
+    "views": {
+      "value": null,
+      "status": "comparison_pending",
+      "note": "YouTube/Instagram starting counts saved. The next growth comparison is pending."
+    },
+    "revenue": {
+      "value": null,
+      "status": "baseline_pending"
+    }
+  },
+  "spend": {
+    "newAuthorizedUsd": 0,
+    "newVerifiedUsd": 0
+  },
+  "operations": {
+    "activePosts": 0,
+    "scheduledPosts": 14,
+    "cap": 17,
+    "runwayDays": 7.624198303611111,
+    "queueVerifiedAt": "2026-10-11T06:59:38.755Z"
+  },
+  "highlights": [
+    {
+      "title": "One bullet left",
+      "url": "https://dtrtlab.com/assets/campaign/01-one-bullet-left.mp4",
+      "platform": "Edited preview",
+      "reviewedAt": "2026-10-11T06:59:38.755Z",
+      "status": "approved",
+      "reason": "Editorial selection. Performance review follows publication + four hours."
+    },
+    {
+      "title": "Knife round got crowded",
+      "url": "https://dtrtlab.com/assets/campaign/02-knife-round-got-crowded.mp4",
+      "platform": "Edited preview",
+      "reviewedAt": "2026-10-11T06:59:38.755Z",
+      "status": "approved",
+      "reason": "Editorial selection. Performance review follows publication + four hours."
+    },
+    {
+      "title": "The next corner was not clear",
+      "url": "https://dtrtlab.com/assets/campaign/03-the-next-corner-was-not-clear.mp4",
+      "platform": "Edited preview",
+      "reviewedAt": "2026-10-11T06:59:38.755Z",
+      "status": "approved",
+      "reason": "Editorial selection. Performance review follows publication + four hours."
+    }
+  ],
+  "queue": [
+    {
+      "title": "One bullet left",
+      "platform": "YouTube",
+      "scheduledAt": "2026-10-11T16:00:00Z",
+      "status": "scheduled"
+    },
+    {
+      "title": "Knife round got crowded",
+      "platform": "YouTube",
+      "scheduledAt": "2026-10-12T16:00:00Z",
+      "status": "scheduled"
+    },
+    {
+      "title": "One bullet left",
+      "platform": "Instagram",
+      "scheduledAt": "2026-10-12T22:00:00Z",
+      "status": "scheduled"
+    },
+    {
+      "title": "The next corner was not clear",
+      "platform": "YouTube",
+      "scheduledAt": "2026-10-13T16:00:00Z",
+      "status": "scheduled"
+    },
+    {
+      "title": "Knife round got crowded",
+      "platform": "Instagram",
+      "scheduledAt": "2026-10-13T22:00:00Z",
+      "status": "scheduled"
+    },
+    {
+      "title": "Smoke changed the fight",
+      "platform": "YouTube",
+      "scheduledAt": "2026-10-14T16:00:00Z",
+      "status": "scheduled"
+    },
+    {
+      "title": "The next corner was not clear",
+      "platform": "Instagram",
+      "scheduledAt": "2026-10-14T22:00:00Z",
+      "status": "scheduled"
+    },
+    {
+      "title": "Fire at the doorway",
+      "platform": "YouTube",
+      "scheduledAt": "2026-10-15T16:00:00Z",
+      "status": "scheduled"
+    },
+    {
+      "title": "Smoke changed the fight",
+      "platform": "Instagram",
+      "scheduledAt": "2026-10-15T22:00:00Z",
+      "status": "scheduled"
+    },
+    {
+      "title": "Bomb down, now survive",
+      "platform": "YouTube",
+      "scheduledAt": "2026-10-16T16:00:00Z",
+      "status": "scheduled"
+    },
+    {
+      "title": "Fire at the doorway",
+      "platform": "Instagram",
+      "scheduledAt": "2026-10-16T22:00:00Z",
+      "status": "scheduled"
+    },
+    {
+      "title": "The door was already covered",
+      "platform": "YouTube",
+      "scheduledAt": "2026-10-17T16:00:00Z",
+      "status": "scheduled"
+    },
+    {
+      "title": "Bomb down, now survive",
+      "platform": "Instagram",
+      "scheduledAt": "2026-10-17T22:00:00Z",
+      "status": "scheduled"
+    },
+    {
+      "title": "The door was already covered",
+      "platform": "Instagram",
+      "scheduledAt": "2026-10-18T22:00:00Z",
+      "status": "scheduled"
+    }
+  ],
   "evidenceNotes": [
-    "Historical post views are not counted as growth during this campaign. A synchronized starting baseline is pending.",
-    "Revenue remains unknown until confirmed payment records are connected. A support click is not a payment.",
-    "The campaign allows $0 of new spending. This does not claim that existing equipment, software, or historical promotions cost nothing.",
-    "Roster counts describe this campaign. Historical posts can remain public outside the active roster.",
-    "Twitch recordings and local clips have been located. The owned FACEIT library has been accessed across 12 pages and three original clips recovered; full archive indexing is still incomplete."
-  ]
+    "Starting measurement, October 11 at 2:51\u20132:53 AM Eastern: 31 public YouTube Shorts held 14,895 lifetime views; 33 Instagram Reels held 13,337 displayed lifetime views. These opening counters are not campaign gains.",
+    "The starting measurement was about 23 minutes after the campaign began. That gap and other platforms remain unmeasured. A second comparable observation is required before reporting growth.",
+    "Revenue remains unknown until confirmed payment records are connected. A support click or enquiry is not a payment.",
+    "The operator made no purchases, ad buys or paid media-generation orders for this campaign: recorded new spend is $0. Existing equipment, subscriptions and historical promotions are outside this new-spend figure.",
+    "Seven finished videos have 14 confirmed cloud schedules: YouTube daily at noon Eastern October 11\u201317, and Instagram daily at 6 PM Eastern October 12\u201318. Scheduled does not yet mean published.",
+    "The 17-slot rule counts active plus scheduled platform posts. Historical posts stay public in the archive. Three slots remain available.",
+    "The previews are editorial selections, not measured winners. Performance highlights are selected after publication and a four-hour review, with later checks for delayed analytics.",
+    "Owned source discovery covers Twitch recordings, local OBS footage and a 12-page FACEIT library. Three FACEIT originals and recovered Twitch clips supplied this batch. Complete archive indexing remains in progress."
+  ],
+  "baseline": {
+    "capturedFrom": "2026-10-11T06:51:23.161Z",
+    "capturedThrough": "2026-10-11T06:53:21.054Z",
+    "youtubePublicShorts": 31,
+    "youtubeLifetimeViews": 14895,
+    "instagramReels": 33,
+    "instagramLifetimeViews": 13337,
+    "countsAreCampaignGrowth": false,
+    "campaignStartToBaselineGapMinutesApprox": 23
+  }
 }
