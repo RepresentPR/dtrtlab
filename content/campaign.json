@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-11T07:01:09.266568Z",
+  "capturedAt": "2026-10-11T07:11:55.080630Z",
   "campaign": {
     "name": "Growth. $0 new spend.",
     "startAt": "2026-10-11T06:28:12Z",
@@ -24,11 +24,11 @@
     "newVerifiedUsd": 0
   },
   "operations": {
-    "activePosts": 0,
+    "activePosts": 2,
     "scheduledPosts": 14,
     "cap": 17,
     "runwayDays": 7.624198303611111,
-    "queueVerifiedAt": "2026-10-11T06:59:38.755Z"
+    "queueVerifiedAt": "2026-10-11T07:10:49.839Z"
   },
   "highlights": [
     {
@@ -148,9 +148,10 @@
     "Revenue remains unknown until confirmed payment records are connected. A support click or enquiry is not a payment.",
     "The operator made no purchases, ad buys or paid media-generation orders for this campaign: recorded new spend is $0. Existing equipment, subscriptions and historical promotions are outside this new-spend figure.",
     "Seven finished videos have 14 confirmed cloud schedules: YouTube daily at noon Eastern October 11\u201317, and Instagram daily at 6 PM Eastern October 12\u201318. Scheduled does not yet mean published.",
-    "The 17-slot rule counts active plus scheduled platform posts. Historical posts stay public in the archive. Three slots remain available.",
+    "The 17-slot rule counts active plus scheduled platform posts. Historical posts stay public in the archive. Two newly published posts plus 14 scheduled posts use 16 slots; one remains available.",
     "The previews are editorial selections, not measured winners. Performance highlights are selected after publication and a four-hour review, with later checks for delayed analytics.",
-    "Owned source discovery covers Twitch recordings, local OBS footage and a 12-page FACEIT library. Three FACEIT originals and recovered Twitch clips supplied this batch. Complete archive indexing remains in progress."
+    "Owned source discovery covers Twitch recordings, local OBS footage and a 12-page FACEIT library. Three FACEIT originals and recovered Twitch clips supplied this batch. Complete archive indexing remains in progress.",
+    "The opening edit is now public on X and TikTok, verified in each native interface. Their first four-hour reviews are due around 7:10 AM Eastern on October 11. New-post analytics are still processing; these releases are not measured performance winners."
   ],
   "baseline": {
     "capturedFrom": "2026-10-11T06:51:23.161Z",
@@ -161,5 +162,21 @@
     "instagramLifetimeViews": 13337,
     "countsAreCampaignGrowth": false,
     "campaignStartToBaselineGapMinutesApprox": 23
-  }
+  },
+  "publications": [
+    {
+      "title": "One bullet left",
+      "platform": "X",
+      "url": "https://x.com/DTRTLab/status/2109179695862530284",
+      "publishedAt": "2026-10-11T07:10:00.000Z",
+      "verifiedAt": "2026-10-11T07:11:54.613Z"
+    },
+    {
+      "title": "One bullet left",
+      "platform": "TikTok",
+      "url": "https://www.tiktok.com/@iananthonyfc/video/7695303665602612493",
+      "publishedAt": "2026-10-11T07:09:00Z",
+      "verifiedAt": "2026-10-11T07:11:54.613Z"
+    }
+  ]
 }
