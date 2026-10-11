@@ -186,7 +186,6 @@
       {"path": "/radio.html", "views": 5},
       {"path": "/stories/afterlight/volume-one/", "views": 3},
       {"path": "/media.html", "views": 2},
-      {"path": "/isabella.html", "views": 1},
       {"path": "/worlds.html", "views": 1}
     ],
     "tracking_note": "Website analytics coverage is incomplete. Unavailable visitor counts are not treated as zero."

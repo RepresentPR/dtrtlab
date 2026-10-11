@@ -16,7 +16,6 @@
     file === "media.html" ||
     file === "news.html" ||
     file === "radio.html" ||
-    file === "isabella.html" ||
     here.indexOf("/stories/") !== -1;
 
   function link(href, label, on) {

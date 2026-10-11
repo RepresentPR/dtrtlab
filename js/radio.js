@@ -9,11 +9,6 @@
     { title: "The Second Envelope", src: "audio/radios/the-second-envelope.mp3" }
   ];
 
-  var ISABELLA = [
-    { title: "A tu pasito", note: "Daddy’s Voice Edition", src: "audio/isabella/a-tu-pasito.mp3" },
-    { title: "At Your Own Pace", note: "Daddy’s Voice Edition", src: "audio/isabella/at-your-own-pace.mp3" }
-  ];
-
   function fmt(s) {
     if (!isFinite(s) || s < 0) return "0:00";
     var m = Math.floor(s / 60);
@@ -179,5 +174,4 @@
   }
 
   bind(document.getElementById("al-radio"), AFTERLIGHT);
-  bind(document.getElementById("isa-radio"), ISABELLA);
 })();
