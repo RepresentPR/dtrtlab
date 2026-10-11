@@ -6,9 +6,15 @@ const state = document.getElementById("tab-state");
 const body = document.getElementById("tab-body");
 const kicker = document.getElementById("tab-kicker");
 
-const res = await fetch("/api/community", { cache: "no-store" });
-if (!res.ok) {
-  title.textContent = "The board is not running.";
+let res;
+try {
+  res = await fetch("/api/community", { cache: "no-store" });
+} catch (err) {
+  res = null;
+}
+if (!res || !res.ok) {
+  title.textContent = "The community board is offline.";
+  state.textContent = "Crosshair previews and copying still work on the CS2 page.";
 } else {
   const board = await res.json();
   const tab = (board.tabs || []).find(function (item) {

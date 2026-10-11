@@ -28,7 +28,7 @@
     '<nav class="links" id="site-links" aria-label="Primary">' +
     link("index.html#clips", "Clips", false) +
     link("cs2.html", "CS2", cs2On) +
-    link("index.html#about", "About", false) +
+    link("index.html#afterlight", "About", false) +
     link("index.html#schedule", "Schedule", false) +
     link("afterlight.html", "AFTERLIGHT", afterlightOn) +
     link("index.html#find", "Find me", false) +

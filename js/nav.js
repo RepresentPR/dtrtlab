@@ -29,7 +29,7 @@
     'img/brand/mark.svg" alt="" width="36" height="36"><span>DTRT LAB</span></a>' +
     '<nav class="links" id="site-links" aria-label="Primary">' +
     link("index.html#clips", "Watch", false) +
-    link("index.html#about", "About", false) +
+    link("index.html#afterlight", "About", false) +
     link("live/", "Live", false) +
     link("afterlight.html", "AFTERLIGHT", afterlightOn) +
     link("support.html", "Support & Partner", false) +

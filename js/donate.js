@@ -25,7 +25,7 @@
     if (list) {
       var h = '<p class="lead">' + (es ? d.purposeEs : d.purposeEn) + '</p><ul class="donate-list" style="list-style:none;padding:0;display:grid;gap:12px">';
       ms.forEach(function (m) {
-        h += '<li><a class="cta" target="_blank" rel="noopener noreferrer" href="' + encodeURI(m.url) + '">' + m.name + (m.recurring ? (es ? " Â· mensual" : " Â· monthly") : "") + '</a> <span>' + ((es ? m.noteEs : m.noteEn) || "") + '</span></li>';
+        h += '<li><a class="cta" target="_blank" rel="noopener noreferrer" href="' + encodeURI(m.url) + '">' + m.name + (m.recurring ? (es ? " · mensual" : " · monthly") : "") + '</a> <span>' + ((es ? m.noteEs : m.noteEn) || "") + '</span></li>';
       });
       list.innerHTML = h + "</ul>";
     }

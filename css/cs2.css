@@ -76,8 +76,20 @@ body.hub.cs2 .xh-cmds {
 
 body.hub.cs2 .xh-cmds {
   white-space: pre-wrap;
-  max-height: 9rem;
-  overflow: auto;
+  overflow-wrap: anywhere;
+}
+
+body.hub.cs2 .xh-command-details {
+  margin-top: 16px;
+}
+
+body.hub.cs2 .xh-command-details summary {
+  cursor: pointer;
+  color: var(--purple-2);
+}
+
+body.hub.cs2 [hidden] {
+  display: none !important;
 }
 
 body.hub.cs2 .badge {

@@ -70,6 +70,7 @@ boot().catch(function (err) {
 
 async function boot() {
   await refreshBoard();
+  setCommunityAvailability();
   await renderStored();
   previewId = onStage().id;
   renderStage();
@@ -101,6 +102,18 @@ async function boot() {
   onEdpi();
 }
 
+function setCommunityAvailability() {
+  if (live) return;
+  ["votes", "tabs", "account", "notes"].forEach(function (id) {
+    document.getElementById(id).hidden = true;
+  });
+  document.querySelectorAll("[data-community-link]").forEach(function (link) {
+    link.hidden = true;
+  });
+  document.getElementById("xh-form-title").textContent = "Preview a code from a clip";
+  document.getElementById("xh-submit").textContent = "Preview on this device";
+}
+
 async function refreshBoard() {
   try {
     const res = await fetch("/api/community", { cache: "no-store" });
@@ -113,7 +126,7 @@ async function refreshBoard() {
     live = false;
     board = localBoard();
     skew = 0;
-    els.mode.textContent = "This browser only. Start node tools/community-server.mjs to share votes with the room.";
+    els.mode.textContent = "The community board is offline. Crosshair previews and copying still work here.";
   }
 }
 
@@ -420,10 +433,6 @@ async function publishIdentity(me) {
 
 async function onSubmitCode(event) {
   event.preventDefault();
-  if (!currentAccount()) {
-    setStatus(els.submitStatus, "Sign in first. The code is public. The account key is not.");
-    return;
-  }
   const form = event.currentTarget;
   const label = form.elements.namedItem("label").value.trim();
   const code = form.elements.namedItem("code").value.trim();
@@ -431,6 +440,19 @@ async function onSubmitCode(event) {
     decodeShareCode(code);
   } catch (err) {
     setStatus(els.submitStatus, err.message);
+    return;
+  }
+  if (!live) {
+    const id = "local-preview";
+    board.submissions = [{ id: id, label: label, name: "you", code: code }];
+    previewId = id;
+    renderStage();
+    renderGallery();
+    setStatus(els.submitStatus, "Previewed on this device. Copy the code to import it in CS2. It was not sent to a vote.");
+    return;
+  }
+  if (!currentAccount()) {
+    setStatus(els.submitStatus, "Sign in first. The code is public. The account key is not.");
     return;
   }
   setStatus(els.submitStatus, "Checking the code…");
@@ -654,7 +676,7 @@ async function copyCode() {
 
 async function copyCommands() {
   const item = findCrosshair(previewId);
-  await navigator.clipboard.writeText(commandsFor(item.decoded));
+  await navigator.clipboard.writeText(commandsFor(item.decoded).replace(/\n/g, "; "));
   flash(document.getElementById("xh-copy-cmds"), "Copied");
 }
 

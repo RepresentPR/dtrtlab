@@ -77,6 +77,7 @@ label { display: block; margin: 12px 0; }
 .clips button { width: 100%; text-align: left; background: var(--card); color: var(--ink); display: flex; gap: 12px; align-items: center; margin: 8px 0; }
 .clips img.thumb { width: 128px; height: 72px; }
 video { width: 100%; background: #090a0c; border-radius: 12px; }
+video[hidden], #unavailable[hidden] { display: none; }
 .board { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .al-radio-controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .al-radio-list { margin: 12px 0 0; padding: 0; }
