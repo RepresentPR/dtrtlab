@@ -1,6 +1,5 @@
 {
- "_help": "Latest supporters, written from real stream events only. null = none yet.",
+ "_help": "Latest follower and subscriber names from real stream events only.",
  "follower": null,
- "subscriber": null,
- "donation": null
+ "subscriber": null
 }

@@ -24,3 +24,9 @@ test('old public finance dashboard and JSON are absent', () => {
   assert.deepEqual(fs.readdirSync(path.join(root, 'content')).filter(name => /^ads-.*\.json$/i.test(name)), []);
   assert.deepEqual(fs.readdirSync(path.join(root, 'live')).filter(name => /^ads-/i.test(name)), []);
 });
+
+test('public performance and learning notes omit financial status', () => {
+  for (const name of ['content/live-performance.json', 'content/learning-audits.json']) {
+    assert.doesNotMatch(read(name), /\b(?:revenue|donations?|payments?|refunds?|receipts?|profits?|income|financial)\b/i, name);
+  }
+});

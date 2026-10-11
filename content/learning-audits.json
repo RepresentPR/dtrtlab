@@ -58,7 +58,7 @@
         "No two completed comparable seven-day windows were collected.",
         "Period views, lifetime totals and publication-age metrics have different scopes.",
         "A shorter runtime can raise completion percentage without improving absolute watch time.",
-        "No verified receipts or paid/organic attribution; no creative winner established."
+        "Paid/organic attribution is not established; no creative winner established."
       ],
       "nextGraphAuditDueAt": "2026-10-11T19:00:00Z",
       "nextWeeklyReviewDueAt": "2026-10-18T13:00:00Z"
@@ -182,7 +182,7 @@
         "Native channel watch-time description includes public, private, unlisted and deleted videos; its scope differs from the public inventory.",
         "Exact daily final-point values, full retention curves, traffic-source breakdown, new-viewer/returning-viewer split and matched weekly comparisons were not collected.",
         "Realtime figures are rolling and updating live; compare with their own timestamps rather than campaign cumulative totals.",
-        "No winning format, attribution, revenue, source-rights or exact simultaneous-publication conclusion follows from this graph."
+        "No winning format, attribution, source-rights or exact simultaneous-publication conclusion follows from this graph."
       ],
       "nextAuditDueAt": "2026-10-11T23:00:00Z",
       "decision": "Inconclusive. Keep the single direct-exchange test; no winning format established.",

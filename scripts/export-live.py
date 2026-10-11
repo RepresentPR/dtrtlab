@@ -144,7 +144,22 @@ def build(snapshots, *, existing=None, private=PRIVATE):
     return data
 
 
+def validate_financial_privacy(data):
+    """Fail before writing when private accounting enters a performance export."""
+    if isinstance(data, dict):
+        for key, value in data.items():
+            if re.search(r'revenue|donation|payment|refund|receipt|profit|income|financial|amount|currency|balance|accounting|monetary', key, re.I):
+                raise ValueError('Public performance exports cannot contain financial fields')
+            validate_financial_privacy(value)
+    elif isinstance(data, list):
+        for value in data:
+            validate_financial_privacy(value)
+    elif isinstance(data, str) and re.search(r'[$\u00a3\u20ac\u00a5]|\b(?:revenue|donations?|payments?|refunds?|receipts?|profits?|income|financial|dollars?|cents?|USD|EUR|GBP|CAD|AUD|JPY)\b', data, re.I):
+        raise ValueError('Public performance exports cannot contain financial notes')
+
+
 def validate(data):
+    validate_financial_privacy(data)
     seen = set()
     for post in data['posts']:
         if post['id'] in seen or type(post['views']) is not int or post['views'] < 0:

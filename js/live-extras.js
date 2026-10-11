@@ -9,11 +9,11 @@ let SUP={},REV={reviews:[]},PRO={entries:[]},ri=0;
 const get=async f=>{try{const r=await fetch(BASE+f+'?t='+Date.now(),{cache:'no-store'});return r.ok?await r.json():null}catch(e){return null}};
 function supporters(){
  const ev=(window.LabLive&&LabLive.events)||[];const last=(types)=>{for(let i=ev.length-1;i>=0;i--){const e=ev[i];if(!e.test&&types.includes(e.type)&&e.user&&e.user!=='New follower')return e;}return null;};
- const f=last(['follow']),sb=last(['sub','gift']),d=last(['donation','bits']);
- const live={};if(f)live.follower={name:f.user};if(sb)live.subscriber={name:sb.user};if(d)live.donation={name:d.user,amount:d.type==='bits'?(d.amount+' '+(d.unit||'bits')):d.amount};
- const S=Object.assign({},SUP,live);
- const row=(k,l)=>{const v=S[k];const t=v&&v.name?esc(v.name)+(v.amount?' · '+esc(v.amount):''):'none yet';return `<div class="lfx-s"><span>${l}</span><b class="${v&&v.name?'':'none'}">${t}</b></div>`};
- return `<div class="lfx-k">Latest supporters</div>${row('follower','Follower')}${row('subscriber','Subscriber')}${row('donation','Donation')}`;}
+ const f=last(['follow']),sb=last(['sub','gift']);
+ const S={follower:f?{name:f.user}:SUP.follower,subscriber:sb?{name:sb.user}:SUP.subscriber};
+ const row=(k,l)=>{const v=S[k];return v&&v.name?`<div class="lfx-s"><span>${l}</span><b>${esc(v.name)}</b></div>`:'';};
+ const rows=row('follower','Follower')+row('subscriber','Subscriber');
+ return rows?`<div class="lfx-k">Latest supporters</div>${rows}`:'';}
 function review(){
  const shop=REV.shop_name,g=REV.google_url;if(!shop||!https(g))return '';
  const R=(REV.reviews||[]).filter(r=>r&&Number.isInteger(r.stars)&&r.stars>=1&&r.stars<=5&&r.show_name===true&&r.name&&r.text);

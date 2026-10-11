@@ -108,6 +108,26 @@ class ExportTests(unittest.TestCase):
         self.assertEqual([x['id'] for x in result['posts']],['youtube:lmnopqrstuv'])
         self.assertNotIn('abcdefghijk',json.dumps(result))
 
+    def test_financial_fields_and_notes_cannot_be_exported(self):
+        for extra in [{'revenueGoalUsd':12345},
+                      {'results':{'revenue':None}},
+                      {'reviews':[{'note':'No verified receipts'}]},
+                      {'donations':[{'amount':23}]},
+                      {'paymentAmountUsd':23},
+                      {'experiments':[{'id':'money','result':{'amountUsd':125}}]},
+                      {'reviews':[{'note':'Collected $125 this week.'}]},
+                      {'reviews':[{'note':'Collected 125 USD this week.'}]},
+                      {'reviews':[{'note':'Collected 125 dollars this week.'}]}]:
+            with self.subTest(extra=extra),self.assertRaisesRegex(ValueError,'financial'):
+                self.build(dict(posts=[],**extra))
+
+    def test_private_experiment_financial_result_is_rejected(self):
+        self.save(self.private/'variant-tests.json',{'tests':[{
+            'variantId':'test-financial','status':'complete','treatment':'Opening test',
+            'result':'Company revenue is unknown.'}]})
+        with self.assertRaisesRegex(ValueError,'financial'):
+            self.build({'posts':[]})
+
 
 if __name__=='__main__':
     unittest.main()
