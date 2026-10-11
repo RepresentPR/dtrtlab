@@ -16,3 +16,19 @@
 .lifetime{border-top:1px solid var(--line,#333);padding:28px 0;margin-bottom:24px}.lifetime .metric-note{max-width:75ch}.highlights-section h3{margin-top:28px}
 
 .published-row{display:block}
+
+/* The Lab's public entry points and evidence hierarchy. */
+.site-map{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-block:1px solid var(--line)}
+.site-map a{display:flex;flex-direction:column;gap:6px;min-height:130px;padding:25px 25px 25px 0;border-right:1px solid var(--line)}
+.site-map a+a{padding-left:25px}.site-map a:last-child{border-right:0}
+.site-map span{font-size:11px;letter-spacing:1.4px;color:var(--orange);font-weight:700;text-transform:uppercase}
+.site-map strong{font-size:22px;line-height:1.2}.site-map small{font-size:13px;line-height:1.4;color:var(--muted)}
+.site-map a:hover strong{text-decoration:underline;text-decoration-color:var(--orange);text-underline-offset:4px}
+.work-intro,.results-intro{color:#c3c2bb;max-width:760px;font-size:16px;line-height:1.6;margin:-10px 0 25px}
+.results-intro{margin:-8px 0 30px}.results-intro a{text-decoration:underline;text-decoration-color:var(--orange);text-underline-offset:4px}
+.highlights-section{padding-top:65px}.results{padding-bottom:65px}
+.results .lifetime{border-top:0;margin:14px 0 0;padding:25px 0 0}
+.results .lifetime .metric-value{font-size:52px}
+@media(max-width:900px){.site-map strong{font-size:19px}.site-map a{padding-right:16px}.site-map a+a{padding-left:16px}}
+@media(max-width:640px){.site-header{flex-wrap:wrap;gap:14px;padding-block:15px}.site-header nav{width:100%;flex-wrap:wrap;justify-content:space-between;gap:8px 14px}.site-header nav>a:nth-child(3){display:inline-flex}.nav-watch{padding:7px 9px}.site-map{grid-template-columns:1fr}.site-map a,.site-map a+a{min-height:0;padding:18px 0;border-right:0;border-bottom:1px solid var(--line)}.site-map a:last-child{border-bottom:0}.site-map strong{font-size:21px}.work-intro,.results-intro{font-size:14px;margin-top:-4px}.highlights-section{padding-top:46px}.results{padding-bottom:46px}.results .lifetime .metric-value{font-size:43px}}
+@media(max-width:640px){.site-footer nav{flex-wrap:wrap;gap:10px 18px}}

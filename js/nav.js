@@ -1,10 +1,12 @@
 (function () {
-  var ASSET_V = "20261010n";
+  var ASSET_V = "20261011-hub2";
   var here = (location.pathname || "").toLowerCase();
   var parts = here.replace(/\\/g, "/").split("/").filter(Boolean);
   if (parts.length && /\.[a-z0-9]+$/i.test(parts[parts.length - 1])) parts.pop();
   var root = parts.length ? "../".repeat(parts.length) : "";
   var file = (location.pathname.split("/").pop() || "index.html").toLowerCase();
+  var aboutOn = file === "about.html";
+  var partnerOn = file === "partners.html" || here.indexOf("/partner/") !== -1;
   var afterlightOn =
     file === "afterlight.html" ||
     file === "game.html" ||
@@ -28,11 +30,11 @@
     root +
     'img/brand/mark.svg" alt="" width="36" height="36"><span>DTRT LAB</span></a>' +
     '<nav class="links" id="site-links" aria-label="Primary">' +
-    link("index.html#clips", "Watch", false) +
-    link("index.html#afterlight", "About", false) +
-    link("live/", "Live", false) +
+    link("clips/", "Work", false) +
+    link("live/", "Results", false) +
     link("afterlight.html", "AFTERLIGHT", afterlightOn) +
-    link("support.html", "Support & Partner", false) +
+    link("about.html", "About", aboutOn) +
+    link("partners.html", "Partner", partnerOn) +
     '<div class="nav-socials nav-socials-menu" data-social-slot="menu"></div>' +
     "</nav>" +
     '<div class="nav-end">' +
@@ -60,22 +62,15 @@
   if (foot) {
     foot.innerHTML =
       '<div class="wrap">' +
-      "<span>DTRT / Play. Create. Repeat.</span>" +
+      "<span>DTRT Lab · Created by Ian</span>" +
       '<a href="' + root + 'index.html">Home</a>' +
-      '<a href="' + root + 'index.html#clips">Clips</a>' +
-      '<a href="' + root + 'live/">Live</a>' +
+      '<a href="' + root + 'about.html">About</a>' +
+      '<a href="' + root + 'clips/">Work</a>' +
+      '<a href="' + root + 'live/">Results</a>' +
       '<a href="' + root + 'afterlight.html">AFTERLIGHT</a>' +
-      '<a href="' + root + 'game.html">Game</a>' +
-      '<a href="' + root + 'story.html">Story</a>' +
-      '<a href="' + root + 'stories/afterlight/volume-one/">Volume One</a>' +
-      '<a href="' + root + 'worlds.html">World</a>' +
-      '<a href="' + root + 'training.html">Training</a>' +
-      '<a href="' + root + 'media.html">Media</a>' +
-      '<a href="' + root + 'news.html">Updates</a>' +
-      '<a href="' + root + 'radio.html">Radio</a>' +
+      '<a href="' + root + 'cs2.html">CS2</a>' +
+      '<a href="' + root + 'partners.html">Partner</a>' +
       '<a href="' + root + 'contact.html">Contact</a>' +
-      '<a href="' + root + 'faq.html">FAQ</a>' +
-      '<a href="' + root + 'support.html">Support & Partner</a>' +
       '<a href="' + root + 'legal/privacy.html">Privacy</a>' +
       '<a href="' + root + 'legal/terms.html">Terms</a>' +
       "</div>" +

@@ -1,0 +1,20 @@
+.site-header [aria-current=page]{color:var(--orange)}
+.about-hero{padding-block:86px 72px}
+.about-hero h1{font-size:clamp(60px,8.1vw,108px);font-weight:800;letter-spacing:-5px;line-height:1.02;margin:27px 0 30px}
+.about-hero h1 span{color:var(--orange)}
+.about-lede{font-size:clamp(20px,2.2vw,27px);line-height:1.42;max-width:840px;color:#d0cec7}
+.about-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}.about-actions .button{min-width:240px}
+.about-section{border-top:1px solid var(--line);padding-block:65px 72px}
+.about-heading{margin-bottom:28px}.about-heading h2{font-size:clamp(30px,4vw,47px);letter-spacing:-1.5px;line-height:1.1;margin-top:12px}
+.about-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
+.about-grid article{padding:28px 28px 12px 0;border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:flex-start}
+.about-grid article+article{padding-left:28px}.about-grid article:last-child{border-right:0}
+.about-index{font-size:11px;letter-spacing:1.5px;color:var(--orange);font-weight:700;text-transform:uppercase}
+.about-grid h3{font-size:26px;line-height:1.15;letter-spacing:-.5px;margin:17px 0 12px}
+.about-grid p,.about-split p{font-size:16px;line-height:1.65;color:#c3c2bb}
+.about-grid p a,.about-split a{text-decoration:underline;text-decoration-color:var(--orange);text-underline-offset:4px}
+.about-link{display:inline-block;margin-top:auto;padding-top:27px;font-size:14px;font-weight:700;color:var(--text)}
+.about-split{display:grid;grid-template-columns:1fr 1fr;gap:50px;max-width:1000px}
+.about-socials{display:flex;flex-wrap:wrap;gap:12px}.about-socials a{border:1px solid var(--line);padding:12px 18px;font-size:14px;font-weight:650;min-width:135px}.about-socials a:hover{border-color:var(--orange)}
+@media(max-width:900px){.about-grid h3{font-size:23px}.about-grid article{padding-right:16px}.about-grid article+article{padding-left:16px}}
+@media(max-width:640px){.about-hero{padding-block:48px 50px}.about-hero h1{font-size:clamp(53px,11vw,72px);letter-spacing:-3px}.about-lede{font-size:19px}.about-actions{display:block}.about-actions .button{margin-top:10px}.about-section{padding-block:44px 48px}.about-grid{display:block}.about-grid article,.about-grid article+article{padding:24px 0;border-right:0;border-bottom:1px solid var(--line)}.about-grid article:last-child{border-bottom:0}.about-link{padding-top:17px}.about-split{display:block}.about-split p+p{margin-top:20px}.about-socials a{min-width:0}}
