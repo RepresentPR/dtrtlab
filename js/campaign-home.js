@@ -77,7 +77,9 @@
       var bar = doc.getElementById(name + '-progress');
       bar.hidden = reading.progress === null;
       if (reading.progress !== null) bar.value = reading.progress;
-      var note = reading.note || (reading.value === null ? (isMoney ? 'Payment records not connected yet.' : 'Baseline pending. No gain claimed yet.') : (isMoney ? 'Confirmed campaign receipts, net of recorded refunds.' : 'Added views since the campaign baseline.'));
+      var note = name === 'views' && reading.value !== null
+        ? 'Partial tracked total from matched counters and campaign posts. See Results for coverage.'
+        : reading.note || (reading.value === null ? (isMoney ? 'Payment records not connected yet.' : 'Baseline pending. No gain claimed yet.') : (isMoney ? 'Confirmed campaign receipts, net of recorded refunds.' : 'Added views since the campaign baseline.'));
       if (reading.value !== null) note += reading.observedAt ? ' Measured ' + dateLabel(reading.observedAt) + (reading.freshness === 'stale' ? ' · over 6 hours old.' : '.') : ' Measurement time unavailable.';
       set(name + '-note', note);
       doc.getElementById(name + '-note').classList.toggle('warning', reading.value !== null && reading.freshness !== 'recent');
@@ -85,7 +87,7 @@
     function render(data) {
       var view = createViewModel(data);
       set('lifetime-value', view.lifetimeViews.value === null ? '\u2014' : number.format(view.lifetimeViews.value));
-      set('lifetime-note', (view.lifetimeViews.note || 'Inventory totals pending.') + (view.lifetimeViews.observedAt ? ' Earliest component measured ' + dateLabel(view.lifetimeViews.observedAt) + '.' : ''));
+      set('lifetime-note', (view.lifetimeViews.value === null ? 'Inventory totals pending.' : 'Dated historical and current post inventory. See Results for scope and limits.') + (view.lifetimeViews.observedAt ? ' Earliest component measured ' + dateLabel(view.lifetimeViews.observedAt) + '.' : ''));
       var lifetimeBar = doc.getElementById('lifetime-progress'); if (lifetimeBar) { lifetimeBar.hidden = view.lifetimeViews.value === null; lifetimeBar.value = view.lifetimeViews.progress || 0; }
       set('view-pace', view.viewPace.daily === null ? 'Pace unavailable until dated totals are verified.' : number.format(view.viewPace.gap) + ' views remaining. Required average: ' + number.format(view.viewPace.daily) + ' views/day or ' + number.format(view.viewPace.fourHourly) + ' views per 4 hours, through December 31 Eastern. Recalculated from the latest known total and time remaining; planning targets, not guaranteed results.');
       renderMetric('views', view.views); renderMetric('revenue', view.revenue);
