@@ -97,7 +97,7 @@
       set('spend-note', (view.spend.newVerifiedUsd === null ? 'Actual new spend: verification pending.' : 'Verified new spend: ' + money.format(view.spend.newVerifiedUsd) + '.') + ' This is a campaign budget, not an all-time cost claim.');
       set('roster-count', (view.operations.used === null ? '—' : number.format(view.operations.used)) + ' / 17');
       set('roster-detail', 'Saved: ' + (view.operations.active === null ? 'unknown' : number.format(view.operations.active)) + ' active · ' + (view.operations.scheduled === null ? 'unknown' : number.format(view.operations.scheduled)) + ' scheduled' + (view.operations.queueVerifiedAt ? ' · as of ' + dateLabel(view.operations.queueVerifiedAt) : ' · reconciliation pending'));
-      set('runway-count', days.format(Math.floor(view.operations.runwayDays * 10) / 10) + ' / 7 days');
+      set('runway-count', days.format(Math.floor(view.operations.runwayDays * 10) / 10) + ' days');
       set('queue-verification', view.operations.queueFreshness === 'stale' ? 'Saved schedule · checked ' + dateLabel(view.operations.queueVerifiedAt) + ' · over 6 hours old' : view.operations.queueVerifiedAt ? 'Saved schedule · checked ' + dateLabel(view.operations.queueVerifiedAt) : 'Saved schedule · queue verification pending');
       doc.getElementById('queue-verification').classList.toggle('warning', view.operations.queueFreshness === 'stale');
       set('roster-rule', view.operations.overCapacity ? 'Capacity exceeded. Publishing must pause until the roster is reconciled.' : '17 is the ceiling, never a quota. An empty spot is better than a weak clip.');
