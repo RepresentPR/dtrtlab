@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-11T16:30:41.413684+00:00",
+  "capturedAt": "2026-10-11T17:33:08.216455Z",
   "campaign": {
     "name": "Growth. $0 new spend.",
     "startAt": "2026-10-11T06:28:12Z",
@@ -12,53 +12,60 @@
   },
   "results": {
     "views": {
-      "value": 957,
+      "value": 1468,
       "status": "verified",
-      "observedAt": "2026-10-11T16:26:56.740Z",
-      "note": "Partial added total: 685 previously measured, plus 272 on the newly published Anubis clips and episode. Historical coverage expansion is excluded.",
+      "observedAt": "2026-10-11T17:31:04.869Z",
+      "note": "Partial added total: 402 YouTube and 118 Instagram matched-counter gains plus 948 cumulative views on five campaign-created posts. The total rose 511; this includes the first measured Anubis Instagram counter, not only new interval growth.",
       "metric": "reported_new_campaign_post_views_plus_matched_legacy_counter_deltas",
-      "coverage": "31 legacy YouTube Shorts, 33 legacy Instagram Reels, two campaign TikToks, the new YouTube Short and episode; component dates differ.",
+      "coverage": "31 matched opening YouTube Shorts, 33 matched opening Instagram Reels and five measured campaign-created posts; X/Ko-fi growth and the campaign-start gap remain unmeasured.",
       "components": [
         {
           "platform": "YouTube",
-          "value": 337,
-          "basis": "Matched opening-counter net change across 31 public Shorts",
-          "observedAt": "2026-10-11T13:30:49.975Z",
-          "observedFrom": "2026-10-11T13:30:43.353Z"
+          "value": 402,
+          "basis": "Net matched opening-counter change across the same 31 public Shorts",
+          "observedFrom": "2026-10-11T17:28:14.636Z",
+          "observedAt": "2026-10-11T17:28:25.532Z"
         },
         {
           "platform": "Instagram",
-          "value": 68,
-          "basis": "Matched opening-counter net change across 33 Reels",
-          "observedAt": "2026-10-11T13:31:26.185Z"
+          "value": 118,
+          "basis": "Net matched opening-counter change across the same 33 Reels",
+          "observedAt": "2026-10-11T17:29:04.342Z"
         },
         {
           "platform": "TikTok",
-          "value": 280,
-          "basis": "Native cumulative views on one post created during this campaign",
-          "observedAt": "2026-10-11T13:29:06.317Z",
+          "value": 281,
+          "basis": "Native cumulative views on campaign-created launch post",
+          "observedAt": "2026-10-11T17:31:04.869Z",
           "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695303665602612493"
         },
         {
           "platform": "TikTok Anubis",
-          "value": 115,
-          "basis": "Native cumulative views for campaign-created post",
-          "observedAt": "2026-10-11T16:26:05.255Z",
+          "value": 298,
+          "basis": "Native cumulative views on campaign-created Anubis post",
+          "observedAt": "2026-10-11T17:30:32.860Z",
           "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695441861422451982"
         },
         {
           "platform": "YouTube Anubis",
-          "value": 156,
-          "basis": "Native owner content cumulative views for campaign-created Short",
-          "observedAt": "2026-10-11T16:26:12.660503+00:00",
+          "value": 184,
+          "basis": "Native owner Shorts inventory cumulative views on campaign-created post",
+          "observedAt": "2026-10-11T17:28:25.532Z",
           "postUrl": "https://www.youtube.com/shorts/iR3orq__Hn8"
         },
         {
           "platform": "YouTube episode",
           "value": 1,
-          "basis": "Native owner Videos table cumulative view for campaign-created episode; may include operator verification",
-          "observedAt": "2026-10-11T16:26:56.740Z",
+          "basis": "Native owner Videos inventory cumulative views on campaign-created episode; may include operator verification",
+          "observedAt": "2026-10-11T17:28:03.827Z",
           "postUrl": "https://www.youtube.com/watch?v=rPJmQj1Pbpo"
+        },
+        {
+          "platform": "Instagram Anubis",
+          "value": 184,
+          "basis": "First usable displayed Reel-grid counter on campaign-created post; not an interval from an assumed zero",
+          "observedAt": "2026-10-11T17:29:04.342Z",
+          "postUrl": "https://www.instagram.com/reel/DeXC-ioD-Wc/"
         }
       ],
       "organicAttribution": "not_established",
@@ -69,55 +76,42 @@
       "status": "baseline_pending"
     },
     "lifetimeViews": {
-      "value": 145434,
+      "value": 145918,
       "status": "verified",
-      "observedAt": "2026-10-11T14:18:01.975Z",
+      "observedAt": "2026-10-11T17:28:03.827Z",
       "coverage": "partial",
       "components": [
         {
           "platform": "YouTube Shorts",
-          "value": 15254,
-          "posts": 32,
-          "scope": "31 public + 1 unlisted",
-          "observedAt": "2026-10-11T14:18:18.750Z"
+          "value": 15485,
+          "posts": 33,
+          "scope": "32 public plus one unlisted; includes the new Anubis Short exactly once",
+          "observedAt": "2026-10-11T17:28:25.532Z"
         },
         {
           "platform": "Instagram Reels",
-          "value": 13419,
-          "posts": 33,
-          "scope": "Public profile grid; archives unavailable",
-          "observedAt": "2026-10-11T14:18:01.975Z"
+          "value": 13639,
+          "posts": 34,
+          "scope": "34 public Reel-grid counters including Anubis; unavailable archives excluded",
+          "observedAt": "2026-10-11T17:29:04.342Z"
         },
         {
           "platform": "TikTok videos",
-          "value": 2064,
-          "posts": 17,
-          "scope": "All 17 Everyone posts in native Studio inventory",
-          "observedAt": "2026-10-11T14:20:17.199Z"
+          "value": 2368,
+          "posts": 18,
+          "scope": "18 Everyone posts from owner Studio; both campaign posts included once",
+          "observedAt": "2026-10-11T17:30:17.841Z"
         },
         {
           "platform": "YouTube other videos",
           "value": 114426,
           "posts": 9,
-          "scope": "Four public videos and five private archive videos; private identities omitted",
-          "observedAt": "2026-10-11T16:26:56.740Z"
-        },
-        {
-          "platform": "YouTube new Anubis Short",
-          "value": 156,
-          "posts": 1,
-          "scope": "Native owner content counter; separate from 32 earlier Shorts",
-          "observedAt": "2026-10-11T16:26:12.660503+00:00"
-        },
-        {
-          "platform": "TikTok new Anubis clip",
-          "value": 115,
-          "posts": 1,
-          "scope": "Native detail counter; separate from 17 earlier posts",
-          "observedAt": "2026-10-11T16:26:05.255Z"
+          "scope": "Four public videos including episode 003 and five private archives; private identities omitted",
+          "observedAt": "2026-10-11T17:28:03.827Z"
         }
       ],
-      "note": "Known lifetime inventory includes older YouTube videos and private archives. Historical views are not Phase 2 gains or attributed to $0 spend. Coverage remains partial."
+      "note": "Known lifetime inventory includes historical videos and private archives. Four disjoint platform inventories count each post once. Historical views are not Phase 2 gains or attributed to $0 spend; coverage remains partial.",
+      "observedThrough": "2026-10-11T17:30:17.841Z"
     }
   },
   "spend": {
@@ -128,8 +122,8 @@
     "activePosts": 7,
     "scheduledPosts": 10,
     "cap": 17,
-    "runwayDays": 7.97868734162037,
-    "queueVerifiedAt": "2026-10-11T16:26:21.476Z"
+    "runwayDays": 7.93532156880787,
+    "queueVerifiedAt": "2026-10-11T17:29:34.054Z"
   },
   "highlights": [
     {
@@ -200,7 +194,7 @@
     },
     {
       "title": "Knife round got crowded",
-      "platform": "Ko-fi · watch link",
+      "platform": "Ko-fi \u00b7 watch link",
       "scheduledAt": "2026-10-15T16:00:00Z",
       "status": "scheduled"
     },
@@ -230,24 +224,25 @@
     },
     {
       "title": "The door was already covered",
-      "platform": "Ko-fi · watch link",
+      "platform": "Ko-fi \u00b7 watch link",
       "scheduledAt": "2026-10-19T16:00:00Z",
       "status": "scheduled"
     }
   ],
   "evidenceNotes": [
-    "Lifetime goal: 250,000 overall reported video views by December 31 Eastern. The known 145,434 includes 114,425 newly indexed historical YouTube views. This is expanded coverage, not a Phase 2 surge. Historical paid/organic attribution is unknown.",
-    "Known inventory: 93 posts across YouTube, Instagram and TikTok. Six private/unlisted YouTube records appear only in the aggregate. YouTube Live archives, X, Twitch, FACEIT and unavailable archives remain uncounted.",
-    "Component dates differ: earlier inventory was measured October 11 around 10:18â€“10:20 AM Eastern; new YouTube/TikTok observations around 12:26â€“12:27 PM. Exact dates are in the public dashboard. Views are not unique people.",
-    "Measured added views: 957 = 337 YouTube and 68 Instagram baseline changes + 280 earlier TikTok launch views + 115 new Anubis TikTok views + 156 new Anubis YouTube views + 1 new episode view. The latest increment is 272. Startup counts may include operator verification.",
-    "The fixed opening baseline is 14,895 YouTube Shorts views and 13,337 Instagram Reel views, measured at 2:51â€“2:53 AM Eastern. The 23-minute start-to-baseline gap and unmeasured growth remain unknown. Native downward revisions are retained.",
+    "Lifetime goal: 250,000 overall reported video views by December 31 Eastern. The known 145,918 includes historical YouTube inventory, including 114,425 older video views first indexed earlier today; that coverage is not Phase 2 growth.",
+    "Known inventory: 94 posts across YouTube, Instagram and TikTok. Six private/unlisted YouTube records appear only in the aggregate; 88 public records are searchable. YouTube Live archives, X, Twitch, FACEIT and unavailable archives remain uncounted.",
+    "Fresh inventory and post-detail observations were collected October 11 around 1:28-1:31 PM Eastern. Component timestamps and metric definitions remain separate. Views are not unique people.",
+    "Partial added total: 402 YouTube and 118 Instagram matched-counter gains plus 948 cumulative views on five campaign-created posts. The total rose 511; this includes the first measured Anubis Instagram counter, not only new interval growth. Startup counts may include operator verification. No creative winner or organic attribution is established.",
+    "The fixed opening baseline is 14,895 YouTube Shorts views and 13,337 Instagram Reel views, measured at 2:51-2:53 AM Eastern. The 23-minute start-to-baseline gap remains unmeasured. Negative native corrections are retained.",
     "Anubis is verified public on YouTube, Instagram, TikTok, X and Ko-fi. Lab File 003 is public on YouTube. The common planned release was 12:05 PM Eastern; native precision and processing vary. Ko-fi shows only a date, so its exact publication time is unknown.",
     "Next cloud releases: Knife on October 15 at noon Eastern and Door on October 19 at noon Eastern, each on five platforms. Ten future schedules + seven active posts = 17/17. Grouped releases replace daily staggered posts; public archives stay available.",
     "Ko-fi Anubis includes a verified playable YouTube embed. Future Ko-fi posts contain watch links; native embeds can follow verified YouTube publication. Schedules alone do not prove publication.",
     "New timed publications have 4/24/72/168-hour review jobs. First new four-hour checks are due around 4:05 PM Eastern. Ko-fi has a separate conservative observation review around 4:17 PM until its exact time is available. No new winner is established.",
     "Revenue remains unknown pending reconciled payment and refund evidence. Ko-fi financial setup still requests owner location confirmation. Clicks, enquiries and public goal meters are not receipts.",
     "Recorded new spend is $0. Existing equipment, subscriptions and historical promotions are outside this figure. Historical views are not attributed to zero new spend.",
-    "Owned Twitch, FACEIT and OBS source indexing remains incomplete. Editing approval used documented sampled visual and technical audio checks; unavailable listening or continuous playback is not claimed. Local operations require this PC online with Codex open."
+    "Owned Twitch, FACEIT and OBS source indexing remains incomplete. Editing approval used documented sampled visual and technical audio checks; unavailable listening or continuous playback is not claimed. Local operations require this PC online with Codex open.",
+    "Instagram followers: 73 displayed, up 5 from the opening 68; separate from views and not attributed to a particular clip. Anubis TikTok detail: 298 views, 5.72s average watch and 18.9% full completion; preliminary before its four-hour review, with a different runtime from the control."
   ],
   "baseline": {
     "capturedFrom": "2026-10-11T06:51:23.161Z",
