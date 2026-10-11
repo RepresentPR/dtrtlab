@@ -1,0 +1,48 @@
+{
+  "audits": [
+    {
+      "observedAt": "2026-10-11T15:01:14.433902+00:00",
+      "window": "YouTube channel, September13\u2013October10,2026",
+      "periodViews": 15037,
+      "watchHours": 22.8,
+      "netSubscribers": 2,
+      "realtime48hViews": 4215,
+      "previousScreenshot48hViews": 4320,
+      "decision": "Views and retention select different candidates. Test direct continuous action; do not declare a winning format from period totals.",
+      "observations": [
+        {
+          "title": "Come On, Code",
+          "periodViews": 1917,
+          "averageWatchSeconds": 17,
+          "averagePercentageViewed": 68.8
+        },
+        {
+          "title": "Lurk King",
+          "periodViews": 1590,
+          "averageWatchSeconds": 11,
+          "averagePercentageViewed": 79.8
+        },
+        {
+          "title": "Not the Molly",
+          "periodViews": 988,
+          "averageWatchSeconds": 15,
+          "averagePercentageViewed": 81.1
+        },
+        {
+          "title": "I Did the Same Thing as Skitz",
+          "periodViews": 1143,
+          "averageWatchSeconds": 11,
+          "averagePercentageViewed": 59.1
+        }
+      ],
+      "limits": [
+        "Selected-period views are not lifetime totals or publication-age windows",
+        "Top-content selection is biased; audience and distribution are not equalized",
+        "Rolling48h total fell105; expiry and revisions can contribute, not proof of failure",
+        "Exact daily final value and traffic sources not collected"
+      ],
+      "test": "Approved direct-exchange variant after control24h checkpoint; no duplicate render",
+      "nextAuditDueAt": "2026-10-11T19:00:00Z"
+    }
+  ]
+}
