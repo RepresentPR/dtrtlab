@@ -148,13 +148,13 @@ def validate_financial_privacy(data):
     """Fail before writing when private accounting enters a performance export."""
     if isinstance(data, dict):
         for key, value in data.items():
-            if re.search(r'revenue|donation|payment|refund|receipt|profit|income|financial|amount|currency|balance|accounting|monetary', key, re.I):
+            if re.search(r'revenue|donation|payment|refund|receipt|profit|income|financial|amount|currency|balance|accounting|monetary|spend|budget|cost|(?:usd|eur|gbp|cad|aud|jpy)$', key, re.I):
                 raise ValueError('Public performance exports cannot contain financial fields')
             validate_financial_privacy(value)
     elif isinstance(data, list):
         for value in data:
             validate_financial_privacy(value)
-    elif isinstance(data, str) and re.search(r'[$\u00a3\u20ac\u00a5]|\b(?:revenue|donations?|payments?|refunds?|receipts?|profits?|income|financial|dollars?|cents?|USD|EUR|GBP|CAD|AUD|JPY)\b', data, re.I):
+    elif isinstance(data, str) and re.search(r'[$\u00a3\u20ac\u00a5]|\b(?:revenue|donations?|payments?|refunds?|receipts?|profits?|income|financial|spend(?:ing)?|spent|budgets?|costs?|dollars?|cents?|USD|EUR|GBP|CAD|AUD|JPY)\b', data, re.I):
         raise ValueError('Public performance exports cannot contain financial notes')
 
 

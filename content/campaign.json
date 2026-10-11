@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-11T21:07:56Z",
+  "capturedAt": "2026-10-11T21:23:49.948696Z",
   "campaign": {
     "name": "Growth measured in public.",
     "startAt": "2026-10-11T06:28:12Z",
@@ -281,7 +281,7 @@
     "Ko-fi Anubis remains a historical publication record; no additional Ko-fi posts are scheduled. Planned times are not actual publication times.",
     "Owned Twitch, FACEIT and OBS source indexing remains incomplete. Editing approval used documented sampled visual and technical audio checks; unavailable listening or continuous playback is not claimed. Local operations require this PC online with Codex open.",
     "Current campaign allocation is reconciled: 13 occupied posts and four queued reservations use all 17 slots within the documented campaign scope. Three retired public experiments remain in historical records. The four Door posts announce tonight's recorded showcase; Next Corner posts are drafts. New scheduling is paused because capacity is full.",
-    "Four stream preview posts were provider-marked published at 4:45–4:48 PM Eastern on X, Instagram, TikTok and YouTube, and all four have now been verified on their native public pages. The TikTok preview is https://www.tiktok.com/@iananthonyfc/video/7695514908397440269. No new teaser view counts are claimed here.",
+    "All four launch teasers have native identities. X was published at 20:45:48 UTC; YouTube at 20:48:45 UTC. TikTok shows the 20:48 UTC creation minute with Everyone visibility; precise delivery time is unmeasured. Instagram exact publication time is unknown. Teaser view counters are not included in the dated headline totals.",
     "Five due four-hour reviews completed, all inconclusive. Anubis and episode retain 24/72/168-hour checks. Knife has new publication-based review jobs; actual times differ slightly across platforms. Ko-fi exact publication time remains unavailable and has a separate observation review.",
     "Instagram followers remain the dated 73 observation. Retention and engagement findings are shown in the review log with their own timestamps. Unknown counters are not zero; X views remain outside headline growth."
   ],
@@ -389,6 +389,39 @@
       "publishedAt": "2026-10-11T20:01:15.000Z",
       "verifiedAt": "2026-10-11T20:04:44Z",
       "timestampBasis": "time[datetime] inside the matching native X article on the DTRTLab profile"
+    },
+    {
+      "title": "DTRT Lab recorded CS2 preview",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/shorts/ROFmkh0tZEc",
+      "publishedAt": "2026-10-11T20:48:45Z",
+      "verifiedAt": "2026-10-11T21:22:10.908Z",
+      "timestampBasis": "Native YouTube watch-page datePublished and uploadDate agree; matching Studio Public/Published row"
+    },
+    {
+      "title": "DTRT Lab stream announcement",
+      "platform": "X",
+      "url": "https://x.com/DTRTLab/status/2109384997727883469",
+      "publishedAt": "2026-10-11T20:45:48Z",
+      "verifiedAt": "2026-10-11T21:22:00.384Z",
+      "timestampBasis": "Matching native X article time[datetime]; text teaser, excluded from video-view totals"
+    },
+    {
+      "title": "DTRT Lab recorded CS2 preview",
+      "platform": "TikTok",
+      "url": "https://www.tiktok.com/@iananthonyfc/video/7695514908397440269",
+      "publishedAt": "2026-10-11T20:48:00Z",
+      "verifiedAt": "2026-10-11T21:08:20.725Z",
+      "timestampBasis": "Native Studio Posts (Created on): Oct 11, 4:48 PM in America/New_York; displayed creation minute, not exact public delivery time. Provider planned time is not used as actual-time evidence.",
+      "timestampPrecision": "minute"
+    },
+    {
+      "title": "DTRT Lab recorded CS2 preview",
+      "platform": "Instagram",
+      "url": "https://www.instagram.com/reel/DeXjZI1mesV/",
+      "publishedAt": null,
+      "verifiedAt": "2026-10-11T21:07:51.194Z",
+      "timestampBasis": "Native matching profile and Reel confirmed; exact timestamp unavailable. Provider planned date is not actual."
     }
   ]
 }
