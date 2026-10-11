@@ -28,6 +28,11 @@ def build():
                 title = 'Instagram Reel '+row['url'].strip('/').split('/')[-1]
                 views = int(row['text'].replace(',',''))
             posts.append(dict(id=platform.lower()+':'+row['url'].strip('/').split('/')[-1], platform=platform, title=title, url=row['url'], views=views, observedAt=data['observedAt'], publicationDate=None, review='Not reviewed in a matched publication-age cohort'))
+    for post in posts:
+        if post['id'] == 'tiktok:7695303665602612493':
+            post['review'] = '4h checkpoint completed late; inconclusive one-post cohort'
+        if post['id'] in ('tiktok:7694678392779689229', 'youtube:wu3M-Te360E'):
+            post['review'] = 'Legacy recap; historical total disputed and corrected in Phase 1 audit'
     history = []
     for f in sorted((PRIVATE/'observations').glob('heartbeat-*/metric-export.json')):
         data = read(f)
