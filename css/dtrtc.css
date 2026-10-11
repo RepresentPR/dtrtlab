@@ -1,0 +1,14 @@
+/* DTRTC orange theme. Homepage only (body.dtrtc). /live and other pages keep site.css. */
+body.dtrtc{--bg:#07080c;--card:#121018;--ink:#f6f3ff;--muted:#d2ccdf;--line:rgba(246,243,255,.16);--accent:#ff7a1a;--hot:#ff7a1a;
+background:radial-gradient(900px 420px at 8% -10%,rgba(255,122,26,.16),transparent 60%),#07080c}
+body.dtrtc .top{background:rgba(7,8,12,.94);border-bottom:3px solid #ff7a1a}
+body.dtrtc .brand,body.dtrtc h1,body.dtrtc h2{font-family:Anton,Impact,"Arial Narrow",sans-serif;font-weight:400;letter-spacing:.05em;text-transform:uppercase}
+body.dtrtc h2{font-size:22px}
+body.dtrtc .theme-line,body.dtrtc .theme-sub,body.dtrtc .tag{font-family:"JetBrains Mono",ui-monospace,Consolas,monospace}
+body.dtrtc .theme-line{color:#ff7a1a}body.dtrtc .theme-sub{color:#d2ccdf}
+body.dtrtc .top nav a:active,body.dtrtc .top nav a[aria-current="page"]{background:#ff7a1a;color:#1a0c04}
+body.dtrtc :focus-visible{outline:3px solid #ff7a1a;outline-offset:3px}
+body.dtrtc .soon{margin-top:28px;padding:18px 20px;border:1px dashed #ff7a1a;border-radius:12px;background:#121018}
+body.dtrtc .soon p{margin:4px 0}
+body.dtrtc .soon .tag{color:#ff7a1a;letter-spacing:.14em;text-transform:uppercase;font-size:12px}
+body.dtrtc .soon .pending{display:inline-flex;min-height:44px;align-items:center;padding:0 16px;border-radius:10px;background:#2a2d34;color:#d2ccdf;font-weight:700;margin-top:8px;cursor:not-allowed}
