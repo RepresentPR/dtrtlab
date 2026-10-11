@@ -67,7 +67,6 @@
       lifetimeViews: metric((data.results || {}).lifetimeViews, amount(campaign.viewsGoal) || 250000, now),
       viewPace: (function () { var reading = metric((data.results || {}).lifetimeViews, amount(campaign.viewsGoal) || 250000, now); var end = time(campaign.viewsDeadlineAt); var daysLeft = end === null ? null : Math.max(0, (end - now) / 86400000); var gap = reading.value === null ? null : Math.max(0, reading.target - reading.value); return { gap: gap, daysLeft: daysLeft, daily: gap === null || !daysLeft ? null : Math.ceil(gap / daysLeft), fourHourly: gap === null || !daysLeft ? null : Math.ceil(gap / (daysLeft * 6)) }; })(),
       views: metric((data.results || {}).views, amount(campaign.viewsGoal) || 250000, now),
-      spend: { newAuthorizedUsd: 0, newVerifiedUsd: amount((data.spend || {}).newVerifiedUsd) },
       operations: { active: active, scheduled: scheduled, used: active === null || scheduled === null ? null : active + scheduled, cap: 17, overCapacity: active !== null && scheduled !== null && active + scheduled > 17, runwayDays: runwayDays, runwayVerified: queueFreshness === 'recent', queueFreshness: queueFreshness, queueVerifiedAt: queueTime === null ? null : new Date(queueTime).toISOString(), planningHorizonHours: 24, targetSpacingHours: 2, completeDrops: groups.length, outsideHorizonPosts: allUpcoming.length - queue.length },
       highlights: highlights, queue: queue, groups: groups, incompleteQueue: incompleteQueue,
       evidenceNotes: (Array.isArray(data.evidenceNotes) ? data.evidenceNotes : []).map(function (note) { return cleanText(note, 500); }).filter(Boolean).slice(0, 12)
@@ -76,7 +75,6 @@
   function start(doc, win) {
     if (!doc.getElementById('data-status')) return;
     var number = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
-    var money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 });
     var date = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York', timeZoneName: 'short' });
     var lastData = null, busy = false;
     function set(id, text) { var node = doc.getElementById(id); if (node) node.textContent = text; }
@@ -107,7 +105,7 @@
       var pending = view.views.value === null;
       set('data-status', view.freshness === 'stale' ? 'Saved ' + dateLabel(view.capturedAt) + ' · over 6 hours old' : view.freshness === 'unknown' ? 'Update time unavailable · verification pending' : 'Saved ' + dateLabel(view.capturedAt) + (pending ? ' · some measurements pending' : ' · measurement dates below'));
       set('saved-at', view.capturedAt ? 'Last saved update: ' + dateLabel(view.capturedAt) + '.' : 'Last saved update: unavailable.');
-      set('spend-note', (view.spend.newVerifiedUsd === null ? 'Actual new spend: verification pending.' : 'Verified new spend: ' + money.format(view.spend.newVerifiedUsd) + '.') + ' This is a campaign budget, not an all-time cost claim.');
+      set('active-count', view.operations.active === null ? '—' : number.format(view.operations.active));
       set('roster-count', (view.operations.used === null ? '—' : number.format(view.operations.used)) + ' / 17');
       set('roster-detail', 'Saved: ' + (view.operations.active === null ? 'unknown' : number.format(view.operations.active)) + ' active · ' + (view.operations.scheduled === null ? 'unknown' : number.format(view.operations.scheduled)) + ' scheduled' + (view.operations.queueVerifiedAt ? ' · as of ' + dateLabel(view.operations.queueVerifiedAt) : ' · reconciliation pending'));
       set('runway-count', number.format(view.operations.completeDrops) + ' complete ' + (view.operations.completeDrops === 1 ? 'drop' : 'drops'));

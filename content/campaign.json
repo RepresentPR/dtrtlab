@@ -1,7 +1,7 @@
 {
   "capturedAt": "2026-10-11T20:13:51.129364Z",
   "campaign": {
-    "name": "Growth. $0 new spend.",
+    "name": "Growth measured in public.",
     "startAt": "2026-10-11T06:28:12Z",
     "timezone": "America/New_York",
     "viewsGoal": 250000,
@@ -174,13 +174,9 @@
           ]
         }
       ],
-      "note": "Known lifetime inventory combines the dated full collection with focused updates on named public posts. Unchanged counters retain their earlier times. Historical views are not campaign growth or attributed to $0 spend.",
+      "note": "Known lifetime inventory combines the dated full collection with focused updates on named public posts. Unchanged counters retain their earlier times. Historical views are not campaign growth.",
       "observedThrough": "2026-10-11T20:07:08.985Z"
     }
-  },
-  "spend": {
-    "newAuthorizedUsd": 0,
-    "newVerifiedUsd": 0
   },
   "operations": {
     "activePosts": 9,
@@ -317,7 +313,6 @@
     "The fixed opening baseline is 14,895 YouTube Shorts views and 13,337 Instagram Reel views, measured at 2:51-2:53 AM Eastern. The 23-minute start-to-baseline gap remains unmeasured. Negative native corrections are retained.",
     "Anubis is verified public on YouTube, Instagram, TikTok, X and Ko-fi. Lab File 003 is public on YouTube. The common planned release was 12:05 PM Eastern; native precision and processing vary. Ko-fi shows only a date, so its exact publication time is unknown.",
     "Ko-fi Anubis retains its verified playable YouTube embed. Optional Knife/Door schedules were moved to recoverable drafts. Planned times are not actual publication times; no duplicate posts were created.",
-    "Recorded new spend is $0. Existing equipment, subscriptions and historical promotions are outside this figure. Historical views are not attributed to zero new spend.",
     "Owned Twitch, FACEIT and OBS source indexing remains incomplete. Editing approval used documented sampled visual and technical audio checks; unavailable listening or continuous playback is not claimed. Local operations require this PC online with Codex open.",
     "Current reconciled roster: 9 active and 8 reserved/scheduled out of 17. Future verified schedules appear below. Target two-hour drops only when quality and capacity permit; plan next 24 hours.",
     "Five due four-hour reviews completed, all inconclusive. Anubis and episode retain 24/72/168-hour checks. Knife has new publication-based review jobs; actual times differ slightly across platforms. Ko-fi exact publication time remains unavailable and has a separate observation review.",

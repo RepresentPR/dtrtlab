@@ -26,6 +26,7 @@ test('earned view progress survives while financial input is ignored', () => {
   const view = model.createViewModel(campaign({ results: { views: { value: 125000, status: 'verified' } } }), now);
   assert.equal(view.views.progress, 50);
   assert.equal(Object.hasOwn(view, 'revenue'), false);
+  assert.equal(Object.hasOwn(view, 'spend'), false);
 });
 test('saved observations become stale and malformed future timestamps do not appear fresh', () => {
   assert.equal(model.createViewModel(campaign({ capturedAt: '2026-10-11T00:00:00Z' }), now).freshness, 'stale');
