@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-11T21:23:49.948696Z",
+  "capturedAt": "2026-10-11T22:10:30.525586Z",
   "campaign": {
     "name": "Growth measured in public.",
     "startAt": "2026-10-11T06:28:12Z",
@@ -179,11 +179,11 @@
     }
   },
   "operations": {
-    "activePosts": 13,
-    "scheduledPosts": 4,
+    "activePosts": 17,
+    "scheduledPosts": 0,
     "cap": 17,
-    "runwayDays": 0.03615740740740741,
-    "queueVerifiedAt": "2026-10-11T21:07:56Z",
+    "runwayDays": 0,
+    "queueVerifiedAt": "2026-10-11T22:08:04.998Z",
     "planningHorizonHours": 24,
     "targetSpacingHours": 2,
     "requiredPlatforms": [
@@ -193,7 +193,7 @@
       "X"
     ],
     "optionalPlatforms": [],
-    "completeScheduledDrops": 1
+    "completeScheduledDrops": 0
   },
   "highlights": [
     {
@@ -237,40 +237,7 @@
       "reason": "Edit approved; publication remains a draft. No performance claim."
     }
   ],
-  "queue": [
-    {
-      "title": "The door was already covered",
-      "platform": "YouTube",
-      "scheduledAt": "2026-10-11T22:00:00.000000Z",
-      "status": "scheduled",
-      "groupId": "faceit-6ac2d25e2657c8065e72d719-20261011T220000Z",
-      "verifiedAt": "2026-10-11T20:12:34Z"
-    },
-    {
-      "title": "The door was already covered",
-      "platform": "Instagram",
-      "scheduledAt": "2026-10-11T22:00:00.000000Z",
-      "status": "scheduled",
-      "groupId": "faceit-6ac2d25e2657c8065e72d719-20261011T220000Z",
-      "verifiedAt": "2026-10-11T20:12:34Z"
-    },
-    {
-      "title": "The door was already covered",
-      "platform": "TikTok",
-      "scheduledAt": "2026-10-11T22:00:00.000000Z",
-      "status": "scheduled",
-      "groupId": "faceit-6ac2d25e2657c8065e72d719-20261011T220000Z",
-      "verifiedAt": "2026-10-11T20:12:34Z"
-    },
-    {
-      "title": "The door was already covered",
-      "platform": "X",
-      "scheduledAt": "2026-10-11T22:00:00.000000Z",
-      "status": "scheduled",
-      "groupId": "faceit-6ac2d25e2657c8065e72d719-20261011T220000Z",
-      "verifiedAt": "2026-10-11T20:12:34Z"
-    }
-  ],
+  "queue": [],
   "evidenceNotes": [
     "Lifetime goal: 250,000 overall reported video views by December 31 Eastern. Known total 146,572; historical coverage is not campaign growth.",
     "89 public measured records plus seven private/unlisted YouTube records in aggregate: 96 measured posts. Four new Knife links verified; only YouTube and TikTok have saved numeric counters. Knife Instagram is unknown and X is excluded from headline totals. Earlier inventory dates remain; this was a focused review refresh.",
@@ -280,10 +247,11 @@
     "Anubis is verified public on YouTube, Instagram, TikTok, X and Ko-fi. Lab File 003 is public on YouTube. The common planned release was 12:05 PM Eastern; native precision and processing vary. Ko-fi shows only a date, so its exact publication time is unknown.",
     "Ko-fi Anubis remains a historical publication record; no additional Ko-fi posts are scheduled. Planned times are not actual publication times.",
     "Owned Twitch, FACEIT and OBS source indexing remains incomplete. Editing approval used documented sampled visual and technical audio checks; unavailable listening or continuous playback is not claimed. Local operations require this PC online with Codex open.",
-    "Current campaign allocation is reconciled: 13 occupied posts and four queued reservations use all 17 slots within the documented campaign scope. Three retired public experiments remain in historical records. The four Door posts announce tonight's recorded showcase; Next Corner posts are drafts. New scheduling is paused because capacity is full.",
+    "Current campaign allocation is reconciled: 17 native-confirmed occupied posts and no future queued reservations. Three retired public experiments remain in historical records. The four Door promos are published; Next Corner posts remain drafts. New scheduling is paused because capacity is full.",
     "All four launch teasers have native identities. X was published at 20:45:48 UTC; YouTube at 20:48:45 UTC. TikTok shows the 20:48 UTC creation minute with Everyone visibility; precise delivery time is unmeasured. Instagram exact publication time is unknown. Teaser view counters are not included in the dated headline totals.",
     "Five due four-hour reviews completed, all inconclusive. Anubis and episode retain 24/72/168-hour checks. Knife has new publication-based review jobs; actual times differ slightly across platforms. Ko-fi exact publication time remains unavailable and has a separate observation review.",
-    "Instagram followers remain the dated 73 observation. Retention and engagement findings are shown in the review log with their own timestamps. Unknown counters are not zero; X views remain outside headline growth."
+    "Instagram followers remain the dated 73 observation. Retention and engagement findings are shown in the review log with their own timestamps. Unknown counters are not zero; X views remain outside headline growth.",
+    "Door publication verified October 11: YouTube at 22:00:50 UTC, X at 22:00:52 UTC, Instagram at 22:01:04 UTC. TikTok shows the 22:00 UTC native creation minute with Everyone visibility; exact public-delivery instant is unmeasured. These publication checks do not refresh the dated headline view totals."
   ],
   "baseline": {
     "capturedFrom": "2026-10-11T06:51:23.161Z",
@@ -422,6 +390,39 @@
       "publishedAt": null,
       "verifiedAt": "2026-10-11T21:07:51.194Z",
       "timestampBasis": "Native matching profile and Reel confirmed; exact timestamp unavailable. Provider planned date is not actual."
+    },
+    {
+      "title": "The door was already covered",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/shorts/qizD1CIUrhQ",
+      "publishedAt": "2026-10-11T22:00:50Z",
+      "verifiedAt": "2026-10-11T22:08:41.074Z",
+      "timestampBasis": "Native YouTube watch datePublished/uploadDate agree; matching Studio Public/Published row."
+    },
+    {
+      "title": "The door was already covered",
+      "platform": "Instagram",
+      "url": "https://www.instagram.com/reel/DeXroJNijk3/",
+      "publishedAt": "2026-10-11T22:01:04Z",
+      "verifiedAt": "2026-10-11T22:06:46.506Z",
+      "timestampBasis": "Two native DOM time datetime attributes agree; displayed title Oct 11, 2026"
+    },
+    {
+      "title": "The door was already covered",
+      "platform": "TikTok",
+      "url": "https://www.tiktok.com/@iananthonyfc/video/7695533442817133838",
+      "publishedAt": "2026-10-11T22:00:00Z",
+      "verifiedAt": "2026-10-11T22:06:40.901Z",
+      "timestampBasis": "Native owner Studio Posts (Created on) row, America/New_York EDT UTC-04:00; not provider schedule; actual public delivery instant unmeasured.",
+      "timestampPrecision": "minute"
+    },
+    {
+      "title": "The door was already covered",
+      "platform": "X",
+      "url": "https://x.com/DTRTLab/status/2109403888755605815",
+      "publishedAt": "2026-10-11T22:00:52Z",
+      "verifiedAt": "2026-10-11T22:08:41.075Z",
+      "timestampBasis": "Matching native X article time[datetime]."
     }
   ]
 }
