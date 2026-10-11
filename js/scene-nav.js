@@ -1,4 +1,6 @@
 (function () {
+  // Community tabs stay off until their backend and privacy notice are reviewed.
+  var communityEnabled = false;
   var here = (location.pathname || "").toLowerCase();
   var parts = here.replace(/\\/g, "/").split("/").filter(Boolean);
   if (parts.length && /\.[a-z0-9]+$/i.test(parts[parts.length - 1])) parts.pop();
@@ -15,7 +17,6 @@
     file === "media.html" ||
     file === "news.html" ||
     file === "radio.html" ||
-    file === "isabella.html" ||
     here.indexOf("/stories/") !== -1;
 
   function link(href, label, on) {
@@ -241,7 +242,8 @@
     ref.content = "strict-origin-when-cross-origin";
     document.head.appendChild(ref);
   }
-  fetch("/api/community", { cache: "no-store" })
+  if (communityEnabled) {
+    fetch("/api/community", { cache: "no-store" })
     .then(function (response) {
       return response.ok ? response.json() : null;
     })
@@ -269,7 +271,8 @@
         }
       });
     })
-    .catch(function () {});
+      .catch(function () {});
+  }
 
   fetch(root + "content/site.json", { cache: "no-store" })
     .then(function (response) {

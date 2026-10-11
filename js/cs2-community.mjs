@@ -18,6 +18,9 @@ import {
   nextRotationAt,
 } from "./cs2-crosshair.mjs?v=20261011-pro1";
 
+// Launch community accounts only after the backend and privacy notice are reviewed.
+const COMMUNITY_ENABLED = false;
+
 const cs2 = await fetch("content/cs2.json", { cache: "no-store" }).then(function (res) {
   if (!res.ok) throw new Error("content/cs2.json");
   return res.json();
@@ -83,30 +86,34 @@ boot().catch(function (err) {
 async function boot() {
   await refreshBoard();
   setCommunityAvailability();
-  await renderStored();
+  if (COMMUNITY_ENABLED) await renderStored();
   previewId = onStage().id;
   renderStage();
   renderGallery();
-  renderPolls();
+  if (COMMUNITY_ENABLED) renderPolls();
   renderReference();
-  renderFeed();
-  renderTabs();
-  await renderAgents();
+  if (COMMUNITY_ENABLED) {
+    renderFeed();
+    renderTabs();
+    await renderAgents();
+  }
   requestAnimationFrame(function () {
     renderStage();
     renderGallery();
   });
   document.getElementById("xh-copy").addEventListener("click", copyCode);
   document.getElementById("xh-form").addEventListener("submit", onSubmitCode);
-  document.getElementById("account-create").addEventListener("submit", onCreate);
-  document.getElementById("account-unlock").addEventListener("submit", onUnlock);
-  document.getElementById("take-form").addEventListener("submit", onTake);
-  document.getElementById("agent-form").addEventListener("submit", onAttach);
-  document.getElementById("tab-form").addEventListener("submit", onProposeTab);
-  document.getElementById("approve-form").addEventListener("submit", onApprove);
-  document.getElementById("tab-board").addEventListener("click", onTabVote);
+  if (COMMUNITY_ENABLED) {
+    document.getElementById("account-create").addEventListener("submit", onCreate);
+    document.getElementById("account-unlock").addEventListener("submit", onUnlock);
+    document.getElementById("take-form").addEventListener("submit", onTake);
+    document.getElementById("agent-form").addEventListener("submit", onAttach);
+    document.getElementById("tab-form").addEventListener("submit", onProposeTab);
+    document.getElementById("approve-form").addEventListener("submit", onApprove);
+    document.getElementById("tab-board").addEventListener("click", onTabVote);
+    document.getElementById("polls").addEventListener("click", onVoteClick);
+  }
   document.getElementById("edpi-form").addEventListener("input", onEdpi);
-  document.getElementById("polls").addEventListener("click", onVoteClick);
   document.getElementById("xh-gallery").addEventListener("click", onGalleryClick);
   els.proGallery.addEventListener("click", onProGalleryClick);
   document.getElementById("xh-pro-snapshot").textContent = "Observed " + pack.proCollection.observedOn + ". A saved snapshot of CSStats match records; not a live feed.";
@@ -116,13 +123,14 @@ async function boot() {
 }
 
 function setCommunityAvailability() {
-  if (live) return;
+  const available = COMMUNITY_ENABLED && live;
   ["votes", "tabs", "account", "notes"].forEach(function (id) {
-    document.getElementById(id).hidden = true;
+    document.getElementById(id).hidden = !available;
   });
   document.querySelectorAll("[data-community-link]").forEach(function (link) {
-    link.hidden = true;
+    link.hidden = !available;
   });
+  if (available) return;
   const title = document.getElementById("xh-form-title") || document.querySelector("#xh-form h3");
   const submit = document.getElementById("xh-submit") || document.querySelector('#xh-form button[type="submit"]');
   if (title) title.textContent = "Preview a code from a clip";
@@ -130,6 +138,13 @@ function setCommunityAvailability() {
 }
 
 async function refreshBoard() {
+  if (!COMMUNITY_ENABLED) {
+    live = false;
+    board = localBoard();
+    skew = 0;
+    els.mode.textContent = "Crosshair previews run on this device. Community features are unavailable.";
+    return;
+  }
   try {
     const res = await fetch("/api/community", { cache: "no-store" });
     if (!res.ok) throw new Error("board");
@@ -815,17 +830,19 @@ function pad(n) {
   return n < 10 ? "0" + n : String(n);
 }
 
-document.getElementById("account-lock").addEventListener("click", function () {
-  lockAccount();
-  renderAccount();
-  renderPolls();
-  setStatus(els.accountStatus, "Locked on this device. The key stays encrypted.");
-});
+if (COMMUNITY_ENABLED) {
+  document.getElementById("account-lock").addEventListener("click", function () {
+    lockAccount();
+    renderAccount();
+    renderPolls();
+    setStatus(els.accountStatus, "Locked on this device. The key stays encrypted.");
+  });
 
-document.getElementById("account-erase").addEventListener("click", async function () {
-  if (!window.confirm("Erase the account on this browser? DTRT Lab cannot restore it.")) return;
-  await eraseAccount();
-  await renderStored();
-  renderPolls();
-  setStatus(els.accountStatus, "Erased from this browser.");
-});
+  document.getElementById("account-erase").addEventListener("click", async function () {
+    if (!window.confirm("Erase the account on this browser? DTRT Lab cannot restore it.")) return;
+    await eraseAccount();
+    await renderStored();
+    renderPolls();
+    setStatus(els.accountStatus, "Erased from this browser.");
+  });
+}

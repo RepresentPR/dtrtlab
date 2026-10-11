@@ -6,14 +6,18 @@ const state = document.getElementById("tab-state");
 const body = document.getElementById("tab-body");
 const kicker = document.getElementById("tab-kicker");
 
-let res;
-try {
-  res = await fetch("/api/community", { cache: "no-store" });
-} catch (err) {
-  res = null;
+// Keep community tabs unavailable until a deliberate reviewed launch.
+const COMMUNITY_ENABLED = false;
+let res = null;
+if (COMMUNITY_ENABLED) {
+  try {
+    res = await fetch("/api/community", { cache: "no-store" });
+  } catch (err) {
+    res = null;
+  }
 }
 if (!res || !res.ok) {
-  title.textContent = "The community board is offline.";
+  title.textContent = "Community tabs are unavailable.";
   state.textContent = "Crosshair previews and copying still work on the CS2 page.";
 } else {
   const board = await res.json();

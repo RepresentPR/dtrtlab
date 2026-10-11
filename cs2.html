@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>CS2 heaven — DTRTC</title>
-  <meta name="description" content="DTRTC's CS2 crosshair bench rotates every four hours. Preview and copy share codes, explore the map pool and utility, and vote when the community board is online.">
+  <meta name="description" content="DTRTC's CS2 crosshair bench rotates every four hours. Preview and copy share codes, explore the map pool and utility.">
   <link rel="canonical" href="https://dtrtlab.com/cs2.html">
   <link rel="icon" href="img/icon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,19 +24,19 @@
           <p class="hud">CS2 // The room</p>
           <h1 id="cs2-title" class="wordmark">CS2 heaven</h1>
           <p class="tagline">Everything the lobby actually argues about.</p>
-          <p class="lede">Crosshairs, the map pool, the first smoke that matters, and where to queue. When the community board is online, the room can also vote.</p>
+          <p class="lede">Crosshairs, the map pool, the first smoke that matters, and where to queue.</p>
           <nav class="jump" aria-label="On this page">
             <a href="#crosshair">Crosshairs</a>
-            <a href="#votes" data-community-link>Votes</a>
+            <a href="#votes" data-community-link hidden>Votes</a>
             <a href="#maps">Maps</a>
             <a href="#utility">Utility</a>
             <a href="#queues">Queues</a>
             <a href="#aim">eDPI</a>
-            <a href="#tabs" data-community-link>Tabs</a>
-            <a href="#account" data-community-link>Account</a>
-            <a href="#notes" data-community-link>Notes</a>
+            <a href="#tabs" data-community-link hidden>Tabs</a>
+            <a href="#account" data-community-link hidden>Account</a>
+            <a href="#notes" data-community-link hidden>Notes</a>
           </nav>
-          <p class="board-mode" id="board-mode" role="status">Loading the board…</p>
+          <p class="board-mode" id="board-mode" role="status">Crosshair previews run on this device. Community features are unavailable.</p>
         </div>
       </div>
     </section>
@@ -78,13 +78,13 @@
           <h3 id="xh-form-title">Paste a code from a clip</h3>
           <label>Name <input name="label" required maxlength="23" autocomplete="off" placeholder="Window tap"></label>
           <label>Crosshair share code <input name="code" required maxlength="80" autocomplete="off" spellcheck="false" placeholder="Paste your CS2 share code"></label>
-          <button class="cta" id="xh-submit" type="submit">Add it to the vote</button>
+          <button class="cta" id="xh-submit" type="submit">Preview on this device</button>
           <p class="status" id="xh-submit-status" role="status"></p>
         </form>
       </div>
     </section>
 
-    <section id="votes" aria-labelledby="vote-title">
+    <section id="votes" aria-labelledby="vote-title" hidden>
       <div class="wrap">
         <p class="hud">02 // Live board</p>
         <h2 id="vote-title">Vote while the queue is up.</h2>
@@ -142,7 +142,7 @@
       </div>
     </section>
 
-    <section id="tabs" aria-labelledby="tabs-title">
+    <section id="tabs" aria-labelledby="tabs-title" hidden>
       <div class="wrap">
         <p class="hud">08 // Test panel</p>
         <h2 id="tabs-title">Propose a tab. The room picks it.</h2>
@@ -193,7 +193,7 @@
       </div>
     </section>
 
-    <section id="account" aria-labelledby="account-title">
+    <section id="account" aria-labelledby="account-title" hidden>
       <div class="wrap">
         <p class="hud">09 // Your key</p>
         <h2 id="account-title">An account DTRT Lab cannot open.</h2>
@@ -227,7 +227,7 @@
       </div>
     </section>
 
-    <section id="notes" aria-labelledby="notes-title">
+    <section id="notes" aria-labelledby="notes-title" hidden>
       <div class="wrap">
         <p class="hud">10 // The room</p>
         <h2 id="notes-title">Short notes, signed.</h2>
