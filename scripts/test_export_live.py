@@ -1,10 +1,12 @@
 import importlib.util
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 spec = importlib.util.spec_from_file_location('export_live', Path(__file__).with_name('export-live.py'))
 export = importlib.util.module_from_spec(spec)
@@ -52,6 +54,31 @@ class ExportTests(unittest.TestCase):
         result=subprocess.run([sys.executable,str(isolated)],capture_output=True,text=True)
         self.assertNotEqual(result.returncode,0)
         self.assertIn('required',result.stderr)
+
+    def test_api_requires_private_location_or_environment(self):
+        with patch.dict(os.environ, {}, clear=True):
+            with self.assertRaisesRegex(ValueError, 'private'):
+                export.build(self.snapshots, existing={'posts': []})
+        with patch.dict(os.environ, {'DTRT_PRIVATE_STATE_DIR': str(self.private)}):
+            self.assertEqual(export.build(self.snapshots, existing={'posts': []})['posts'], [])
+
+    def test_cli_accepts_explicit_private_location_or_environment_without_default(self):
+        isolated = self.root/'scripts/export-live.py'
+        isolated.parent.mkdir()
+        isolated.write_text(Path(export.__file__).read_text(encoding='utf-8'), encoding='utf-8')
+        (self.root/'content').mkdir()
+        env = dict(os.environ)
+        env.pop('DTRT_PRIVATE_STATE_DIR', None)
+        command = [sys.executable, '-B', str(isolated), str(self.snapshots)]
+        missing = subprocess.run(command, capture_output=True, text=True, env=env)
+        self.assertNotEqual(missing.returncode, 0)
+        self.assertIn('--private-dir', missing.stderr)
+        self.assertFalse((self.root/'content/live-performance.json').exists())
+        for args, configured in [(['--private-dir', str(self.private)], env),
+                                  ([], dict(env, DTRT_PRIVATE_STATE_DIR=str(self.private)))]:
+            result = subprocess.run(command+args, capture_output=True, text=True, env=configured)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertEqual(json.loads((self.root/'content/live-performance.json').read_text())['posts'], [])
 
     def test_old_snapshot_preserves_new_records_and_learning(self):
         self.inventory([self.row()])

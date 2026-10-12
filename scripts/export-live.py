@@ -2,12 +2,12 @@
 import argparse
 from datetime import datetime, timezone
 import json
+import os
 import pathlib
 import re
 from urllib.parse import parse_qs, urlparse
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-PRIVATE = pathlib.Path('C:/DTRTWork/dtrt-kept-off-site/clip-growth')
 UNREVIEWED = 'Not reviewed in a matched publication-age cohort'
 
 
@@ -113,8 +113,18 @@ def merge_experiments(existing, private):
     return list(experiments.values())
 
 
-def build(snapshots, *, existing=None, private=PRIVATE):
-    snapshots, private = pathlib.Path(snapshots), pathlib.Path(private)
+def private_directory(value=None):
+    value = value or os.environ.get('DTRT_PRIVATE_STATE_DIR')
+    if not value or not str(value).strip():
+        raise ValueError('Supply a private state directory with --private-dir, private=, or DTRT_PRIVATE_STATE_DIR')
+    path = pathlib.Path(value)
+    if not path.is_dir():
+        raise ValueError('The supplied private state directory must exist')
+    return path
+
+
+def build(snapshots, *, existing=None, private=None):
+    snapshots, private = pathlib.Path(snapshots), private_directory(private)
     if existing is None:
         path = ROOT/'content/live-performance.json'
         existing = read(path) if path.is_file() else {}
@@ -193,7 +203,13 @@ def validate(data):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('snapshots', type=pathlib.Path, help='Explicit directory containing saved inventory JSON')
+    parser.add_argument('--private-dir', type=pathlib.Path,
+                        help='Private state directory; alternatively set DTRT_PRIVATE_STATE_DIR. No machine default.')
     args = parser.parse_args()
-    data = build(args.snapshots)
+    try:
+        private = private_directory(args.private_dir)
+    except ValueError as error:
+        parser.error(str(error))
+    data = build(args.snapshots, private=private)
     (ROOT/'content/live-performance.json').write_text(json.dumps(data, indent=2)+'\n', encoding='utf-8')
     print('Export verified:', len(data['posts']), 'public records;', sum(x['views'] for x in data['posts']), 'public lifetime views.')

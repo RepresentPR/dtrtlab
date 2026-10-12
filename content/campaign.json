@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-12T00:11:48.646610Z",
+  "capturedAt": "2026-10-12T01:34:47.614601Z",
   "campaign": {
     "name": "Growth measured in public.",
     "startAt": "2026-10-11T06:28:12Z",
@@ -283,17 +283,19 @@
     "scheduledPosts": 0,
     "cap": 17,
     "runwayDays": 0,
-    "queueVerifiedAt": "2026-10-11T22:08:04.998Z",
+    "queueVerifiedAt": "2026-10-12T01:27:27Z",
     "planningHorizonHours": 24,
-    "targetSpacingHours": 2,
-    "requiredPlatforms": [
-      "YouTube",
-      "Instagram",
-      "TikTok",
-      "X"
-    ],
+    "targetSpacingHours": null,
+    "requiredPlatforms": [],
     "optionalPlatforms": [],
-    "completeScheduledDrops": 0
+    "completeScheduledDrops": 0,
+    "reservedPosts": 0,
+    "confirmedFuturePosts": 0,
+    "pendingPublicationPosts": 0,
+    "capacityVerifiedAt": "2026-10-12T01:34:36.939286Z",
+    "cadence": "Reviewed releases as quality and capacity permit",
+    "distributionMode": "primary_placement",
+    "completeScheduledPrimaryPlacements": 0
   },
   "highlights": [
     {
@@ -347,11 +349,12 @@
     "Anubis is verified public on YouTube, Instagram, TikTok, X and Ko-fi. Lab File 003 is public on YouTube. The common planned release was 12:05 PM Eastern; native precision and processing vary. Ko-fi shows only a date, so its exact publication time is unknown.",
     "Ko-fi Anubis remains a historical publication record; no additional Ko-fi posts are scheduled. Planned times are not actual publication times.",
     "Owned Twitch, FACEIT and OBS source indexing remains incomplete. Editing approval used documented sampled visual and technical audio checks; unavailable listening or continuous playback is not claimed. Local operations require this PC online with Codex open.",
-    "Current campaign allocation is reconciled: 17 native-confirmed occupied posts and no future queued reservations. Three retired public experiments remain in historical records. The four Door promos are published; Next Corner posts remain drafts. New scheduling is paused because capacity is full.",
     "All four launch teasers have native identities. X was published at 20:45:48 UTC; YouTube at 20:48:45 UTC. TikTok shows the 20:48 UTC creation minute with Everyone visibility; precise delivery time is unmeasured. Instagram exact publication time is unknown. YouTube, TikTok and Instagram teaser counters are included with their separate October 12 00:07-00:08 UTC observations; X is excluded.",
     "Five Anubis and episode four-hour reviews and four Knife four-hour reviews are complete, all inconclusive. Their 24/72/168-hour checks remain. Knife reviews were observed October 12 at 00:07-00:08 UTC. Ko-fi exact publication time remains unavailable and has a separate observation review.",
     "Instagram followers remain the dated 73 observation. Retention and engagement findings are shown in the review log with their own timestamps. Unknown counters are not zero; X views remain outside headline growth.",
-    "Door publication verified October 11: YouTube at 22:00:50 UTC, X at 22:00:52 UTC, Instagram at 22:01:04 UTC. TikTok shows the 22:00 UTC native creation minute with Everyone visibility; exact public-delivery instant is unmeasured. YouTube, TikTok and Instagram Door counters were observed at 00:07-00:08 UTC on October 12; X is excluded."
+    "Door publication verified October 11: YouTube at 22:00:50 UTC, X at 22:00:52 UTC, Instagram at 22:01:04 UTC. TikTok shows the 22:00 UTC native creation minute with Everyone visibility; exact public-delivery instant is unmeasured. YouTube, TikTok and Instagram Door counters were observed at 00:07-00:08 UTC on October 12; X is excluded.",
+    "Current publishing allocation: 17 occupied + 0 reserved of 17, reconciled 2026-10-12T01:34:36.939286Z. 0 confirmed future platform posts; 0 reservations await publication reconciliation. Reviewed releases run as quality and capacity permit; public archives remain visible.",
+    "Company publication links: native verified links are listed separately from measured records. Adding a public link does not add views; new counters remain unknown until observed. All prior metric observation dates and totals are retained."
   ],
   "baseline": {
     "capturedFrom": "2026-10-11T06:51:23.161Z",
@@ -523,6 +526,84 @@
       "publishedAt": "2026-10-11T22:00:52Z",
       "verifiedAt": "2026-10-11T22:08:41.075Z",
       "timestampBasis": "Matching native X article time[datetime]."
+    },
+    {
+      "title": "Make your work clear",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/shorts/eEBIsuAuCkg",
+      "publishedAt": "2026-10-12T00:55:30Z",
+      "verifiedAt": "2026-10-12T00:56:37.224Z",
+      "timestampBasis": "Native public watch-page datePublished metadata"
+    },
+    {
+      "title": "Make your work clear",
+      "platform": "Instagram",
+      "url": "https://www.instagram.com/reel/DeX_obuiij4/",
+      "publishedAt": "2026-10-12T00:55:44.000Z",
+      "verifiedAt": "2026-10-12T00:57:01.896Z",
+      "timestampBasis": "Native Reel time datetime attribute"
+    },
+    {
+      "title": "Make your work clear",
+      "platform": "TikTok",
+      "url": "https://www.tiktok.com/@iananthonyfc/video/7695578463264132365",
+      "publishedAt": "2026-10-12T00:55:00Z",
+      "verifiedAt": "2026-10-12T00:56:15.355Z",
+      "timestampBasis": "Native TikTok Studio Created on Oct11,8:55PM Eastern; Everyone",
+      "timestampPrecision": "minute"
+    },
+    {
+      "title": "Make your work clear",
+      "platform": "X",
+      "url": "https://x.com/DTRTLab/status/2109447768406155583",
+      "publishedAt": "2026-10-12T00:55:14.000Z",
+      "verifiedAt": "2026-10-12T00:55:43.499Z",
+      "timestampBasis": "Native X time datetime attribute"
+    },
+    {
+      "title": "DTRT Lab — From Ideas to Useful Public Work",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/watch?v=8uQyfvJnofI",
+      "publishedAt": "2026-10-12T01:01:40Z",
+      "verifiedAt": "2026-10-12T01:11:33.583Z",
+      "timestampBasis": "Native public watch datePublished metadata",
+      "timestampPrecision": "second"
+    },
+    {
+      "title": "Un plan gratis para tu negocio | DTRT Lab",
+      "platform": "Instagram",
+      "url": "https://www.instagram.com/reel/DeYDLYaD_iN/",
+      "publishedAt": "2026-10-12T01:26:23.000000Z",
+      "verifiedAt": "2026-10-12T01:27:57.935000Z",
+      "timestampBasis": "Exact native publication datetime observed on the saved platform page",
+      "timestampPrecision": "second"
+    },
+    {
+      "title": "A free plan for your business | DTRT Lab",
+      "platform": "TikTok",
+      "url": "https://www.tiktok.com/@iananthonyfc/video/7695586470303747341",
+      "publishedAt": "2026-10-12T01:26:00.000000Z",
+      "verifiedAt": "2026-10-12T01:32:15.105000Z",
+      "timestampBasis": "TikTok Studio Created on Oct 11, 9:26 PM America/New_York, minute precision",
+      "timestampPrecision": "minute"
+    },
+    {
+      "title": "Un plan gratis para tu negocio | DTRT Lab",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/watch?v=PhYr_7bvvhA",
+      "publishedAt": "2026-10-12T01:26:20.000000Z",
+      "verifiedAt": "2026-10-12T01:31:23.778000Z",
+      "timestampBasis": "Exact native publication datetime observed on the saved platform page",
+      "timestampPrecision": "second"
+    },
+    {
+      "title": "Free plan for U.S. businesses | DTRT Lab",
+      "platform": "X",
+      "url": "https://x.com/DTRTLab/status/2109455613294260309",
+      "publishedAt": "2026-10-12T01:26:24.000000Z",
+      "verifiedAt": "2026-10-12T01:27:06.988000Z",
+      "timestampBasis": "Exact native publication datetime observed on the saved platform page",
+      "timestampPrecision": "second"
     }
   ]
 }

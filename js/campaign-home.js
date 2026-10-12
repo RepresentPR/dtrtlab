@@ -43,14 +43,19 @@
     var allUpcoming = (Array.isArray(data.queue) ? data.queue : []).filter(function (entry) {
       return entry && entry.status === 'scheduled' && cleanText(entry.title) && time(entry.scheduledAt) !== null && time(entry.scheduledAt) >= now;
     }).sort(function (a, b) { return time(a.scheduledAt) - time(b.scheduledAt); }).map(function (entry) {
-      return { groupId: cleanText(entry.groupId, 120), title: cleanText(entry.title), platform: cleanText(entry.platform, 40), scheduledAt: entry.scheduledAt };
+      return { groupId: cleanText(entry.groupId, 120), title: cleanText(entry.title), platform: cleanText(entry.platform, 40), scheduledAt: entry.scheduledAt, distributionMode: entry.distributionMode, requiredPlatforms: Array.isArray(entry.requiredPlatforms) ? entry.requiredPlatforms.map(function (platform) { return cleanText(platform, 40); }) : [] };
     });
     var queue = allUpcoming.filter(function (entry) { return time(entry.scheduledAt) <= now + 86400000; });
     var required = ['YouTube', 'Instagram', 'TikTok', 'X'];
     var aliases = { youtube: 'YouTube', instagram: 'Instagram', 'instagram-standalone': 'Instagram', tiktok: 'TikTok', 'tiktok-business': 'TikTok', x: 'X' };
-    var groups = [], grouped = new Map();
+    var groups = [], primaryPlacements = [], grouped = new Map();
     allUpcoming.forEach(function (entry) { if (entry.groupId) { if (!grouped.has(entry.groupId)) grouped.set(entry.groupId, []); grouped.get(entry.groupId).push(entry); } });
     grouped.forEach(function (members, groupId) {
+      var primary = members[0];
+      if (members.length === 1 && primary.distributionMode === 'primary_placement' && primary.requiredPlatforms.length === 1 && aliases[primary.platform.toLowerCase()] && aliases[primary.requiredPlatforms[0].toLowerCase()] === aliases[primary.platform.toLowerCase()] && time(primary.scheduledAt) <= now + 86400000) {
+        primaryPlacements.push({ groupId: groupId, title: primary.title, platform: aliases[primary.platform.toLowerCase()], scheduledAt: primary.scheduledAt });
+        return;
+      }
       var main = members.filter(function (entry) { return required.includes(aliases[entry.platform.toLowerCase()]); });
       var complete = main.length === 4 && required.every(function (platform) { return main.filter(function (entry) { return aliases[entry.platform.toLowerCase()] === platform; }).length === 1; });
       if (!complete || !main.every(function (entry) { return time(entry.scheduledAt) === time(main[0].scheduledAt) && time(entry.scheduledAt) <= now + 86400000; })) return;
@@ -58,7 +63,7 @@
       groups.push({ groupId: groupId, title: main[0].title, scheduledAt: main[0].scheduledAt, platforms: Array.from(new Set(visible.map(function (entry) { return aliases[entry.platform.toLowerCase()] || entry.platform; }))) });
     });
     groups.sort(function (a, b) { return time(a.scheduledAt) - time(b.scheduledAt); });
-    var completeDates = new Map(groups.map(function (group) { return [group.groupId, time(group.scheduledAt)]; }));
+    var completeDates = new Map(groups.concat(primaryPlacements).map(function (group) { return [group.groupId, time(group.scheduledAt)]; }));
     var incompleteQueue = queue.filter(function (entry) { return completeDates.get(entry.groupId) !== time(entry.scheduledAt); });
     var runwayDays = allUpcoming.length ? Math.max(0, (time(allUpcoming[allUpcoming.length - 1].scheduledAt) - now) / 86400000) : 0;
     return {
@@ -67,8 +72,8 @@
       lifetimeViews: metric((data.results || {}).lifetimeViews, amount(campaign.viewsGoal) || 250000, now),
       viewPace: (function () { var reading = metric((data.results || {}).lifetimeViews, amount(campaign.viewsGoal) || 250000, now); var end = time(campaign.viewsDeadlineAt); var daysLeft = end === null ? null : Math.max(0, (end - now) / 86400000); var gap = reading.value === null ? null : Math.max(0, reading.target - reading.value); return { gap: gap, daysLeft: daysLeft, daily: gap === null || !daysLeft ? null : Math.ceil(gap / daysLeft), fourHourly: gap === null || !daysLeft ? null : Math.ceil(gap / (daysLeft * 6)) }; })(),
       views: metric((data.results || {}).views, amount(campaign.viewsGoal) || 250000, now),
-      operations: { active: active, scheduled: scheduled, used: active === null || scheduled === null ? null : active + scheduled, cap: 17, overCapacity: active !== null && scheduled !== null && active + scheduled > 17, runwayDays: runwayDays, runwayVerified: queueFreshness === 'recent', queueFreshness: queueFreshness, queueVerifiedAt: queueTime === null ? null : new Date(queueTime).toISOString(), planningHorizonHours: 24, targetSpacingHours: 2, completeDrops: groups.length, outsideHorizonPosts: allUpcoming.length - queue.length },
-      highlights: highlights, queue: queue, groups: groups, incompleteQueue: incompleteQueue,
+      operations: { active: active, scheduled: scheduled, used: active === null || scheduled === null ? null : active + scheduled, cap: 17, overCapacity: active !== null && scheduled !== null && active + scheduled > 17, runwayDays: runwayDays, runwayVerified: queueFreshness === 'recent', queueFreshness: queueFreshness, queueVerifiedAt: queueTime === null ? null : new Date(queueTime).toISOString(), planningHorizonHours: 24, targetSpacingHours: amount(operations.targetSpacingHours), completeDrops: groups.length, completeReleases: groups.length + primaryPlacements.length, outsideHorizonPosts: allUpcoming.length - queue.length },
+      highlights: highlights, queue: queue, groups: groups, primaryPlacements: primaryPlacements, incompleteQueue: incompleteQueue,
       evidenceNotes: (Array.isArray(data.evidenceNotes) ? data.evidenceNotes : []).map(function (note) { return cleanText(note, 500); }).filter(Boolean).slice(0, 12)
     };
   }
@@ -108,8 +113,8 @@
       set('active-count', view.operations.active === null ? '—' : number.format(view.operations.active));
       set('roster-count', (view.operations.used === null ? '—' : number.format(view.operations.used)) + ' / 17');
       set('roster-detail', 'Saved: ' + (view.operations.active === null ? 'unknown' : number.format(view.operations.active)) + ' active · ' + (view.operations.scheduled === null ? 'unknown' : number.format(view.operations.scheduled)) + ' scheduled' + (view.operations.queueVerifiedAt ? ' · as of ' + dateLabel(view.operations.queueVerifiedAt) : ' · reconciliation pending'));
-      set('runway-count', number.format(view.operations.completeDrops) + ' complete ' + (view.operations.completeDrops === 1 ? 'drop' : 'drops'));
-      set('plan-detail', 'Next 24 hours · target every 2 hours when quality and the 17-post cap permit.');
+      set('runway-count', number.format(view.operations.completeReleases) + ' planned ' + (view.operations.completeReleases === 1 ? 'release' : 'releases'));
+      set('plan-detail', 'Next 24 hours · reviewed releases as quality and capacity permit.');
       set('queue-verification', view.operations.queueFreshness === 'stale' ? 'Saved schedule · checked ' + dateLabel(view.operations.queueVerifiedAt) + ' · over 6 hours old' : view.operations.queueVerifiedAt ? 'Saved schedule · checked ' + dateLabel(view.operations.queueVerifiedAt) : 'Saved schedule · queue verification pending');
       doc.getElementById('queue-verification').classList.toggle('warning', view.operations.queueFreshness === 'stale');
       set('roster-rule', view.operations.overCapacity ? 'Capacity exceeded. Publishing must pause until the roster is reconciled.' : '17 is the ceiling, never a quota. An empty spot is better than a weak clip.');
@@ -119,7 +124,7 @@
       var highlights = doc.getElementById('highlight-list'); highlights.replaceChildren();
       if (!view.highlights.length) {
         var empty = element('div', 'empty-state'), icon = element('span', 'empty-icon', '▶'), words = element('div');
-        icon.setAttribute('aria-hidden', 'true'); words.append(element('h3', '', 'Reviewed clips being prepared.'), element('p', '', 'The strongest moments appear here after review. Quality earns the space.')); empty.append(icon, words); highlights.appendChild(empty);
+        icon.setAttribute('aria-hidden', 'true'); words.append(element('h3', '', 'Archive selections being prepared.'), element('p', '', 'Editorial selections are not measured performance winners.')); empty.append(icon, words); highlights.appendChild(empty);
       } else view.highlights.forEach(function (clip, index) {
         var row = element('a', 'highlight-row'); row.href = clip.url; row.rel = 'noopener noreferrer';
         var words = element('div'); words.append(element('h3', '', clip.title), element('p', '', [clip.platform, clip.reason || 'Reviewed ' + dateLabel(clip.reviewedAt)].filter(Boolean).join(' · ')));
@@ -129,8 +134,8 @@
       if (!view.queue.length) queue.appendChild(element('p', '', 'No scheduled posts in the next 24 hours. All saved reservations still count toward capacity until reconciled.'));
       else {
         var list = element('ul', 'queue-list');
-        view.groups.forEach(function (group) { var row = element('li'), words = element('span', '', group.title), when = element('time', '', dateLabel(group.scheduledAt)); when.dateTime = group.scheduledAt; words.appendChild(element('span', 'platform', group.platforms.join(' · '))); row.append(words, when); list.appendChild(row); });
-        if (view.incompleteQueue.length) queue.appendChild(element('p', '', view.incompleteQueue.length + ' saved platform posts do not form a complete four-platform drop.'));
+        view.groups.concat(view.primaryPlacements).sort(function (a, b) { return time(a.scheduledAt) - time(b.scheduledAt); }).forEach(function (group) { var row = element('li'), words = element('span', '', group.title), when = element('time', '', dateLabel(group.scheduledAt)); when.dateTime = group.scheduledAt; words.appendChild(element('span', 'platform', group.platforms ? group.platforms.join(' · ') : group.platform + ' · primary placement')); row.append(words, when); list.appendChild(row); });
+        if (view.incompleteQueue.length) queue.appendChild(element('p', '', view.incompleteQueue.length + ' saved platform posts still need a complete release plan.'));
         view.incompleteQueue.forEach(function (post) { var row = element('li'), words = element('span', '', post.title), when = element('time', '', dateLabel(post.scheduledAt)); when.dateTime = post.scheduledAt; words.appendChild(element('span', 'platform', post.platform + ' · incomplete drop')); row.append(words, when); list.appendChild(row); });
         queue.appendChild(list);
       }
