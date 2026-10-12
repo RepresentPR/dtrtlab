@@ -56,7 +56,7 @@ test('free-plan intake uses existing public profiles without collecting or claim
   assert.match(offer, /implementation is scoped separately/);
   assert.match(offer, /Opening a profile does not send a request/);
   const profileUrls = [...offer.matchAll(/href="([^"]+)"/g)].map(match => match[1]);
-  assert.deepEqual(profileUrls, ['https://x.com/DTRTLab', 'https://www.instagram.com/officiallydtrt/', '/contact.html']);
+  assert.deepEqual(profileUrls, ['https://x.com/DTRTLab', 'https://www.instagram.com/officiallydtrt/', '/contact.html?intent=free-plan']);
   const existingProfiles = fs.readFileSync(path.join(root, 'about.html'), 'utf8');
   for (const url of profileUrls.filter(url => url.startsWith('https:'))) assert.ok(existingProfiles.includes(url), 'intake uses a previously public business identity');
   assert.ok(html.indexOf('id="free-plan"') < html.indexOf('id="company-work"'));

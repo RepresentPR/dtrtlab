@@ -6,7 +6,7 @@ const vm = require('node:vm');
 const read = name => fs.readFileSync(path.join(__dirname, '..', name), 'utf8');
 
 const pages = [
-  { name: 'contact', file: 'contact.html', script: () => read('contact.html').match(/<script>([\s\S]*?)<\/script>/)[1] },
+  { name: 'contact', file: 'contact.html', script: () => read('js/contact.js') },
   { name: 'partner', file: 'partners.html', script: () => read('js/partners.js') }
 ];
 
@@ -38,12 +38,20 @@ for (const page of pages) {
         if (type === 'submit') submit = handler;
       }
     };
-    const location = { href: '' };
+    const values = { name: 'Example Person', email: 'private@example.test', message: 'Private inquiry', category: 'Other', subject: 'Example', brand: 'Example Brand' };
+    const controls = new Map();
+    const control = id => {
+      if (!controls.has(id)) controls.set(id, { value: values[id.replace('contact-', '')] || '', textContent: '', addEventListener() {} });
+      return controls.get(id);
+    };
+    form.elements = { namedItem: name => control('contact-' + name) };
+    const location = { href: '', search: '' };
     const status = { textContent: '' };
     const context = vm.createContext({
-      document: { getElementById: id => id === `${page.name}-form` ? form : id === `${page.name}-fields` ? fields : status },
+      document: { getElementById: id => id === `${page.name}-form` ? form : id === `${page.name}-fields` ? fields : id === 'partner-status' ? status : control(id) },
       window: { location },
-      FormData: class { get(key) { return ({ name: 'Example Person', email: 'private@example.test', message: 'Private inquiry', category: 'Other', subject: 'Example', brand: 'Example Brand' })[key] || ''; } }
+      URLSearchParams,
+      FormData: class { get(key) { return values[key] || ''; } }
     });
     return { run: () => vm.runInContext(page.script(), context), fields, form, location, submit: () => submit };
   }

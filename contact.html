@@ -7,7 +7,10 @@
   <title>Contact — DTRT Lab</title>
   <link rel="canonical" href="https://dtrtlab.com/contact.html">
   <link rel="stylesheet" href="/css/site.css?v=20261011a">
-<link rel="stylesheet" href="/css/company-theme.css?v=phase2"></head>
+<link rel="stylesheet" href="/css/company-theme.css?v=phase2">
+  <link rel="stylesheet" href="/css/contact.css?v=20261012-intake">
+  <script src="/js/contact.js?v=20261012-intake" defer></script>
+</head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="top">
@@ -22,19 +25,17 @@
   </nav>
 </header>
 <main id="main" class="wrap">
-  <h1>Contact DTRT Lab</h1>
-  <p>For a role, collaboration, partnership, clip, or website question, email <a href="mailto:DTRTCollision@outlook.com">DTRTCollision@outlook.com</a>.</p>
-  <section class="board">
-    <article class="card pad"><h2>Highlight</h2><p>About a clip on the site.</p></article>
-    <article class="card pad"><h2>Partner</h2><p>Brand sponsorship or content collaboration.</p></article>
-    <article class="card pad"><h2>Website</h2><p>Something broken, or a question about the site.</p></article>
-    <article class="card pad"><h2>Work opportunity</h2><p>A role or project where Ian's work could be a fit.</p></article>
-  </section>
+  <h1 id="contact-title">Say hello to DTRT Lab</h1>
+  <p id="contact-intro">Choose a free plan, discuss a paid project, or send a question. You stay in control of sending the email.</p>
+  <nav class="contact-routes" aria-label="Ways to connect"><a href="/contact.html?intent=free-plan">Free plan</a><a href="/contact.html?intent=paid-project">Discuss a paid project</a><a href="/support.html">Support the Lab</a></nav>
+  <p>Email <a href="mailto:DTRTCollision@outlook.com">DTRTCollision@outlook.com</a>. Share public information only; no passwords, customer records or financial details are needed.</p>
   <form id="contact-form" class="card pad">
     <fieldset id="contact-fields" disabled aria-label="Email inquiry" style="border:0;padding:0;margin:0;min-width:0">
     <label>Category
-      <select name="category" required>
+      <select id="contact-category" name="category" required>
         <option value="">Choose one</option>
+        <option>Free plan</option>
+        <option>Paid project inquiry</option>
         <option>Highlight</option>
         <option>Partner</option>
         <option>Work opportunity</option>
@@ -42,28 +43,38 @@
         <option>Other</option>
       </select>
     </label>
-    <label>Subject <input name="subject" required></label>
-    <label>Name <input name="name" autocomplete="name" required></label>
-    <label>Email <input name="email" type="email" autocomplete="email" required></label>
-    <label>Message <textarea name="message" required></textarea></label>
+    <p id="contact-context" class="form-note">This page prepares an email. It does not send a request or confirm a booking.</p>
+    <div id="free-plan-fields" hidden>
+      <h2>Two required details</h2>
+      <label for="contact-project">1. Public business link or brief idea description <span>(required)</span></label>
+      <textarea id="contact-project" name="project" maxlength="2000" aria-describedby="project-help"></textarea>
+      <p id="project-help" class="form-note">Any size business or an idea is welcome. A website is optional if you describe the idea.</p>
+      <label for="contact-goal">2. One goal <span>(required)</span></label>
+      <textarea id="contact-goal" name="goal" maxlength="1000" aria-describedby="goal-help"></textarea>
+      <p id="goal-help" class="form-note">What would you like to make clearer or improve?</p>
+    </div>
+    <label>Subject <input id="contact-subject" name="subject" maxlength="160" required></label>
+    <details class="optional-details"><summary>Add a name or reply address (optional)</summary>
+      <p>Your email app already supplies your sender address.</p>
+      <label>Name <input id="contact-name" name="name" autocomplete="name" maxlength="100"></label>
+      <label>Reply email (optional) <input id="contact-email" name="email" type="email" autocomplete="email" maxlength="254"></label>
+    </details>
+    <label><span id="message-label">Message (required)</span> <textarea id="contact-message" name="message" maxlength="4000" required></textarea></label>
     <button type="submit">Prepare email</button>
-    <p class="form-note">This opens your email app with the message. Review and send it there. If nothing opens, use the email link above.</p>
+    <p class="form-note">Step 1: prepare your email here. Step 2: review it and press Send in your email app. Nothing is sent by this website, and it cannot confirm receipt.</p>
+    <p id="contact-status" role="status" aria-live="polite"></p>
+    <section class="email-fallback" aria-labelledby="fallback-title">
+      <h2 id="fallback-title">Email app did not open?</h2>
+      <p>Copy these into a new email, then review and send it yourself. You can also select the text and copy it manually.</p>
+      <label for="business-email">To</label><input id="business-email" value="DTRTCollision@outlook.com" readonly>
+      <button id="copy-email" type="button" class="secondary">Copy email address</button>
+      <label for="email-message">Subject and message to copy</label><textarea id="email-message" readonly rows="10" aria-describedby="fallback-title"></textarea>
+      <button id="copy-message" type="button" class="secondary">Copy email message</button>
+    </section>
     </fieldset>
   </form>
-  <noscript><p>The email form needs JavaScript. Email <a href="mailto:DTRTCollision@outlook.com">DTRTCollision@outlook.com</a> directly instead.</p></noscript>
+  <noscript><p>The email form needs JavaScript. Email <a href="mailto:DTRTCollision@outlook.com?subject=Free%20plan%20%E2%80%94%20business%20or%20idea">DTRTCollision@outlook.com</a> directly instead. For a free plan, use the subject “Free plan — business or idea” and include (1) your public business link or brief idea and (2) one goal. Review and send in your email app.</p></noscript>
 </main>
 <footer class="site-footer"><div class="site-footer-inner"><p>DTRT Lab · Created by Ian</p><nav aria-label="Footer"><a href="/">Home</a><a href="/about.html">About</a><a href="/clips/">Work</a><a href="/live/">Results</a><a href="/afterlight.html">AFTERLIGHT</a><a href="/partners.html">Partner</a><a href="/legal/privacy.html">Privacy</a></nav></div></footer>
-<script>
-var contactForm = document.getElementById("contact-form");
-contactForm.addEventListener("submit", function (e) {
-  e.preventDefault();
-  var data = new FormData(e.target);
-  var category = String(data.get("category") || "");
-  var subject = "[" + category + "] " + String(data.get("subject") || "");
-  var body = "Category: " + category + "\nName: " + data.get("name") + "\nEmail: " + data.get("email") + "\n\n" + data.get("message");
-  window.location.href = "mailto:DTRTCollision@outlook.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-});
-document.getElementById("contact-fields").disabled = false;
-</script>
 </body>
 </html>
