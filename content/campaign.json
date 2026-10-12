@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-12T18:16:00Z",
+  "capturedAt": "2026-10-12T19:05:00Z",
   "campaign": {
     "name": "Growth measured in public.",
     "startAt": "2026-10-11T06:28:12Z",
@@ -10,10 +10,10 @@
   },
   "results": {
     "views": {
-      "value": 8945,
+      "value": 10856,
       "status": "verified",
-      "observedAt": "2026-10-12T03:13:21.457Z",
-      "note": "Headline 8,945 = matched opening-counter deltas on baseline posts (YouTube Shorts +459, Instagram Reels +141) plus cumulative counters on campaign-created posts. Instagram Door corrected to 1,544 (was 979) from the 2026-10-12T03:13:21.457Z review. This is NOT Instagram Professional Insights period views, NOT unique people, and NOT interval-earned views between saves. First measurement of a new post adds its whole cumulative counter, which can jump the headline without that many new views in the last hour.",
+      "observedAt": "2026-10-12T19:05:00Z",
+      "note": "Headline 10,856 = opening matched deltas (YouTube Shorts +459, Instagram Reels +141) plus cumulative counters on campaign-created posts. YouTube + TikTok campaign posts refreshed 2026-10-12T19:05:00Z. Instagram Oct 12 business Reels still pending (login wall). Not Instagram Insights period views.",
       "metric": "opening_matched_deltas_plus_campaign_created_post_cumulatives",
       "coverage": "Opening matched deltas on fixed baseline posts plus cumulative counters on campaign-created posts. Instagram Professional Insights period totals are stored separately under results.platformPeriodInsights and are not added into this headline.",
       "components": [
@@ -46,16 +46,16 @@
         },
         {
           "platform": "YouTube Anubis",
-          "value": 463,
-          "basis": "Native owner Shorts inventory cumulative views on campaign-created post",
-          "observedAt": "2026-10-12T00:08:12.283Z",
+          "value": 550,
+          "basis": "Native YouTube public watch-page view counter scraped 2026-10-12T19:05:00Z. Replaces prior saved 463. Bot interstitial present; counter still readable in page JSON.",
+          "observedAt": "2026-10-12T19:05:00Z",
           "postUrl": "https://www.youtube.com/shorts/iR3orq__Hn8"
         },
         {
           "platform": "YouTube episode",
-          "value": 6,
-          "basis": "Native owner Videos inventory cumulative views on campaign-created episode; may include operator verification",
-          "observedAt": "2026-10-11T20:07:07.824Z",
+          "value": 33,
+          "basis": "Native YouTube public watch-page view counter scraped 2026-10-12T19:05:00Z. Replaces prior saved 6. Bot interstitial present; counter still readable in page JSON.",
+          "observedAt": "2026-10-12T19:05:00Z",
           "postUrl": "https://www.youtube.com/watch?v=rPJmQj1Pbpo"
         },
         {
@@ -67,10 +67,10 @@
         },
         {
           "platform": "YouTube Knife",
-          "basis": "Native cumulative inventory views on newly published campaign post; may include operator verification",
+          "basis": "Native YouTube public watch-page view counter scraped 2026-10-12T19:05:00Z. Replaces prior saved 878. Bot interstitial present; counter still readable in page JSON.",
           "postUrl": "https://www.youtube.com/shorts/oUfVtc-hd0k",
-          "value": 878,
-          "observedAt": "2026-10-12T00:08:12.283Z"
+          "value": 1474,
+          "observedAt": "2026-10-12T19:05:00Z"
         },
         {
           "platform": "TikTok Knife",
@@ -81,24 +81,24 @@
         },
         {
           "platform": "YouTube Door",
-          "basis": "Native owner inventory cumulative views on campaign-created post; verification views may be included",
+          "basis": "Native YouTube public watch-page view counter scraped 2026-10-12T19:05:00Z. Replaces prior saved 420. Bot interstitial present; counter still readable in page JSON.",
           "postUrl": "https://www.youtube.com/shorts/qizD1CIUrhQ",
-          "value": 420,
-          "observedAt": "2026-10-12T00:08:12.283Z"
+          "value": 1356,
+          "observedAt": "2026-10-12T19:05:00Z"
         },
         {
           "platform": "YouTube preview teaser",
-          "basis": "Native owner inventory cumulative views on campaign-created post; verification views may be included",
+          "basis": "Native YouTube public watch-page view counter scraped 2026-10-12T19:05:00Z. Replaces prior saved 264. Bot interstitial present; counter still readable in page JSON.",
           "postUrl": "https://www.youtube.com/shorts/ROFmkh0tZEc",
-          "value": 264,
-          "observedAt": "2026-10-12T00:08:12.283Z"
+          "value": 410,
+          "observedAt": "2026-10-12T19:05:00Z"
         },
         {
           "platform": "TikTok Door",
-          "basis": "Native owner inventory cumulative views on campaign-created post; verification views may be included",
+          "basis": "Native TikTok playCount from public page JSON scraped 2026-10-12T19:05:00Z. Replaces prior 299.",
           "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695533442817133838",
-          "value": 299,
-          "observedAt": "2026-10-12T00:07:13.146Z"
+          "value": 324,
+          "observedAt": "2026-10-12T19:05:00Z"
         },
         {
           "platform": "TikTok preview teaser",
@@ -127,50 +127,92 @@
           "postUrl": "https://www.instagram.com/reel/DeXd40Ylgsc/",
           "value": 1577,
           "observedAt": "2026-10-12T00:08:03.314Z"
+        },
+        {
+          "platform": "YouTube Make your work clear",
+          "value": 41,
+          "basis": "Native YouTube public watch-page view counter scraped 2026-10-12T19:05:00Z; first inventory inclusion.",
+          "observedAt": "2026-10-12T19:05:00Z",
+          "postUrl": "https://www.youtube.com/shorts/eEBIsuAuCkg"
+        },
+        {
+          "platform": "YouTube From Ideas episode",
+          "value": 4,
+          "basis": "Native YouTube public watch-page view counter scraped 2026-10-12T19:05:00Z; first inventory inclusion.",
+          "observedAt": "2026-10-12T19:05:00Z",
+          "postUrl": "https://www.youtube.com/watch?v=8uQyfvJnofI"
+        },
+        {
+          "platform": "YouTube free plan ES",
+          "value": 12,
+          "basis": "Native YouTube public watch-page view counter scraped 2026-10-12T19:05:00Z; first inventory inclusion.",
+          "observedAt": "2026-10-12T19:05:00Z",
+          "postUrl": "https://www.youtube.com/watch?v=PhYr_7bvvhA"
+        },
+        {
+          "platform": "TikTok Make your work clear",
+          "value": 33,
+          "basis": "Native TikTok playCount from public page JSON scraped 2026-10-12T19:05:00Z; first inventory inclusion.",
+          "observedAt": "2026-10-12T19:05:00Z",
+          "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695578463264132365"
+        },
+        {
+          "platform": "TikTok free plan",
+          "value": 4,
+          "basis": "Native TikTok playCount from public page JSON scraped 2026-10-12T19:05:00Z; first inventory inclusion.",
+          "observedAt": "2026-10-12T19:05:00Z",
+          "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695586470303747341"
         }
       ],
       "organicAttribution": "not_established",
       "fullCampaignStartTotal": null
     },
     "lifetimeViews": {
-      "value": 153397,
+      "value": 155308,
       "status": "verified",
       "observedAt": "2026-10-11T19:48:51.709Z",
       "coverage": "partial",
       "components": [
         {
           "platform": "YouTube Shorts",
-          "value": 17383,
-          "posts": 36,
+          "value": 19189,
+          "posts": 37,
           "scope": "36 measured Shorts; two private/unlisted records aggregate only. Dated full inventory plus separately dated focused public updates; each post counted once.",
           "observedAt": "2026-10-11T19:49:21.287Z",
           "fullInventoryObservedAt": "2026-10-11T19:49:21.287Z",
-          "observedThrough": "2026-10-12T00:08:12.283Z",
+          "observedThrough": "2026-10-12T19:05:00Z",
           "observationType": "Dated full inventory with separately dated focused post updates; other counters not refreshed",
           "focusedUpdates": [
             {
               "postId": "iR3orq__Hn8",
-              "value": 463,
-              "observedAt": "2026-10-12T00:08:12.283Z",
-              "deltaFromPreviousSaved": 45
+              "value": 550,
+              "observedAt": "2026-10-12T19:05:00Z",
+              "deltaFromPreviousSaved": 87
             },
             {
               "postId": "oUfVtc-hd0k",
-              "value": 878,
-              "observedAt": "2026-10-12T00:08:12.283Z",
-              "deltaFromPreviousSaved": 153
+              "value": 1474,
+              "observedAt": "2026-10-12T19:05:00Z",
+              "deltaFromPreviousSaved": 596
             },
             {
               "postId": "qizD1CIUrhQ",
-              "value": 420,
-              "observedAt": "2026-10-12T00:08:12.283Z",
-              "deltaFromPreviousSaved": 205
+              "value": 1356,
+              "observedAt": "2026-10-12T19:05:00Z",
+              "deltaFromPreviousSaved": 936
             },
             {
               "postId": "ROFmkh0tZEc",
-              "value": 264,
-              "observedAt": "2026-10-12T00:08:12.283Z",
-              "deltaFromPreviousSaved": 130
+              "value": 410,
+              "observedAt": "2026-10-12T19:05:00Z",
+              "deltaFromPreviousSaved": 146
+            },
+            {
+              "postId": "eEBIsuAuCkg",
+              "value": 41,
+              "observedAt": "2026-10-12T19:05:00Z",
+              "deltaFromPreviousSaved": null,
+              "firstMeasuredCounter": true
             }
           ]
         },
@@ -216,12 +258,12 @@
         },
         {
           "platform": "TikTok videos",
-          "value": 3123,
-          "posts": 21,
+          "value": 3185,
+          "posts": 23,
           "scope": "21 measured Everyone posts; dated full inventory plus focused updates on control, Anubis, Knife, preview teaser and Door.",
           "observedAt": "2026-10-11T19:52:01.261Z",
           "fullInventoryObservedAt": "2026-10-11T19:52:01.261Z",
-          "observedThrough": "2026-10-12T00:07:13.146Z",
+          "observedThrough": "2026-10-12T19:05:00Z",
           "observationType": "Dated full inventory with separately dated focused post updates; other counters not refreshed",
           "focusedUpdates": [
             {
@@ -238,9 +280,9 @@
             },
             {
               "postId": "7695533442817133838",
-              "value": 299,
-              "observedAt": "2026-10-12T00:07:13.146Z",
-              "deltaFromPreviousSaved": 82
+              "value": 324,
+              "observedAt": "2026-10-12T19:05:00Z",
+              "deltaFromPreviousSaved": 25
             },
             {
               "postId": "7695514908397440269",
@@ -253,30 +295,58 @@
               "value": 286,
               "observedAt": "2026-10-12T00:07:13.146Z",
               "deltaFromPreviousSaved": 1
+            },
+            {
+              "postId": "7695578463264132365",
+              "value": 33,
+              "observedAt": "2026-10-12T19:05:00Z",
+              "deltaFromPreviousSaved": null,
+              "firstMeasuredCounter": true
+            },
+            {
+              "postId": "7695586470303747341",
+              "value": 4,
+              "observedAt": "2026-10-12T19:05:00Z",
+              "deltaFromPreviousSaved": null,
+              "firstMeasuredCounter": true
             }
           ]
         },
         {
           "platform": "YouTube other videos",
-          "value": 114431,
-          "posts": 9,
+          "value": 114474,
+          "posts": 11,
           "scope": "Four public videos including episode 003 and five private archives; private identities omitted",
           "observedAt": "2026-10-11T19:48:51.709Z",
           "fullInventoryObservedAt": "2026-10-11T19:48:51.709Z",
-          "observedThrough": "2026-10-11T20:07:07.824Z",
+          "observedThrough": "2026-10-12T19:05:00Z",
           "observationType": "Dated full inventory with separately dated focused post updates; other counters not refreshed",
           "focusedUpdates": [
             {
               "postId": "rPJmQj1Pbpo",
-              "value": 6,
-              "observedAt": "2026-10-11T20:07:07.824Z",
-              "deltaFromPreviousSaved": 1
+              "value": 33,
+              "observedAt": "2026-10-12T19:05:00Z",
+              "deltaFromPreviousSaved": 27
+            },
+            {
+              "postId": "8uQyfvJnofI",
+              "value": 4,
+              "observedAt": "2026-10-12T19:05:00Z",
+              "deltaFromPreviousSaved": null,
+              "firstMeasuredCounter": true
+            },
+            {
+              "postId": "PhYr_7bvvhA",
+              "value": 12,
+              "observedAt": "2026-10-12T19:05:00Z",
+              "deltaFromPreviousSaved": null,
+              "firstMeasuredCounter": true
             }
           ]
         }
       ],
-      "note": "Known lifetime inventory combines dated full collections with focused updates. Instagram Door corrected +565 to 1544. Unchanged counters retain earlier times. Historical views are not campaign growth. Lifetime Reel sums are not Insights period views. Public table sum excludes private/unlisted YouTube identities that remain only in the YouTube other aggregate.",
-      "observedThrough": "2026-10-12T03:13:21.457Z"
+      "note": "Lifetime refreshed for YouTube campaign posts at 2026-10-12T19:05:00Z. Instagram Reel lifetime sum unchanged except prior Door correction; Oct 12 Instagram business Reels still unmeasured. TikTok business uploads still unmeasured. Not Insights period views.",
+      "observedThrough": "2026-10-12T19:05:00Z"
     },
     "platformPeriodInsights": {
       "status": "verified",
@@ -304,6 +374,32 @@
             "measuredReelLifetimeSum": 18460,
             "whyDifferent": "Insights counts account views inside a calendar window across content types. Inventory sums cumulative Reel-grid counters for 37 measured Reels only. 58 content shared includes non-Reel pieces not in the Reel inventory. Neither figure is unique viewers."
           }
+        }
+      ]
+    },
+    "pendingFirstMeasurement": {
+      "status": "blocked_without_owner_login",
+      "observedAt": "2026-10-12T19:05:00Z",
+      "note": "Published Instagram Oct 12 business Reels still lack honest public counters (login wall). TikTok business uploads measured via public playCount JSON.",
+      "posts": [
+        {
+          "platform": "Instagram",
+          "title": "Make your work clear",
+          "url": "https://www.instagram.com/reel/DeX_obuiij4/",
+          "publishedAt": "2026-10-12T00:55:44.000Z"
+        },
+        {
+          "platform": "Instagram",
+          "title": "Un plan gratis para tu negocio | DTRT Lab",
+          "url": "https://www.instagram.com/reel/DeYDLYaD_iN/",
+          "publishedAt": "2026-10-12T01:26:23.000000Z"
+        },
+        {
+          "platform": "X",
+          "title": "Free plan for U.S. businesses | DTRT Lab",
+          "url": "https://x.com/DTRTLab/status/2109455613294260309",
+          "publishedAt": "2026-10-12T01:26:24.000000Z",
+          "note": "X excluded from headline video-view totals by policy"
         }
       ]
     }
@@ -371,6 +467,7 @@
   ],
   "queue": [],
   "evidenceNotes": [
+    "YouTube campaign counters refreshed 2026-10-12T19:05:00Z: Door 1356, Anubis 550, Knife 1474, preview 410, episode 33, Make your work clear 41, From Ideas 4, free-plan ES 12. Campaign composite now 10,794; lifetime 155,246. Instagram/TikTok Oct 12 business posts still pending owner counters.",
     "Numbers re-audit 2026-10-12: Instagram Professional Insights Sep 12\u2013Oct 11 = 20.0K views, 0 new followers, 58 content shared. /live Instagram inventory remains a 37-Reel lifetime sum (18,460), a different metric. Instagram Door inventory corrected from 979 to 1,544. Campaign-added headline is now 8,945; do not compare it to Insights 20.0K.",
     "Lifetime goal: 250,000 overall reported video views by December 31 Eastern. Known total 153,397 after Door Instagram correction; historical coverage is not campaign growth.",
     "96 public measured records plus seven private/unlisted YouTube records in aggregate: 103 measured posts. Focused updates cover four YouTube Shorts, five TikTok posts and four Instagram Reels. X is excluded from headline totals. Other inventory dates remain unchanged.",

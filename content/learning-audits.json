@@ -554,6 +554,34 @@
         "20.0K Insights display precision may round; treated as 20,000.",
         "Private/unlisted YouTube identities stay omitted from the public table."
       ]
+    },
+    {
+      "id": "live-numbers-finish-20261012T1905Z",
+      "kind": "live_numbers_finish",
+      "title": "Finish /live re-audit with YouTube refresh",
+      "observedAt": "2026-10-12T19:05:00Z",
+      "completedAt": "2026-10-12T19:05:00Z",
+      "status": "complete",
+      "decision": "YouTube + TikTok campaign inventory refreshed. Composite 10,856, lifetime 155,308. Instagram business Reels DeX_obuiij4 and DeYDLYaD_iN remain pending (login wall).",
+      "youtubeRefresh": {
+        "eEBIsuAuCkg": 41,
+        "8uQyfvJnofI": 4,
+        "PhYr_7bvvhA": 12,
+        "qizD1CIUrhQ": 1356,
+        "iR3orq__Hn8": 550,
+        "oUfVtc-hd0k": 1474,
+        "ROFmkh0tZEc": 410,
+        "rPJmQj1Pbpo": 33
+      },
+      "stillPending": [
+        "https://www.instagram.com/reel/DeX_obuiij4/",
+        "https://www.instagram.com/reel/DeYDLYaD_iN/"
+      ],
+      "tiktokRefresh": {
+        "7695578463264132365": 33,
+        "7695586470303747341": 4,
+        "7695533442817133838": 324
+      }
     }
   ]
 }
