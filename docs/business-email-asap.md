@@ -12,12 +12,24 @@ Receive-only, free, works with your existing Gmail.
 3. Click **Get started / Enable**
 4. **Destination addresses** → add `iananthonyfc@gmail.com` → confirm the verification email in Gmail
 5. **Custom addresses** → create:
-   - `hello@dtrtlab.com` → `iananthonyfc@gmail.com`
-   - `contact@dtrtlab.com` → `iananthonyfc@gmail.com`
+   - `hello@dtrtlab.com` → `iananthonyfc@gmail.com` (public company)
+   - `ian@dtrtlab.com` → `iananthonyfc@gmail.com` (founder / CEO personal work)
+   - optional alias: `contact@dtrtlab.com` → same Gmail
 6. Leave Cloudflare’s MX records as it sets them (do not point MX elsewhere)
-7. Send a test from any other account to `hello@dtrtlab.com` and confirm it lands in Gmail
+7. Send a test from any other account to `hello@dtrtlab.com` and `ian@dtrtlab.com` and confirm both land in Gmail
 
 When that works, reply in chat: **hello@ live**
+
+### Agent path (if you paste an API token)
+
+```bash
+export CF_API_TOKEN='your-token'
+export CF_DESTINATION='iananthonyfc@gmail.com'   # optional
+python3 scripts/enable-cloudflare-email-routing.py
+python3 scripts/check-business-email.py
+```
+
+Token needs: Account Email Routing Addresses Edit, Zone Email Routing Rules Edit, Zone Read, resource = `dtrtlab.com`.
 
 Optional cleanup: DMARC currently reports to `dmarc_rua@onsecureserver.net` (old GoDaddy residue). After routing works, change DMARC `rua` to a mailbox you control (e.g. `mailto:hello@dtrtlab.com`) or remove if unused.
 
@@ -53,9 +65,12 @@ Update `content/site.json` emails to `hello@dtrtlab.com`, then replace hardcoded
 
 | Address | Use |
 | --- | --- |
-| `hello@dtrtlab.com` | Public contact, free plan, partnerships |
-| `contact@dtrtlab.com` | Alias → same inbox |
-| Keep personal Gmail/Outlook private | Do not publish on the site |
+| `hello@dtrtlab.com` | Public company inbox (site, free plan, press) |
+| `ian@dtrtlab.com` | Founder/CEO personal work email (modern CEO pattern: first-name@company) |
+| `contact@dtrtlab.com` | Optional alias → same Gmail |
+| Keep `iananthonyfc@gmail.com` / Outlook private | Backend destination only; do not publish |
+
+**Login portal after routing is live:** [mail.google.com](https://mail.google.com) — both addresses forward into that inbox.
 
 ## Owner checklist
 
