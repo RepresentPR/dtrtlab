@@ -456,6 +456,64 @@
       ],
       "nextAuditDueAt": "2026-10-12T03:00:00Z",
       "completedAt": "2026-10-11T23:11:58.025930Z"
+    },
+    {
+      "id": "graph-format-20261012T0300Z",
+      "title": "October 11, 11:14 PM Eastern learning update",
+      "observedAt": "2026-10-12T03:14:10.183Z",
+      "summary": "Door received 1,196 YouTube views, 1,544 Instagram views and 313 TikTok views in dated native observations. X separately showed 9 impressions and 6 video views. These late four-hour checks do not establish a format winner.",
+      "channel": {
+        "platform": "YouTube",
+        "selectedPeriod": "September 13\u2013October 10, 2026",
+        "views": 15038,
+        "watchHours": 22.8,
+        "netSubscribers": 2,
+        "rolling48hViews": 6195,
+        "displayedSubscribers": 1311,
+        "note": "The historical selected-period total revised by 1; the rolling counter changed by 358 since 23:09:06 UTC. Neither difference is campaign interval growth."
+      },
+      "doorObservations": [
+        {
+          "platform": "YouTube",
+          "views": 1196,
+          "observedAt": "2026-10-12T03:07:25.617Z",
+          "engagementObservedAt": "2026-10-12T03:07:36.751Z",
+          "engagedViews": 458,
+          "averageViewDurationSeconds": 14,
+          "stayedToWatchPercent": 40.4
+        },
+        {
+          "platform": "Instagram",
+          "views": 1544,
+          "interactions": 2,
+          "observedAt": "2026-10-12T03:13:21.457Z",
+          "nativeViewers": 1134
+        },
+        {
+          "platform": "TikTok",
+          "views": 313,
+          "likes": 1,
+          "observedAt": null,
+          "observedBetween": [
+            "2026-10-12T02:34:29.481952Z",
+            "2026-10-12T02:35:40.025138Z"
+          ]
+        },
+        {
+          "platform": "X",
+          "impressions": 9,
+          "videoViews": 6,
+          "nativeUniqueVideoViews": 2,
+          "observedAt": "2026-10-12T03:09:18.933Z"
+        }
+      ],
+      "decision": "Retain the single existing 7.85-second opening test and original control; the treatment remains unscheduled. Review the control after 07:10 UTC and Door after 22:01:04 UTC.",
+      "limits": "Platform definitions and observation ages differ; views are not unique people. Missing retention remains unknown. No organic, causal or winner claim; no recalculation of the dated 8,380 campaign headline. The early offer card showed 3 views at 03:14:10.183 UTC, with average percentage viewed and likes unknown.",
+      "nextGraphAuditDueAt": "2026-10-12T07:00:00Z",
+      "kind": "graph_and_format_audit",
+      "status": "complete",
+      "completedAt": "2026-10-12T03:18:04.801584Z",
+      "scheduledAuditAt": "2026-10-12T03:00:00Z"
     }
   ]
 }
