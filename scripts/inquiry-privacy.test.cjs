@@ -25,6 +25,7 @@ for (const page of pages) {
     let submit;
     let disabled = true;
     const fields = {
+      setAttribute() {},
       get disabled() { return disabled; },
       set disabled(value) {
         assert.equal(typeof submit, 'function', 'do not expose fields until the submit guard is attached');
@@ -41,14 +42,15 @@ for (const page of pages) {
     const values = { name: 'Example Person', email: 'private@example.test', message: 'Private inquiry', category: 'Other', subject: 'Example', brand: 'Example Brand' };
     const controls = new Map();
     const control = id => {
-      if (!controls.has(id)) controls.set(id, { value: values[id.replace('contact-', '')] || '', textContent: '', addEventListener() {} });
+      if (!controls.has(id)) controls.set(id, { value: values[id.replace('contact-', '')] || '', textContent: '', validity: { typeMismatch: false }, addEventListener() {}, setAttribute() {}, removeAttribute() {}, setCustomValidity() {} });
       return controls.get(id);
     };
     form.elements = { namedItem: name => control('contact-' + name) };
+    control('contact-category').options = ['', 'Free plan', 'Paid project inquiry', 'Highlight', 'Partner', 'Work opportunity', 'Website', 'Other'].map(value => ({ value }));
     const location = { href: '', search: '' };
     const status = { textContent: '' };
     const context = vm.createContext({
-      document: { getElementById: id => id === `${page.name}-form` ? form : id === `${page.name}-fields` ? fields : id === 'partner-status' ? status : control(id) },
+      document: { documentElement: { lang: 'en' }, getElementById: id => id === `${page.name}-form` ? form : id === `${page.name}-fields` ? fields : id === 'partner-status' ? status : control(id) },
       window: { location },
       URLSearchParams,
       FormData: class { get(key) { return values[key] || ''; } }

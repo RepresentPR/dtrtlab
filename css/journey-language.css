@@ -1,0 +1,19 @@
+/* Shared, local EN/ES customer-journey controls. */
+.journey-language{padding-block:14px}
+.journey-language .language-options{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;font-size:14px;line-height:1.5}
+.language-options>span{color:#bbb8b1;margin-right:4px}
+.language-options a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 14px;border:1px solid #77736d;border-radius:3px;color:#f4f1eb;text-decoration:none}
+.language-options a[aria-current=page]{background:#ff7a1a;border-color:#ff7a1a;color:#101010;font-weight:700}
+.language-options a:hover{border-color:#ff7a1a;text-decoration:underline;text-underline-offset:4px}
+.language-options a:focus-visible{outline:3px solid #ffb06f;outline-offset:4px}
+.journey-coverage{padding-block:24px;font-size:13px;line-height:1.6;color:#c4c0b8;border-top:1px solid #4a4742}
+.journey-coverage p{max-width:92ch;margin:8px 0}
+.journey-evidence-note{margin-block:26px;font-size:14px;line-height:1.6;color:#c4c0b8}
+.journey-noscript{padding-block:20px;font-size:14px;line-height:1.6}
+.offer-fallback{display:flex;flex-wrap:wrap;gap:10px 24px}
+html[lang=es] .text-link{white-space:normal}
+html[lang=es] .offer-fallback a[lang=es]{display:none}
+html[lang=es] .button{white-space:normal;overflow-wrap:anywhere}
+html[lang=es] .site-map strong{overflow-wrap:anywhere}
+html[lang=es] .hero h1{font-size:clamp(46px,7.1vw,94px);letter-spacing:-3px}
+@media(max-width:640px){html[lang=es] .hero h1{font-size:clamp(36px,8.8vw,58px);letter-spacing:-1.5px}.journey-language .language-options{gap:8px 12px}.journey-coverage{font-size:13px}.offer-fallback .text-link{white-space:normal}.income-card .button{white-space:normal;overflow-wrap:anywhere;max-width:100%}}

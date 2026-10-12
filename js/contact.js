@@ -8,67 +8,178 @@
   const address = document.getElementById('business-email');
   const recipient = 'DTRTCollision@outlook.com';
   const categories = ['Free plan', 'Paid project inquiry', 'Highlight', 'Partner', 'Work opportunity', 'Website', 'Other'];
-  const route = new URLSearchParams(window.location.search).get('intent');
-  const defaults = { 'Free plan': 'Free plan — business or idea', 'Paid project inquiry': 'Discuss a paid project' };
+  const params = new URLSearchParams(window.location.search);
+  const route = params.get('intent');
+  let language = params.get('lang') === 'es' ? 'es' : 'en';
+  const copy = {
+    en: {
+      categories: { '': 'Choose one', 'Free plan': 'Free plan', 'Paid project inquiry': 'Paid project inquiry', Highlight: 'Highlight', Partner: 'Partner', 'Work opportunity': 'Work opportunity', Website: 'Website', Other: 'Other' },
+      defaults: { 'Free plan': 'Free plan — business or idea', 'Paid project inquiry': 'Discuss a paid project' },
+      title: 'Say hello to DTRT Lab', freeTitle: 'Your free plan starts here', paidTitle: 'Discuss a paid project', pageTitle: 'Contact — DTRT Lab',
+      freeContext: 'Three practical priorities, one sample improvement and one next step. Free, with no purchase required. Implementation is agreed separately.',
+      paidContext: 'Tell us what you need. A written scope, quote and agreement come before paid work. This is an inquiry, not a booking. Online checkout is unavailable.',
+      context: 'This page prepares an email. It does not send a request or confirm a booking.', optionalMessage: 'Other context (optional)', requiredMessage: 'Message (required)',
+      category: 'Category', subject: 'Subject', name: 'Name', reply: 'Reply email', project: 'Business link or idea', goal: 'Goal', to: 'To',
+      validation: { category: 'Choose a category.', subject: 'Add a subject.', project: 'Add your public business link or a brief idea description.', goal: 'Add one goal.', message: 'Add a message.', email: 'Enter a valid email address, or leave this optional field empty.' },
+      missingPlan: 'Add your business link or idea and one goal before preparing the email.',
+      requested: 'Your email app was requested. Review and press Send there. This website has not sent your message or confirmed receipt.',
+      copiedAddress: 'Email address copied.', copiedMessage: 'Email message copied.', copied: 'Paste it into your email app, review and send there. This website has not sent anything.',
+      copyFailed: 'Select the text and copy manually, then paste it into your email app. This website has not sent anything.',
+      nav: 'Main navigation', footer: 'Footer', routes: 'Ways to connect', inquiry: 'Email inquiry',
+      labels: {
+        'contact-skip': 'Skip to content', 'contact-nav-work': 'Work', 'contact-nav-results': 'Results', 'contact-nav-about': 'About', 'contact-nav-partner': 'Partner', 'contact-current-link': 'Contact',
+        'contact-intro': 'Choose a free plan, discuss a paid project, or send a question. You stay in control of sending the email.',
+        'contact-free-route': 'Free plan', 'contact-paid-route': 'Discuss a paid project', 'contact-support-route': 'Support the Lab', 'contact-email-intro': 'Email',
+        'contact-privacy-note': 'Share public information only; no passwords, customer records or financial details are needed.', 'category-label': 'Category',
+        'free-plan-details-title': 'Two required details', 'project-label': '1. Public business link or brief idea description (required)',
+        'project-help': 'Any size business or an idea is welcome. A website is optional if you describe the idea.', 'goal-label': '2. One goal (required)', 'goal-help': 'What would you like to make clearer or improve?',
+        'subject-label': 'Subject', 'optional-details-title': 'Add a name or reply address (optional)', 'sender-help': 'Your email app already supplies your sender address.', 'name-label': 'Name', 'reply-label': 'Reply email (optional)',
+        'prepare-email': 'Prepare email', 'send-help': 'Step 1: prepare your email here. Step 2: review it and press Send in your email app. Nothing is sent by this website, and it cannot confirm receipt.',
+        'fallback-title': 'Email app did not open?', 'fallback-help': 'Copy these into a new email, then review and send it yourself. You can also select the text and copy it manually.',
+        'to-label': 'To', 'copy-email': 'Copy email address', 'copy-message-label': 'Subject and message to copy', 'copy-message': 'Copy email message',
+        'language-help': 'This inquiry page is available in English and Spanish. Spanish wording prepared with AI; no independent native-speaker review. Other linked resources may be in English. Your browser may offer translation into other languages; that translation may be imperfect.',
+        'contact-credit': 'DTRT Lab · Created by Ian', 'contact-home-link': 'Home', 'contact-footer-about': 'About', 'contact-footer-work': 'Work', 'contact-footer-results': 'Results', 'contact-footer-partner': 'Partner', 'contact-footer-privacy': 'Privacy'
+      }
+    },
+    es: {
+      categories: { '': 'Elige una categoría', 'Free plan': 'Plan gratuito', 'Paid project inquiry': 'Proyecto de pago', Highlight: 'Clip destacado', Partner: 'Colaboración', 'Work opportunity': 'Oportunidad de trabajo', Website: 'Sitio web', Other: 'Otra consulta' },
+      defaults: { 'Free plan': 'Plan gratuito — negocio o idea', 'Paid project inquiry': 'Consultar sobre un proyecto de pago' },
+      title: 'Contacta con DTRT Lab', freeTitle: 'Tu plan gratuito empieza aquí', paidTitle: 'Hablemos de un proyecto de pago', pageTitle: 'Contacto — DTRT Lab',
+      freeContext: 'Tres prioridades prácticas, una mejora de ejemplo y un siguiente paso. Gratis, sin obligación de compra. La implementación se acuerda por separado.',
+      paidContext: 'Cuéntanos qué necesitas. Antes de comenzar un trabajo de pago, acordamos por escrito el alcance, el presupuesto y las condiciones. Esta consulta no confirma una contratación. El pago en línea no está disponible.',
+      context: 'Esta página prepara un correo. No envía una solicitud ni confirma una contratación.', optionalMessage: 'Más contexto (opcional)', requiredMessage: 'Mensaje (obligatorio)',
+      category: 'Categoría', subject: 'Asunto', name: 'Nombre', reply: 'Correo para responder', project: 'Enlace del negocio o idea', goal: 'Objetivo', to: 'Para',
+      validation: { category: 'Elige una categoría.', subject: 'Añade un asunto.', project: 'Añade el enlace público de tu negocio o una breve descripción de tu idea.', goal: 'Añade un objetivo.', message: 'Añade un mensaje.', email: 'Introduce una dirección de correo válida o deja vacío este campo opcional.' },
+      missingPlan: 'Añade el enlace de tu negocio o idea y un objetivo antes de preparar el correo.',
+      requested: 'Se solicitó abrir tu aplicación de correo. Revisa el mensaje y pulsa Enviar allí. Este sitio no ha enviado tu mensaje ni puede confirmar su recepción.',
+      copiedAddress: 'Dirección de correo copiada.', copiedMessage: 'Mensaje de correo copiado.', copied: 'Pégalo en tu aplicación de correo, revísalo y envíalo allí. Este sitio no ha enviado nada.',
+      copyFailed: 'Selecciona el texto y cópialo manualmente; después pégalo en tu aplicación de correo. Este sitio no ha enviado nada.',
+      nav: 'Navegación principal', footer: 'Pie de página', routes: 'Formas de contactar', inquiry: 'Consulta por correo',
+      labels: {
+        'contact-skip': 'Ir al contenido', 'contact-nav-work': 'Proyectos', 'contact-nav-results': 'Resultados', 'contact-nav-about': 'Acerca del Lab', 'contact-nav-partner': 'Colaboraciones', 'contact-current-link': 'Contacto',
+        'contact-intro': 'Solicita un plan gratuito, consulta sobre un proyecto de pago o envía una pregunta. Tú decides cuándo enviar el correo.',
+        'contact-free-route': 'Plan gratuito', 'contact-paid-route': 'Consultar un proyecto de pago', 'contact-support-route': 'Apoya al Lab', 'contact-email-intro': 'Correo',
+        'contact-privacy-note': 'Comparte solo información pública; no necesitamos contraseñas, datos de clientes ni detalles financieros.', 'category-label': 'Categoría',
+        'free-plan-details-title': 'Dos datos obligatorios', 'project-label': '1. Enlace público del negocio o breve descripción de la idea (obligatorio)',
+        'project-help': 'Cualquier tamaño de negocio o idea es bienvenido. No necesitas un sitio web si describes tu idea.', 'goal-label': '2. Un objetivo (obligatorio)', 'goal-help': '¿Qué te gustaría explicar mejor o mejorar?',
+        'subject-label': 'Asunto', 'optional-details-title': 'Añadir nombre o correo de respuesta (opcional)', 'sender-help': 'Tu aplicación de correo ya incluye tu dirección de remitente.', 'name-label': 'Nombre', 'reply-label': 'Correo para responder (opcional)',
+        'prepare-email': 'Preparar correo', 'send-help': 'Paso 1: prepara tu correo aquí. Paso 2: revísalo y pulsa Enviar en tu aplicación de correo. Este sitio no envía nada ni puede confirmar su recepción.',
+        'fallback-title': '¿No se abrió tu aplicación de correo?', 'fallback-help': 'Copia estos datos en un correo nuevo, revísalo y envíalo tú. También puedes seleccionar el texto y copiarlo manualmente.',
+        'to-label': 'Para', 'copy-email': 'Copiar dirección de correo', 'copy-message-label': 'Asunto y mensaje para copiar', 'copy-message': 'Copiar asunto y mensaje',
+        'language-help': 'Esta página de consultas está disponible en inglés y español. Texto en español preparado con IA; sin revisión independiente de una persona nativa. Otros recursos enlazados pueden estar en inglés. Tu navegador puede ofrecer traducción a otros idiomas; esa traducción puede ser imperfecta.',
+        'contact-credit': 'DTRT Lab · Creado por Ian', 'contact-home-link': 'Inicio', 'contact-footer-about': 'Acerca del Lab', 'contact-footer-work': 'Proyectos', 'contact-footer-results': 'Resultados', 'contact-footer-partner': 'Colaboraciones', 'contact-footer-privacy': 'Privacidad'
+      }
+    }
+  };
+  const allDefaults = Object.values(copy).flatMap(text => Object.values(text.defaults));
   if (route === 'free-plan') field('category').value = 'Free plan';
   if (route === 'paid-project') field('category').value = 'Paid project inquiry';
 
+  function contactUrl(lang, category = field('category').value) {
+    const query = new URLSearchParams();
+    if (category === 'Free plan') query.set('intent', 'free-plan');
+    if (category === 'Paid project inquiry') query.set('intent', 'paid-project');
+    query.set('lang', lang);
+    return '/contact.html?' + query;
+  }
+  function updateLanguage() {
+    const text = copy[language];
+    document.documentElement.lang = language;
+    document.title = text.pageTitle;
+    for (const [id, value] of Object.entries(text.labels)) document.getElementById(id).textContent = value;
+    for (const option of field('category').options) option.textContent = text.categories[option.value];
+    document.getElementById('contact-main-nav').setAttribute('aria-label', text.nav);
+    document.getElementById('contact-footer-nav').setAttribute('aria-label', text.footer);
+    document.getElementById('contact-routes').setAttribute('aria-label', text.routes);
+    document.getElementById('contact-fields').setAttribute('aria-label', text.inquiry);
+    for (const lang of ['en', 'es']) {
+      const link = document.getElementById('language-' + lang);
+      link.href = contactUrl(lang);
+      if (lang === language) link.setAttribute('aria-current', 'page');
+      else link.removeAttribute('aria-current');
+    }
+    document.getElementById('contact-free-route').href = contactUrl(language, 'Free plan');
+    document.getElementById('contact-paid-route').href = contactUrl(language, 'Paid project inquiry');
+    document.getElementById('contact-support-route').href = '/support.html?lang=' + language;
+    document.getElementById('contact-current-link').href = contactUrl(language);
+    document.getElementById('contact-home-link').href = '/?lang=' + language;
+    document.getElementById('contact-brand-link').href = '/?lang=' + language;
+    if (window.history && window.history.replaceState) window.history.replaceState(null, '', contactUrl(language));
+  }
+  function updateValidation() {
+    for (const name of ['category', 'subject', 'project', 'goal', 'message', 'email']) {
+      const input = field(name);
+      input.setCustomValidity('');
+      if (input.required && !input.value.trim()) input.setCustomValidity(copy[language].validation[name]);
+      else if (name === 'email' && input.value && input.validity.typeMismatch) input.setCustomValidity(copy[language].validation.email);
+    }
+  }
   function draft() {
+    const words = copy[language];
     const data = new FormData(form);
     const text = name => String(data.get(name) || '').trim();
     const category = categories.includes(text('category')) ? text('category') : 'Other';
-    const subject = '[' + category + '] ' + text('subject').replace(/[\r\n]+/g, ' ');
-    const lines = ['Category: ' + category];
-    if (text('name')) lines.push('Name: ' + text('name'));
-    if (text('email')) lines.push('Reply email: ' + text('email'));
-    if (category === 'Free plan') lines.push('', 'Business link or idea: ' + text('project'), 'Goal: ' + text('goal'));
+    const subject = '[' + words.categories[category] + '] ' + text('subject').replace(/[\r\n]+/g, ' ');
+    const lines = [words.category + ': ' + words.categories[category]];
+    if (text('name')) lines.push(words.name + ': ' + text('name'));
+    if (text('email')) lines.push(words.reply + ': ' + text('email'));
+    if (category === 'Free plan') lines.push('', words.project + ': ' + text('project'), words.goal + ': ' + text('goal'));
     if (text('message')) lines.push('', text('message'));
     return { subject, body: lines.join('\n') };
   }
   function updatePreview() {
     const email = draft();
-    preview.value = 'To: ' + recipient + '\nSubject: ' + email.subject + '\n\n' + email.body;
+    preview.value = copy[language].to + ': ' + recipient + '\n' + copy[language].subject + ': ' + email.subject + '\n\n' + email.body;
   }
   function updateRoute() {
     const category = field('category').value;
+    const text = copy[language];
     const free = category === 'Free plan';
     document.getElementById('free-plan-fields').hidden = !free;
     field('project').required = free;
     field('goal').required = free;
     field('message').required = !free;
-    document.getElementById('message-label').textContent = free ? 'Other context (optional)' : 'Message (required)';
-    if (!field('subject').value || Object.values(defaults).includes(field('subject').value)) field('subject').value = defaults[category] || '';
-    document.getElementById('contact-title').textContent = free ? 'Your free plan starts here' : category === 'Paid project inquiry' ? 'Discuss a paid project' : 'Say hello to DTRT Lab';
-    document.getElementById('contact-context').textContent = free ? 'Three practical priorities, one sample improvement and one next step. Free, with no purchase required. Implementation is agreed separately.' : category === 'Paid project inquiry' ? 'Tell us what you need. A written scope, quote and agreement come before paid work. This is an inquiry, not a booking. Online checkout is unavailable.' : 'This page prepares an email. It does not send a request or confirm a booking.';
+    document.getElementById('message-label').textContent = free ? text.optionalMessage : text.requiredMessage;
+    if (!field('subject').value || allDefaults.includes(field('subject').value)) field('subject').value = text.defaults[category] || '';
+    document.getElementById('contact-title').textContent = free ? text.freeTitle : category === 'Paid project inquiry' ? text.paidTitle : text.title;
+    document.getElementById('contact-context').textContent = free ? text.freeContext : category === 'Paid project inquiry' ? text.paidContext : text.context;
     status.textContent = '';
+    updateLanguage();
+    updateValidation();
     updatePreview();
   }
-  async function copyText(input, label) {
+  async function copyText(input, messageKey) {
     try {
       await navigator.clipboard.writeText(input.value);
-      status.textContent = label + ' copied. Paste it into your email app, review and send there. This website has not sent anything.';
+      status.textContent = copy[language][messageKey] + ' ' + copy[language].copied;
     } catch (_) {
       input.focus();
       input.select();
-      status.textContent = 'Select the text and copy manually, then paste it into your email app. This website has not sent anything.';
+      status.textContent = copy[language].copyFailed;
     }
   }
   form.addEventListener('submit', event => {
     event.preventDefault();
+    updateValidation();
     if (field('category').value === 'Free plan' && (!field('project').value.trim() || !field('goal').value.trim())) {
-      status.textContent = 'Add your business link or idea and one goal before preparing the email.';
+      status.textContent = copy[language].missingPlan;
       return;
     }
     if (!form.reportValidity()) return;
     const email = draft();
     updatePreview();
-    status.textContent = 'Your email app was requested. Review and press Send there. This website has not sent your message or confirmed receipt.';
+    status.textContent = copy[language].requested;
     window.location.href = 'mailto:' + recipient + '?subject=' + encodeURIComponent(email.subject) + '&body=' + encodeURIComponent(email.body);
   });
   field('category').addEventListener('change', updateRoute);
-  form.addEventListener('input', updatePreview);
-  document.getElementById('copy-email').addEventListener('click', () => copyText(address, 'Email address'));
-  document.getElementById('copy-message').addEventListener('click', () => { updatePreview(); return copyText(preview, 'Email message'); });
+  form.addEventListener('input', () => { updateValidation(); updatePreview(); });
+  document.getElementById('copy-email').addEventListener('click', () => copyText(address, 'copiedAddress'));
+  document.getElementById('copy-message').addEventListener('click', () => { updatePreview(); return copyText(preview, 'copiedMessage'); });
+  for (const lang of ['en', 'es']) document.getElementById('language-' + lang).addEventListener('click', event => {
+    event.preventDefault();
+    language = lang;
+    updateRoute();
+  });
   document.getElementById('contact-fields').disabled = false;
   updateRoute();
 })();
