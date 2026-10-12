@@ -56,7 +56,7 @@
       copyFailed: 'Selecciona el texto y cópialo manualmente; después pégalo en tu aplicación de correo. Este sitio no ha enviado nada.',
       nav: 'Navegación principal', footer: 'Pie de página', routes: 'Formas de contactar', inquiry: 'Consulta por correo',
       labels: {
-        'contact-skip': 'Ir al contenido', 'contact-nav-work': 'Proyectos', 'contact-nav-results': 'Resultados', 'contact-nav-about': 'Acerca del Lab', 'contact-nav-partner': 'Colaboraciones', 'contact-current-link': 'Contacto',
+        'contact-skip': 'Ir al contenido', 'contact-nav-work': 'Proyectos (inglés)', 'contact-nav-results': 'Resultados (inglés)', 'contact-nav-about': 'Acerca del Lab (inglés)', 'contact-nav-partner': 'Colaboraciones (inglés)', 'contact-current-link': 'Contacto',
         'contact-intro': 'Solicita un plan gratuito, consulta sobre un proyecto de pago o envía una pregunta. Tú decides cuándo enviar el correo.',
         'contact-free-route': 'Plan gratuito', 'contact-paid-route': 'Consultar un proyecto de pago', 'contact-support-route': 'Apoya al Lab', 'contact-email-intro': 'Correo',
         'contact-privacy-note': 'Comparte solo información pública; no necesitamos contraseñas, datos de clientes ni detalles financieros.', 'category-label': 'Categoría',
@@ -67,7 +67,7 @@
         'fallback-title': '¿No se abrió tu aplicación de correo?', 'fallback-help': 'Copia estos datos en un correo nuevo, revísalo y envíalo tú. También puedes seleccionar el texto y copiarlo manualmente.',
         'to-label': 'Para', 'copy-email': 'Copiar dirección de correo', 'copy-message-label': 'Asunto y mensaje para copiar', 'copy-message': 'Copiar asunto y mensaje',
         'language-help': 'Esta página de consultas está disponible en inglés y español. Texto en español preparado con IA; sin revisión independiente de una persona nativa. Otros recursos enlazados pueden estar en inglés. Tu navegador puede ofrecer traducción a otros idiomas; esa traducción puede ser imperfecta.',
-        'contact-credit': 'DTRT Lab · Creado por Ian', 'contact-home-link': 'Inicio', 'contact-footer-about': 'Acerca del Lab', 'contact-footer-work': 'Proyectos', 'contact-footer-results': 'Resultados', 'contact-footer-partner': 'Colaboraciones', 'contact-footer-privacy': 'Privacidad'
+        'contact-credit': 'DTRT Lab · Creado por Ian', 'contact-home-link': 'Inicio', 'contact-footer-about': 'Acerca del Lab (inglés)', 'contact-footer-work': 'Proyectos (inglés)', 'contact-footer-results': 'Resultados (inglés)', 'contact-footer-partner': 'Colaboraciones (inglés)', 'contact-footer-privacy': 'Privacidad'
       }
     }
   };

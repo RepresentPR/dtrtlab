@@ -4,7 +4,7 @@
    HTML is network-first (updates roll out). Other same-origin files
    are stale-while-revalidate. JSON and third parties are not cached.
 */
-var VERSION = "20261012-language1";
+var VERSION = "20261012-language2";
 var CACHE = "dtrtlab-" + VERSION;
 var PRECACHE = [
   "/",
@@ -40,9 +40,9 @@ var PRECACHE = [
   "/css/adapt.css?v=20261010n",
   "/css/hub.css?v=20261010n",
   "/css/afterlight.css?v=20261010n",
-  "/js/nav.js?v=20261012-language1",
+  "/js/nav.js?v=20261012-language2",
   "/js/hub.js?v=20261010n",
-  "/js/analytics.js?v=20261012-language1",
+  "/js/analytics.js?v=20261012-language2",
   "/js/product.js?v=20261010n",
   "/js/media.js?v=20261010n",
   "/js/content.js?v=20261010n",
@@ -50,7 +50,7 @@ var PRECACHE = [
   "/js/afterlight.js?v=20261010n",
   "/js/releases.js?v=20261010n",
   "/content/clips.js?v=20261010n",
-  "/content/socials.js?v=20261012-language1",
+  "/content/socials.js?v=20261012-language2",
   "/partners.html",
   "/css/about.css?v=20261011-hub2",
   "/css/growth-home.css?v=20261011-hub2",
@@ -58,7 +58,7 @@ var PRECACHE = [
   "/css/editorial.css?v=20261011-hub2",
   "/css/identity.css?v=20261010n",
   "/css/experience.css?v=20261010n",
-  "/js/experience.js?v=20261012-language1",
+  "/js/experience.js?v=20261012-language2",
   "/img/brand/mark.svg",
   "/img/brand/dtrt-avatar.png",
   "/img/brand/dtrt-social.png",
