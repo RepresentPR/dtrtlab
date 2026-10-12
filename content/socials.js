@@ -17,7 +17,8 @@ window.DTRT_SOCIALS = {
       label: "Kick",
       handle: "movebro",
       url: "https://kick.com/movebro",
-      enabled: true
+      /* Paused in goals.json — hide until renamed or intentionally revived. */
+      enabled: false
     },
     {
       id: "youtube",

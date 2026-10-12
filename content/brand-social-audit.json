@@ -1,0 +1,169 @@
+{
+  "title": "DTRT Lab social presence vs company vision",
+  "auditedAt": "2026-10-12T16:30:00Z",
+  "auditor": "Cursor cloud agent (mentor pass for Ian Ferraro)",
+  "sources": [
+    "https://dtrtlab.com/",
+    "https://dtrtlab.com/about.html",
+    "content/site.json",
+    "content/product.json",
+    "content/goals.json",
+    "content/campaign.json",
+    "Postiz postsListTool window 2026-09-01 to 2026-11-01 (165 posts)",
+    "Live profile headers: X, TikTok, YouTube, Twitch, Kick"
+  ],
+  "visionSnapshot": {
+    "homepageNorthStar": "Make useful stuff. Have fun doing it. Free plan for businesses/ideas; workshop; public process.",
+    "aboutNorthStar": "Independent home for creator work and original worlds (AFTERLIGHT); DTRTC is the stream; long-term Puerto Rico help.",
+    "productJsonNorthStar": "DTRT AFTERLIGHT story-driven FPS in Puerto Rico; no public download.",
+    "conflict": "Three north stars are active at once. Homepage leads with business service. About leads with creator/AFTERLIGHT. Social inventory is ~85% CS2 gaming with a new business layer bolted on."
+  },
+  "recommendedNorthStar": {
+    "statement": "DTRT Lab is Ian’s public workshop: make useful work, show the process, keep room for play.",
+    "why": "Unifies the live homepage offer, the creator proof, and AFTERLIGHT without pretending the CS2 audience disappeared overnight.",
+    "lanes": {
+      "labBrand": {
+        "channels": ["website", "youtube:@DTRTLabYT", "x:@DTRTLab", "instagram:@officiallydtrt"],
+        "job": "Useful work, free plan, workshop, dated results, AFTERLIGHT story updates"
+      },
+      "livePlay": {
+        "channels": ["twitch:dtrtc"],
+        "job": "Live experiments, CS2, Lab Files source material — labeled as play / work log, not the whole company"
+      },
+      "distribution": {
+        "channels": ["tiktok:@iananthonyfc"],
+        "job": "Short distribution until a DTRT-named handle exists; display name already Lab-first"
+      },
+      "paused": {
+        "channels": ["kick:movebro"],
+        "job": "Hide until renamed or intentionally retired — name breaks discovery"
+      }
+    }
+  },
+  "postizInventory": {
+    "window": "2026-09-01T00:00:00Z to 2026-11-01T00:00:00Z",
+    "totalPosts": 165,
+    "states": { "PUBLISHED": 134, "DRAFT": 27, "ERROR": 4 },
+    "themeCounts": { "gaming": 140, "business": 11, "other": 14 },
+    "themeShareGamingApprox": 0.85,
+    "platforms": {
+      "instagram-standalone": 55,
+      "youtube": 54,
+      "tiktok-business": 31,
+      "x": 24,
+      "twitch": 1
+    },
+    "errors": [
+      {
+        "platform": "tiktok-business",
+        "count": 4,
+        "reason": "TikTok OpenAPI daily post spam limit blocked publishes on 2026-10-09"
+      }
+    ],
+    "draftRisk": "Multiple CS2 drafts remain dated 2026-10-12 through 2026-10-17. If promoted, they will keep flooding gaming into a business-led homepage week."
+  },
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "critical",
+      "title": "Three company visions fighting in public",
+      "evidence": "Homepage = free plan consultancy. About = creator + AFTERLIGHT, funding program not active. product.json = FPS campaign. Social = mostly CS2.",
+      "misalignment": "A stranger cannot tell what DTRT Lab is from a random post or profile hop.",
+      "action": "Adopt one spoken north star everywhere for 30 days. Park the other two as labeled lanes, not competing hero messages."
+    },
+    {
+      "id": "F2",
+      "severity": "critical",
+      "title": "Handle and display-name fragmentation",
+      "evidence": "X display Ian + @DTRTLab; IG @officiallydtrt; TikTok @iananthonyfc; YT @DTRTLabYT; Twitch dtrtc; Kick movebro. Postiz channel names: Ian / Ian Ferraro / IanAnthonyFC / DTRT / dtrtc.",
+      "misalignment": "Six naming systems force people to trust you are the same company.",
+      "action": "Standardize display names to DTRT Lab (or DTRT Lab | Ian). Retire or hide Kick until rename. Prefer DTRT handles on future platforms."
+    },
+    {
+      "id": "F3",
+      "severity": "critical",
+      "title": "Profile chrome contradicts the offer",
+      "evidence": "X bio sells free plans while header is FPS recoil-training UI. TikTok bio is Lab/free plan while avatar is casual personal photo. Kick banner says DTRT THE LAB under MoveBro + anime avatar.",
+      "misalignment": "Business DM offer lands beside gaming cosplay — trust drops before the DM.",
+      "action": "One Lab mark avatar on Lab channels. X header: workshop/site still, not aim-trainer UI. TikTok: Lab mark or clean work portrait."
+    },
+    {
+      "id": "F4",
+      "severity": "high",
+      "title": "Content mix vs homepage hero",
+      "evidence": "Postiz theme mix ~140 gaming / 11 business. Live engagement: CS2 Shorts 400–1.4K views vs business Shorts ~12–41 views.",
+      "misalignment": "Homepage asks for business DMs; feed trains the algorithm and audience on CS2.",
+      "action": "Either (A) Lab channels = process/offer/AFTERLIGHT only, CS2 stays Twitch+archive, or (B) every CS2 post ends with one Lab CTA and is framed as work-log proof — never silent gaming spam on Lab surfaces."
+    },
+    {
+      "id": "F5",
+      "severity": "high",
+      "title": "About page undercuts the free-plan launch",
+      "evidence": "About: long-term PR help, no funding program active. Homepage: free plan is the primary CTA.",
+      "misalignment": "Same company tells two stories about whether business help is live.",
+      "action": "Update About to name the free plan as live; keep funding/grant language separate and still not claimed."
+    },
+    {
+      "id": "F6",
+      "severity": "high",
+      "title": "Offer geography inconsistency",
+      "evidence": "X: USA including Puerto Rico. TikTok free-plan caption: anywhere in the world. IG/YT Spanish: Puerto Rico small businesses.",
+      "misalignment": "Eligibility rules change by platform — looks careless, not bilingual.",
+      "action": "One eligibility line on every free-plan post: businesses and ideas anywhere; Puerto Rico is home base, not the only door."
+    },
+    {
+      "id": "F7",
+      "severity": "medium",
+      "title": "Kick movebro is an active brand leak",
+      "evidence": "goals.json marks Kick paused; socials.js still enabled; Twitch panel still lists kick.com/movebro.",
+      "misalignment": "Paused product still advertised under an unrelated gamer handle.",
+      "action": "Disable Kick in site socials; remove from Twitch panels until rename or retirement."
+    },
+    {
+      "id": "F8",
+      "severity": "medium",
+      "title": "Draft queue will undo today’s pivot",
+      "evidence": "CS2 drafts scheduled/dated through Oct 17 on YouTube, Instagram, TikTok, X.",
+      "misalignment": "Publishing system still optimized for the old identity.",
+      "action": "In Postiz app: keep those as draft or rewrite captions to work-log + Lab CTA. Do not auto-promote the raw CS2 drafts."
+    },
+    {
+      "id": "F9",
+      "severity": "medium",
+      "title": "X business post attached stream case-file creative",
+      "evidence": "Pinned/recent free-plan post uses Lab Files / DTRTC Twitch case-file artwork.",
+      "misalignment": "CTA asks for company DMs; creative sells the stream experiment.",
+      "action": "Pair free-plan posts with site/workshop stills only."
+    },
+    {
+      "id": "F10",
+      "severity": "low",
+      "title": "Spanish free-plan copy lacks native review",
+      "evidence": "Homepage notes Spanish journey prepared with AI assistance, no independent native review.",
+      "misalignment": "PR-facing offer in Spanish without native QA risks tone/trust issues at home base.",
+      "action": "One native Spanish pass on free-plan captions before the next Spanish burst."
+    }
+  ],
+  "scorecard": {
+    "identityClarity": 2,
+    "visionConsistency": 2,
+    "offerTrust": 3,
+    "channelArchitecture": 2,
+    "executionDiscipline": 4,
+    "scale": "1-5 where 5 is fully aligned",
+    "overall": 2.6
+  },
+  "mentorActionsExecutedInRepo": [
+    "Disabled Kick in content/socials.js (already paused in goals).",
+    "Synced about.html to name the live free plan without claiming a funding program.",
+    "Saved this audit record and a 7-day playbook under docs/."
+  ],
+  "mentorActionsIanMustDoInApps": [
+    "Pause or rewrite Postiz CS2 drafts dated Oct 12–17.",
+    "Change X display name from Ian to DTRT Lab (or DTRT Lab | Ian).",
+    "Replace X header (remove aim-trainer UI) and TikTok avatar.",
+    "Remove Kick/movebro from Twitch panels.",
+    "Paste unified bios from docs/brand-social-playbook.md.",
+    "Choose lane rule A or B for CS2 on Lab channels and stick to it for 14 days."
+  ]
+}
