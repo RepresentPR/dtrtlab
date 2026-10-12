@@ -92,8 +92,8 @@
       bar.hidden = reading.progress === null;
       if (reading.progress !== null) bar.value = reading.progress;
       var note = name === 'views' && reading.value !== null
-        ? 'Partial tracked total from matched counters and campaign posts. See Results for coverage.'
-        : reading.note || (reading.value === null ? 'Baseline pending. No gain claimed yet.' : 'Added views since the campaign baseline.');
+        ? 'Campaign composite: opening matched deltas plus campaign-created post cumulatives. Not Instagram Insights period views. See Results.'
+        : reading.note || (reading.value === null ? 'Baseline pending. No gain claimed yet. Not Instagram Insights.' : 'Campaign composite since baseline; not Insights period views.');
       if (reading.value !== null) note += reading.observedAt ? ' Measured ' + dateLabel(reading.observedAt) + (reading.freshness === 'stale' ? ' · over 6 hours old.' : '.') : ' Measurement time unavailable.';
       set(name + '-note', note);
       doc.getElementById(name + '-note').classList.toggle('warning', reading.value !== null && reading.freshness !== 'recent');

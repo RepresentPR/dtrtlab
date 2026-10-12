@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-12T01:34:47.614601Z",
+  "capturedAt": "2026-10-12T18:16:00Z",
   "campaign": {
     "name": "Growth measured in public.",
     "startAt": "2026-10-11T06:28:12Z",
@@ -10,12 +10,12 @@
   },
   "results": {
     "views": {
-      "value": 8380,
+      "value": 8945,
       "status": "verified",
-      "observedAt": "2026-10-12T00:08:12.283Z",
-      "note": "The saved partial campaign total rose by 4,427: 1,678 net counter change on previously measured posts plus 2,749 newly included cumulative views from three Instagram posts. Those initial counters cover time since publication, not only the interval since the previous update. Other counters retain their earlier dates; no full inventory refresh, unique-audience or distribution-attribution claim.",
-      "metric": "reported_new_campaign_post_views_plus_matched_legacy_counter_deltas",
-      "coverage": "Fixed 31 opening YouTube Shorts and 33 opening Instagram Reels plus fourteen measured campaign-created posts. X and Ko-fi are excluded from headline views.",
+      "observedAt": "2026-10-12T03:13:21.457Z",
+      "note": "Headline 8,945 = matched opening-counter deltas on baseline posts (YouTube Shorts +459, Instagram Reels +141) plus cumulative counters on campaign-created posts. Instagram Door corrected to 1,544 (was 979) from the 2026-10-12T03:13:21.457Z review. This is NOT Instagram Professional Insights period views, NOT unique people, and NOT interval-earned views between saves. First measurement of a new post adds its whole cumulative counter, which can jump the headline without that many new views in the last hour.",
+      "metric": "opening_matched_deltas_plus_campaign_created_post_cumulatives",
+      "coverage": "Opening matched deltas on fixed baseline posts plus cumulative counters on campaign-created posts. Instagram Professional Insights period totals are stored separately under results.platformPeriodInsights and are not added into this headline.",
       "components": [
         {
           "platform": "YouTube",
@@ -109,10 +109,10 @@
         },
         {
           "platform": "Instagram Door",
-          "basis": "Displayed native Reel-grid cumulative counter on campaign-created post; may include operator verification",
+          "basis": "Native Instagram Reel counter from the dated Door four-hour review (learning-audits graph-format-20261012T0300Z). Replaces the earlier 00:08:03Z first-measured counter of 979. May include operator verification; not an Insights period total.",
           "postUrl": "https://www.instagram.com/reel/DeXroJNijk3/",
-          "value": 979,
-          "observedAt": "2026-10-12T00:08:03.314Z"
+          "value": 1544,
+          "observedAt": "2026-10-12T03:13:21.457Z"
         },
         {
           "platform": "Instagram preview teaser",
@@ -133,7 +133,7 @@
       "fullCampaignStartTotal": null
     },
     "lifetimeViews": {
-      "value": 152832,
+      "value": 153397,
       "status": "verified",
       "observedAt": "2026-10-11T19:48:51.709Z",
       "coverage": "partial",
@@ -176,12 +176,12 @@
         },
         {
           "platform": "Instagram Reels",
-          "value": 17895,
+          "value": 18460,
           "posts": 37,
-          "scope": "37 measured public Reel counters; dated full inventory plus focused Anubis, Knife, preview teaser and Door updates. Each post counted once.",
+          "scope": "37 measured public Reel counters; dated full inventory plus focused Anubis, Knife, preview teaser and Door updates (Door corrected to 1544). Each post counted once. This sum is NOT Instagram Professional Insights period views (native Insights Sep 12\u2013Oct 11 showed 20.0K account views across 58 shared pieces of content).",
           "observedAt": "2026-10-11T19:52:01.262Z",
           "fullInventoryObservedAt": "2026-10-11T19:52:01.262Z",
-          "observedThrough": "2026-10-12T00:08:03.314Z",
+          "observedThrough": "2026-10-12T03:13:21.457Z",
           "observationType": "Dated full inventory with separately dated focused post updates; other counters not refreshed",
           "focusedUpdates": [
             {
@@ -192,10 +192,11 @@
             },
             {
               "postId": "DeXroJNijk3",
-              "value": 979,
-              "observedAt": "2026-10-12T00:08:03.314Z",
-              "deltaFromPreviousSaved": null,
-              "firstMeasuredCounter": true
+              "value": 1544,
+              "observedAt": "2026-10-12T03:13:21.457Z",
+              "deltaFromPreviousSaved": 565,
+              "firstMeasuredCounter": true,
+              "note": "Corrected from first-measured 979 using Door four-hour review counter"
             },
             {
               "postId": "DeXjZI1mesV",
@@ -274,8 +275,37 @@
           ]
         }
       ],
-      "note": "Known lifetime inventory combines the dated full collection with focused updates on named public posts. Unchanged counters retain their earlier times. Historical views are not campaign growth.",
-      "observedThrough": "2026-10-12T00:08:12.283Z"
+      "note": "Known lifetime inventory combines dated full collections with focused updates. Instagram Door corrected +565 to 1544. Unchanged counters retain earlier times. Historical views are not campaign growth. Lifetime Reel sums are not Insights period views. Public table sum excludes private/unlisted YouTube identities that remain only in the YouTube other aggregate.",
+      "observedThrough": "2026-10-12T03:13:21.457Z"
+    },
+    "platformPeriodInsights": {
+      "status": "verified",
+      "note": "Account-level Insights windows from native Professional Dashboard screenshots. These are a different metric from per-post lifetime counters on /live.",
+      "observations": [
+        {
+          "platform": "Instagram",
+          "handle": "@officiallydtrt",
+          "windowLabel": "Sep 12 \u2013 Oct 11",
+          "windowStart": "2026-09-12",
+          "windowEnd": "2026-10-11",
+          "views": 20000,
+          "viewsDisplay": "20.0K",
+          "newFollowers": 0,
+          "contentShared": 58,
+          "source": "Instagram Professional Dashboard Insights screenshot from Ian",
+          "observedAt": "2026-10-12T18:16:00Z",
+          "highlight": {
+            "kind": "reel_plays_vs_last_5",
+            "text": "Your reel is getting played more. Congrats, this reel received 460% more plays than any of your last 5 reels.",
+            "titleHint": "FIRST DUEL"
+          },
+          "comparisonToInventory": {
+            "measuredPublicReels": 37,
+            "measuredReelLifetimeSum": 18460,
+            "whyDifferent": "Insights counts account views inside a calendar window across content types. Inventory sums cumulative Reel-grid counters for 37 measured Reels only. 58 content shared includes non-Reel pieces not in the Reel inventory. Neither figure is unique viewers."
+          }
+        }
+      ]
     }
   },
   "operations": {
@@ -341,7 +371,8 @@
   ],
   "queue": [],
   "evidenceNotes": [
-    "Lifetime goal: 250,000 overall reported video views by December 31 Eastern. Known total 152,832; historical coverage is not campaign growth.",
+    "Numbers re-audit 2026-10-12: Instagram Professional Insights Sep 12\u2013Oct 11 = 20.0K views, 0 new followers, 58 content shared. /live Instagram inventory remains a 37-Reel lifetime sum (18,460), a different metric. Instagram Door inventory corrected from 979 to 1,544. Campaign-added headline is now 8,945; do not compare it to Insights 20.0K.",
+    "Lifetime goal: 250,000 overall reported video views by December 31 Eastern. Known total 153,397 after Door Instagram correction; historical coverage is not campaign growth.",
     "96 public measured records plus seven private/unlisted YouTube records in aggregate: 103 measured posts. Focused updates cover four YouTube Shorts, five TikTok posts and four Instagram Reels. X is excluded from headline totals. Other inventory dates remain unchanged.",
     "Focused native observations at 00:07-00:08 UTC on October 12 updated thirteen public posts. Full inventory observations remain dated around 19:49-19:52 UTC on October 11; component times stay separate.",
     "The saved partial campaign total rose by 4,427: 1,678 net counter change on previously measured posts plus 2,749 newly included cumulative views from three Instagram posts. Those initial counters cover time since publication, not only the interval since the previous update. Other counters retain their earlier dates; no full inventory refresh, unique-audience or distribution-attribution claim.",
@@ -561,7 +592,7 @@
       "timestampBasis": "Native X time datetime attribute"
     },
     {
-      "title": "DTRT Lab — From Ideas to Useful Public Work",
+      "title": "DTRT Lab \u2014 From Ideas to Useful Public Work",
       "platform": "YouTube",
       "url": "https://www.youtube.com/watch?v=8uQyfvJnofI",
       "publishedAt": "2026-10-12T01:01:40Z",

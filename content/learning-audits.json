@@ -514,6 +514,46 @@
       "status": "complete",
       "completedAt": "2026-10-12T03:18:04.801584Z",
       "scheduledAuditAt": "2026-10-12T03:00:00Z"
+    },
+    {
+      "id": "live-numbers-reaudit-20261012",
+      "kind": "live_numbers_reaudit",
+      "title": "Re-audit /live against Instagram Professional Insights",
+      "observedAt": "2026-10-12T18:16:00Z",
+      "completedAt": "2026-10-12T18:16:00Z",
+      "status": "complete",
+      "decision": "/live was not inventing Instagram views, but it was easy to misread. Insights 20.0K (Sep 12\u2013Oct 11) is an account period total; inventory 17,895\u219218,460 is a Reel lifetime sum for 37 measured Reels. Campaign-added is a third metric. Door Instagram corrected 979\u21921,544 from the earlier review evidence.",
+      "instagramInsights": {
+        "windowLabel": "Sep 12 \u2013 Oct 11",
+        "views": 20000,
+        "newFollowers": 0,
+        "contentShared": 58,
+        "source": "Instagram Professional Dashboard screenshot"
+      },
+      "corrections": [
+        {
+          "field": "instagram:DeXroJNijk3.views",
+          "from": 979,
+          "to": 1544,
+          "at": "2026-10-12T03:13:21.457Z"
+        },
+        {
+          "field": "campaign.results.views.value",
+          "from": 8380,
+          "to": 8945
+        },
+        {
+          "field": "campaign.results.lifetimeViews.value",
+          "from": 152832,
+          "to": 153397
+        }
+      ],
+      "limits": [
+        "No full Instagram inventory refresh was collected in this re-audit.",
+        "Oct 12 business Reels remain unpublished to inventory until counters are observed.",
+        "20.0K Insights display precision may round; treated as 20,000.",
+        "Private/unlisted YouTube identities stay omitted from the public table."
+      ]
     }
   ]
 }

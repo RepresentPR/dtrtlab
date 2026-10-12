@@ -936,10 +936,10 @@
       "platform": "Instagram",
       "title": "The door was already covered",
       "url": "https://www.instagram.com/reel/DeXroJNijk3/",
-      "views": 979,
-      "observedAt": "2026-10-12T00:08:03.314Z",
+      "views": 1544,
+      "observedAt": "2026-10-12T03:13:21.457Z",
       "publicationDate": null,
-      "review": "First measured public counter; this update does not establish a matched publication-age review."
+      "review": "Door four-hour review counter applied (1,544 views at 2026-10-12T03:13:21.457Z). Not a matched winner claim. Not Instagram Insights period views."
     },
     {
       "id": "instagram:DeXjZI1mesV",
@@ -1014,6 +1014,11 @@
     {
       "observedAt": "2026-10-12T00:08:12.283Z",
       "value": 8380
+    },
+    {
+      "observedAt": "2026-10-12T03:13:21.457Z",
+      "value": 8945,
+      "note": "Door Instagram correction from four-hour review; not an Insights total"
     }
   ],
   "experiments": [
@@ -1125,7 +1130,7 @@
       "decision": "Inconclusive. Post analytics showed 7 video views, 1 unique video view and 11 impressions. The sample is too small to assess creative performance. These X counts remain excluded from headline video totals. Keep later reviews; no winner established."
     }
   ],
-  "coverage": "96 public measured records plus seven private/unlisted YouTube records in aggregate: 103 measured posts. Focused updates cover four YouTube Shorts, five TikTok posts and four Instagram Reels. X is excluded from headline totals. Other inventory dates remain unchanged.",
+  "coverage": "96 public measured records plus seven private/unlisted YouTube records in aggregate for the lifetime headline. Instagram Door corrected to 1544. Instagram Professional Insights Sep 12\u2013Oct 11 showed 20.0K account views across 58 shared items with 0 new followers \u2014 that Insights window is not the same metric as the 18,460 sum of 37 measured Reel lifetime counters. X excluded from headline totals. Other inventory dates unchanged unless listed in focused updates.",
   "learningAudits": [
     {
       "observedAt": "2026-10-11T15:01:14.433902+00:00",
