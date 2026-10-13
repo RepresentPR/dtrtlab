@@ -36,8 +36,8 @@
     "es": "Crea cosas útiles.<br><span>Disfruta al hacerlo.</span>"
   },
   "homeLead": {
-    "en": "See what we’re making. Try the free guide. Tell us about your project.",
-    "es": "Mira lo que estamos creando. Prueba la guía gratuita. Cuéntanos sobre tu proyecto."
+    "en": "Is your page making people guess what you do? Send one link and one goal. We’ll send back a free plan.",
+    "es": "¿Tu página hace que la gente adivine qué haces? Envía un enlace y una meta. Te devolvemos un plan gratis."
   },
   "freeDown": {
     "en": "Get a free plan <span aria-hidden=\"true\">↓</span>",
@@ -550,14 +550,102 @@
   "archiveNav": {
     "en": "Work archive",
     "es": "Archivo (inglés)"
+  },
+  "seeSample": {
+    "en": "See a sample plan first <span aria-hidden=\"true\">↗</span>",
+    "es": "Mira un plan de muestra primero <span aria-hidden=\"true\">↗</span>"
+  },
+  "spEyebrow": {
+    "en": "SAMPLE FREE PLAN · FICTIONAL EXAMPLE",
+    "es": "PLAN GRATIS DE MUESTRA · EJEMPLO FICTICIO"
+  },
+  "spTitle": {
+    "en": "This is what you get back.<br><span>One link. One goal. One plan.</span>",
+    "es": "Esto es lo que recibes.<br><span>Un enlace. Una meta. Un plan.</span>"
+  },
+  "spLabel": {
+    "en": "Café Ejemplo is a made-up business. The page and wording below are illustrations, not a client result.",
+    "es": "Café Ejemplo es un negocio inventado. La página y el texto son ilustraciones, no el resultado de un cliente."
+  },
+  "spGoalH": {
+    "en": "What they sent",
+    "es": "Lo que enviaron"
+  },
+  "spGoal": {
+    "en": "<strong>Link:</strong> their café homepage. <strong>Goal:</strong> more weekday breakfast pickup orders.",
+    "es": "<strong>Enlace:</strong> la página principal del café. <strong>Meta:</strong> más órdenes de desayuno para recoger entre semana."
+  },
+  "spPriH": {
+    "en": "Three practical priorities",
+    "es": "Tres prioridades prácticas"
+  },
+  "spP1": {
+    "en": "<strong>Say what you sell in the first line.</strong> The page opens with “Welcome to our family since 2019.” A hungry visitor still doesn’t know you do fast breakfast.",
+    "es": "<strong>Di lo que vendes en la primera línea.</strong> La página abre con “Bienvenidos a nuestra familia desde 2019.” Alguien con hambre todavía no sabe que haces desayunos rápidos."
+  },
+  "spP2": {
+    "en": "<strong>Give one clear next step.</strong> Menu, About, Gallery and Events all compete. Put one button first: Order for pickup.",
+    "es": "<strong>Da un solo próximo paso claro.</strong> Menú, Nosotros, Galería y Eventos compiten entre sí. Pon un botón primero: Ordenar para recoger."
+  },
+  "spP3": {
+    "en": "<strong>Show proof you already have.</strong> Their best reviews sit on another site. Place two or three real ones, used with permission, beside the order button.",
+    "es": "<strong>Muestra la prueba que ya tienes.</strong> Sus mejores reseñas están en otro sitio. Coloca dos o tres reales, con permiso, al lado del botón de ordenar."
+  },
+  "spSampleH": {
+    "en": "One sample improvement",
+    "es": "Una mejora de ejemplo"
+  },
+  "spBeforeL": {
+    "en": "Before",
+    "es": "Antes"
+  },
+  "spBefore": {
+    "en": "Welcome to our family since 2019. We love coffee, community and good vibes.",
+    "es": "Bienvenidos a nuestra familia desde 2019. Amamos el café, la comunidad y la buena vibra."
+  },
+  "spAfterL": {
+    "en": "After",
+    "es": "Después"
+  },
+  "spAfter": {
+    "en": "Breakfast sandwiches and local coffee, ready in 5 minutes.<br><em>[ Order for pickup ]</em>",
+    "es": "Sándwiches de desayuno y café local, listos en 5 minutos.<br><em>[ Ordenar para recoger ]</em>"
+  },
+  "spNextH": {
+    "en": "A clear next step",
+    "es": "Un próximo paso claro"
+  },
+  "spNext": {
+    "en": "Change the first line and the button this week. Then compare weekday pickup orders for two weeks against the two weeks before. Keep it if it helps; try the next priority if it doesn’t.",
+    "es": "Cambia la primera línea y el botón esta semana. Luego compara las órdenes para recoger entre semana durante dos semanas contra las dos semanas anteriores. Si ayuda, déjalo; si no, prueba la próxima prioridad."
+  },
+  "spChecksH": {
+    "en": "What we look at on every plan",
+    "es": "Lo que revisamos en cada plan"
+  },
+  "spChecks": {
+    "en": "<li>Can a stranger tell what you do in five seconds?</li><li>Is there one obvious next step?</li><li>Is the offer clear: what it is, who it’s for, and how to ask?</li><li>Is real proof visible near the decision?</li><li>Does it work on a phone?</li><li>Is it easy to contact you?</li>",
+    "es": "<li>¿Un desconocido entiende lo que haces en cinco segundos?</li><li>¿Hay un solo próximo paso obvio?</li><li>¿La oferta está clara: qué es, para quién y cómo pedirla?</li><li>¿Hay prueba real cerca del momento de decidir?</li><li>¿Funciona bien en el celular?</li><li>¿Es fácil contactarte?</li>"
+  },
+  "spLimits": {
+    "en": "A free plan reads your public page and your goal. It does not access your accounts, measure your traffic, or promise results.",
+    "es": "Un plan gratis lee tu página pública y tu meta. No entra a tus cuentas, no mide tu tráfico y no promete resultados."
+  },
+  "spCtaH": {
+    "en": "Want one for your business or idea?",
+    "es": "¿Quieres uno para tu negocio o tu idea?"
+  },
+  "spCta": {
+    "en": "Send your public link or a short idea, plus one goal. No purchase required.",
+    "es": "Envía tu enlace público o una idea corta, más una meta. No necesitas comprar nada."
   }
 };
-  const titles = { home: { en: 'DTRT Lab — Make useful stuff. Have fun doing it.', es: 'DTRT Lab — Crea cosas útiles. Disfruta al hacerlo.' }, support: { en: 'Support the Lab — DTRT Lab', es: 'Apoya al Lab — DTRT Lab' } };
+  const titles = { home: { en: 'DTRT Lab — Make useful stuff. Have fun doing it.', es: 'DTRT Lab — Crea cosas útiles. Disfruta al hacerlo.' }, support: { en: 'Support the Lab — DTRT Lab', es: 'Apoya al Lab — DTRT Lab' }, sample: { en: 'Sample free plan — DTRT Lab', es: 'Plan gratis de muestra — DTRT Lab' } };
   function languageFromSearch(search) { return new URLSearchParams(search).get('lang') === 'es' ? 'es' : 'en'; }
   function localizeHref(href, language) {
     if (!href || !href.startsWith('/') || href.startsWith('//')) return href;
     const url = new URL(href, 'https://dtrtlab.com');
-    if (!['/', '/index.html', '/contact.html', '/support.html'].includes(url.pathname)) return href;
+    if (!['/', '/index.html', '/contact.html', '/support.html', '/sample-plan.html'].includes(url.pathname)) return href;
     url.searchParams.set('lang', language === 'es' ? 'es' : 'en');
     return url.pathname + url.search + url.hash;
   }
