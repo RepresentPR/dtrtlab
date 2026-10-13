@@ -113,8 +113,8 @@ LinkedIn: **not** on Postiz — paste career kit manually.
 | --- | --- | --- | --- |
 | D — Shop honesty | Will | **Ready** | https://uploads.postiz.com/Ug9DA6DTc6.mp4 |
 | E — Dual brand | Roger | **Ready** | https://uploads.postiz.com/AxzqWNbzmv.mp4 |
-| A — Free plan intro | Chris | Pending / stalled (credits may be exhausted) | job `…_RZQe8BTwXP` |
-| A retry | Eric | Failed — **no AI video credits** on Postiz account | — |
+| A — Free plan intro | Chris | **Ready** | https://uploads.postiz.com/P6OFBe1NwF.mp4 |
+| A retry | Eric | Failed mid-run — account hit **no AI video credits** for a moment | — |
 
 **Muse / Dot:** Muse quota blocked; no Dot TTS in toolchain. **Grok** wrote the winning scripts.
 
@@ -130,6 +130,10 @@ LinkedIn: **not** on Postiz — paste career kit manually.
 | TikTok — Lab vs DTRTC | https://platform.postiz.com/p/cmv6vh9zq0ke3qw0y4vr7ncjq?share=true |
 | YouTube (unlisted) — shop honesty | https://platform.postiz.com/p/cmv6vha6y0ke4qw0yh52wydr9?share=true |
 | Twitch — dual brand promo | https://platform.postiz.com/p/cmv6vhaer0ke5qw0yrcmnzbks?share=true |
+| X — free plan intro (Chris) | https://platform.postiz.com/p/cmv6vj5vn0keiqw0y2s1g0x4b?share=true |
+| IG — free plan intro | *(see Postiz after Chris draft create)* |
+| TikTok — free plan intro | *(see Postiz after Chris draft create)* |
+| YouTube unlisted — free plan intro | *(see Postiz after Chris draft create)* |
 
 TikTok drafts set `video_made_with_ai=true` + `DIRECT_POST` when published.
 

@@ -1,10 +1,16 @@
-# Keep structure in git; keep personal photo dumps out of the repo.
-raw/**
-selected/**
+# Keep folder structure in git; keep personal photo dumps out of the repo.
+*
+!.gitignore
+!README.md
+!raw/
 !raw/.gitkeep
+!selected/
 !selected/.gitkeep
+!selected/a/
 !selected/a/.gitkeep
+!selected/b/
 !selected/b/.gitkeep
+!selected/c/
 !selected/c/.gitkeep
 *.heic
 *.HEIC
