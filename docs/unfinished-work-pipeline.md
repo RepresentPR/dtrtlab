@@ -39,14 +39,14 @@
 
 | Order | PR | Branch | Status | Notes |
 | --- | --- | --- | --- | --- |
-| 1 | [#34](https://github.com/RepresentPR/dtrtlab/pull/34) | `cursor/vision-fit-revamp-9a53` | IN_PROGRESS | Studio Identity — rebase/fix dirty, then merge |
-| 2 | [#31](https://github.com/RepresentPR/dtrtlab/pull/31) | `cursor/hello-email-cutover-9a53` | READY | hello@ cutover |
-| 3 | [#32](https://github.com/RepresentPR/dtrtlab/pull/32) | `cursor/company-foundation-9a53` | READY | company foundation |
-| 4 | [#33](https://github.com/RepresentPR/dtrtlab/pull/33) | `cursor/dummy-proof-actions-9a53` | READY | one-click visitor pipeline |
-| 5 | [#35](https://github.com/RepresentPR/dtrtlab/pull/35) | `cursor/mobile-app-tool-9a53` | READY | mobile free-plan tool |
-| 6 | [#36](https://github.com/RepresentPR/dtrtlab/pull/36) | `cursor/made-for-all-shop-9a53` | READY | Made for all + shop interest |
-| 7 | [#37](https://github.com/RepresentPR/dtrtlab/pull/37) | `cursor/career-social-align-9a53` | READY | career + social + GitHub audit + this pipeline |
-| 8 | [#29](https://github.com/RepresentPR/dtrtlab/pull/29) | `cursor/live-numbers-reaudit-9a53` | READY | /live numbers honesty |
+| 1 | [#34](https://github.com/RepresentPR/dtrtlab/pull/34) | `cursor/vision-fit-revamp-9a53` | DONE | Merged by agent (1st chair) |
+| 2 | [#31](https://github.com/RepresentPR/dtrtlab/pull/31) | `cursor/hello-email-cutover-9a53` | DONE | Merged by agent |
+| 3 | [#32](https://github.com/RepresentPR/dtrtlab/pull/32) | `cursor/company-foundation-9a53` | DONE | Absorbed via #34/#31; tree synced to main |
+| 4 | [#33](https://github.com/RepresentPR/dtrtlab/pull/33) | `cursor/dummy-proof-actions-9a53` | DONE | Merged by agent |
+| 5 | [#35](https://github.com/RepresentPR/dtrtlab/pull/35) | `cursor/mobile-app-tool-9a53` | DONE | Merged by agent |
+| 6 | [#36](https://github.com/RepresentPR/dtrtlab/pull/36) | `cursor/made-for-all-shop-9a53` | DONE | Merged by agent |
+| 7 | [#37](https://github.com/RepresentPR/dtrtlab/pull/37) | `cursor/career-social-align-9a53` | IN_PROGRESS | career + social + pipeline + agent-first authority |
+| 8 | [#29](https://github.com/RepresentPR/dtrtlab/pull/29) | `cursor/live-numbers-reaudit-9a53` | READY | /live numbers honesty — next |
 | — | [#28](https://github.com/RepresentPR/dtrtlab/pull/28) | `cursor/social-vision-audit-9a53` | PARK | absorb or close after #37 |
 | — | [#25](https://github.com/RepresentPR/dtrtlab/pull/25) | `cursor/cs2-community-heaven-656a` | PARK | CS2 community — don’t bury Lab |
 

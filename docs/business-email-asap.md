@@ -18,7 +18,7 @@ Open [mail.google.com](https://mail.google.com) as `iananthonyfc@gmail.com`. Bot
 python3 scripts/check-business-email.py
 ```
 
-Expect MX at `*.mx.cloudflare.net` and `site.json contactEmail: hello@dtrtlab.com`. The script also prints whether site.json still points at Outlook.
+Expect MX at `*.mx.cloudflare.net` and `site.json contactEmail: hello@dtrtlab.com`.
 
 ### Agent path (re-run / recovery — needs API token)
 
@@ -31,6 +31,8 @@ python3 scripts/check-business-email.py
 
 Token needs: Account Email Routing Addresses Edit, Zone Email Routing Rules Edit, Zone Read, resource = `dtrtlab.com`.
 
+Optional cleanup: DMARC currently reports to `dmarc_rua@onsecureserver.net` (old GoDaddy residue). Change DMARC `rua` to `mailto:hello@dtrtlab.com` or remove if unused.
+
 ## Send as hello@ (pick one)
 
 Cloudflare Email Routing **receives only**. To *send* as `@dtrtlab.com`:
@@ -41,15 +43,11 @@ Cloudflare Email Routing **receives only**. To *send* as `@dtrtlab.com`:
 | **B. Google Workspace** | Paid | ~30–60 min | Best long-term with your Gmail habits |
 | **C. Microsoft 365** | Paid | ~30–60 min | Fits if you want Outlook as primary |
 
-Recommended order: receive is done → choose A or B this week for send.
+Recommended: receive is already live → choose A or B for send.
 
 ### Gmail “Send mail as” (after you have SMTP)
 
 Gmail → Settings → Accounts → **Send mail as** → Add `hello@dtrtlab.com` using the SMTP from Zoho/Workspace/M365. Then default that address for DTRT Lab outreach.
-
-## Site cutover
-
-Public contact is already on `hello@dtrtlab.com`. If any page still hardcodes Outlook, replace it (or read from `content/site.json`). Do **not** point public mail at Outlook while Cloudflare routing is the receive path.
 
 ## Addresses we standardize on
 
