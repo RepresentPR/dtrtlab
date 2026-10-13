@@ -9,9 +9,9 @@
   "preorderNote": "Price and checkout stay off until a PayPal sandbox app is configured and a price is set in .env. This is a release candidate, not 1.0.",
   "paypalClientIdPublic": "",
   "donateHostedButtonId": "",
-  "contactEmail": "DTRTCollision@outlook.com",
-  "pressEmail": "DTRTCollision@outlook.com",
-  "supportEmail": "DTRTCollision@outlook.com",
+  "contactEmail": "hello@dtrtlab.com",
+  "pressEmail": "hello@dtrtlab.com",
+  "supportEmail": "hello@dtrtlab.com",
   "donateUrl": "",
   "social": {
     "x": "https://x.com/DTRTLab",

@@ -12,10 +12,10 @@
     return fetch("content/site.json", { cache: "no-store" })
       .then(function (r) { return r.ok ? r.json() : {}; })
       .then(function (site) {
-        return (site && (site.contactEmail || site.supportEmail || site.pressEmail)) || "DTRTCollision@outlook.com";
+        return (site && (site.contactEmail || site.supportEmail || site.pressEmail)) || "hello@dtrtlab.com";
       })
       .catch(function () {
-        return "DTRTCollision@outlook.com";
+        return "hello@dtrtlab.com";
       });
   }
   window.DTRT = window.DTRT || {};
