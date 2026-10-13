@@ -27,8 +27,10 @@ DTRT Lab is Ian’s independent studio that turns that personal vision into a du
 | **Evidence** | `/live/` dated dashboard; no vanity metrics without context |
 | **Trust** | `@dtrtlab.com` inbox, legal/brand/press pages, no fake hiring/fundraising |
 | **Scale with integrity** | Entity → bank → trademarks → store only when real; path toward a top-tier global company without pretending we are one today |
+| **Made for all** | Any age, any size idea; EN/ES journey; global audience from Puerto Rico roots |
+| **Revenue snowball** | Digital + print-on-demand interest first (`/shop.html`); checkout off until delivery is real — no fake cart |
 
-**North star:** A durable independent entertainment *and* usefulness company that can eventually fund help for Puerto Rico businesses — not a vanity brand, not a clone shop, not a hype machine.
+**North star:** A durable independent entertainment *and* usefulness company — Made for all, global by design — that can eventually fund help for Puerto Rico businesses — not a vanity brand, not a clone shop, not a hype machine.
 
 ## Dual brand (intentional)
 
@@ -57,10 +59,11 @@ If “no” or “only if we copy someone else’s product in secret” → **ou
 ## In vision right now (priority order)
 
 1. Deliver useful free plans; convert only with clear paid scopes  
-2. Ship AFTERLIGHT chapters / playtest readiness with honest status  
-3. Keep public evidence and company foundation tight (legal, brand, press, email)  
-4. Register entity + send-as `hello@` when ready  
-5. Later: revenue → Puerto Rico business help program (design when cash is real)
+2. Grow shop interest (digital packs + POD merch) → flip checkout only when payment + fulfillment are real  
+3. Ship AFTERLIGHT chapters / playtest readiness with honest status  
+4. Keep public evidence and company foundation tight (legal, brand, press, email)  
+5. Register entity + send-as `hello@` when ready  
+6. Later: revenue → Puerto Rico business help program (design when cash is real)
 
 ## Related
 
