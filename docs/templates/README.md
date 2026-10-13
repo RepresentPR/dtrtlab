@@ -9,6 +9,7 @@
 | Template | Helps | File |
 | --- | --- | --- |
 | Agent floor (AGENTS.md) | Every coding agent stays on vision | `/AGENTS.md` |
+| AI spend ops | One chat / one agent; company vs experiment wallets | `/docs/ai-spend-ops.md` |
 | Cursor always-on rules | Honesty + dual brand in every chat | `.cursor/rules/*.mdc` |
 | Free plan delivery | Useful Lab product | `free-plan-delivery.md` |
 | Paid scope proposal | Honest paid work (no fake guarantees) | `paid-scope-proposal.md` |
