@@ -46,7 +46,7 @@ for (const page of pages) {
       return controls.get(id);
     };
     form.elements = { namedItem: name => control('contact-' + name) };
-    control('contact-category').options = ['', 'Free plan', 'Paid project inquiry', 'Highlight', 'Partner', 'Work opportunity', 'Website', 'Other'].map(value => ({ value }));
+    control('contact-category').options = ['', 'Free plan', 'Paid project inquiry', 'Shop interest', 'Highlight', 'Partner', 'Work opportunity', 'Website', 'Other'].map(value => ({ value }));
     const location = { href: '', search: '' };
     const status = { textContent: '' };
     const sessionStorage = { getItem: () => null, setItem() {}, removeItem() {} };

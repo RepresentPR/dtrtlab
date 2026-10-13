@@ -28,7 +28,9 @@
   <url><loc>https://dtrtlab.com/partners.html</loc><lastmod>2026-10-11</lastmod><priority>0.6</priority></url>
   <url><loc>https://dtrtlab.com/partner/</loc><lastmod>2026-10-13</lastmod><priority>0.5</priority></url>
   <url><loc>https://dtrtlab.com/catalog.html</loc><lastmod>2026-10-10</lastmod><priority>0.3</priority></url>
-  <url><loc>https://dtrtlab.com/preorder.html</loc><lastmod>2026-10-10</lastmod><priority>0.3</priority></url>
+  <url><loc>https://dtrtlab.com/preorder.html</loc><lastmod>2026-10-13</lastmod><priority>0.3</priority></url>
+  <url><loc>https://dtrtlab.com/shop.html</loc><lastmod>2026-10-13</lastmod><priority>0.7</priority></url>
+  <url><loc>https://dtrtlab.com/content/shop.json</loc><lastmod>2026-10-13</lastmod><priority>0.2</priority></url>
   <url><loc>https://dtrtlab.com/bug.html</loc><lastmod>2026-10-10</lastmod><priority>0.2</priority></url>
   <url><loc>https://dtrtlab.com/stories/afterlight/people.html</loc><lastmod>2026-10-10</lastmod><priority>0.4</priority></url>
   <url><loc>https://dtrtlab.com/stories/afterlight/island.html</loc><lastmod>2026-10-10</lastmod><priority>0.4</priority></url>
