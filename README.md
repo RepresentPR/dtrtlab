@@ -22,6 +22,8 @@ Do **not** claim a live store, open raise, hiring pipeline, Fortune rank, or rev
 - Vision filter: [`docs/vision.md`](docs/vision.md)
 - Operating system: [`docs/company-operating-system.md`](docs/company-operating-system.md)
 - Brand: [`docs/brand-playbook.md`](docs/brand-playbook.md)
+- Agent floor: [`AGENTS.md`](AGENTS.md) · Cursor rules: [`.cursor/rules/`](.cursor/rules/)
+- AI prompt templates: [`docs/templates/`](docs/templates/README.md)
 - GitHub alignment audit: [`docs/github-vision-alignment-audit.md`](docs/github-vision-alignment-audit.md)
 
 ## Local

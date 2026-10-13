@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Free plan
+    url: https://dtrtlab.com/contact.html?intent=free-plan
+    about: Get a free plan (business link or idea + one goal). Not a GitHub issue.
+  - name: Company contact
+    url: https://dtrtlab.com/contact.html
+    about: General contact via hello@dtrtlab.com
