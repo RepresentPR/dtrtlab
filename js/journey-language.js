@@ -8,44 +8,97 @@
   'use strict';
   const copy = {
   "evidenceNote": {
-    "en": "Dated results, publishing records, and the optional hobby archive below are in English.",
-    "es": "Los resultados fechados, los registros de publicación y el archivo opcional de pasatiempos que aparecen abajo están en inglés."
+    "en": "Optional proof below is in English. Skip it if you already know what you need — use Free plan or Company above.",
+    "es": "La prueba opcional de abajo está en inglés. Si ya sabes lo que necesitas, sáltala — usa Plan gratis o Empresa arriba."
   },
   "skip": {
     "en": "Skip to content",
     "es": "Saltar al contenido"
   },
   "navWork": {
-    "en": "Work",
-    "es": "Trabajo"
+    "en": "Examples",
+    "es": "Ejemplos"
+  },
+  "navFree": {
+    "en": "Free plan",
+    "es": "Plan gratis"
+  },
+  "navPaid": {
+    "en": "Paid",
+    "es": "De pago"
+  },
+  "navCompany": {
+    "en": "Company",
+    "es": "Empresa"
   },
   "navGuide": {
     "en": "Guide",
     "es": "Guía (inglés)"
   },
+  "dockFree": {
+    "en": "Free plan",
+    "es": "Plan gratis"
+  },
+  "dockPaid": {
+    "en": "Paid",
+    "es": "De pago"
+  },
+  "dockCompany": {
+    "en": "Company",
+    "es": "Empresa"
+  },
+  "dockContact": {
+    "en": "Contact",
+    "es": "Contacto"
+  },
+  "quickActions": {
+    "en": "Quick actions",
+    "es": "Acciones rápidas"
+  },
+  "companyStep": {
+    "en": "03 / Orient",
+    "es": "03 / Orientarte"
+  },
+  "companyLabel": {
+    "en": "Company hub",
+    "es": "Centro de la empresa"
+  },
+  "companyRoute": {
+    "en": "Press, brand, careers, proof — one page, not a maze.",
+    "es": "Prensa, marca, empleos y prueba — una página, no un laberinto."
+  },
+  "dmFallback": {
+    "en": "Prefer a DM? <a href=\"https://x.com/DTRTLab\" rel=\"noopener noreferrer\" data-event=\"FreePlanOpenX\">Open X</a> · <a href=\"https://www.instagram.com/officiallydtrt/\" rel=\"noopener noreferrer\" data-event=\"FreePlanOpenInstagram\">Open Instagram</a>",
+    "es": "¿Prefieres un mensaje directo? <a href=\"https://x.com/DTRTLab\" rel=\"noopener noreferrer\" data-event=\"FreePlanOpenX\">Abrir X</a> · <a href=\"https://www.instagram.com/officiallydtrt/\" rel=\"noopener noreferrer\" data-event=\"FreePlanOpenInstagram\">Abrir Instagram</a>"
+  },
+
   "navContact": {
     "en": "Contact",
     "es": "Contacto"
   },
   "homeEyebrow": {
-    "en": "<span class=\"small-mark\" aria-hidden=\"true\"></span> DTRT LAB / COME ON IN",
-    "es": "<span class=\"small-mark\" aria-hidden=\"true\"></span> DTRT LAB / ADELANTE"
+    "en": "<span class=\"small-mark\" aria-hidden=\"true\"></span> DTRT LAB / ONE CLICK TO START",
+    "es": "<span class=\"small-mark\" aria-hidden=\"true\"></span> DTRT LAB / UN CLIC PARA EMPEZAR"
   },
   "homeTitle": {
     "en": "Make useful stuff.<br><span>Have fun doing it.</span>",
     "es": "Crea cosas útiles.<br><span>Disfruta al hacerlo.</span>"
   },
+  "heroBrand": {
+    "en": "DTRT LAB",
+    "es": "DTRT LAB"
+  },
   "homeLead": {
-    "en": "Is your page making people guess what you do? Send one link and one goal. We’ll send back a free plan.",
-    "es": "¿Tu página hace que la gente adivine qué haces? Envía un enlace y una meta. Te devolvemos un plan gratis."
+    "en": "Send one link and one goal. We’ll send back a free plan — three priorities, one sample improvement, a clear next step.",
+    "es": "Envía un enlace y una meta. Te devolvemos un plan gratis: tres prioridades, una mejora de ejemplo y un próximo paso claro."
   },
   "freeDown": {
-    "en": "Get a free plan <span aria-hidden=\"true\">↓</span>",
-    "es": "Pide un plan gratis <span aria-hidden=\"true\">↓</span>"
+    "en": "Get a free plan <span aria-hidden=\"true\">↗</span>",
+    "es": "Pide un plan gratis <span aria-hidden=\"true\">↗</span>"
   },
   "workDown": {
-    "en": "See the work <span aria-hidden=\"true\">↓</span>",
-    "es": "Mira el trabajo <span aria-hidden=\"true\">↓</span>"
+    "en": "See examples <span aria-hidden=\"true\">↓</span>",
+    "es": "Ver ejemplos <span aria-hidden=\"true\">↓</span>"
   },
   "getGuide": {
     "en": "Grab the free guide <span aria-hidden=\"true\">↗</span>",
@@ -56,8 +109,8 @@
     "es": "Salúdanos <span aria-hidden=\"true\">↗</span>"
   },
   "homeNote": {
-    "en": "A useful idea can start small. No treasure map required.",
-    "es": "Una idea útil puede empezar en pequeño. No hace falta un mapa del tesoro."
+    "en": "Useful for any size business or idea. No purchase required.",
+    "es": "Útil para cualquier tamaño de negocio o idea. Sin compra obligatoria."
   },
   "start": {
     "en": "01 / Start",
@@ -68,16 +121,16 @@
     "es": "Plan gratis"
   },
   "freeRoute": {
-    "en": "A business link or brief idea, plus one goal. No purchase required.",
-    "es": "El enlace de tu negocio o una idea breve, más una meta. Sin compra obligatoria."
+    "en": "One click → email draft. Business link or idea + one goal.",
+    "es": "Un clic → borrador de correo. Enlace o idea + un objetivo."
   },
   "together": {
-    "en": "02 / Work together",
-    "es": "02 / Colabora"
+    "en": "02 / Hire",
+    "es": "02 / Contrata"
   },
   "paidTitle": {
-    "en": "Discuss a paid project",
-    "es": "Consulta sobre un proyecto de pago"
+    "en": "Paid project",
+    "es": "Proyecto de pago"
   },
   "paidRoute": {
     "en": "Agree on a scope and quote before deciding to begin.",
@@ -116,12 +169,12 @@
     "es": "La oferta incluye el plan. Cualquier implementación se acuerda por separado."
   },
   "twoDetails": {
-    "en": "Two details. One message.",
-    "es": "Dos detalles. Un mensaje."
+    "en": "Two details. One click.",
+    "es": "Dos datos. Un clic."
   },
   "openProfile": {
-    "en": "Open either profile below, choose <strong>Message</strong>, and send:",
-    "es": "Abre uno de los perfiles de abajo, elige <strong>Mensaje</strong> y envíanos:"
+    "en": "Tap the button. Your email app opens with a draft. Add:",
+    "es": "Pulsa el botón. Se abre tu aplicación de correo con un borrador. Añade:"
   },
   "businessLink": {
     "en": "Your business’s public link, or a brief description of your idea.",
@@ -140,12 +193,12 @@
     "es": "Abre Instagram · @officiallydtrt <span aria-hidden=\"true\">↗</span>"
   },
   "prepareEmail": {
-    "en": "No DM? Prepare an email <span aria-hidden=\"true\">↗</span>",
-    "es": "¿Sin mensaje directo? Prepara un correo <span aria-hidden=\"true\">↗</span>"
+    "en": "Prepare free-plan email <span aria-hidden=\"true\">↗</span>",
+    "es": "Preparar correo del plan gratis <span aria-hidden=\"true\">↗</span>"
   },
   "dmNote": {
-    "en": "You may need to sign in to send a DM. Opening a profile does not send a request.",
-    "es": "Puede que necesites iniciar sesión para enviar un mensaje directo. Abrir el perfil no envía la solicitud."
+    "en": "You may need to sign in to send a DM. Opening a profile does not send a request. The email button does not send anything until you press Send in your email app.",
+    "es": "Puede que tengas que iniciar sesión para enviar un mensaje directo. Abrir un perfil no envía una solicitud. El botón de correo no envía nada hasta que pulses Enviar en tu aplicación de correo."
   },
   "inside": {
     "en": "A LOOK INSIDE THE LAB",
@@ -248,9 +301,14 @@
     "es": "El enlace de tu negocio o una breve descripción de tu idea, más una meta, es suficiente para empezar."
   },
   "freeUp": {
-    "en": "Get a free plan <span aria-hidden=\"true\">↑</span>",
-    "es": "Pide un plan gratis <span aria-hidden=\"true\">↑</span>"
+    "en": "Get a free plan <span aria-hidden=\"true\">↗</span>",
+    "es": "Pide un plan gratis <span aria-hidden=\"true\">↗</span>"
   },
+  "workRoutes": {
+    "en": "Do one thing now",
+    "es": "Haz una sola cosa ahora"
+  },
+
   "signature": {
     "en": "Do the right thing. Make useful stuff. Have fun doing it.",
     "es": "Haz lo correcto. Crea cosas útiles. Disfruta al hacerlo."
@@ -260,8 +318,8 @@
     "es": "Taller (inglés)"
   },
   "results": {
-    "en": "Dated results",
-    "es": "Resultados fechados (inglés)"
+    "en": "Proof",
+    "es": "Prueba (inglés)"
   },
   "about": {
     "en": "About",
@@ -274,6 +332,14 @@
   "privacy": {
     "en": "Privacy",
     "es": "Privacidad (inglés)"
+  },
+  "terms": {
+    "en": "Terms",
+    "es": "Términos (inglés)"
+  },
+  "cookies": {
+    "en": "Cookies",
+    "es": "Cookies (inglés)"
   },
   "supportTitle": {
     "en": "Help build<br>what's next.",
@@ -538,10 +604,6 @@
   "homeLink": {
     "en": "DTRT Lab home",
     "es": "Inicio de DTRT Lab"
-  },
-  "workRoutes": {
-    "en": "Choose how to work with or support the Lab",
-    "es": "Elige cómo trabajar con el Lab o apoyarlo"
   },
   "usefulRoutes": {
     "en": "Something useful to take with you",

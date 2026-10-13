@@ -1,11 +1,13 @@
 (function () {
-  var ASSET_V = "20261012-language2";
+  var ASSET_V = "20261013-actions1";
   var here = (location.pathname || "").toLowerCase();
   var parts = here.replace(/\\/g, "/").split("/").filter(Boolean);
   if (parts.length && /\.[a-z0-9]+$/i.test(parts[parts.length - 1])) parts.pop();
   var root = parts.length ? "../".repeat(parts.length) : "";
   var file = (location.pathname.split("/").pop() || "index.html").toLowerCase();
   var aboutOn = file === "about.html";
+  var companyOn = file === "company.html";
+  var contactOn = file === "contact.html";
   var partnerOn = file === "partners.html" || here.indexOf("/partner/") !== -1;
   var afterlightOn =
     file === "afterlight.html" ||
@@ -23,22 +25,25 @@
     return '<a href="' + root + href + '"' + cur + ">" + label + "</a>";
   }
 
+  // One primary path: Free plan CTA. Secondary: Company, Proof, Clips, Contact.
   var html =
     '<div class="wrap nav-row">' +
     '<a class="brand" href="' + root + 'index.html"><img class="brand-mark" src="' +
     root +
-    'img/brand/mark.svg" alt="" width="36" height="36"><span>DTRT LAB</span></a>' +
+    'img/brand/mark.svg" alt="DTRT Lab" width="36" height="36"><span>DTRT LAB</span></a>' +
     '<nav class="links" id="site-links" aria-label="Primary">' +
-    link("clips/", "Work", false) +
-    link("live/", "Results", false) +
+    link("company.html", "Company", companyOn) +
+    link("live/", "Proof", false) +
+    link("clips/", "Clips", false) +
     link("afterlight.html", "AFTERLIGHT", afterlightOn) +
     link("about.html", "About", aboutOn) +
     link("partners.html", "Partner", partnerOn) +
+    link("contact.html", "Contact", contactOn) +
     '<div class="nav-socials nav-socials-menu" data-social-slot="menu"></div>' +
     "</nav>" +
     '<div class="nav-end">' +
     '<div class="nav-socials nav-socials-desktop" data-social-slot="nav"></div>' +
-    '<a class="nav-cta" id="nav-follow" data-social-href="twitch" href="https://www.twitch.tv/dtrtc" rel="noopener noreferrer" target="_blank">Follow</a>' +
+    '<a class="nav-cta" id="nav-start" href="' + root + 'contact.html?intent=free-plan">Free plan</a>' +
     '<button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-links">Menu</button>' +
     "</div>" +
     "</div>";
@@ -61,16 +66,26 @@
   if (foot) {
     foot.innerHTML =
       '<div class="wrap">' +
-      "<span>DTRT Lab · Created by Ian</span>" +
+      "<span>DTRT Lab · Created by Ian Ferraro</span>" +
+      '<a href="' + root + 'contact.html?intent=free-plan">Free plan</a>' +
+      '<a href="' + root + 'contact.html?intent=paid-project">Paid work</a>' +
       '<a href="' + root + 'index.html">Home</a>' +
+      '<a href="' + root + 'company.html">Company</a>' +
       '<a href="' + root + 'about.html">About</a>' +
-      '<a href="' + root + 'clips/">Work</a>' +
-      '<a href="' + root + 'live/">Results</a>' +
+      '<a href="' + root + 'live/">Proof</a>' +
+      '<a href="' + root + 'clips/">Clips</a>' +
       '<a href="' + root + 'afterlight.html">AFTERLIGHT</a>' +
-      '<a href="' + root + 'cs2.html">CS2</a>' +
       '<a href="' + root + 'partners.html">Partner</a>' +
+      '<a href="' + root + 'support.html">Support</a>' +
+      '<a href="' + root + 'press.html">Press</a>' +
+      '<a href="' + root + 'brand.html">Brand</a>' +
+      '<a href="' + root + 'careers.html">Careers</a>' +
       '<a href="' + root + 'contact.html">Contact</a>' +
       '<a href="' + root + 'legal/privacy.html">Privacy</a>' +
+      '<a href="' + root + 'legal/terms.html">Terms</a>' +
+      '<a href="' + root + 'legal/cookies.html">Cookies</a>' +
+      '<a href="' + root + 'legal/dmca.html">DMCA</a>' +
+      '<a href="' + root + '.well-known/security.txt">Security</a>' +
       "</div>" +
       '<div class="wrap socials" data-social-slot="footer"></div>';
   }

@@ -1,0 +1,58 @@
+{
+  "legalName": "DTRT Lab",
+  "displayName": "DTRT Lab",
+  "founder": "Ian Ferraro",
+  "foundedYear": 2024,
+  "entityStatus": "independent_creator",
+  "entityNote": "Independent creator / studio project. Formal entity registration (LLC or equivalent) is a planned operating step, not claimed as complete on this site.",
+  "hqRegion": "Puerto Rico",
+  "hqCountry": "US",
+  "url": "https://dtrtlab.com/",
+  "logo": "https://dtrtlab.com/img/brand/dtrt-social.png",
+  "mark": "https://dtrtlab.com/img/brand/mark.svg",
+  "email": {
+    "public": "hello@dtrtlab.com",
+    "press": "hello@dtrtlab.com",
+    "support": "hello@dtrtlab.com",
+    "security": "hello@dtrtlab.com",
+    "founder": "ian@dtrtlab.com"
+  },
+  "sameAs": [
+    "https://x.com/DTRTLab",
+    "https://www.instagram.com/officiallydtrt/",
+    "https://www.youtube.com/@DTRTLabYT",
+    "https://www.twitch.tv/dtrtc",
+    "https://www.tiktok.com/@iananthonyfc"
+  ],
+  "products": [
+    {
+      "name": "DTRT Lab free plan",
+      "status": "live",
+      "description": "Public offer: send a business link or idea plus one goal; receive a free practical plan."
+    },
+    {
+      "name": "DTRT AFTERLIGHT",
+      "status": "in_development",
+      "description": "Story-driven FPS campaign set in Puerto Rico. Volume One is readable. No public download."
+    }
+  ],
+  "hiring": false,
+  "fundraising": false,
+  "preorderLive": false,
+  "personalVision": [
+    "Do the right thing.",
+    "Make useful stuff.",
+    "Have fun doing it.",
+    "Show the process with dated public evidence.",
+    "Use future Lab revenue to help Puerto Rico businesses (no program active yet)."
+  ],
+  "mission": "Make useful stuff. Have fun doing it. Show the process with dated public evidence.",
+  "northStar": "A durable independent entertainment and usefulness company that can eventually fund help for Puerto Rico businesses — not a vanity brand.",
+  "outOfVision": [
+    "Cloning third-party software via reverse engineering as a growth strategy",
+    "Fake scale, fake store, fake hiring, or fake fundraising",
+    "Hype tools that trade trust for reach"
+  ],
+  "visionDoc": "docs/vision.md",
+  "lastReviewed": "2026-10-13"
+}
