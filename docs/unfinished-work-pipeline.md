@@ -112,6 +112,7 @@
 | `hello@` / `ian@` routing docs | DONE / in flight | see `docs/business-email-asap.md` + related PRs |
 | Site contact cutover | READY | PR #31 |
 | Send-as from Gmail | BLOCKED | Ian Google/Cloudflare if not finished |
+| **Grok Bot `@mail.grokbot.com`** | READY / Ian approve | One permanent address. Shortlist: `dtrt` → `dtrtlab` → `useful` → `ianfc` → `freeplan`. Doc: `docs/grokbot-email-handles.md`. X `@bot` claim posted. |
 
 ---
 
@@ -125,7 +126,8 @@ Do these in order when you next sit down 15–30 minutes:
 4. **Postiz** — confirm scheduled Lab VO waves; delete duplicate DRAFTs from the earlier wave.  
 5. **LinkedIn** — paste from `docs/career-linkedin-kit.md`.  
 6. **Photos** — send dump per `docs/visual-photo-scatter.md`.  
-7. **Job apps** — apply with cover notes from the kit (SA stay / Manager / Creative).
+7. **Job apps** — apply with cover notes from the kit (SA stay / Manager / Creative).  
+8. **Grok Bot email** — open Grok Bot, approve the first free shortlist name (`dtrt` → `dtrtlab` → `useful` → `ianfc` → `freeplan`). One shot forever. See `docs/grokbot-email-handles.md`.
 
 ---
 
@@ -144,3 +146,4 @@ Do these in order when you next sit down 15–30 minutes:
 | Date (UTC) | What closed | What stayed open |
 | --- | --- | --- |
 | 2026-10-13 | Inventory; polished Lab VO scheduled (3 waves); pipeline file; secrets vault confirmed; recovery-code mail + consolidated action mail | Ian UI items; photo dump; LinkedIn paste; PR merges |
+| 2026-10-13 | Grok Bot email shortlist + `@bot` claim post on X; `docs/grokbot-email-handles.md` | Ian must approve first free handle in Grok Bot (one permanent address) |
