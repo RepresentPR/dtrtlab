@@ -20,6 +20,19 @@ python3 scripts/check-business-email.py
 
 Expect MX at `*.mx.cloudflare.net` and `site.json contactEmail: hello@dtrtlab.com`.
 
+### Agent path (re-run / recovery — needs API token)
+
+```bash
+export CF_API_TOKEN='your-token'
+export CF_DESTINATION='iananthonyfc@gmail.com'   # optional
+python3 scripts/enable-cloudflare-email-routing.py
+python3 scripts/check-business-email.py
+```
+
+Token needs: Account Email Routing Addresses Edit, Zone Email Routing Rules Edit, Zone Read, resource = `dtrtlab.com`.
+
+Optional cleanup: DMARC currently reports to `dmarc_rua@onsecureserver.net` (old GoDaddy residue). Change DMARC `rua` to `mailto:hello@dtrtlab.com` or remove if unused.
+
 ## Send as hello@ (pick one)
 
 Cloudflare Email Routing **receives only**. To *send* as `@dtrtlab.com`:
@@ -29,6 +42,8 @@ Cloudflare Email Routing **receives only**. To *send* as `@dtrtlab.com`:
 | **A. Zoho Mail free** | Free (1 user) | ~20–40 min | Full mailbox + SMTP; good ASAP send/receive |
 | **B. Google Workspace** | Paid | ~30–60 min | Best long-term with your Gmail habits |
 | **C. Microsoft 365** | Paid | ~30–60 min | Fits if you want Outlook as primary |
+
+Recommended: receive is already live → choose A or B for send.
 
 ### Gmail “Send mail as” (after you have SMTP)
 
