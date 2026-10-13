@@ -57,7 +57,7 @@ Compared against Linear / OpenAI (site calm), Higgsfield (work-as-hero), Twitch 
 
 **TikTok (@iananthonyfc) / personal:** `Ian · DTRT Lab · Make useful stuff · dtrtlab.com` (personal face, company link).
 
-**LinkedIn (Ian Ferraro):** Career surface — Estimator / Service Advisor headline; Lab as independent project. Paste kit: `docs/career-linkedin-kit.md`.
+**LinkedIn (Ian Ferraro):** Career surface — Estimator / Service Advisor → Manager / GM ladder; Lab as independent project (not employer of record). Paste kit: `docs/career-linkedin-kit.md`. Vision ↔ 9–5 filter in that kit + `docs/vision.md`.
 
 ## Email
 
