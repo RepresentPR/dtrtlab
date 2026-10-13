@@ -275,6 +275,14 @@
     "en": "Privacy",
     "es": "Privacidad (inglés)"
   },
+  "terms": {
+    "en": "Terms",
+    "es": "Términos (inglés)"
+  },
+  "cookies": {
+    "en": "Cookies",
+    "es": "Cookies (inglés)"
+  },
   "supportTitle": {
     "en": "Help build<br>what's next.",
     "es": "Ayuda a crear<br>lo que viene."

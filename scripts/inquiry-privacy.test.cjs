@@ -18,7 +18,7 @@ for (const page of pages) {
     assert.ok(fieldset, 'all editable fields must start in a disabled fieldset');
     assert.doesNotMatch(form.replace(fieldset[0], ''), /<(?:input|select|textarea|button)\b/i, 'no control can submit outside the disabled fieldset');
     assert.doesNotMatch(fieldset[0], /<legend\b/i, 'controls in a fieldset legend are not disabled by their ancestor');
-    assert.match(html, /<noscript>[\s\S]*?<a\b[^>]*href="mailto:DTRTCollision@outlook\.com[^\"]*"[\s\S]*?<\/noscript>/, 'no-script readers retain the direct business email path');
+    assert.match(html, /<noscript>[\s\S]*?<a\b[^>]*href="mailto:hello@dtrtlab\.com[^\"]*"[\s\S]*?<\/noscript>/, 'no-script readers retain the direct business email path');
   });
 
   function initialize(failRegistration = false) {
@@ -65,7 +65,7 @@ for (const page of pages) {
     let prevented = false;
     ui.submit()({ target: ui.form, preventDefault() { prevented = true; } });
     assert.equal(prevented, true);
-    assert.match(ui.location.href, /^mailto:DTRTCollision@outlook\.com\?/);
+    assert.match(ui.location.href, /^mailto:hello@dtrtlab\.com\?/);
     assert.match(new URL(ui.location.href).searchParams.get('body'), /Private inquiry/);
   });
 

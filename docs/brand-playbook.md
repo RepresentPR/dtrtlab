@@ -36,7 +36,7 @@ Do not invent “Inc.” / “LLC” in public copy until `content/company.json`
 - Instagram: [@officiallydtrt](https://www.instagram.com/officiallydtrt/)
 - YouTube: [@DTRTLabYT](https://www.youtube.com/@DTRTLabYT)
 - Twitch: [dtrtc](https://www.twitch.tv/dtrtc)
-- TikTok: [@dtrtlab](https://www.tiktok.com/@dtrtlab) (confirm live in `content/socials.js`)
+- TikTok: [@iananthonyfc](https://www.tiktok.com/@iananthonyfc) (canonical in `content/socials.js`)
 
 ## Email
 

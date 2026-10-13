@@ -14,7 +14,7 @@ DTRT Lab is Ian Ferraro’s independent creator studio: public free-plan consult
 
 | Phase | Outcome | Status |
 | --- | --- | --- |
-| **A. Public foundation** | Legal pages, press kit, brand kit, security contact, careers/investors honesty, schema, sitemap, company inbox | In progress on site (this branch) |
+| **A. Public foundation** | Legal pages, press kit, brand kit, security contact, careers/investors honesty, schema, sitemap, company inbox | Shipped on site (keep honest as facts change) |
 | **B. Operating company** | Registered entity, bank, accounting, insurance, trademarks, send-as `@dtrtlab.com`, DMARC hygiene | External — owner actions |
 | **C. Product company** | Live store/preorder or Steam, support SLAs, status page, privacy program | Not ready until AFTERLIGHT / paid offers ship |
 | **D. Scaled company** | Hiring, fundraising or profit engine, multi-person leadership, formal security/compliance | Future — do not fake on site |
@@ -37,7 +37,7 @@ DTRT Lab is Ian Ferraro’s independent creator studio: public free-plan consult
 4. Add Cloudflare aliases: `press@`, `support@`, `security@` → Gmail (optional; site can keep `hello@` until then)
 5. Google Search Console verification → paste into `site.json` `googleSiteVerification`
 6. Counsel review of Terms / Privacy / Cookies / DMCA agent address
-7. When selling: tax, refunds counsel, payments (`PAYMENTS.md` / sandbox) — keep store off until ready
+7. When selling: tax, refunds counsel, payment sandbox — keep store off until ready; publish live refund/preorder terms before first charge
 8. Insurance (general liability / media) before large partnerships
 9. First hire or contractor only with written scope + entity bank account
 
