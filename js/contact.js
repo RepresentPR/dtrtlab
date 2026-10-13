@@ -6,18 +6,34 @@
   const status = document.getElementById('contact-status');
   const preview = document.getElementById('email-message');
   const address = document.getElementById('business-email');
-  const recipient = 'DTRTCollision@outlook.com';
-  const categories = ['Free plan', 'Paid project inquiry', 'Highlight', 'Partner', 'Work opportunity', 'Website', 'Other'];
+  const recipient = 'hello@dtrtlab.com';
+  const categories = ['Free plan', 'Paid project inquiry', 'Shop interest', 'Highlight', 'Partner', 'Work opportunity', 'Website', 'Other'];
   const params = new URLSearchParams(window.location.search);
   const route = params.get('intent');
+  const productInterest = (params.get('product') || '').trim().slice(0, 80);
   let language = params.get('lang') === 'es' ? 'es' : 'en';
+  // Handoff from homepage plan tool (session only; cleared after read).
+  try {
+    const raw = sessionStorage.getItem('dtrt-plan-draft');
+    if (raw) {
+      const draft = JSON.parse(raw);
+      sessionStorage.removeItem('dtrt-plan-draft');
+      if (draft && typeof draft === 'object') {
+        if (typeof draft.project === 'string' && draft.project.trim()) field('project').value = draft.project.trim().slice(0, 2000);
+        if (typeof draft.goal === 'string' && draft.goal.trim()) field('goal').value = draft.goal.trim().slice(0, 1000);
+        if (draft.lang === 'es' || draft.lang === 'en') language = draft.lang;
+        if (!field('category').value) field('category').value = 'Free plan';
+      }
+    }
+  } catch (_) {}
   const copy = {
     en: {
-      categories: { '': 'Choose one', 'Free plan': 'Free plan', 'Paid project inquiry': 'Paid project inquiry', Highlight: 'Highlight', Partner: 'Partner', 'Work opportunity': 'Work opportunity', Website: 'Website', Other: 'Other' },
-      defaults: { 'Free plan': 'Free plan — business or idea', 'Paid project inquiry': 'Discuss a paid project' },
-      title: 'Say hello to DTRT Lab', freeTitle: 'Your free plan starts here', paidTitle: 'Discuss a paid project', pageTitle: 'Contact — DTRT Lab',
-      freeContext: 'Three practical priorities, one sample improvement and one next step. Free, with no purchase required. Implementation is agreed separately.',
+      categories: { '': 'Choose one', 'Free plan': 'Free plan', 'Paid project inquiry': 'Paid project inquiry', 'Shop interest': 'Shop interest', Highlight: 'Highlight', Partner: 'Partner', 'Work opportunity': 'Work opportunity', Website: 'Website', Other: 'Other' },
+      defaults: { 'Free plan': 'Free plan — business or idea', 'Paid project inquiry': 'Discuss a paid project', 'Shop interest': 'Shop interest — product I’d buy' },
+      title: 'Say hello to DTRT Lab', freeTitle: 'Your free plan starts here', paidTitle: 'Discuss a paid project', shopTitle: 'Tell us what you’d buy', pageTitle: 'Contact — DTRT Lab',
+      freeContext: 'Three practical priorities, one sample improvement and one next step. Free, with no purchase required. Implementation is agreed separately. Open to any age / any size idea.',
       paidContext: 'Tell us what you need. A written scope, quote and agreement come before paid work. This is an inquiry, not a booking. Online checkout is unavailable.',
+      shopContext: 'Checkout is not live. Tell us which digital or merch item you’d buy so we can open the store with real demand. No charge from this page.',
       context: 'This page prepares an email. It does not send a request or confirm a booking.', optionalMessage: 'Other context (optional)', requiredMessage: 'Message (required)',
       category: 'Category', subject: 'Subject', name: 'Name', reply: 'Reply email', project: 'Business link or idea', goal: 'Goal', to: 'To',
       validation: { category: 'Choose a category.', subject: 'Add a subject.', project: 'Add your public business link or a brief idea description.', goal: 'Add one goal.', message: 'Add a message.', email: 'Enter a valid email address, or leave this optional field empty.' },
@@ -38,15 +54,16 @@
         'fallback-title': 'Email app did not open?', 'fallback-help': 'Copy these into a new email, then review and send it yourself. You can also select the text and copy it manually.',
         'to-label': 'To', 'copy-email': 'Copy email address', 'copy-message-label': 'Subject and message to copy', 'copy-message': 'Copy email message',
         'language-help': 'This inquiry page is available in English and Spanish. Spanish wording prepared with AI; no independent native-speaker review. Other linked resources may be in English. Your browser may offer translation into other languages; that translation may be imperfect.',
-        'contact-credit': 'DTRT Lab · Created by Ian', 'contact-home-link': 'Home', 'contact-footer-about': 'About', 'contact-footer-work': 'Work', 'contact-footer-results': 'Results', 'contact-footer-partner': 'Partner', 'contact-footer-privacy': 'Privacy'
+        'contact-credit': 'DTRT Lab · Created by Ian', 'contact-home-link': 'Home', 'contact-footer-about': 'About', 'contact-footer-work': 'Work', 'contact-footer-results': 'Results', 'contact-footer-partner': 'Partner', 'contact-footer-privacy': 'Privacy', 'contact-footer-terms': 'Terms', 'contact-footer-cookies': 'Cookies'
       }
     },
     es: {
-      categories: { '': 'Elige una categoría', 'Free plan': 'Plan gratuito', 'Paid project inquiry': 'Proyecto de pago', Highlight: 'Clip destacado', Partner: 'Colaboración', 'Work opportunity': 'Oportunidad de trabajo', Website: 'Sitio web', Other: 'Otra consulta' },
-      defaults: { 'Free plan': 'Plan gratuito — negocio o idea', 'Paid project inquiry': 'Consultar sobre un proyecto de pago' },
-      title: 'Contacta con DTRT Lab', freeTitle: 'Tu plan gratuito empieza aquí', paidTitle: 'Hablemos de un proyecto de pago', pageTitle: 'Contacto — DTRT Lab',
-      freeContext: 'Tres prioridades prácticas, una mejora de ejemplo y un siguiente paso. Gratis, sin obligación de compra. La implementación se acuerda por separado.',
+      categories: { '': 'Elige una categoría', 'Free plan': 'Plan gratuito', 'Paid project inquiry': 'Proyecto de pago', 'Shop interest': 'Interés en la tienda', Highlight: 'Clip destacado', Partner: 'Colaboración', 'Work opportunity': 'Oportunidad de trabajo', Website: 'Sitio web', Other: 'Otra consulta' },
+      defaults: { 'Free plan': 'Plan gratuito — negocio o idea', 'Paid project inquiry': 'Consultar sobre un proyecto de pago', 'Shop interest': 'Interés en la tienda — producto que compraría' },
+      title: 'Contacta con DTRT Lab', freeTitle: 'Tu plan gratuito empieza aquí', paidTitle: 'Hablemos de un proyecto de pago', shopTitle: 'Dinos qué comprarías', pageTitle: 'Contacto — DTRT Lab',
+      freeContext: 'Tres prioridades prácticas, una mejora de ejemplo y un siguiente paso. Gratis, sin obligación de compra. La implementación se acuerda por separado. Abierto a cualquier edad / cualquier tamaño de idea.',
       paidContext: 'Cuéntanos qué necesitas. Antes de comenzar un trabajo de pago, acordamos por escrito el alcance, el presupuesto y las condiciones. Esta consulta no confirma una contratación. El pago en línea no está disponible.',
+      shopContext: 'El pago en línea no está activo. Dinos qué producto digital o merch comprarías para abrir la tienda con demanda real. Esta página no cobra nada.',
       context: 'Esta página prepara un correo. No envía una solicitud ni confirma una contratación.', optionalMessage: 'Más contexto (opcional)', requiredMessage: 'Mensaje (obligatorio)',
       category: 'Categoría', subject: 'Asunto', name: 'Nombre', reply: 'Correo para responder', project: 'Enlace del negocio o idea', goal: 'Objetivo', to: 'Para',
       validation: { category: 'Elige una categoría.', subject: 'Añade un asunto.', project: 'Añade el enlace público de tu negocio o una breve descripción de tu idea.', goal: 'Añade un objetivo.', message: 'Añade un mensaje.', email: 'Introduce una dirección de correo válida o deja vacío este campo opcional.' },
@@ -67,18 +84,23 @@
         'fallback-title': '¿No se abrió tu aplicación de correo?', 'fallback-help': 'Copia estos datos en un correo nuevo, revísalo y envíalo tú. También puedes seleccionar el texto y copiarlo manualmente.',
         'to-label': 'Para', 'copy-email': 'Copiar dirección de correo', 'copy-message-label': 'Asunto y mensaje para copiar', 'copy-message': 'Copiar asunto y mensaje',
         'language-help': 'Esta página de consultas está disponible en inglés y español. Texto en español preparado con IA; sin revisión independiente de una persona nativa. Otros recursos enlazados pueden estar en inglés. Tu navegador puede ofrecer traducción a otros idiomas; esa traducción puede ser imperfecta.',
-        'contact-credit': 'DTRT Lab · Creado por Ian', 'contact-home-link': 'Inicio', 'contact-footer-about': 'Acerca del Lab (inglés)', 'contact-footer-work': 'Proyectos (inglés)', 'contact-footer-results': 'Resultados (inglés)', 'contact-footer-partner': 'Colaboraciones (inglés)', 'contact-footer-privacy': 'Privacidad'
+        'contact-credit': 'DTRT Lab · Creado por Ian', 'contact-home-link': 'Inicio', 'contact-footer-about': 'Acerca del Lab (inglés)', 'contact-footer-work': 'Proyectos (inglés)', 'contact-footer-results': 'Resultados (inglés)', 'contact-footer-partner': 'Colaboraciones (inglés)', 'contact-footer-privacy': 'Privacidad', 'contact-footer-terms': 'Términos', 'contact-footer-cookies': 'Cookies'
       }
     }
   };
   const allDefaults = Object.values(copy).flatMap(text => Object.values(text.defaults));
   if (route === 'free-plan') field('category').value = 'Free plan';
   if (route === 'paid-project') field('category').value = 'Paid project inquiry';
+  if (route === 'shop-interest') field('category').value = 'Shop interest';
 
   function contactUrl(lang, category = field('category').value) {
     const query = new URLSearchParams();
     if (category === 'Free plan') query.set('intent', 'free-plan');
     if (category === 'Paid project inquiry') query.set('intent', 'paid-project');
+    if (category === 'Shop interest') {
+      query.set('intent', 'shop-interest');
+      if (productInterest) query.set('product', productInterest);
+    }
     query.set('lang', lang);
     return '/contact.html?' + query;
   }
@@ -141,8 +163,14 @@
     field('message').required = !free;
     document.getElementById('message-label').textContent = free ? text.optionalMessage : text.requiredMessage;
     if (!field('subject').value || allDefaults.includes(field('subject').value)) field('subject').value = text.defaults[category] || '';
-    document.getElementById('contact-title').textContent = free ? text.freeTitle : category === 'Paid project inquiry' ? text.paidTitle : text.title;
-    document.getElementById('contact-context').textContent = free ? text.freeContext : category === 'Paid project inquiry' ? text.paidContext : text.context;
+    const shop = category === 'Shop interest';
+    document.getElementById('contact-title').textContent = free ? text.freeTitle : category === 'Paid project inquiry' ? text.paidTitle : shop ? text.shopTitle : text.title;
+    document.getElementById('contact-context').textContent = free ? text.freeContext : category === 'Paid project inquiry' ? text.paidContext : shop ? text.shopContext : text.context;
+    if (shop && productInterest && !field('message').value.trim()) {
+      field('message').value = language === 'es'
+        ? 'Producto de interés: ' + productInterest + '\n\nMe gustaría comprarlo cuando la tienda esté en vivo.'
+        : 'Product interest: ' + productInterest + '\n\nI would buy this when checkout is live.';
+    }
     status.textContent = '';
     updateLanguage();
     updateValidation();

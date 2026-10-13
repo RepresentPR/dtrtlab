@@ -1,3 +1,6 @@
 .env
 data/
 stories/afterlight/volume-one/_source.html
+secrets/
+**/github-recovery-codes*.txt
+*recovery-codes*

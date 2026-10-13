@@ -1,0 +1,85 @@
+/* Mobile app shell + interactive free-plan tool (Studio Identity). */
+.plan-tool{margin:28px auto 8px;border:1px solid var(--line,#303030);background:#0d0d0d;padding:0;overflow:hidden;scroll-margin-top:18px}
+.plan-tool-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-bottom:1px solid var(--line,#303030)}
+.plan-tool-head h2{font-size:18px;letter-spacing:-.03em;margin:0;font-weight:750}
+.plan-progress{font-size:12px;color:var(--muted,#b6b6b6);letter-spacing:.04em}
+.plan-body{padding:20px 18px 18px;min-height:280px}
+.plan-ask{font-size:22px;line-height:1.25;letter-spacing:-.035em;font-weight:700;margin:0 0 18px;max-width:22ch}
+.plan-choices{display:grid;gap:10px}
+.plan-choice,.plan-chip{appearance:none;border:1px solid #404040;background:#141414;color:#fafafa;text-align:left;padding:16px 16px;font:inherit;font-weight:650;min-height:56px;cursor:pointer;border-radius:0;width:100%}
+.plan-choice[aria-pressed=true],.plan-chip[aria-pressed=true]{border-color:#fafafa;background:#fafafa;color:#080808}
+.plan-choice:active,.plan-chip:active,.plan-nav button:active,.app-tab:active{transform:scale(.985)}
+.plan-choice small{display:block;margin-top:6px;font-size:13px;font-weight:500;color:#b6b6b6}
+.plan-choice[aria-pressed=true] small{color:#333}
+.plan-field label{display:block;font-size:15px;font-weight:700;margin-bottom:10px}
+.plan-field textarea{width:100%;min-height:120px;padding:14px;background:#101010;border:1px solid #454545;color:#fafafa;font:inherit;resize:vertical;border-radius:0}
+.plan-field textarea:focus{outline:2px solid #fff;outline-offset:3px}
+.plan-help{font-size:13px;color:var(--muted,#b6b6b6);margin:10px 0 0;line-height:1.45}
+.plan-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.plan-chip{width:auto;min-height:44px;padding:10px 14px;font-size:14px;font-weight:650}
+.plan-summary{display:grid;gap:14px;margin:18px 0}
+.plan-summary div{border-top:1px solid var(--line,#303030);padding-top:12px}
+.plan-summary dt{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9a9a9a;margin:0 0 4px}
+.plan-summary dd{margin:0;font-size:16px;line-height:1.4;overflow-wrap:anywhere}
+.plan-ready-title{font-size:24px;line-height:1.2;letter-spacing:-.04em;font-weight:800;margin:0 0 8px;max-width:18ch}
+.plan-ready-hint{font-size:13px;color:var(--muted,#b6b6b6);margin:0 0 8px}
+.plan-status{min-height:1.3em;margin:12px 0 0;font-size:13px;color:#fff}
+.plan-nav{display:flex;gap:10px;padding:14px 18px 18px;border-top:1px solid var(--line,#303030);background:#0a0a0a}
+.plan-nav button,.plan-nav .button{flex:1;justify-content:center;min-height:52px;font-size:15px}
+.plan-nav [data-plan-back]{flex:0 0 auto;min-width:96px;background:transparent;border:1px solid #555;color:#fafafa;font-weight:700;cursor:pointer}
+.plan-nav[hidden],.plan-nav [data-plan-back][hidden],.plan-nav [data-plan-next][hidden]{display:none!important}
+.plan-actions{display:grid;gap:10px;margin-top:8px}
+.plan-actions .button{justify-content:center;min-height:52px}
+.plan-actions .text-link{justify-content:center;padding:12px 0}
+
+/* App tab bar — phone only */
+.app-tabs{display:none}
+.app-more-sheet{display:none}
+@media(max-width:720px){
+  body{padding-bottom:calc(72px + env(safe-area-inset-bottom,0px))}
+  .site-header{min-height:56px;padding-block:10px;position:sticky;top:0;z-index:30;backdrop-filter:saturate(1.2) blur(10px);background:rgba(8,8,8,.92)}
+  .site-header nav{display:none}
+  .action-dock{display:none!important}
+  .hero-bleed{min-height:auto;border-bottom:0}
+  .hero-content{padding:28px 0 20px}
+  .hero-brand{font-size:14px;letter-spacing:.2em;margin-bottom:10px}
+  .hero-bleed h1,.hero h1{font-size:clamp(34px,10vw,46px)!important;letter-spacing:-1.6px!important;max-width:12ch;margin-bottom:12px}
+  .hero-copy{font-size:16px;max-width:34ch;margin-bottom:0}
+  .hero-actions{display:none}
+  .hero-lang{display:none}
+  .action-map,.site-map[data-journey-label=usefulRoutes],.free-plan-copy,.free-plan-heading,.free-plan-intake,.join,.journey-coverage,.journey-evidence-note{display:none!important}
+  .free-plan{border:0;padding:0;display:block;margin:0}
+  .plan-tool{margin-top:0;border-left:0;border-right:0;border-radius:0}
+  .highlights-section{padding-top:36px;padding-bottom:28px}
+  .showcase-grid{gap:14px}
+  .release-card{border-radius:0}
+  .site-footer{padding-bottom:24px}
+  .site-footer nav{font-size:12px}
+
+  .app-tabs{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;inset:auto 0 0;z-index:40;background:rgba(8,8,8,.96);border-top:1px solid #303030;padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));gap:2px;backdrop-filter:blur(12px)}
+  .app-tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:56px;padding:6px 4px;font-size:11px;font-weight:700;color:#b6b6b6;background:transparent;border:0;text-decoration:none;cursor:pointer;font-family:inherit}
+  .app-tab svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8}
+  .app-tab[aria-current=page],.app-tab:hover{color:#fafafa}
+  .app-tab[aria-current=page]{background:#161616}
+
+  .app-more-sheet{display:block;position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.62);padding:0;margin:0;border:0}
+  .app-more-sheet[hidden]{display:none!important}
+  .app-more-panel{position:absolute;left:0;right:0;bottom:0;background:#0d0d0d;border-top:1px solid #303030;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px));animation:sheetUp .22s ease-out}
+  .app-more-panel h2{font-size:20px;margin:0 0 14px}
+  .app-more-panel a,.app-more-panel button{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:52px;padding:12px 0;border:0;border-bottom:1px solid #2a2a2a;background:transparent;color:#fafafa;font:inherit;font-weight:650;text-align:left;cursor:pointer;text-decoration:none}
+  .app-more-panel .lang-row{display:flex;gap:8px;padding:12px 0;border-bottom:1px solid #2a2a2a}
+  .app-more-panel .lang-row a{border:1px solid #444;padding:10px 14px;min-height:44px;justify-content:center;border-bottom:1px solid #444;flex:1}
+  .app-more-panel .lang-row a[aria-current=page]{background:#fafafa;color:#080808;border-color:#fafafa}
+  body.app-sheet-open{overflow:hidden}
+}
+
+@keyframes sheetUp{from{transform:translateY(16px);opacity:.6}to{transform:none;opacity:1}}
+@media(prefers-reduced-motion:reduce){
+  .plan-choice:active,.plan-chip:active,.plan-nav button:active,.app-tab:active{transform:none}
+  .app-more-panel{animation:none}
+}
+
+@media(min-width:721px){
+  .plan-tool{max-width:640px}
+  .plan-body{min-height:240px}
+}

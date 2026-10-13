@@ -53,6 +53,13 @@ window.DTRT_SOCIALS = {
       handle: "@officiallydtrt",
       url: "https://www.instagram.com/officiallydtrt/",
       enabled: true
+    },
+    {
+      id: "linkedin",
+      label: "LinkedIn",
+      handle: "Ian Ferraro",
+      url: "https://www.linkedin.com/in/ian-ferraro-578784419/",
+      enabled: true
     }
 
     /* Hidden until a handle is filled in.
@@ -84,7 +91,9 @@ window.DTRT_ICONS = {
   tiktok:
     '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M14 3h2.2a5.4 5.4 0 0 0 3.6 3.4v2.3a7.6 7.6 0 0 1-3.6-1v6.6a5.8 5.8 0 1 1-5.8-5.8c.3 0 .6 0 .9.1v2.4a3.4 3.4 0 1 0 2.4 3.3V3z"/></svg>',
   instagram:
-    '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 3h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5zm8 1.8H8A3.2 3.2 0 0 0 4.8 8v8A3.2 3.2 0 0 0 8 19.2h8a3.2 3.2 0 0 0 3.2-3.2V8A3.2 3.2 0 0 0 16 4.8zM12 8.2A3.8 3.8 0 1 1 8.2 12 3.8 3.8 0 0 1 12 8.2zm0 1.6A2.2 2.2 0 1 0 14.2 12 2.2 2.2 0 0 0 12 9.8zM17.4 6.4a1 1 0 1 1-1 1 1 1 0 0 1 1-1z"/></svg>'
+    '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 3h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5zm8 1.8H8A3.2 3.2 0 0 0 4.8 8v8A3.2 3.2 0 0 0 8 19.2h8a3.2 3.2 0 0 0 3.2-3.2V8A3.2 3.2 0 0 0 16 4.8zM12 8.2A3.8 3.8 0 1 1 8.2 12 3.8 3.8 0 0 1 12 8.2zm0 1.6A2.2 2.2 0 1 0 14.2 12 2.2 2.2 0 0 0 12 9.8zM17.4 6.4a1 1 0 1 1-1 1 1 1 0 0 1 1-1z"/></svg>',
+  linkedin:
+    '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.2 8.6H3.4V20h2.8V8.6zM4.8 3.5A1.6 1.6 0 1 0 4.8 6.7 1.6 1.6 0 0 0 4.8 3.5zM20.6 20h-2.8v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20H11V8.6h2.7v1.6h0a3 3 0 0 1 2.7-1.5c2.9 0 3.4 1.9 3.4 4.4V20z"/></svg>'
 };
 
 /* Persistent socials rail, injected on every page that loads this file. */

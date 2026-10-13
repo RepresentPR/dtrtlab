@@ -44,7 +44,7 @@ test('homepage free-plan intent survives as category, subject and two labeled de
   p.submit();
   const email = new URL(p.location.href);
   assert.equal(email.protocol, 'mailto:');
-  assert.equal(email.pathname, 'DTRTCollision@outlook.com');
+  assert.equal(email.pathname, 'hello@dtrtlab.com');
   assert.equal(email.searchParams.get('subject'), '[Free plan] Free plan — business or idea');
   assert.match(email.searchParams.get('body'), /Business link or idea: A café idea & a community garden\nGoal: Find one useful first offer/);
   assert.match(p.node('contact-status').textContent, /not sent/i);
@@ -79,7 +79,7 @@ test('unknown query input cannot inject email recipients or override the default
   p.controls.category.value='Website'; p.controls.subject.value='A question\r\nBcc: other@example.test'; p.controls.message.value='A site question';
   p.submit();
   const email=new URL(p.location.href);
-  assert.equal(email.pathname,'DTRTCollision@outlook.com');
+  assert.equal(email.pathname,'hello@dtrtlab.com');
   assert.doesNotMatch(email.searchParams.get('subject'), /[\r\n]/);
   assert.equal(email.searchParams.has('bcc'),false);
 });
@@ -113,10 +113,10 @@ test('Spanish free-plan route localizes the actual email draft and keeps stable 
   p.controls.project.value='Una panadería de barrio'; p.controls.goal.value='Explicar nuestra idea';
   p.submit();
   const email=new URL(p.location.href);
-  assert.equal(email.pathname,'DTRTCollision@outlook.com');
+  assert.equal(email.pathname,'hello@dtrtlab.com');
   assert.equal(email.searchParams.get('subject'),'[Plan gratuito] Plan gratuito — negocio o idea');
   assert.match(email.searchParams.get('body'),/Enlace del negocio o idea: Una panadería de barrio\nObjetivo: Explicar nuestra idea/);
-  assert.match(p.node('email-message').value,/Para: DTRTCollision@outlook.com\nAsunto: \[Plan gratuito\]/);
+  assert.match(p.node('email-message').value,/Para: hello@dtrtlab.com\nAsunto: \[Plan gratuito\]/);
   assert.match(p.node('contact-status').textContent,/no ha enviado.*ni.*recepción/);
 });
 

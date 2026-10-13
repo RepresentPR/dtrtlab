@@ -1,0 +1,76 @@
+{
+  "checkoutLive": false,
+  "interestOpen": true,
+  "lastReviewed": "2026-10-13",
+  "positioning": {
+    "madeForAll": true,
+    "globalAudience": true,
+    "ageInclusive": "Any age with a business, idea, or interest in Lab work — we do not restrict free plans or shop interest by age band.",
+    "hq": "Puerto Rico, US — building toward a durable global company without fake scale claims."
+  },
+  "snowball": [
+    "Digital products first (no inventory, no finished game required)",
+    "Print-on-demand merch second (design interest → produce on order)",
+    "AFTERLIGHT / larger SKUs only when delivery is real"
+  ],
+  "products": [
+    {
+      "id": "lab-worksheet",
+      "name": "Lab worksheet pack",
+      "kind": "digital",
+      "status": "free_now",
+      "priceNote": "Free download today",
+      "description": "Blank worksheet for clarifying a project. Available now — no checkout.",
+      "href": "/watch/workshop-template.txt"
+    },
+    {
+      "id": "workshop-guide",
+      "name": "Workshop guide",
+      "kind": "digital",
+      "status": "free_now",
+      "priceNote": "Free to read",
+      "description": "Practical steps for making and sharing a project.",
+      "href": "/watch/workshop-guide.html"
+    },
+    {
+      "id": "digital-mark-pack",
+      "name": "DTRT mark & wallpaper pack",
+      "kind": "digital",
+      "status": "interest",
+      "priceNote": "Interest open · checkout not live",
+      "description": "Approved marks and wallpapers for fans and partners. Sold only after payment + license text are live."
+    },
+    {
+      "id": "lab-files-bundle",
+      "name": "Lab Files digital bundle",
+      "kind": "digital",
+      "status": "interest",
+      "priceNote": "Interest open · checkout not live",
+      "description": "Curated Lab Files + companion notes as a paid download when packaging is ready."
+    },
+    {
+      "id": "merch-tee",
+      "name": "DTRT Lab tee (print-on-demand)",
+      "kind": "merch",
+      "status": "interest",
+      "priceNote": "Interest open · no inventory held",
+      "description": "POD apparel — made to order when a printer + checkout are connected. No fake ‘in stock’ claim."
+    },
+    {
+      "id": "merch-cap",
+      "name": "DTRT cap / mark gear",
+      "kind": "merch",
+      "status": "interest",
+      "priceNote": "Interest open · no inventory held",
+      "description": "Small gear drops via print-on-demand after demand is clear."
+    },
+    {
+      "id": "afterlight-support",
+      "name": "AFTERLIGHT early digital support",
+      "kind": "digital",
+      "status": "interest",
+      "priceNote": "Interest open · not a game preorder",
+      "description": "Optional early support for the story world. Not a Steam key or download until a page explicitly says so."
+    }
+  ]
+}

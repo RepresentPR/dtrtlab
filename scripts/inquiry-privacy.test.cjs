@@ -18,7 +18,7 @@ for (const page of pages) {
     assert.ok(fieldset, 'all editable fields must start in a disabled fieldset');
     assert.doesNotMatch(form.replace(fieldset[0], ''), /<(?:input|select|textarea|button)\b/i, 'no control can submit outside the disabled fieldset');
     assert.doesNotMatch(fieldset[0], /<legend\b/i, 'controls in a fieldset legend are not disabled by their ancestor');
-    assert.match(html, /<noscript>[\s\S]*?<a\b[^>]*href="mailto:DTRTCollision@outlook\.com[^\"]*"[\s\S]*?<\/noscript>/, 'no-script readers retain the direct business email path');
+    assert.match(html, /<noscript>[\s\S]*?<a\b[^>]*href="mailto:hello@dtrtlab\.com[^\"]*"[\s\S]*?<\/noscript>/, 'no-script readers retain the direct business email path');
   });
 
   function initialize(failRegistration = false) {
@@ -46,12 +46,14 @@ for (const page of pages) {
       return controls.get(id);
     };
     form.elements = { namedItem: name => control('contact-' + name) };
-    control('contact-category').options = ['', 'Free plan', 'Paid project inquiry', 'Highlight', 'Partner', 'Work opportunity', 'Website', 'Other'].map(value => ({ value }));
+    control('contact-category').options = ['', 'Free plan', 'Paid project inquiry', 'Shop interest', 'Highlight', 'Partner', 'Work opportunity', 'Website', 'Other'].map(value => ({ value }));
     const location = { href: '', search: '' };
     const status = { textContent: '' };
+    const sessionStorage = { getItem: () => null, setItem() {}, removeItem() {} };
     const context = vm.createContext({
       document: { documentElement: { lang: 'en' }, getElementById: id => id === `${page.name}-form` ? form : id === `${page.name}-fields` ? fields : id === 'partner-status' ? status : control(id) },
       window: { location },
+      sessionStorage,
       URLSearchParams,
       FormData: class { get(key) { return values[key] || ''; } }
     });
@@ -65,7 +67,7 @@ for (const page of pages) {
     let prevented = false;
     ui.submit()({ target: ui.form, preventDefault() { prevented = true; } });
     assert.equal(prevented, true);
-    assert.match(ui.location.href, /^mailto:DTRTCollision@outlook\.com\?/);
+    assert.match(ui.location.href, /^mailto:hello@dtrtlab\.com\?/);
     assert.match(new URL(ui.location.href).searchParams.get('body'), /Private inquiry/);
   });
 
