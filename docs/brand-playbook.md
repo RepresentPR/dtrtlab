@@ -51,9 +51,13 @@ Compared against Linear / OpenAI (site calm), Higgsfield (work-as-hero), Twitch 
 | **Twitch / Kick (DTRTC)** | Orange + cinema heat stays on the *stream* surface | Using stream chrome as the company website face |
 | **X / Instagram / TikTok** | Same voice as site: useful, dated, bilingual where needed; link to Free plan or one proof piece | Fake scale, trending-tool bait, or implying entity/store that is not live |
 
-**Bio template (all company handles):** `DTRT Lab — Make useful stuff. Free plan at dtrtlab.com · EN/ES`
+**Bio template (all company handles):** `DTRT Lab — Make useful stuff. Made for all. Free plan → dtrtlab.com · Shop interest open (checkout not live) · EN/ES`
 
-**Stream bio (DTRTC):** Keep entertainment-first; point viewers to the Lab for useful work, not the other way around.
+**Stream bio (DTRTC / Kick):** Entertainment-first; point viewers to the Lab for useful work, not the other way around. Kick handle `movebro` is legacy — bio should say DTRTC until renamed.
+
+**TikTok (@iananthonyfc) / personal:** `Ian · DTRT Lab · Make useful stuff · dtrtlab.com` (personal face, company link).
+
+**LinkedIn (Ian Ferraro):** Career surface — Estimator / Service Advisor headline; Lab as independent project. Paste kit: `docs/career-linkedin-kit.md`.
 
 ## Email
 
