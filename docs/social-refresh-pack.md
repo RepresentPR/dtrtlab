@@ -150,7 +150,17 @@ Polished captions scheduled (type `schedule`) — **discard older DRAFT duplicat
 | 3 Free plan (Chris) | Oct 16 16:00–18:00 | [X](https://platform.postiz.com/p/cmv6w8x2f0knyqw0yzmfuhavk?share=true) · [IG](https://platform.postiz.com/p/cmv6w8xff0knzqw0y3mof0lhl?share=true) · [TikTok](https://platform.postiz.com/p/cmv6w8xof0ko0qw0yk2aqt1gg?share=true) · [YT unlisted](https://platform.postiz.com/p/cmv6w8y0e0ko1qw0y4szm6zou?share=true) |
 
 **X polish:** captions use plain `dtrtlab.com` (HTTPS links get stripped).  
-**Track file:** `docs/unfinished-work-pipeline.md`
+**Track file:** `docs/unfinished-work-pipeline.md`  
+
+### X caption repair (2026-10-13)
+
+Earlier QUEUE X posts had `dtrtlab.com` stripped. **Use these fixed QUEUE posts** (16:05 UTC); discard older stripped X QUEUE/DRAFT duplicates in Postiz UI:
+
+| Wave | Fixed preview |
+| --- | --- |
+| 1 Shop | https://platform.postiz.com/p/cmv6xay2z0kx6qw0yaf74vakb?share=true |
+| 2 Dual brand | https://platform.postiz.com/p/cmv6xay930kx7qw0yz7iewo3p?share=true |
+| 3 Free plan | https://platform.postiz.com/p/cmv6xayh40kx8qw0y3ib04nou?share=true |
 
 ## Publish checklist
 

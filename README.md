@@ -11,6 +11,7 @@ Public site for **[dtrtlab.com](https://dtrtlab.com)** — Ian Ferraro’s indep
 | --- | --- |
 | `/` + free plan tool | Usefulness — send a link + goal, get a practical plan |
 | `/company.html`, `/shop.html` | Company story + shop **interest** (checkout off until real) |
+| `/find.html` | One digest for all public socials (Lab / stream / career) |
 | `/live/`, `/history.html` | Dated evidence — no vanity metrics without context |
 | `/afterlight.html`, `/clips/` | Entertainment / story / clips — honest status |
 | `docs/vision.md` | Decision filter for every change |

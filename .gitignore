@@ -5,3 +5,4 @@ secrets/
 **/github-recovery-codes*.txt
 *recovery-codes*
 __pycache__/
+outputs/
