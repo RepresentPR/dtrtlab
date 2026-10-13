@@ -2,6 +2,11 @@
   "items": [
     {
       "date": "2026-10-13",
+      "title": "Lab Operating System published on Company",
+      "body": "Company hub now carries the Lab Operating System: purpose, six-step playbook, competency language, public scorecard, learning loop, and quick-reference rule. Patterns for how durable multi-brand operators run — DTRT-owned language only. Read company.html#lab-os and docs/lab-operating-system.md."
+    },
+    {
+      "date": "2026-10-13",
       "title": "Company foundation pages and @dtrtlab.com inbox",
       "body": "Public Terms, Cookies, DMCA, Brand, Careers, and Company pages are live. hello@dtrtlab.com and ian@dtrtlab.com receive mail via Cloudflare Email Routing into the founder Gmail inbox. Store and hiring remain off until they are real."
     }

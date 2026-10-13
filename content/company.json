@@ -69,10 +69,52 @@
   ],
   "mission": "Make useful stuff for all ages and any size idea. Have fun doing it. Show the process with dated public evidence.",
   "northStar": "A durable independent entertainment and usefulness company — Made for all, global by design — that can eventually fund help for Puerto Rico businesses — not a vanity brand.",
+  "operatingSystem": {
+    "doc": "docs/lab-operating-system.md",
+    "page": "/company.html#lab-os",
+    "purpose": "Do the right thing. Make useful stuff. Have fun doing it. Show the process with dated public evidence.",
+    "playbookSteps": [
+      "Intake",
+      "Scope",
+      "Build",
+      "Proof",
+      "Deliver",
+      "Follow-up"
+    ],
+    "competencies": [
+      "Customer focus",
+      "Collaborates",
+      "Continuous learning",
+      "Critical thinking",
+      "Drives results",
+      "Ensures accountability"
+    ],
+    "scorecard": [
+      "Ship / publish cadence",
+      "Honesty (no fake store, hiring, or raise)",
+      "Kept informed",
+      "Usefulness of free plans",
+      "AFTERLIGHT progress"
+    ],
+    "learningLoop": [
+      "Searchable training catalog over time",
+      "Short Required-for-You trust list",
+      "Profile → Goals → Development → Feedback when roles exist"
+    ],
+    "quickReferences": [
+      "Brand kit",
+      "Legal",
+      "Contact intents",
+      "Partner path",
+      "Shop interest rules"
+    ],
+    "note": "Structure distilled from how durable multi-brand operators run. DTRT-owned language only. No third-party manuals republished."
+  },
   "outOfVision": [
     "Cloning third-party software via reverse engineering as a growth strategy",
     "Fake scale, fake store, fake hiring, or fake fundraising",
-    "Hype tools that trade trust for reach"
+    "Hype tools that trade trust for reach",
+    "Publishing proprietary manuals from other companies"
   ],
   "visionDoc": "docs/vision.md",
   "lastReviewed": "2026-10-13"
