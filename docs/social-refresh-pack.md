@@ -130,10 +130,10 @@ LinkedIn: **not** on Postiz — paste career kit manually.
 | TikTok — Lab vs DTRTC | https://platform.postiz.com/p/cmv6vh9zq0ke3qw0y4vr7ncjq?share=true |
 | YouTube (unlisted) — shop honesty | https://platform.postiz.com/p/cmv6vha6y0ke4qw0yh52wydr9?share=true |
 | Twitch — dual brand promo | https://platform.postiz.com/p/cmv6vhaer0ke5qw0yrcmnzbks?share=true |
-| X — free plan intro (Chris) | https://platform.postiz.com/p/cmv6vj5vn0keiqw0y2s1g0x4b?share=true |
-| IG — free plan intro | *(see Postiz after Chris draft create)* |
-| TikTok — free plan intro | *(see Postiz after Chris draft create)* |
-| YouTube unlisted — free plan intro | *(see Postiz after Chris draft create)* |
+| X — free plan intro (Chris) | https://platform.postiz.com/p/cmv6via860keuqw0y3xrfak59?share=true |
+| IG — free plan intro | https://platform.postiz.com/p/cmv6viaff0kevqw0yjbvj8szt?share=true |
+| TikTok — free plan intro | https://platform.postiz.com/p/cmv6vianl0kewqw0yr9xcx2jj?share=true |
+| YouTube unlisted — free plan intro | https://platform.postiz.com/p/cmv6viaua0kexqw0ywv7rit2y?share=true |
 
 TikTok drafts set `video_made_with_ai=true` + `DIRECT_POST` when published.
 
