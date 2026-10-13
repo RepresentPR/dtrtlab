@@ -49,9 +49,11 @@ for (const page of pages) {
     control('contact-category').options = ['', 'Free plan', 'Paid project inquiry', 'Highlight', 'Partner', 'Work opportunity', 'Website', 'Other'].map(value => ({ value }));
     const location = { href: '', search: '' };
     const status = { textContent: '' };
+    const sessionStorage = { getItem: () => null, setItem() {}, removeItem() {} };
     const context = vm.createContext({
       document: { documentElement: { lang: 'en' }, getElementById: id => id === `${page.name}-form` ? form : id === `${page.name}-fields` ? fields : id === 'partner-status' ? status : control(id) },
       window: { location },
+      sessionStorage,
       URLSearchParams,
       FormData: class { get(key) { return values[key] || ''; } }
     });

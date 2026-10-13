@@ -45,7 +45,9 @@ test('free-plan intake uses existing public profiles without collecting or claim
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
   const offer = html.match(/<section[^>]*id="free-plan"[\s\S]*?<\/section>/)?.[0];
   assert.ok(offer, 'the prominent CTA has a real target');
-  assert.doesNotMatch(offer, /<form|<input|<textarea|mailto:|messages\/compose/i);
+  assert.doesNotMatch(offer, /<form\b|mailto:|messages\/compose|method=|action=/i, 'wizard never posts or opens mail itself');
+  assert.match(offer, /<textarea\b[^>]*id="plan-project"/, 'guided tool collects the two details locally');
+  assert.match(offer, /<textarea\b[^>]*id="plan-goal"/);
   assert.match(offer, /lang="es"/);
   assert.match(offer, /No purchase required/);
   assert.match(offer, /business is big or small/);
@@ -55,18 +57,31 @@ test('free-plan intake uses existing public profiles without collecting or claim
   assert.doesNotMatch(offer, /100%|satisfaction.{0,20}(?:score|rating)|guaranteed results/i);
   assert.match(offer, /implementation is scoped separately/);
   assert.match(offer, /Opening a profile does not send a request/);
-  const profileUrls = [...offer.matchAll(/href="([^"]+)"/g)].map(match => match[1]);
-  assert.deepEqual(profileUrls, ['/sample-plan.html', '/contact.html?intent=free-plan', '/contact.html?intent=free-plan&amp;lang=es', 'https://x.com/DTRTLab', 'https://www.instagram.com/officiallydtrt/']);
-  assert.match(offer, /href="\/contact\.html\?intent=free-plan"/);
+  assert.match(offer, /id="plan-tool"/, 'interactive free-plan tool is on the homepage');
+  assert.match(offer, /data-plan-type="business"/);
+  assert.match(offer, /data-plan-type="idea"/);
   assert.match(offer, /lang="es"[^>]*href="\/contact\.html\?intent=free-plan&amp;lang=es"/);
-  assert.match(html, /class="nav-primary"[^>]*href="\/contact\.html\?intent=free-plan"/, 'header Free plan is one click');
+  assert.match(offer, /https:\/\/x\.com\/DTRTLab/);
+  assert.match(offer, /https:\/\/www\.instagram\.com\/officiallydtrt\//);
+  assert.match(html, /class="nav-primary"[^>]*href="#plan-tool"/, 'header Free plan jumps to the interactive tool');
   assert.match(html, /class="[^"]*\baction-dock\b/, 'sticky quick-action dock stays visible');
+  assert.match(html, /class="app-tabs"/, 'mobile app tab bar is present');
+  assert.match(html, /\/js\/plan-tool\.js/, 'plan tool script is loaded');
+  const profileUrls = [...offer.matchAll(/href="([^"]+)"/g)].map(match => match[1]);
+  assert.ok(profileUrls.includes('/sample-plan.html'));
+  assert.ok(profileUrls.includes('#plan-tool') || profileUrls.includes('/contact.html?intent=free-plan'));
+  assert.ok(profileUrls.includes('/contact.html?intent=free-plan&amp;lang=es'));
+  assert.ok(profileUrls.includes('https://x.com/DTRTLab'));
+  assert.ok(profileUrls.includes('https://www.instagram.com/officiallydtrt/'));
   assert.match(html, /class="hero hero-bleed"/, 'company face uses full-bleed Studio Identity hero');
   assert.match(html, /data-journey-i18n="heroBrand"/, 'brand is hero-level, not only nav text');
   assert.match(html, /company-showcase-poster\.jpg/, 'hero uses real workshop still');
   assert.match(fs.readFileSync(path.join(root, 'css/growth-home.css'), 'utf8'), /--accent:#fafafa/, 'homepage accent is white, not orange heat');
+  assert.ok(fs.existsSync(path.join(root, 'css/mobile-app.css')), 'mobile app shell stylesheet exists');
   const existingProfiles = fs.readFileSync(path.join(root, 'about.html'), 'utf8');
-  for (const url of profileUrls.filter(url => url.startsWith('https:'))) assert.ok(existingProfiles.includes(url), 'intake uses a previously public business identity');
+  for (const url of profileUrls.filter(url => url.startsWith('https:'))) {
+    assert.ok(existingProfiles.includes(url), 'intake uses a previously public business identity');
+  }
   assert.ok(fs.existsSync(path.join(root, 'sample-plan.html')), 'sample plan page exists for the free-plan preview link');
   assert.ok(html.indexOf('id="free-plan"') < html.indexOf('id="company-work"'));
 });

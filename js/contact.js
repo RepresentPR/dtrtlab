@@ -11,6 +11,20 @@
   const params = new URLSearchParams(window.location.search);
   const route = params.get('intent');
   let language = params.get('lang') === 'es' ? 'es' : 'en';
+  // Handoff from homepage plan tool (session only; cleared after read).
+  try {
+    const raw = sessionStorage.getItem('dtrt-plan-draft');
+    if (raw) {
+      const draft = JSON.parse(raw);
+      sessionStorage.removeItem('dtrt-plan-draft');
+      if (draft && typeof draft === 'object') {
+        if (typeof draft.project === 'string' && draft.project.trim()) field('project').value = draft.project.trim().slice(0, 2000);
+        if (typeof draft.goal === 'string' && draft.goal.trim()) field('goal').value = draft.goal.trim().slice(0, 1000);
+        if (draft.lang === 'es' || draft.lang === 'en') language = draft.lang;
+        if (!field('category').value) field('category').value = 'Free plan';
+      }
+    }
+  } catch (_) {}
   const copy = {
     en: {
       categories: { '': 'Choose one', 'Free plan': 'Free plan', 'Paid project inquiry': 'Paid project inquiry', Highlight: 'Highlight', Partner: 'Partner', 'Work opportunity': 'Work opportunity', Website: 'Website', Other: 'Other' },
