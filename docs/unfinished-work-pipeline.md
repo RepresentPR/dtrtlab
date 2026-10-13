@@ -117,18 +117,17 @@
 
 ---
 
-## G. Consolidated Ian action list (single checklist)
+## G. Ian unlock list (2nd chair only — not ordinary ops)
 
-Do these in order when you next sit down 15–30 minutes:
+Agent runs merges, schedules, and conflict fixes. You only need to unlock:
 
-1. **Save recovery codes** — password manager + print; discard public copies.  
-2. **GitHub profile** — uncheck hireable; set bio/website; create profile README.  
-3. **Merge PRs** — #34 → #31 → #32 → #33 → #35 → #36 → #37 → #29.  
-4. **Postiz** — confirm scheduled Lab VO waves; delete duplicate DRAFTs from the earlier wave.  
-5. **LinkedIn** — paste from `docs/career-linkedin-kit.md`.  
-6. **Photos** — send dump per `docs/visual-photo-scatter.md`.  
-7. **Job apps** — apply with cover notes from the kit (SA stay / Manager / Creative).  
-8. **Grok Bot email** — open Grok Bot, approve the first free shortlist name (`dtrt` → `dtrtlab` → `useful` → `ianfc` → `freeplan`). One shot forever. See `docs/grokbot-email-handles.md`.
+1. **Save recovery codes** — password manager + print.  
+2. **GitHub profile UI** — uncheck hireable; bio/website; profile README (token cannot PATCH).  
+3. **LinkedIn** — paste from `docs/career-linkedin-kit.md` (authwall).  
+4. **Photos** — send dump per `docs/visual-photo-scatter.md`.  
+5. **Job apps** — Workday/Caliber login + apply with kit cover notes.  
+6. **Grok Bot email** — approve first free shortlist name (`dtrt` → …). One shot forever.  
+7. **Override** — tell the agent when something should be done differently; that redirects 1st chair.
 
 ---
 
