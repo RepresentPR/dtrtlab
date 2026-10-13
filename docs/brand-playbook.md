@@ -20,6 +20,8 @@ Do not invent “Inc.” / “LLC” in public copy until `content/company.json`
 - Direct, useful, a little playful — never corporate fluff.
 - Show evidence with dates. Separate **live** from **in development**.
 - Spanish appears on journey pages; mark AI-assisted copy until native review.
+- Anchor lines: **Do the right thing. Make useful stuff. Have fun doing it.** Long-term: Lab revenue → help Puerto Rico businesses (not active yet — do not overclaim).
+- Full alignment filter: `docs/vision.md`.
 
 ## Visual
 

@@ -2,11 +2,13 @@
 
 **Purpose:** Close the gap between a strong solo-founder presence and a company that can scale toward top-tier global standards — without pretending we are already there.
 
+**Vision alignment:** Personal + company north star live in [`docs/vision.md`](vision.md). Every checklist item below must serve that document, not viral tools or fake scale.
+
 **Last reviewed:** 2026-10-13
 
 ## Honest baseline
 
-DTRT Lab is Ian Ferraro’s independent creator studio: public free-plan consulting offer, multi-platform content, dated results dashboard, and **DTRT AFTERLIGHT** in development. That is a credible start. A “top 50 global company” (Fortune / global brand tier) also requires entity, capital, people, compliance, distribution, and multi-year product market fit. Those are **operating steps**, not website copy.
+DTRT Lab is Ian Ferraro’s independent creator studio: public free-plan consulting offer, multi-platform content, dated results dashboard, and **DTRT AFTERLIGHT** in development. Personal aim: do the right thing, make useful stuff, show the process, and eventually use Lab revenue to help Puerto Rico businesses. A “top 50 global company” also requires entity, capital, people, compliance, distribution, and multi-year product market fit. Those are **operating steps**, not website copy.
 
 ## What “full company” means here (phased)
 
@@ -43,14 +45,20 @@ DTRT Lab is Ian Ferraro’s independent creator studio: public free-plan consult
 
 Track weekly in `/live/` or private notes:
 
-- Useful plans delivered (free + paid)
+- Useful plans delivered (free + paid) — usefulness pillar
 - Public evidence quality (dated, honest, attributable)
-- AFTERLIGHT: readable chapters shipped / playtest readiness
+- AFTERLIGHT: readable chapters shipped / playtest readiness — Puerto Rico story world
 - Inbound trust: press replies, partner briefs, zero bounced `@dtrtlab.com` mail
-- Cash: runway months (private)
+- Cash: runway months (private) — precondition for any Puerto Rico business-help program
+- Vision filter passes: no clone-hacks, no fake scale (see `docs/vision.md`)
 
 ## What we will never put on the site
 
 - Fake headcount, fake clients, fake “Fortune” claims, fake live store
 - Counsel-approved badges without counsel
 - Investor pages that imply an open raise when none exists
+- Promises of a Puerto Rico funding program before revenue and a real program design exist
+
+## Tooling policy (aligned with vision)
+
+Adopt tools that help **our** free plans, **our** evidence, or **our** AFTERLIGHT builds. Decline tools whose primary pitch is reverse-engineering or cloning third-party products. Trending ≠ aligned.

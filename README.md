@@ -67,7 +67,7 @@ In-game buttons read `../data/web.json`, not this folder. Keep `preorderEnabled`
 ## Company foundation
 
 Public pages: `/company.html`, `/careers.html`, `/brand.html`, `/press.html`, `/legal/*`, `/.well-known/security.txt`.  
-Operator docs: `docs/company-operating-system.md`, `docs/brand-playbook.md`, `docs/business-email-asap.md`.
+Operator docs: `docs/vision.md` (personal + company alignment), `docs/company-operating-system.md`, `docs/brand-playbook.md`, `docs/business-email-asap.md`.
 
 ## Payments
 
