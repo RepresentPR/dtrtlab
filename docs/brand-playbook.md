@@ -34,11 +34,20 @@ Do not invent “Inc.” / “LLC” in public copy until `content/company.json`
 
 ## Social handles (canonical)
 
-- X: [@DTRTLab](https://x.com/DTRTLab)
-- Instagram: [@officiallydtrt](https://www.instagram.com/officiallydtrt/)
-- YouTube: [@DTRTLabYT](https://www.youtube.com/@DTRTLabYT)
-- Twitch: [dtrtc](https://www.twitch.tv/dtrtc)
-- TikTok: [@iananthonyfc](https://www.tiktok.com/@iananthonyfc) (canonical in `content/socials.js`)
+**Hub:** [dtrtlab.com/find.html](https://dtrtlab.com/find.html) — one digest page. Source of truth: `content/socials.js`.
+
+| Surface | Handle | URL |
+| --- | --- | --- |
+| **Lab** X | @DTRTLab | https://x.com/DTRTLab |
+| **Lab** Instagram | @officiallydtrt | https://www.instagram.com/officiallydtrt/ |
+| **Lab** YouTube | @DTRTLabYT | https://www.youtube.com/@DTRTLabYT |
+| **Lab** TikTok | @iananthonyfc | https://www.tiktok.com/@iananthonyfc |
+| **Stream** Twitch | dtrtc | https://www.twitch.tv/dtrtc |
+| **Stream** Kick | movebro | https://kick.com/movebro |
+| **Career** LinkedIn | Ian Ferraro | https://www.linkedin.com/in/ian-ferraro-578784419/ |
+| **Career** GitHub | RepresentPR | https://github.com/RepresentPR |
+
+Site pattern: quiet Find-me strip above footers (`js/find-me.js`) + nav icons — not floating promo pills.
 
 ## Presence map (vs top brands — what we take / skip)
 

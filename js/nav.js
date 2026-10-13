@@ -1,5 +1,5 @@
 (function () {
-  var ASSET_V = "20261013-actions1";
+  var ASSET_V = "20261013-find1";
   var here = (location.pathname || "").toLowerCase();
   var parts = here.replace(/\\/g, "/").split("/").filter(Boolean);
   if (parts.length && /\.[a-z0-9]+$/i.test(parts[parts.length - 1])) parts.pop();
@@ -82,6 +82,7 @@
       '<a href="' + root + 'brand.html">Brand</a>' +
       '<a href="' + root + 'careers.html">Careers</a>' +
       '<a href="' + root + 'contact.html">Contact</a>' +
+      '<a href="' + root + 'find.html">Find me</a>' +
       '<a href="' + root + 'legal/privacy.html">Privacy</a>' +
       '<a href="' + root + 'legal/terms.html">Terms</a>' +
       '<a href="' + root + 'legal/cookies.html">Cookies</a>' +
@@ -89,6 +90,14 @@
       '<a href="' + root + '.well-known/security.txt">Security</a>' +
       "</div>" +
       '<div class="wrap socials" data-social-slot="footer"></div>';
+  }
+
+  // Quiet Find-me strip on every nav-powered page (non-intrusive).
+  if (!document.querySelector('script[src*="js/find-me.js"]')) {
+    var findMe = document.createElement("script");
+    findMe.src = root + "js/find-me.js?v=" + ASSET_V;
+    findMe.defer = true;
+    document.head.appendChild(findMe);
   }
 
   var ICONS = {
@@ -109,7 +118,11 @@
     shorts:
       '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M17.8 8.4 9 3.6a3.5 3.5 0 0 0-3.4 6.1l1 .5-1 .5A3.5 3.5 0 0 0 9 16.8l8.8 4.8a3.5 3.5 0 0 0 3.4-6.1l-1-.5 1-.5a3.5 3.5 0 0 0-3.4-6.1zM10 14.6V9.4l4.6 2.6-4.6 2.6z"/></svg>',
     snapchat:
-      '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3c2.4 0 4.2 1.8 4.2 4.6v1.1c.5.2 1.2.3 1.6.8.3.4 0 .8-.4 1-.6.2-.8.5-.7.9.2.5 1.1.7 1.5 1.1.3.3.1.8-.3.9-.7.2-1.3.6-1.3 1.1 0 .8 1.6 1.5 2.4 1.7.4.1.5.6.2.9-.8.7-2.2 1-3.2.8-.3.7-1.2 1.6-4 1.6s-3.7-.9-4-1.6c-1 .2-2.4-.1-3.2-.8-.3-.3-.2-.8.2-.9.8-.2 2.4-.9 2.4-1.7 0-.5-.6-.9-1.3-1.1-.4-.1-.6-.6-.3-.9.4-.4 1.3-.6 1.5-1.1.1-.4-.1-.7-.7-.9-.4-.2-.7-.6-.4-1 .4-.5 1.1-.6 1.6-.8V7.6C7.8 4.8 9.6 3 12 3z"/></svg>'
+      '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3c2.4 0 4.2 1.8 4.2 4.6v1.1c.5.2 1.2.3 1.6.8.3.4 0 .8-.4 1-.6.2-.8.5-.7.9.2.5 1.1.7 1.5 1.1.3.3.1.8-.3.9-.7.2-1.3.6-1.3 1.1 0 .8 1.6 1.5 2.4 1.7.4.1.5.6.2.9-.8.7-2.2 1-3.2.8-.3.7-1.2 1.6-4 1.6s-3.7-.9-4-1.6c-1 .2-2.4-.1-3.2-.8-.3-.3-.2-.8.2-.9.8-.2 2.4-.9 2.4-1.7 0-.5-.6-.9-1.3-1.1-.4-.1-.6-.6-.3-.9.4-.4 1.3-.6 1.5-1.1.1-.4-.1-.7-.7-.9-.4-.2-.7-.6-.4-1 .4-.5 1.1-.6 1.6-.8V7.6C7.8 4.8 9.6 3 12 3z"/></svg>',
+    linkedin:
+      '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.2 8.6H3.4V20h2.8V8.6zM4.8 3.5A1.6 1.6 0 1 0 4.8 6.7 1.6 1.6 0 0 0 4.8 3.5zM20.6 20h-2.8v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20H11V8.6h2.7v1.6h0a3 3 0 0 1 2.7-1.5c2.9 0 3.4 1.9 3.4 4.4V20z"/></svg>',
+    github:
+      '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.2-3.4-1.2-.4-1.1-1-1.4-1-1.4-.9-.6.1-.6.1-.6 1 0 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5a3.9 3.9 0 0 1 1-2.7 3.6 3.6 0 0 1 .1-2.6s.8-.3 2.8 1a9.5 9.5 0 0 1 5 0c2-1.3 2.8-1 2.8-1a3.6 3.6 0 0 1 .1 2.6 3.9 3.9 0 0 1 1 2.7c0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg>'
   };
 
   function escapeHtml(value) {

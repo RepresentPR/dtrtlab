@@ -148,3 +148,4 @@ Agent runs merges, schedules, and conflict fixes. You only need to unlock:
 | 2026-10-13 | Grok Bot email shortlist + `@bot` claim post on X; `docs/grokbot-email-handles.md` | Ian must approve first free handle in Grok Bot (one permanent address) |
 | 2026-10-13 | Agent-first authority; merged #34 #31 #33 #35 #36 #37 #29; #32 absorbed | Ian unlocks only (profile / LinkedIn / photos / Grok approve) |
 | 2026-10-13 | Vision-aligned AI templates: `AGENTS.md`, `.cursor/rules/*`, `docs/templates/*`, issue templates | Use prompts for free plan / paid scope / career / Lab social; skip hype kits |
+| 2026-10-13 | Find-me everywhere: `/find.html`, quiet strip, `content/socials.js` surfaces, mentor map + bio paste kit | Ian paste bios (`docs/social-bios-paste.md`); LinkedIn Featured; GitHub README; discard Postiz DRAFT dupes |
