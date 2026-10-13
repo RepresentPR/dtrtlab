@@ -139,11 +139,24 @@ TikTok drafts set `video_made_with_ai=true` + `DIRECT_POST` when published.
 
 ---
 
+## Publish status (2026-10-13)
+
+Polished captions scheduled (type `schedule`) — **discard older DRAFT duplicates** in Postiz UI for the same waves.
+
+| Wave | UTC window | Previews |
+| --- | --- | --- |
+| 1 Shop honesty (Will) | Oct 14 16:00–18:00 | [X](https://platform.postiz.com/p/cmv6w8hdb0knpqw0yqgwppd99?share=true) · [IG](https://platform.postiz.com/p/cmv6w8hm80knqqw0yc6fon7wr?share=true) · [TikTok](https://platform.postiz.com/p/cmv6w8htw0knrqw0yyv85y7uj?share=true) · [YT unlisted](https://platform.postiz.com/p/cmv6w8hzx0knsqw0yhrf3zhi5?share=true) |
+| 2 Dual brand (Roger) | Oct 15 16:00–20:00 | [X](https://platform.postiz.com/p/cmv6w8uzj0knuqw0ytjp0rec1?share=true) · [IG](https://platform.postiz.com/p/cmv6w8v8c0knvqw0yfp4z7851?share=true) · [TikTok](https://platform.postiz.com/p/cmv6w8viq0knwqw0y34axm8fo?share=true) · [Twitch](https://platform.postiz.com/p/cmv6w8vrl0knxqw0y8qnzpi95?share=true) |
+| 3 Free plan (Chris) | Oct 16 16:00–18:00 | [X](https://platform.postiz.com/p/cmv6w8x2f0knyqw0yzmfuhavk?share=true) · [IG](https://platform.postiz.com/p/cmv6w8xff0knzqw0y3mof0lhl?share=true) · [TikTok](https://platform.postiz.com/p/cmv6w8xof0ko0qw0yk2aqt1gg?share=true) · [YT unlisted](https://platform.postiz.com/p/cmv6w8y0e0ko1qw0y4szm6zou?share=true) |
+
+**X polish:** captions use plain `dtrtlab.com` (HTTPS links get stripped).  
+**Track file:** `docs/unfinished-work-pipeline.md`
+
 ## Publish checklist
 
-- [ ] Watch Will + Roger VO once — kill any that sound robotic  
-- [ ] Add Postiz AI video credits, then regenerate script A (Chris or Will)  
-- [ ] Drafts stay drafts until Ian approves — then schedule/publish in Postiz  
+- [x] Schedule quality Lab VO waves (not CS2 clutter)  
+- [ ] Watch Will + Roger + Chris VO once in Postiz — kill any that sound robotic before go-live  
+- [ ] Delete older DRAFT duplicates for the same waves  
 - [ ] TikTok: keep AI-generated label when VO is ElevenLabs  
 - [ ] Never schedule “live checkout” or “we're hiring”  
 - [ ] After Ian photo dump: Seedance B-roll with real stills + regenerate slides
