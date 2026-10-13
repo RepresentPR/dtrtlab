@@ -56,8 +56,11 @@ test('free-plan intake uses existing public profiles without collecting or claim
   assert.match(offer, /implementation is scoped separately/);
   assert.match(offer, /Opening a profile does not send a request/);
   const profileUrls = [...offer.matchAll(/href="([^"]+)"/g)].map(match => match[1]);
-  assert.deepEqual(profileUrls, ['/sample-plan.html', 'https://x.com/DTRTLab', 'https://www.instagram.com/officiallydtrt/', '/contact.html?intent=free-plan', '/contact.html?intent=free-plan&amp;lang=es']);
+  assert.deepEqual(profileUrls, ['/sample-plan.html', '/contact.html?intent=free-plan', '/contact.html?intent=free-plan&amp;lang=es', 'https://x.com/DTRTLab', 'https://www.instagram.com/officiallydtrt/']);
+  assert.match(offer, /href="\/contact\.html\?intent=free-plan"/);
   assert.match(offer, /lang="es"[^>]*href="\/contact\.html\?intent=free-plan&amp;lang=es"/);
+  assert.match(html, /class="nav-primary"[^>]*href="\/contact\.html\?intent=free-plan"/, 'header Free plan is one click');
+  assert.match(html, /class="[^"]*\baction-dock\b/, 'sticky quick-action dock stays visible');
   const existingProfiles = fs.readFileSync(path.join(root, 'about.html'), 'utf8');
   for (const url of profileUrls.filter(url => url.startsWith('https:'))) assert.ok(existingProfiles.includes(url), 'intake uses a previously public business identity');
   assert.ok(fs.existsSync(path.join(root, 'sample-plan.html')), 'sample plan page exists for the free-plan preview link');
