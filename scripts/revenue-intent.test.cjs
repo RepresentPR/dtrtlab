@@ -67,7 +67,7 @@ test('a valid prepared partnership email emits one intent and no private form fi
   ui.submit();
   const email = new URL(ui.location.href);
   assert.equal(email.protocol, 'mailto:');
-  assert.equal(email.pathname, 'DTRTCollision@outlook.com');
+  assert.equal(email.pathname, 'hello@dtrtlab.com');
   assert.match(email.searchParams.get('body'), /EMAIL: private@example\.test/);
   assert.deepEqual(ui.plausibleEvents(), [['PartnershipBriefPrepared', undefined]]);
   assert.deepEqual(ui.gaEvents(), [['event', 'PartnershipBriefPrepared']]);

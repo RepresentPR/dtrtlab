@@ -6,7 +6,7 @@
   const status = document.getElementById('contact-status');
   const preview = document.getElementById('email-message');
   const address = document.getElementById('business-email');
-  const recipient = 'DTRTCollision@outlook.com';
+  const recipient = 'hello@dtrtlab.com';
   const categories = ['Free plan', 'Paid project inquiry', 'Highlight', 'Partner', 'Work opportunity', 'Website', 'Other'];
   const params = new URLSearchParams(window.location.search);
   const route = params.get('intent');
