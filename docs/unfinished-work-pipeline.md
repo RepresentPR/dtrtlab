@@ -29,17 +29,17 @@
 
 | Wave | Theme | UTC window | Status |
 | --- | --- | --- | --- |
-| 1 | Shop honesty | 2026-10-14 ~16:00–18:00 | QUEUE (IG/TT/YT) + **fixed X** at 16:05 |
-| 2 | Dual brand Lab vs DTRTC | 2026-10-15 ~16:00–20:00 | QUEUE + Twitch + **fixed X** at 16:05 |
-| 3 | Free plan intro | 2026-10-16 ~16:00–18:00 | QUEUE + **fixed X** at 16:05 |
+| 1 | Shop honesty | 2026-10-14 ~16:00–18:00 | QUEUE (IG/TT/YT) + **X keep 16:10** |
+| 2 | Dual brand Lab vs DTRTC | 2026-10-15 ~16:00–20:00 | QUEUE + Twitch + **X keep 16:10** |
+| 3 | Free plan intro | 2026-10-16 ~16:00–18:00 | QUEUE + **X keep 16:10** |
 
-**Fixed X previews (use these; discard older stripped-URL QUEUE/DRAFTs):**
+**X keep these only** (plain `dtrtlab.com` is stripped by Postiz/X — captions use “dtrtlab dot com”):
 
-- https://platform.postiz.com/p/cmv6xay2z0kx6qw0yaf74vakb?share=true  
-- https://platform.postiz.com/p/cmv6xay930kx7qw0yz7iewo3p?share=true  
-- https://platform.postiz.com/p/cmv6xayh40kx8qw0y3ib04nou?share=true  
+- https://platform.postiz.com/p/cmv6y73ir0lf7qw0ys8gicsyy?share=true  
+- https://platform.postiz.com/p/cmv6y73s10lf8qw0y60a16176?share=true  
+- https://platform.postiz.com/p/cmv6y73zf0lf9qw0yhb2ttzri?share=true  
 
-**Ian Postiz UI (cannot delete via API):** discard older DRAFT duplicates and any QUEUE X posts where `dtrtlab.com` was stripped (empty after “Free plan at”). Keep QUEUE IG/TT/YT/Twitch for the three waves.
+**Ian Postiz UI (cannot delete via API):** discard DRAFT duplicates + every older X QUEUE at 16:00/16:05 (stripped domains). Keep QUEUE IG/TT/YT/Twitch + the three X 16:10 posts above.
 
 ---
 

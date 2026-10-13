@@ -154,13 +154,13 @@ Polished captions scheduled (type `schedule`) — **discard older DRAFT duplicat
 
 ### X caption repair (2026-10-13)
 
-Earlier QUEUE X posts had `dtrtlab.com` stripped. **Use these fixed QUEUE posts** (16:05 UTC); discard older stripped X QUEUE/DRAFT duplicates in Postiz UI:
+Postiz/X strips bare `dtrtlab.com` from captions. **Keep only these QUEUE posts** (16:10 UTC, “dtrtlab dot com”); discard all older stripped X QUEUE/DRAFT duplicates:
 
-| Wave | Fixed preview |
+| Wave | Keep preview |
 | --- | --- |
-| 1 Shop | https://platform.postiz.com/p/cmv6xay2z0kx6qw0yaf74vakb?share=true |
-| 2 Dual brand | https://platform.postiz.com/p/cmv6xay930kx7qw0yz7iewo3p?share=true |
-| 3 Free plan | https://platform.postiz.com/p/cmv6xayh40kx8qw0y3ib04nou?share=true |
+| 1 Shop | https://platform.postiz.com/p/cmv6y73ir0lf7qw0ys8gicsyy?share=true |
+| 2 Dual brand | https://platform.postiz.com/p/cmv6y73s10lf8qw0y60a16176?share=true |
+| 3 Free plan | https://platform.postiz.com/p/cmv6y73zf0lf9qw0yhb2ttzri?share=true |
 
 ## Publish checklist
 
