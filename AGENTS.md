@@ -32,6 +32,7 @@ Prefer action over parking work as “blocked on Ian.”
 - Shop checkout stays **off** until payment + fulfillment are real (`checkoutLive: false`).
 - Do not put secrets, recovery codes, API tokens, or passwords in git (`secrets/`, `*recovery-codes*` are gitignored).
 - Do not reverse-engineer / clone third-party apps as a growth strategy.
+- Keep **company AI** (this Cursor agent + Postiz) separate from **experiment** API wallets; see `docs/ai-spend-ops.md`. Never put company secrets on young discount proxies.
 - Keep Lab usefulness surfaces separate from DTRTC stream chrome.
 - AFTERLIGHT / game status stays honest (“in development” when true).
 - Public contact is `hello@dtrtlab.com` (not Outlook on the site).
