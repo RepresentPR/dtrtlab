@@ -41,13 +41,13 @@ The About paragraph is the element with `id="creator-bio"` in `index.html`.
 
 Open `index.html` in a browser. Catalog/news JSON still load if you serve the folder.
 
-## Full site (forms + PayPal)
+## Local preview
 
 ```
-Start-Site.ps1
+python3 -m http.server 8787 --bind 127.0.0.1
 ```
 
-or `python site/server/app.py` then http://127.0.0.1:8787
+Then open http://127.0.0.1:8787 — no build step. Contact flows open the visitor’s email app (mailto); they do not post to a server.
 
 ## Update content without rewriting HTML
 
@@ -55,18 +55,24 @@ Edit:
 
 - `content/product.json` — public game name, status, features, media kinds
 - `content/releases.json` — user-facing release notes (`news.html`)
-- `content/site.json` — studio copy, version, donate button id
+- `content/site.json` — studio copy, emails, socials
+- `content/company.json` — company facts for operators / schema alignment
 - `content/catalog.json` — modes, rifles, music
 - `content/worlds.json` — world blurbs/status
-- `content/news.json` — What’s new / changelog (`news.html`)
+- `content/news.json` — company notes (`news.html` may also use releases)
 - `content/afterlight.json` — Afterlight chapter stills and insights (`story.html`)
 
 In-game buttons read `../data/web.json`, not this folder. Keep `preorderEnabled` here in sync with `preorder_live` there. Nav shows **Coming soon** until `preorderEnabled` is true.
 
+## Company foundation
+
+Public pages: `/company.html`, `/careers.html`, `/brand.html`, `/press.html`, `/legal/*`, `/.well-known/security.txt`.  
+Operator docs: `docs/company-operating-system.md`, `docs/brand-playbook.md`, `docs/business-email-asap.md`.
+
 ## Payments
 
-See `PAYMENTS.md`. Copy `.env.example` to `.env`. Never commit `.env`. Never put a PayPal password in the repo. Checkout stays disabled until Client ID, Secret, price, and PREORDER_ENABLED are set.
+Checkout stays **off** until a real payment stack and legal review exist. Prefer keeping `preorderEnabled` false. Never commit `.env` or PayPal secrets. Copy `.env.example` only if you are actively wiring a private sandbox.
 
 ## Inbox
 
-Contact/bug/feedback append to `site/data/*.jsonl` (gitignored).
+Public: `hello@dtrtlab.com` · Founder: `ian@dtrtlab.com` (Cloudflare Email Routing → Gmail). Contact pages use mailto handoff; they do not store messages in the static site.

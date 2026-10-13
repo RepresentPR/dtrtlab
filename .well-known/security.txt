@@ -1,0 +1,5 @@
+Contact: mailto:hello@dtrtlab.com
+Preferred-Languages: en, es
+Canonical: https://dtrtlab.com/.well-known/security.txt
+Policy: https://dtrtlab.com/legal/privacy.html
+Expires: 2027-10-13T00:00:00.000Z

@@ -1,0 +1,45 @@
+{
+  "legalName": "DTRT Lab",
+  "displayName": "DTRT Lab",
+  "founder": "Ian Ferraro",
+  "foundedYear": 2024,
+  "entityStatus": "independent_creator",
+  "entityNote": "Independent creator / studio project. Formal entity registration (LLC or equivalent) is a planned operating step, not claimed as complete on this site.",
+  "hqRegion": "Puerto Rico",
+  "hqCountry": "US",
+  "url": "https://dtrtlab.com/",
+  "logo": "https://dtrtlab.com/img/brand/dtrt-social.png",
+  "mark": "https://dtrtlab.com/img/brand/mark.svg",
+  "email": {
+    "public": "hello@dtrtlab.com",
+    "press": "hello@dtrtlab.com",
+    "support": "hello@dtrtlab.com",
+    "security": "hello@dtrtlab.com",
+    "founder": "ian@dtrtlab.com"
+  },
+  "sameAs": [
+    "https://x.com/DTRTLab",
+    "https://www.instagram.com/officiallydtrt/",
+    "https://www.youtube.com/@DTRTLabYT",
+    "https://www.twitch.tv/dtrtc",
+    "https://www.tiktok.com/@dtrtlab"
+  ],
+  "products": [
+    {
+      "name": "DTRT Lab free plan",
+      "status": "live",
+      "description": "Public offer: send a business link or idea plus one goal; receive a free practical plan."
+    },
+    {
+      "name": "DTRT AFTERLIGHT",
+      "status": "in_development",
+      "description": "Story-driven FPS campaign set in Puerto Rico. Volume One is readable. No public download."
+    }
+  ],
+  "hiring": false,
+  "fundraising": false,
+  "preorderLive": false,
+  "mission": "Make useful stuff. Have fun doing it. Show the process with dated public evidence.",
+  "northStar": "Become a durable independent entertainment and usefulness company — not a vanity brand.",
+  "lastReviewed": "2026-10-13"
+}

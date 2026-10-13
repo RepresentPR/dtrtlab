@@ -1,7 +1,8 @@
 {
   "product": "DTRT Lab",
   "version": "ue5-lab",
-  "creator": "Ian",
+  "creator": "Ian Ferraro",
+  "legalName": "DTRT Lab",
   "tagline": "DTRT AFTERLIGHT — the island remembers.",
   "oneSentence": "DTRT Lab is building DTRT AFTERLIGHT, a story-driven FPS campaign in Puerto Rico with a first-bullet training range. Volume One is readable. There is no public download.",
   "preorderEnabled": false,
@@ -12,14 +13,24 @@
   "contactEmail": "hello@dtrtlab.com",
   "pressEmail": "hello@dtrtlab.com",
   "supportEmail": "hello@dtrtlab.com",
+  "securityEmail": "hello@dtrtlab.com",
+  "founderEmail": "ian@dtrtlab.com",
   "donateUrl": "",
   "social": {
     "x": "https://x.com/DTRTLab",
     "instagram": "https://www.instagram.com/officiallydtrt/",
     "twitch": "https://www.twitch.tv/dtrtc",
     "youtube": "https://www.youtube.com/@DTRTLabYT",
+    "tiktok": "https://www.tiktok.com/@dtrtlab",
     "kofi": ""
   },
+  "sameAs": [
+    "https://x.com/DTRTLab",
+    "https://www.instagram.com/officiallydtrt/",
+    "https://www.youtube.com/@DTRTLabYT",
+    "https://www.twitch.tv/dtrtc",
+    "https://www.tiktok.com/@dtrtlab"
+  ],
   "releaseWindow": "When Windows export and playtest pass — no date claimed.",
   "googleSiteVerification": "",
   "plausibleSharedUrl": "",
