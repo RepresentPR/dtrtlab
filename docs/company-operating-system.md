@@ -16,7 +16,7 @@ DTRT Lab is Ian Ferraro’s independent creator studio: public free-plan consult
 | --- | --- | --- |
 | **A. Public foundation** | Legal pages, press kit, brand kit, security contact, careers/investors honesty, schema, sitemap, company inbox | Shipped on site (keep honest as facts change) |
 | **B. Operating company** | Registered entity, bank, accounting, insurance, trademarks, send-as `@dtrtlab.com`, DMARC hygiene | External — owner actions |
-| **C. Product company** | Live store/preorder or Steam, support SLAs, status page, privacy program | Not ready until AFTERLIGHT / paid offers ship |
+| **C. Product company** | Live store/preorder or Steam, support SLAs, status page, privacy program | Interest catalog live at `/shop.html` (checkout off); flip when payment + fulfillment real |
 | **D. Scaled company** | Hiring, fundraising or profit engine, multi-person leadership, formal security/compliance | Future — do not fake on site |
 
 ## Visitor pipeline (dummy-proof, one-click)
