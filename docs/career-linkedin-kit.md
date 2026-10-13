@@ -13,7 +13,8 @@ Estimator remains a solid *optional* collision adjacent seat — not the only go
 **Last built:** 2026-10-13  
 **Profile:** https://www.linkedin.com/in/ian-ferraro-578784419/  
 **Public record:** https://dtrtlab.com/history.html  
-**Vision filter:** `docs/vision.md`
+**Vision filter:** `docs/vision.md`  
+**Agent access:** LinkedIn authwall blocks automated read/edit — Ian must paste headline/About/Open to Work manually (kit below). Public career facts cross-checked via `/history.html`.
 
 ---
 
