@@ -19,6 +19,19 @@ DTRT Lab is Ian Ferraro’s independent creator studio: public free-plan consult
 | **C. Product company** | Live store/preorder or Steam, support SLAs, status page, privacy program | Not ready until AFTERLIGHT / paid offers ship |
 | **D. Scaled company** | Hiring, fundraising or profit engine, multi-person leadership, formal security/compliance | Future — do not fake on site |
 
+## Visitor pipeline (dummy-proof, one-click)
+
+Public production rule: **never make a visitor hunt for 30 minutes**. Four actions cover almost everything:
+
+| Action | One-click destination |
+| --- | --- |
+| **Free plan** | `/contact.html?intent=free-plan` |
+| **Paid work** | `/contact.html?intent=paid-project` |
+| **Company hub** | `/company.html` (press / brand / careers / proof) |
+| **Contact** | `/contact.html` |
+
+Homepage: header + sticky dock + hero CTA all point at Free plan first. Ops evidence (results, publishing queue, gaming archive) stays **collapsed** under “Optional proof” so it cannot bury the offer. Global `nav.js` CTA is **Free plan**, not Twitch Follow. Rename gaming “Work” → **Clips** so it never competes with company examples.
+
 ## P0 gaps closed in the repo (this work)
 
 - Indexable **Terms**, **Cookies**, **DMCA** pages + footer legal cluster
@@ -28,6 +41,7 @@ DTRT Lab is Ian Ferraro’s independent creator studio: public free-plan consult
 - **Organization / WebSite JSON-LD** on home + about
 - Sitemap expansion; company facts in `content/company.json`
 - Public mail: `hello@` / `ian@` (Cloudflare → Gmail)
+- One-click visitor pipeline (header / dock / company hub)
 
 ## Owner checklist (external — cannot be faked in git)
 

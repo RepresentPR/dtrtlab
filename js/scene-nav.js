@@ -7,6 +7,8 @@
   var root = parts.length ? "../".repeat(parts.length) : "";
   var file = (location.pathname.split("/").pop() || "index.html").toLowerCase();
   var aboutOn = file === "about.html";
+  var companyOn = file === "company.html";
+  var contactOn = file === "contact.html";
   var partnerOn = file === "partners.html" || here.indexOf("/partner/") !== -1;
   var afterlightOn =
     file === "afterlight.html" ||
@@ -28,16 +30,18 @@
     '<div class="wrap nav-row">' +
     '<a class="brand" href="' + root + 'index.html">DTRT LAB</a>' +
     '<nav class="links" id="site-links" aria-label="Primary">' +
-    link("clips/", "Work", false) +
-    link("live/", "Results", false) +
+    link("company.html", "Company", companyOn) +
+    link("live/", "Proof", false) +
+    link("clips/", "Clips", false) +
     link("afterlight.html", "AFTERLIGHT", afterlightOn) +
     link("about.html", "About", aboutOn) +
     link("partners.html", "Partner", partnerOn) +
+    link("contact.html", "Contact", contactOn) +
     '<div class="nav-socials nav-socials-menu" data-social-slot="menu"></div>' +
     "</nav>" +
     '<div class="nav-end">' +
     '<div class="nav-socials nav-socials-desktop" data-social-slot="nav"></div>' +
-    '<a class="nav-cta" id="nav-follow" data-social-href="twitch" href="https://www.twitch.tv/dtrtc" rel="noopener noreferrer" target="_blank">Follow</a>' +
+    '<a class="nav-cta" id="nav-start" href="' + root + 'contact.html?intent=free-plan">Free plan</a>' +
     '<button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-links">Menu</button>' +
     "</div>" +
     "</div>";
@@ -57,10 +61,13 @@
     foot.innerHTML =
       '<div class="wrap">' +
       "<span>DTRT Lab · Created by Ian</span>" +
+      '<a href="' + root + 'contact.html?intent=free-plan">Free plan</a>' +
+      '<a href="' + root + 'contact.html?intent=paid-project">Paid work</a>' +
       '<a href="' + root + 'index.html">Home</a>' +
+      '<a href="' + root + 'company.html">Company</a>' +
       '<a href="' + root + 'about.html">About</a>' +
-      '<a href="' + root + 'clips/">Work</a>' +
-      '<a href="' + root + 'live/">Results</a>' +
+      '<a href="' + root + 'live/">Proof</a>' +
+      '<a href="' + root + 'clips/">Clips</a>' +
       '<a href="' + root + 'afterlight.html">AFTERLIGHT</a>' +
       '<a href="' + root + 'cs2.html">CS2</a>' +
       '<a href="' + root + 'partners.html">Partner</a>' +
