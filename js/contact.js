@@ -38,7 +38,7 @@
         'fallback-title': 'Email app did not open?', 'fallback-help': 'Copy these into a new email, then review and send it yourself. You can also select the text and copy it manually.',
         'to-label': 'To', 'copy-email': 'Copy email address', 'copy-message-label': 'Subject and message to copy', 'copy-message': 'Copy email message',
         'language-help': 'This inquiry page is available in English and Spanish. Spanish wording prepared with AI; no independent native-speaker review. Other linked resources may be in English. Your browser may offer translation into other languages; that translation may be imperfect.',
-        'contact-credit': 'DTRT Lab · Created by Ian', 'contact-home-link': 'Home', 'contact-footer-about': 'About', 'contact-footer-work': 'Work', 'contact-footer-results': 'Results', 'contact-footer-partner': 'Partner', 'contact-footer-privacy': 'Privacy'
+        'contact-credit': 'DTRT Lab · Created by Ian', 'contact-home-link': 'Home', 'contact-footer-about': 'About', 'contact-footer-work': 'Work', 'contact-footer-results': 'Results', 'contact-footer-partner': 'Partner', 'contact-footer-privacy': 'Privacy', 'contact-footer-terms': 'Terms', 'contact-footer-cookies': 'Cookies'
       }
     },
     es: {
@@ -67,7 +67,7 @@
         'fallback-title': '¿No se abrió tu aplicación de correo?', 'fallback-help': 'Copia estos datos en un correo nuevo, revísalo y envíalo tú. También puedes seleccionar el texto y copiarlo manualmente.',
         'to-label': 'Para', 'copy-email': 'Copiar dirección de correo', 'copy-message-label': 'Asunto y mensaje para copiar', 'copy-message': 'Copiar asunto y mensaje',
         'language-help': 'Esta página de consultas está disponible en inglés y español. Texto en español preparado con IA; sin revisión independiente de una persona nativa. Otros recursos enlazados pueden estar en inglés. Tu navegador puede ofrecer traducción a otros idiomas; esa traducción puede ser imperfecta.',
-        'contact-credit': 'DTRT Lab · Creado por Ian', 'contact-home-link': 'Inicio', 'contact-footer-about': 'Acerca del Lab (inglés)', 'contact-footer-work': 'Proyectos (inglés)', 'contact-footer-results': 'Resultados (inglés)', 'contact-footer-partner': 'Colaboraciones (inglés)', 'contact-footer-privacy': 'Privacidad'
+        'contact-credit': 'DTRT Lab · Creado por Ian', 'contact-home-link': 'Inicio', 'contact-footer-about': 'Acerca del Lab (inglés)', 'contact-footer-work': 'Proyectos (inglés)', 'contact-footer-results': 'Resultados (inglés)', 'contact-footer-partner': 'Colaboraciones (inglés)', 'contact-footer-privacy': 'Privacidad', 'contact-footer-terms': 'Términos', 'contact-footer-cookies': 'Cookies'
       }
     }
   };

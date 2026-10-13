@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://dtrtlab.com/</loc><lastmod>2026-10-11</lastmod><priority>1.0</priority></url>
-  <url><loc>https://dtrtlab.com/about.html</loc><lastmod>2026-10-11</lastmod><priority>0.8</priority></url>
+  <url><loc>https://dtrtlab.com/</loc><lastmod>2026-10-13</lastmod><priority>1.0</priority></url>
+  <url><loc>https://dtrtlab.com/about.html</loc><lastmod>2026-10-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://dtrtlab.com/company.html</loc><lastmod>2026-10-13</lastmod><priority>0.7</priority></url>
   <url><loc>https://dtrtlab.com/history.html</loc><lastmod>2026-10-11</lastmod><priority>0.7</priority></url>
   <url><loc>https://dtrtlab.com/clips/</loc><lastmod>2026-10-11</lastmod><priority>0.8</priority></url>
   <url><loc>https://dtrtlab.com/live/</loc><lastmod>2026-10-11</lastmod><priority>0.8</priority></url>
   <url><loc>https://dtrtlab.com/watch/</loc><lastmod>2026-10-11</lastmod><priority>0.9</priority></url>
-  <url><loc>https://dtrtlab.com/afterlight.html</loc><lastmod>2026-10-11</lastmod><priority>0.8</priority></url>
+  <url><loc>https://dtrtlab.com/watch/workshop-guide.html</loc><lastmod>2026-10-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://dtrtlab.com/afterlight.html</loc><lastmod>2026-10-10</lastmod><priority>0.8</priority></url>
   <url><loc>https://dtrtlab.com/game.html</loc><lastmod>2026-10-10</lastmod><priority>0.6</priority></url>
   <url><loc>https://dtrtlab.com/story.html</loc><lastmod>2026-10-10</lastmod><priority>0.6</priority></url>
   <url><loc>https://dtrtlab.com/stories/afterlight/volume-one/</loc><lastmod>2026-10-10</lastmod><priority>0.6</priority></url>
@@ -14,16 +16,24 @@
   <url><loc>https://dtrtlab.com/training.html</loc><lastmod>2026-10-10</lastmod><priority>0.5</priority></url>
   <url><loc>https://dtrtlab.com/media.html</loc><lastmod>2026-10-10</lastmod><priority>0.5</priority></url>
   <url><loc>https://dtrtlab.com/news.html</loc><lastmod>2026-10-10</lastmod><priority>0.5</priority></url>
+  <url><loc>https://dtrtlab.com/cs2.html</loc><lastmod>2026-10-13</lastmod><priority>0.6</priority></url>
   <url><loc>https://dtrtlab.com/faq.html</loc><lastmod>2026-10-10</lastmod><priority>0.4</priority></url>
-  <url><loc>https://dtrtlab.com/contact.html</loc><lastmod>2026-10-11</lastmod><priority>0.6</priority></url>
+  <url><loc>https://dtrtlab.com/contact.html</loc><lastmod>2026-10-13</lastmod><priority>0.7</priority></url>
+  <url><loc>https://dtrtlab.com/sample-plan.html</loc><lastmod>2026-10-13</lastmod><priority>0.6</priority></url>
   <url><loc>https://dtrtlab.com/donate.html</loc><lastmod>2026-10-10</lastmod><priority>0.4</priority></url>
   <url><loc>https://dtrtlab.com/support.html</loc><lastmod>2026-10-11</lastmod><priority>0.3</priority></url>
-  <url><loc>https://dtrtlab.com/press.html</loc><lastmod>2026-10-10</lastmod><priority>0.3</priority></url>
+  <url><loc>https://dtrtlab.com/press.html</loc><lastmod>2026-10-13</lastmod><priority>0.6</priority></url>
+  <url><loc>https://dtrtlab.com/brand.html</loc><lastmod>2026-10-13</lastmod><priority>0.5</priority></url>
+  <url><loc>https://dtrtlab.com/careers.html</loc><lastmod>2026-10-13</lastmod><priority>0.4</priority></url>
+  <url><loc>https://dtrtlab.com/partners.html</loc><lastmod>2026-10-11</lastmod><priority>0.6</priority></url>
+  <url><loc>https://dtrtlab.com/partner/</loc><lastmod>2026-10-13</lastmod><priority>0.5</priority></url>
   <url><loc>https://dtrtlab.com/catalog.html</loc><lastmod>2026-10-10</lastmod><priority>0.3</priority></url>
   <url><loc>https://dtrtlab.com/preorder.html</loc><lastmod>2026-10-10</lastmod><priority>0.3</priority></url>
   <url><loc>https://dtrtlab.com/bug.html</loc><lastmod>2026-10-10</lastmod><priority>0.2</priority></url>
   <url><loc>https://dtrtlab.com/stories/afterlight/people.html</loc><lastmod>2026-10-10</lastmod><priority>0.4</priority></url>
   <url><loc>https://dtrtlab.com/stories/afterlight/island.html</loc><lastmod>2026-10-10</lastmod><priority>0.4</priority></url>
-  <url><loc>https://dtrtlab.com/legal/privacy.html</loc><lastmod>2026-10-10</lastmod><priority>0.2</priority></url>
-  <url><loc>https://dtrtlab.com/partners.html</loc><lastmod>2026-10-11</lastmod><priority>0.6</priority></url>
+  <url><loc>https://dtrtlab.com/legal/privacy.html</loc><lastmod>2026-10-13</lastmod><priority>0.3</priority></url>
+  <url><loc>https://dtrtlab.com/legal/terms.html</loc><lastmod>2026-10-13</lastmod><priority>0.3</priority></url>
+  <url><loc>https://dtrtlab.com/legal/cookies.html</loc><lastmod>2026-10-13</lastmod><priority>0.3</priority></url>
+  <url><loc>https://dtrtlab.com/legal/dmca.html</loc><lastmod>2026-10-13</lastmod><priority>0.3</priority></url>
 </urlset>
