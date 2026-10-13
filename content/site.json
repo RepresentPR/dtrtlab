@@ -26,6 +26,10 @@
     "twitch": "https://www.twitch.tv/dtrtc",
     "youtube": "https://www.youtube.com/@DTRTLabYT",
     "tiktok": "https://www.tiktok.com/@iananthonyfc",
+    "kick": "https://kick.com/movebro",
+    "linkedin": "https://www.linkedin.com/in/ian-ferraro-578784419/",
+    "github": "https://github.com/RepresentPR",
+    "findMe": "https://dtrtlab.com/find.html",
     "kofi": ""
   },
   "sameAs": [
@@ -33,7 +37,10 @@
     "https://www.instagram.com/officiallydtrt/",
     "https://www.youtube.com/@DTRTLabYT",
     "https://www.twitch.tv/dtrtc",
-    "https://www.tiktok.com/@iananthonyfc"
+    "https://www.tiktok.com/@iananthonyfc",
+    "https://kick.com/movebro",
+    "https://www.linkedin.com/in/ian-ferraro-578784419/",
+    "https://github.com/RepresentPR"
   ],
   "releaseWindow": "When Windows export and playtest pass — no date claimed.",
   "googleSiteVerification": "",
