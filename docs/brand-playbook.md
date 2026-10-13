@@ -31,6 +31,7 @@ Do not invent “Inc.” / “LLC” in public copy until `content/company.json`
 - Accent is white, not purple gradients or cream/terracotta defaults.
 - Mark: `img/brand/mark.svg`. Social share: `img/brand/dtrt-social.png`. Avatar: `img/brand/dtrt-avatar.png`.
 - Prefer edge-to-edge photography/stills of real work over abstract decoration.
+- **Photo scatter (company · hiring · social):** intake at `media/intake/` · plan `docs/visual-photo-scatter.md`. Agent cannot open Apple iCloud until Ian sends a Shared Album / Drive link, chat attachments, or Postiz uploads.
 
 ## Social handles (canonical)
 

@@ -1,0 +1,13 @@
+# Keep structure in git; keep personal photo dumps out of the repo.
+raw/**
+selected/**
+!raw/.gitkeep
+!selected/.gitkeep
+!selected/a/.gitkeep
+!selected/b/.gitkeep
+!selected/c/.gitkeep
+*.heic
+*.HEIC
+*.mov
+*.MOV
+REJECT.md
