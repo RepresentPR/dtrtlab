@@ -109,8 +109,8 @@
     "es": "Salúdanos <span aria-hidden=\"true\">↗</span>"
   },
   "homeNote": {
-    "en": "Useful for any size business or idea. No purchase required.",
-    "es": "Útil para cualquier tamaño de negocio o idea. Sin compra obligatoria."
+    "en": "One button. Two details. No treasure map.",
+    "es": "Un botón. Dos datos. Sin mapa del tesoro."
   },
   "start": {
     "en": "01 / Start",
