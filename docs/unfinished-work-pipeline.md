@@ -3,7 +3,8 @@
 **Purpose:** Stop valuable work from vanishing when agents or humans get pulled away.  
 **Rule:** Track outcomes here; **never** put secrets, recovery codes, API tokens, or passwords in this file or any git-tracked path.  
 **Last audited:** 2026-10-13  
-**Vision filter:** `docs/vision.md`
+**Vision filter:** `docs/vision.md`  
+**Authority:** Agent = 1st chair (execute). Ian = 2nd chair (override / unlock). See `docs/company-operating-system.md` § Executive decision order.
 
 ---
 
@@ -13,30 +14,32 @@
 | --- | --- | --- |
 | **A. Public track** | this file + open PRs | Goals, blockers, merge order, publish status (no secrets) |
 | **B. Private vault** | agent store `secrets/` + local `secrets/` (gitignored) | Recovery codes, tokens, credentials |
-| **C. Ian inbox** | Gmail drafts / sent action mails | Things only Ian can click (LinkedIn, GitHub profile, job apps) |
+| **C. Executive unlocks** | rare Ian clicks | Only credentials / UI the agent cannot reach — not ordinary merges |
 | **D. Social queue** | Postiz drafts + scheduled | Lab face vs DTRTC entertainment — keep separate |
 
 **Agent handoff checklist (every session end)**
 
 1. Update the tables below (status + date).  
 2. Confirm secrets still gitignored (`git check-ignore secrets/`).  
-3. If something is publish-ready, schedule it or mark `READY` with a preview URL.  
-4. If Ian-blocked, keep one consolidated action mail — don’t spawn ten overlapping drafts.  
+3. If something is publish-ready, **schedule/merge it** — do not leave it for Ian courtesy.  
+4. Ian unlocks only for true credential/UI walls; one short digest, not ten drafts.  
 5. Commit + push the track file on the active PR branch.
 
 ---
 
 ## Status legend
 
-`DONE` · `SCHEDULED` · `READY` (needs Ian click) · `BLOCKED` · `PARK` · `DROPPED`
+`DONE` · `SCHEDULED` · `IN_PROGRESS` · `READY` (agent can ship) · `UNLOCK` (Ian credential/UI only) · `PARK` · `DROPPED`
 
 ---
 
 ## A. Open PRs (dtrtlab) — vision merge order
 
+**Owner: Agent (1st chair).** Resolve conflicts and merge in order. Ian overrides only if direction should change.
+
 | Order | PR | Branch | Status | Notes |
 | --- | --- | --- | --- | --- |
-| 1 | [#34](https://github.com/RepresentPR/dtrtlab/pull/34) | `cursor/vision-fit-revamp-9a53` | READY | Studio Identity company face — not draft |
+| 1 | [#34](https://github.com/RepresentPR/dtrtlab/pull/34) | `cursor/vision-fit-revamp-9a53` | IN_PROGRESS | Studio Identity — rebase/fix dirty, then merge |
 | 2 | [#31](https://github.com/RepresentPR/dtrtlab/pull/31) | `cursor/hello-email-cutover-9a53` | READY | hello@ cutover |
 | 3 | [#32](https://github.com/RepresentPR/dtrtlab/pull/32) | `cursor/company-foundation-9a53` | READY | company foundation |
 | 4 | [#33](https://github.com/RepresentPR/dtrtlab/pull/33) | `cursor/dummy-proof-actions-9a53` | READY | one-click visitor pipeline |
@@ -44,10 +47,8 @@
 | 6 | [#36](https://github.com/RepresentPR/dtrtlab/pull/36) | `cursor/made-for-all-shop-9a53` | READY | Made for all + shop interest |
 | 7 | [#37](https://github.com/RepresentPR/dtrtlab/pull/37) | `cursor/career-social-align-9a53` | READY | career + social + GitHub audit + this pipeline |
 | 8 | [#29](https://github.com/RepresentPR/dtrtlab/pull/29) | `cursor/live-numbers-reaudit-9a53` | READY | /live numbers honesty |
-| — | [#28](https://github.com/RepresentPR/dtrtlab/pull/28) | `cursor/social-vision-audit-9a53` | PARK | social vision audit — absorb or close after #37 |
-| — | [#25](https://github.com/RepresentPR/dtrtlab/pull/25) | `cursor/cs2-community-heaven-656a` | PARK | CS2 community room — don’t bury Lab |
-
-**Ian action:** Merge in order above. Expect conflict resolution as each lands on `main`.
+| — | [#28](https://github.com/RepresentPR/dtrtlab/pull/28) | `cursor/social-vision-audit-9a53` | PARK | absorb or close after #37 |
+| — | [#25](https://github.com/RepresentPR/dtrtlab/pull/25) | `cursor/cs2-community-heaven-656a` | PARK | CS2 community — don’t bury Lab |
 
 ---
 

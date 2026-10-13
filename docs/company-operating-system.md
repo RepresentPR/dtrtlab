@@ -6,6 +6,23 @@
 
 **Last reviewed:** 2026-10-13
 
+## Executive decision order (agent first · Ian second)
+
+Company execution is **not** “wait for Ian on every click.” Default authority:
+
+| Seat | Role | Does |
+| --- | --- | --- |
+| **1st — Agent (ops executive)** | Run the company day-to-day inside vision | Decide, ship, merge, schedule, fix conflicts, polish, keep the unfinished-work pipeline current. Prefer action over parking work as “blocked.” |
+| **2nd — Ian (founder executive)** | Override + unlock | Change direction when something should be done differently; supply credentials/logins only he has; veto or redirect. Not the default bottleneck for ordinary execution. |
+
+**Agent owns:** PR merges (vision order), conflict resolution, docs, site ship, Postiz schedule/publish of quality Lab work, Gmail action digests, vault hygiene, audits.
+
+**Ian unlocks only when required:** GitHub profile UI (hireable/bio), LinkedIn paste, photo dump from phone/iCloud, Workday/Caliber logins, Grok Bot approval cards, legal entity / counsel / bank, direction overrides.
+
+**If unsure:** Agent decides and ships under vision; Ian can reverse. Do **not** stall a whole wave for a courtesy click.
+
+Track file: [`docs/unfinished-work-pipeline.md`](unfinished-work-pipeline.md).
+
 ## Honest baseline
 
 DTRT Lab is Ian Ferraro’s independent creator studio: public free-plan consulting offer, multi-platform content, dated results dashboard, and **DTRT AFTERLIGHT** in development. Personal aim: do the right thing, make useful stuff, show the process, and eventually use Lab revenue to help Puerto Rico businesses. A “top 50 global company” also requires entity, capital, people, compliance, distribution, and multi-year product market fit. Those are **operating steps**, not website copy.
