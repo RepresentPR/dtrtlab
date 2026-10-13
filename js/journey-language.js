@@ -84,9 +84,13 @@
     "en": "Make useful stuff.<br><span>Have fun doing it.</span>",
     "es": "Crea cosas útiles.<br><span>Disfruta al hacerlo.</span>"
   },
+  "heroBrand": {
+    "en": "DTRT LAB",
+    "es": "DTRT LAB"
+  },
   "homeLead": {
-    "en": "Is your page making people guess what you do? Send one link and one goal. We’ll send back a free plan.",
-    "es": "¿Tu página hace que la gente adivine qué haces? Envía un enlace y una meta. Te devolvemos un plan gratis."
+    "en": "Send one link and one goal. We’ll send back a free plan — three priorities, one sample improvement, a clear next step.",
+    "es": "Envía un enlace y una meta. Te devolvemos un plan gratis: tres prioridades, una mejora de ejemplo y un próximo paso claro."
   },
   "freeDown": {
     "en": "Get a free plan <span aria-hidden=\"true\">↗</span>",
@@ -105,8 +109,8 @@
     "es": "Salúdanos <span aria-hidden=\"true\">↗</span>"
   },
   "homeNote": {
-    "en": "One button. Two details. No treasure map.",
-    "es": "Un botón. Dos datos. Sin mapa del tesoro."
+    "en": "Useful for any size business or idea. No purchase required.",
+    "es": "Útil para cualquier tamaño de negocio o idea. Sin compra obligatoria."
   },
   "start": {
     "en": "01 / Start",

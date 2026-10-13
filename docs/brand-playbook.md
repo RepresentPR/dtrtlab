@@ -38,6 +38,21 @@ Do not invent “Inc.” / “LLC” in public copy until `content/company.json`
 - Twitch: [dtrtc](https://www.twitch.tv/dtrtc)
 - TikTok: [@iananthonyfc](https://www.tiktok.com/@iananthonyfc) (canonical in `content/socials.js`)
 
+## Presence map (vs top brands — what we take / skip)
+
+Compared against Linear / OpenAI (site calm), Higgsfield (work-as-hero), Twitch / cinematic creators (heat for live):
+
+| Surface | Pattern we keep | What we skip |
+| --- | --- | --- |
+| **dtrtlab.com (company)** | Studio Identity: full-bleed real work, brand-first hero, one primary CTA (Free plan), monochrome + white accent | Orange heat as company chrome; dashboard clutter in first viewport; clone-shop aesthetics |
+| **YouTube / workshop shorts** | Lab Files energy on *work labels* only (formalin eyebrows on mosaic) — proof, not chrome | Chartreuse CTAs everywhere; motion-first landing that hides the free plan |
+| **Twitch / Kick (DTRTC)** | Orange + cinema heat stays on the *stream* surface | Using stream chrome as the company website face |
+| **X / Instagram / TikTok** | Same voice as site: useful, dated, bilingual where needed; link to Free plan or one proof piece | Fake scale, trending-tool bait, or implying entity/store that is not live |
+
+**Bio template (all company handles):** `DTRT Lab — Make useful stuff. Free plan at dtrtlab.com · EN/ES`
+
+**Stream bio (DTRTC):** Keep entertainment-first; point viewers to the Lab for useful work, not the other way around.
+
 ## Email
 
 - Public / press / support: `hello@dtrtlab.com`
