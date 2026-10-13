@@ -39,18 +39,17 @@
 
 | Order | PR | Branch | Status | Notes |
 | --- | --- | --- | --- | --- |
-| 1 | [#34](https://github.com/RepresentPR/dtrtlab/pull/34) | `cursor/vision-fit-revamp-9a53` | DONE | Merged by agent (1st chair) |
+| 1 | [#34](https://github.com/RepresentPR/dtrtlab/pull/34) | `cursor/vision-fit-revamp-9a53` | DONE | Merged by agent |
 | 2 | [#31](https://github.com/RepresentPR/dtrtlab/pull/31) | `cursor/hello-email-cutover-9a53` | DONE | Merged by agent |
-| 3 | [#32](https://github.com/RepresentPR/dtrtlab/pull/32) | `cursor/company-foundation-9a53` | DONE | Absorbed via #34/#31; tree synced to main |
+| 3 | [#32](https://github.com/RepresentPR/dtrtlab/pull/32) | `cursor/company-foundation-9a53` | DONE | Absorbed via #34/#31 |
 | 4 | [#33](https://github.com/RepresentPR/dtrtlab/pull/33) | `cursor/dummy-proof-actions-9a53` | DONE | Merged by agent |
 | 5 | [#35](https://github.com/RepresentPR/dtrtlab/pull/35) | `cursor/mobile-app-tool-9a53` | DONE | Merged by agent |
 | 6 | [#36](https://github.com/RepresentPR/dtrtlab/pull/36) | `cursor/made-for-all-shop-9a53` | DONE | Merged by agent |
-| 7 | [#37](https://github.com/RepresentPR/dtrtlab/pull/37) | `cursor/career-social-align-9a53` | IN_PROGRESS | career + social + pipeline + agent-first authority |
-| 8 | [#29](https://github.com/RepresentPR/dtrtlab/pull/29) | `cursor/live-numbers-reaudit-9a53` | READY | /live numbers honesty — next |
-| — | [#28](https://github.com/RepresentPR/dtrtlab/pull/28) | `cursor/social-vision-audit-9a53` | PARK | absorb or close after #37 |
+| 7 | [#37](https://github.com/RepresentPR/dtrtlab/pull/37) | `cursor/career-social-align-9a53` | DONE | Merged by agent |
+| 8 | [#29](https://github.com/RepresentPR/dtrtlab/pull/29) | `cursor/live-numbers-reaudit-9a53` | DONE | Merged by agent |
+| — | [#28](https://github.com/RepresentPR/dtrtlab/pull/28) | `cursor/social-vision-audit-9a53` | PARK | absorb or close |
 | — | [#25](https://github.com/RepresentPR/dtrtlab/pull/25) | `cursor/cs2-community-heaven-656a` | PARK | CS2 community — don’t bury Lab |
 
----
 
 ## B. Social publish queue (quality-only Lab VO)
 
@@ -147,3 +146,4 @@ Agent runs merges, schedules, and conflict fixes. You only need to unlock:
 | --- | --- | --- |
 | 2026-10-13 | Inventory; polished Lab VO scheduled (3 waves); pipeline file; secrets vault confirmed; recovery-code mail + consolidated action mail | Ian UI items; photo dump; LinkedIn paste; PR merges |
 | 2026-10-13 | Grok Bot email shortlist + `@bot` claim post on X; `docs/grokbot-email-handles.md` | Ian must approve first free handle in Grok Bot (one permanent address) |
+| 2026-10-13 | Agent-first authority; merged #34 #31 #33 #35 #36 #37 #29; #32 absorbed | Ian unlocks only (profile / LinkedIn / photos / Grok approve) |
