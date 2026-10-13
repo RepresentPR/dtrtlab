@@ -1,0 +1,149 @@
+# Unfinished-work pipeline — secure, vision-filtered
+
+**Purpose:** Stop valuable work from vanishing when agents or humans get pulled away.  
+**Rule:** Track outcomes here; **never** put secrets, recovery codes, API tokens, or passwords in this file or any git-tracked path.  
+**Last audited:** 2026-10-13  
+**Vision filter:** `docs/vision.md`  
+**Authority:** Agent = 1st chair (execute). Ian = 2nd chair (override / unlock). See `docs/company-operating-system.md` § Executive decision order.
+
+---
+
+## How this pipeline works
+
+| Layer | Where | What belongs |
+| --- | --- | --- |
+| **A. Public track** | this file + open PRs | Goals, blockers, merge order, publish status (no secrets) |
+| **B. Private vault** | agent store `secrets/` + local `secrets/` (gitignored) | Recovery codes, tokens, credentials |
+| **C. Executive unlocks** | rare Ian clicks | Only credentials / UI the agent cannot reach — not ordinary merges |
+| **D. Social queue** | Postiz drafts + scheduled | Lab face vs DTRTC entertainment — keep separate |
+
+**Agent handoff checklist (every session end)**
+
+1. Update the tables below (status + date).  
+2. Confirm secrets still gitignored (`git check-ignore secrets/`).  
+3. If something is publish-ready, **schedule/merge it** — do not leave it for Ian courtesy.  
+4. Ian unlocks only for true credential/UI walls; one short digest, not ten drafts.  
+5. Commit + push the track file on the active PR branch.
+
+---
+
+## Status legend
+
+`DONE` · `SCHEDULED` · `IN_PROGRESS` · `READY` (agent can ship) · `UNLOCK` (Ian credential/UI only) · `PARK` · `DROPPED`
+
+---
+
+## A. Open PRs (dtrtlab) — vision merge order
+
+**Owner: Agent (1st chair).** Resolve conflicts and merge in order. Ian overrides only if direction should change.
+
+| Order | PR | Branch | Status | Notes |
+| --- | --- | --- | --- | --- |
+| 1 | [#34](https://github.com/RepresentPR/dtrtlab/pull/34) | `cursor/vision-fit-revamp-9a53` | DONE | Merged by agent (1st chair) |
+| 2 | [#31](https://github.com/RepresentPR/dtrtlab/pull/31) | `cursor/hello-email-cutover-9a53` | DONE | Merged by agent |
+| 3 | [#32](https://github.com/RepresentPR/dtrtlab/pull/32) | `cursor/company-foundation-9a53` | DONE | Absorbed via #34/#31; tree synced to main |
+| 4 | [#33](https://github.com/RepresentPR/dtrtlab/pull/33) | `cursor/dummy-proof-actions-9a53` | DONE | Merged by agent |
+| 5 | [#35](https://github.com/RepresentPR/dtrtlab/pull/35) | `cursor/mobile-app-tool-9a53` | DONE | Merged by agent |
+| 6 | [#36](https://github.com/RepresentPR/dtrtlab/pull/36) | `cursor/made-for-all-shop-9a53` | DONE | Merged by agent |
+| 7 | [#37](https://github.com/RepresentPR/dtrtlab/pull/37) | `cursor/career-social-align-9a53` | IN_PROGRESS | career + social + pipeline + agent-first authority |
+| 8 | [#29](https://github.com/RepresentPR/dtrtlab/pull/29) | `cursor/live-numbers-reaudit-9a53` | READY | /live numbers honesty — next |
+| — | [#28](https://github.com/RepresentPR/dtrtlab/pull/28) | `cursor/social-vision-audit-9a53` | PARK | absorb or close after #37 |
+| — | [#25](https://github.com/RepresentPR/dtrtlab/pull/25) | `cursor/cs2-community-heaven-656a` | PARK | CS2 community — don’t bury Lab |
+
+---
+
+## B. Social publish queue (quality-only Lab VO)
+
+| Wave | Theme | Voice / media | Target UTC | Status |
+| --- | --- | --- | --- | --- |
+| 1 | Shop honesty (checkout not live) | Will · `Ug9DA6DTc6.mp4` | 2026-10-14 16:00–18:00 | SCHEDULED (polished; discard older DRAFT duplicates in Postiz) |
+| 2 | Dual brand Lab vs DTRTC | Roger · `AxzqWNbzmv.mp4` | 2026-10-15 16:00–20:00 | SCHEDULED |
+| 3 | Free plan intro | Chris · `P6OFBe1NwF.mp4` | 2026-10-16 16:00–18:00 | SCHEDULED |
+
+**Channels:** X · Instagram · TikTok (`video_made_with_ai=true`, `DIRECT_POST`) · YouTube unlisted · Twitch (wave 2 only).  
+**Do not publish:** CS2 draft clutter as Lab face · “live checkout” · “we're hiring”.  
+**X note:** HTTPS links get stripped — captions use plain `dtrtlab.com`.  
+**Cleanup:** ~30 non-Lab DRAFTs remain (songs, CS2 clips) — keep or delete in Postiz UI; not Lab priority.  
+**Errors:** 4 TikTok OpenAPI rate-limit ERRORs (music/barrio) — retry later via app if wanted. 1 IG ERROR (fictional lunch) — drop.
+
+---
+
+## C. Career / LinkedIn / photos
+
+| Item | Status | Owner |
+| --- | --- | --- |
+| Career kit (SA / Manager / Creative) | DONE in repo | `docs/career-linkedin-kit.md` |
+| LinkedIn paste (headline / About / Open to Work) | BLOCKED | Ian — authwall |
+| Photo scatter from iCloud/phone | BLOCKED | Ian send → `docs/visual-photo-scatter.md` |
+| Workday / Caliber applications | BLOCKED | Ian login |
+| Cover notes (SA / ops / creative / estimator) | DONE in kit | Ian paste when applying |
+
+---
+
+## D. GitHub profile (RepresentPR)
+
+| Item | Status | Owner |
+| --- | --- | --- |
+| Vision audit doc | DONE | `docs/github-vision-alignment-audit.md` |
+| Lab-first README | DONE | PR #37 |
+| PR template + labels guide | DONE | `.github/` |
+| Uncheck hireable | BLOCKED | Ian UI |
+| Bio + website + location | BLOCKED | Ian UI |
+| Profile README repo `RepresentPR/RepresentPR` | BLOCKED | Ian create from template |
+| Create `vision/*` labels | BLOCKED | Ian (API 403) |
+| Follow 10–20 intentional accounts | BLOCKED | Ian |
+
+---
+
+## E. Secrets / recovery (private only)
+
+| Item | Public status | Private location |
+| --- | --- | --- |
+| GitHub recovery codes | **Never in git** | Agent store `secrets/github-recovery-codes.txt` · workspace `secrets/` (gitignored) · Gmail to Outlook |
+| `.gitignore` covers `secrets/` + `*recovery-codes*` | DONE | verify each session |
+
+**If codes rotate:** update vault + send new Outlook mail; never commit.
+
+---
+
+## F. Email / company ops
+
+| Item | Status | Notes |
+| --- | --- | --- |
+| `hello@` / `ian@` routing docs | DONE / in flight | see `docs/business-email-asap.md` + related PRs |
+| Site contact cutover | READY | PR #31 |
+| Send-as from Gmail | BLOCKED | Ian Google/Cloudflare if not finished |
+| **Grok Bot `@mail.grokbot.com`** | READY / Ian approve | One permanent address. Shortlist: `dtrt` → `dtrtlab` → `useful` → `ianfc` → `freeplan`. Doc: `docs/grokbot-email-handles.md`. X `@bot` claim posted. |
+
+---
+
+## G. Ian unlock list (2nd chair only — not ordinary ops)
+
+Agent runs merges, schedules, and conflict fixes. You only need to unlock:
+
+1. **Save recovery codes** — password manager + print.  
+2. **GitHub profile UI** — uncheck hireable; bio/website; profile README (token cannot PATCH).  
+3. **LinkedIn** — paste from `docs/career-linkedin-kit.md` (authwall).  
+4. **Photos** — send dump per `docs/visual-photo-scatter.md`.  
+5. **Job apps** — Workday/Caliber login + apply with kit cover notes.  
+6. **Grok Bot email** — approve first free shortlist name (`dtrt` → …). One shot forever.  
+7. **Override** — tell the agent when something should be done differently; that redirects 1st chair.
+
+---
+
+## H. What we explicitly will not fake-finish
+
+- Live shop checkout  
+- Hiring pages / “available for hire” theater  
+- Fortune-scale or fake follower claims  
+- Merging CS2 community (#25) ahead of Lab face work  
+- Committing secrets “just for backup”
+
+---
+
+## Session log
+
+| Date (UTC) | What closed | What stayed open |
+| --- | --- | --- |
+| 2026-10-13 | Inventory; polished Lab VO scheduled (3 waves); pipeline file; secrets vault confirmed; recovery-code mail + consolidated action mail | Ian UI items; photo dump; LinkedIn paste; PR merges |
+| 2026-10-13 | Grok Bot email shortlist + `@bot` claim post on X; `docs/grokbot-email-handles.md` | Ian must approve first free handle in Grok Bot (one permanent address) |

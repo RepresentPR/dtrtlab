@@ -1,78 +1,46 @@
 # DTRT Lab website
 
-The homepage is the DTRTC creator hub. DTRT AFTERLIGHT — the story, Volume One, training, and world — is on `afterlight.html` and the pages linked from it. Volume One was not removed.
+Public site for **[dtrtlab.com](https://dtrtlab.com)** — Ian Ferraro’s independent studio.
 
-## Add a clip
+**Company face:** make useful stuff, show dated evidence, Made for all.  
+**Entertainment face:** DTRTC (stream/clips) and **DTRT AFTERLIGHT** (story world; game in development). Same founder, different surfaces — see `docs/vision.md`.
 
-Clip cards on the homepage read `content/clips.js`. Append one object to `window.DTRT_CLIPS`:
+## What this repo is
 
-```js
-{ title: "short title", slug: "TwitchClipSlugHere" }
+| Path | Job |
+| --- | --- |
+| `/` + free plan tool | Usefulness — send a link + goal, get a practical plan |
+| `/company.html`, `/shop.html` | Company story + shop **interest** (checkout off until real) |
+| `/live/`, `/history.html` | Dated evidence — no vanity metrics without context |
+| `/afterlight.html`, `/clips/` | Entertainment / story / clips — honest status |
+| `docs/vision.md` | Decision filter for every change |
+
+Do **not** claim a live store, open raise, hiring pipeline, Fortune rank, or reverse-engineered third-party games.
+
+## Vision & ops docs
+
+- Vision filter: [`docs/vision.md`](docs/vision.md)
+- Operating system: [`docs/company-operating-system.md`](docs/company-operating-system.md)
+- Brand: [`docs/brand-playbook.md`](docs/brand-playbook.md)
+- GitHub alignment audit: [`docs/github-vision-alignment-audit.md`](docs/github-vision-alignment-audit.md)
+
+## Local
+
+Open `index.html` in a browser, or:
+
+```bash
+# full site (forms)
+python site/server/app.py   # http://127.0.0.1:8787
 ```
 
-`slug` is the last part of a `https://clips.twitch.tv/SLUG` URL. Save the file and reload the homepage. There is no build step. Without a thumbnail the card stays on the formalin hatch and still plays on click.
+Content without rewriting HTML: `content/*.json`, `content/socials.js`, `content/clips.js`.
 
-## Add a clip thumbnail
+## Payments & inbox
 
-Thumbnails are static files in the repo, not hotlinked from Twitch:
+See `PAYMENTS.md`. Checkout stays disabled until Client ID, Secret, price, and flags are real. Never commit `.env`.
 
-- `assets/clips/SLUG.webp` — about 640 pixels wide
-- `assets/clips/SLUG-320.webp` — about 320 pixels wide
+Contact/bug/feedback append to `site/data/*.jsonl` (gitignored).
 
-Set `thumb` to the 640-wide path. The page builds the `srcset` from that path. To fetch any clip that does not have both files yet:
+## Related private craft
 
-```
-scripts/fetch-clip-thumbs
-```
-
-The script needs `ffmpeg` and Python 3. It reads `content/clips.js`, requests `og:image` from `https://clips.twitch.tv/SLUG`, and if that image is missing or is only the generic Twitch logo it uses Twitch's public clip metadata (`thumbnailURL`). It writes the two WebP files and fills in `thumb`. Clips that already have both files are left alone.
-
-Stylesheets and scripts are loaded with `?v=20261008e` because GitHub Pages cannot set cache headers. The service worker in `sw.js` uses that same version in its cache name. HTML is network-first, so a new page still arrives. Other files are stale-while-revalidate. When you change CSS, JS, fonts, or thumbnails, bump the version in `sw.js`, `js/nav.js`, and `css/fonts.css` together with the `?v=` query on the pages.
-
-## Turn a social on
-
-Header, hero, Find me, and footer all read `content/socials.js`. TikTok, Instagram, and Snapchat are commented out at the bottom of that file. Uncomment the block, fill `handle` and `url`, and reload. Direct tip links are paused. Review payment privacy before enabling a future support destination.
-
-The X link is `https://x.com/DTRTLab`. Ian confirmed that account, so it shows with the other networks and the homepage sets `twitter:site` to `@DTRTLab`.
-
-The About paragraph is the element with `id="creator-bio"` in `index.html`.
-
-## Read only
-
-Open `index.html` in a browser. Catalog/news JSON still load if you serve the folder.
-
-## Local preview
-
-```
-python3 -m http.server 8787 --bind 127.0.0.1
-```
-
-Then open http://127.0.0.1:8787 — no build step. Contact flows open the visitor’s email app (mailto); they do not post to a server.
-
-## Update content without rewriting HTML
-
-Edit:
-
-- `content/product.json` — public game name, status, features, media kinds
-- `content/releases.json` — user-facing release notes (`news.html`)
-- `content/site.json` — studio copy, emails, socials
-- `content/company.json` — company facts for operators / schema alignment
-- `content/catalog.json` — modes, rifles, music
-- `content/worlds.json` — world blurbs/status
-- `content/news.json` — company notes (`news.html` may also use releases)
-- `content/afterlight.json` — Afterlight chapter stills and insights (`story.html`)
-
-In-game buttons read `../data/web.json`, not this folder. Keep `preorderEnabled` here in sync with `preorder_live` there. Nav shows **Coming soon** until `preorderEnabled` is true.
-
-## Company foundation
-
-Public pages: `/company.html`, `/careers.html`, `/brand.html`, `/press.html`, `/legal/*`, `/.well-known/security.txt`.  
-Operator docs: `docs/vision.md` (personal + company alignment), `docs/company-operating-system.md`, `docs/brand-playbook.md`, `docs/business-email-asap.md`.
-
-## Payments
-
-Checkout stays **off** until a real payment stack and legal review exist. Prefer keeping `preorderEnabled` false. Never commit `.env` or PayPal secrets. Copy `.env.example` only if you are actively wiring a private sandbox.
-
-## Inbox
-
-Public: `hello@dtrtlab.com` · Founder: `ian@dtrtlab.com` (Cloudflare Email Routing → Gmail). Contact pages use mailto handoff; they do not store messages in the static site.
+FPS / production foundation lives in the private **DTRTCore** repo (Unreal 5.8, original assets, no old-game dependencies). That work feeds AFTERLIGHT entertainment — it is not the company homepage job.
