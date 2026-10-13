@@ -68,7 +68,6 @@
       '<div class="wrap">' +
       "<span>DTRT Lab · Created by Ian Ferraro</span>" +
       '<a href="' + root + 'contact.html?intent=free-plan">Free plan</a>' +
-      '<a href="' + root + 'shop.html">Shop</a>' +
       '<a href="' + root + 'contact.html?intent=paid-project">Paid work</a>' +
       '<a href="' + root + 'index.html">Home</a>' +
       '<a href="' + root + 'company.html">Company</a>' +

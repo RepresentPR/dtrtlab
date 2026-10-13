@@ -89,16 +89,8 @@
     "es": "DTRT LAB"
   },
   "homeLead": {
-    "en": "Made for all — any age, any size idea, global by design. Send one link and one goal. We’ll send back a free plan — three priorities, one sample improvement, a clear next step.",
-    "es": "Hecho para todos — cualquier edad, cualquier tamaño de idea, con visión global. Envía un enlace y una meta. Te devolvemos un plan gratis: tres prioridades, una mejora de ejemplo y un próximo paso claro."
-  },
-  "navShop": {
-    "en": "Shop",
-    "es": "Tienda"
-  },
-  "dockShop": {
-    "en": "Shop",
-    "es": "Tienda"
+    "en": "Send one link and one goal. We’ll send back a free plan — three priorities, one sample improvement, a clear next step.",
+    "es": "Envía un enlace y una meta. Te devolvemos un plan gratis: tres prioridades, una mejora de ejemplo y un próximo paso claro."
   },
   "freeDown": {
     "en": "Get a free plan <span aria-hidden=\"true\">↗</span>",
@@ -117,8 +109,8 @@
     "es": "Salúdanos <span aria-hidden=\"true\">↗</span>"
   },
   "homeNote": {
-    "en": "Useful for any age and any size business or idea. No purchase required. Shop interest is open — checkout not live.",
-    "es": "Útil para cualquier edad y cualquier tamaño de negocio o idea. Sin compra obligatoria. La lista de interés de la tienda está abierta — el pago aún no está activo."
+    "en": "Useful for any size business or idea. No purchase required.",
+    "es": "Útil para cualquier tamaño de negocio o idea. Sin compra obligatoria."
   },
   "start": {
     "en": "01 / Start",

@@ -21,8 +21,6 @@ Do not invent “Inc.” / “LLC” in public copy until `content/company.json`
 - Show evidence with dates. Separate **live** from **in development**.
 - Spanish appears on journey pages; mark AI-assisted copy until native review.
 - Anchor lines: **Do the right thing. Make useful stuff. Have fun doing it.** Long-term: Lab revenue → help Puerto Rico businesses (not active yet — do not overclaim).
-- **Made for all:** any age, any size business or idea, global by design (Puerto Rico roots). Do not age-gate free plans or shop interest.
-- Shop: interest catalog at `/shop.html` — digital + POD snowball path; never imply a live cart until `checkoutLive` is true in `content/shop.json`.
 - Full alignment filter: `docs/vision.md`.
 
 ## Visual
