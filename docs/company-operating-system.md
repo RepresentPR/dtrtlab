@@ -21,7 +21,8 @@ Company execution is **not** “wait for Ian on every click.” Default authorit
 
 **If unsure:** Agent decides and ships under vision; Ian can reverse. Do **not** stall a whole wave for a courtesy click.
 
-Track file: [`docs/unfinished-work-pipeline.md`](unfinished-work-pipeline.md).
+Track file: [`docs/unfinished-work-pipeline.md`](unfinished-work-pipeline.md).  
+AI templates (agent floor + prompts): [`docs/templates/`](templates/README.md) · root [`AGENTS.md`](../AGENTS.md).
 
 ## Honest baseline
 

@@ -1,0 +1,19 @@
+---
+description: Static dtrtlab.com HTML/CSS/JS conventions and verification
+globs: "**/*.{html,css,js,cjs,json}"
+alwaysApply: false
+---
+
+# Static site conventions
+
+- Prefer editing existing pages/patterns over new frameworks.
+- Keep `content/site.json` and `content/company.json` as the source of truth for emails and company facts.
+- Free-plan CTAs → `/contact.html?intent=free-plan` or `#plan-tool` on homepage.
+- Shop: interest catalog only; never enable a fake cart.
+- After homepage / contact / shop / journey changes, run:
+
+```bash
+node --test scripts/homepage-render.test.cjs scripts/plan-tool.test.cjs scripts/shop.test.cjs scripts/inquiry-privacy.test.cjs scripts/journey-language.test.cjs
+```
+
+- Match cache-bust query strings on CSS/JS when behavior visibly changes.

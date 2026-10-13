@@ -1,0 +1,26 @@
+---
+description: DTRT Lab vision filter and honesty rules — always on
+alwaysApply: true
+---
+
+# Vision + honesty (always)
+
+Read `@docs/vision.md` before shipping product, copy, metrics, or social.
+
+## Must
+
+- Do the right thing: honest status, dated evidence, no fake scale.
+- Make useful stuff: free plans and clear next steps for any age / any size idea.
+- Dual brand: Lab = usefulness · DTRTC = entertainment. Same founder, separate surfaces.
+- Agent is 1st chair ops; Ian is 2nd chair override/unlock (`@docs/company-operating-system.md`).
+
+## Never
+
+- Fake Fortune / top-50 / headcount / client theater
+- Live store, open raise, or hiring pipelines that do not exist
+- Reverse-engineering third-party apps as growth strategy
+- Committing secrets or recovery codes
+
+## When writing for customers or social
+
+Prefer templates in `@docs/templates/` over generic AI marketing voice.
