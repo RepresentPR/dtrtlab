@@ -12,7 +12,8 @@
 
 | # | Target | Open | Paste reply |
 | --- | --- | --- | --- |
-| 1 | @adhamuxi tip post | https://x.com/adhamuxi/status/2110154869352902831 | Testing this as a small Lab account: 10 real replies > 1 lonely post. Distribution is a skill, not a vibe. |
+| 1 | @elonmusk founder-direct tip | https://x.com/elonmusk/status/2110077948384735481 | Agree. For a one-person Lab I’d rather post the dated proof myself than write a press release nobody reads. |
+| 1b | @adhamuxi tip post | https://x.com/adhamuxi/status/2110154869352902831 | Testing this as a small Lab account: 10 real replies > 1 lonely post. Distribution is a skill, not a vibe. |
 | 2 | @levelsio — personal software era | Search X: `from:levelsio personal software` | Same shift on a tiny studio: I’m not buying another dashboard — I’m shipping the one page that proves the work. |
 | 3 | @levelsio — cancelled SaaS | Search X: `from:levelsio cancelled SaaS` | Cutting tools that don’t touch the customer path. Keep inference + hosting + proof. Everything else is costume. |
 | 4 | @levelsio — normies building software | Search X: `from:levelsio Normies won't know` | Operators already do this without calling it “building software.” They ask for the outcome. The agent fills the stack. |
