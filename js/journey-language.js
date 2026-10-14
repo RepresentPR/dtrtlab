@@ -89,8 +89,8 @@
     "es": "DTRT LAB"
   },
   "homeLead": {
-    "en": "DTRT Lab writes a free plan for a business or an idea. DTRTC is the stream. AFTERLIGHT is a game in development, and it is not for sale. Send one link and one goal.",
-    "es": "DTRT Lab escribe un plan gratis para un negocio o una idea. DTRTC es la transmisión. AFTERLIGHT es un juego en desarrollo y no está a la venta. Envía un enlace y una meta."
+    "en": "DTRT Lab writes for local businesses. Start with a free plan, then pick a writing package. Send one link and one goal.",
+    "es": "DTRT Lab escribe para negocios locales. Empieza con un plan gratis y luego elige un paquete de escritura. Envía un enlace y una meta."
   },
   "homeMeta": {
     "en": "DTRT Lab writes for local businesses. Mission: Do the right thing. Free plan, plus Mini Social Pack $50, Week Pack $129, and Writing Retainer — Starter $250/30 days. Checkout for those writing plans is on Whop.",
