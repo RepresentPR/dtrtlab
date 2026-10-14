@@ -47,7 +47,7 @@
 
 Agent cannot finish these without your login/UI:
 
-1. Paste bios — `docs/social-bios-paste.md`  
+1. Paste bios from `brand-kit.md` (same text in `docs/social-bios-paste.md`) onto X, Instagram, TikTok, YouTube, and Twitch  
 2. LinkedIn About / Featured — `docs/career-linkedin-kit.md`  
 3. GitHub profile UI + `RepresentPR/RepresentPR` README  
 4. Photos — `docs/visual-photo-scatter.md`  
@@ -95,3 +95,4 @@ Agent cannot finish these without your login/UI:
 | 2026-10-13 | Agent-first merges #34 #31 #33 #35 #36 #37 #29; #32 absorbed | Ian unlocks |
 | 2026-10-13 | AI templates · Find-me live · AI spend ops | Bios paste · Postiz DRAFT cleanup |
 | 2026-10-13 | **Company live reaudit:** site HTTP 200s, email MX, tests green, #32/#25 closed, audit-site path fixed, find-me tests, **X captions re-queued with plain dtrtlab.com** | SCHEDULED waves · Ian unlock list · Postiz DRAFT discard |
+| 2026-10-14 | Business-first site revamp drafted: writing plans on Whop, hobby on `/lab.html`, `brand-kit.md` | Ian still pastes the bios into each social profile |

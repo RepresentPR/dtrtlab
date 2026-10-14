@@ -5,8 +5,9 @@ const path = require('node:path');
 const campaign = require('../js/campaign-home.js');
 const root = path.join(__dirname, '..');
 
-test('real homepage refresh keeps company introductions separate from the dated archive and results', async () => {
-  const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+test('hobby archive renders on lab.html and the homepage stays the writing business', async () => {
+  const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+  const html = fs.readFileSync(path.join(root, 'lab.html'), 'utf8');
   const nodes = new Map();
   function element() {
     return { textContent: '', children: [], dataset: {}, classList: { toggle() {} },
@@ -17,9 +18,7 @@ test('real homepage refresh keeps company introductions separate from the dated 
     assert.equal(nodes.has(id), false, 'duplicate homepage ID: ' + id);
     nodes.set(id, element());
   }
-  const company = nodes.get('company-work');
-  const staticVideos = ['showcase', 'introduction'];
-  company.children = [...staticVideos];
+  assert.equal(nodes.has('company-work'), false, 'company videos stay on the homepage, not the hobby archive');
   const data = JSON.parse(fs.readFileSync(path.join(root, 'content/campaign.json'), 'utf8'));
   const document = { hidden: false, getElementById: id => nodes.get(id) || null, createElement: element, addEventListener() {} };
   const win = { setTimeout: () => 1, clearTimeout() {}, setInterval() {}, fetch: async () => ({ ok: true, json: async () => data }) };
@@ -30,13 +29,21 @@ test('real homepage refresh keeps company introductions separate from the dated 
   assert.match(nodes.get('roster-count').textContent, /\/ 17$/);
   assert.ok(nodes.get('highlight-list').children.length, 'archive selections render');
   assert.ok(nodes.get('queue-list').children.length, 'saved queue state renders');
-  assert.deepEqual(company.children, staticVideos, 'campaign refresh does not replace company work');
-  assert.ok(html.indexOf('id="company-work"') < html.indexOf('id="results"'));
-  assert.match(html, /id="gaming-archive"[^>]*><details>/, 'gaming archive is collapsed by default');
-  assert.doesNotMatch(html, /Ian Ferraro/i);
+  assert.match(html, /id="gaming-archive"[^>]*><details>/, 'gaming archive is collapsed on the hobby page');
+  assert.doesNotMatch(home, /id="gaming-archive"/);
+  assert.doesNotMatch(home, /Ian Ferraro/i);
+  assert.match(home, /DTRT Lab writes a free plan for a business or an idea\. DTRTC is the stream\. AFTERLIGHT is a game in development, and it is not for sale\. Send one link and one goal\./);
+  assert.match(home, /https:\/\/whop\.com\/checkout\/plan_HAGSLXXUeGkcz/);
+  assert.match(home, /https:\/\/whop\.com\/checkout\/plan_RVDjSToI7vKOM/);
+  assert.match(home, /https:\/\/whop\.com\/checkout\/plan_kZqq0jgr6VrGG/);
+  assert.doesNotMatch(home, /IanAnthonyFC@gmail\.com|PayPal/);
+  const main = home.match(/<main[\s\S]*?<\/main>/)?.[0] || '';
+  assert.doesNotMatch(main, /twitch\.tv|\/cs2\.html|\/afterlight\.html|\/clips\//i);
+  assert.match(home, /href="\/lab\.html"/);
+  assert.ok(home.includes('id="company-work"'));
   assert.doesNotMatch(fs.readFileSync(path.join(root, 'watch/index.html'), 'utf8').match(/<footer[\s\S]*?<\/footer>/)?.[0] || '', /Ian Ferraro/i);
   for (const src of ['/img/company/company-showcase-poster.jpg', '/img/company/make-your-work-clear-poster.jpg']) {
-    assert.ok(html.includes(src));
+    assert.ok(home.includes(src));
     assert.equal(fs.readFileSync(path.join(root, src.slice(1))).subarray(0, 2).toString('hex'), 'ffd8');
   }
 });

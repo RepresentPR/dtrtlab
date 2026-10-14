@@ -30,13 +30,11 @@
     '<div class="wrap nav-row">' +
     '<a class="brand" href="' + root + 'index.html">DTRT LAB</a>' +
     '<nav class="links" id="site-links" aria-label="Primary">' +
+    link("index.html#packages", "Packages", false) +
     link("company.html", "Company", companyOn) +
-    link("live/", "Proof", false) +
-    link("clips/", "Clips", false) +
-    link("afterlight.html", "AFTERLIGHT", afterlightOn) +
     link("about.html", "About", aboutOn) +
-    link("partners.html", "Partner", partnerOn) +
     link("contact.html", "Contact", contactOn) +
+    link("lab.html", "Lab / Hobby", file === "lab.html") +
     '<div class="nav-socials nav-socials-menu" data-social-slot="menu"></div>' +
     "</nav>" +
     '<div class="nav-end">' +
@@ -60,23 +58,33 @@
   if (foot) {
     foot.innerHTML =
       '<div class="wrap">' +
-      "<span>DTRT Lab · Created by Ian</span>" +
+      "<span>DTRT Lab · Writing for local businesses</span>" +
       '<a href="' + root + 'contact.html?intent=free-plan">Free plan</a>' +
-      '<a href="' + root + 'contact.html?intent=paid-project">Paid work</a>' +
+      '<a href="' + root + 'index.html#packages">Packages</a>' +
       '<a href="' + root + 'index.html">Home</a>' +
-      '<a href="' + root + 'company.html">Company</a>' +
-      '<a href="' + root + 'about.html">About</a>' +
-      '<a href="' + root + 'live/">Proof</a>' +
-      '<a href="' + root + 'clips/">Clips</a>' +
-      '<a href="' + root + 'afterlight.html">AFTERLIGHT</a>' +
-      '<a href="' + root + 'cs2.html">CS2</a>' +
-      '<a href="' + root + 'partners.html">Partner</a>' +
       '<a href="' + root + 'contact.html">Contact</a>' +
+      '<a href="' + root + 'lab.html">Lab / Hobby</a>' +
       '<a href="' + root + 'legal/privacy.html">Privacy</a>' +
       '<a href="' + root + 'legal/terms.html">Terms</a>' +
       '<a href="' + root + 'legal/cookies.html">Cookies</a>' +
       "</div>" +
       '<div class="wrap socials" data-social-slot="footer"></div>';
+  }
+
+  var sceneLang = /(?:\?|&)lang=es(?:&|$)/.test(location.search) ? "es" : "en";
+  if (!document.querySelector('link[href*="css/identity.css"]')) {
+    var identity = document.createElement("link");
+    identity.rel = "stylesheet";
+    identity.href = root + "css/identity.css?v=20261014-business1";
+    document.head.appendChild(identity);
+  }
+  if (document.getElementById("main") && !document.querySelector(".hobby-banner")) {
+    var banner = document.createElement("p");
+    banner.className = "hobby-banner wrap";
+    banner.innerHTML = sceneLang === "es"
+      ? 'Esto es Lab / Pasatiempo, no el negocio. <a href="' + root + 'lab.html">Lab / Pasatiempo</a> · <a href="' + root + 'index.html">Inicio</a>'
+      : 'This is Lab / Hobby, not the business. <a href="' + root + 'lab.html">Lab / Hobby</a> · <a href="' + root + 'index.html">Business home</a>';
+    document.getElementById("main").insertBefore(banner, document.getElementById("main").firstChild);
   }
 
   var ICONS = {
@@ -140,7 +148,7 @@
 
   function renderSlot(el) {
     var kind = el.getAttribute("data-social-slot") || "footer";
-    var items = networks();
+    var items = networks().filter(function (item) { return item.id === "x" || item.id === "instagram"; });
     var htmlOut = items
       .map(function (item) {
         var label = escapeHtml(item.label);

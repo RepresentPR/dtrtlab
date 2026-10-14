@@ -1,44 +1,34 @@
 # Social bios — paste kit (vision-aligned)
 
-**Use once per platform.** Keep Lab / Stream / Career distinct.  
-**Hub link:** `https://dtrtlab.com/find.html`  
-**Updated:** 2026-10-13
+**Canonical paste text is [`/brand-kit.md`](../brand-kit.md).** Use that file for X, Instagram, TikTok, YouTube, and Twitch.  
+**Updated:** 2026-10-14
+
+The blocks below match the brand kit so an older bookmark still pastes the business.
 
 ---
 
 ## Lab — X (@DTRTLab)
 
 ```
-DTRT Lab — Make useful stuff. Have fun doing it.
-Free plan · Made for all · EN/ES
-Find me → dtrtlab.com/find.html
+DTRT Lab writes for local businesses. Do the right thing. Free plan: dtrtlab.com
 ```
 
 ## Lab — Instagram (@officiallydtrt)
 
 ```
-DTRT Lab · Useful work · Free plans
-Any age · Any size idea · Puerto Rico roots
-Shop interest open · Checkout not live
-Find every link → dtrtlab.com/find.html
+Writing for local businesses. Do the right thing. Free plan at dtrtlab.com
 ```
 
 ## Lab — YouTube (@DTRTLabYT)
 
 ```
-DTRT Lab — useful work, free plans, dated proof.
-Made for all. EN/ES.
-Find me: https://dtrtlab.com/find.html
-Free plan: https://dtrtlab.com
-DTRTC is the entertainment stream (separate on purpose).
+DTRT Lab writes for local businesses. Do the right thing. Free plan and writing plans: dtrtlab.com. Hobby clips are not the company offer.
 ```
 
 ## Lab — TikTok (@iananthonyfc)
 
 ```
-Ian · DTRT Lab
-Useful work. Free plans. No fake store.
-dtrtlab.com/find.html
+DTRT Lab writes for local businesses. Do the right thing. dtrtlab.com
 ```
 
 ---
@@ -48,10 +38,7 @@ dtrtlab.com/find.html
 **About / panel**
 
 ```
-DTRTC — entertainment side.
-Lab (useful work) → dtrtlab.com
-All links → dtrtlab.com/find.html
-Same person. Different job.
+Hobby stream. The business is DTRT Lab — writing for local businesses. Do the right thing. dtrtlab.com
 ```
 
 ## Stream — Kick (movebro)

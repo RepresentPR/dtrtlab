@@ -81,7 +81,7 @@
 
   function injectStrip(root) {
     if (document.querySelector("[data-find-me-strip]")) return;
-    var items = networks();
+    var items = networks().filter(function (n) { return n.id === "x" || n.id === "instagram"; });
     if (!items.length) return;
     var html = stripHtml(items, root);
 
@@ -122,7 +122,13 @@
     Object.keys(groups).forEach(function (key) {
       var host = rootEl.querySelector('[data-find-group="' + key + '"]');
       if (!host) return;
-      host.innerHTML = groups[key].map(linkHtml).join("") || "<li><span>None listed</span></li>";
+      var list = groups[key];
+      var limit = host.getAttribute("data-find-limit");
+      if (limit) {
+        var allow = limit.split(",");
+        list = list.filter(function (n) { return allow.indexOf(n.id) !== -1; });
+      }
+      host.innerHTML = list.map(linkHtml).join("") || "<li><span>None listed</span></li>";
     });
   }
 

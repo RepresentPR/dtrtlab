@@ -1,5 +1,5 @@
 (function () {
-  var ASSET_V = "20261013-find1";
+  var ASSET_V = "20261014-business1";
   var here = (location.pathname || "").toLowerCase();
   var parts = here.replace(/\\/g, "/").split("/").filter(Boolean);
   if (parts.length && /\.[a-z0-9]+$/i.test(parts[parts.length - 1])) parts.pop();
@@ -25,26 +25,36 @@
     return '<a href="' + root + href + '"' + cur + ">" + label + "</a>";
   }
 
-  // One primary path: Free plan CTA. Secondary: Company, Proof, Clips, Contact.
+  var lang = /(?:\?|&)lang=es(?:&|$)/.test(location.search) ? "es" : "en";
+  document.documentElement.lang = lang;
+  var ui = lang === "es"
+    ? { primary: "Principal", free: "Plan gratis", packages: "Paquetes", company: "Empresa", contact: "Contacto", shop: "Tienda", hobby: "Lab / Pasatiempo", press: "Prensa", brand: "Marca", privacy: "Privacidad", terms: "Términos", cookies: "Cookies", refunds: "Reembolsos", home: "Inicio", menu: "Menú", close: "Cerrar", credit: "DTRT Lab · Escritura para negocios locales" }
+    : { primary: "Primary", free: "Free plan", packages: "Packages", company: "Company", contact: "Contact", shop: "Shop", hobby: "Lab / Hobby", press: "Press", brand: "Brand", privacy: "Privacy", terms: "Terms", cookies: "Cookies", refunds: "Refunds", home: "Home", menu: "Menu", close: "Close", credit: "DTRT Lab · Writing for local businesses" };
+  function langHref(code) {
+    var q = new URLSearchParams(location.search);
+    q.set("lang", code);
+    return location.pathname + "?" + q.toString() + (location.hash || "");
+  }
+
   var html =
     '<div class="wrap nav-row">' +
     '<a class="brand" href="' + root + 'index.html"><img class="brand-mark" src="' +
     root +
     'img/brand/mark.svg" alt="DTRT Lab" width="36" height="36"><span>DTRT LAB</span></a>' +
-    '<nav class="links" id="site-links" aria-label="Primary">' +
-    link("company.html", "Company", companyOn) +
-    link("live/", "Proof", false) +
-    link("clips/", "Clips", false) +
-    link("afterlight.html", "AFTERLIGHT", afterlightOn) +
-    link("about.html", "About", aboutOn) +
-    link("partners.html", "Partner", partnerOn) +
-    link("contact.html", "Contact", contactOn) +
+    '<nav class="links" id="site-links" aria-label="' + ui.primary + '">' +
+    link("index.html#packages", ui.packages, false) +
+    link("company.html", ui.company, companyOn) +
+    link("shop.html", ui.shop, file === "shop.html") +
+    link("about.html", lang === "es" ? "Acerca" : "About", aboutOn) +
+    link("contact.html", ui.contact, contactOn) +
+    '<a href="' + langHref("en") + '" lang="en" hreflang="en"' + (lang === "en" ? ' aria-current="page"' : "") + '>EN</a>' +
+    '<a href="' + langHref("es") + '" lang="es" hreflang="es"' + (lang === "es" ? ' aria-current="page"' : "") + '>ES</a>' +
     '<div class="nav-socials nav-socials-menu" data-social-slot="menu"></div>' +
     "</nav>" +
     '<div class="nav-end">' +
     '<div class="nav-socials nav-socials-desktop" data-social-slot="nav"></div>' +
-    '<a class="nav-cta" id="nav-start" href="' + root + 'contact.html?intent=free-plan">Free plan</a>' +
-    '<button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-links">Menu</button>' +
+    '<a class="nav-cta" id="nav-start" href="' + root + 'contact.html?intent=free-plan">' + ui.free + '</a>' +
+    '<button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-links">' + ui.menu + '</button>' +
     "</div>" +
     "</div>";
 
@@ -66,38 +76,38 @@
   if (foot) {
     foot.innerHTML =
       '<div class="wrap">' +
-      "<span>DTRT Lab · Created by Ian Ferraro</span>" +
-      '<a href="' + root + 'contact.html?intent=free-plan">Free plan</a>' +
-      '<a href="' + root + 'shop.html">Shop</a>' +
-      '<a href="' + root + 'contact.html?intent=paid-project">Paid work</a>' +
-      '<a href="' + root + 'index.html">Home</a>' +
-      '<a href="' + root + 'company.html">Company</a>' +
-      '<a href="' + root + 'about.html">About</a>' +
-      '<a href="' + root + 'live/">Proof</a>' +
-      '<a href="' + root + 'clips/">Clips</a>' +
-      '<a href="' + root + 'afterlight.html">AFTERLIGHT</a>' +
-      '<a href="' + root + 'partners.html">Partner</a>' +
-      '<a href="' + root + 'support.html">Support</a>' +
-      '<a href="' + root + 'press.html">Press</a>' +
-      '<a href="' + root + 'brand.html">Brand</a>' +
-      '<a href="' + root + 'careers.html">Careers</a>' +
-      '<a href="' + root + 'contact.html">Contact</a>' +
-      '<a href="' + root + 'find.html">Find me</a>' +
-      '<a href="' + root + 'legal/privacy.html">Privacy</a>' +
-      '<a href="' + root + 'legal/terms.html">Terms</a>' +
-      '<a href="' + root + 'legal/cookies.html">Cookies</a>' +
-      '<a href="' + root + 'legal/dmca.html">DMCA</a>' +
-      '<a href="' + root + '.well-known/security.txt">Security</a>' +
+      "<span>" + ui.credit + "</span>" +
+      '<a href="' + root + 'contact.html?intent=free-plan">' + ui.free + '</a>' +
+      '<a href="' + root + 'index.html#packages">' + ui.packages + '</a>' +
+      '<a href="' + root + 'shop.html">' + ui.shop + '</a>' +
+      '<a href="' + root + 'company.html">' + ui.company + '</a>' +
+      '<a href="' + root + 'contact.html">' + ui.contact + '</a>' +
+      '<a href="' + root + 'press.html">' + ui.press + '</a>' +
+      '<a href="' + root + 'brand.html">' + ui.brand + '</a>' +
+      '<a href="' + root + 'find.html">X · Instagram</a>' +
+      '<a href="' + root + 'legal/privacy.html">' + ui.privacy + '</a>' +
+      '<a href="' + root + 'legal/terms.html">' + ui.terms + '</a>' +
+      '<a href="' + root + 'legal/cookies.html">' + ui.cookies + '</a>' +
+      '<a href="' + root + 'legal/refunds.html">' + ui.refunds + '</a>' +
+      '<a href="' + root + 'lab.html">' + ui.hobby + '</a>' +
       "</div>" +
       '<div class="wrap socials" data-social-slot="footer"></div>';
   }
 
-  // Quiet Find-me strip on every nav-powered page (non-intrusive).
-  if (!document.querySelector('script[src*="js/find-me.js"]')) {
-    var findMe = document.createElement("script");
-    findMe.src = root + "js/find-me.js?v=" + ASSET_V;
-    findMe.defer = true;
-    document.head.appendChild(findMe);
+  if (!document.querySelector('script[src*="js/biz-lang.js"]')) {
+    var bizLang = document.createElement("script");
+    bizLang.src = root + "js/biz-lang.js?v=" + ASSET_V;
+    bizLang.defer = true;
+    document.head.appendChild(bizLang);
+  }
+  var hobbyPath = /(\/(cs2|afterlight|game|story|worlds|training|catalog|radio|media|news|tab|stats)(\.|$)|\/clips\/|\/watch\/|\/live\/|\/stories\/|\/versions\/)/.test(here);
+  if (hobbyPath && document.getElementById("main") && !document.querySelector(".hobby-banner")) {
+    var banner = document.createElement("p");
+    banner.className = "hobby-banner wrap";
+    banner.innerHTML = lang === "es"
+      ? 'Esto es Lab / Pasatiempo, no el negocio. <a href="' + root + 'lab.html">Lab / Pasatiempo</a> · <a href="' + root + 'index.html">Inicio</a>'
+      : 'This is Lab / Hobby, not the business. <a href="' + root + 'lab.html">Lab / Hobby</a> · <a href="' + root + 'index.html">Business home</a>';
+    document.getElementById("main").insertBefore(banner, document.getElementById("main").firstChild);
   }
 
   var ICONS = {
@@ -167,7 +177,9 @@
 
   function renderSlot(el) {
     var kind = el.getAttribute("data-social-slot") || "footer";
-    var items = networks();
+    var items = networks().filter(function (item) {
+      return item.id === "x" || item.id === "instagram";
+    });
     var htmlOut = items
       .map(function (item) {
         var label = escapeHtml(item.label);
@@ -239,7 +251,7 @@
     host.classList.toggle("open", open);
     document.body.classList.toggle("nav-open", open);
     btn.setAttribute("aria-expanded", open ? "true" : "false");
-    btn.textContent = open ? "Close" : "Menu";
+    btn.textContent = open ? ui.close : ui.menu;
     if (open) {
       var first = host.querySelector("nav.links a");
       if (first) first.focus();
