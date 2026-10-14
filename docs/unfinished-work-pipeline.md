@@ -2,9 +2,18 @@
 
 **Purpose:** Prove the company public surface is live and unbroken; only scheduled work and true Ian unlocks remain.  
 **Rule:** Never put secrets, recovery codes, API tokens, or passwords in this file or any git-tracked path.  
-**Last audited:** 2026-10-13 (agent live reaudit)  
+**Last audited:** 2026-10-14 (ops lessons distill · audit email watch CLOSED)  
 **Vision filter:** `docs/vision.md`  
-**Authority:** Agent = 1st chair · Ian = 2nd chair (unlock / override).
+**Authority:** Agent = 1st chair · Ian = 2nd chair (unlock / override).  
+**Lessons (patterns):** `docs/lessons-from-ops.md`
+
+---
+
+## CLOSED — do not re-arm
+
+| Item | Status | Note |
+| --- | --- | --- |
+| **Caliber audit email watch** | CLOSED 2026-10-14 | Ian: no more audit emails. Agent must **not** re-arm Outlook/Gmail timers for that dump. Prefer action digests + this pipeline. |
 
 ---
 
@@ -43,21 +52,22 @@
 
 ---
 
-## UNLOCK only (not company breakage)
+## Remaining Ian unlocks only (not company breakage)
 
-Agent cannot finish these without your login/UI:
+Agent cannot finish these without your login/UI. **Nothing else is “waiting on email.”**
 
 1. Paste bios — `docs/social-bios-paste.md`  
 2. LinkedIn About / Featured / Open to Work (incl. Tesla SA) — one-sitting paste in `docs/career-linkedin-kit.md`  
 3. **Tesla SA apply** — agent blocked (Akamai 403 + login); Ian finishes via `docs/apply-workarounds.md` (Simplify / Easy Apply / Tesla on your network). TeraFab = skip. Form answers: `docs/applications/tesla-sa-form-answers.txt`  
 4. GitHub profile UI + `RepresentPR/RepresentPR` README  
 5. Photos — `docs/visual-photo-scatter.md`  
-6. Job apps (Workday / Caliber) — PII stays in private store only  
-7. Grok Bot email approve (`dtrt` → …) — `docs/grokbot-email-handles.md`  
-8. Optional: Gmail Send-as `hello@` (receive already live)  
-9. Postiz: delete DRAFT dupes + broken X QUEUE (see above)  
-10. **X / Elon track:** follow `@elonmusk`; paste daily replies OR log agent into X — agent browser has **no** X login — `docs/social-reply-daily.md` · `docs/x-elon-strategy.md` · company study `docs/company-study-elon.md`  
-11. **Promo videos post-audit:** scripts ready in `docs/promo-videos-post-audit.md` — Postiz AI video credits empty (2026-10-14); add credits or supply VO → generate → keep draft until audit sign-off
+6. Grok Bot email approve (`dtrt` → …) — `docs/grokbot-email-handles.md`  
+7. Optional: Gmail Send-as `hello@` (receive already live)  
+8. Postiz: delete DRAFT dupes + broken X QUEUE (see Scheduled above)  
+9. **X / Elon track:** follow `@elonmusk`; paste daily replies OR log agent into X — agent browser has **no** X login — `docs/social-reply-daily.md` · `docs/x-elon-strategy.md` · founder-direct + honesty, no fake scale  
+10. **Promo videos post-audit (optional):** scripts in `docs/promo-videos-post-audit.md` — Postiz AI video credits empty; add credits or VO → generate → draft until audit sign-off  
+
+PII for any employer apps stays in the private agent store — never in git.
 
 ---
 
@@ -102,3 +112,4 @@ Agent cannot finish these without your login/UI:
 | 2026-10-14 | Elon/X DTRT-safe playbook + founder-direct Postiz QUEUE; unlock checklist wired | Follow @elonmusk · paste replies (no agent X login) · Postiz DRAFT cleanup |
 | 2026-10-14 | Company study (works/won't-copy) + Lab OS improve algorithm + promo video scripts | Ian audit sign-off · Postiz video credits · flip drafts → schedule |
 | 2026-10-14 | Apply workarounds playbook + live SA mirrors (Simplify 282586 Silver Spring, Merritt Island, Rockville) + form answers + resume print-PDF | Ian one-sitting apply · LinkedIn paste · Tesla login · confirm IDs · X paste · Postiz video credits |
+| 2026-10-14 | **Audit email watch CLOSED** (Ian: no more emails). Distilled ops lessons → Lab OS §2c + `docs/lessons-from-ops.md`. Agent: action digests only; do not re-arm. | Remaining Ian unlocks list only · SCHEDULED waves |

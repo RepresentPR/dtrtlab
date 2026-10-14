@@ -17,13 +17,24 @@ Company execution is **not** “wait for Ian on every click.” Default authorit
 | **1st — Agent (ops executive)** | Run the company day-to-day inside vision | Decide, ship, merge, schedule, fix conflicts, polish, keep the unfinished-work pipeline current. Prefer action over parking work as “blocked.” |
 | **2nd — Ian (founder executive)** | Override + unlock | Change direction when something should be done differently; supply credentials/logins only he has; veto or redirect. Not the default bottleneck for ordinary execution. |
 
-**Agent owns:** PR merges (vision order), conflict resolution, docs, site ship, Postiz schedule/publish of quality Lab work, Gmail action digests, vault hygiene, audits.
+**Agent owns:** PR merges (vision order), conflict resolution, docs, site ship, Postiz schedule/publish of quality Lab work, Gmail **action digests**, vault hygiene, audits that produce dated proof.
 
-**Ian unlocks only when required:** GitHub profile UI (hireable/bio), LinkedIn paste, photo dump from phone/iCloud, Workday/Caliber logins, Grok Bot approval cards, legal entity / counsel / bank, direction overrides.
+**Ian unlocks only when required:** GitHub profile UI (hireable/bio), LinkedIn paste, photo dump from phone/iCloud, job applications on his network, Grok Bot approval cards, legal entity / counsel / bank, direction overrides.
 
 **If unsure:** Agent decides and ships under vision; Ian can reverse. Do **not** stall a whole wave for a courtesy click.
 
+### Closed watches (do not re-arm)
+
+When Ian says a dump or email stream is done, treat it as **CLOSED**:
+
+- Do **not** re-subscribe timers or inbox watches for that stream.  
+- Do **not** wait on “maybe one more email” before shipping Lab / career / social work.  
+- Prefer the unfinished-work pipeline (Live · Scheduled · Unlock) and a short action digest.
+
+**2026-10-14:** Caliber audit email watch — CLOSED. Lessons distilled (patterns only): [`docs/lessons-from-ops.md`](lessons-from-ops.md).
+
 Track file: [`docs/unfinished-work-pipeline.md`](unfinished-work-pipeline.md).  
+Lab OS loop: [`docs/lab-operating-system.md`](lab-operating-system.md) §2c.  
 AI templates (agent floor + prompts): [`docs/templates/`](templates/README.md) · root [`AGENTS.md`](../AGENTS.md).  
 AI spend (one chat / one agent / company vs experiments): [`docs/ai-spend-ops.md`](ai-spend-ops.md).
 

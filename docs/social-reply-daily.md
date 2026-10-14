@@ -7,7 +7,7 @@
 - [@elonmusk](https://x.com/elonmusk/status/2110077948384735481) — *CEOs & execs posting to the public directly on X … Vastly more powerful than a press release.* (quote-tweet context: Sundar / Gemini 4 Argon)
 
 **Rule:** Replies add one real observation. No “great post!!”, no link spam, no pitching the Lab unless asked.  
-**Founder rule:** Ian posts product/company truth as himself — no press-release theater, no fake Fortune tone.  
+**Founder rule:** Ian posts product/company truth as himself — no press-release theater, no fake Fortune tone, **no fake scale**.  
 **Unlock:** Agent browser is **not** logged into X — Ian must paste these (or log the agent into @DTRTLab / personal X).  
 **Company study:** [`docs/company-study-elon.md`](company-study-elon.md) — apply founder-direct + delete-before-automate; do **not** copy intensity-without-structure.  
 **Promo videos:** drafted in [`docs/promo-videos-post-audit.md`](promo-videos-post-audit.md) — publish only after Ian audit. **Do not** put X passwords in the repo.

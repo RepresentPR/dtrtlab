@@ -1,7 +1,7 @@
 # DTRT Lab — personal & company vision (aligned)
 
 **Owner:** Ian Ferraro  
-**Last reviewed:** 2026-10-13  
+**Last reviewed:** 2026-10-14  
 **Public pages:** [/about.html](https://dtrtlab.com/about.html) · [/company.html](https://dtrtlab.com/company.html)
 
 This is the filter for every product, post, hire, tool, and partnership. If an idea fails this filter, we skip it — even if it is trending.
@@ -68,5 +68,7 @@ If “no” or “only if we copy someone else’s product in secret” → **ou
 ## Related
 
 - Operating phases & owner checklist: `docs/company-operating-system.md`
+- Lab OS + audit→improve→proof: `docs/lab-operating-system.md`
+- Lessons from real-shop ops (patterns): `docs/lessons-from-ops.md`
 - Brand voice & marks: `docs/brand-playbook.md`
 - Machine-readable facts: `content/company.json`

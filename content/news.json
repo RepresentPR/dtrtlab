@@ -2,6 +2,11 @@
   "items": [
     {
       "date": "2026-10-14",
+      "title": "Lessons from real-shop ops → Lab OS",
+      "body": "Audit → improve → dated proof is now a first-class Lab loop. Kept informed and finish-the-job sit on the public scorecard. Agent ops prefer action digests over closed email watches. Patterns only — no third-party manuals. See docs/lessons-from-ops.md and company.html#lab-os."
+    },
+    {
+      "date": "2026-10-14",
       "title": "Company study applied — promo videos drafted for post-audit",
       "body": "Public company study of what works (first principles, delete-before-automate, founder-direct) and what we will not copy (fake scale, automate-before-delete, intensity without structure). Lab OS now includes the improvement algorithm. Promo video scripts are prepped as drafts only — publish after Ian audit. See docs/company-study-elon.md and docs/promo-videos-post-audit.md."
     },

@@ -27,6 +27,7 @@ These are *patterns*, not a personality clone. If a tactic fails the vision filt
 - Prefer: “what shipped / what’s not live / where to look.”
 - Avoid: third-person company announcements, “we’re excited to announce,” fake Fortune tone.
 - Press pages stay for journalists; the timeline is for operators and curious humans.
+- **Honesty hard rule:** no fake scale, fake headcount, fake store, or fake “we’re huge” energy — ever.
 
 ### 2. Reply-to-10 (every day)
 

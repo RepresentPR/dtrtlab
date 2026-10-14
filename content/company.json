@@ -99,11 +99,16 @@
       "Ensures accountability"
     ],
     "scorecard": [
-      "Ship / publish cadence",
+      "Ship / publish cadence (finish the job)",
       "Honesty (no fake store, hiring, or raise)",
-      "Kept informed",
+      "Kept informed (real updates the human got)",
       "Usefulness of free plans",
       "AFTERLIGHT progress"
+    ],
+    "companyLoop": [
+      "Audit the live surface",
+      "Improve (delete costume, keep trust)",
+      "Publish dated proof"
     ],
     "learningLoop": [
       "Searchable training catalog over time",
@@ -115,16 +120,24 @@
       "Legal",
       "Contact intents",
       "Partner path",
-      "Shop interest rules"
+      "Shop interest rules",
+      "Apply workarounds",
+      "Social paste packs"
     ],
-    "note": "Structure distilled from how durable multi-brand operators run. DTRT-owned language only. No third-party manuals republished. See company-study-elon.md for works / will-not-copy."
+    "lessonsDoc": "docs/lessons-from-ops.md",
+    "agentOps": {
+      "prefer": "action digests + unfinished-work pipeline",
+      "doNot": "re-arm closed email watches"
+    },
+    "note": "Structure distilled from how durable multi-brand operators run, plus patterns from working a real service desk. DTRT-owned language only. No third-party manuals or PII republished. See company-study-elon.md and lessons-from-ops.md."
   },
   "outOfVision": [
     "Cloning third-party software via reverse engineering as a growth strategy",
     "Fake scale, fake store, fake hiring, or fake fundraising",
     "Hype tools that trade trust for reach",
     "Publishing proprietary manuals from other companies",
-    "Shipping promo claims before an audit sign-off"
+    "Shipping promo claims before an audit sign-off",
+    "Re-arming closed email watches instead of shipping unlocks"
   ],
   "visionDoc": "docs/vision.md",
   "lastReviewed": "2026-10-14"
