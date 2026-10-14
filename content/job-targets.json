@@ -2,11 +2,21 @@
   "updated": "2026-10-14",
   "candidate": "Ian Ferraro",
   "liveResume": "https://dtrtlab.com/resume.html",
+  "resumePdfHint": "Open resume.html → Print / Save as PDF (print stylesheet on this branch)",
   "linkedin": "https://www.linkedin.com/in/ian-ferraro-578784419/",
   "visionDoc": "docs/vision.md",
   "playbook": "docs/musk-network-jobs.md",
+  "workarounds": "docs/apply-workarounds.md",
+  "formAnswers": "docs/applications/tesla-sa-form-answers.txt",
+  "agentBlockers": {
+    "teslaCareers": "Akamai 403 from agent egress; Apply needs Ian Tesla login",
+    "linkedin": "Authwall blocks agent paste/edit",
+    "x": "Agent browser has no X login — paste pack or Ian login",
+    "postizVideo": "AI video credits empty as of 2026-10-14",
+    "applicationsSubmittedByAgent": 0
+  },
   "filter": {
-    "markets": ["Orlando FL", "Ocala FL", "Merritt Island FL", "Upper Marlboro MD", "PG County MD", "Owings Mills MD", "Rockville MD"],
+    "markets": ["Orlando FL", "Ocala FL", "Merritt Island FL", "Eatonville FL", "Upper Marlboro MD", "PG County MD", "Owings Mills MD", "Rockville MD", "Silver Spring MD"],
     "mustFitSkills": true,
     "preferLifestyle": "service_center_hours_over_fab_or_hq_death_march",
     "sideProject": "DTRT Lab independent — not employer of record"
@@ -16,10 +26,31 @@
       "company": "Tesla",
       "department": "TeraFab",
       "url": "https://www.tesla.com/careers/search/?department=terafab&site=US",
-      "reason": "Semiconductor / process manufacturing — no skill fit; lifestyle mismatch"
+      "reason": "Semiconductor / process manufacturing — no skill fit; lifestyle mismatch; do not invent fab credentials"
     }
   ],
   "priorityApply": [
+    {
+      "id": "tesla-sa-silver-spring",
+      "company": "Tesla",
+      "title": "Service Advisor",
+      "location": "Silver Spring, MD",
+      "rank": 1,
+      "lifestyle": "high_if_md_lane",
+      "visionAlign": "high",
+      "fit": "high",
+      "status": "ready_ian_apply_via_mirror",
+      "requisitionId": "282586",
+      "payBandHint": "$21.28–$35.34/hr + cash/stock (aggregator)",
+      "canonicalSearch": "https://www.tesla.com/careers/search/?query=Service%20Advisor&site=US&state=MD",
+      "applyMirrors": [
+        "https://simplify.jobs/p/7239d77e-9faf-4de8-bdf3-83bfd5461f9f/Service-Advisor",
+        "https://diversityjobs.com/career/18218794/Service-Advisor-Maryland-Silver-Spring"
+      ],
+      "workaround": "Simplify confirmed live within 24h (2026-10-14). Click Apply → Tesla login on Ian network. Agent cannot submit (Akamai 403).",
+      "coverNote": "docs/applications/cover-note-tesla-service-advisor.txt",
+      "notes": "Best confirmed-live MD SA as of agent scan"
+    },
     {
       "id": "tesla-sa-merritt-island",
       "company": "Tesla",
@@ -29,24 +60,53 @@
       "lifestyle": "high",
       "visionAlign": "high",
       "fit": "high",
-      "status": "ready_ian_apply",
-      "search": "https://www.tesla.com/careers/search/?query=Service%20Advisor&site=US",
+      "status": "ready_ian_apply_via_mirror",
+      "canonicalSearch": "https://www.tesla.com/careers/search/?query=Service%20Advisor&site=US&state=FL",
+      "applyMirrors": [
+        "https://www.justjobs.com/career/18497068/Service-Advisor-Florida-Merritt-Island",
+        "https://emploive.com/jobs/5801250/service-advisor-tesla"
+      ],
+      "linkedinSearch": "https://www.linkedin.com/jobs/search/?keywords=Tesla%20Service%20Advisor&location=Florida%2C%20United%20States",
+      "indeedSearch": "https://www.indeed.com/jobs?q=Tesla+Service+Advisor&l=Merritt+Island%2C+FL",
+      "workaround": "Aggregators list ~2026-09-30. Ian: open mirror or Indeed/LinkedIn Easy Apply on phone; confirm still live on tesla.com after login.",
       "coverNote": "docs/applications/cover-note-tesla-service-advisor.txt",
-      "notes": "Confirm live on tesla.com before submit; aggregator listed ~2026-09-30"
+      "notes": "Top FL lifestyle fit — apply first among FL"
     },
     {
-      "id": "tesla-sa-orlando",
+      "id": "tesla-sa-rockville",
       "company": "Tesla",
       "title": "Service Advisor",
-      "location": "Orlando, FL (confirm address)",
+      "location": "Rockville / Rockland Pike, MD",
+      "rank": 1,
+      "lifestyle": "high_if_md_lane",
+      "visionAlign": "high",
+      "fit": "high",
+      "status": "ready_ian_apply_via_mirror",
+      "payBandHint": "$21.28–$35.34/hr (Bandana)",
+      "canonicalSearch": "https://www.tesla.com/careers/search/?query=Service%20Advisor&site=US&state=MD",
+      "applyMirrors": [
+        "https://bandana.com/jobs/3689bd4d-24c6-4761-ac75-d19cac5ebc2e"
+      ],
+      "workaround": "Bandana mirror live 2026-10-14. Apply → Tesla account. Confirm on careers after login.",
+      "coverNote": "docs/applications/cover-note-tesla-service-advisor.txt"
+    },
+    {
+      "id": "tesla-sa-orlando-eatonville",
+      "company": "Tesla",
+      "title": "Service Advisor",
+      "location": "Orlando / Eatonville, FL",
       "rank": 1,
       "lifestyle": "high",
       "visionAlign": "high",
       "fit": "high",
-      "status": "confirm_live",
-      "search": "https://www.tesla.com/careers/search/?query=Service%20Advisor&site=US&state=FL",
+      "status": "confirm_live_then_apply",
+      "canonicalSearch": "https://www.tesla.com/careers/search/?query=Service%20Advisor&site=US&state=FL",
+      "linkedinSearch": "https://www.linkedin.com/jobs/search/?keywords=Tesla%20Service%20Advisor&location=Orlando%2C%20Florida%2C%20United%20States",
+      "indeedSearch": "https://www.indeed.com/jobs?q=Tesla+Service+Advisor&l=Orlando%2C+FL",
+      "applyMirrors": [],
+      "workaround": "LinkedIn/Indeed show intermittent Eatonville/Orlando SA cards; agent cannot open Easy Apply. Ian confirm on Tesla careers + LinkedIn while logged in. Lee Vista service: 6855 Lee Vista Blvd, Orlando 32822.",
       "coverNote": "docs/applications/cover-note-tesla-service-advisor.txt",
-      "notes": "Some Orlando SA listings closed Aug 2026 — re-check"
+      "notes": "Some Orlando SA listings previously closed — re-check before submit"
     },
     {
       "id": "tesla-sa-owings-mills",
@@ -57,25 +117,42 @@
       "lifestyle": "high_if_md_lane",
       "visionAlign": "high",
       "fit": "high",
-      "status": "ready_ian_apply",
-      "search": "https://www.tesla.com/careers/search/?query=Service%20Advisor&site=US&state=MD",
-      "coverNote": "docs/applications/cover-note-tesla-service-advisor.txt"
-    },
-    {
-      "id": "tesla-sa-rockville",
-      "company": "Tesla",
-      "title": "Service Advisor",
-      "location": "Rockville / Rockland Pike, MD",
-      "rank": 2,
-      "lifestyle": "high_if_md_lane",
-      "visionAlign": "high",
-      "fit": "high",
-      "status": "ready_ian_apply",
-      "search": "https://www.tesla.com/careers/search/?query=Service%20Advisor&site=US&state=MD",
+      "status": "confirm_live",
+      "canonicalSearch": "https://www.tesla.com/careers/search/?query=Service%20Advisor&site=US&state=MD",
+      "applyMirrors": [
+        "https://diversityjobs.com/career/17527806/Service-Advisor-Maryland-Owings-Mills"
+      ],
+      "workaround": "Older aggregator date (~2026-08) — may be closed. Prefer Silver Spring 282586 + Rockville if Owings Mills gone.",
       "coverNote": "docs/applications/cover-note-tesla-service-advisor.txt"
     }
   ],
   "secondary": [
+    {
+      "id": "tesla-sa-fort-lauderdale",
+      "company": "Tesla",
+      "title": "Service Advisor",
+      "location": "Fort Lauderdale, FL",
+      "rank": 4,
+      "status": "secondary_if_central_fl_closed",
+      "requisitionId": "276416",
+      "applyMirrors": [
+        "https://simplify.jobs/p/70f5f3e3-9fd1-44c9-bd42-4bb474cbe77f/Service-Advisor"
+      ],
+      "notes": "Farther lifestyle; only if Merritt Island / Orlando SA unavailable"
+    },
+    {
+      "id": "tesla-service-assistant-orlando",
+      "company": "Tesla",
+      "title": "Service Assistant",
+      "location": "Orlando, FL",
+      "rank": 5,
+      "status": "foot_in_only",
+      "requisitionId": "277405",
+      "applyMirrors": [
+        "https://simplify.jobs/p/6a2e2a65-a6a0-4629-8dcb-2897cc846b8e/Service-Assistant"
+      ],
+      "notes": "Physical / lower seat — only if SA closed and you want a foot in"
+    },
     {
       "id": "tesla-advisor-sales-delivery",
       "company": "Tesla",
@@ -83,13 +160,17 @@
       "location": "FL or MD only",
       "rank": 4,
       "status": "secondary_only",
-      "notes": "Commission pressure; only if SA seats unavailable"
+      "notes": "Commission pressure; only if SA seats unavailable. MD may need Motor Vehicle Salesperson License."
     }
   ],
   "applicationsLog": [],
   "ianUnlock": [
+    "Follow docs/apply-workarounds.md one-sitting sequence",
     "Paste LinkedIn headline/About/Open to Work from docs/career-linkedin-kit.md",
-    "Login tesla.com/careers with ian@dtrtlab.com and submit SA apps",
-    "Reply with confirmation IDs for agent to log"
+    "Apply Tesla SA via Simplify/Indeed/LinkedIn Easy Apply or tesla.com on your network (ian@dtrtlab.com)",
+    "Upload PDF from resume.html print · use docs/applications/tesla-sa-form-answers.txt",
+    "Reply with confirmation IDs for agent to log",
+    "X: paste docs/social-reply-daily.md OR log agent into X",
+    "Postiz: add video credits or supply VO before promo gen"
   ]
 }

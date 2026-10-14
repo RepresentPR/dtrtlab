@@ -15,7 +15,7 @@
   <meta property="og:image" content="https://dtrtlab.com/img/brand/dtrt-social.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="/css/growth-home.css?v=20261011-hub2">
-  <link rel="stylesheet" href="/css/history.css?v=20261014-resume1">
+  <link rel="stylesheet" href="/css/history.css?v=20261014-resume2">
   <meta property="og:site_name" content="DTRT Lab">
 </head>
 <body>
@@ -30,6 +30,7 @@
       <h1>Collision ops.<br><span>Honest craft.</span></h1>
       <p class="record-lede">Service Advisor who owns the customer journey — clear updates, estimates, insurance coordination — and builds useful public work at DTRT Lab. Day job funds the Lab; the Lab is not an employer of record.</p>
       <p class="record-status">Live public resume · Last reviewed <time datetime="2026-10-14">October 14, 2026</time> · <a href="/history.html">Full dated history</a> · <a href="https://www.linkedin.com/in/ian-ferraro-578784419/">LinkedIn</a></p>
+      <p class="resume-actions no-print"><button type="button" class="button" id="resume-print">Print / Save as PDF</button> <span class="resume-actions-hint">Browser print dialog → Save as PDF · use for Tesla / LinkedIn uploads</span></p>
     </header>
     <div class="record-layout">
       <div class="record-article">
@@ -95,5 +96,11 @@
     <section class="record-cta" aria-labelledby="record-contact"><div><p class="eyebrow">HIRING</p><h2 id="record-contact">See a fit?</h2><p>Resume is public on purpose. Reach out with a real role — I’ll answer honestly.</p></div><a class="button" href="/contact.html">Contact Ian <span aria-hidden="true">↗</span></a></section>
   </main>
   <footer class="site-footer shell"><a class="brand" href="/">DTRT<span>THE LAB</span></a><p>Built by Ian Ferraro. Shared as it happens.</p><nav aria-label="Footer"><a href="/">Home</a><a href="/about.html">About</a><a href="/company.html">Company</a><a href="/history.html">History</a><a href="/resume.html">Resume</a><a href="/clips/">Work</a><a href="/live/">Results</a><a href="/contact.html">Contact</a><a href="/legal/privacy.html">Privacy</a></nav></footer>
+  <script>
+    (function () {
+      var btn = document.getElementById("resume-print");
+      if (btn) btn.addEventListener("click", function () { window.print(); });
+    })();
+  </script>
 </body>
 </html>

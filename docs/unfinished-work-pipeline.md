@@ -48,15 +48,16 @@
 Agent cannot finish these without your login/UI:
 
 1. Paste bios — `docs/social-bios-paste.md`  
-2. LinkedIn About / Featured / Open to Work (incl. Tesla SA) — `docs/career-linkedin-kit.md` · apply Tesla SA via `docs/musk-network-jobs.md` (TeraFab = skip)  
-3. GitHub profile UI + `RepresentPR/RepresentPR` README  
-4. Photos — `docs/visual-photo-scatter.md`  
-5. Job apps (Workday / Caliber) — PII stays in private store only  
-6. Grok Bot email approve (`dtrt` → …) — `docs/grokbot-email-handles.md`  
-7. Optional: Gmail Send-as `hello@` (receive already live)  
-8. Postiz: delete DRAFT dupes + broken X QUEUE (see above)  
-9. **X / Elon track:** follow `@elonmusk`; paste daily replies OR log agent into X — agent browser has **no** X login — `docs/social-reply-daily.md` · `docs/x-elon-strategy.md` · company study `docs/company-study-elon.md`  
-10. **Promo videos post-audit:** scripts ready in `docs/promo-videos-post-audit.md` — Postiz AI video credits empty (2026-10-14); add credits or supply VO → generate → keep draft until audit sign-off
+2. LinkedIn About / Featured / Open to Work (incl. Tesla SA) — one-sitting paste in `docs/career-linkedin-kit.md`  
+3. **Tesla SA apply** — agent blocked (Akamai 403 + login); Ian finishes via `docs/apply-workarounds.md` (Simplify / Easy Apply / Tesla on your network). TeraFab = skip. Form answers: `docs/applications/tesla-sa-form-answers.txt`  
+4. GitHub profile UI + `RepresentPR/RepresentPR` README  
+5. Photos — `docs/visual-photo-scatter.md`  
+6. Job apps (Workday / Caliber) — PII stays in private store only  
+7. Grok Bot email approve (`dtrt` → …) — `docs/grokbot-email-handles.md`  
+8. Optional: Gmail Send-as `hello@` (receive already live)  
+9. Postiz: delete DRAFT dupes + broken X QUEUE (see above)  
+10. **X / Elon track:** follow `@elonmusk`; paste daily replies OR log agent into X — agent browser has **no** X login — `docs/social-reply-daily.md` · `docs/x-elon-strategy.md` · company study `docs/company-study-elon.md`  
+11. **Promo videos post-audit:** scripts ready in `docs/promo-videos-post-audit.md` — Postiz AI video credits empty (2026-10-14); add credits or supply VO → generate → keep draft until audit sign-off
 
 ---
 
@@ -100,3 +101,4 @@ Agent cannot finish these without your login/UI:
 | 2026-10-14 | Daily X reply pack (adhamuxi tip) — 10 drafts ready | Ian log agent into X OR paste `docs/social-reply-daily.md` |
 | 2026-10-14 | Elon/X DTRT-safe playbook + founder-direct Postiz QUEUE; unlock checklist wired | Follow @elonmusk · paste replies (no agent X login) · Postiz DRAFT cleanup |
 | 2026-10-14 | Company study (works/won't-copy) + Lab OS improve algorithm + promo video scripts | Ian audit sign-off · Postiz video credits · flip drafts → schedule |
+| 2026-10-14 | Apply workarounds playbook + live SA mirrors (Simplify 282586 Silver Spring, Merritt Island, Rockville) + form answers + resume print-PDF | Ian one-sitting apply · LinkedIn paste · Tesla login · confirm IDs · X paste · Postiz video credits |

@@ -28,3 +28,19 @@
 @media(max-width:900px){.record-layout{grid-template-columns:minmax(0,1fr) 220px;gap:30px}.record-timeline li{grid-template-columns:125px minmax(0,1fr);gap:16px}}
 @media(max-width:680px){.record-main{padding-top:44px}.record-hero{padding-bottom:38px}.record-hero h1{font-size:clamp(54px,12vw,76px);letter-spacing:-3px}.record-layout{display:block}.record-facts{position:static;margin:40px 0 0}.record-section{padding:42px 0 46px}.record-timeline li{grid-template-columns:1fr;gap:6px;padding:19px 0}.record-timeline time{padding-top:0}.record-timeline h3{font-size:20px}.record-cta{display:block}.record-cta .button{margin-top:24px}}
 .record-forward{padding-block:95px 120px;min-height:calc(100vh - 196px)}.record-forward h1{font-size:clamp(54px,8vw,102px);font-weight:800;letter-spacing:-4px;line-height:1.02;margin:25px 0}.record-forward h1 span{color:var(--orange)}.record-forward p:not(.eyebrow){font-size:20px;line-height:1.5;color:#d0cec7;max-width:570px;margin-bottom:27px}.record-forward .button{width:max-content;min-width:205px}
+.resume-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:22px}
+.resume-actions .button{min-width:0;cursor:pointer;border:0;font:inherit}
+.resume-actions-hint{font-size:13px;color:var(--muted);max-width:360px;line-height:1.4}
+@media print{
+  .skip,.site-header,.site-footer,.resume-actions,.no-print,.record-cta,.record-contents{display:none!important}
+  body{background:#fff!important;color:#111!important}
+  .record-main{padding-top:0}
+  .record-hero,.record-section,.record-timeline li,.record-facts{border-color:#ccc!important}
+  .record-hero h1,.record-section h2,.record-timeline h3,.record-facts dd{color:#111!important}
+  .record-hero h1 span,.record-timeline time,.eyebrow,.small-mark{color:#c45c26!important}
+  .record-lede,.section-intro,.record-timeline p,.record-status,.record-facts dt{color:#333!important}
+  .record-layout{display:block}
+  .record-facts{position:static;margin-top:28px;border:1px solid #ccc}
+  a{color:#111!important;text-decoration:underline}
+  .record-timeline li{break-inside:avoid}
+}

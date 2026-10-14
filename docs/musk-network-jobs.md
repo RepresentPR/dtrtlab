@@ -1,12 +1,13 @@
 # Musk-network jobs — fit · lifestyle · vision (Ian Ferraro)
 
 **Built:** 2026-10-14  
-**Live resume:** https://dtrtlab.com/resume.html  
+**Live resume:** https://dtrtlab.com/resume.html (Print → PDF)  
 **History:** https://dtrtlab.com/history.html  
 **LinkedIn kit:** [`career-linkedin-kit.md`](career-linkedin-kit.md)  
+**Workarounds playbook (one sitting):** [`apply-workarounds.md`](apply-workarounds.md)  
 **Vision filter:** [`vision.md`](vision.md)
 
-**Rule:** Apply only to **fitable** roles. No inventing fab/engineering credentials. Agent cannot finish Tesla Apply without Ian’s login (careers site authwall / Akamai from agent egress).
+**Rule:** Apply only to **fitable** roles. No inventing fab/engineering credentials. Agent cannot finish Tesla Apply without Ian’s login (careers site authwall / Akamai from agent egress). Use legitimate mirrors + your browser — see workarounds.
 
 ---
 
@@ -35,7 +36,7 @@ A top role must clear **all** of:
 | Rank | Role type | Lifestyle | Vision | Action |
 | --- | --- | --- | --- | --- |
 | **1** | **Tesla Service Advisor** · Central FL (Orlando / Merritt Island) | Best: stay FL, SA craft, EV mission | Strong — status updates + useful energy mission | **Apply first** |
-| **2** | **Tesla Service Advisor** · MD (Owings Mills / Rockville / near PG County) | Strong if relocating to MD lane | Same | **Apply** |
+| **2** | **Tesla Service Advisor** · MD (Silver Spring / Rockville / Owings Mills · near PG County) | Strong if relocating to MD lane | Same | **Apply** (Silver Spring req 282586 live) |
 | **3** | Collision SA / Manager @ Caliber·Boyd·Group1 in FL/MD | Known lane; negotiate CSI/pay | Strong honesty culture required | Keep kit Track A/B |
 | **4** | Tesla Advisor (Sales/Delivery) FL/MD | Commission pressure; still customer-facing | OK if honest | Secondary only |
 | **5** | Creative/producer (non-Musk) Orlando/MD | Often better hours for Lab | Path C in LinkedIn kit | Parallel |
@@ -47,27 +48,31 @@ A top role must clear **all** of:
 
 ## Apply queue (confirm live on Tesla careers before submit)
 
-Search live: [Tesla careers US](https://www.tesla.com/careers) → query `Service Advisor` → filter FL / MD · department Vehicle Service.
+**Full playbook:** [`apply-workarounds.md`](apply-workarounds.md) · tracker `content/job-targets.json`
 
-Aggregator signals (re-check on tesla.com — aggregators lag):
+Search live (on *your* network): [Tesla careers US](https://www.tesla.com/careers) → query `Service Advisor` → filter FL / MD · department Vehicle Service.  
+Agent egress: **Akamai 403** — do not waste time retrying from agent; use mirrors + your phone.
 
-| Priority | Title | Market | Aggregator hint | Canonical apply |
+Live mirrors verified 2026-10-14 (re-check on Tesla after login — aggregators lag):
+
+| Priority | Title | Market | Live mirror / channel | Canonical |
 | --- | --- | --- | --- | --- |
-| P0 | Service Advisor | Merritt Island, FL | Listed ~2026-09-30 | Search Tesla careers → Merritt Island Service Advisor |
-| P0 | Service Advisor | Orlando / Orange Blossom Trail area | Some listings closed Aug 2026 — **confirm** | Tesla careers FL Service Advisor |
-| P0 | Service Advisor | Owings Mills, MD | ~$20–33/hr band reported on aggregators | Tesla careers MD Service Advisor |
-| P0 | Service Advisor | Rockville / Rockland Pike, MD | Near PG County lane | Tesla careers MD Service Advisor |
-| P2 | Service Assistant | Orlando | Physical / lower seat | Only if SA closed and you want a foot in |
+| P0 | Service Advisor | **Silver Spring, MD** | [Simplify req 282586](https://simplify.jobs/p/7239d77e-9faf-4de8-bdf3-83bfd5461f9f/Service-Advisor) (confirmed live 24h) | Tesla careers MD · search `282586` |
+| P0 | Service Advisor | Merritt Island, FL | [JustJobs](https://www.justjobs.com/career/18497068/Service-Advisor-Florida-Merritt-Island) · Indeed/LinkedIn Easy Apply on phone | Tesla careers FL |
+| P0 | Service Advisor | Rockville / Rockland Pike, MD | [Bandana](https://bandana.com/jobs/3689bd4d-24c6-4761-ac75-d19cac5ebc2e) | Tesla careers MD |
+| P0 | Service Advisor | Orlando / Eatonville, FL | LinkedIn Jobs while logged in · confirm | Tesla careers FL |
+| P1 | Service Advisor | Owings Mills, MD | Aggregator may be stale — prefer Silver Spring if closed | Tesla careers MD |
+| P2 | Service Assistant | Orlando | [Simplify 277405](https://simplify.jobs/p/6a2e2a65-a6a0-4629-8dcb-2897cc846b8e/Service-Assistant) | Foot-in only |
 | — | TeraFab * | US fabs | — | **Do not apply** |
 
-**Ian apply steps (15 min):**
+**Ian apply steps (one sitting ~20–30 min):**
 
 1. Paste LinkedIn headline/About/Open-to-Work from kit (includes Tesla SA).  
-2. Open tesla.com/careers → create/login account with `ian@dtrtlab.com`.  
-3. Upload or paste resume from https://dtrtlab.com/resume.html (PDF export optional).  
-4. Apply every **live** Service Advisor in FL + MD from the table.  
-5. Cover note: `docs/applications/cover-note-tesla-service-advisor.txt`.  
-6. Reply here with confirmation numbers / screenshots — agent logs them in `content/job-targets.json`.
+2. Save PDF: resume.html → Print / Save as PDF.  
+3. Apply via **Simplify / Indeed Easy Apply / LinkedIn Easy Apply** *or* tesla.com/careers logged in as `ian@dtrtlab.com`.  
+4. Use `docs/applications/tesla-sa-form-answers.txt` + cover note.  
+5. Hit every **live** SA in Central FL + MD corridor.  
+6. Reply here with confirmation numbers — agent logs `content/job-targets.json`.
 
 ---
 
@@ -88,12 +93,14 @@ Aggregator signals (re-check on tesla.com — aggregators lag):
 
 | Asset | Status |
 | --- | --- |
-| https://dtrtlab.com/resume.html | Ship this PR |
+| https://dtrtlab.com/resume.html | Ship this PR (+ print → PDF) |
 | https://dtrtlab.com/history.html | Live |
 | https://dtrtlab.com/live/ | Live |
-| LinkedIn paste | Ian must paste (authwall) — kit updated |
+| LinkedIn paste | Ian must paste (authwall) — kit + one-sitting checklist |
 | Skills list | On resume + kit |
 | Cover note Tesla SA | `docs/applications/cover-note-tesla-service-advisor.txt` |
+| Form answers | `docs/applications/tesla-sa-form-answers.txt` |
+| Workarounds | `docs/apply-workarounds.md` |
 | Job tracker | `content/job-targets.json` |
 
 ---

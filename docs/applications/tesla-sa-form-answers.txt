@@ -1,0 +1,42 @@
+Tesla Service Advisor — prefilled answers (Ian Ferraro)
+Use on tesla.com/careers Apply or any mirror that opens the Tesla form.
+Do not invent fab/engineering experience. Re-check each field before submit.
+
+CONTACT
+- Full name: Ian Ferraro
+- Email: ian@dtrtlab.com
+- Phone: (use your current mobile — keep private; not in git)
+- LinkedIn: https://www.linkedin.com/in/ian-ferraro-578784419/
+- Resume URL: https://dtrtlab.com/resume.html
+- PDF: Print resume.html → Save as PDF
+
+LOCATION PREFERENCE (rank)
+1. Merritt Island, FL / Central Florida (Orlando–Eatonville / Lee Vista)
+2. Maryland corridor: Silver Spring · Rockville · Owings Mills (near Upper Marlboro / PG County)
+3. Only if above closed: other FL Vehicle Service SA (e.g. Fort Lauderdale) — lifestyle second choice
+
+WORK AUTHORIZATION / BASICS (typical Tesla fields — answer truthfully)
+- Legally authorized to work in the US: Yes (confirm your status)
+- Require sponsorship now/future: No (only if true for you)
+- Valid driver’s license: Yes
+- Willing to work evenings/weekends as service center needs: Yes (service culture)
+- Relocate: Open to FL stay or MD corridor — state which you mean per req
+- How did you hear: Tesla careers / LinkedIn / Simplify / Indeed (match the channel you used)
+
+EXPERIENCE SUMMARY (short fields / “why Tesla”)
+I’m a collision Service Advisor at Caliber Collision (June 2025–present) with prior Estimator & Parts Manager experience at Subway Auto Body (2021–2025). I already own customer intake, estimates support, insurance coordination, and clear status updates. I want Tesla Vehicle Service — not fab or engineering — because the SA seat matches how I work: honest communication, accurate documentation, finish the job.
+
+YEARS EXPERIENCE (honest)
+- Customer-facing service / SA: current SA role + prior shop customer exposure
+- Estimating / parts ops: ~2021–2025 Estimator & Parts Manager
+- Do not claim Tesla DMS years — say “proficient with shop DMS patterns; ready to learn Tesla systems”
+
+SKILLS CHECKBOXES / KEYWORDS (use if asked)
+Customer ownership · status updates · estimates · parts coordination · insurance/DRP awareness · CCC One familiarity · Outlook / MS Office · valid DL · willingness to learn EV service systems
+NOT: semiconductor, process engineering, robotics, software engineering, TeraFab
+
+COVER NOTE
+Paste docs/applications/cover-note-tesla-service-advisor.txt (full text).
+
+AFTER SUBMIT
+Reply in Cursor chat with: location · confirmation/requisition ID · date → agent logs content/job-targets.json

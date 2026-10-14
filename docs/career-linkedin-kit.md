@@ -13,11 +13,28 @@ Estimator remains a solid *optional* collision adjacent seat — not the only go
 
 **Last built:** 2026-10-14  
 **Profile:** https://www.linkedin.com/in/ian-ferraro-578784419/  
-**Public resume (live):** https://dtrtlab.com/resume.html  
+**Public resume (live):** https://dtrtlab.com/resume.html → Print / Save as PDF  
 **Public record:** https://dtrtlab.com/history.html  
 **Musk-network fit + lifestyle ranking:** `docs/musk-network-jobs.md` · tracker `content/job-targets.json`  
+**Apply workarounds (one sitting):** `docs/apply-workarounds.md`  
 **Vision filter:** `docs/vision.md`  
 **Agent access:** LinkedIn authwall blocks automated read/edit — Ian must paste headline/About/Open to Work manually (kit below). Tesla careers Apply needs Ian login. Public career facts cross-checked via `/history.html` + `/resume.html`.
+
+---
+
+## One-sitting LinkedIn paste (copy-paste perfect)
+
+Do these five edits in order on phone or desktop (mobile app often pastes cleanest). Do **not** edit in the agent browser.
+
+| # | Field | Action |
+| --- | --- | --- |
+| 1 | Headline | Select all → paste **Paste-ready headline** below (≤220 chars) |
+| 2 | About | Select all → paste **Paste-ready About** (entire fenced block, no fences) |
+| 3 | Open to Work | ON · titles: Tesla Service Advisor · Service Advisor · Collision Manager · Content Producer / Multimedia · locations: Orlando · Ocala · Merritt Island · Upper Marlboro · Owings Mills · Rockville · Silver Spring |
+| 4 | Featured | Pin https://dtrtlab.com/resume.html · https://dtrtlab.com/history.html · 1–2 real clips (honest “independent / personal” labels) |
+| 5 | Skills | Add: Customer ownership · CCC One · Estimating · Parts coordination · Status updates · Insurance/DRP · DMS habits · CapCut (if true). **Never** add fab/process/software eng |
+
+Then apply Tesla SA via `docs/apply-workarounds.md` (Simplify / Easy Apply / Tesla login).
 
 ---
 
@@ -64,7 +81,7 @@ Internal Caliber ask (any path): talk to your GM about SA growth, Estimator opti
 | Skills | Often incomplete | Customer ownership, CCC One, DRP, estimating, parts, status updates, leadership; CapCut / social publish if true — **not** fab process or software eng |
 | Banner / photo | — | Clean professional headshot; no fake Fortune claims |
 
-### Paste-ready headline (≤220 chars)
+### Paste-ready headline (180 chars — under 220 limit)
 
 ```
 Service Advisor @ Caliber | Open to Tesla SA · Collision SA/Manager · Creative/Producer | Honest customer ownership + content craft | DTRT Lab | Orlando · Ocala · Upper Marlboro MD
@@ -136,13 +153,15 @@ Do **not** paste “Fortune / top 50 / live store / hiring team” claims.
 
 ### Track T — Tesla Service Advisor (best Musk-network lifestyle + fit)
 
-| Priority | Role | Market | Why | Apply |
+| Priority | Role | Market | Why | Apply (Ian browser — agent gets Akamai 403) |
 | --- | --- | --- | --- | --- |
-| P0 | Service Advisor · Tesla Vehicle Service | Merritt Island / Orlando FL | Same customer-ownership craft; EV mission; stay FL | [Tesla careers search](https://www.tesla.com/careers/search/?query=Service%20Advisor&site=US) — confirm live |
-| P0 | Service Advisor · Tesla | Owings Mills / Rockville MD | Near Upper Marlboro lane | Same search + state=MD |
-| — | TeraFab / process / eng | US fabs | **Not a fit** — skip | [TeraFab listing](https://www.tesla.com/careers/search/?department=terafab&site=US) — do not apply |
+| P0 | Service Advisor | Silver Spring, MD | Confirmed-live mirror · near PG County | [Simplify 282586](https://simplify.jobs/p/7239d77e-9faf-4de8-bdf3-83bfd5461f9f/Service-Advisor) |
+| P0 | Service Advisor | Merritt Island, FL | Best FL lifestyle fit | [JustJobs](https://www.justjobs.com/career/18497068/Service-Advisor-Florida-Merritt-Island) · LinkedIn/Indeed Easy Apply |
+| P0 | Service Advisor | Rockville MD | Near Upper Marlboro lane | [Bandana](https://bandana.com/jobs/3689bd4d-24c6-4761-ac75-d19cac5ebc2e) |
+| P0 | Service Advisor | Orlando / Eatonville FL | Stay Central FL | LinkedIn Jobs (logged in) + Tesla careers confirm |
+| — | TeraFab / process / eng | US fabs | **Not a fit** — skip | [TeraFab](https://www.tesla.com/careers/search/?department=terafab&site=US) — do not apply |
 
-Cover: `docs/applications/cover-note-tesla-service-advisor.txt` · Ranking: `docs/musk-network-jobs.md`
+Cover: `docs/applications/cover-note-tesla-service-advisor.txt` · Form answers: `docs/applications/tesla-sa-form-answers.txt` · Playbook: `docs/apply-workarounds.md` · Ranking: `docs/musk-network-jobs.md`
 
 ### Track A — Service Advisor (stay / better seat)
 
