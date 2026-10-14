@@ -95,3 +95,4 @@ Agent cannot finish these without your login/UI:
 | 2026-10-13 | Agent-first merges #34 #31 #33 #35 #36 #37 #29; #32 absorbed | Ian unlocks |
 | 2026-10-13 | AI templates · Find-me live · AI spend ops | Bios paste · Postiz DRAFT cleanup |
 | 2026-10-13 | **Company live reaudit:** site HTTP 200s, email MX, tests green, #32/#25 closed, audit-site path fixed, find-me tests, **X captions re-queued with plain dtrtlab.com** | SCHEDULED waves · Ian unlock list · Postiz DRAFT discard |
+| 2026-10-14 | Daily X reply pack (adhamuxi tip) — 10 drafts ready | Ian log agent into X OR paste `docs/social-reply-daily.md` |
