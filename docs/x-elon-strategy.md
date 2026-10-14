@@ -121,3 +121,15 @@ Private vault: agent store `secrets/` + local `secrets/` only.
 > Distribution is a skill.
 
 Use A/B via Postiz QUEUE; C is already in the daily pack / prior queue. Refresh drafts when facts change.
+
+### Postiz QUEUE (founder-direct — 2026-10-14)
+
+| When (UTC) | Channel | Preview |
+| --- | --- | --- |
+| 2026-10-14 ~01:00 | X | Prior “Founder rule / no press-release costume” (already queued) |
+| 2026-10-14 18:30 | X | https://platform.postiz.com/p/cmv7crz0y0pb6qw0yyti5ww1w?share=true |
+| 2026-10-15 14:00 | X | https://platform.postiz.com/p/cmv7crzc10pb7qw0ywrqmawzb?share=true |
+| 2026-10-14 18:45 | Instagram | https://platform.postiz.com/p/cmv7crzlc0pb8qw0ypxwdpxgu?share=true |
+| 2026-10-14 19:00 | TikTok | https://platform.postiz.com/p/cmv7crzsc0pb9qw0y4n8qyq6r?share=true |
+
+**Replies:** not scheduled in Postiz — Ian paste pack in `docs/social-reply-daily.md` (no agent X web login).
