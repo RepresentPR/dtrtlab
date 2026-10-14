@@ -51,10 +51,12 @@ Agent cannot finish these without your login/UI:
 2. LinkedIn About / Featured — `docs/career-linkedin-kit.md`  
 3. GitHub profile UI + `RepresentPR/RepresentPR` README  
 4. Photos — `docs/visual-photo-scatter.md`  
-5. Job apps (Workday / Caliber)  
+5. Job apps (Workday / Caliber) — PII stays in private store only  
 6. Grok Bot email approve (`dtrt` → …) — `docs/grokbot-email-handles.md`  
 7. Optional: Gmail Send-as `hello@` (receive already live)  
-8. Postiz: delete DRAFT dupes + broken X QUEUE (see above)
+8. Postiz: delete DRAFT dupes + broken X QUEUE (see above)  
+9. **X / Elon track:** follow `@elonmusk`; paste daily replies OR log agent into X — agent browser has **no** X login — `docs/social-reply-daily.md` · `docs/x-elon-strategy.md` · company study `docs/company-study-elon.md`  
+10. **Promo videos post-audit:** scripts ready in `docs/promo-videos-post-audit.md` — Postiz AI video credits empty (2026-10-14); add credits or supply VO → generate → keep draft until audit sign-off
 
 ---
 
@@ -96,3 +98,5 @@ Agent cannot finish these without your login/UI:
 | 2026-10-13 | AI templates · Find-me live · AI spend ops | Bios paste · Postiz DRAFT cleanup |
 | 2026-10-13 | **Company live reaudit:** site HTTP 200s, email MX, tests green, #32/#25 closed, audit-site path fixed, find-me tests, **X captions re-queued with plain dtrtlab.com** | SCHEDULED waves · Ian unlock list · Postiz DRAFT discard |
 | 2026-10-14 | Daily X reply pack (adhamuxi tip) — 10 drafts ready | Ian log agent into X OR paste `docs/social-reply-daily.md` |
+| 2026-10-14 | Elon/X DTRT-safe playbook + founder-direct Postiz QUEUE; unlock checklist wired | Follow @elonmusk · paste replies (no agent X login) · Postiz DRAFT cleanup |
+| 2026-10-14 | Company study (works/won't-copy) + Lab OS improve algorithm + promo video scripts | Ian audit sign-off · Postiz video credits · flip drafts → schedule |

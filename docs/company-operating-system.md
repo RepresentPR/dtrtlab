@@ -4,7 +4,9 @@
 
 **Vision alignment:** Personal + company north star live in [`docs/vision.md`](vision.md). Every checklist item below must serve that document, not viral tools or fake scale.
 
-**Last reviewed:** 2026-10-13
+**Last reviewed:** 2026-10-14
+
+**Company study (works / will-not-copy):** [`docs/company-study-elon.md`](company-study-elon.md) · **Post-audit promo videos:** [`docs/promo-videos-post-audit.md`](promo-videos-post-audit.md)
 
 ## Executive decision order (agent first · Ian second)
 

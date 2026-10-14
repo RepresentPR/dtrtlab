@@ -1,9 +1,12 @@
 # DTRT Lab Operating System (public)
 
-**Reviewed:** 2026-10-13  
+**Reviewed:** 2026-10-14  
 **Status:** Operating design for how the Lab grows — not a claim of enterprise scale.
 
 This is the structure we are installing at DTRT Lab after studying how durable multi-brand companies actually run (purpose → playbook → people language → scorecard → learning loop → evidence). Patterns only. No third-party manuals copied into this site.
+
+**Company study (Tesla / SpaceX / X — what works vs what we will not copy):** [`docs/company-study-elon.md`](company-study-elon.md).  
+**Promo videos (draft until Ian audit):** [`docs/promo-videos-post-audit.md`](promo-videos-post-audit.md).
 
 ---
 
@@ -23,6 +26,18 @@ Every offer follows a short numbered path with a finish line:
 6. Follow-up (CSI-style: did we keep them informed?)
 
 If a step has no owner and no dated proof, it is not “done.”
+
+### 2b. Improvement algorithm (order matters)
+
+Before adding tools or agent automation to any step:
+
+1. Make the requirement less dumb  
+2. Delete the part or process if it does not touch the outcome  
+3. Simplify what remains  
+4. Accelerate cycle time  
+5. Automate **last**
+
+Never automate costume work. Never delete trust surfaces (legal, security, honesty flags) without naming what they protect.
 
 ## 3. People language (competencies)
 
@@ -65,7 +80,9 @@ Sister offers (creator Lab, AFTERLIGHT, free plans, shop interest, future PR hel
 
 - Cloning third-party software via reverse engineering as a growth strategy  
 - Fake scale, fake store, fake hiring, or fake fundraising  
-- Publishing proprietary manuals from other companies
+- Publishing proprietary manuals from other companies  
+- Shipping promo claims before an audit sign-off  
+- Copying founder volatility or “intensity without structure”
 
 ---
 

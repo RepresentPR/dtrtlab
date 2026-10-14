@@ -81,6 +81,15 @@
       "Deliver",
       "Follow-up"
     ],
+    "improvementAlgorithm": [
+      "Make the requirement less dumb",
+      "Delete the part or process",
+      "Simplify",
+      "Accelerate",
+      "Automate last"
+    ],
+    "studyDoc": "docs/company-study-elon.md",
+    "promoVideosDoc": "docs/promo-videos-post-audit.md",
     "competencies": [
       "Customer focus",
       "Collaborates",
@@ -108,14 +117,15 @@
       "Partner path",
       "Shop interest rules"
     ],
-    "note": "Structure distilled from how durable multi-brand operators run. DTRT-owned language only. No third-party manuals republished."
+    "note": "Structure distilled from how durable multi-brand operators run. DTRT-owned language only. No third-party manuals republished. See company-study-elon.md for works / will-not-copy."
   },
   "outOfVision": [
     "Cloning third-party software via reverse engineering as a growth strategy",
     "Fake scale, fake store, fake hiring, or fake fundraising",
     "Hype tools that trade trust for reach",
-    "Publishing proprietary manuals from other companies"
+    "Publishing proprietary manuals from other companies",
+    "Shipping promo claims before an audit sign-off"
   ],
   "visionDoc": "docs/vision.md",
-  "lastReviewed": "2026-10-13"
+  "lastReviewed": "2026-10-14"
 }
