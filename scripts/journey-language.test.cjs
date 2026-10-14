@@ -53,7 +53,7 @@ test('Spanish route applies language metadata, page title, accessible selection 
   };
   language.apply(document, { search: '?lang=es&intent=paid-project', pathname: '/support.html', hash: '#faq' });
   assert.equal(document.documentElement.lang, 'es');
-  assert.equal(document.title, 'Apoya al Lab — DTRT Lab');
+  assert.equal(document.title, 'Planes de escritura — DTRT Lab');
   assert.equal(translated.innerHTML, language.copy.supportTitle.es);
   assert.equal(navigation.attrs['aria-label'], 'Navegación principal');
   assert.equal(selectors[1].attrs['aria-current'], 'page');

@@ -312,7 +312,9 @@
     function syncTabs() {
       const hash = (windowRef.location.hash || '').replace('#', '');
       let active = 'start';
-      if (hash === 'highlights' || hash === 'company-work') active = 'examples';
+      if (hash === 'packages' || hash === 'services') active = 'packages';
+      else if (hash === 'contact' || hash === 'contact-band') active = 'contact';
+      else if (hash === 'highlights' || hash === 'company-work') active = 'examples';
       document.querySelectorAll('[data-app-tab]').forEach(tab => {
         const on = tab.getAttribute('data-app-tab') === active;
         tab.setAttribute('aria-current', on ? 'page' : 'false');

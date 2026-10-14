@@ -30,9 +30,9 @@
     en: {
       categories: { '': 'Choose one', 'Free plan': 'Free plan', 'Paid project inquiry': 'Paid project inquiry', 'Shop interest': 'Shop interest', Highlight: 'Highlight', Partner: 'Partner', 'Work opportunity': 'Work opportunity', Website: 'Website', Other: 'Other' },
       defaults: { 'Free plan': 'Free plan — business or idea', 'Paid project inquiry': 'Discuss a paid project', 'Shop interest': 'Shop interest — product I’d buy' },
-      title: 'Say hello to DTRT Lab', freeTitle: 'Your free plan starts here', paidTitle: 'Discuss a paid project', shopTitle: 'Tell us what you’d buy', pageTitle: 'Contact — DTRT Lab',
+      title: 'Say hello to DTRT Lab', freeTitle: 'Your free writing plan starts here', paidTitle: 'Discuss writing for your business', shopTitle: 'Tell us what you’d buy', pageTitle: 'Contact — DTRT Lab',
       freeContext: 'Three practical priorities, one sample improvement and one next step. Free, with no purchase required. Implementation is agreed separately. Open to any age / any size idea.',
-      paidContext: 'Tell us what you need. A written scope, quote and agreement come before paid work. This is an inquiry, not a booking. Online checkout is unavailable.',
+      paidContext: 'Tell us what you need written. Named writing plans are Mini Social Pack $50, Week Pack $129, and Writing Retainer — Starter $250/30 days, paid on Whop. Custom work still needs a written scope first. This page does not collect a card.',
       shopContext: 'Checkout is not live. Tell us which digital or merch item you’d buy so we can open the store with real demand. No charge from this page.',
       context: 'This page prepares an email. It does not send a request or confirm a booking.', optionalMessage: 'Other context (optional)', requiredMessage: 'Message (required)',
       category: 'Category', subject: 'Subject', name: 'Name', reply: 'Reply email', project: 'Business link or idea', goal: 'Goal', to: 'To',
@@ -43,9 +43,9 @@
       copyFailed: 'Select the text and copy manually, then paste it into your email app. This website has not sent anything.',
       nav: 'Main navigation', footer: 'Footer', routes: 'Ways to connect', inquiry: 'Email inquiry',
       labels: {
-        'contact-skip': 'Skip to content', 'contact-nav-work': 'Work', 'contact-nav-results': 'Results', 'contact-nav-about': 'About', 'contact-nav-partner': 'Partner', 'contact-current-link': 'Contact',
-        'contact-intro': 'Choose a free plan, discuss a paid project, or send a question. You stay in control of sending the email.',
-        'contact-free-route': 'Free plan', 'contact-paid-route': 'Discuss a paid project', 'contact-support-route': 'Support the Lab', 'contact-email-intro': 'Email',
+        'contact-skip': 'Skip to content', 'contact-nav-work': 'Packages', 'contact-nav-results': 'Company', 'contact-nav-about': 'About', 'contact-nav-partner': 'Partner', 'contact-current-link': 'Contact',
+        'contact-intro': 'Choose a free writing plan, a named writing plan on Whop, or send a question. You stay in control of sending the email.',
+        'contact-free-route': 'Free plan', 'contact-paid-route': 'Discuss writing', 'contact-support-route': 'Writing plans', 'contact-email-intro': 'Email',
         'contact-privacy-note': 'Share public information only; no passwords, customer records or financial details are needed.', 'category-label': 'Category',
         'free-plan-details-title': 'Two required details', 'project-label': '1. Public business link or brief idea description (required)',
         'project-help': 'Any size business or an idea is welcome. A website is optional if you describe the idea.', 'goal-label': '2. One goal (required)', 'goal-help': 'What would you like to make clearer or improve?',
@@ -54,15 +54,15 @@
         'fallback-title': 'Email app did not open?', 'fallback-help': 'Copy these into a new email, then review and send it yourself. You can also select the text and copy it manually.',
         'to-label': 'To', 'copy-email': 'Copy email address', 'copy-message-label': 'Subject and message to copy', 'copy-message': 'Copy email message',
         'language-help': 'This inquiry page is available in English and Spanish. Spanish wording prepared with AI; no independent native-speaker review. Other linked resources may be in English. Your browser may offer translation into other languages; that translation may be imperfect.',
-        'contact-credit': 'DTRT Lab · Created by Ian', 'contact-home-link': 'Home', 'contact-footer-about': 'About', 'contact-footer-work': 'Work', 'contact-footer-results': 'Results', 'contact-footer-partner': 'Partner', 'contact-footer-privacy': 'Privacy', 'contact-footer-terms': 'Terms', 'contact-footer-cookies': 'Cookies'
+        'contact-credit': 'DTRT Lab · Writing for local businesses', 'contact-home-link': 'Home', 'contact-footer-about': 'About', 'contact-footer-work': 'Packages', 'contact-footer-results': 'Company', 'contact-footer-partner': 'Partner', 'contact-footer-privacy': 'Privacy', 'contact-footer-terms': 'Terms', 'contact-footer-cookies': 'Cookies'
       }
     },
     es: {
       categories: { '': 'Elige una categoría', 'Free plan': 'Plan gratuito', 'Paid project inquiry': 'Proyecto de pago', 'Shop interest': 'Interés en la tienda', Highlight: 'Clip destacado', Partner: 'Colaboración', 'Work opportunity': 'Oportunidad de trabajo', Website: 'Sitio web', Other: 'Otra consulta' },
       defaults: { 'Free plan': 'Plan gratuito — negocio o idea', 'Paid project inquiry': 'Consultar sobre un proyecto de pago', 'Shop interest': 'Interés en la tienda — producto que compraría' },
-      title: 'Contacta con DTRT Lab', freeTitle: 'Tu plan gratuito empieza aquí', paidTitle: 'Hablemos de un proyecto de pago', shopTitle: 'Dinos qué comprarías', pageTitle: 'Contacto — DTRT Lab',
+      title: 'Contacta con DTRT Lab', freeTitle: 'Tu plan de escritura gratis empieza aquí', paidTitle: 'Hablemos de escritura para tu negocio', shopTitle: 'Dinos qué comprarías', pageTitle: 'Contacto — DTRT Lab',
       freeContext: 'Tres prioridades prácticas, una mejora de ejemplo y un siguiente paso. Gratis, sin obligación de compra. La implementación se acuerda por separado. Abierto a cualquier edad / cualquier tamaño de idea.',
-      paidContext: 'Cuéntanos qué necesitas. Antes de comenzar un trabajo de pago, acordamos por escrito el alcance, el presupuesto y las condiciones. Esta consulta no confirma una contratación. El pago en línea no está disponible.',
+      paidContext: 'Cuéntanos qué necesitas que escribamos. Antes de un trabajo a medida, acordamos por escrito el alcance y el presupuesto. Los planes con nombre se pagan en Whop. Esta página no recoge una tarjeta.',
       shopContext: 'El pago en línea no está activo. Dinos qué producto digital o merch comprarías para abrir la tienda con demanda real. Esta página no cobra nada.',
       context: 'Esta página prepara un correo. No envía una solicitud ni confirma una contratación.', optionalMessage: 'Más contexto (opcional)', requiredMessage: 'Mensaje (obligatorio)',
       category: 'Categoría', subject: 'Asunto', name: 'Nombre', reply: 'Correo para responder', project: 'Enlace del negocio o idea', goal: 'Objetivo', to: 'Para',
@@ -73,9 +73,9 @@
       copyFailed: 'Selecciona el texto y cópialo manualmente; después pégalo en tu aplicación de correo. Este sitio no ha enviado nada.',
       nav: 'Navegación principal', footer: 'Pie de página', routes: 'Formas de contactar', inquiry: 'Consulta por correo',
       labels: {
-        'contact-skip': 'Ir al contenido', 'contact-nav-work': 'Proyectos (inglés)', 'contact-nav-results': 'Resultados (inglés)', 'contact-nav-about': 'Acerca del Lab (inglés)', 'contact-nav-partner': 'Colaboraciones (inglés)', 'contact-current-link': 'Contacto',
-        'contact-intro': 'Solicita un plan gratuito, consulta sobre un proyecto de pago o envía una pregunta. Tú decides cuándo enviar el correo.',
-        'contact-free-route': 'Plan gratuito', 'contact-paid-route': 'Consultar un proyecto de pago', 'contact-support-route': 'Apoya al Lab', 'contact-email-intro': 'Correo',
+        'contact-skip': 'Ir al contenido', 'contact-nav-work': 'Paquetes', 'contact-nav-results': 'Empresa', 'contact-nav-about': 'Acerca', 'contact-nav-partner': 'Colabora', 'contact-current-link': 'Contacto',
+        'contact-intro': 'Elige un plan de escritura gratis, un plan de escritura en Whop, o envía una pregunta. Tú decides cuándo enviar el correo.',
+        'contact-free-route': 'Plan gratis', 'contact-paid-route': 'Hablar de escritura', 'contact-support-route': 'Planes de escritura', 'contact-email-intro': 'Correo',
         'contact-privacy-note': 'Comparte solo información pública; no necesitamos contraseñas, datos de clientes ni detalles financieros.', 'category-label': 'Categoría',
         'free-plan-details-title': 'Dos datos obligatorios', 'project-label': '1. Enlace público del negocio o breve descripción de la idea (obligatorio)',
         'project-help': 'Cualquier tamaño de negocio o idea es bienvenido. No necesitas un sitio web si describes tu idea.', 'goal-label': '2. Un objetivo (obligatorio)', 'goal-help': '¿Qué te gustaría explicar mejor o mejorar?',
@@ -84,7 +84,7 @@
         'fallback-title': '¿No se abrió tu aplicación de correo?', 'fallback-help': 'Copia estos datos en un correo nuevo, revísalo y envíalo tú. También puedes seleccionar el texto y copiarlo manualmente.',
         'to-label': 'Para', 'copy-email': 'Copiar dirección de correo', 'copy-message-label': 'Asunto y mensaje para copiar', 'copy-message': 'Copiar asunto y mensaje',
         'language-help': 'Esta página de consultas está disponible en inglés y español. Texto en español preparado con IA; sin revisión independiente de una persona nativa. Otros recursos enlazados pueden estar en inglés. Tu navegador puede ofrecer traducción a otros idiomas; esa traducción puede ser imperfecta.',
-        'contact-credit': 'DTRT Lab · Creado por Ian', 'contact-home-link': 'Inicio', 'contact-footer-about': 'Acerca del Lab (inglés)', 'contact-footer-work': 'Proyectos (inglés)', 'contact-footer-results': 'Resultados (inglés)', 'contact-footer-partner': 'Colaboraciones (inglés)', 'contact-footer-privacy': 'Privacidad', 'contact-footer-terms': 'Términos', 'contact-footer-cookies': 'Cookies'
+        'contact-credit': 'DTRT Lab · Escritura para negocios locales', 'contact-home-link': 'Inicio', 'contact-footer-about': 'Acerca', 'contact-footer-work': 'Paquetes', 'contact-footer-results': 'Empresa', 'contact-footer-partner': 'Colabora', 'contact-footer-privacy': 'Privacidad', 'contact-footer-terms': 'Términos', 'contact-footer-cookies': 'Cookies'
       }
     }
   };

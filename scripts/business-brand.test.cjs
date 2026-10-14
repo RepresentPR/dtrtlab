@@ -1,0 +1,56 @@
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const root = path.join(__dirname, '..');
+const read = name => fs.readFileSync(path.join(root, name), 'utf8');
+
+test('brand kit has the public paste text and a short bio', () => {
+  const kit = read('brand-kit.md');
+  assert.match(kit, /#080808/);
+  assert.match(kit, /#fafafa/);
+  assert.match(kit, /#b6b6b6/);
+  assert.match(kit, /#303030/);
+  assert.match(kit, /#141414/);
+  assert.match(kit, /#cfe35a/);
+  assert.match(kit, /Source Sans 3/);
+  assert.match(kit, /Source Serif 4/);
+  const oneLine = kit.match(/DTRT Lab writes for local businesses\. Do the right thing\. Free plan: dtrtlab\.com/);
+  assert.ok(oneLine, 'one-line bio is present');
+  assert.ok(oneLine[0].length < 150);
+  for (const name of ['X', 'Instagram', 'TikTok', 'YouTube', 'Twitch']) {
+    assert.match(kit, new RegExp('### ' + name));
+  }
+  assert.match(kit, /https:\/\/x\.com\/DTRTLab/);
+  assert.match(kit, /https:\/\/www\.instagram\.com\/officiallydtrt\//);
+  assert.match(kit, /plan_HAGSLXXUeGkcz/);
+  assert.match(kit, /plan_RVDjSToI7vKOM/);
+  assert.match(kit, /plan_kZqq0jgr6VrGG/);
+  assert.doesNotMatch(kit, /@gmail\.com|PayPal/);
+});
+
+test('business pages name writing plans and keep hobby off the company face', () => {
+  const home = read('index.html');
+  const main = home.match(/<main[\s\S]*?<\/main>/)[0];
+  assert.match(main, /Writing for local businesses/);
+  assert.match(home, /href="\/lab\.html"/);
+  assert.doesNotMatch(main, /\/careers\.html/i);
+  for (const file of ['company.html', 'contact.html', 'shop.html', 'support.html']) {
+    const html = read(file);
+    assert.match(html, /plan_HAGSLXXUeGkcz/, file);
+    assert.match(html, /plan_RVDjSToI7vKOM/, file);
+    assert.match(html, /plan_kZqq0jgr6VrGG/, file);
+    assert.doesNotMatch(html, /@gmail\.com|PayPal G/, file);
+  }
+  const find = read('find.html');
+  assert.match(find, /data-find-page/);
+  assert.match(find, /data-find-group="lab"/);
+  assert.match(find, /data-find-limit="x,instagram"/);
+  assert.doesNotMatch(find, /data-find-group="stream"|data-find-group="career"/);
+  const cs2 = read('cs2.html');
+  for (const id of ['votes', 'tabs', 'account', 'notes']) {
+    assert.match(cs2, new RegExp('id="' + id + '"[^>]*hidden|hidden[^>]*id="' + id + '"'));
+  }
+  assert.doesNotMatch(read('contact.html'), /Work opportunity/);
+  assert.match(read('brand.html'), /brand-kit\.md/);
+});

@@ -16,8 +16,8 @@
     "es": "Saltar al contenido"
   },
   "navWork": {
-    "en": "Examples",
-    "es": "Ejemplos"
+    "en": "Packages",
+    "es": "Paquetes"
   },
   "navFree": {
     "en": "Free plan",
@@ -81,16 +81,168 @@
     "es": "<span class=\"small-mark\" aria-hidden=\"true\"></span> DTRT LAB / UN CLIC PARA EMPEZAR"
   },
   "homeTitle": {
-    "en": "Make useful stuff.<br><span>Have fun doing it.</span>",
-    "es": "Crea cosas útiles.<br><span>Disfruta al hacerlo.</span>"
+    "en": "Do the right thing.",
+    "es": "Haz lo correcto."
   },
   "heroBrand": {
     "en": "DTRT LAB",
     "es": "DTRT LAB"
   },
   "homeLead": {
-    "en": "DTRT Lab writes a free plan for a business or an idea. DTRTC is the stream. AFTERLIGHT is a game in development, and it is not for sale. Send one link and one goal.",
-    "es": "DTRT Lab escribe un plan gratis para un negocio o una idea. DTRTC es la transmisión. AFTERLIGHT es un juego en desarrollo y no está a la venta. Envía un enlace y una meta."
+    "en": "DTRT Lab writes for local businesses. Start with a free plan, then pick a writing package. Send one link and one goal.",
+    "es": "DTRT Lab escribe para negocios locales. Empieza con un plan gratis y luego elige un paquete de escritura. Envía un enlace y una meta."
+  },
+  "homeMeta": {
+    "en": "DTRT Lab writes for local businesses. Mission: Do the right thing. Free plan, plus Mini Social Pack $50, Week Pack $129, and Writing Retainer — Starter $250/30 days. Checkout for those writing plans is on Whop.",
+    "es": "DTRT Lab escribe para negocios locales. Misión: Do the right thing. Plan gratis, Mini Social Pack $50, Week Pack $129 y Writing Retainer — Starter $250/30 días. El pago de esos planes de escritura es en Whop."
+  },
+  "packagesDown": {
+    "en": "See packages <span aria-hidden=\"true\">↓</span>",
+    "es": "Ver paquetes <span aria-hidden=\"true\">↓</span>"
+  },
+  "navPackages": {
+    "en": "Packages",
+    "es": "Paquetes"
+  },
+  "dockPackages": {
+    "en": "Packages",
+    "es": "Paquetes"
+  },
+  "missionEyebrow": {
+    "en": "THE BUSINESS",
+    "es": "EL NEGOCIO"
+  },
+  "missionTitle": {
+    "en": "Writing for local businesses.",
+    "es": "Escritura para negocios locales."
+  },
+  "missionCopy": {
+    "en": "Do the right thing means the writing is for them. DTRT Lab writes for a local business so the next step is clearer. We do not extract from them.",
+    "es": "Do the right thing significa que la escritura es para ellos. DTRT Lab escribe para un negocio local para que el próximo paso sea más claro. No es para extraer de ellos."
+  },
+  "packagesEyebrow": {
+    "en": "WRITING FOR LOCAL BUSINESSES",
+    "es": "ESCRITURA PARA NEGOCIOS LOCALES"
+  },
+  "packagesTitle": {
+    "en": "Start free. Buy a writing plan on Whop.",
+    "es": "Empieza gratis. Compra un plan de escritura en Whop."
+  },
+  "packagesLead": {
+    "en": "The free plan is writing, and it is not a purchase. These three writing plans use the live Whop checkout. This website does not collect card numbers.",
+    "es": "El plan gratis es escritura y no es una compra. Estos tres planes de escritura usan el pago en vivo de Whop. Este sitio no recoge números de tarjeta."
+  },
+  "pkgFreeName": {
+    "en": "Free plan",
+    "es": "Plan gratis"
+  },
+  "pkgFreePrice": {
+    "en": "No purchase",
+    "es": "Sin compra"
+  },
+  "pkgFreeCopy": {
+    "en": "Send one link and one goal. Three priorities, one sample improvement, a clear next step.",
+    "es": "Envía un enlace y una meta. Tres prioridades, una mejora de muestra y un próximo paso claro."
+  },
+  "pkgFreeCta": {
+    "en": "Get a free plan <span aria-hidden=\"true\">↗</span>",
+    "es": "Pide un plan gratis <span aria-hidden=\"true\">↗</span>"
+  },
+  "pkgMiniCopy": {
+    "en": "Writing for a local business. Named plan. Checkout is on Whop.",
+    "es": "Escritura para un negocio local. Plan con nombre. El pago es en Whop."
+  },
+  "pkgWeekCopy": {
+    "en": "A week of writing for a local business. Named plan. Checkout is on Whop.",
+    "es": "Una semana de escritura para un negocio local. Plan con nombre. El pago es en Whop."
+  },
+  "pkgRetainerCopy": {
+    "en": "Writing for a local business, 30 days. Named plan. Checkout is on Whop.",
+    "es": "Escritura para un negocio local, 30 días. Plan con nombre. El pago es en Whop."
+  },
+  "buyMini": {
+    "en": "Buy Mini Social Pack · $50 <span aria-hidden=\"true\">↗</span>",
+    "es": "Comprar Mini Social Pack · $50 <span aria-hidden=\"true\">↗</span>"
+  },
+  "buyWeek": {
+    "en": "Buy Week Pack · $129 <span aria-hidden=\"true\">↗</span>",
+    "es": "Comprar Week Pack · $129 <span aria-hidden=\"true\">↗</span>"
+  },
+  "buyRetainer": {
+    "en": "Buy Writing Retainer — Starter · $250/30 days <span aria-hidden=\"true\">↗</span>",
+    "es": "Comprar Writing Retainer — Starter · $250/30 días <span aria-hidden=\"true\">↗</span>"
+  },
+  "packagesPayNote": {
+    "en": "Shop, merch, and game checkout on this site stay off. Refunds for the three Whop plans follow Whop’s policy. Questions: <a href=\"mailto:hello@dtrtlab.com\">hello@dtrtlab.com</a> · <a href=\"/legal/refunds.html\">Refunds</a>.",
+    "es": "La tienda, la mercancía y el juego no se cobran en este sitio. Los reembolsos de los tres planes de Whop siguen la política de Whop. Preguntas: <a href=\"mailto:hello@dtrtlab.com\">hello@dtrtlab.com</a> · <a href=\"/legal/refunds.html\">Reembolsos</a>."
+  },
+  "packagesStep": {
+    "en": "02 / Packages",
+    "es": "02 / Paquetes"
+  },
+  "packagesLabel": {
+    "en": "Writing plans",
+    "es": "Planes de escritura"
+  },
+  "packagesRoute": {
+    "en": "Mini Social Pack $50, Week Pack $129, Writing Retainer — Starter $250/30 days.",
+    "es": "Mini Social Pack $50, Week Pack $129, Writing Retainer — Starter $250/30 días."
+  },
+  "contactRoute": {
+    "en": "hello@dtrtlab.com. Nothing is sent until you press Send in your email app.",
+    "es": "hello@dtrtlab.com. No se envía nada hasta que pulses Enviar en tu aplicación de correo."
+  },
+  "contactEyebrow": {
+    "en": "CONTACT",
+    "es": "CONTACTO"
+  },
+  "contactTitle": {
+    "en": "Say hello.",
+    "es": "Salúdanos."
+  },
+  "contactCopy": {
+    "en": "Email <a href=\"mailto:hello@dtrtlab.com\">hello@dtrtlab.com</a>. The contact page prepares a draft. Nothing is sent until you press Send in your email app.",
+    "es": "Correo <a href=\"mailto:hello@dtrtlab.com\">hello@dtrtlab.com</a>. La página de contacto prepara un borrador. No se envía nada hasta que pulses Enviar en tu aplicación de correo."
+  },
+  "contactCta": {
+    "en": "Contact <span aria-hidden=\"true\">↗</span>",
+    "es": "Contacto <span aria-hidden=\"true\">↗</span>"
+  },
+  "tabStart": {
+    "en": "Start",
+    "es": "Empezar"
+  },
+  "tabPackages": {
+    "en": "Packages",
+    "es": "Paquetes"
+  },
+  "tabContact": {
+    "en": "Contact",
+    "es": "Contacto"
+  },
+  "tabMore": {
+    "en": "More",
+    "es": "Más"
+  },
+  "moreTitle": {
+    "en": "More",
+    "es": "Más"
+  },
+  "moreClose": {
+    "en": "Close",
+    "es": "Cerrar"
+  },
+  "footerHobby": {
+    "en": "Lab / Hobby",
+    "es": "Lab / Pasatiempo"
+  },
+  "refunds": {
+    "en": "Refunds",
+    "es": "Reembolsos"
+  },
+  "socialLabel": {
+    "en": "X and Instagram",
+    "es": "X e Instagram"
   },
   "navShop": {
     "en": "Shop",
@@ -149,12 +301,12 @@
     "es": "03 / Anímanos"
   },
   "supportLabel": {
-    "en": "Support the Lab",
-    "es": "Apoya al Lab"
+    "en": "Writing plans",
+    "es": "Planes de escritura"
   },
   "supportRoute": {
-    "en": "Watch, share, or explore voluntary platform support.",
-    "es": "Mira, comparte o explora las opciones de apoyo voluntario de cada plataforma."
+    "en": "Free writing plan, or a named writing plan on Whop.",
+    "es": "Plan de escritura gratis, o un plan de escritura con nombre en Whop."
   },
   "startEyebrow": {
     "en": "A USEFUL PLACE TO START",
@@ -350,16 +502,16 @@
     "es": "Cookies (inglés)"
   },
   "supportTitle": {
-    "en": "Help build<br>what's next.",
-    "es": "Ayuda a crear<br>lo que viene."
+    "en": "Start with<br>a writing plan.",
+    "es": "Empieza con<br>un plan de escritura."
   },
   "supportLead": {
-    "en": "Enjoy the work? Watch, share, or choose voluntary support through a platform you use.<br>Direct tips are temporarily unavailable.",
-    "es": "¿Te gusta el trabajo? Mira, comparte o elige apoyar voluntariamente a través de una plataforma que uses.<br>Las propinas directas no están disponibles por ahora."
+    "en": "DTRT Lab writes for local businesses. The free plan is not a purchase. Three writing plans are paid on Whop.<br>Direct tips are temporarily unavailable.",
+    "es": "DTRT Lab escribe para negocios locales. El plan gratis no es una compra. Tres planes de escritura se pagan en Whop.<br>Las propinas directas no están disponibles por ahora."
   },
   "navResults": {
-    "en": "Results",
-    "es": "Resultados (inglés)"
+    "en": "Company",
+    "es": "Empresa"
   },
   "navPartner": {
     "en": "Partner",
@@ -414,8 +566,8 @@
     "es": "¿Quieres trabajar con nosotros?"
   },
   "paidCopy": {
-    "en": "Tell us about your business or idea and the help you need. Paid work is agreed separately through a written scope and quote.",
-    "es": "Cuéntanos sobre tu negocio o idea y la ayuda que necesitas. El trabajo de pago se acuerda por separado, con un alcance y una cotización por escrito."
+    "en": "Tell us what you need written. Named writing plans are on the homepage and paid on Whop. Custom work still needs a written scope and quote.",
+    "es": "Cuéntanos qué necesitas que escribamos. Los planes de escritura con nombre están en la página de inicio y se pagan en Whop. El trabajo a medida sigue necesitando un alcance y una cotización por escrito."
   },
   "paidNote": {
     "en": "An enquiry does not create a booking or charge.",
@@ -426,32 +578,32 @@
     "es": "Consulta sobre un proyecto de pago ↗"
   },
   "platformSupport": {
-    "en": "Voluntary platform support",
-    "es": "Apoyo voluntario en las plataformas"
+    "en": "Writing plans",
+    "es": "Planes de escritura"
   },
   "streamTitle": {
-    "en": "Already part<br>of the stream?",
-    "es": "¿Ya sigues<br>las transmisiones?"
+    "en": "Buy a writing plan<br>on Whop.",
+    "es": "Compra un plan de escritura<br>en Whop."
   },
   "streamLead": {
-    "en": "See the subscription and gift options available to your account.",
-    "es": "Consulta las opciones de suscripción y regalos disponibles para tu cuenta."
+    "en": "These three plans are the paid writing offer. This website does not collect card numbers.",
+    "es": "Estos tres planes son la oferta de escritura de pago. Este sitio no recoge números de tarjeta."
   },
   "streamCopy": {
-    "en": "Use the existing Twitch or Kick channel routes below. Availability, eligibility and renewal terms are shown by the platform. Supporting the channel does not purchase a service or book a project.",
-    "es": "Usa los enlaces de los canales de Twitch o Kick de abajo. La plataforma muestra la disponibilidad, los requisitos y las condiciones de renovación. Apoyar al canal no compra un servicio ni reserva un proyecto."
+    "en": "Mini Social Pack $50, Week Pack $129, and Writing Retainer — Starter $250/30 days. Refunds follow Whop. Shop and game checkout on this site stay off.",
+    "es": "Mini Social Pack $50, Week Pack $129 y Writing Retainer — Starter $250/30 días. Los reembolsos siguen a Whop. La tienda y el juego no se cobran en este sitio."
   },
   "twitchOptions": {
-    "en": "Subscription options on Twitch ↗",
-    "es": "Opciones de suscripción en Twitch ↗"
+    "en": "Buy Mini Social Pack · $50 ↗",
+    "es": "Comprar Mini Social Pack · $50 ↗"
   },
   "kickOptions": {
-    "en": "Support options on Kick ↗",
-    "es": "Opciones de apoyo en Kick ↗"
+    "en": "Buy Week Pack · $129 ↗",
+    "es": "Comprar Week Pack · $129 ↗"
   },
   "twitchChat": {
-    "en": "Visit Twitch chat ↗",
-    "es": "Visita el chat de Twitch ↗"
+    "en": "Buy Writing Retainer — Starter · $250/30 days ↗",
+    "es": "Comprar Writing Retainer — Starter · $250/30 días ↗"
   },
   "beforeSupport": {
     "en": "Before you support",
@@ -482,16 +634,16 @@
     "es": "¿Puedo comprar un juego o una clave?"
   },
   "gameAnswer": {
-    "en": "No. Store and preorder checkout are off. There is no public game download.",
-    "es": "No. Las compras en la tienda y las preventas están desactivadas. No hay un juego disponible para descarga pública."
+    "en": "No. AFTERLIGHT is in development and not for sale. Shop and game checkout on this site stay off. Writing plans are the paid offer, on Whop.",
+    "es": "No. AFTERLIGHT está en desarrollo y no está a la venta. La tienda y el juego no se cobran en este sitio. Los planes de escritura son la oferta de pago, en Whop."
   },
   "subscriptionsFaq": {
-    "en": "Where are subscriptions handled?",
-    "es": "¿Dónde se gestionan las suscripciones?"
+    "en": "Where are the writing plans paid?",
+    "es": "¿Dónde se pagan los planes de escritura?"
   },
   "subscriptionsAnswer": {
-    "en": "Twitch and Kick handle their own subscriptions and gifts. DTRT Lab does not collect your card details on this website. Review the platform's terms before choosing an option.",
-    "es": "Twitch y Kick gestionan sus propias suscripciones y regalos. DTRT Lab no recoge los datos de tu tarjeta en este sitio. Revisa las condiciones de la plataforma antes de elegir una opción."
+    "en": "The three writing plans are paid on Whop. DTRT Lab does not collect card details on this website. Refunds follow Whop’s policy.",
+    "es": "Los tres planes de escritura se pagan en Whop. DTRT Lab no recoge los datos de tu tarjeta en este sitio. Los reembolsos siguen la política de Whop."
   },
   "brandFaq": {
     "en": "What about a brand partnership?",
@@ -518,8 +670,8 @@
     "es": "Apoyo"
   },
   "createdBy": {
-    "en": "© 2026 DTRT Lab. Created by Ian.",
-    "es": "© 2026 DTRT Lab. Creado por Ian."
+    "en": "© 2026 DTRT Lab. Writing for local businesses.",
+    "es": "© 2026 DTRT Lab. Escritura para negocios locales."
   },
   "insights": {
     "en": "Audience &amp; insights",
@@ -598,8 +750,8 @@
     "es": "Cada nueva publicación empieza en una plataforma adecuada. El calendario guardado que aparece abajo, en inglés, muestra planes confirmados; las horas previstas no prueban que algo se haya publicado."
   },
   "afterlight": {
-    "en": "AFTERLIGHT",
-    "es": "AFTERLIGHT (inglés)"
+    "en": "Lab / Hobby",
+    "es": "Lab / Pasatiempo"
   },
   "mainNavigation": {
     "en": "Main navigation",
@@ -618,8 +770,8 @@
     "es": "Algo útil para llevar contigo"
   },
   "archiveNav": {
-    "en": "Work archive",
-    "es": "Archivo (inglés)"
+    "en": "Packages",
+    "es": "Paquetes"
   },
   "seeSample": {
     "en": "See a sample plan first <span aria-hidden=\"true\">↗</span>",
@@ -710,7 +862,7 @@
     "es": "Envía tu enlace público o una idea corta, más una meta. No necesitas comprar nada."
   }
 };
-  const titles = { home: { en: 'DTRT Lab — Make useful stuff. Have fun doing it.', es: 'DTRT Lab — Crea cosas útiles. Disfruta al hacerlo.' }, support: { en: 'Support the Lab — DTRT Lab', es: 'Apoya al Lab — DTRT Lab' }, sample: { en: 'Sample free plan — DTRT Lab', es: 'Plan gratis de muestra — DTRT Lab' } };
+  const titles = { home: { en: 'DTRT Lab — Do the right thing', es: 'DTRT Lab — Haz lo correcto' }, support: { en: 'Writing plans — DTRT Lab', es: 'Planes de escritura — DTRT Lab' }, sample: { en: 'Sample free plan — DTRT Lab', es: 'Plan gratis de muestra — DTRT Lab' } };
   function languageFromSearch(search) { return new URLSearchParams(search).get('lang') === 'es' ? 'es' : 'en'; }
   function localizeHref(href, language) {
     if (!href || !href.startsWith('/') || href.startsWith('//')) return href;
@@ -724,6 +876,14 @@
     document.documentElement.lang = language;
     const title = titles[document.body.dataset.journeyPage];
     if (title) document.title = title[language];
+    if (document.body.dataset.journeyPage === 'home' && typeof document.querySelector === 'function' && copy.homeMeta) {
+      const description = document.querySelector('meta[name="description"]');
+      const ogDescription = document.querySelector('meta[property="og:description"]');
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (description) description.setAttribute('content', copy.homeMeta[language]);
+      if (ogDescription) ogDescription.setAttribute('content', copy.homeMeta[language]);
+      if (ogTitle && title) ogTitle.setAttribute('content', title[language]);
+    }
     for (const node of document.querySelectorAll('[data-journey-i18n]')) {
       const entry = copy[node.getAttribute('data-journey-i18n')];
       if (entry) node.innerHTML = entry[language];
