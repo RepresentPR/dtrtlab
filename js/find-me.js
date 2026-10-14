@@ -3,7 +3,7 @@
   var ASSET_V = "20261013-find1";
   var LAB_IDS = { x: 1, instagram: 1, youtube: 1, tiktok: 1 };
   var STREAM_IDS = { twitch: 1, kick: 1 };
-  var CAREER_IDS = { linkedin: 1, github: 1 };
+  var CAREER_IDS = { resume: 1, linkedin: 1, github: 1 };
 
   function rootPrefix() {
     var here = (location.pathname || "").toLowerCase().replace(/\\/g, "/");
