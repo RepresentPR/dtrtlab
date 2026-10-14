@@ -3,9 +3,17 @@
    Add a network below — no build step.
 */
 window.DTRT_SOCIALS = {
-  updated: "2026-10-13",
+  updated: "2026-10-14",
   hub: "/find.html",
   networks: [
+    {
+      id: "resume",
+      label: "Resume",
+      handle: "dtrtlab.com/resume",
+      url: "https://dtrtlab.com/resume.html",
+      surface: "career",
+      enabled: true
+    },
     {
       id: "x",
       label: "X",

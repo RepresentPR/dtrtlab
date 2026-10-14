@@ -48,7 +48,7 @@
 Agent cannot finish these without your login/UI:
 
 1. Paste bios — `docs/social-bios-paste.md`  
-2. LinkedIn About / Featured — `docs/career-linkedin-kit.md`  
+2. LinkedIn About / Featured / Open to Work (incl. Tesla SA) — `docs/career-linkedin-kit.md` · apply Tesla SA via `docs/musk-network-jobs.md` (TeraFab = skip)  
 3. GitHub profile UI + `RepresentPR/RepresentPR` README  
 4. Photos — `docs/visual-photo-scatter.md`  
 5. Job apps (Workday / Caliber) — PII stays in private store only  

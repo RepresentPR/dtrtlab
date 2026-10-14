@@ -1,20 +1,23 @@
 # Ian Ferraro — LinkedIn reaudit + career options kit
 
-**Mentor north star:** Secure a good 9–5 in Orlando · Ocala · Upper Marlboro / PG County MD **and** keep it aligned with DTRT Lab’s vision. Three valid paths — pick the best real offer, not a single title tunnel:
+**Mentor north star:** Secure a good 9–5 in Orlando · Ocala · Upper Marlboro / PG County MD **and** keep it aligned with DTRT Lab’s vision. Four valid paths — pick the best real offer, not a single title tunnel:
 
 1. **Stay / grow as Service Advisor** (customer ownership is already a strong seat)  
-2. **Move up into management** (Manager / Manager-Estimator → GM stretch)  
-3. **Creative / media role** (producer, content, AV — craft that feeds Lab + DTRTC skills)
+2. **Tesla Service Advisor** (best Musk-network fit — vehicle service, not TeraFab)  
+3. **Move up into management** (Manager / Manager-Estimator → GM stretch)  
+4. **Creative / media role** (producer, content, AV — craft that feeds Lab + DTRTC skills)
 
 Estimator remains a solid *optional* collision adjacent seat — not the only goal.
 
 **Lab rule:** DTRT Lab stays the independent project — do not claim Lab as employer of record, live store, hiring pipeline, or Fortune-scale proof. Day job funds honesty; Lab does not fake scale.
 
-**Last built:** 2026-10-13  
+**Last built:** 2026-10-14  
 **Profile:** https://www.linkedin.com/in/ian-ferraro-578784419/  
+**Public resume (live):** https://dtrtlab.com/resume.html  
 **Public record:** https://dtrtlab.com/history.html  
+**Musk-network fit + lifestyle ranking:** `docs/musk-network-jobs.md` · tracker `content/job-targets.json`  
 **Vision filter:** `docs/vision.md`  
-**Agent access:** LinkedIn authwall blocks automated read/edit — Ian must paste headline/About/Open to Work manually (kit below). Public career facts cross-checked via `/history.html`.
+**Agent access:** LinkedIn authwall blocks automated read/edit — Ian must paste headline/About/Open to Work manually (kit below). Tesla careers Apply needs Ian login. Public career facts cross-checked via `/history.html` + `/resume.html`.
 
 ---
 
@@ -56,32 +59,38 @@ Internal Caliber ask (any path): talk to your GM about SA growth, Estimator opti
 | Headline | Often defaults to job title only | Sell SA strength + open to Manager **or** creative production; Lab independent |
 | About | Risk of mixing stream/Lab as “job” | Dual lane: collision ops day job · creator craft · independent DTRT Lab |
 | Experience | Caliber SA (2025–), Subway Estimator/Parts Mgr (2021–25), Caliber/Signature path | Collision bullets + optional Featured creative links (Lab, clips — honest labels) |
-| Featured | Often empty | Pin: dtrtlab.com, history.html, free plan, shop interest (checkout not live), 1–2 real creative pieces |
-| Open to Work | Unknown | On for Service Advisor · Estimator · Collision Manager · GM (stretch) · Content Producer / Multimedia · Orlando · Ocala · Upper Marlboro / PG County MD |
-| Skills | Often incomplete | CCC One, DRP, estimating, parts, customer communication, leadership; plus video edit / CapCut / Premiere / social publishing if true |
+| Featured | Often empty | Pin: https://dtrtlab.com/resume.html · history · free plan · 1–2 real clips (honest labels) |
+| Open to Work | Unknown | On for Tesla Service Advisor · Service Advisor · Estimator · Collision Manager · GM (stretch) · Content Producer / Multimedia · Orlando · Ocala · Merritt Island · Upper Marlboro / PG County / Owings Mills / Rockville MD |
+| Skills | Often incomplete | Customer ownership, CCC One, DRP, estimating, parts, status updates, leadership; CapCut / social publish if true — **not** fab process or software eng |
 | Banner / photo | — | Clean professional headshot; no fake Fortune claims |
 
 ### Paste-ready headline (≤220 chars)
 
 ```
-Service Advisor @ Caliber | Open to SA · Manager · Creative/Producer roles | Collision ops + content craft | Building DTRT Lab | Orlando · Ocala · Upper Marlboro MD
+Service Advisor @ Caliber | Open to Tesla SA · Collision SA/Manager · Creative/Producer | Honest customer ownership + content craft | DTRT Lab | Orlando · Ocala · Upper Marlboro MD
 ```
 
 ### Paste-ready About
 
 ```
-I’m a collision Service Advisor who owns the customer journey from drop-off to delivery — clear updates, insurance coordination, and repairs people can trust. I’m happy to keep growing as an SA, step into management, or move into a creative/producer seat that uses real content craft.
+I’m a collision Service Advisor who owns the customer journey from drop-off to delivery — clear updates, insurance coordination, and repairs people can trust. I’m happy to keep growing as an SA (including Tesla Vehicle Service), step into management, or move into a creative/producer seat that ships real work.
 
 Day job: Service Advisor at Caliber Collision (June 2025–present). Before that: Estimator & Parts Manager at Subway Auto Body (2021–2025), with earlier detail and parts roles at Caliber and Signature Collision Center.
 
 Independent project: DTRT Lab (dtrtlab.com) — make useful stuff, show dated evidence, free plans for businesses and ideas of any age or size. Shop interest is open; checkout is not live. DTRTC is the stream/entertainment channel, separate from the company face. The day job funds that work; the Lab is not an employer of record.
 
-Open in Orlando, Ocala (FL), and Upper Marlboro / Prince George’s County (MD) to:
-• Service Advisor (strong seat — stay or better shop)
+Public resume: https://dtrtlab.com/resume.html
+Dated history: https://dtrtlab.com/history.html
+
+Open in Orlando, Ocala / Merritt Island (FL), and Upper Marlboro / PG County / Owings Mills / Rockville (MD) to:
+• Tesla Service Advisor (Vehicle Service — not fab/engineering)
+• Service Advisor (collision — stay or better shop)
 • Collision Manager / Manager-Estimator → General Manager (stretch, honest about experience)
 • Creative / multimedia / content producer roles that ship real work
 
-Contact: ian@dtrtlab.com · hello@dtrtlab.com · https://dtrtlab.com/history.html
+Skills: customer ownership, estimating support, parts coordination, insurance/DRP awareness, CCC/DMS habits, clear status updates, short-form publish craft, valid DL.
+
+Contact: ian@dtrtlab.com · hello@dtrtlab.com
 ```
 
 ### Experience bullets (use under each role)
@@ -124,6 +133,16 @@ Do **not** paste “Fortune / top 50 / live store / hiring team” claims.
 **Fit bar — Manager / GM:** Often 3+ years *collision management* + CCC + KPI ownership. Parts Manager + Estimator is real leadership — phrase honestly; do not invent “GM for N years.”
 
 **Fit bar — Creative:** Portfolio of capture→edit→publish. Use Lab/DTRTC work with honest labels. Do not claim agency years or tools you do not use. Degree-required government AV roles are stretch unless you meet quals.
+
+### Track T — Tesla Service Advisor (best Musk-network lifestyle + fit)
+
+| Priority | Role | Market | Why | Apply |
+| --- | --- | --- | --- | --- |
+| P0 | Service Advisor · Tesla Vehicle Service | Merritt Island / Orlando FL | Same customer-ownership craft; EV mission; stay FL | [Tesla careers search](https://www.tesla.com/careers/search/?query=Service%20Advisor&site=US) — confirm live |
+| P0 | Service Advisor · Tesla | Owings Mills / Rockville MD | Near Upper Marlboro lane | Same search + state=MD |
+| — | TeraFab / process / eng | US fabs | **Not a fit** — skip | [TeraFab listing](https://www.tesla.com/careers/search/?department=terafab&site=US) — do not apply |
+
+Cover: `docs/applications/cover-note-tesla-service-advisor.txt` · Ranking: `docs/musk-network-jobs.md`
 
 ### Track A — Service Advisor (stay / better seat)
 

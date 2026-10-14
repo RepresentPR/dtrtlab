@@ -1,0 +1,95 @@
+{
+  "updated": "2026-10-14",
+  "candidate": "Ian Ferraro",
+  "liveResume": "https://dtrtlab.com/resume.html",
+  "linkedin": "https://www.linkedin.com/in/ian-ferraro-578784419/",
+  "visionDoc": "docs/vision.md",
+  "playbook": "docs/musk-network-jobs.md",
+  "filter": {
+    "markets": ["Orlando FL", "Ocala FL", "Merritt Island FL", "Upper Marlboro MD", "PG County MD", "Owings Mills MD", "Rockville MD"],
+    "mustFitSkills": true,
+    "preferLifestyle": "service_center_hours_over_fab_or_hq_death_march",
+    "sideProject": "DTRT Lab independent — not employer of record"
+  },
+  "doNotApply": [
+    {
+      "company": "Tesla",
+      "department": "TeraFab",
+      "url": "https://www.tesla.com/careers/search/?department=terafab&site=US",
+      "reason": "Semiconductor / process manufacturing — no skill fit; lifestyle mismatch"
+    }
+  ],
+  "priorityApply": [
+    {
+      "id": "tesla-sa-merritt-island",
+      "company": "Tesla",
+      "title": "Service Advisor",
+      "location": "Merritt Island, FL",
+      "rank": 1,
+      "lifestyle": "high",
+      "visionAlign": "high",
+      "fit": "high",
+      "status": "ready_ian_apply",
+      "search": "https://www.tesla.com/careers/search/?query=Service%20Advisor&site=US",
+      "coverNote": "docs/applications/cover-note-tesla-service-advisor.txt",
+      "notes": "Confirm live on tesla.com before submit; aggregator listed ~2026-09-30"
+    },
+    {
+      "id": "tesla-sa-orlando",
+      "company": "Tesla",
+      "title": "Service Advisor",
+      "location": "Orlando, FL (confirm address)",
+      "rank": 1,
+      "lifestyle": "high",
+      "visionAlign": "high",
+      "fit": "high",
+      "status": "confirm_live",
+      "search": "https://www.tesla.com/careers/search/?query=Service%20Advisor&site=US&state=FL",
+      "coverNote": "docs/applications/cover-note-tesla-service-advisor.txt",
+      "notes": "Some Orlando SA listings closed Aug 2026 — re-check"
+    },
+    {
+      "id": "tesla-sa-owings-mills",
+      "company": "Tesla",
+      "title": "Service Advisor",
+      "location": "Owings Mills, MD",
+      "rank": 2,
+      "lifestyle": "high_if_md_lane",
+      "visionAlign": "high",
+      "fit": "high",
+      "status": "ready_ian_apply",
+      "search": "https://www.tesla.com/careers/search/?query=Service%20Advisor&site=US&state=MD",
+      "coverNote": "docs/applications/cover-note-tesla-service-advisor.txt"
+    },
+    {
+      "id": "tesla-sa-rockville",
+      "company": "Tesla",
+      "title": "Service Advisor",
+      "location": "Rockville / Rockland Pike, MD",
+      "rank": 2,
+      "lifestyle": "high_if_md_lane",
+      "visionAlign": "high",
+      "fit": "high",
+      "status": "ready_ian_apply",
+      "search": "https://www.tesla.com/careers/search/?query=Service%20Advisor&site=US&state=MD",
+      "coverNote": "docs/applications/cover-note-tesla-service-advisor.txt"
+    }
+  ],
+  "secondary": [
+    {
+      "id": "tesla-advisor-sales-delivery",
+      "company": "Tesla",
+      "title": "Tesla Advisor (Sales / Delivery)",
+      "location": "FL or MD only",
+      "rank": 4,
+      "status": "secondary_only",
+      "notes": "Commission pressure; only if SA seats unavailable"
+    }
+  ],
+  "applicationsLog": [],
+  "ianUnlock": [
+    "Paste LinkedIn headline/About/Open to Work from docs/career-linkedin-kit.md",
+    "Login tesla.com/careers with ian@dtrtlab.com and submit SA apps",
+    "Reply with confirmation IDs for agent to log"
+  ]
+}
