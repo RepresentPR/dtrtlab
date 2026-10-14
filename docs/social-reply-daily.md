@@ -1,7 +1,11 @@
 # Daily X reply pack (DTRT Lab)
 
-**Source tip:** [@adhamuxi](https://x.com/adhamuxi/status/2110154869352902831) — *Small accounts: reply to 10 big posts every day. It beats posting alone.*  
+**Source tips:**
+- [@adhamuxi](https://x.com/adhamuxi/status/2110154869352902831) — *Small accounts: reply to 10 big posts every day. It beats posting alone.*
+- [@elonmusk](https://x.com/elonmusk/status/2110077948384735481) — *CEOs & execs posting to the public directly on X … Vastly more powerful than a press release.* (quote-tweet context: Sundar / Gemini 4 Argon)
+
 **Rule:** Replies add one real observation. No “great post!!”, no link spam, no pitching the Lab unless asked.  
+**Founder rule:** Ian posts product/company truth as himself — no press-release theater, no fake Fortune tone.  
 **Unlock:** Agent browser is **not** logged into X — Ian must paste these (or log the agent into @DTRTLab / personal X).
 
 ## Today’s 10 (2026-10-14)
