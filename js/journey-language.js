@@ -89,8 +89,8 @@
     "es": "DTRT LAB"
   },
   "homeLead": {
-    "en": "Made for all — any age, any size idea, global by design. Send one link and one goal. We’ll send back a free plan — three priorities, one sample improvement, a clear next step.",
-    "es": "Hecho para todos — cualquier edad, cualquier tamaño de idea, con visión global. Envía un enlace y una meta. Te devolvemos un plan gratis: tres prioridades, una mejora de ejemplo y un próximo paso claro."
+    "en": "DTRT Lab writes a free plan for a business or an idea. DTRTC is the stream. AFTERLIGHT is a game in development, and it is not for sale. Send one link and one goal.",
+    "es": "DTRT Lab escribe un plan gratis para un negocio o una idea. DTRTC es la transmisión. AFTERLIGHT es un juego en desarrollo y no está a la venta. Envía un enlace y una meta."
   },
   "navShop": {
     "en": "Shop",
