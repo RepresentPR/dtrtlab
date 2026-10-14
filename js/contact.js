@@ -62,7 +62,7 @@
       defaults: { 'Free plan': 'Plan gratuito — negocio o idea', 'Paid project inquiry': 'Consultar sobre un proyecto de pago', 'Shop interest': 'Interés en la tienda — producto que compraría' },
       title: 'Contacta con DTRT Lab', freeTitle: 'Tu plan de escritura gratis empieza aquí', paidTitle: 'Hablemos de escritura para tu negocio', shopTitle: 'Dinos qué comprarías', pageTitle: 'Contacto — DTRT Lab',
       freeContext: 'Tres prioridades prácticas, una mejora de ejemplo y un siguiente paso. Gratis, sin obligación de compra. La implementación se acuerda por separado. Abierto a cualquier edad / cualquier tamaño de idea.',
-      paidContext: 'Cuéntanos qué necesitas que escribamos. Los planes con nombre son Mini Social Pack $50, Week Pack $129 y Writing Retainer — Starter $250/30 días, pagados en Whop. El trabajo a medida sigue necesitando un alcance por escrito. Esta página no recoge una tarjeta.',
+      paidContext: 'Cuéntanos qué necesitas que escribamos. Antes de un trabajo a medida, acordamos por escrito el alcance y el presupuesto. Los planes con nombre se pagan en Whop. Esta página no recoge una tarjeta.',
       shopContext: 'El pago en línea no está activo. Dinos qué producto digital o merch comprarías para abrir la tienda con demanda real. Esta página no cobra nada.',
       context: 'Esta página prepara un correo. No envía una solicitud ni confirma una contratación.', optionalMessage: 'Más contexto (opcional)', requiredMessage: 'Mensaje (obligatorio)',
       category: 'Categoría', subject: 'Asunto', name: 'Nombre', reply: 'Correo para responder', project: 'Enlace del negocio o idea', goal: 'Objetivo', to: 'Para',
