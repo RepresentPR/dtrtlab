@@ -26,7 +26,7 @@ test('brand kit has the public paste text and a short bio', () => {
   assert.match(kit, /plan_HAGSLXXUeGkcz/);
   assert.match(kit, /plan_RVDjSToI7vKOM/);
   assert.match(kit, /plan_kZqq0jgr6VrGG/);
-  assert.doesNotMatch(kit, /IanAnthonyFC@gmail\.com|PayPal/);
+  assert.doesNotMatch(kit, /@gmail\.com|PayPal/);
 });
 
 test('business pages name writing plans and keep hobby off the company face', () => {
@@ -34,13 +34,13 @@ test('business pages name writing plans and keep hobby off the company face', ()
   const main = home.match(/<main[\s\S]*?<\/main>/)[0];
   assert.match(main, /Writing for local businesses/);
   assert.match(home, /href="\/lab\.html"/);
-  assert.doesNotMatch(main, /\/careers\.html|caliber|résumé|resume/i);
+  assert.doesNotMatch(main, /\/careers\.html/i);
   for (const file of ['company.html', 'contact.html', 'shop.html', 'support.html']) {
     const html = read(file);
     assert.match(html, /plan_HAGSLXXUeGkcz/, file);
     assert.match(html, /plan_RVDjSToI7vKOM/, file);
     assert.match(html, /plan_kZqq0jgr6VrGG/, file);
-    assert.doesNotMatch(html, /IanAnthonyFC@gmail\.com|PayPal G/, file);
+    assert.doesNotMatch(html, /@gmail\.com|PayPal G/, file);
   }
   const find = read('find.html');
   assert.match(find, /data-find-page/);

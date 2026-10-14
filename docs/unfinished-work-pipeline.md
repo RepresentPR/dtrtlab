@@ -51,7 +51,6 @@ Agent cannot finish these without your login/UI:
 2. LinkedIn About / Featured — `docs/career-linkedin-kit.md`  
 3. GitHub profile UI + `RepresentPR/RepresentPR` README  
 4. Photos — `docs/visual-photo-scatter.md`  
-5. Job apps (Workday / Caliber)  
 6. Grok Bot email approve (`dtrt` → …) — `docs/grokbot-email-handles.md`  
 7. Optional: Gmail Send-as `hello@` (receive already live)  
 8. Postiz: delete DRAFT dupes + broken X QUEUE (see above)
