@@ -10,7 +10,7 @@ const pts=v.map((x,i)=>`${(i/(v.length-1)*w).toFixed(1)},${(h-2-(x-mn)/r*(h-4)).
 return `<svg viewBox="0 0 ${w} ${h}" style="max-width:${w}px"><polyline fill="none" stroke="#13C27A" stroke-width="2" points="${pts}"/></svg>`}
 function delta7(hist,k){const t=hist[hist.length-1];if(!t||t[k]==null)return null;const cut=new Date(t.date);cut.setDate(cut.getDate()-7);
 const old=hist.filter(d=>new Date(d.date)<=cut&&d[k]!=null);if(!old.length)return'7d: building history';const d=t[k]-old[old.length-1][k];return(d>=0?'+':'')+fmt(d)+' vs 7d'}
-function tile(label,val,hist,k,extra){if(val==null)return`<div class="tile na"><small>${label}</small><strong>not connected yet</strong></div>`;
+function tile(label,val,hist,k,extra,na){if(val==null)return`<div class="tile na"><small>${label}</small><strong>${na||'not connected yet'}</strong></div>`;
 const d=k?delta7(hist,k):null;const cls=d&&d[0]==='+'&&d!=='+0 vs 7d'?'up':(d&&d[0]==='-'?'dn':'');
 return`<div class="tile"><small>${label}</small><strong>${fmt(val)}</strong><span class="d ${cls}">${d||extra||''}</span>${k?spark(hist.map(x=>x[k])):''}</div>`}
 function chart(el,series,opts={}){const W=640,H=200,P=30;const all=series.flatMap(s=>s.pts.map(p=>p[1])).filter(v=>v!=null);
@@ -25,9 +25,11 @@ function render(o){const h=o.history,t=o.today;$('#stamp').textContent=`Last upd
 const f=t.followers||{};$('#t-aud').innerHTML=[tile('Followers (known total)',t.followers_total_known,h,'followers_total_known',t.followers_complete?'':'partial: '+Object.entries(f).filter(e=>e[1]!=null).map(e=>e[0]).join(', ')+' only'),
 ...['x','instagram','tiktok','youtube','twitch'].map(p=>tile(p==='x'?'X':p[0].toUpperCase()+p.slice(1),f[p],null,null)),tile('Posts published',t.posts_published,h,'posts_published')].join('');
 chart($('#c-fol'),[{n:'followers (known)',c:'#13C27A',pts:h.map(d=>[d.date,d.followers_total_known])}]);$('#n-fol').textContent=t.followers_complete?'All platforms counted.':'Missing platforms are excluded, not estimated.';
+const PC={x:'#EAF2FB',instagram:'#E1306C',tiktok:'#25F4EE',youtube:'#FF4E45',twitch:'#9146FF'};
+chart($('#c-plat'),Object.keys(PC).map(p=>({n:p,c:PC[p],pts:h.map(d=>[d.date,(d.followers||{})[p]??null])})),{zero:1});
 const pb=o.posts_by_day||{};chart($('#c-posts'),[{n:'posts/day',c:'#13C27A',pts:Object.entries(pb)}],{bars:1,zero:1});
-$('#t-pipe').innerHTML=[tile('Leads tracked',t.leads,h,'leads'),tile('Pitches drafted',t.pitches,h,'pitches'),tile('Free-rewrite requests',t.form_submissions,h,'form_submissions'),tile('Site visits (7d)',t.site_visits_7d,h,'site_visits_7d')].join('');
-$('#t-rev').innerHTML=[tile('Whop orders',t.whop_orders,h,'whop_orders'),tile('Whop members',t.whop_members,h,'whop_members'),t.revenue_month_usd_rounded==null?'<div class="tile na"><small>Revenue this month</small><strong>count only (needs Ian OK)</strong></div>':tile('Revenue this month ($, rounded)',t.revenue_month_usd_rounded,h,'revenue_month_usd_rounded')].join('');
+$('#t-pipe').innerHTML=[tile('Leads tracked',t.leads,h,'leads'),tile('Pitches drafted',t.pitches,h,'pitches'),tile('Pitched (sent)',t.pitched,h,'pitched'),tile('Won',t.won,h,'won'),tile('Free-rewrite requests',t.form_submissions,h,'form_submissions'),tile('Site visits (7d)',t.site_visits_7d,h,'site_visits_7d')].join('');
+$('#t-rev').innerHTML=[tile('Whop orders',t.whop_orders,h,'whop_orders'),tile('Whop members',t.whop_members,h,'whop_members'),tile('Whop revenue total ($, rounded)',t.revenue_total_usd_rounded,h,'revenue_total_usd_rounded'),tile('$50 Mini · new shops',t.mini_new_shops,h,'mini_new_shops'),tile('$50 Mini · re-orders',t.mini_reorders,h,'mini_reorders'),tile('Free rewrites requested',t.rewrites_requested,h,'rewrites_requested'),tile('Free rewrites on time',t.rewrites_on_time,h,'rewrites_on_time',null,'not tracked yet')].join('');
 $('#t-data').innerHTML=[tile('Brain notes',t.notes,h,'notes'),tile('Sources cited',t.sources,h,'sources'),tile('Companies mined',t.companies,h,'companies'),tile('Links per note',t.links_per_note,h,'links_per_note')].join('');
 chart($('#c-brain'),[{n:'notes',c:'#13C27A',pts:h.map(d=>[d.date,d.notes])},{n:'links ÷10',c:'#5BC0EB',pts:h.map(d=>[d.date,d.links==null?null:Math.round(d.links/10)])},{n:'sources',c:'#F4D35E',pts:h.map(d=>[d.date,d.sources])}],{zero:1});
 chart($('#c-new'),[{n:'new notes',c:'#13C27A',pts:h.map(d=>[d.date,d.new_notes])}],{bars:1,zero:1});
