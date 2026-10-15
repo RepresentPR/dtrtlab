@@ -41,3 +41,10 @@ test('/demo labels every automation level (L0-L4) and quote nudges as marketing'
   assert.ok(js.includes('Marketing: consent on file'), 'quote nudges carry the marketing label (D5)');
   assert.match(js, /Reply STOP to opt out/, 'automated texts honor STOP');
 });
+test('/demo keeps email -> job card at L2 (owner approves) until it proves 95%, and puts a waiting lead first', () => {
+  const js = read('demo/demo.js');
+  const email = (js.match(/\{ id: "email",[^\n]*/) || [''])[0];
+  assert.match(email, /level: "L2"/, 'email -> job card is L2');
+  assert.ok(email.includes('L3 after it proves 95% on your mail'), 'L3 label shown as the next step');
+  assert.match(js, /lead waiting over 15 min/i, 'queue rule: a lead waiting over 15 min counts as urgent');
+});

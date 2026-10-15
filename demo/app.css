@@ -234,6 +234,7 @@ body.touring .ribbon{z-index:55} body.touring .drawer{top:32px} body.touring .dr
 .rc-items{padding:4px 12px 2px;display:grid;grid-template-columns:minmax(0,1fr);gap:6px}
 .rc-item{display:block;text-decoration:none;border:1px solid var(--line);border-left:4px solid var(--warn);border-radius:10px;padding:7px 10px;color:var(--ink)}
 .rc-item.red{border-left-color:var(--bad)}
+.rc-item .chip.wait{display:inline-block;margin:0 0 0 6px;padding:1px 7px;font-size:11px;font-style:normal;vertical-align:1px;white-space:nowrap}
 .rc-item b{display:block;font-size:13.5px}.rc-item span{display:block;font-size:12px;color:var(--muted);line-height:1.35}
 .rc-more{font-size:12px;font-weight:700;color:var(--green-d);text-decoration:none;padding:0 4px}
 .rc-clear{margin:6px 14px;background:var(--green-l);color:var(--green-d);border-radius:12px;padding:14px;font-weight:700;text-align:center}
@@ -311,6 +312,7 @@ body.touring .ribbon{z-index:55} body.touring .drawer{top:32px} body.touring .dr
   .rc2-s{padding:8px 14px 2px;font-size:13.5px}
   .rc-items{gap:5px;padding:4px 10px 2px}.rc-item{padding:6px 9px}
   .rc-item span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rc-item.red span{white-space:normal;overflow:visible}
   .kpis2{padding:6px 10px;gap:5px}.kpi2{padding:5px 8px}.kpi2 b{font-size:17px}
   .rc2-auto{margin:0 10px 6px;padding:6px 9px}
   .tgrid{grid-template-columns:1fr}
