@@ -4,7 +4,7 @@
    HTML is network-first (updates roll out). Other same-origin files
    are stale-while-revalidate. JSON and third parties are not cached.
 */
-var VERSION = "20261012-language2";
+var VERSION = "20261015-theme-a-icons";
 var CACHE = "dtrtlab-" + VERSION;
 var PRECACHE = [
   "/",
@@ -65,6 +65,11 @@ var PRECACHE = [
   "/img/brand/mark.svg",
   "/img/brand/dtrt-avatar.png",
   "/img/brand/dtrt-social.png",
+  "/img/brand/og-theme-a.png",
+  "/img/brand/favicon-32.png",
+  "/img/brand/icon-192.png",
+  "/img/brand/icon-512.png",
+  "/favicon.svg",
   "/site.webmanifest",
   "/img/icon.svg",
   "/img/icon-48.png",
@@ -78,7 +83,6 @@ var PRECACHE = [
   "/assets/fonts/source-sans-3-latin.woff2?v=20261010n",
   "/assets/fonts/source-serif-4-italic-latin.woff2?v=20261010n",
   "/assets/fonts/source-serif-4-latin.woff2?v=20261010n",
-  "/img/reticle.svg",
   "/assets/clips/AverageApatheticCockroachPJSugar-6Q1neY-R6gdxtciw-320.webp",
   "/assets/clips/AverageApatheticCockroachPJSugar-6Q1neY-R6gdxtciw.webp",
   "/assets/clips/EvilRespectfulMonkeyLeeroyJenkins-5RAFxUmkGSD-t4GC-320.webp",

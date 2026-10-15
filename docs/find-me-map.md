@@ -71,6 +71,5 @@ If it burns trust for reach → **out**. Use dated proof + useful free plans ins
 
 - Bios: `docs/social-bios-paste.md`  
 - Captions / VO: `docs/social-refresh-pack.md`  
-- Career: `docs/career-linkedin-kit.md`  
 - GitHub: `docs/github-profile-readme-template.md`  
 - Vision: `docs/vision.md`

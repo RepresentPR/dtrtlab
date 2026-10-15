@@ -1,5 +1,5 @@
 (function(){const esc=s=>String(s??'').replace(/[&<>"']/g,c=>'&#'+c.charCodeAt(0)+';');
-const PL={afterlight:'AFTERLIGHT originals',reg_usa:'USA pack',reg_pr:'Puerto Rico / Latin pack',reg_global:'Global pack',bed_doc:'Show beds',bed_cine:'Show beds'};
+const PL={afterlight:'AFTERLIGHT originals',reg_usa:'USA pack',reg_pr:'Latin pack',reg_global:'Global pack',bed_doc:'Show beds',bed_cine:'Show beds'};
 fetch('../content/music-credits.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{if(!j||!j.tracks)return;
  const g={};j.tracks.forEach(t=>{const k=PL[t.pool]||'Other';(g[k]=g[k]||[]).push(t);});
  const sb=j.streambeats;document.getElementById('mcn').innerHTML=(sb?esc('All StreamBeats tracks: ')+'<a href="'+esc(sb.url)+'" target="_blank" rel="noopener noreferrer">'+esc(sb.name)+'</a>. ':'')+esc('Other entries list source pages and stated licenses. Verify the terms before reusing a track.');

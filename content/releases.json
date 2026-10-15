@@ -1,6 +1,6 @@
 {
   "title": "How the game was built",
-  "timezone": "America/Puerto_Rico",
+  "timezone": "America/New_York",
   "from": "2026-08-28T16:11:31-04:00",
   "through": "2026-09-18T03:34:36-04:00",
   "intro": "In order, from the first public day. Each stamp is when that step landed (Atlantic, UTC−4). What was added or changed — not how it was built. There is still no public game download.",
@@ -180,7 +180,7 @@
         "Labeled in-engine vs story stills"
       ],
       "changed": [
-        "Homepage leads with the Puerto Rico campaign, not only the range"
+        "Homepage leads with the story campaign, not only the range"
       ]
     }
   ]

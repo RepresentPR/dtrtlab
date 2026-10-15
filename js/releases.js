@@ -12,12 +12,12 @@
       year: "numeric",
       month: "short",
       day: "numeric",
-      timeZone: "America/Puerto_Rico"
+      timeZone: "America/New_York"
     });
     var time = d.toLocaleTimeString("en-US", {
       hour: "numeric",
       minute: "2-digit",
-      timeZone: "America/Puerto_Rico",
+      timeZone: "America/New_York",
       timeZoneName: "short"
     });
     return date + " · " + time;

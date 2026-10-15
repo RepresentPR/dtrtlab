@@ -67,7 +67,7 @@ Do not park ordinary bugfixes as “blocked on Ian.” Do not decide brand, pric
 
 1. Clearer Free Plan or a real $50 Starter Fix for a local business?  
 2. Dated evidence without lying?  
-3. Puerto Rico–aligned craft/revenue or trust/foundation?  
+3. Durable craft/revenue or trust/foundation for the company?  
 4. Proud if a local business owner or journalist read it tomorrow?
 
 If no → skip. Canonical strategy is `docs/vision.md`. During the freeze, do not spend company time on the public results dashboard, streaming, or AFTERLIGHT.

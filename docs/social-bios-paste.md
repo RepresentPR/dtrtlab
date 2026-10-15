@@ -53,7 +53,7 @@ Useful Lab work → dtrtlab.com/find.html
 ## Career — LinkedIn (headline)
 
 ```
-Service Advisor / Estimator · Builder at DTRT Lab · Free plans for any age, any size idea
+Founder at DTRT Lab · Big-company playbooks for small businesses · DMV Area
 ```
 
 **About (short block to paste near top)**

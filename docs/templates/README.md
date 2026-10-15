@@ -13,7 +13,6 @@
 | Cursor always-on rules | Honesty + dual brand in every chat | `.cursor/rules/*.mdc` |
 | Free plan delivery | Useful Lab product | `free-plan-delivery.md` |
 | Paid scope proposal | Honest paid work (no fake guarantees) | `paid-scope-proposal.md` |
-| Career outreach | SA / Manager / Creative job search | `career-outreach.md` |
 | Lab social caption | Quality Lab VO/posts (not CS2 clutter) | `social-lab-caption.md` |
 | Evidence status update | Dated `/live` honesty | `evidence-status.md` |
 | Weekly decision filter | Personal + company weekly check | `weekly-decision-filter.md` |
@@ -39,6 +38,4 @@
 
 ## Related
 
-- Career kit (paste-ready LinkedIn): `docs/career-linkedin-kit.md`  
 - Social VO pack: `docs/social-refresh-pack.md`  
-- Cover notes: `docs/applications/`  

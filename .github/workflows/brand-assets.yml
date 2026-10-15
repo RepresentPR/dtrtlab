@@ -1,0 +1,24 @@
+name: brand-assets
+# Text-only tooling can't push binary files. Agents commit changes as one
+# base64 tarball in brand-assets/; this job unpacks it into place on the
+# same branch, removes listed retired files, and deletes the bundle.
+on:
+  push:
+    paths:
+      - "brand-assets/bundle.tgz.b64"
+permissions:
+  contents: write
+jobs:
+  unpack:
+    runs-on: ubuntu-latest
+    if: ${{ github.repository == 'RepresentPR/dtrtlab' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unpack bundle
+        run: |
+          base64 -d brand-assets/bundle.tgz.b64 | tar -xzf -
+          if [ -f brand-assets/remove.txt ]; then xargs -r git rm -q --ignore-unmatch < brand-assets/remove.txt; fi
+          git rm -q -r brand-assets
+          git config user.name "dtrt-brand-bot"; git config user.email "brand-bot@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || (git commit -m "chore(brand): unpack Theme A brand bundle (icons, share cards, head tags)" && git push)
