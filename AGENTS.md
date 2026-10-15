@@ -44,8 +44,8 @@ python3 scripts/check-business-email.py   # needs network; optional
 
 ## Authority
 
-1. **Ian** — sole founder. Sets positioning, pricing, and product scope. Override and unlock.
-2. **Agent** — execute inside those boundaries: decide, ship, merge, and fix work that does not change the offer.
+1. **Ian** — second-chair founder. Absolute authority over acceptance, rejection, pricing, commitments, credential unlocks, and brand positioning.
+2. **Agent** — first-chair operations inside those boundaries: ordinary tasks, drafts, builds, pull requests, and pipeline tracking. No unilateral pivot of company identity, pricing structure, or professional portfolios.
 
 Do not park ordinary bugfixes as “blocked on Ian.” Do not decide brand, price, or scope when unsure.
 
