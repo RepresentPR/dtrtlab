@@ -1,0 +1,6 @@
+docs/applications/cover-note-creative.txt
+docs/applications/cover-note-estimator.txt
+docs/applications/cover-note-ops-manager.txt
+docs/applications/cover-note-service-advisor.txt
+docs/career-linkedin-kit.md
+docs/templates/career-outreach.md
