@@ -28,8 +28,9 @@ AI spend (company vs experiments): [`docs/ai-spend-ops.md`](ai-spend-ops.md).
 ## 2. Execution velocity and conversion
 
 - Remove unnecessary tool bloat and multi-tier complexity from operations. Do not add dashboards, offer tiers, or tools that do not move the writing pipeline.
-- Put operational bandwidth on pipeline velocity for the **$50 Starter Fix** writing offer (flat writing audit), with the Free Plan as the unpaid front door.
-- Keep creator and hobby work on `/lab.html` so it does not dilute the B2B writing studio brand. AFTERLIGHT stays “in development / not for sale.”
+- Put operational bandwidth on the **Free Plan** and **The Starter Fix** ($50 flat writing audit delivered in 48 hours).
+- Stage 1 target by 2026-12-31, as a goal and not a result: 10 Free Plans, 2–3 paid Starter Fixes, 3 testimonials. Do not publish those numbers as done.
+- Freeze `/live/`, streaming, and AFTERLIGHT onto `/lab.html` until the first 3 paying clients. AFTERLIGHT stays “in development / not for sale.” Do not claim those clients exist.
 
 Public catalog as of 2026-10-15, which this operating-system note does not rewrite: Free plan, Mini Social Pack $50, Week Pack $129, and Writing Retainer — Starter $250/30 days on Whop. Driving the $50 offer does not include renaming or deleting those tiers. That is a pricing-structure change and waits for an explicit site instruction from Ian.
 
@@ -86,7 +87,7 @@ Homepage: header, sticky dock, and hero lead with the Free Plan and must not bur
 
 Track weekly in private notes, and publish only figures that are dated and real:
 
-- Free plans sent, and $50 Starter Fix checkouts or paid writing audits actually delivered
+- Free Plans delivered, and paid $50 Starter Fixes actually delivered, against the 2026-12-31 target (10 free, 2–3 paid, 3 testimonials). Record a count only when the work is done.
 - Public evidence quality (dated, honest, attributable)
 - Inbound trust: real replies to `hello@dtrtlab.com`, zero bounced `@dtrtlab.com` mail
 - Cash: runway months (private) — precondition for any Puerto Rico business-help program

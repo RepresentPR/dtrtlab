@@ -21,9 +21,11 @@ The “if unsure, ship” fallback is revoked for brand positioning, pricing, an
 
 ## 3. Single-offer focus (Plan A + Stage 1 freeze)
 
-Ian set the commercial focus, in chat on 2026-10-15, as **The Starter Fix ($50 flat writing audit)** plus the **Free Plan**, with the paid writing offer checked out on Whop.
+Ian set the commercial offer, in chat on 2026-10-15, as the **Free Plan** (diagnostic storefront review) plus **The Starter Fix** ($50 flat writing audit delivered in 48 hours).
 
-Stage 1 freeze: entertainment, streaming infrastructure, and AFTERLIGHT stay on `/lab.html` as personal creative work until the writing studio has its first 3 paying clients. Do not claim those 3 clients exist. Do not put stream chrome or the game on the company face.
+Stage 1 target by 2026-12-31, recorded as a goal and not a result: 10 Free Plans, 2–3 paid Starter Fixes, and 3 testimonials. Do not claim any of those counts.
+
+Stage 1 freeze: `/live/` dashboards, streaming, and AFTERLIGHT stay on `/lab.html` until the writing studio closes its first 3 paying clients. Do not claim those clients exist. Do not put the dashboard, stream chrome, or the game on the company face. AFTERLIGHT stays “in development / not for sale.”
 
 Public catalog as of 2026-10-15, which agents must not rewrite on their own: Free plan, plus three named Whop writing plans — Mini Social Pack $50, Week Pack $129, and Writing Retainer — Starter $250/30 days. Do not rename those to “The Starter Fix,” delete a tier, or change a price unless Ian explicitly instructs that site change in chat.
 
@@ -57,18 +59,18 @@ Do not park ordinary bugfixes as “blocked on Ian.” Do not decide brand, pric
 - Do not put secrets, recovery codes, API tokens, or passwords in git (`secrets/`, `*recovery-codes*` are gitignored).
 - Do not reverse-engineer / clone third-party apps as a growth strategy.
 - Keep **company AI** (this Cursor agent + Postiz) separate from **experiment** API wallets; see `docs/ai-spend-ops.md`. Never put company secrets on young discount proxies.
-- Keep Lab usefulness surfaces separate from DTRTC stream chrome. Stage 1 freeze keeps entertainment on `/lab.html`.
+- Keep Lab usefulness surfaces separate from DTRTC stream chrome. Stage 1 freeze keeps `/live/`, streaming, and AFTERLIGHT on `/lab.html`.
 - AFTERLIGHT / game status stays honest (“in development / not for sale”).
 - Public contact is `hello@dtrtlab.com` (not Outlook on the site).
 
 ## Vision filter (every change)
 
-1. More useful **or** story world more real?  
+1. Clearer Free Plan or a real $50 Starter Fix for a local business?  
 2. Dated evidence without lying?  
 3. Puerto Rico–aligned craft/revenue or trust/foundation?  
 4. Proud if a local business owner or journalist read it tomorrow?
 
-If no → skip. Long-term vision stays in `docs/vision.md`. Stage 1 freeze still keeps entertainment off the company face until 3 paying writing clients are real and dated.
+If no → skip. Canonical strategy is `docs/vision.md`. During the freeze, do not spend company time on `/live/`, streaming, or AFTERLIGHT.
 
 ## Conventions
 
