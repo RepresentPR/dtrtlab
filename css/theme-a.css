@@ -64,3 +64,14 @@ footer.foot nav{display:flex;flex-wrap:wrap;gap:10px 18px}footer.foot a{text-dec
 @media(max-width:560px){.founder .wrap,.guarantee{grid-template-columns:1fr}.founder .headshot{width:128px;height:128px}.hero .actions .btn{width:100%}
  .dock{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:sticky;bottom:0;background:var(--navy);padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));z-index:30}.dock .btn{min-height:44px;font-size:15px;padding:8px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* Cookie consent bar (built by js/analytics.js). Theme A styles; before this it rendered as unstyled browser buttons under the footer. */
+.consent{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--navy);color:var(--white);border-top:1px solid rgba(220,230,242,.28);padding:14px 0 calc(14px + env(safe-area-inset-bottom,0px));box-shadow:0 -6px 20px rgba(11,37,69,.18)}
+.consent .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.consent p{margin:0;font-size:15px;line-height:1.45;color:var(--light);max-width:680px}
+.consent p a{color:var(--white);text-decoration:underline}
+.consent .actions{display:flex;gap:8px;flex-wrap:wrap}
+.consent .cta{font:inherit;font-size:15px;font-weight:700;min-height:44px;padding:8px 16px;border-radius:8px;border:1px solid var(--green);background:var(--green);color:var(--navy);cursor:pointer;white-space:nowrap}
+.consent .cta.ghost{background:transparent;color:var(--white);border-color:rgba(220,230,242,.6)}
+.consent .cta:hover{background:var(--white);border-color:var(--white);color:var(--navy)}
+.consent .cta:focus-visible{outline:3px solid var(--green);outline-offset:2px}
+@media(max-width:560px){.consent .actions{width:100%}.consent .cta{flex:1}}
