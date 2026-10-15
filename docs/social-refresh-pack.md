@@ -50,7 +50,7 @@ Two names, on purpose. DTRT Lab is the useful work. Free plans, the company face
 **CTA:** https://dtrtlab.com · https://twitch.tv/dtrtc
 
 ### C — Made for all (IG carousel caption / short VO)
-Made for all. Any age. A brand-new idea, or a shop that's been around for years. DTRT Lab's roots are in Puerto Rico. You can be anywhere. The free plan is on dtrtlab.com. One goal is enough. You don't need a polished pitch.
+Made for all. Any age. A brand-new idea, or a shop that's been around for years. You can be anywhere. The free plan is on dtrtlab.com. One goal is enough. You don't need a polished pitch.
 
 ### B — How the free plan works (YT Short / X thread)
 Want a free plan? Send a link to the business, or a short note on the idea, plus one goal. I'll write back three practical priorities, one sample improvement, and a clear next step. You don't have to buy anything. It's on dtrtlab.com.

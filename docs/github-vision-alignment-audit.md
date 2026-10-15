@@ -120,9 +120,9 @@ Biggest gaps: empty profile (no bio/blog/location), `hireable: true` (reads as h
 - [ ] Profile → **uncheck Available for hire** (`hireable`)  
 - [ ] Bio: `DTRT Lab — Make useful stuff. Made for all. Free plan → dtrtlab.com`  
 - [ ] Website: `https://dtrtlab.com`  
-- [ ] Location: `Puerto Rico` (or leave blank — don’t invent HQ address)  
+- [ ] Location: `DMV Area` (or leave blank — don’t invent HQ address)  
 - [ ] Create / pin profile README (`RepresentPR/RepresentPR`)  
-- [ ] Add topics on dtrtlab: `dtrt-lab`, `website`, `made-for-all`, `puerto-rico`  
+- [ ] Add topics on dtrtlab: `dtrt-lab`, `website`, `made-for-all`  
 - [ ] Follow 10–20 intentional accounts (craft + PR community), not spam  
 - [ ] Merge dtrtlab PRs in vision order above; close superseded drafts  
 - [ ] On DTRTCore: land or close stale drafts; keep Issue #33 as single North Star  
@@ -144,7 +144,7 @@ Before opening a repo, issue, or PR:
 
 1. Usefulness or story world more real?  
 2. Dated evidence without lying?  
-3. Puerto Rico–aligned craft/revenue (even slowly)?  
+3. Durable craft/revenue (even slowly)?  
 4. Proud if a journalist or local owner read the README tomorrow?  
 
 Fail → don’t ship the PR.

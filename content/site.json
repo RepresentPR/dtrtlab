@@ -4,7 +4,7 @@
   "creator": "Ian Ferraro",
   "legalName": "DTRT Lab",
   "tagline": "DTRT AFTERLIGHT — the island remembers.",
-  "oneSentence": "DTRT Lab is building DTRT AFTERLIGHT, a story-driven FPS campaign in Puerto Rico with a first-bullet training range. Volume One is readable. There is no public download.",
+  "oneSentence": "DTRT Lab studies what makes big companies win and hands the playbook to small businesses in the DMV Area. Start for $50, no contract.",
   "preorderEnabled": false,
   "preorderPriceUsd": null,
   "preorderNote": "Price and checkout stay off until a PayPal sandbox app is configured and a price is set in .env. This is a release candidate, not 1.0.",

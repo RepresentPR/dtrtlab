@@ -19,7 +19,7 @@ Ordinary bugfixes, tests, and honesty fixes still ship. Do not park that work as
 
 **Agent executes:** PR merges that stay inside the current offer, conflict resolution, docs that do not change the offer, site fixes, Postiz drafts of writing-studio work, Gmail action digests, vault hygiene, audits.
 
-**Ian unlocks:** acceptance or rejection of work and clients, pricing, commitments, GitHub profile UI, LinkedIn paste, photo dump from phone/iCloud, Workday/Caliber logins, Grok Bot approval cards, legal entity / counsel / bank, and any brand-positioning change.
+**Ian unlocks:** acceptance or rejection of work and clients, pricing, commitments, GitHub profile UI, LinkedIn paste, photo dump from phone/iCloud, Grok Bot approval cards, legal entity / counsel / bank, and any brand-positioning change.
 
 Track file: [`docs/unfinished-work-pipeline.md`](unfinished-work-pipeline.md).  
 AI templates: [`docs/templates/`](templates/README.md) · root [`AGENTS.md`](../AGENTS.md).  
@@ -36,7 +36,7 @@ Public catalog as of 2026-10-15, which this operating-system note does not rewri
 
 ## Honest baseline
 
-DTRT Lab’s Stage 1 operating identity is Ian Ferraro’s writing studio for local businesses: Free Plan, then the $50 Starter Fix. Hobby, streaming, and AFTERLIGHT stay on `/lab.html`. Personal aim: do the right thing, make useful stuff, show the process, and eventually use studio revenue to help Puerto Rico businesses. Entity, capital, people, and compliance are operating steps, not website copy. Do not claim a top-50 company, a team, or paying-client counts that are not dated.
+DTRT Lab’s Stage 1 operating identity is Ian Ferraro’s writing studio for local businesses: Free Plan, then the $50 Starter Fix. Hobby, streaming, and AFTERLIGHT stay on `/lab.html`. Personal aim: do the right thing, make useful stuff, show the process, and eventually reinvest studio revenue in local usefulness. Entity, capital, people, and compliance are operating steps, not website copy. Do not claim a top-50 company, a team, or paying-client counts that are not dated.
 
 ## What “full company” means here (phased)
 
@@ -73,13 +73,13 @@ Homepage: header, sticky dock, and hero lead with the Free Plan and must not bur
 
 ## Owner checklist (external — cannot be faked in git)
 
-1. Form a legal entity (e.g. Puerto Rico / US LLC) and put `legalName` into `content/company.json`
+1. Form a legal entity and put `legalName` into `content/company.json`
 2. Register trademarks for **DTRT** / **DTRT Lab** / **AFTERLIGHT** where budget allows
 3. Enable **send as** `hello@dtrtlab.com` (Zoho free or Google Workspace)
 4. Add Cloudflare aliases: `press@`, `support@`, `security@` → Gmail (optional; site can keep `hello@` until then)
 5. Google Search Console verification → paste into `site.json` `googleSiteVerification`
 6. Counsel review of Terms / Privacy / Cookies / DMCA agent address
-7. When selling: tax, refunds counsel, payment sandbox — keep store off until ready; publish live refund/preorder terms before first charge
+7. When selling: refunds counsel, payment sandbox — keep store off until ready; publish live refund/preorder terms before first charge
 8. Insurance (general liability / media) before large partnerships
 9. First hire or contractor only with written scope + entity bank account
 
@@ -90,7 +90,7 @@ Track weekly in private notes, and publish only figures that are dated and real:
 - Free Plans delivered, and paid $50 Starter Fixes actually delivered, against the 2026-12-31 target (10 free, 2–3 paid, 3 testimonials). Record a count only when the work is done.
 - Public evidence quality (dated, honest, attributable)
 - Inbound trust: real replies to `hello@dtrtlab.com`, zero bounced `@dtrtlab.com` mail
-- Cash: runway months (private) — precondition for any Puerto Rico business-help program
+- Cash: runway months (private) — precondition for any small-business help program
 - Vision filter: no clone-hacks, no fake scale, no invented client count (see `docs/vision.md`)
 
 AFTERLIGHT chapter counts are hobby notes, not the studio’s operating metric during Stage 1.
@@ -100,7 +100,7 @@ AFTERLIGHT chapter counts are hobby notes, not the studio’s operating metric d
 - Fake headcount, fake clients, fake “Fortune” claims, fake live store
 - Counsel-approved badges without counsel
 - Investor pages that imply an open raise when none exists
-- Promises of a Puerto Rico funding program before revenue and a real program design exist
+- Promises of a funding program before revenue and a real program design exist
 
 ## Tooling policy
 

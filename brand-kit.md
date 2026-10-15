@@ -44,7 +44,7 @@ DTRT Lab writes for local businesses. Do the right thing. Free plan: dtrtlab.com
 
 ### Long
 
-DTRT Lab writes for local businesses. The mission is do the right thing: help real local operators, not extract from them. Start with a free plan — one link and one goal — or buy a named writing plan on Whop: Mini Social Pack $50, Week Pack $129, or Writing Retainer — Starter $250/30 days. The studio is independent, rooted in Puerto Rico, and open to any age and any size business or idea. Shop checkout on the site is not live. The stream, The Lab Files, CS2, and the game are hobby, on a separate page, and AFTERLIGHT is in development and not for sale. Contact hello@dtrtlab.com.
+DTRT Lab writes for local businesses. The mission is do the right thing: help real local operators, not extract from them. Start with a free plan — one link and one goal — or buy a named writing plan on Whop: Mini Social Pack $50, Week Pack $129, or Writing Retainer — Starter $250/30 days. The studio is independent, based in the DMV Area, and open to any age and any size business or idea. Shop checkout on the site is not live. The stream, The Lab Files, CS2, and the game are hobby, on a separate page, and AFTERLIGHT is in development and not for sale. Contact hello@dtrtlab.com.
 
 ## Profile photo and banner
 

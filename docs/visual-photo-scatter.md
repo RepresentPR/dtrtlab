@@ -29,7 +29,6 @@
 
 **Prefer**
 - Real workshop / desk / shipping / whiteboard / printed plans
-- Puerto Rico place / atmosphere that matches Lab roots (honest, not stock)
 - Clean founder headshot (shoulders up, soft light, no party crop)
 - Short-form stills that feel like finished work (AFTERLIGHT/dev only if labeled in development)
 - Wide horizontal frames for hero / LinkedIn banner; square for IG/TikTok; vertical for Stories/Reels covers

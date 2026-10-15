@@ -32,7 +32,6 @@ Official help: [Give your Bot an email address](https://cursor.com/help/grok-bot
 | --- | --- |
 | `dotright` | “Do the right thing” — slightly longer, still clear |
 | `made4all` / `madeforall` | Made-for-all pillar (prefer shorter if free) |
-| `prlab` | Puerto Rico + Lab roots |
 | `ian` | Ultra-short personal — likely taken; check anyway |
 | `lab` | Short but generic — weaker brand lock |
 

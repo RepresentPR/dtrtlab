@@ -4,7 +4,7 @@ Create a public repo named **exactly** `RepresentPR` under your account, add `RE
 
 ```md
 ### DTRT Lab
-Independent studio by **Ian Ferraro** (Puerto Rico roots → global).
+Independent studio by **Ian Ferraro** (DMV Area).
 
 **Do the right thing. Make useful stuff. Have fun doing it.**
 

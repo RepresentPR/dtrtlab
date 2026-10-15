@@ -42,12 +42,12 @@ test('business pages show theme A offers and keep hobby off the company face', (
   }
   for (const id of ['plan_HAGSLXXUeGkcz', 'plan_RVDjSToI7vKOM', 'plan_kZqq0jgr6VrGG', 'plan_Vn0gQGFWQx9CA']) assert.match(main, new RegExp(id));
   assert.match(main, /DTRT 7-Day Do-It-Right Guarantee/);
-  assert.doesNotMatch(home, /free plan|Puerto Rico|PayPal|Stripe|twitch\.tv|\/cs2\.html|\/afterlight\.html|#080808|cfe35a/i);
+  assert.doesNotMatch(home, /free plan|PayPal|Stripe|twitch\.tv|\/cs2\.html|\/afterlight\.html|#080808|cfe35a/i);
   assert.doesNotMatch(main, /\/careers\.html/i);
   for (const file of ['find.html', 'contact.html']) {
     const html = read(file);
     assert.match(html, /theme-a\.css/, file);
-    assert.doesNotMatch(html, /free plan|Puerto Rico|@gmail\.com|PayPal/i, file);
+    assert.doesNotMatch(html, /free plan|@gmail\.com|PayPal/i, file);
   }
   const cs2 = read('cs2.html');
   for (const id of ['votes', 'tabs', 'account', 'notes']) {

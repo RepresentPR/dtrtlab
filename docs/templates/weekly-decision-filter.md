@@ -13,14 +13,14 @@ Vision pillars (docs/vision.md):
 - Make useful stuff (free plans)
 - Have fun (creator craft alive)
 - Show the process
-- Eventually help Puerto Rico businesses with real revenue (not theater)
+- Eventually help small businesses with real revenue (not theater)
 - Dual brand Lab vs DTRTC
 - Made for all; scale with integrity; shop checkout off until real
 
 For each item in the backlog below, answer the four questions:
 1) More useful or story world more real?
 2) Dated evidence without lying?
-3) Puerto Rico–aligned craft/revenue or trust/foundation?
+3) Durable craft/revenue or trust/foundation?
 4) Proud if a local owner or journalist read it tomorrow?
 
 Backlog:

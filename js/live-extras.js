@@ -27,7 +27,7 @@ function promo(){const s=promoState(Date.now());if(!s)return '';const e=s.e,L=e.
  const names={website:'Website',instagram:'Instagram',x:'X',tiktok:'TikTok',youtube:'YouTube',linkedin:'LinkedIn'};
  const links=Object.keys(names).filter(k=>https(L[k])).map(k=>`<a href="${esc(L[k])}" target="_blank" rel="noopener">${names[k]}</a>`).join('');
  const m=Math.floor(s.nextIn/60000),sec=String(Math.floor(s.nextIn/1000)%60).padStart(2,'0');
- return `<div class="lfx-k">Free Promo · Puerto Rico ${esc(PRO.hashtag||'')}</div><div class="lfx-n ${s.on?'on':''}">${esc(e.name)}</div><div class="lfx-w">${esc(e.what||'')}${e.tag?' · '+esc(e.tag):''}</div><div class="lfx-l">${links}</div><div class="lfx-c">Next spotlight in ${m}:${sec}</div>`;}
+ return `<div class="lfx-k">Free Promo ${esc(PRO.hashtag||'')}</div><div class="lfx-n ${s.on?'on':''}">${esc(e.name)}</div><div class="lfx-w">${esc(e.what||'')}${e.tag?' · '+esc(e.tag):''}</div><div class="lfx-l">${links}</div><div class="lfx-c">Next spotlight in ${m}:${sec}</div>`;}
 function render(){const parts=[['sup',supporters()],['rev',review()],['pro',promo()]];
  root.innerHTML=parts.filter(p=>p[1]).map(p=>`<section class="lfx-card lfx-${p[0]}">${p[1]}</section>`).join('');}
 async function load(){[SUP,REV,PRO]=[await get('supporters.json')||{},await get('reviews.json')||{reviews:[]},await get('promo.json')||{entries:[]}];render();}

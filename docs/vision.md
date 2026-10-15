@@ -43,7 +43,7 @@ Public pages as of 2026-10-15 still list three Whop writing plans (Mini Social P
 2. **Make useful stuff.** Free plans and writing audits that help a real local business take a clearer next step.
 3. **Have fun doing it.** Creator craft stays on `/lab.html` during the freeze. It is not the company offer.
 4. **Show the process.** Explain decisions and finish the job. Publish only counts that are real.
-5. **Help Puerto Rico businesses with future studio revenue.** No funding program is active. When cash exists, the long-term aim is local usefulness.
+5. **Reinvest future studio revenue in local usefulness.** No funding program is active.
 
 ## Decision filter
 
@@ -51,7 +51,7 @@ Ask before shipping or adopting a tool:
 
 1. Does it help a local business get a clearer Free Plan or a real $50 Starter Fix?
 2. Can we show dated evidence without lying?
-3. Does it move Puerto Rico–aligned craft or revenue forward, even slowly, without theater?
+3. Does it move durable craft or revenue forward, even slowly, without theater?
 4. Would we be proud if a local business owner or a journalist read it tomorrow?
 
 If no, or if it only copies someone else’s product in secret, it is out. During the freeze, “make the story world more real” is not a reason to spend company time on AFTERLIGHT, streaming, or `/live/`.
@@ -71,7 +71,7 @@ If no, or if it only copies someone else’s product in secret, it is out. Durin
 3. Testimonials only from real clients, with permission
 4. Company foundation kept honest: legal, brand, press, `hello@dtrtlab.com`
 5. Entity and send-as `hello@` when Ian is ready
-6. Later, after real revenue: a Puerto Rico business-help program designed when cash exists
+6. Later, after real revenue: a small-business help program designed when cash exists
 
 ## Related
 

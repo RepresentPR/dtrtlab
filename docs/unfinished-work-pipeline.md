@@ -48,7 +48,7 @@
 Agent cannot finish these without your login/UI:
 
 1. Paste bios from `brand-kit.md` (same text in `docs/social-bios-paste.md`) onto X, Instagram, TikTok, YouTube, and Twitch  
-2. LinkedIn About / Featured — `docs/career-linkedin-kit.md`  
+2. LinkedIn About / Featured — kept in private notes  
 3. GitHub profile UI + `RepresentPR/RepresentPR` README  
 4. Photos — `docs/visual-photo-scatter.md`  
 6. Grok Bot email approve (`dtrt` → …) — `docs/grokbot-email-handles.md`  
