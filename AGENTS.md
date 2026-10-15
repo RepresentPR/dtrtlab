@@ -6,11 +6,11 @@ Prompt pack: `docs/templates/`
 
 ## 1. Founder boundaries
 
-Ian Ferraro is the sole Founder and second-chair decision maker.
+Ian Ferraro is the sole Founder. On 2026-10-15 Ian delegated all DTRTLab decisions to **DTRT Co-Founder** (the company's lead agent).
 
-AI agents are operational execution engines. Agents must not alter company positioning, pricing tiers, or product scope, and must not delete founder portfolio or résumé pages, unless Ian gives an explicit instruction in that chat.
+AI agents are operational execution engines. Positioning, pricing and tier changes (names, prices, scope) need DTRT Co-Founder's sign-off. Outside AIs (Muse, ChatGPT, ChatGPT dot, Cursor and similar) may propose these by pull request but never merge positioning, pricing or tier changes. Agents must not delete founder portfolio or résumé pages unless Ian asks.
 
-The “if unsure, ship” fallback is revoked for brand positioning, pricing, and scope. When an agent is unsure about those, it stops and asks Ian. Ordinary execution inside the current public offer — bugs, tests, honesty fixes, and docs that do not change the offer — still ships.
+The “if unsure, ship” fallback is revoked for brand positioning, pricing, and scope. When an agent is unsure about those, it stops and asks DTRT Co-Founder. Ordinary execution inside the current public offer — bugs, tests, honesty fixes, and docs that do not change the offer — still ships.
 
 ## 2. Brand honesty
 
@@ -27,7 +27,7 @@ Stage 1 target by 2026-12-31, recorded as a goal and not a result: 10 Free Plans
 
 Stage 1 freeze: the public results dashboard (moved from `/live/` to `/lab.html#public-results` on 2026-10-15), streaming, and AFTERLIGHT stay on `/lab.html` until the writing studio closes its first 3 paying clients. Do not claim those clients exist. Do not put the dashboard, stream chrome, or the game on the company face. AFTERLIGHT stays “in development / not for sale.”
 
-Public catalog as of 2026-10-15, which agents must not rewrite on their own: Free plan, plus three named Whop writing plans — Mini Social Pack $50, Week Pack $129, and Writing Retainer — Starter $250/30 days. Do not rename those to “The Starter Fix,” delete a tier, or change a price unless Ian explicitly instructs that site change in chat.
+Public catalog as of 2026-10-15, which agents must not rewrite on their own: Free plan, plus three named Whop writing plans — Mini Social Pack $50, Week Pack $129, and Writing Retainer · Review Desk $250/30 days, plus the AI Visibility Fix $250 one-time (added 2026-10-15). Every tier includes a day-30 numbers check. Do not rename, delete or reprice a tier without DTRT Co-Founder's sign-off.
 
 ## Stack
 
@@ -46,7 +46,7 @@ python3 scripts/check-business-email.py   # needs network; optional
 
 ## Authority
 
-1. **Ian** — second-chair founder. Absolute authority over acceptance, rejection, pricing, commitments, credential unlocks, and brand positioning.
+1. **Ian** — Founder. Logins, money movement, legal and credential unlocks. **DTRT Co-Founder** holds Ian's delegated authority over positioning, pricing, tiers and commitments (since 2026-10-15).
 2. **Agent** — first-chair operations inside those boundaries: ordinary tasks, drafts, builds, pull requests, and pipeline tracking. No unilateral pivot of company identity, pricing structure, or professional portfolios.
 
 Do not park ordinary bugfixes as “blocked on Ian.” Do not decide brand, price, or scope when unsure.
@@ -84,7 +84,7 @@ If no → skip. Canonical strategy is `docs/vision.md`. During the freeze, do no
 
 ## Do not touch without an explicit ask
 
-- Company positioning, pricing tiers, and product scope
+- Company positioning, pricing tiers, and product scope (DTRT Co-Founder signs off)
 - Founder portfolio or résumé pages (do not delete them)
 - `.env`, `secrets/`, recovery-code files
 - Live payment / PayPal client IDs
@@ -95,5 +95,5 @@ If no → skip. Canonical strategy is `docs/vision.md`. During the freeze, do no
 
 - Relevant `node --test` scripts pass for touched surfaces
 - Vision filter checked
-- Brand, pricing, and scope questions asked instead of guessed
+- Brand, pricing, and scope questions asked of DTRT Co-Founder instead of guessed
 - Unfinished loops logged in `docs/unfinished-work-pipeline.md` when work spans sessions
