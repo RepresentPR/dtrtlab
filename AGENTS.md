@@ -25,7 +25,7 @@ Ian set the commercial offer, in chat on 2026-10-15, as the **Free Plan** (diagn
 
 Stage 1 target by 2026-12-31, recorded as a goal and not a result: 10 Free Plans, 2–3 paid Starter Fixes, and 3 testimonials. Do not claim any of those counts.
 
-Stage 1 freeze: `/live/` dashboards, streaming, and AFTERLIGHT stay on `/lab.html` until the writing studio closes its first 3 paying clients. Do not claim those clients exist. Do not put the dashboard, stream chrome, or the game on the company face. AFTERLIGHT stays “in development / not for sale.”
+Stage 1 freeze: the public results dashboard (moved from `/live/` to `/lab.html#public-results` on 2026-10-15), streaming, and AFTERLIGHT stay on `/lab.html` until the writing studio closes its first 3 paying clients. Do not claim those clients exist. Do not put the dashboard, stream chrome, or the game on the company face. AFTERLIGHT stays “in development / not for sale.”
 
 Public catalog as of 2026-10-15, which agents must not rewrite on their own: Free plan, plus three named Whop writing plans — Mini Social Pack $50, Week Pack $129, and Writing Retainer — Starter $250/30 days. Do not rename those to “The Starter Fix,” delete a tier, or change a price unless Ian explicitly instructs that site change in chat.
 
@@ -59,7 +59,7 @@ Do not park ordinary bugfixes as “blocked on Ian.” Do not decide brand, pric
 - Do not put secrets, recovery codes, API tokens, or passwords in git (`secrets/`, `*recovery-codes*` are gitignored).
 - Do not reverse-engineer / clone third-party apps as a growth strategy.
 - Keep **company AI** (this Cursor agent + Postiz) separate from **experiment** API wallets; see `docs/ai-spend-ops.md`. Never put company secrets on young discount proxies.
-- Keep Lab usefulness surfaces separate from DTRTC stream chrome. Stage 1 freeze keeps `/live/`, streaming, and AFTERLIGHT on `/lab.html`.
+- Keep Lab usefulness surfaces separate from DTRTC stream chrome. Stage 1 freeze keeps the public results dashboard, streaming, and AFTERLIGHT on `/lab.html`. `/live/` is now the private owner dashboard: encrypted aggregates only (`live/owner.enc.json`), unlinked and `noindex`; `/hq/` redirects to it. Never commit its plaintext data or password.
 - AFTERLIGHT / game status stays honest (“in development / not for sale”).
 - Public contact is `hello@dtrtlab.com` (not Outlook on the site).
 
@@ -70,7 +70,7 @@ Do not park ordinary bugfixes as “blocked on Ian.” Do not decide brand, pric
 3. Puerto Rico–aligned craft/revenue or trust/foundation?  
 4. Proud if a local business owner or journalist read it tomorrow?
 
-If no → skip. Canonical strategy is `docs/vision.md`. During the freeze, do not spend company time on `/live/`, streaming, or AFTERLIGHT.
+If no → skip. Canonical strategy is `docs/vision.md`. During the freeze, do not spend company time on the public results dashboard, streaming, or AFTERLIGHT.
 
 ## Conventions
 
