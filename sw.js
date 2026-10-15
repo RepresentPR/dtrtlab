@@ -4,7 +4,7 @@
    HTML is network-first (updates roll out). Other same-origin files
    are stale-while-revalidate. JSON and third parties are not cached.
 */
-var VERSION = "20261015-logo-a";
+var VERSION = "20261015-og-job-desk";
 var CACHE = "dtrtlab-" + VERSION;
 var PRECACHE = [
   "/",
@@ -64,8 +64,7 @@ var PRECACHE = [
   "/js/experience.js?v=20261012-language2",
   "/img/brand/mark.svg",
   "/img/brand/dtrt-avatar.png",
-  "/img/brand/dtrt-social.png",
-  "/img/brand/og-theme-a.png",
+  "/img/brand/og-job-desk-2026-10-15.png",
   "/img/brand/favicon-32.png",
   "/img/brand/icon-192.png",
   "/img/brand/icon-512.png",
