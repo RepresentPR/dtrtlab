@@ -36,12 +36,6 @@
   "findMe": "https://dtrtlab.com/find.html",
   "products": [
     {
-      "name": "Free first-line rewrite",
-      "status": "live",
-      "description": "Send one post or caption line with your business name and type of shop; get it rewritten free.",
-      "url": "https://whop.com/checkout/plan_Vn0gQGFWQx9CA"
-    },
-    {
       "name": "Shop interest catalog",
       "status": "interest_open",
       "description": "Digital packs and print-on-demand merch interest list at /shop.html. Checkout is not live."
@@ -73,18 +67,6 @@
   "lastReviewed": "2026-10-13",
   "serviceArea": "DMV Area businesses (DC, Maryland, Virginia)",
   "offers": [
-    {
-      "name": "Mini Social Pack",
-      "priceUsd": 50,
-      "deliverables": "1 hook + 5 captions",
-      "url": "https://whop.com/checkout/plan_HAGSLXXUeGkcz"
-    },
-    {
-      "name": "Week Pack",
-      "priceUsd": 129,
-      "deliverables": "A week of posts + review-request scripts + review replies",
-      "url": "https://whop.com/checkout/plan_RVDjSToI7vKOM"
-    },
     {
       "name": "Writing Retainer",
       "priceUsd": 250,
