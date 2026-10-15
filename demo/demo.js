@@ -17,7 +17,7 @@ window.DEMO = {
   },
   automations: [
     { id: "report", name: "Nightly Report Card", level: "L4", on: true, what: "One phone screen at your send time: what needs you, 4 numbers vs last week.", never: "Any number that isn't counted from the day's records" },
-    { id: "email", name: "Email and web form → job card", level: "L3", on: true, what: "Creates the job card when it's sure (95%+ confident). Sends it to Needs you when it isn't. Files newsletters.", never: "Delete an email" },
+    { id: "email", name: "Email and web form → job card", level: "L2", next: "L3 after it proves 95% on your mail", on: true, what: "Drafts the job card from each email or web form. You approve it with one tap. Under 95% confident, it shows the guessed fields to check. Suggests filing newsletters.", never: "Delete an email, or make a job card without your OK" },
     { id: "reply", name: "First \"got it\" reply to a new lead", level: "L2", on: true, what: "Drafts the first reply in your voice. You approve it. Leads waiting over 15 minutes turn red.", never: "Quote a price, diagnose, or promise a time" },
     { id: "status", name: "Job status texts", level: "L3", on: true, what: "Booked, tech on the way, part ordered, job done. Sent through your own field-service app. Promoted from L2 after a clean week.", never: "Text anyone without consent on file, or after STOP" },
     { id: "nudge", name: "Quote nudges (day 2, 5, 10)", level: "L2", on: true, marketing: true, what: "Up to 3 nudges per open quote. Stops the moment the customer replies.", never: "Offer a price or discount; keep going after a reply" },
@@ -30,11 +30,11 @@ window.DEMO = {
   ],
   jobs: [
     { id: "J-1041", customer: "Maria L.", town: "Bowie", problem: "No heat", stage: "lead", source: "Web form", inMin: 16 * 60 + 2, replyMin: null,
-      events: [["4:02 PM", "Customer", "Web form: \"No heat, furnace clicks but won't start.\""], ["4:02 PM", "System", "Job card created (web form, 99% confident)"], ["4:02 PM", "System", "First reply drafted. Waiting for your OK"]] },
+      events: [["4:02 PM", "Customer", "Web form: \"No heat, furnace clicks but won't start.\""], ["4:02 PM", "System", "Job card drafted (web form, 99% confident)"], ["4:03 PM", "You", "Approved the job card"], ["4:03 PM", "System", "First reply drafted. Waiting for your OK"]] },
     { id: "J-1046", customer: "Rachel T.", town: "Largo", problem: "Gas smell near furnace", stage: "lead", source: "Email", inMin: 16 * 60 + 21, replyMin: 3,
       events: [["4:21 PM", "Customer", "Email: \"Faint gas smell near the furnace since this afternoon.\""], ["4:21 PM", "System", "Safety word found (gas). Urgent ping to your phone. No advice sent"], ["4:24 PM", "You", "Called Rachel. Told her to leave and call the gas company. Tech booked after the all-clear"]] },
     { id: "J-1042", customer: "Kevin O.", town: "Laurel", problem: "Thermostat blank", stage: "lead", source: "Email", inMin: 13 * 60 + 12, replyMin: 6,
-      events: [["1:12 PM", "Customer", "Email: \"Thermostat screen went blank. New batteries didn't help.\""], ["1:12 PM", "System", "Job card created (97% confident)"], ["1:18 PM", "You", "Approved the first reply"]] },
+      events: [["1:12 PM", "Customer", "Email: \"Thermostat screen went blank. New batteries didn't help.\""], ["1:12 PM", "System", "Job card drafted (97% confident)"], ["1:13 PM", "You", "Approved the job card"], ["1:18 PM", "You", "Approved the first reply"]] },
     { id: "J-1043", customer: "Priya S.", town: "Silver Spring", problem: "Upstairs too hot", stage: "lead", source: "Missed call", inMin: 11 * 60 + 40, replyMin: 2,
       events: [["11:40 AM", "Customer", "Missed call"], ["11:42 AM", "You", "Texted back from your app"]] },
     { id: "J-1031", customer: "Tom B.", town: "Greenbelt", problem: "Heat pump replacement", stage: "quoted", value: 9800, quoteDay: 2, nudge: 0, sent: "Tue",
@@ -72,14 +72,14 @@ window.DEMO = {
     { id: "J-1020", customer: "Frank Z.", problem: "Thermostat upgrade", value: 780, result: "lost", note: "Went with another company" }
   ],
   queue: [
-    { id: "q-maria", kind: "reply", auto: "reply", job: "J-1041", verb: "Reply to", why: "New lead from the web form: no heat, furnace clicks.", red: true,
+    { id: "q-maria", kind: "reply", auto: "reply", job: "J-1041", verb: "Reply to", why: "New lead from the web form: no heat, furnace clicks.",
       draft: "Hi Maria, thanks for reaching out to Sample Heating & Air. Sorry you're without heat. What's a good time today or tomorrow for a tech to come out? Dana" },
     { id: "q-paul", kind: "callback", auto: "callback", job: "J-1025", verb: "Call", why: "Scored 3/10 yesterday: \"Tech left a mess by the unit.\"", red: true, complaint: true },
     { id: "q-tom", kind: "nudge", auto: "nudge", job: "J-1031", verb: "Send nudge 1 of 3 to", why: "Quote open 2 days, no reply yet.", channel: "Text",
       draft: "Hi Tom, it's Dana at Sample Heating & Air. Any questions on the heat pump quote? Happy to walk through the two options." },
     { id: "q-alicia", kind: "nudge", auto: "nudge", job: "J-1029", verb: "Send nudge 2 of 3 to", why: "Quote open 5 days. Nudge 1 sent Monday, no reply.", channel: "Text",
       draft: "Hi Alicia, checking in on the 2-zone mini-split quote. If timing is the question, we have install openings the week of Oct 26. Dana" },
-    { id: "q-june", kind: "email", auto: "email", verb: "Check new request from", customer: "June R.", why: "Email at 4:38 PM. 72% confident, so it waited for you: no street, and urgency unclear.",
+    { id: "q-june", kind: "email", auto: "email", verb: "Check new request from", customer: "June R.", why: "Email at 4:38 PM. Only 72% confident: no street, and urgency unclear. Check the guessed fields.",
       guess: { Customer: "June R.", Town: "Glenarden (guessed)", Problem: "Water pooling under indoor unit", Urgency: "Today? (unsure)", Contact: "555-0177 · j.rivera@example.com" } },
     { id: "q-ann", kind: "callback", auto: "callback", job: "J-1027", verb: "Call", why: "Scored 6/10 yesterday: \"Fixed, but I had to call twice to get a time.\"" }
   ],
@@ -90,10 +90,10 @@ window.DEMO = {
     { t: "11:20 AM", auto: "status", job: "J-1033", text: "\"Part ordered\" text to Beth C.", result: "Delivered", undo: "sent" },
     { t: "12:15 PM", auto: "status", job: "J-1036", text: "\"Job done\" text to Sofia K.", result: "Delivered", undo: "sent" },
     { t: "12:20 PM", auto: "reviewask", job: "J-1036", text: "Review link to Sofia K.", result: "Delivered · scored 9/10", undo: "sent" },
-    { t: "1:12 PM", auto: "email", job: "J-1042", text: "Email from kevin.o@example.com → job card J-1042", result: "97% confident", undo: "open" },
+    { t: "1:12 PM", auto: "email", job: "J-1042", text: "Job card J-1042 from kevin.o@example.com, made with your OK", result: "97% confident", undo: "open" },
     { t: "1:18 PM", auto: "reply", job: "J-1042", text: "First reply to Kevin O., sent with your OK", result: "Delivered · 6 min after the email", undo: "sent" },
     { t: "2:58 PM", auto: "status", job: "J-1040", text: "\"Tech on the way\" text to Helen W.", result: "Delivered", undo: "sent" },
-    { t: "3:30 PM", auto: "email", text: "Email from newsletter@example.com filed (not a request)", result: "Filed, no job card", undo: "open" },
+    { t: "3:30 PM", auto: "email", text: "Email from newsletter@example.com filed with your OK (not a request)", result: "Filed, no job card", undo: "open" },
     { t: "4:05 PM", auto: "status", job: "J-1032", text: "\"Job done\" text to Mark E.", result: "Delivered", undo: "sent" },
     { t: "4:10 PM", auto: "reviewask", job: "J-1032", text: "Review link to Mark E.", result: "Delivered · no score yet", undo: "sent" },
     { t: "4:21 PM", auto: "safety", job: "J-1046", text: "Safety word \"gas\" in Rachel T.'s email → urgent ping to you", result: "You called her at 4:24 PM. No advice was sent", undo: "none" },
@@ -142,11 +142,16 @@ window.DEMO = {
   function waitMin(j) { return j.replyMin == null ? S.nowMin - j.inMin : null; }
 
   /* ---------- queue + metrics ---------- */
+  /* Queue order: safety, then urgent (a lead waiting over 15 min, or an unhappy customer), then money at stake, then due. */
+  function waitingLead(q) { var j = q.kind === "reply" && q.job && job(q.job); var w = j ? waitMin(j) : null; return w != null && w > 15 ? w : 0; }
+  function isRed(q) { return !!(q.safety || waitingLead(q) || q.red); }
   function rank(q) {
     var j = q.job && job(q.job), amt = (j && j.value) || 0;
     if (q.safety) return [0, 0];
-    if (q.red) return [1, -amt];
-    return [2, -amt, q.kind === "email" ? 0 : 1];
+    if (waitingLead(q)) return [1, 0, -waitingLead(q)];
+    if (q.red) return [1, 1, 0];
+    if (q.kind === "nudge" && amt) return [2, -amt];
+    return [3, q.kind === "email" ? 0 : 1];
   }
   function queue() {
     return S.queue.filter(function (q) { return !q.done; }).sort(function (a, b) {
@@ -192,9 +197,9 @@ window.DEMO = {
   var V = {};
   V.tonight = function () {
     var m = metrics(), q = queue(), lw = S.lastWeek, n = q.length;
-    var sentence = (m.done + " jobs done (" + money(m.doneValue) + "). ") + (n ? (n === 1 ? "1 thing needs you" : n + " things need you") + (q.filter(function (x) { return x.red; }).length ? ", " + q.filter(function (x) { return x.red; }).length + " before 9 AM." : ".") : "Nothing needs you tonight.");
+    var sentence = (m.done + " jobs done (" + money(m.doneValue) + "). ") + (n ? (n === 1 ? "1 thing needs you" : n + " things need you") + (q.filter(isRed).length ? ", " + q.filter(isRed).length + " before 9 AM." : ".") : "Nothing needs you tonight.");
     var items = q.slice(0, 3).map(function (x) {
-      return '<a class="rc-item' + (x.red ? " red" : "") + '" href="#needs" data-focus="' + x.id + '"><b>' + esc(x.verb) + " " + esc(qWho(x)) + "</b><span>" + esc(qWhy(x)) + (qMoney(x) ? " · " + qMoney(x) : "") + "</span></a>";
+      return '<a class="rc-item' + (isRed(x) ? " red" : "") + '" href="#needs" data-focus="' + x.id + '"><b>' + esc(x.verb) + " " + esc(qWho(x)) + (waitingLead(x) ? '<em class="chip r wait" title="Lead waiting ' + waitingLead(x) + ' min">' + waitingLead(x) + " min</em>" : "") + "</b><span>" + esc(waitingLead(x) ? x.why : qWhy(x)) + (qMoney(x) ? " · " + qMoney(x) : "") + "</span></a>";
     }).join("");
     var more = n > 3 ? '<a class="rc-more" href="#needs">+' + (n - 3) + " more in Needs you</a>" : "";
     var kpi = function (label, val, sub, arr, cls) { return '<div class="kpi2 ' + (cls || "") + '"><span>' + label + "</span><b>" + val + "</b>" + arr + (sub ? "<small>" + sub + "</small>" : "") + "</div>"; };
@@ -211,7 +216,7 @@ window.DEMO = {
       "</div>" +
       '<a class="rc2-auto" href="#autopilot">Autopilot did ' + m.actions + " things: " + m.texts + " texts, " + m.asks + " review asks, " + m.sorted + " emails sorted, " + m.pings + " urgent ping · 0 errors →</a>" +
       '<div class="rc2-f"><span>' + m.on + " automations on" + (m.paused ? ", " + m.paused + " paused" : "") + " · checked " + esc(S.nowLabel) + '</span><label>Sends <select id="sendAt" aria-label="Report Card send time">' + S.sendTimes.map(function (t) { return "<option" + (t === S.sendAt ? " selected" : "") + ">" + t + "</option>"; }).join("") + "</select></label></div></div>";
-    var side = '<div class="side-info"><div class="card pad"><b>How the Report Card works</b><ul class="ul"><li>Leads with <b>All clear</b> or <b>N need you</b>, then 4 numbers vs last week.</li><li>At most 3 things that need you, sorted: safety, then urgent (a waiting lead or an unhappy customer), then money at stake.</li><li>4 numbers, each compared with last week.</li><li>One line on what Autopilot did, linked to the full log.</li></ul></div>' +
+    var side = '<div class="side-info"><div class="card pad"><b>How the Report Card works</b><ul class="ul"><li>Leads with <b>All clear</b> or <b>N need you</b>, then 4 numbers vs last week.</li><li>At most 3 things that need you, sorted: safety, then urgent (a lead waiting over 15 minutes or an unhappy customer), then money at stake, then what is due.</li><li>4 numbers, each compared with last week.</li><li>One line on what Autopilot did, linked to the full log.</li></ul></div>' +
       '<div class="card pad"><b>Send time</b><p class="mut">8:00 PM by default. You pick the time at setup and can change it anytime. One text with a link, email as backup. Urgent pings only for safety words or a lead waiting over an hour, max 2 a day.</p></div>' +
       '<div class="card pad"><b>Try it</b><p class="mut">Approve something in Needs you, then come back. The card updates.</p><a class="btn n s" href="#needs">Open Needs you</a></div></div>';
     return '<div class="head tight"><div><span class="tag demo-tag">Demo · fictional data</span><h1>Tonight</h1><p class="hide-m">Preview of tonight\'s Report Card, live as of ' + esc(S.nowLabel) + ".</p></div></div>" +
@@ -222,7 +227,7 @@ window.DEMO = {
     var q = queue();
     var cards = q.map(function (x) {
       var j = x.job && job(x.job), a = auto(x.auto);
-      var meta = '<div class="chips">' + chip(a.level) + (x.kind === "nudge" ? '<span class="mk">Marketing: consent on file</span>' : "") + (x.red ? '<span class="chip r">' + (x.kind === "reply" ? "Waiting " + waitMin(j) + " min" : "Unhappy customer") + "</span>" : "") + (qMoney(x) ? '<span class="chip n">' + qMoney(x) + " quote</span>" : "") + "</div>";
+      var meta = '<div class="chips">' + chip(a.level) + (x.kind === "nudge" ? '<span class="mk">Marketing: consent on file</span>' : "") + (waitingLead(x) ? '<span class="chip r wait" title="Lead waiting ' + waitingLead(x) + ' min">' + waitingLead(x) + " min</span>" : x.red ? '<span class="chip r">Unhappy customer</span>' : "") + (a.next ? '<span class="mk">' + esc(a.next) + "</span>" : "") + (qMoney(x) ? '<span class="chip n">' + qMoney(x) + " quote</span>" : "") + "</div>";
       var body = "";
       if (x.draft) {
         body = view.editing === x.id ? '<textarea class="ed" id="ed-' + x.id + '" rows="3">' + esc(x.draft) + '</textarea><div class="row-btn"><button class="btn g s" data-save="' + x.id + '">Save draft</button></div>'
@@ -230,11 +235,11 @@ window.DEMO = {
       }
       if (x.guess) body = '<dl class="kv">' + Object.keys(x.guess).map(function (k) { return "<dt>" + k + "</dt><dd>" + esc(x.guess[k]) + "</dd>"; }).join("") + "</dl>";
       var ap = { reply: "Approve & send", nudge: "Approve & send", callback: "Approve: I called", email: "Approve: make job card" }[x.kind];
-      return '<article class="card qcard' + (x.red ? " red" : "") + '" id="' + x.id + '"><div class="qh"><div><b>' + esc(x.verb) + " " + esc(qWho(x)) + "</b>" + (j ? '<button class="lnk" data-job="' + j.id + '">' + esc(jname(j)) + "</button>" : "") + "</div></div>" +
+      return '<article class="card qcard' + (isRed(x) ? " red" : "") + '" id="' + x.id + '"><div class="qh"><div><b>' + esc(x.verb) + " " + esc(qWho(x)) + "</b>" + (j ? '<button class="lnk" data-job="' + j.id + '">' + esc(jname(j)) + "</button>" : "") + "</div></div>" +
         '<p class="why">' + esc(qWhy(x)) + "</p>" + meta + body +
         '<div class="row-btn"><button class="btn g s" data-ap="' + x.id + '">' + ap + "</button>" + (x.draft ? '<button class="btn l s" data-edit="' + x.id + '">Edit</button>' : (x.guess ? '<button class="btn l s" data-edit="' + x.id + '">Edit</button>' : '<button class="btn l s" data-edit="' + x.id + '">Edit note</button>')) + '<button class="btn l s" data-skip="' + x.id + '">Skip</button></div></article>';
     }).join("");
-    return '<div class="head"><div><span class="tag demo-tag">Demo · fictional data</span><h1>Needs you <span class="badge">' + q.length + "</span></h1><p>Everything that needs a person, from every part of the system, in one list. Sorted: safety first, then urgent, then money at stake.</p></div></div>" +
+    return '<div class="head"><div><span class="tag demo-tag">Demo · fictional data</span><h1>Needs you <span class="badge">' + q.length + "</span></h1><p>Everything that needs a person, from every part of the system, in one list. Sorted: safety first, then urgent, then money at stake, then what is due.</p></div></div>" +
       (q.length ? '<div class="qlist">' + cards + "</div>" : '<div class="card pad clear-big">✓ All clear. Nothing needs you. <a href="#tonight">See tonight\'s Report Card</a></div>');
   };
 
@@ -268,23 +273,23 @@ window.DEMO = {
   V.autopilot = function () {
     var m = metrics();
     var autos = S.automations.map(function (a) {
-      return '<div class="arow' + (a.on || a.locked ? "" : " paused") + '"><div class="amain"><div class="at"><b>' + esc(a.name) + "</b>" + chip(a.level) + (a.marketing ? '<span class="mk">Marketing: consent on file</span>' : "") + (a.urgent ? '<span class="chip r">Urgent ping</span>' : "") + "</div><p>" + esc(a.what) + '</p><p class="never">Never: ' + esc(a.never) + "</p></div>" +
+      return '<div class="arow' + (a.on || a.locked ? "" : " paused") + '"><div class="amain"><div class="at"><b>' + esc(a.name) + "</b>" + chip(a.level) + (a.marketing ? '<span class="mk">Marketing: consent on file</span>' : "") + (a.next ? '<span class="mk">' + esc(a.next) + "</span>" : "") + (a.urgent ? '<span class="chip r">Urgent ping</span>' : "") + "</div><p>" + esc(a.what) + '</p><p class="never">Never: ' + esc(a.never) + "</p></div>" +
         (a.locked ? '<span class="lockd">Always you</span>' : '<button class="switch" role="switch" aria-checked="' + a.on + '" aria-label="' + esc(a.name) + ' on or off" data-sw="' + a.id + '"></button>') + "</div>";
     }).join("");
     var log = S.log.slice().reverse().map(function (l, i) {
       var a = auto(l.auto), idx = S.log.length - 1 - i;
       var u = l.undo === "open" ? '<button class="btn l s" data-undo="' + idx + '">Undo</button>' : l.undo === "undone" ? '<span class="chip l">Undone</span>' : l.undo === "sent" ? '<span class="mut sm" title="Texts and emails can\'t be unsent">Sent</span>' : "";
-      return '<div class="lrow' + (l.undo === "undone" ? " undone" : "") + '"><span class="lt">' + l.t + '</span><div class="lm"><b>' + esc(l.text) + "</b><span>" + esc(a.name) + " · " + a.level + " · " + esc(l.result) + (l.job ? ' · <button class="lnk" data-job="' + l.job + '">' + l.job + "</button>" : "") + "</span></div>" + u + "</div>";
+      return '<div class="lrow' + (l.undo === "undone" ? " undone" : "") + '"><span class="lt">' + l.t + '</span><div class="lm"><b>' + esc(l.text) + "</b><span>" + esc(a.name) + " · " + a.level + (a.next ? " (" + esc(a.next) + ")" : "") + " · " + esc(l.result) + (l.job ? ' · <button class="lnk" data-job="' + l.job + '">' + l.job + "</button>" : "") + "</span></div>" + u + "</div>";
     }).join("");
     var t = S.trust;
     var trust = '<div class="card pad trust"><h2>Trust panel</h2><div class="tgrid">' +
       '<div><b>' + t.consent + " of " + t.texted + "</b><span>customers texted have consent on file. The other 2 get email only.</span></div>" +
       "<div><b>" + t.optOuts + "</b><span>opt-outs (STOP) this week. STOP is honored instantly, in every automation.</span></div>" +
       "<div><b>" + t.reviewSent + " of " + t.reviewDone + "</b><span>finished jobs got the same review link this week. No one is skipped for a low score.</span></div>" +
-      "<div><b>L2</b><span>Quote nudges are treated as marketing: written consent on file and STOP honored.</span></div></div>" +
+      "<div><b>L2</b><span>Quote nudges are treated as marketing: written consent on file and STOP honored. New job cards wait for your OK too, until the system proves 95% on your own mail.</span></div></div>" +
       '<p><b>Never automated:</b> prices, discounts, refunds, invoices, payments, diagnosis, safety advice, and replies to upset customers. Phone answering is not part of the Job Desk.</p>' +
       '<p class="mut">Sends only through your own business number in your field-service app. Access only by your invite, never a password. A weekly review by DTRT Lab checks every log; anything about money or a customer complaint goes to you.</p></div>';
-    var ladder = '<div class="card pad"><b>Autonomy levels</b><ul class="lad">' + Object.keys(S.levels).map(function (k) { return "<li>" + chip(k) + " " + esc(S.levels[k].split(": ")[1] || "") + "</li>"; }).join("") + '</ul><p class="mut">An automation moves up a level only after a clean record (for example, a week with no wrong sends). It drops a level after any wrong send, complaint or jump in opt-outs.</p></div>';
+    var ladder = '<div class="card pad"><b>Autonomy levels</b><ul class="lad">' + Object.keys(S.levels).map(function (k) { return "<li>" + chip(k) + " " + esc(S.levels[k].split(": ")[1] || "") + "</li>"; }).join("") + '</ul><p class="mut">An automation moves up a level only after a clean record (for example, a week with no wrong sends). It drops a level after any wrong send, complaint or jump in opt-outs. Email → job card stays at L2 (you approve) until it proves 95% accuracy on your own mail.</p></div>';
     var allPaused = S.automations.filter(function (a) { return !a.locked; }).every(function (a) { return !a.on; });
     return '<div class="head"><div><span class="tag demo-tag">Demo · fictional data</span><h1>Autopilot</h1><p>Everything the system did on its own today, with Undo where it can still be undone. Every automation shows its level and has a pause switch.</p></div>' +
       '<div class="card pause-all"><span>Pause all</span><button class="switch" role="switch" aria-checked="' + allPaused + '" aria-label="Pause all automations" id="pauseAll"></button></div></div>' +
@@ -439,7 +444,7 @@ window.DEMO = {
       .then(function () { glow(".kpis2"); return wait(1500); })
       .then(function () { return tap('[data-focus="q-maria"]'); })
       .then(function () { return wait(400); })
-      .then(function () { return say(2, "Needs you: one queue", "Approve, edit or skip. This lead has waited too long"); })
+      .then(function () { return say(2, "Needs you: one queue", "Waiting lead first: 48 min. Approve, edit or skip"); })
       .then(function () { glow("#q-maria"); return wait(1400); })
       .then(function () { return tap('[data-ap="q-maria"]'); })
       .then(function () { hide(); return center("#q-tom"); })
@@ -452,7 +457,7 @@ window.DEMO = {
       .then(function () { return tap('[data-job="J-1029"]'); })
       .then(function () { return wait(2300); })
       .then(function () { $("[data-close]") && $("[data-close]").click(); hide(); return go("autopilot"); })
-      .then(function () { return say(5, "Autopilot: everything it did, with Undo", "Every automation shows its level, L0 to L4"); })
+      .then(function () { return say(5, "Autopilot: everything it did, with Undo", "Every automation shows its level. New job cards: L2, you approve"); })
       .then(function () { return wait(900); })
       .then(function () { return mobile ? center('[data-undo]') : wait(10); })
       .then(function () { return tap("[data-undo]"); })
