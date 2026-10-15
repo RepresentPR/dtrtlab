@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests"><meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/img/brand/mark.svg?v=la20261015" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=la20261015" sizes="180x180">
+<meta name="theme-color" content="#0B2545">
+<title>DTRT Job Desk demo · Sample Heating &amp; Air Co. (fictional) | DTRT Lab</title>
+<meta name="description" content="A clickable demo of DTRT Job Desk on a fictional HVAC company: job board, customer status texts, quote follow-up, email to task, review requests and a nightly owner report card. Demo, fictional data.">
+<link rel="canonical" href="https://dtrtlab.com/demo/">
+<meta property="og:site_name" content="DTRT Lab">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dtrtlab.com/demo/">
+<meta property="og:title" content="DTRT Job Desk demo · Sample Heating &amp; Air Co. (fictional)">
+<meta property="og:description" content="See the AI office manager run on a fictional HVAC company: every job tracked, every customer updated, every quote followed up, and a report card each night. Demo, fictional data.">
+<meta property="og:image" content="https://dtrtlab.com/img/brand/og-theme-a.png?v=la20261015">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="DTRT Lab, navy and green Theme A">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@DTRTLab">
+<meta name="twitter:image" content="https://dtrtlab.com/img/brand/og-theme-a.png?v=la20261015">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div class="ribbon" role="note"><span class="pill">DEMO</span> Demo, fictional data. Sample Heating &amp; Air Co. is not a real business or client.</div>
+<div class="shell">
+  <aside class="side" aria-label="Main">
+    <a class="brand" href="./" aria-label="Demo overview">
+      <span class="logo">JD</span>
+      <span><b>Job Desk</b><small>by DTRT Lab</small></span>
+    </a>
+    <div class="biz"><span class="dot"></span><span><b>Sample Heating &amp; Air Co.</b><small>(demo) · DMV Area</small></span></div>
+    <nav id="nav"></nav>
+    <a class="reset" href="sample-map.pdf" download style="text-align:center;text-decoration:none">Sample map (PDF)</a>
+    <a class="reset" href="/#job-desk" style="margin-top:0;text-align:center;text-decoration:none">Back to dtrtlab.com</a>
+    <button class="reset" id="reset" type="button" style="margin-top:0">Reset demo</button>
+  </aside>
+  <main id="main" tabindex="-1"><noscript><p style="padding:20px">This demo needs JavaScript. Demo, fictional data.</p></noscript></main>
+</div>
+<nav class="tabbar" id="tabbar" aria-label="Main (mobile)"></nav>
+<div class="drawer-bg" id="drawerBg" hidden></div>
+<section class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" hidden></section>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="demo.js"></script>
+</body>
+</html>
