@@ -17,8 +17,6 @@
 .article .stat strong{display:block;font-size:clamp(48px,8vw,72px);line-height:1;color:var(--green);letter-spacing:-.03em}
 .article .stat p{margin:10px 0 0}.article .stat cite{display:block;font-style:normal;font-size:15px;color:var(--light);margin-top:12px}
 .article .stat a{color:var(--green)}
-.article .video-slot{aspect-ratio:16/9;background:var(--navy);color:var(--light);border-radius:12px;display:grid;place-items:center;text-align:center;padding:20px;margin:24px 0}
-.article .video-slot b{display:block;color:var(--white);font-size:22px}
 .article .levels{border-collapse:collapse;width:100%;margin:10px 0 18px;font-size:17px}
 .article .levels th,.article .levels td{border-bottom:1px solid var(--light);padding:9px 8px;text-align:left;vertical-align:top}
 .article .levels th{width:64px;color:var(--navy)}
