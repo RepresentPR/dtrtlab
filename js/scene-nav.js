@@ -30,7 +30,7 @@
     '<div class="wrap nav-row">' +
     '<a class="brand" href="' + root + 'index.html">DTRT LAB</a>' +
     '<nav class="links" id="site-links" aria-label="Primary">' +
-    link("index.html#packages", "Packages", false) +
+    link("index.html#prices", "Prices", false) +
     link("company.html", "Company", companyOn) +
     link("about.html", "About", aboutOn) +
     link("contact.html", "Contact", contactOn) +
@@ -60,7 +60,7 @@
       '<div class="wrap">' +
       "<span>DTRT Lab · Writing for local businesses</span>" +
       '<a href="' + root + 'contact.html?intent=free-plan">Free plan</a>' +
-      '<a href="' + root + 'index.html#packages">Packages</a>' +
+      '<a href="' + root + 'index.html#prices">Prices</a>' +
       '<a href="' + root + 'index.html">Home</a>' +
       '<a href="' + root + 'contact.html">Contact</a>' +
       '<a href="' + root + 'lab.html">Lab / Hobby</a>' +
