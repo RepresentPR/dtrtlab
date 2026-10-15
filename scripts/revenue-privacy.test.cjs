@@ -16,7 +16,7 @@ test('public campaign export contains no company revenue data or target', () => 
 });
 
 test('public pages and scripts contain no revenue meter or amount', () => {
-  for (const name of ['index.html', 'live/index.html', 'js/campaign-home.js', 'live/performance.js']) {
+  for (const name of ['index.html', 'lab.html', 'live/index.html', 'js/campaign-home.js', 'live/performance.js']) {
     assert.doesNotMatch(read(name), /revenueGoalUsd|results\.revenue|revenue-value|revenue-goal|revenue-progress|Verified campaign revenue|\$10(?:,000|K)|new spend|new spending|spend-note|newVerifiedUsd|newAuthorizedUsd/i, name);
   }
 });
