@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DTRT Lab | Live proof</title><meta name="description" content="Live, verifiable numbers from DTRT Lab's data engine: companies studied, sources collected and posts published.">
+<link rel="canonical" href="https://dtrtlab.com/proof/"><link rel="icon" href="/img/brand/mark.svg" type="image/svg+xml"><meta property="og:title" content="DTRT Lab | Live proof"><meta property="og:image" content="https://dtrtlab.com/img/brand/dtrt-social.png"><meta property="og:url" content="https://dtrtlab.com/proof/"><script src="/js/experience.js" defer></script>
+<style>
+:root{--navy:#0B2545;--navy2:#123563;--green:#13C27A;--ink:#EAF2FB;--mut:#9DB3CF}*{box-sizing:border-box}
+body{margin:0;background:var(--navy);color:var(--ink);font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+main{max-width:960px;margin:0 auto;padding:20px 16px}a{color:var(--green)}.top a{color:var(--ink);text-decoration:none;font-weight:700}.top b{color:var(--green)}
+h1{font-size:26px;margin:18px 0 4px}.live{display:inline-flex;align-items:center;gap:6px;color:var(--mut);font-size:13px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(19,194,122,.7);animation:p 2s infinite}@keyframes p{70%{box-shadow:0 0 0 8px rgba(19,194,122,0)}100%{box-shadow:0 0 0 0 rgba(19,194,122,0)}}
+.strip{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:16px 0}@media(min-width:760px){.strip{grid-template-columns:repeat(5,1fr)}}
+.s{background:var(--navy2);border:1px solid #1d4a80;border-radius:12px;padding:14px}.s strong{display:block;font-size:28px}.s small{color:var(--mut);font-size:12px}
+p.m{color:var(--mut);font-size:13px}
+</style></head><body><main>
+<div class="top"><a href="/">DTRT <b>LAB</b></a></div>
+<h1>Live proof</h1><span class="live"><span class="dot"></span><span id="stamp">live · loading…</span></span>
+<div class="strip" id="strip"></div>
+<p class="m">Counted automatically from our own records: companies studied from public sources, distinct sources cited in our research, and posts published through our publisher. A number appears only when it is measured; nothing is estimated.</p>
+<p><a href="/">← Back to DTRT Lab</a> · <a href="/content/proof.json">Raw numbers (JSON)</a></p>
+</main><script>
+(async()=>{const r=await fetch('/content/proof.json?t='+Date.now(),{cache:'no-store'});const d=await r.json();
+const f=v=>v==null?null:v.toLocaleString('en-US');
+const items=[['Companies studied',d.companies_studied],['Sources collected',d.sources_collected],['Knowledge-base notes',d.knowledge_notes],['Posts published',d.posts_published],['Days building in public',d.days_running],['Total audience',d.audience_total]];
+document.getElementById('strip').innerHTML=items.filter(i=>i[1]!=null).map(i=>`<div class="s"><strong>${f(i[1])}</strong><small>${i[0]}</small></div>`).join('');
+document.getElementById('stamp').textContent='live · updated '+d.updated_et;})().catch(()=>{document.getElementById('stamp').textContent='live numbers unavailable right now'});
+</script></body></html>
