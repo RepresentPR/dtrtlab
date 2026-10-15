@@ -29,6 +29,7 @@ test('brand kit has the public paste text and a short bio', () => {
   assert.match(kit, /plan_HAGSLXXUeGkcz/);
   assert.match(kit, /plan_RVDjSToI7vKOM/);
   assert.match(kit, /plan_kZqq0jgr6VrGG/);
+  assert.match(kit, /plan_yuDiw93Zp6Uvr/);
   assert.doesNotMatch(kit, /@gmail\.com|PayPal/);
 });
 
@@ -43,7 +44,7 @@ test('business pages show theme A offers and keep hobby off the company face', (
   for (const file of ['index.html', 'find.html', 'contact.html', 'js/nav.js', 'legal/terms.html', 'content/company.json']) {
     assert.doesNotMatch(read(file), /Clinton|Southern Maryland|SoMD/i, file + ' carries no day-job location');
   }
-  for (const id of ['plan_HAGSLXXUeGkcz', 'plan_RVDjSToI7vKOM', 'plan_kZqq0jgr6VrGG', 'plan_Vn0gQGFWQx9CA']) assert.match(main, new RegExp(id));
+  for (const id of ['plan_HAGSLXXUeGkcz', 'plan_RVDjSToI7vKOM', 'plan_kZqq0jgr6VrGG', 'plan_Vn0gQGFWQx9CA', 'plan_yuDiw93Zp6Uvr']) assert.match(main, new RegExp(id));
   assert.match(main, /DTRT 7-Day Do-It-Right Guarantee/);
   assert.doesNotMatch(home, /free plan|PayPal|Stripe|twitch\.tv|\/cs2\.html|\/afterlight\.html|#080808|cfe35a/i);
   assert.doesNotMatch(main, /\/careers\.html/i);

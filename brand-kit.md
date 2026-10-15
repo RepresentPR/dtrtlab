@@ -52,7 +52,7 @@ I'm Ian. I help DMV small businesses get more customers. I do the work, and you 
 
 ### Long
 
-DTRT Lab writes for local businesses. The mission is do the right thing: help real local operators, not extract from them. Start with a free plan — one link and one goal — or buy a named writing plan on Whop: Mini Social Pack $50, Week Pack $129, or Writing Retainer — Starter $250/30 days. The studio is independent, based in the DMV Area, and open to any age and any size business or idea. Shop checkout on the site is not live. The stream, The Lab Files, CS2, and the game are hobby, on a separate page, and AFTERLIGHT is in development and not for sale. Contact hello@dtrtlab.com.
+DTRT Lab writes for local businesses. The mission is do the right thing: help real local operators, not extract from them. Start with a free plan — one link and one goal — or buy a named writing plan on Whop: Mini Social Pack $50, Week Pack $129, or Writing Retainer · Review Desk $250/30 days, or the AI Visibility Fix $250 one-time. The studio is independent, based in the DMV Area, and open to any age and any size business or idea. Shop checkout on the site is not live. The stream, The Lab Files, CS2, and the game are hobby, on a separate page, and AFTERLIGHT is in development and not for sale. Contact hello@dtrtlab.com.
 
 ## Profile photo and banner
 
@@ -110,5 +110,6 @@ Use these exact blocks so the profiles match the site. Link the business home, n
 - Mini Social Pack — $50 — https://whop.com/checkout/plan_HAGSLXXUeGkcz
 - Week Pack — $129 — https://whop.com/checkout/plan_RVDjSToI7vKOM
 - Writing Retainer · Review Desk — $250/30 days — https://whop.com/checkout/plan_kZqq0jgr6VrGG
+- AI Visibility Fix — $250 one-time — https://whop.com/checkout/plan_yuDiw93Zp6Uvr
 
 These are writing plans. Payment is on Whop. The website does not collect card numbers. Public email: hello@dtrtlab.com.

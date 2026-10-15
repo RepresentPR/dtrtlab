@@ -52,6 +52,9 @@ test('homepage sells the work, the person and the 30-day numbers', () => {
   assert.match(main, /<h3>Writing Retainer · Review Desk<\/h3>/);
   assert.match(main, /Do you use AI\?/);
   assert.match(main, /mailto:hello@dtrtlab\.com\?subject=CHECK/);
+  const fix = offers.find(o => /AI Visibility Fix/.test(o));
+  assert.match(fix, /class="btn" href="https:\/\/whop\.com\/checkout\/plan_yuDiw93Zp6Uvr"/, 'Fix button goes to its Whop checkout');
+  assert.match(fix, /href="mailto:[^"]*subject=CHECK[^"]*"[^>]*>Reply CHECK and I'll run it on your business free\.<\/a>/, 'CHECK mailto is only the free check');
   assert.match(main, /<h2 id="how-title">Fix\. Measure\. Report\.<\/h2>/);
   assert.match(main, /AI Visibility Fix[\s\S]*?\$250[\s\S]*?Day-30 re-check/);
   assert.match(main, /Reply CHECK and I'll run it on your business free\./);
