@@ -1,0 +1,5 @@
+img/og-dtrtc.avif
+img/og-dtrtc.jpg
+img/og-dtrtc.webp
+img/og-lab-files.jpg
+img/reticle.svg
