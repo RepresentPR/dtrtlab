@@ -48,11 +48,11 @@ Buttons are green with navy text, or outlined in the current text color. The old
 
 ### One line (under 150 characters)
 
-I'm Ian. I help DMV small businesses get more customers. I do the work, and you see your numbers at 30 days. dtrtlab.com
+I'm Ian. I build the AI office manager for DMV service businesses. Reply SYSTEM and I'll map yours free. dtrtlab.com
 
 ### Long
 
-DTRT Lab writes for local businesses. The mission is do the right thing: help real local operators, not extract from them. Start with a free plan — one link and one goal — or buy a named writing plan on Whop: Mini Social Pack $50, Week Pack $129, or Writing Retainer · Review Desk $250/30 days, or the AI Visibility Fix $250 one-time. The studio is independent, based in the DMV Area, and open to any age and any size business or idea. Shop checkout on the site is not live. The stream, The Lab Files, CS2, and the game are hobby, on a separate page, and AFTERLIGHT is in development and not for sale. Contact hello@dtrtlab.com.
+DTRT Lab builds DTRT Job Desk, the AI office manager for DMV service businesses: every job tracked, every customer updated, every quote followed up, and a report card on the owner's phone each night. It's set up inside the apps the business already uses, never with a password. Job Desk is $1,500 setup + $250/mo and starts with a free written map (Reply SYSTEM). The first step can be the free AI check (Reply CHECK) and the AI Visibility Fix, $250 one-time. Smaller writing plans stay on Whop: Writing Retainer · Review Desk $250/30 days, Mini Social Pack $50 and Week Pack $129. The mission is do the right thing: help real local operators, not extract from them. The studio is independent, based in the DMV Area, and open to any age and any size business or idea. Shop checkout on the site is not live. The stream, The Lab Files, CS2, and the game are hobby, on a separate page, and AFTERLIGHT is in development and not for sale. Contact hello@dtrtlab.com.
 
 ## Profile photo and banner
 
@@ -69,7 +69,7 @@ Use these exact blocks so the profiles match the site. Link the business home, n
 
 - Handle: @DTRTLab
 - Profile URL: https://x.com/DTRTLab
-- Bio: I'm Ian. I help DMV small businesses get more customers. I do the work, then show you your numbers at 30 days. Try me for $50
+- Bio: I'm Ian. I build the AI office manager for DMV service businesses: jobs tracked, customers updated, quotes followed up. Reply SYSTEM for a free map.
 - Link: https://dtrtlab.com/
 - Link label: DTRT Lab
 
@@ -77,7 +77,7 @@ Use these exact blocks so the profiles match the site. Link the business home, n
 
 - Handle: @officiallydtrt
 - Profile URL: https://www.instagram.com/officiallydtrt/
-- Bio: Ian | DTRT Lab · DMV Area / I help small businesses get more customers. / I do the work. You see your numbers at 30 days. / Start at $50 👇
+- Bio: Ian | DTRT Lab · DMV Area / The AI office manager for service businesses. / Jobs tracked, customers updated, quotes followed up. / DM SYSTEM for a free map 👇
 - Link: https://dtrtlab.com/
 - Link label: DTRT Lab
 
@@ -85,7 +85,7 @@ Use these exact blocks so the profiles match the site. Link the business home, n
 
 - Handle: @iananthonyfc
 - Profile URL: https://www.tiktok.com/@iananthonyfc
-- Bio: I help DMV small businesses get more customers. I do the work. Start at $50
+- Bio: AI office manager for DMV service businesses. DM SYSTEM for a free map
 - Link: https://dtrtlab.com/
 - Link label: DTRT Lab
 
@@ -93,7 +93,7 @@ Use these exact blocks so the profiles match the site. Link the business home, n
 
 - Handle: @DTRTLabYT
 - Profile URL: https://www.youtube.com/@DTRTLabYT
-- Bio: I'm Ian Ferraro. I help small businesses in the DMV Area (DC, Maryland, Virginia) get more customers. I fix your Google listing, reviews and posts, then show you the numbers 30 days later. You don't need to learn AI, because I do the work. Try me for $50: 1 hook + 5 captions. Writing only: you keep your passwords. No contract. dtrtlab dot com
+- Bio: I'm Ian Ferraro. I build the AI office manager for service businesses in the DMV Area (DC, Maryland, Virginia): every job tracked, every customer updated, every quote followed up, and a report card on your phone each night. It runs in the apps you already use, and I never ask for a password. Here you'll see how it works and the real work behind DTRT Lab. Email SYSTEM to hello@dtrtlab.com and I'll map yours free. dtrtlab dot com
 - Link: https://dtrtlab.com/
 - Link label: DTRT Lab
 
@@ -101,7 +101,7 @@ Use these exact blocks so the profiles match the site. Link the business home, n
 
 - Channel: dtrtc
 - Profile URL: https://www.twitch.tv/dtrtc
-- Bio: Hobby stream. The business is DTRT Lab — writing for local businesses. Do the right thing. dtrtlab.com
+- Bio: Hobby stream. The business is DTRT Lab — the AI office manager for DMV service businesses. Do the right thing. dtrtlab.com
 - Link: https://dtrtlab.com/
 - Link label: DTRT Lab
 
