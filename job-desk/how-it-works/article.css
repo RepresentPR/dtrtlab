@@ -23,3 +23,5 @@
 .article .never li::marker{content:"✕  ";color:var(--navy);font-weight:800}
 .article .src{font-size:15px}
 @media(max-width:560px){.article .toc ol{columns:1}}
+/* Brand kit: green on white is 2.3:1, never use it for text on white. Eyebrow goes navy here. */
+.article .eyebrow{color:var(--navy)}
