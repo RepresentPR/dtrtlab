@@ -18,7 +18,7 @@ test('brand kit has the public paste text and a short bio', () => {
   assert.match(fs.readFileSync(path.join(root, 'css/theme-a.css'), 'utf8'), /--navy:#0B2545;--green:#13C27A/, 'kit matches the site CSS');
   assert.match(kit, /Source Sans 3/);
   assert.match(kit, /Source Serif 4/);
-  const oneLine = kit.match(/DTRT Lab writes for local businesses\. Do the right thing\. Free plan: dtrtlab\.com/);
+  const oneLine = kit.match(/I'm Ian\. I help DMV small businesses get more customers\. I do the work, and you see your numbers at 30 days\. dtrtlab\.com/);
   assert.ok(oneLine, 'one-line bio is present');
   assert.ok(oneLine[0].length < 150);
   for (const name of ['X', 'Instagram', 'TikTok', 'YouTube', 'Twitch']) {
@@ -35,10 +35,10 @@ test('brand kit has the public paste text and a short bio', () => {
 test('business pages show theme A offers and keep hobby off the company face', () => {
   const home = read('index.html');
   const main = home.match(/<main[\s\S]*?<\/main>/)[0];
-  assert.match(main, /We study what makes big companies win, <span>and hand the playbook to yours\.<\/span>/);
+  assert.match(main, /I help DMV small businesses <span>get more customers\.<\/span>/);
   assert.match(main, /Do the right thing\. We help businesses grow\./);
   assert.match(main, /DMV Area/);
-  assert.match(main, /Mine\. Test\. Playbook\. Deliver\./);
+  assert.match(main, /Fix\. Measure\. Report\./);
   assert.match(home, /"name": "Washington DC metropolitan area \(DMV\)"/);
   for (const file of ['index.html', 'find.html', 'contact.html', 'js/nav.js', 'legal/terms.html', 'content/company.json']) {
     assert.doesNotMatch(read(file), /Clinton|Southern Maryland|SoMD/i, file + ' carries no day-job location');
