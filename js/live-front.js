@@ -9,7 +9,7 @@
     if (/bot|crawl|spider|slurp|lighthouse|preview/i.test(navigator.userAgent || "")) return;
     try { if (document.referrer && new URL(document.referrer).host === location.host) return; } catch (e) {}
     try { if (sessionStorage.getItem(M) === "1") return; } catch (e) {}
-    function go() { location.replace("/live/"); }
+    function go() { location.replace("/lab.html#public-results"); }
     try {
       var c = JSON.parse(sessionStorage.getItem(K) || "null");
       if (c && c.live && Date.now() - c.at < 60000) { go(); return; }
