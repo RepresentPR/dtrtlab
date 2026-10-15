@@ -18,7 +18,7 @@ test('brand kit has the public paste text and a short bio', () => {
   assert.match(fs.readFileSync(path.join(root, 'css/theme-a.css'), 'utf8'), /--navy:#0B2545;--green:#13C27A/, 'kit matches the site CSS');
   assert.match(kit, /Source Sans 3/);
   assert.match(kit, /Source Serif 4/);
-  const oneLine = kit.match(/I'm Ian\. I help DMV small businesses get more customers\. I do the work, and you see your numbers at 30 days\. dtrtlab\.com/);
+  const oneLine = kit.match(/I'm Ian\. I build the AI office manager for DMV service businesses\. Reply SYSTEM and I'll map yours free\. dtrtlab\.com/);
   assert.ok(oneLine, 'one-line bio is present');
   assert.ok(oneLine[0].length < 150);
   for (const name of ['X', 'Instagram', 'TikTok', 'YouTube', 'Twitch']) {
