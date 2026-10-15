@@ -4,7 +4,7 @@
   "creator": "Ian Ferraro",
   "legalName": "DTRT Lab",
   "tagline": "DTRT AFTERLIGHT — the island remembers.",
-  "oneSentence": "DTRT Lab studies what makes big companies win and hands the playbook to small businesses in the DMV Area. Start for $50, no contract.",
+  "oneSentence": "Ian | DTRT Lab helps DMV Area small businesses get more customers: I do the work, then show you your numbers 30 days later. Start for $50, no contract.",
   "preorderEnabled": false,
   "preorderPriceUsd": null,
   "preorderNote": "Price and checkout stay off until a PayPal sandbox app is configured and a price is set in .env. This is a release candidate, not 1.0.",
