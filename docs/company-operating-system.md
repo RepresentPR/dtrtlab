@@ -4,22 +4,22 @@
 
 **Vision alignment:** Personal + company north star live in [`docs/vision.md`](vision.md). Every checklist item below must serve that document, not viral tools or fake scale.
 
-**Last reviewed:** 2026-10-13
+**Last reviewed:** 2026-10-15
 
-## Executive decision order (agent first · Ian second)
+## Executive decision order
 
-Company execution is **not** “wait for Ian on every click.” Default authority:
+Company execution is **not** “wait for Ian on every click.” Brand, pricing, and scope are. Default authority:
 
 | Seat | Role | Does |
 | --- | --- | --- |
-| **1st — Agent (ops executive)** | Run the company day-to-day inside vision | Decide, ship, merge, schedule, fix conflicts, polish, keep the unfinished-work pipeline current. Prefer action over parking work as “blocked.” |
-| **2nd — Ian (founder executive)** | Override + unlock | Change direction when something should be done differently; supply credentials/logins only he has; veto or redirect. Not the default bottleneck for ordinary execution. |
+| **1st — Agent (ops executive)** | Run day-to-day execution inside the current offer | Decide, ship, merge, schedule, fix conflicts, polish, keep the unfinished-work pipeline current. Do not park ordinary bugfixes as “blocked.” |
+| **2nd — Ian Ferraro (sole founder)** | Positioning, pricing, scope, override, unlock | Sets company positioning, pricing tiers, and product scope. Changes direction; supplies credentials only he has. Agents stop and ask when unsure about brand, price, or scope (`AGENTS.md`). |
 
 **Agent owns:** PR merges (vision order), conflict resolution, docs, site ship, Postiz schedule/publish of quality Lab work, Gmail action digests, vault hygiene, audits.
 
 **Ian unlocks only when required:** GitHub profile UI (hireable/bio), LinkedIn paste, photo dump from phone/iCloud, Workday/Caliber logins, Grok Bot approval cards, legal entity / counsel / bank, direction overrides.
 
-**If unsure:** Agent decides and ships under vision; Ian can reverse. Do **not** stall a whole wave for a courtesy click.
+**If unsure about brand positioning, pricing, or product scope:** stop and ask Ian. That “ship anyway” fallback is revoked (`AGENTS.md`). Ordinary execution inside the current public offer still ships. Do **not** stall a bugfix wave for a courtesy click.
 
 Track file: [`docs/unfinished-work-pipeline.md`](unfinished-work-pipeline.md).  
 AI templates (agent floor + prompts): [`docs/templates/`](templates/README.md) · root [`AGENTS.md`](../AGENTS.md).  
