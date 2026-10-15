@@ -58,7 +58,7 @@
   if (foot) {
     foot.innerHTML =
       '<div class="wrap">' +
-      "<span>DTRT Lab · Writing for local businesses</span>" +
+      "<span>DTRT Lab · Do the right thing.</span>" +
       '<a href="' + root + 'contact.html?intent=free-plan">Free plan</a>' +
       '<a href="' + root + 'index.html#prices">Prices</a>' +
       '<a href="' + root + 'index.html">Home</a>' +
