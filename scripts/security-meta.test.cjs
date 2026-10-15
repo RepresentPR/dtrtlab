@@ -55,3 +55,14 @@ test('workflows pin third-party actions to full commit SHAs and declare permissi
     }
   }
 });
+test('/live never saves the password unless the owner ticks "remember"', () => {
+  const html = fs.readFileSync(path.join(ROOT, 'live/index.html'), 'utf8');
+  const box = (html.match(/<input id="rem"[^>]*>/) || [''])[0];
+  assert.ok(box, 'remember checkbox present');
+  assert.ok(!/\schecked/.test(box), 'remember must be off by default');
+  const js = fs.readFileSync(path.join(ROOT, 'live/dashboard.js'), 'utf8');
+  for (const m of js.matchAll(/localStorage\.setItem\(/g)) {
+    assert.match(js.slice(Math.max(0, m.index - 12), m.index), /if\(save\)\s*$/, 'localStorage.setItem must be guarded by the remember choice');
+  }
+  assert.ok(!/sessionStorage\.setItem\([^)]*pw/.test(js), 'raw password must not go to sessionStorage');
+});

@@ -4,7 +4,7 @@
    HTML is network-first (updates roll out). Other same-origin files
    are stale-while-revalidate. JSON and third parties are not cached.
 */
-var VERSION = "20261015-theme-a-icons";
+var VERSION = "20261015-logo-a";
 var CACHE = "dtrtlab-" + VERSION;
 var PRECACHE = [
   "/",

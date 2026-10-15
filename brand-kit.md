@@ -1,6 +1,6 @@
 # DTRT Lab brand kit
 
-Public brand for the business site. Last reviewed 2026-10-14.
+Public brand for the business site. Last reviewed 2026-10-15 (logo A).
 
 The company name in sentences is **DTRT Lab**. The handle is **@DTRTLab**. Mission: **Do the right thing** — writing for real local businesses, not extracting from them.
 
@@ -8,13 +8,18 @@ Hobby (streaming, The Lab Files, CS2, the game) is not the company face. It live
 
 ## Logo usage
 
-- Primary mark: `img/brand/mark.svg`
-- Avatar: `img/brand/dtrt-avatar.png`
-- Social share image: `img/brand/dtrt-social.png`
+Logo: **Concept A, "D/ Refined"** (approved 2026-10-15). A geometric **D** built on a 16-unit grid (outer bowl radius 4.5u, 2u stroke, counter kept open) followed by a **slash** at the 1:3 slope (about 18.4°). Theme A colors are locked: navy `#0B2545`, green `#13C27A`.
+
+- Primary mark (navy tile): `img/brand/mark.svg`. White D, green slash on `#0B2545`. Same file serves `favicon.svg` and `img/icon.svg`.
+- Favicons: `favicon.ico` (16/32/48), `img/brand/favicon-16.png`, `favicon-32.png`, `favicon-48.png`. App icons: `apple-touch-icon.png` (180), `img/brand/icon-192.png`, `icon-512.png` (mark at 0.84 so iOS/Android masks don't clip it).
+- Avatar (circle-safe, mark at 0.68): `img/brand/avatar-a.png` (512), `avatar-a-400.png`, `avatar-a-1080.png`, `avatar-a.svg`. Use these for X, Instagram, TikTok, YouTube, Twitch and Whop profile images. `img/brand/dtrt-avatar.png` is the same art at the old URL.
+- Share cards (1200×630): `img/brand/og-theme-a.png` (public pages; also copied to `dtrt-social.png`), `img/brand/og-owner-dashboard.png` (`/live/` only).
+- Allowed colorways: white D + green slash on navy (default); navy D + green slash on white or `#F4F7FB`; one-color all-white on navy when green can't print. Never black-and-white or orange versions, and never recolor the slash to anything but `#13C27A`.
+- Do not change the geometry: no rounding the slash, no reflowing the D, no outlines, gradients, glows or drop shadows, no stretching or rotating.
+- Clear space: at least the D's stroke width (2u = 1/8 of the mark) on every side; minimum size 16 px (favicon) or 24 px elsewhere.
+- On photos, place the mark on a solid navy or white field, never directly on a busy image.
 - Wordmark in the interface: **DTRT** with **THE LAB** set small beside it. Do not restack it into a new logo.
-- Use the mark in black on `#fafafa`, or white on `#080808`. Do not recolor it, add a gradient, or put a glow behind it.
-- Leave clear space around the mark at least the width of the mark’s inner counter.
-- Do not stretch, rotate, outline, or place the mark on a busy photo without a solid `#080808` or `#fafafa` field.
+- Source and construction drawings: Brain note `research/logo-geometry-2026-10-15` (private).
 
 ## Colors
 

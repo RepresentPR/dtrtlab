@@ -34,7 +34,10 @@ $('#t-data').innerHTML=[tile('Brain notes',t.notes,h,'notes'),tile('Sources cite
 chart($('#c-brain'),[{n:'notes',c:'#13C27A',pts:h.map(d=>[d.date,d.notes])},{n:'links ÷10',c:'#5BC0EB',pts:h.map(d=>[d.date,d.links==null?null:Math.round(d.links/10)])},{n:'sources',c:'#F4D35E',pts:h.map(d=>[d.date,d.sources])}],{zero:1});
 chart($('#c-new'),[{n:'new notes',c:'#13C27A',pts:h.map(d=>[d.date,d.new_notes])}],{bars:1,zero:1});
 $('#nc').innerHTML=(o.not_connected||[]).map(x=>`<li>${x}</li>`).join('')||'<li>everything connected</li>';$('#lock').hidden=true;$('#dash').hidden=false}
-async function open(pw,save){try{const o=await decrypt(pw);if(save)localStorage.setItem(K,pw);render(o)}catch(e){localStorage.removeItem(K);$('#err').textContent='Wrong password or data not published yet.'}}
-$('#f').addEventListener('submit',e=>{e.preventDefault();open($('#pw').value,$('#rem').checked)});
-$('#out').addEventListener('click',()=>{localStorage.removeItem(K);location.reload()});
-const s=localStorage.getItem(K);if(s)open(s,true);setInterval(()=>{const p=localStorage.getItem(K);if(p&&!$('#dash').hidden)open(p,true)},300000)})();
+// Password handling: by default it lives only in this tab's memory (needed for the 5-min refresh) and is never written to storage.
+// It is saved in localStorage only when the owner explicitly ticks "remember on this device".
+let mem=null;
+async function open(pw,save){try{const o=await decrypt(pw);mem=pw;if(save)localStorage.setItem(K,pw);else localStorage.removeItem(K);render(o)}catch(e){mem=null;localStorage.removeItem(K);$('#err').textContent='Wrong password or data not published yet.'}}
+$('#f').addEventListener('submit',e=>{e.preventDefault();const pw=$('#pw').value;$('#pw').value='';open(pw,$('#rem').checked)});
+$('#out').addEventListener('click',()=>{mem=null;localStorage.removeItem(K);location.reload()});
+const s=localStorage.getItem(K);if(s){$('#rem').checked=true;open(s,true)}setInterval(()=>{const p=mem||localStorage.getItem(K);if(p&&!$('#dash').hidden)open(p,!!localStorage.getItem(K))},300000)})();
