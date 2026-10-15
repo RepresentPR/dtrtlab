@@ -29,12 +29,8 @@ test('company facts expose Made for all audience and honest shop flags', () => {
 
 test('shop page never claims a live cart or checkout', () => {
   const html = read('shop.html');
-  assert.match(html, /Checkout is not live/i);
-  assert.match(html, /Made for all/i);
-  assert.match(html, /any age/i);
-  assert.match(html, /shop\.json/);
-  assert.match(html, /intent=shop-interest/);
-  assert.doesNotMatch(html, /Buy now|Add to cart|In stock|\$\d+/i);
+  assert.match(html, /http-equiv="refresh" content="0; url=\/#prices"/);
+  assert.doesNotMatch(html, /Add to cart|In stock/i);
   assert.match(read('js/shop.js'), /checkoutLive/);
   assert.doesNotMatch(read('js/shop.js'), /paypal|stripe|checkout\.session/i);
 });

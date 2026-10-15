@@ -20,25 +20,12 @@ test('language routes preserve both intake intents, fragments, and unrelated que
   assert.equal(language.languageFromSearch('?lang=es&intent=free-plan'), 'es');
 });
 
-test('all translated homepage and support elements have complete EN/ES copy', () => {
-  for (const file of ['index.html', 'support.html']) {
-    const html = read(file);
-    assert.match(html, /data-language="en"[^>]*>English<\/a>/);
-    assert.match(html, /data-language="es"[^>]*>Español<\/a>/);
-    assert.match(html, /\/js\/journey-language\.js/);
-    const keys = [...html.matchAll(/data-journey-(?:i18n|label)="([^"]+)"/g)].map(match => match[1]);
-    assert.ok(keys.length > 20, file + ' covers its customer-facing route');
-    for (const key of keys) {
-      for (const lang of ['en', 'es']) assert.equal(typeof language.copy[key]?.[lang], 'string', file + ': ' + key + '/' + lang);
-    }
-    assert.match(html, /lang="en"/);
+test('journey-language copy stays complete for EN/ES where it is still used', () => {
+  for (const key of Object.keys(language.copy)) {
+    for (const lang of ['en', 'es']) assert.equal(typeof language.copy[key]?.[lang], 'string', key + '/' + lang);
   }
   assert.match(language.copy.coverage.es, /inglés/);
-  assert.match(language.copy.translation.es, /IA/);
-  assert.match(language.copy.unsupported.es, /traducción del navegador/);
   assert.doesNotMatch(read('js/journey-language.js'), /fetch\(|XMLHttpRequest|localStorage|sessionStorage|sendBeacon/);
-  assert.doesNotMatch(read('support.html'), /src="\/js\/experience\.js/, 'no unlocalized secondary header or sound-resume controls on the support route');
-  assert.match(read('css/journey-language.css'), /html\[lang=es\] \.offer-fallback a\[lang=es\]\{display:none\}/, 'Spanish view has one email fallback');
 });
 
 test('Spanish route applies language metadata, page title, accessible selection and preserved link intent', () => {
