@@ -6,19 +6,24 @@ on:
   push:
     paths:
       - "brand-assets/bundle.tgz.b64"
-permissions:
-  contents: write
+permissions: {}   # least privilege: granted per job below
 jobs:
   unpack:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write   # commit the unpacked assets back to the same branch
     if: ${{ github.repository == 'RepresentPR/dtrtlab' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
       - name: Unpack bundle
         run: |
-          base64 -d brand-assets/bundle.tgz.b64 | tar -xzf -
+          base64 -d brand-assets/bundle.tgz.b64 > /tmp/bundle.tgz
+          if tar -tzf /tmp/bundle.tgz | grep -Eq '(^/|(^|/)\.\.(/|$)|^(\./)?\.git(/|$)|^(\./)?\.github/workflows(/|$))'; then echo 'bundle has unsafe paths'; exit 1; fi
+          tar -xzf /tmp/bundle.tgz --no-same-owner
           if [ -f brand-assets/remove.txt ]; then xargs -r git rm -q --ignore-unmatch < brand-assets/remove.txt; fi
           git rm -q -r brand-assets
+          rm -rf brand-assets   # also drop untracked files that came inside the bundle
           git config user.name "dtrt-brand-bot"; git config user.email "brand-bot@users.noreply.github.com"
           git add -A
           git diff --cached --quiet || (git commit -m "chore(brand): unpack Theme A brand bundle (icons, share cards, head tags)" && git push)

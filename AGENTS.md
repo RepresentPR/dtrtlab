@@ -62,6 +62,7 @@ Do not park ordinary bugfixes as “blocked on Ian.” Do not decide brand, pric
 - Keep Lab usefulness surfaces separate from DTRTC stream chrome. Stage 1 freeze keeps the public results dashboard, streaming, and AFTERLIGHT on `/lab.html`. `/live/` is now the private owner dashboard: encrypted aggregates only (`live/owner.enc.json`), unlinked and `noindex`; `/hq/` redirects to it. Never commit its plaintext data or password.
 - AFTERLIGHT / game status stays honest (“in development / not for sale”).
 - Public contact is `hello@dtrtlab.com` (not Outlook on the site).
+- GitHub Pages cannot send security headers, so every public page carries a meta Content-Security-Policy (`scripts/security-meta.test.cjs`). If you change an inline `<script>` on `/live/` or `/proof/`, update its `sha256-` hash in that page's CSP. Pin workflow actions to full commit SHAs and keep `permissions:` minimal.
 
 ## Vision filter (every change)
 

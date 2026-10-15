@@ -513,6 +513,7 @@ body.al-paper[data-theme="dark"] .al-reader .controls button { border-color: #3b
 body.al-paper[data-theme="dark"] .al-reader a { color: #a7ceb5; }
 .al-cut {
   margin: 2.4rem -1.2rem 1.4rem;
+  overflow: hidden; /* keep the slow zoom inside the frame (no sideways scroll on phones) */
 }
 .al-cut img {
   width: 100%;
