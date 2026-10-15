@@ -7,12 +7,15 @@ const read = name => fs.readFileSync(path.join(root, name), 'utf8');
 
 test('brand kit has the public paste text and a short bio', () => {
   const kit = read('brand-kit.md');
-  assert.match(kit, /#080808/);
-  assert.match(kit, /#fafafa/);
-  assert.match(kit, /#b6b6b6/);
-  assert.match(kit, /#303030/);
-  assert.match(kit, /#141414/);
-  assert.match(kit, /#cfe35a/);
+  // Theme A palette (locked 2026-10-15): navy primary, green accent, white/light neutrals.
+  const colors = kit.slice(kit.indexOf('## Colors'), kit.indexOf('## Fonts'));
+  assert.match(colors, /Primary \| `#0B2545`/);
+  assert.match(colors, /Accent \| `#13C27A`/);
+  assert.match(colors, /`#FFFFFF`/);
+  assert.match(colors, /`#DCE6F2`/);
+  assert.match(colors, /`#0A8754`[^\n]*chart/i, 'darker green is documented for light-background charts only');
+  assert.doesNotMatch(colors, /#080808|#fafafa|#b6b6b6|#303030|#141414|#cfe35a/i, 'old black/white palette is retired');
+  assert.match(fs.readFileSync(path.join(root, 'css/theme-a.css'), 'utf8'), /--navy:#0B2545;--green:#13C27A/, 'kit matches the site CSS');
   assert.match(kit, /Source Sans 3/);
   assert.match(kit, /Source Serif 4/);
   const oneLine = kit.match(/DTRT Lab writes for local businesses\. Do the right thing\. Free plan: dtrtlab\.com/);

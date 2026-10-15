@@ -21,18 +21,21 @@ Logo: **Concept A, "D/ Refined"** (approved 2026-10-15). A geometric **D** built
 - Wordmark in the interface: **DTRT** with **THE LAB** set small beside it. Do not restack it into a new logo.
 - Source and construction drawings: Brain note `research/logo-geometry-2026-10-15` (private).
 
-## Colors
+## Colors (Theme A, locked 2026-10-15)
 
 | Role | Hex | Use |
 | --- | --- | --- |
-| Background | `#080808` | Page background |
-| Text and accent | `#fafafa` | Type, primary buttons, focus |
-| Muted text | `#b6b6b6` | Secondary copy |
-| Lines | `#303030` | Borders and rules |
-| Panel | `#141414` | Cards |
-| Label only | `#cfe35a` | Small work labels. Not buttons. |
+| Primary | `#0B2545` | Navy. Header, hero and footer bands, dark panels, body text on light backgrounds, logo tile |
+| Accent | `#13C27A` | Green. Primary buttons (navy text), the logo slash, highlights, focus rings, eyebrows on navy |
+| Text on navy | `#FFFFFF` | Headlines and copy on navy |
+| Light | `#DCE6F2` | Light section bands, secondary copy on navy, outline-button hover |
+| Page | `#FFFFFF` | Page background and cards |
 
-Company buttons are white on near-black. Orange is not the company accent.
+Contrast: white on navy 15.4:1, `#DCE6F2` on navy 12.2:1, green on navy 6.6:1. Green on white is only 2.3:1, so never set green text or thin green lines on white.
+
+Light-background charts only: use the darker green `#0A8754` (4.6:1 on white) for chart lines, bars and data labels on white or light panels. It is not a brand color: not for buttons, the logo or type.
+
+Buttons are green with navy text, or outlined in the current text color. The old near-black/white palette and orange are retired from the company face (they remain only on the sequestered hobby/stream pages).
 
 ## Fonts
 
@@ -54,7 +57,7 @@ DTRT Lab writes for local businesses. The mission is do the right thing: help re
 ## Profile photo and banner
 
 - Profile photo: a real head-and-shoulders photo, soft light, plain or quiet background, no party crop and no other people. Until that photo is supplied, use `img/brand/dtrt-avatar.png`. Do not invent a portrait.
-- Banner: a wide still of real work (desk, notes, workshop), not a stock skyline and not a view-count graphic. Keep type in `#fafafa` on `#080808` if you add words. Safe center for crops. No fake client logos.
+- Banner: a wide still of real work (desk, notes, workshop), not a stock skyline and not a view-count graphic. Keep type white (`#FFFFFF`) on navy (`#0B2545`) if you add words. Safe center for crops. No fake client logos.
 - Square posts: the mark or a real work still. Story and reel covers can be vertical crops of the same still.
 - Do not use screenshots of private inboxes, IDs, or other people’s faces without consent.
 
