@@ -1,0 +1,27 @@
+/* Job Desk how-it-works article (ep01). Theme A only: navy #0B2545, green #13C27A, light #DCE6F2, white. */
+.article{padding:56px 0 24px}
+.article .wrap{width:min(820px,calc(100% - 40px))}
+.article h1{font-size:clamp(34px,5vw,54px);line-height:1.05;letter-spacing:-.02em;font-weight:800;margin:12px 0 16px}
+.article h2{font-size:clamp(26px,3.4vw,34px);margin:52px 0 12px}
+.article p{margin:0 0 14px}
+.article ul{padding-left:22px;margin:0 0 14px}.article li{margin:6px 0}
+.article .toc{background:var(--light);border-radius:12px;padding:18px 24px;margin:26px 0}
+.article .toc ol{margin:8px 0 0;padding-left:22px;columns:2;column-gap:28px}
+.article .toc a{text-decoration:none;font-weight:600}.article .toc a:hover{color:var(--green)}
+.article figure{margin:22px 0 26px}
+.article figure img{display:block;width:100%;height:auto;border-radius:12px;border:2px solid var(--light)}
+.article figure.tall img{max-width:420px;margin-inline:auto}.article figure.tall figcaption{text-align:center}
+.article figcaption{font-size:15px;margin-top:8px}
+.article .demo-note{display:inline-block;background:var(--navy);color:var(--white);font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:4px}
+.article .stat{background:var(--navy);color:var(--white);border-radius:12px;padding:26px 26px 22px;margin:22px 0}
+.article .stat strong{display:block;font-size:clamp(48px,8vw,72px);line-height:1;color:var(--green);letter-spacing:-.03em}
+.article .stat p{margin:10px 0 0}.article .stat cite{display:block;font-style:normal;font-size:15px;color:var(--light);margin-top:12px}
+.article .stat a{color:var(--green)}
+.article .video-slot{aspect-ratio:16/9;background:var(--navy);color:var(--light);border-radius:12px;display:grid;place-items:center;text-align:center;padding:20px;margin:24px 0}
+.article .video-slot b{display:block;color:var(--white);font-size:22px}
+.article .levels{border-collapse:collapse;width:100%;margin:10px 0 18px;font-size:17px}
+.article .levels th,.article .levels td{border-bottom:1px solid var(--light);padding:9px 8px;text-align:left;vertical-align:top}
+.article .levels th{width:64px;color:var(--navy)}
+.article .never li::marker{content:"✕  ";color:var(--navy);font-weight:800}
+.article .src{font-size:15px}
+@media(max-width:560px){.article .toc ol{columns:1}}

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests"><meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/img/brand/mark.svg?v=la20261015" type="image/svg+xml">
+<link rel="icon" href="/img/brand/favicon-32.png?v=la20261015" type="image/png" sizes="32x32">
+<link rel="icon" href="/img/brand/favicon-16.png?v=la20261015" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=la20261015" sizes="180x180">
+<link rel="manifest" href="/site.webmanifest?v=la20261015">
+<meta name="theme-color" content="#0B2545">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Ian | DTRT Lab">
+<meta property="og:title" content="How the Job Desk works | Ian | DTRT Lab">
+<meta property="og:description" content="One evening at a made-up heating and air company: the nightly Report Card, one queue, one timeline per job, and Autopilot levels with undo.">
+<meta property="og:url" content="https://dtrtlab.com/job-desk/how-it-works/">
+<meta property="og:image" content="https://dtrtlab.com/img/brand/og-theme-a.png?v=la20261015">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ian | DTRT Lab">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://dtrtlab.com/img/brand/og-theme-a.png?v=la20261015">
+<title>How the Job Desk works | Ian | DTRT Lab</title>
+  <meta name="description" content="One evening at a made-up heating and air company: the nightly Report Card, one queue, one timeline per job, and Autopilot levels with undo.">
+  <link rel="canonical" href="https://dtrtlab.com/job-desk/how-it-works/">
+  <link rel="stylesheet" href="/css/theme-a.css?v=20261015-theme-a">
+  <link rel="stylesheet" href="/job-desk/how-it-works/article.css?v=20261015-ep01">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="top"><div class="wrap"><a class="brand" href="/" aria-label="Ian | DTRT Lab home">Ian <b>|</b> DTRT Lab</a><nav aria-label="Main navigation"><a href="/#job-desk">Job Desk</a><a href="/#prices">Prices</a><a href="/#faq">FAQ</a><a class="btn sm" href="mailto:hello@dtrtlab.com?subject=SYSTEM&amp;body=Business%20name%3A%20%0AType%20of%20business%3A%20%0ATown%3A%20%0AApps%20you%20use%20now%3A%20%0AWhat%20eats%20your%20week%3A%20">Reply SYSTEM</a></nav></div></header>
+  <main id="main">
+    <article class="article"><div class="wrap">
+      <p class="eyebrow">Job Desk · Episode 1</p>
+      <h1>How the Job Desk works</h1>
+      <p class="lead">You're on a job. A new lead just texted. Who answers it? Here is one evening at a heating and air company, start to finish, in the Job Desk: the AI office manager I build for service businesses in the DMV Area.</p>
+      <p><span class="demo-note">Demo, made-up data</span> Every screen below is from the <a href="/demo/">public demo</a>. Sample Heating &amp; Air Co., its customers and its numbers are made up.</p>
+
+      <!-- YouTube embed slot. When the video is uploaded, replace this div with a youtube-nocookie.com iframe and add "frame-src https://www.youtube-nocookie.com" to the CSP meta above. -->
+      <div class="video-slot" id="video" role="note"><div><b>Video coming soon</b>The 7-minute walkthrough of this page goes here.</div></div>
+
+      <nav class="toc" aria-label="On this page"><b>On this page</b>
+        <ol>
+          <li><a href="#gap">The one-hour gap</a></li>
+          <li><a href="#what">What the Job Desk is</a></li>
+          <li><a href="#tonight">Tonight: the nightly Report Card</a></li>
+          <li><a href="#needs">Needs you: one queue</a></li>
+          <li><a href="#approve">Approve, edit or skip</a></li>
+          <li><a href="#jobs">Jobs: one timeline per job</a></li>
+          <li><a href="#autopilot">Autopilot: levels and undo</a></li>
+          <li><a href="#never">What it never does</a></li>
+          <li><a href="#who">Who it's for</a></li>
+        </ol>
+      </nav>
+
+      <h2 id="gap">The one-hour gap</h2>
+      <div class="stat"><strong>17%</strong><p>Only 17% of HVAC companies reply to a new lead within an hour. 78% reply the same day.</p><cite>Source: Jobber, 2026 Home Service Trends Report, via <a href="https://www.getjobber.com/academy/hvac/hvac-industry-trends/" rel="noopener noreferrer">Jobber's HVAC industry trends</a>.</cite></div>
+      <p>Most companies do reply. Just not fast. Jobber also notes that customers often reach out to more than one company at once, and the first business to respond often gets the job.</p>
+      <p>When you're on a job all day, the office work waits until night. So what if the office work kept up, and you only touched what needs you?</p>
+
+      <h2 id="what">What the Job Desk is</h2>
+      <p>Four screens: Tonight, Needs you, Jobs and Autopilot. I set it up inside the field-service, email and review apps you already pay for. No new app to learn.</p>
+      <p>Every task has a level. Some it only suggests. Some it drafts for your OK. Some it runs on its own, logs, and lets you undo.</p>
+
+      <h2 id="tonight">Tonight: the nightly Report Card</h2>
+      <figure class="tall"><img src="/job-desk/how-it-works/img/tonight.svg" width="880" height="1360" alt="Demo screenshot: the nightly Report Card for a made-up heating and air company, with a new lead waiting 48 minutes at the top." loading="lazy"><figcaption><span class="demo-note">Demo, made-up data</span> The Report Card. The top item is a lead that has waited 48 minutes.</figcaption></figure>
+      <ul>
+        <li>Every night, you get one screen on your phone. It sends at 8 PM by default, and you can pick any time.</li>
+        <li>It starts with one line: all clear, or how many things need you.</li>
+        <li>Then at most 3 things, most urgent first, and 4 numbers compared with last week.</li>
+        <li>One line says what Autopilot did today, linked to the full log.</li>
+        <li>Urgent pings go out only for safety words or a lead waiting over an hour, and never more than 2 a day.</li>
+      </ul>
+
+      <h2 id="needs">Needs you: one queue</h2>
+      <figure><img src="/job-desk/how-it-works/img/needs.svg" width="1100" height="767" alt="Demo screenshot: the Needs you queue. A made-up customer's lead is first, with a red 48-minute chip." loading="lazy"><figcaption><span class="demo-note">Demo, made-up data</span> One list of everything that needs a person.</figcaption></figure>
+      <p>The order is safety first, then urgent, then money at stake, then what's due. Any lead waiting over 15 minutes counts as urgent and turns red. In the demo, Maria's web form says "No heat, furnace clicks but won't start," and she has waited 48 minutes, so she's first.</p>
+
+      <h2 id="approve">Approve, edit or skip</h2>
+      <figure><img src="/job-desk/how-it-works/img/edit.svg" width="1100" height="441" alt="Demo screenshot: editing the drafted first reply to a made-up lead before approving it." loading="lazy"><figcaption><span class="demo-note">Demo, made-up data</span> The first reply is drafted, not sent. It waits for your OK.</figcaption></figure>
+      <ul>
+        <li><b>Edit:</b> change a word or rewrite it. It saves as a draft.</li>
+        <li><b>Approve:</b> it goes out and leaves the list. (In the demo, nothing is really sent.)</li>
+        <li><b>Skip:</b> it won't come back tonight.</li>
+      </ul>
+
+      <h2 id="jobs">Jobs: one timeline per job</h2>
+      <figure class="tall"><img src="/job-desk/how-it-works/img/job.svg" width="880" height="1280" alt="Demo screenshot: a made-up job's timeline showing what the customer said, what the system did and what was approved." loading="lazy"><figcaption><span class="demo-note">Demo, made-up data</span> Every step has a time, and who did it.</figcaption></figure>
+      <p>Jobs shows every job and where it stands. Open one to see what the customer said, what the system did, and what you approved.</p>
+      <p>Open quotes get up to 3 nudges, on day 2, day 5 and day 10. Nudges stop the moment the customer replies. They count as marketing, so consent must be on file and STOP is always honored. Mark a job won or lost, and the remaining nudges stop.</p>
+
+      <h2 id="autopilot">Autopilot: levels and undo</h2>
+      <figure><img src="/job-desk/how-it-works/img/autopilot.svg" width="1100" height="465" alt="Demo screenshot: the Autopilot list with each automation's level. Email and web form to job card is at L2." loading="lazy"><figcaption><span class="demo-note">Demo, made-up data</span> Email and web form to job card stays at L2 until it proves 95% on your own mail.</figcaption></figure>
+      <table class="levels"><caption class="fine">The levels, as the demo defines them</caption>
+        <tr><th>L0</th><td>Off: never automated</td></tr>
+        <tr><th>L1</th><td>Suggest: you do it</td></tr>
+        <tr><th>L2</th><td>Ask me: it drafts, you approve</td></tr>
+        <tr><th>L3</th><td>Auto + undo: it runs, tells you, and can be undone</td></tr>
+        <tr><th>L4</th><td>Auto: shown in the log only</td></tr>
+      </table>
+      <p>An automation moves up a level only after a clean record, like a week with no wrong sends. Any wrong send, complaint or jump in opt-outs drops it a level. Everything Autopilot did is in the log, with Undo. One switch pauses everything.</p>
+
+      <h2 id="never">What it never does</h2>
+      <ul class="never">
+        <li>Touch prices, refunds, invoices or payments. Always you.</li>
+        <li>Give technical or safety advice. Safety words like gas, CO, sparks or flood ping your phone right away.</li>
+        <li>Contact an upset customer. A low score lands in Needs you as "call them."</li>
+        <li>Hold back the review link. Every finished job gets the same one, whatever the score.</li>
+      </ul>
+
+      <h2 id="who">Who it's for</h2>
+      <p>I'm Ian. I build the Job Desk for service businesses in the DMV Area: HVAC, plumbing and electrical first, then small property managers and remodelers.</p>
+      <p>Want to see what it would run for you? Answer a few written questions. Within 3 business days you get a free one-page map: each task, your apps, what the Job Desk would run and what stays with you. No call, no obligation.</p>
+      <p><a class="btn" href="mailto:hello@dtrtlab.com?subject=SYSTEM&amp;body=Business%20name%3A%20%0AType%20of%20business%3A%20%0ATown%3A%20%0AApps%20you%20use%20now%3A%20%0AWhat%20eats%20your%20week%3A%20">Reply SYSTEM and I'll map yours free.</a></p>
+      <p class="src">Try it yourself: <a href="/demo/">the Job Desk demo</a> (made-up data, nothing is really sent).</p>
+    </div></article>
+  </main>
+  <footer class="foot"><div class="wrap"><p>Ian | DTRT Lab · DMV Area (DC · MD · VA) · <a href="mailto:hello@dtrtlab.com">hello@dtrtlab.com</a></p><nav aria-label="Footer"><a href="https://x.com/DTRTLab" rel="noopener noreferrer">X</a><a href="https://www.instagram.com/officiallydtrt/" rel="noopener noreferrer">Instagram</a><a href="https://www.linkedin.com/in/ian-ferraro-578784419/" rel="noopener noreferrer">LinkedIn</a><a href="/contact.html">Contact</a><a href="/legal/privacy.html">Privacy</a><a href="/legal/terms.html">Terms</a><a href="/legal/refunds.html">Refunds</a></nav></div></footer>
+</body>
+</html>
