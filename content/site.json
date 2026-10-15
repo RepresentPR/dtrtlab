@@ -4,7 +4,7 @@
   "creator": "Ian Ferraro",
   "legalName": "DTRT Lab",
   "tagline": "DTRT AFTERLIGHT — the island remembers.",
-  "oneSentence": "Ian | DTRT Lab helps DMV Area small businesses get more customers: I do the work, then show you your numbers 30 days later. Start for $50, no contract.",
+  "oneSentence": "Ian | DTRT Lab builds DTRT Job Desk, the AI office manager for DMV Area service businesses: every job tracked, every customer updated, every quote followed up, and a report card each night. Reply SYSTEM for a free written map.",
   "preorderEnabled": false,
   "preorderPriceUsd": null,
   "preorderNote": "Price and checkout stay off until a PayPal sandbox app is configured and a price is set in .env. This is a release candidate, not 1.0.",

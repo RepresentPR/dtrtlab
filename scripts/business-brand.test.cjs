@@ -36,7 +36,7 @@ test('brand kit has the public paste text and a short bio', () => {
 test('business pages show theme A offers and keep hobby off the company face', () => {
   const home = read('index.html');
   const main = home.match(/<main[\s\S]*?<\/main>/)[0];
-  assert.match(main, /I help DMV small businesses <span>get more customers\.<\/span>/);
+  assert.match(main, /I build the AI office manager <span>for DMV service businesses\.<\/span>/);
   assert.match(main, /Do the right thing\. We help businesses grow\./);
   assert.match(main, /DMV Area/);
   assert.match(main, /Fix\. Measure\. Report\./);
