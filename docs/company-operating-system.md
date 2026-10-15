@@ -1,33 +1,42 @@
 # DTRT Lab — company operating system
 
-**Purpose:** Close the gap between a strong solo-founder presence and a company that can scale toward top-tier global standards — without pretending we are already there.
+**Purpose:** Run a small writing studio with a clear executive split. Scale only with dated proof. Do not pretend the studio is already a large company.
 
-**Vision alignment:** Personal + company north star live in [`docs/vision.md`](vision.md). Every checklist item below must serve that document, not viral tools or fake scale.
+**Vision alignment:** Long-term filter lives in [`docs/vision.md`](vision.md). Day-to-day execution obeys [`AGENTS.md`](../AGENTS.md). Stage 1 keeps the public face on the B2B writing studio.
 
-**Last reviewed:** 2026-10-13
+**Last reviewed:** 2026-10-15
 
-## Executive decision order (agent first · Ian second)
+## 1. Executive split and decision authority
 
-Company execution is **not** “wait for Ian on every click.” Default authority:
-
-| Seat | Role | Does |
+| Seat | Who | Does |
 | --- | --- | --- |
-| **1st — Agent (ops executive)** | Run the company day-to-day inside vision | Decide, ship, merge, schedule, fix conflicts, polish, keep the unfinished-work pipeline current. Prefer action over parking work as “blocked.” |
-| **2nd — Ian (founder executive)** | Override + unlock | Change direction when something should be done differently; supply credentials/logins only he has; veto or redirect. Not the default bottleneck for ordinary execution. |
+| **First chair — operations** | AI agents | Ordinary tasks, social drafts, code builds, GitHub pull requests, and pipeline tracking in [`docs/unfinished-work-pipeline.md`](unfinished-work-pipeline.md). Strictly obey [`AGENTS.md`](../AGENTS.md). |
+| **Second chair — founder** | Ian Ferraro | Absolute authority over acceptance, rejection, pricing, commitments, credential unlocks, and brand positioning. |
 
-**Agent owns:** PR merges (vision order), conflict resolution, docs, site ship, Postiz schedule/publish of quality Lab work, Gmail action digests, vault hygiene, audits.
+**No autonomous overrides.** Agents may not unilaterally pivot company identity, modify pricing structures, or remove professional portfolios.
 
-**Ian unlocks only when required:** GitHub profile UI (hireable/bio), LinkedIn paste, photo dump from phone/iCloud, Workday/Caliber logins, Grok Bot approval cards, legal entity / counsel / bank, direction overrides.
+Ordinary bugfixes, tests, and honesty fixes still ship. Do not park that work as “blocked on Ian.” Do not decide acceptance, price, a client commitment, or brand when unsure — stop and ask Ian.
 
-**If unsure:** Agent decides and ships under vision; Ian can reverse. Do **not** stall a whole wave for a courtesy click.
+**Agent executes:** PR merges that stay inside the current offer, conflict resolution, docs that do not change the offer, site fixes, Postiz drafts of writing-studio work, Gmail action digests, vault hygiene, audits.
+
+**Ian unlocks:** acceptance or rejection of work and clients, pricing, commitments, GitHub profile UI, LinkedIn paste, photo dump from phone/iCloud, Workday/Caliber logins, Grok Bot approval cards, legal entity / counsel / bank, and any brand-positioning change.
 
 Track file: [`docs/unfinished-work-pipeline.md`](unfinished-work-pipeline.md).  
-AI templates (agent floor + prompts): [`docs/templates/`](templates/README.md) · root [`AGENTS.md`](../AGENTS.md).  
-AI spend (one chat / one agent / company vs experiments): [`docs/ai-spend-ops.md`](ai-spend-ops.md).
+AI templates: [`docs/templates/`](templates/README.md) · root [`AGENTS.md`](../AGENTS.md).  
+AI spend (company vs experiments): [`docs/ai-spend-ops.md`](ai-spend-ops.md).
+
+## 2. Execution velocity and conversion
+
+- Remove unnecessary tool bloat and multi-tier complexity from operations. Do not add dashboards, offer tiers, or tools that do not move the writing pipeline.
+- Put operational bandwidth on the **Free Plan** and **The Starter Fix** ($50 flat writing audit delivered in 48 hours).
+- Stage 1 target by 2026-12-31, as a goal and not a result: 10 Free Plans, 2–3 paid Starter Fixes, 3 testimonials. Do not publish those numbers as done.
+- Freeze `/live/`, streaming, and AFTERLIGHT onto `/lab.html` until the first 3 paying clients. AFTERLIGHT stays “in development / not for sale.” Do not claim those clients exist.
+
+Public catalog as of 2026-10-15, which this operating-system note does not rewrite: Free plan, Mini Social Pack $50, Week Pack $129, and Writing Retainer — Starter $250/30 days on Whop. Driving the $50 offer does not include renaming or deleting those tiers. That is a pricing-structure change and waits for an explicit site instruction from Ian.
 
 ## Honest baseline
 
-DTRT Lab is Ian Ferraro’s independent creator studio: public free-plan consulting offer, multi-platform content, dated results dashboard, and **DTRT AFTERLIGHT** in development. Personal aim: do the right thing, make useful stuff, show the process, and eventually use Lab revenue to help Puerto Rico businesses. A “top 50 global company” also requires entity, capital, people, compliance, distribution, and multi-year product market fit. Those are **operating steps**, not website copy.
+DTRT Lab’s Stage 1 operating identity is Ian Ferraro’s writing studio for local businesses: Free Plan, then the $50 Starter Fix. Hobby, streaming, and AFTERLIGHT stay on `/lab.html`. Personal aim: do the right thing, make useful stuff, show the process, and eventually use studio revenue to help Puerto Rico businesses. Entity, capital, people, and compliance are operating steps, not website copy. Do not claim a top-50 company, a team, or paying-client counts that are not dated.
 
 ## What “full company” means here (phased)
 
@@ -35,21 +44,21 @@ DTRT Lab is Ian Ferraro’s independent creator studio: public free-plan consult
 | --- | --- | --- |
 | **A. Public foundation** | Legal pages, press kit, brand kit, security contact, careers/investors honesty, schema, sitemap, company inbox | Shipped on site (keep honest as facts change) |
 | **B. Operating company** | Registered entity, bank, accounting, insurance, trademarks, send-as `@dtrtlab.com`, DMARC hygiene | External — owner actions |
-| **C. Product company** | Live store/preorder or Steam, support SLAs, status page, privacy program | Interest catalog live at `/shop.html` (checkout off); flip when payment + fulfillment real |
+| **C. Product company** | One paid writing offer with real delivery, then a store only when fulfillment is real | $50 writing path is the operating focus. `/shop.html` stays an interest catalog (`checkoutLive: false`) |
 | **D. Scaled company** | Hiring, fundraising or profit engine, multi-person leadership, formal security/compliance | Future — do not fake on site |
 
 ## Visitor pipeline (dummy-proof, one-click)
 
-Public production rule: **never make a visitor hunt for 30 minutes**. Four actions cover almost everything:
+Public production rule: **never make a visitor hunt for 30 minutes**. The path is Free Plan, then the $50 writing offer. Do not add steps.
 
 | Action | One-click destination |
 | --- | --- |
 | **Free plan** | `/contact.html?intent=free-plan` |
-| **Paid work** | `/contact.html?intent=paid-project` |
+| **$50 writing offer** | Existing $50 Whop plan, still labeled Mini Social Pack until Ian renames it |
 | **Company hub** | `/company.html` (press / brand / careers / proof) |
 | **Contact** | `/contact.html` |
 
-Homepage: header + sticky dock + hero CTA all point at Free plan first. Ops evidence (results, publishing queue, gaming archive) stays **collapsed** under “Optional proof” so it cannot bury the offer. Global `nav.js` CTA is **Free plan**, not Twitch Follow. Rename gaming “Work” → **Clips** so it never competes with company examples.
+Homepage: header, sticky dock, and hero lead with the Free Plan and must not bury it under hobby. Ops evidence and the gaming archive stay collapsed. Global nav CTA is the writing studio, not Twitch Follow. Hobby links point at `/lab.html`.
 
 ## P0 gaps closed in the repo (this work)
 
@@ -76,14 +85,15 @@ Homepage: header + sticky dock + hero CTA all point at Free plan first. Ops evid
 
 ## North-star metrics (company, not vanity)
 
-Track weekly in `/live/` or private notes:
+Track weekly in private notes, and publish only figures that are dated and real:
 
-- Useful plans delivered (free + paid) — usefulness pillar
+- Free Plans delivered, and paid $50 Starter Fixes actually delivered, against the 2026-12-31 target (10 free, 2–3 paid, 3 testimonials). Record a count only when the work is done.
 - Public evidence quality (dated, honest, attributable)
-- AFTERLIGHT: readable chapters shipped / playtest readiness — Puerto Rico story world
-- Inbound trust: press replies, partner briefs, zero bounced `@dtrtlab.com` mail
+- Inbound trust: real replies to `hello@dtrtlab.com`, zero bounced `@dtrtlab.com` mail
 - Cash: runway months (private) — precondition for any Puerto Rico business-help program
-- Vision filter passes: no clone-hacks, no fake scale (see `docs/vision.md`)
+- Vision filter: no clone-hacks, no fake scale, no invented client count (see `docs/vision.md`)
+
+AFTERLIGHT chapter counts are hobby notes, not the studio’s operating metric during Stage 1.
 
 ## What we will never put on the site
 
@@ -92,6 +102,6 @@ Track weekly in `/live/` or private notes:
 - Investor pages that imply an open raise when none exists
 - Promises of a Puerto Rico funding program before revenue and a real program design exist
 
-## Tooling policy (aligned with vision)
+## Tooling policy
 
-Adopt tools that help **our** free plans, **our** evidence, or **our** AFTERLIGHT builds. Decline tools whose primary pitch is reverse-engineering or cloning third-party products. Trending ≠ aligned.
+Adopt a tool only when it speeds the Free Plan or the $50 Starter Fix pipeline. Decline extra suites, cloned-product pitches, and anything whose main job is entertainment infrastructure on the company face. Trending is not a reason to add a tool.
