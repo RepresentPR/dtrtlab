@@ -1,7 +1,7 @@
 {
   "name": "Ian | DTRT Lab",
   "short_name": "DTRT Lab",
-  "description": "Stay on the chair. We write your posts.",
+  "description": "The AI office manager for DMV service businesses.",
   "start_url": "/",
   "display": "browser",
   "background_color": "#0B2545",
