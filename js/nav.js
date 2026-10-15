@@ -43,7 +43,7 @@
     'img/brand/mark.svg" alt="DTRT Lab" width="36" height="36"><span>Ian | DTRT Lab</span></a>' +
     '<nav class="links" id="site-links" aria-label="' + ui.primary + '">' +
     link("index.html#prices", lang === "es" ? "Precios" : "Prices", false) +
-    link("index.html#how", lang === "es" ? "Cómo funciona" : "How it works", false) +
+    link("index.html#job-desk", "Job Desk", false) +
     link("index.html#about", lang === "es" ? "Sobre Ian" : "About Ian", aboutOn) +
     link("contact.html", ui.contact, contactOn) +
     '<a href="' + langHref("en") + '" lang="en" hreflang="en"' + (lang === "en" ? ' aria-current="page"' : "") + '>EN</a>' +
@@ -77,7 +77,6 @@
       '<div class="wrap">' +
       "<span>" + ui.credit + "</span>" +
       '<a href="' + root + 'index.html#prices">' + (lang === "es" ? "Precios" : "Prices") + '</a>' +
-      '<a href="https://whop.com/checkout/plan_Vn0gQGFWQx9CA" rel="noopener noreferrer">' + (lang === "es" ? "Reescritura gratis" : "Free first-line rewrite") + '</a>' +
       '<a href="' + root + 'contact.html">' + ui.contact + '</a>' +
       '<a href="' + root + 'brand.html">' + ui.brand + '</a>' +
       '<a href="' + root + 'find.html">X · Instagram</a>' +

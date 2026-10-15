@@ -33,12 +33,12 @@ test('hobby archive renders on lab.html and the homepage stays the theme A writi
   assert.doesNotMatch(home, /id="gaming-archive"/);
   assert.match(home, /I'm Ian Ferraro, in the DMV Area\./);
   assert.doesNotMatch(home, /Clinton|Southern Maryland|SoMD/i);
-  assert.match(home, /Stay on the chair\./);
-  assert.match(home, /https:\/\/whop\.com\/checkout\/plan_HAGSLXXUeGkcz/);
-  assert.match(home, /https:\/\/whop\.com\/checkout\/plan_RVDjSToI7vKOM/);
+  assert.doesNotMatch(home, /Stay on the chair/);
+  assert.match(home, /<meta property="og:image" content="https:\/\/dtrtlab\.com\/img\/brand\/og-job-desk-2026-10-15\.png">/);
+  assert.doesNotMatch(home, /plan_HAGSLXXUeGkcz|plan_RVDjSToI7vKOM/);
   assert.match(home, /https:\/\/whop\.com\/checkout\/plan_kZqq0jgr6VrGG/);
   assert.match(home, /https:\/\/whop\.com\/checkout\/plan_yuDiw93Zp6Uvr/);
-  assert.match(home, /https:\/\/whop\.com\/checkout\/plan_Vn0gQGFWQx9CA/);
+  assert.doesNotMatch(home, /plan_Vn0gQGFWQx9CA|id="free-rewrite"/, 'free first-line rewrite is retired');
   assert.doesNotMatch(home, /@gmail\.com|PayPal/);
   const main = home.match(/<main[\s\S]*?<\/main>/)?.[0] || '';
   assert.doesNotMatch(main, /twitch\.tv|\/cs2\.html|\/afterlight\.html|\/clips\//i);

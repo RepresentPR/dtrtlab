@@ -32,7 +32,7 @@
       defaults: { 'Free plan': 'Free plan — business or idea', 'Paid project inquiry': 'Discuss a paid project', 'Shop interest': 'Shop interest — product I’d buy' },
       title: 'Say hello to DTRT Lab', freeTitle: 'Your free writing plan starts here', paidTitle: 'Discuss writing for your business', shopTitle: 'Tell us what you’d buy', pageTitle: 'Contact — DTRT Lab',
       freeContext: 'Three practical priorities, one sample improvement and one next step. Free, with no purchase required. Implementation is agreed separately. Open to any age / any size idea.',
-      paidContext: 'Tell us what you need written. Named writing plans are Mini Social Pack $50, Week Pack $129, and Writing Retainer — Starter $250/30 days, paid on Whop. Custom work still needs a written scope first. This page does not collect a card.',
+      paidContext: 'Tell us what you need written. Writing Retainer — Starter $250/30 days is paid on Whop. Custom work still needs a written scope first. This page does not collect a card.',
       shopContext: 'Checkout is not live. Tell us which digital or merch item you’d buy so we can open the store with real demand. No charge from this page.',
       context: 'This page prepares an email. It does not send a request or confirm a booking.', optionalMessage: 'Other context (optional)', requiredMessage: 'Message (required)',
       category: 'Category', subject: 'Subject', name: 'Name', reply: 'Reply email', project: 'Business link or idea', goal: 'Goal', to: 'To',
@@ -45,7 +45,7 @@
       labels: {
         'contact-skip': 'Skip to content', 'contact-nav-work': 'Packages', 'contact-nav-results': 'Company', 'contact-nav-about': 'About', 'contact-nav-partner': 'Partner', 'contact-current-link': 'Contact',
         'contact-intro': 'Choose a free writing plan, a named writing plan on Whop, or send a question. You stay in control of sending the email.',
-        'contact-free-route': 'Free plan', 'contact-paid-route': 'Discuss writing', 'contact-support-route': 'Writing plans', 'contact-email-intro': 'Email',
+        'contact-free-route': 'Free plan', 'contact-paid-route': 'Discuss writing', 'contact-support-route': 'Prices', 'contact-email-intro': 'Email',
         'contact-privacy-note': 'Share public information only; no passwords, customer records or financial details are needed.', 'category-label': 'Category',
         'free-plan-details-title': 'Two required details', 'project-label': '1. Public business link or brief idea description (required)',
         'project-help': 'Any size business or an idea is welcome. A website is optional if you describe the idea.', 'goal-label': '2. One goal (required)', 'goal-help': 'What would you like to make clearer or improve?',
@@ -54,7 +54,7 @@
         'fallback-title': 'Email app did not open?', 'fallback-help': 'Copy these into a new email, then review and send it yourself. You can also select the text and copy it manually.',
         'to-label': 'To', 'copy-email': 'Copy email address', 'copy-message-label': 'Subject and message to copy', 'copy-message': 'Copy email message',
         'language-help': 'This inquiry page is available in English and Spanish. Spanish wording prepared with AI; no independent native-speaker review. Other linked resources may be in English. Your browser may offer translation into other languages; that translation may be imperfect.',
-        'contact-credit': 'DTRT Lab · Writing for local businesses', 'contact-home-link': 'Home', 'contact-footer-about': 'About', 'contact-footer-work': 'Packages', 'contact-footer-results': 'Company', 'contact-footer-partner': 'Partner', 'contact-footer-privacy': 'Privacy', 'contact-footer-terms': 'Terms', 'contact-footer-cookies': 'Cookies'
+        'contact-credit': 'DTRT Lab · Do the right thing.', 'contact-home-link': 'Home', 'contact-footer-about': 'About', 'contact-footer-work': 'Packages', 'contact-footer-results': 'Company', 'contact-footer-partner': 'Partner', 'contact-footer-privacy': 'Privacy', 'contact-footer-terms': 'Terms', 'contact-footer-cookies': 'Cookies'
       }
     },
     es: {
