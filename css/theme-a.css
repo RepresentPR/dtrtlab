@@ -32,6 +32,7 @@ h2{font-size:clamp(30px,4vw,44px);line-height:1.1;letter-spacing:-.02em;font-wei
 .offers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:30px}
 .offer{background:var(--white);border:2px solid var(--white);border-radius:12px;padding:26px 22px;display:flex;flex-direction:column;gap:12px}
 .offer.main{border-color:var(--green)}
+.offer.wide{grid-column:1/-1}
 .offer .tag{align-self:flex-start;background:var(--green);color:var(--navy);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;border-radius:4px}
 .offer h3{font-size:24px;font-weight:800}.offer .price{font-size:40px;font-weight:800;letter-spacing:-.02em}.offer .price small{font-size:18px;font-weight:700}
 .offer ul{margin:0;padding-left:20px}.offer li{margin:4px 0}

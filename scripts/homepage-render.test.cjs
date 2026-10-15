@@ -37,6 +37,7 @@ test('hobby archive renders on lab.html and the homepage stays the theme A writi
   assert.match(home, /https:\/\/whop\.com\/checkout\/plan_HAGSLXXUeGkcz/);
   assert.match(home, /https:\/\/whop\.com\/checkout\/plan_RVDjSToI7vKOM/);
   assert.match(home, /https:\/\/whop\.com\/checkout\/plan_kZqq0jgr6VrGG/);
+  assert.match(home, /https:\/\/whop\.com\/checkout\/plan_yuDiw93Zp6Uvr/);
   assert.match(home, /https:\/\/whop\.com\/checkout\/plan_Vn0gQGFWQx9CA/);
   assert.doesNotMatch(home, /@gmail\.com|PayPal/);
   const main = home.match(/<main[\s\S]*?<\/main>/)?.[0] || '';

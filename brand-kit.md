@@ -48,11 +48,11 @@ Buttons are green with navy text, or outlined in the current text color. The old
 
 ### One line (under 150 characters)
 
-DTRT Lab writes for local businesses. Do the right thing. Free plan: dtrtlab.com
+I'm Ian. I help DMV small businesses get more customers. I do the work, and you see your numbers at 30 days. dtrtlab.com
 
 ### Long
 
-DTRT Lab writes for local businesses. The mission is do the right thing: help real local operators, not extract from them. Start with a free plan — one link and one goal — or buy a named writing plan on Whop: Mini Social Pack $50, Week Pack $129, or Writing Retainer — Starter $250/30 days. The studio is independent, based in the DMV Area, and open to any age and any size business or idea. Shop checkout on the site is not live. The stream, The Lab Files, CS2, and the game are hobby, on a separate page, and AFTERLIGHT is in development and not for sale. Contact hello@dtrtlab.com.
+DTRT Lab writes for local businesses. The mission is do the right thing: help real local operators, not extract from them. Start with a free plan — one link and one goal — or buy a named writing plan on Whop: Mini Social Pack $50, Week Pack $129, or Writing Retainer · Review Desk $250/30 days, or the AI Visibility Fix $250 one-time. The studio is independent, based in the DMV Area, and open to any age and any size business or idea. Shop checkout on the site is not live. The stream, The Lab Files, CS2, and the game are hobby, on a separate page, and AFTERLIGHT is in development and not for sale. Contact hello@dtrtlab.com.
 
 ## Profile photo and banner
 
@@ -69,7 +69,7 @@ Use these exact blocks so the profiles match the site. Link the business home, n
 
 - Handle: @DTRTLab
 - Profile URL: https://x.com/DTRTLab
-- Bio: DTRT Lab writes for local businesses. Do the right thing. Free plan: dtrtlab.com
+- Bio: I'm Ian. I help DMV small businesses get more customers. I do the work, then show you your numbers at 30 days. Try me for $50
 - Link: https://dtrtlab.com/
 - Link label: DTRT Lab
 
@@ -77,7 +77,7 @@ Use these exact blocks so the profiles match the site. Link the business home, n
 
 - Handle: @officiallydtrt
 - Profile URL: https://www.instagram.com/officiallydtrt/
-- Bio: Writing for local businesses. Do the right thing. Free plan at dtrtlab.com
+- Bio: Ian | DTRT Lab · DMV Area / I help small businesses get more customers. / I do the work. You see your numbers at 30 days. / Start at $50 👇
 - Link: https://dtrtlab.com/
 - Link label: DTRT Lab
 
@@ -85,7 +85,7 @@ Use these exact blocks so the profiles match the site. Link the business home, n
 
 - Handle: @iananthonyfc
 - Profile URL: https://www.tiktok.com/@iananthonyfc
-- Bio: DTRT Lab writes for local businesses. Do the right thing. dtrtlab.com
+- Bio: I help DMV small businesses get more customers. I do the work. Start at $50
 - Link: https://dtrtlab.com/
 - Link label: DTRT Lab
 
@@ -93,7 +93,7 @@ Use these exact blocks so the profiles match the site. Link the business home, n
 
 - Handle: @DTRTLabYT
 - Profile URL: https://www.youtube.com/@DTRTLabYT
-- Bio: DTRT Lab writes for local businesses. Do the right thing. Free plan and writing plans: dtrtlab.com. Hobby clips are not the company offer.
+- Bio: I'm Ian Ferraro. I help small businesses in the DMV Area (DC, Maryland, Virginia) get more customers. I fix your Google listing, reviews and posts, then show you the numbers 30 days later. You don't need to learn AI, because I do the work. Try me for $50: 1 hook + 5 captions. Writing only: you keep your passwords. No contract. dtrtlab dot com
 - Link: https://dtrtlab.com/
 - Link label: DTRT Lab
 
@@ -109,6 +109,7 @@ Use these exact blocks so the profiles match the site. Link the business home, n
 
 - Mini Social Pack — $50 — https://whop.com/checkout/plan_HAGSLXXUeGkcz
 - Week Pack — $129 — https://whop.com/checkout/plan_RVDjSToI7vKOM
-- Writing Retainer — Starter — $250/30 days — https://whop.com/checkout/plan_kZqq0jgr6VrGG
+- Writing Retainer · Review Desk — $250/30 days — https://whop.com/checkout/plan_kZqq0jgr6VrGG
+- AI Visibility Fix — $250 one-time — https://whop.com/checkout/plan_yuDiw93Zp6Uvr
 
 These are writing plans. Payment is on Whop. The website does not collect card numbers. Public email: hello@dtrtlab.com.
