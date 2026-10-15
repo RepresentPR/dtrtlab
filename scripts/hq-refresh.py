@@ -74,6 +74,8 @@ def main():
     owner["meta"].update({"updated_et": now.strftime("%Y-%m-%d %H:%M ET"), "errors": errors,
                           "days_running": (now.date() - dt.date.fromisoformat(owner["meta"]["start"])).days})
     json.dump(encrypt(owner, pw), open(ENC, "w"))
+    if not os.path.exists(PROOF):
+        print("refreshed", owner["meta"]["updated_et"], "(no proof.json yet)", "errors:", errors or "none"); return
     proof = json.load(open(PROOF))
     proof.update({"updated_et": owner["meta"]["updated_et"], "days_running": owner["meta"]["days_running"],
                   "posts_published": today.get("posts_published"),
