@@ -3,14 +3,14 @@
 **Goal:** `hello@dtrtlab.com` (and `ian@dtrtlab.com`) receiving mail.  
 **Current state (2026-10-13):** Cloudflare Email Routing **live**. MX at `*.mx.cloudflare.net`. Active routing rules:
 
-- `hello@dtrtlab.com` → `iananthonyfc@gmail.com` (public company)
-- `ian@dtrtlab.com` → `iananthonyfc@gmail.com` (founder / CEO personal work)
+- `hello@dtrtlab.com` → founder's private inbox (public company)
+- `ian@dtrtlab.com` → founder's private inbox (founder / CEO personal work)
 
 Site public contact cut over to `hello@dtrtlab.com`.
 
 ## Login portal
 
-Open [mail.google.com](https://mail.google.com) as `iananthonyfc@gmail.com`. Both `@dtrtlab.com` addresses land in that inbox.
+Open the founder's private inbox (address kept in private notes, not in this public repo). Both `@dtrtlab.com` addresses land there.
 
 ## Verify from this repo
 
@@ -24,7 +24,7 @@ Expect MX at `*.mx.cloudflare.net` and `site.json contactEmail: hello@dtrtlab.co
 
 ```bash
 export CF_API_TOKEN='your-token'
-export CF_DESTINATION='iananthonyfc@gmail.com'   # optional
+export CF_DESTINATION='<private destination inbox>'   # required; never commit the real address
 python3 scripts/enable-cloudflare-email-routing.py
 python3 scripts/check-business-email.py
 ```
@@ -56,12 +56,12 @@ Gmail → Settings → Accounts → **Send mail as** → Add `hello@dtrtlab.com`
 | `hello@dtrtlab.com` | Public company inbox (site, free plan, press) |
 | `ian@dtrtlab.com` | Founder/CEO personal work email (modern CEO pattern: first-name@company) |
 | `contact@dtrtlab.com` | Optional alias → same Gmail |
-| Keep `iananthonyfc@gmail.com` / Outlook private | Backend destination only; do not publish |
+| Founder's personal Gmail / Outlook | Backend destination only; keep out of this repo |
 
 ## Owner checklist
 
 - [x] Cloudflare Email Routing enabled
-- [x] Destination `iananthonyfc@gmail.com` verified
+- [x] Destination inbox verified
 - [x] `hello@` and `ian@` routing rules Active
 - [ ] Confirm a test message lands in Gmail inbox (check Spam too)
 - [ ] Choose Zoho / Workspace / M365 for sending

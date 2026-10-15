@@ -7,7 +7,7 @@ Creates destination + routes:
 
 Env:
   CF_API_TOKEN   required (Zone Email Routing Edit + Zone Read, or Account Email Routing)
-  CF_DESTINATION optional, default iananthonyfc@gmail.com
+  CF_DESTINATION required: private inbox the routes forward to (never commit it)
   CF_ZONE_NAME   optional, default dtrtlab.com
 """
 from __future__ import annotations
@@ -21,7 +21,7 @@ import urllib.request
 
 API = "https://api.cloudflare.com/client/v4"
 DOMAIN = os.environ.get("CF_ZONE_NAME", "dtrtlab.com")
-DESTINATION = os.environ.get("CF_DESTINATION", "iananthonyfc@gmail.com")
+DESTINATION = os.environ.get("CF_DESTINATION", "").strip()
 LOCALS = ("hello", "ian")
 
 
@@ -75,7 +75,7 @@ def ensure_destination(account_id: str) -> dict:
         {"email": DESTINATION},
     )["result"]
     print(f"Destination created: {DESTINATION} (verified={created.get('verified')})")
-    print("Check Gmail for Cloudflare verification email if verified=false.")
+    print("Check the destination inbox for the Cloudflare verification email if verified=false.")
     return created
 
 
@@ -118,6 +118,8 @@ def ensure_rule(zid: str, local: str) -> None:
 
 
 def main() -> int:
+    if not DESTINATION:
+        raise SystemExit("Missing CF_DESTINATION (the private inbox to forward to). export CF_DESTINATION=...")
     zid = zone_id()
     zone = call("GET", f"/zones/{zid}")["result"]
     account_id = zone["account"]["id"]
@@ -135,8 +137,8 @@ def main() -> int:
     print("DNS/routing snapshot:")
     print(json.dumps(dns, indent=2)[:2000])
     print()
-    print("Done. Next: verify destination in Gmail, then: python3 scripts/check-business-email.py")
-    print("Public: hello@dtrtlab.com | Founder: ian@dtrtlab.com | Login inbox: https://mail.google.com")
+    print("Done. Next: verify the destination inbox, then: python3 scripts/check-business-email.py")
+    print("Public: hello@dtrtlab.com | Founder: ian@dtrtlab.com")
     return 0
 
 
