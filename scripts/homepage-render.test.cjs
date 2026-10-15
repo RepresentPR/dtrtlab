@@ -32,10 +32,9 @@ test('hobby archive renders on lab.html and the homepage stays the writing busin
   assert.match(html, /id="gaming-archive"[^>]*><details>/, 'gaming archive is collapsed on the hobby page');
   assert.doesNotMatch(home, /id="gaming-archive"/);
   assert.doesNotMatch(home, /Ian Ferraro/i);
-  assert.match(home, /DTRT Lab writes for local businesses\. Start with a free plan, then pick a writing package\. Send one link and one goal\./);
+  assert.match(home, /DTRT Lab writes for local businesses\. Start with a free plan: one link and one goal\. The paid step is Mini Social Pack, \$50, on Whop\./);
   assert.match(home, /https:\/\/whop\.com\/checkout\/plan_HAGSLXXUeGkcz/);
-  assert.match(home, /https:\/\/whop\.com\/checkout\/plan_RVDjSToI7vKOM/);
-  assert.match(home, /https:\/\/whop\.com\/checkout\/plan_kZqq0jgr6VrGG/);
+  assert.doesNotMatch(home, /plan_RVDjSToI7vKOM|plan_kZqq0jgr6VrGG/);
   assert.doesNotMatch(home, /@gmail\.com|PayPal/);
   const main = home.match(/<main[\s\S]*?<\/main>/)?.[0] || '';
   assert.doesNotMatch(main, /twitch\.tv|\/cs2\.html|\/afterlight\.html|\/clips\//i);

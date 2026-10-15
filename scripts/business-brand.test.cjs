@@ -38,8 +38,7 @@ test('business pages name writing plans and keep hobby off the company face', ()
   for (const file of ['company.html', 'contact.html', 'shop.html', 'support.html']) {
     const html = read(file);
     assert.match(html, /plan_HAGSLXXUeGkcz/, file);
-    assert.match(html, /plan_RVDjSToI7vKOM/, file);
-    assert.match(html, /plan_kZqq0jgr6VrGG/, file);
+    assert.doesNotMatch(html, /plan_RVDjSToI7vKOM|plan_kZqq0jgr6VrGG/, file);
     assert.doesNotMatch(html, /@gmail\.com|PayPal G/, file);
   }
   const find = read('find.html');

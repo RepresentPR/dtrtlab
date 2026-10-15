@@ -27,7 +27,7 @@ Stage 1 target by 2026-12-31, recorded as a goal and not a result: 10 Free Plans
 
 Stage 1 freeze: `/live/` dashboards, streaming, and AFTERLIGHT stay on `/lab.html` until the writing studio closes its first 3 paying clients. Do not claim those clients exist. Do not put the dashboard, stream chrome, or the game on the company face. AFTERLIGHT stays “in development / not for sale.”
 
-Public catalog as of 2026-10-15, which agents must not rewrite on their own: Free plan, plus three named Whop writing plans — Mini Social Pack $50, Week Pack $129, and Writing Retainer — Starter $250/30 days. Do not rename those to “The Starter Fix,” delete a tier, or change a price unless Ian explicitly instructs that site change in chat.
+Public catalog as of 2026-10-15: Free plan, plus Mini Social Pack $50 on Whop. The Whop checkout title is “Mini Social Pack” and the Whop line is “Shop-ready posts. Writing only. You paste.” Do not rename that button to “The Starter Fix” or promise a 48-hour audit until the Whop title and description say the same thing. Week Pack and the $250 retainer stay off the company face. Their old Whop links remain only on the refunds page.
 
 ## Stack
 
