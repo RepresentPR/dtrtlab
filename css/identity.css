@@ -7,3 +7,5 @@ h1.page-heading{font:700 clamp(32px,5vw,64px)/1.1 "Source Sans 3",Arial,sans-ser
 /* Theme A · Local Pro overrides (navy #0B2545 + green #13C27A). */
 :root{--bg:#0B2545;--panel:#0B2545;--ink:#fff;--muted:#DCE6F2;--dim:#DCE6F2;--line:rgba(220,230,242,.28);--accent:#13C27A;--acid:#13C27A;--on:#0B2545}
 body{background:#0B2545;color:#fff}.nav,.top{background:#0B2545;border-color:rgba(220,230,242,.28)}.cta,.nav-cta,.studio-button{background:#13C27A;color:#0B2545!important;border-color:#13C27A}.card{background:rgba(220,230,242,.06);border-color:rgba(220,230,242,.28)}
+/* Ghost buttons: keep the label readable on navy (the .cta rule above is !important and was turning ghost labels navy-on-navy, e.g. on the 404 page). */
+.cta.ghost,a.cta.ghost,button.cta.ghost{background:transparent!important;color:#fff!important;border-color:rgba(220,230,242,.6)!important}
