@@ -29,41 +29,41 @@ window.DEMO = {
     { id: "money", name: "Prices, refunds, invoices, payments", level: "L0", on: false, locked: true, what: "Never automated. Always you.", never: "Ever automated" }
   ],
   jobs: [
-    { id: "J-1041", customer: "Maria L.", town: "Bowie", problem: "No heat", stage: "lead", source: "Web form", inMin: 16 * 60 + 2, replyMin: null,
+    { id: "J-1041", customer: "Maria L.", street: "14 Maple Ct", problem: "No heat", stage: "lead", source: "Web form", inMin: 16 * 60 + 2, replyMin: null,
       events: [["4:02 PM", "Customer", "Web form: \"No heat, furnace clicks but won't start.\""], ["4:02 PM", "System", "Job card drafted (web form, 99% confident)"], ["4:03 PM", "You", "Approved the job card"], ["4:03 PM", "System", "First reply drafted. Waiting for your OK"]] },
-    { id: "J-1046", customer: "Rachel T.", town: "Largo", problem: "Gas smell near furnace", stage: "lead", source: "Email", inMin: 16 * 60 + 21, replyMin: 3,
+    { id: "J-1046", customer: "Rachel T.", street: "220 Birch Ln", problem: "Gas smell near furnace", stage: "lead", source: "Email", inMin: 16 * 60 + 21, replyMin: 3,
       events: [["4:21 PM", "Customer", "Email: \"Faint gas smell near the furnace since this afternoon.\""], ["4:21 PM", "System", "Safety word found (gas). Urgent ping to your phone. No advice sent"], ["4:24 PM", "You", "Called Rachel. Told her to leave and call the gas company. Tech booked after the all-clear"]] },
-    { id: "J-1042", customer: "Kevin O.", town: "Laurel", problem: "Thermostat blank", stage: "lead", source: "Email", inMin: 13 * 60 + 12, replyMin: 6,
+    { id: "J-1042", customer: "Kevin O.", street: "9 Willow Way", problem: "Thermostat blank", stage: "lead", source: "Email", inMin: 13 * 60 + 12, replyMin: 6,
       events: [["1:12 PM", "Customer", "Email: \"Thermostat screen went blank. New batteries didn't help.\""], ["1:12 PM", "System", "Job card drafted (97% confident)"], ["1:13 PM", "You", "Approved the job card"], ["1:18 PM", "You", "Approved the first reply"]] },
-    { id: "J-1043", customer: "Priya S.", town: "Silver Spring", problem: "Upstairs too hot", stage: "lead", source: "Missed call", inMin: 11 * 60 + 40, replyMin: 2,
+    { id: "J-1043", customer: "Priya S.", street: "318 Fern Dr", problem: "Upstairs too hot", stage: "lead", source: "Missed call", inMin: 11 * 60 + 40, replyMin: 2,
       events: [["11:40 AM", "Customer", "Missed call"], ["11:42 AM", "You", "Texted back from your app"]] },
-    { id: "J-1031", customer: "Tom B.", town: "Greenbelt", problem: "Heat pump replacement", stage: "quoted", value: 9800, quoteDay: 2, nudge: 0, sent: "Tue",
+    { id: "J-1031", customer: "Tom B.", street: "75 Juniper Pl", problem: "Heat pump replacement", stage: "quoted", value: 9800, quoteDay: 2, nudge: 0, sent: "Tue",
       events: [["Mon 10:00 AM", "Tech", "Site visit"], ["Tue 4:30 PM", "You", "Quote sent: $9,800 (2 options)"], ["Today", "System", "Nudge 1 of 3 drafted. Waiting for your OK"]] },
-    { id: "J-1029", customer: "Alicia R.", town: "Beltsville", problem: "2-zone mini-split", stage: "quoted", value: 7400, quoteDay: 5, nudge: 1, sent: "Sat",
+    { id: "J-1029", customer: "Alicia R.", street: "1402 Sparrow Rd", problem: "2-zone mini-split", stage: "quoted", value: 7400, quoteDay: 5, nudge: 1, sent: "Sat",
       events: [["Sat 11:00 AM", "You", "Quote sent: $7,400"], ["Mon 9:00 AM", "System", "Nudge 1 of 3 sent with your OK (text)"], ["Today", "System", "Nudge 2 of 3 drafted. Waiting for your OK"]] },
-    { id: "J-1024", customer: "Grace H.", town: "Waldorf", problem: "Furnace + AC combo", stage: "quoted", value: 12600, quoteDay: 10, nudge: 3, sent: "Mon 10/5",
+    { id: "J-1024", customer: "Grace H.", street: "63 Hemlock Ter", problem: "Furnace + AC combo", stage: "quoted", value: 12600, quoteDay: 10, nudge: 3, sent: "Mon 10/5",
       events: [["Mon 10/5", "You", "Quote sent: $12,600"], ["Wed 10/7", "System", "Nudge 1 of 3 sent with your OK"], ["Sat 10/10", "System", "Nudge 2 of 3 sent with your OK (email)"], ["Today 9:00 AM", "System", "Nudge 3 of 3 sent with your OK. No more nudges"]] },
-    { id: "J-1035", customer: "Luis M.", town: "Hyattsville", problem: "Duct cleaning + sealing", stage: "quoted", value: 1150, quoteDay: 1, nudge: 0, sent: "Wed",
+    { id: "J-1035", customer: "Luis M.", street: "27 Bluebird Ave", problem: "Duct cleaning + sealing", stage: "quoted", value: 1150, quoteDay: 1, nudge: 0, sent: "Wed",
       events: [["Wed 3:00 PM", "You", "Quote sent: $1,150"], ["Fri 9:00 AM", "System", "Nudge 1 of 3 due"]] },
-    { id: "J-1037", customer: "Nina P.", town: "Bowie", problem: "Heating tune-up", stage: "scheduled", value: 149, when: "Fri 8-10 AM", tech: "Jess",
+    { id: "J-1037", customer: "Nina P.", street: "410 Chestnut St", problem: "Heating tune-up", stage: "scheduled", value: 149, when: "Fri 8-10 AM", tech: "Jess",
       events: [["Wed", "Customer", "Booked online"], ["10:05 AM", "System", "\"Booked\" text sent"]] },
-    { id: "J-1038", customer: "Omar F.", town: "College Park", problem: "Water heater flush", stage: "scheduled", value: 189, when: "Fri 1-3 PM", tech: "Sam",
+    { id: "J-1038", customer: "Omar F.", street: "88 Poplar Ct", problem: "Water heater flush", stage: "scheduled", value: 189, when: "Fri 1-3 PM", tech: "Sam",
       events: [["Tue", "You", "Booked by phone"]] },
-    { id: "J-1033", customer: "Beth C.", town: "Crofton", problem: "Heat pump install", stage: "scheduled", value: 8900, when: "Mon all day", tech: "Andre", partDays: 3,
+    { id: "J-1033", customer: "Beth C.", street: "5 Dogwood Cir", problem: "Heat pump install", stage: "scheduled", value: 8900, when: "Mon all day", tech: "Andre", partDays: 3,
       events: [["Mon", "You", "Quote won: $8,900"], ["Mon 2:00 PM", "Tech", "Part ordered"], ["11:20 AM", "System", "\"Part ordered\" text sent. Part waiting 3 days"]] },
-    { id: "J-1039", customer: "Carlos D.", town: "Laurel", problem: "Blower motor repair", stage: "progress", value: 640, tech: "Andre",
+    { id: "J-1039", customer: "Carlos D.", street: "1190 Hazel Ln", problem: "Blower motor repair", stage: "progress", value: 640, tech: "Andre",
       events: [["2:10 PM", "Tech", "On site"]] },
-    { id: "J-1040", customer: "Helen W.", town: "Glenn Dale", problem: "AC winter shutdown", stage: "progress", value: 129, tech: "Jess",
+    { id: "J-1040", customer: "Helen W.", street: "36 Wren Way", problem: "AC winter shutdown", stage: "progress", value: 129, tech: "Jess",
       events: [["2:58 PM", "System", "\"Tech on the way\" text sent"], ["3:31 PM", "Tech", "On site"]] },
-    { id: "J-1034", customer: "Rob T.", town: "Bowie", problem: "Furnace ignitor", stage: "done", value: 385, tech: "Sam",
+    { id: "J-1034", customer: "Rob T.", street: "702 Hickory Dr", problem: "Furnace ignitor", stage: "done", value: 385, tech: "Sam",
       events: [["9:40 AM", "System", "\"Job done\" text sent"], ["9:45 AM", "System", "Review link sent"], ["11:02 AM", "Customer", "Scored 10/10 and posted a Google review"]] },
-    { id: "J-1036", customer: "Sofia K.", town: "Largo", problem: "Heating tune-up", stage: "done", value: 149, tech: "Jess",
+    { id: "J-1036", customer: "Sofia K.", street: "19 Thistle Pl", problem: "Heating tune-up", stage: "done", value: 149, tech: "Jess",
       events: [["12:15 PM", "System", "\"Job done\" text sent"], ["12:20 PM", "System", "Review link sent"]] },
-    { id: "J-1032", customer: "Mark E.", town: "Mitchellville", problem: "Condensate line clog", stage: "done", value: 210, tech: "Andre",
+    { id: "J-1032", customer: "Mark E.", street: "244 Robin Rd", problem: "Condensate line clog", stage: "done", value: 210, tech: "Andre",
       events: [["4:05 PM", "System", "\"Job done\" text sent"], ["4:10 PM", "System", "Review link sent"]] },
-    { id: "J-1025", customer: "Paul G.", town: "Lanham", problem: "Furnace tune-up", stage: "done", value: 149, tech: "Sam", earlier: true,
+    { id: "J-1025", customer: "Paul G.", street: "51 Spruce Ct", problem: "Furnace tune-up", stage: "done", value: 149, tech: "Sam", earlier: true,
       events: [["Wed 10:30 AM", "System", "\"Job done\" text sent"], ["Wed 10:35 AM", "System", "Review link sent"], ["Wed 6:12 PM", "Customer", "Scored 3/10: \"Tech left a mess by the unit.\""], ["Wed 6:12 PM", "System", "Callback added to Needs you"]] },
-    { id: "J-1027", customer: "Ann V.", town: "Cheverly", problem: "AC repair", stage: "done", value: 420, tech: "Andre", earlier: true,
+    { id: "J-1027", customer: "Ann V.", street: "133 Alder Ave", problem: "AC repair", stage: "done", value: 420, tech: "Andre", earlier: true,
       events: [["Wed 3:10 PM", "System", "Review link sent"], ["Wed 8:40 PM", "Customer", "Scored 6/10: \"Fixed, but I had to call twice to get a time.\""], ["Wed 8:40 PM", "System", "Callback added to Needs you"]] }
   ],
   closed: [
@@ -80,7 +80,7 @@ window.DEMO = {
     { id: "q-alicia", kind: "nudge", auto: "nudge", job: "J-1029", verb: "Send nudge 2 of 3 to", why: "Quote open 5 days. Nudge 1 sent Monday, no reply.", channel: "Text",
       draft: "Hi Alicia, checking in on the 2-zone mini-split quote. If timing is the question, we have install openings the week of Oct 26. Dana" },
     { id: "q-june", kind: "email", auto: "email", verb: "Check new request from", customer: "June R.", why: "Email at 4:38 PM. Only 72% confident: no street, and urgency unclear. Check the guessed fields.",
-      guess: { Customer: "June R.", Town: "Glenarden (guessed)", Problem: "Water pooling under indoor unit", Urgency: "Today? (unsure)", Contact: "555-0177 · j.rivera@example.com" } },
+      guess: { Customer: "June R.", Street: "Not given (check)", Problem: "Water pooling under indoor unit", Urgency: "Today? (unsure)", Contact: "555-0177 · j.rivera@example.com" } },
     { id: "q-ann", kind: "callback", auto: "callback", job: "J-1027", verb: "Call", why: "Scored 6/10 yesterday: \"Fixed, but I had to call twice to get a time.\"" }
   ],
   log: [
@@ -135,7 +135,7 @@ window.DEMO = {
   }
   function job(id) { return S.jobs.find(function (j) { return j.id === id; }); }
   function auto(id) { return S.automations.find(function (a) { return a.id === id; }); }
-  function jname(j) { return j.id + " · " + j.customer + " · " + j.town + " · " + j.problem; }
+  function jname(j) { return j.id + " · " + j.customer + " · " + j.street + " · " + j.problem; }
   function chip(level) { return '<span class="lv lv' + level.slice(1) + '" title="' + esc(S.levels[level]) + '">' + level + " · " + esc(S.levels[level].split(":")[0]) + "</span>"; }
   function stamp() { S.clock += 1; var h = Math.floor(S.clock / 60), m = S.clock % 60; return ((h + 11) % 12 + 1) + ":" + (m < 10 ? "0" : "") + m + (h >= 12 ? " PM" : " AM"); }
   function toast(msg) { var t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(t._h); t._h = setTimeout(function () { t.classList.remove("show"); }, 2600); }
@@ -267,7 +267,7 @@ window.DEMO = {
     if (j.partDays) c += '<span class="chip a">Part waiting ' + j.partDays + " days</span>";
     if (j.stage === "done") c += '<span class="chip g">Review link sent</span>';
     var dot = j.stage === "lead" && waitMin(j) > 15 || (j.stage === "quoted" && j.quoteDay > 7) ? "r" : (j.partDays || (j.stage === "quoted" && j.quoteDay >= 5)) ? "a" : "g";
-    return '<button class="job" data-job="' + j.id + '"><div class="top"><span><i class="dot ' + dot + '"></i>' + j.id + "</span><span>" + (j.value ? money(j.value) : esc(j.source || "")) + "</span></div><b>" + esc(j.customer) + '</b><div class="meta">' + esc(j.town) + " · " + esc(j.problem) + (j.tech ? " · " + esc(j.tech) : "") + "</div>" + c + "</button>";
+    return '<button class="job" data-job="' + j.id + '"><div class="top"><span><i class="dot ' + dot + '"></i>' + j.id + "</span><span>" + (j.value ? money(j.value) : esc(j.source || "")) + "</span></div><b>" + esc(j.customer) + '</b><div class="meta">' + esc(j.street) + " · " + esc(j.problem) + (j.tech ? " · " + esc(j.tech) : "") + "</div>" + c + "</button>";
   }
 
   V.autopilot = function () {
@@ -320,7 +320,7 @@ window.DEMO = {
     if (x.kind === "callback") { j.events.push([t, "You", "Called back"]); toast("Callback logged for " + j.customer + "."); }
     if (x.kind === "email") {
       var g = x.guess, nid = "J-1047";
-      S.jobs.unshift({ id: nid, customer: "June R.", town: "Glenarden", problem: "Water under indoor unit", stage: "lead", source: "Email", inMin: 16 * 60 + 38, replyMin: null, events: [["4:38 PM", "Customer", "Email: water pooling under the indoor unit"], [t, "You", "Checked the guessed fields and made the job card"]] });
+      S.jobs.unshift({ id: nid, customer: "June R.", street: "Street not given", problem: "Water under indoor unit", stage: "lead", source: "Email", inMin: 16 * 60 + 38, replyMin: null, events: [["4:38 PM", "Customer", "Email: water pooling under the indoor unit"], [t, "You", "Checked the guessed fields and made the job card"]] });
       S.log.push({ t: t, auto: "email", job: nid, text: "Job card " + nid + " made from j.rivera@example.com with your OK", result: "Fields checked by you", undo: "open" });
       toast("Job card " + nid + " created for " + g.Customer + ".");
     }

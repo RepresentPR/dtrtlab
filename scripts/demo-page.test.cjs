@@ -48,3 +48,27 @@ test('/demo keeps email -> job card at L2 (owner approves) until it proves 95%, 
   assert.ok(email.includes('L3 after it proves 95% on your mail'), 'L3 label shown as the next step');
   assert.match(js, /lead waiting over 15 min/i, 'queue rule: a lead waiting over 15 min counts as urgent');
 });
+test('/demo job cards use made-up street addresses and never name a real town', () => {
+  // Real DMV-area towns and cities. The demo is a made-up company, so its jobs must not point at real places.
+  // (Some place names are already blocked repo-wide by private-terms.test.cjs and are left out here.)
+  const towns = ['Bowie', 'Lanham', 'Clinton', 'Largo', 'Greenbelt', 'Laurel', 'College Park',
+    'Silver Spring', 'Waldorf', 'Hyattsville', 'Beltsville', 'Crofton', 'Glenn Dale', 'Mitchellville', 'Cheverly',
+    'Glenarden', 'Landover', 'Capitol Heights', 'District Heights', 'Suitland', 'Temple Hills', 'Oxon Hill',
+    'Fort Washington', 'Bethesda', 'Rockville', 'Gaithersburg', 'Germantown', 'Wheaton', 'Takoma Park', 'Riverdale',
+    'Annapolis', 'Baltimore', 'Columbia', 'Odenton', 'Bladensburg', 'Brandywine', 'Accokeek', 'Alexandria',
+    'Arlington', 'Fairfax', 'Woodbridge', 'Washington'];
+  const re = new RegExp(`\\b(${towns.join('|')})\\b`, 'i');
+  for (const f of ['demo/demo.js', 'demo/index.html', 'job-desk/how-it-works/index.html']) {
+    const hit = read(f).match(re);
+    assert.strictEqual(hit, null, `${f} names a real town: ${hit && hit[0]}`);
+  }
+  const js = read('demo/demo.js');
+  assert.doesNotMatch(js, /\btown:/, 'job cards carry a street, not a town');
+  const jobsBlock = js.slice(js.indexOf('jobs: ['), js.indexOf('closed: ['));
+  const jobs = [...jobsBlock.matchAll(/\{ id: "J-\d+", customer: "[^"]+", ([a-z]+): "([^"]+)"/g)];
+  assert.ok(jobs.length >= 18, 'all demo jobs found');
+  for (const [, key, val] of jobs) {
+    assert.strictEqual(key, 'street', `job field is ${key}`);
+    assert.match(val, /^\d+ [A-Z][a-z]+ (Ct|Ln|Way|Dr|Pl|Rd|Ter|Ave|St|Cir)$/, `not a short made-up street: ${val}`);
+  }
+});
