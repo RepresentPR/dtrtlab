@@ -89,16 +89,16 @@
     "es": "DTRT LAB"
   },
   "homeLead": {
-    "en": "DTRT Lab writes for local businesses. Start with a free plan, then pick a writing package. Send one link and one goal.",
-    "es": "DTRT Lab escribe para negocios locales. Empieza con un plan gratis y luego elige un paquete de escritura. Envía un enlace y una meta."
+    "en": "DTRT Lab writes for local businesses. Start with a free plan: one link and one goal. The paid step is Mini Social Pack, $50, on Whop.",
+    "es": "DTRT Lab escribe para negocios locales. Empieza con un plan gratis: un enlace y una meta. El paso de pago es Mini Social Pack, $50, en Whop."
   },
   "homeMeta": {
-    "en": "DTRT Lab writes for local businesses. Mission: Do the right thing. Free plan, plus Mini Social Pack $50, Week Pack $129, and Writing Retainer — Starter $250/30 days. Checkout for those writing plans is on Whop.",
-    "es": "DTRT Lab escribe para negocios locales. Misión: Do the right thing. Plan gratis, Mini Social Pack $50, Week Pack $129 y Writing Retainer — Starter $250/30 días. El pago de esos planes de escritura es en Whop."
+    "en": "DTRT Lab writes for local businesses. Mission: Do the right thing. Free plan, then Mini Social Pack $50 on Whop: shop-ready posts, writing only, you paste.",
+    "es": "DTRT Lab escribe para negocios locales. Misión: Do the right thing. Plan gratis, luego Mini Social Pack $50 en Whop: posts listos para la tienda, solo escritura, tú los publicas."
   },
   "packagesDown": {
-    "en": "See packages <span aria-hidden=\"true\">↓</span>",
-    "es": "Ver paquetes <span aria-hidden=\"true\">↓</span>"
+    "en": "See the $50 plan <span aria-hidden=\"true\">↓</span>",
+    "es": "Ver el plan de $50 <span aria-hidden=\"true\">↓</span>"
   },
   "navPackages": {
     "en": "Packages",
@@ -125,12 +125,12 @@
     "es": "ESCRITURA PARA NEGOCIOS LOCALES"
   },
   "packagesTitle": {
-    "en": "Start free. Buy a writing plan on Whop.",
-    "es": "Empieza gratis. Compra un plan de escritura en Whop."
+    "en": "Start free. One paid plan.",
+    "es": "Empieza gratis. Un plan de pago."
   },
   "packagesLead": {
-    "en": "The free plan is writing, and it is not a purchase. These three writing plans use the live Whop checkout. This website does not collect card numbers.",
-    "es": "El plan gratis es escritura y no es una compra. Estos tres planes de escritura usan el pago en vivo de Whop. Este sitio no recoge números de tarjeta."
+    "en": "The free plan is writing, and it is not a purchase. The paid plan is Mini Social Pack, $50, on Whop. This website does not collect card numbers.",
+    "es": "El plan gratis es escritura y no es una compra. El plan de pago es Mini Social Pack, $50, en Whop. Este sitio no recoge números de tarjeta."
   },
   "pkgFreeName": {
     "en": "Free plan",
@@ -149,8 +149,8 @@
     "es": "Pide un plan gratis <span aria-hidden=\"true\">↗</span>"
   },
   "pkgMiniCopy": {
-    "en": "Writing for a local business. Named plan. Checkout is on Whop.",
-    "es": "Escritura para un negocio local. Plan con nombre. El pago es en Whop."
+    "en": "Shop-ready posts. Writing only. You paste. The Whop checkout uses this same name and the same $50 price.",
+    "es": "Posts listos para la tienda. Solo escritura. Tú los publicas. El pago en Whop usa este mismo nombre y los mismos $50."
   },
   "pkgWeekCopy": {
     "en": "A week of writing for a local business. Named plan. Checkout is on Whop.",
@@ -173,20 +173,20 @@
     "es": "Comprar Writing Retainer — Starter · $250/30 días <span aria-hidden=\"true\">↗</span>"
   },
   "packagesPayNote": {
-    "en": "Shop, merch, and game checkout on this site stay off. Refunds for the three Whop plans follow Whop’s policy. Questions: <a href=\"mailto:hello@dtrtlab.com\">hello@dtrtlab.com</a> · <a href=\"/legal/refunds.html\">Refunds</a>.",
-    "es": "La tienda, la mercancía y el juego no se cobran en este sitio. Los reembolsos de los tres planes de Whop siguen la política de Whop. Preguntas: <a href=\"mailto:hello@dtrtlab.com\">hello@dtrtlab.com</a> · <a href=\"/legal/refunds.html\">Reembolsos</a>."
+    "en": "Shop, merch, and game checkout on this site stay off. A refund for Mini Social Pack follows Whop. Questions: <a href=\"mailto:hello@dtrtlab.com\">hello@dtrtlab.com</a> · <a href=\"/legal/refunds.html\">Refunds</a>.",
+    "es": "La tienda, la mercancía y el juego no se cobran en este sitio. Un reembolso de Mini Social Pack sigue a Whop. Preguntas: <a href=\"mailto:hello@dtrtlab.com\">hello@dtrtlab.com</a> · <a href=\"/legal/refunds.html\">Reembolsos</a>."
   },
   "packagesStep": {
-    "en": "02 / Packages",
-    "es": "02 / Paquetes"
+    "en": "02 / $50",
+    "es": "02 / $50"
   },
   "packagesLabel": {
-    "en": "Writing plans",
-    "es": "Planes de escritura"
+    "en": "Mini Social Pack",
+    "es": "Mini Social Pack"
   },
   "packagesRoute": {
-    "en": "Mini Social Pack $50, Week Pack $129, Writing Retainer — Starter $250/30 days.",
-    "es": "Mini Social Pack $50, Week Pack $129, Writing Retainer — Starter $250/30 días."
+    "en": "Shop-ready posts. Writing only. You paste. $50 on Whop.",
+    "es": "Posts listos para la tienda. Solo escritura. Tú los publicas. $50 en Whop."
   },
   "contactRoute": {
     "en": "hello@dtrtlab.com. Nothing is sent until you press Send in your email app.",
@@ -586,12 +586,12 @@
     "es": "Compra un plan de escritura<br>en Whop."
   },
   "streamLead": {
-    "en": "These three plans are the paid writing offer. This website does not collect card numbers.",
-    "es": "Estos tres planes son la oferta de escritura de pago. Este sitio no recoge números de tarjeta."
+    "en": "Mini Social Pack is the paid writing offer. This website does not collect card numbers.",
+    "es": "Mini Social Pack es la oferta de escritura de pago. Este sitio no recoge números de tarjeta."
   },
   "streamCopy": {
-    "en": "Mini Social Pack $50, Week Pack $129, and Writing Retainer — Starter $250/30 days. Refunds follow Whop. Shop and game checkout on this site stay off.",
-    "es": "Mini Social Pack $50, Week Pack $129 y Writing Retainer — Starter $250/30 días. Los reembolsos siguen a Whop. La tienda y el juego no se cobran en este sitio."
+    "en": "Shop-ready posts. Writing only. You paste. $50. Refunds follow Whop. Shop and game checkout on this site stay off.",
+    "es": "Posts listos para la tienda. Solo escritura. Tú los publicas. $50. Los reembolsos siguen a Whop. La tienda y el juego no se cobran en este sitio."
   },
   "twitchOptions": {
     "en": "Buy Mini Social Pack · $50 ↗",
@@ -642,8 +642,8 @@
     "es": "¿Dónde se pagan los planes de escritura?"
   },
   "subscriptionsAnswer": {
-    "en": "The three writing plans are paid on Whop. DTRT Lab does not collect card details on this website. Refunds follow Whop’s policy.",
-    "es": "Los tres planes de escritura se pagan en Whop. DTRT Lab no recoge los datos de tu tarjeta en este sitio. Los reembolsos siguen la política de Whop."
+    "en": "Mini Social Pack is paid on Whop. DTRT Lab does not collect card details on this website. Refunds follow Whop’s policy.",
+    "es": "Mini Social Pack se paga en Whop. DTRT Lab no recoge los datos de tu tarjeta en este sitio. Los reembolsos siguen la política de Whop."
   },
   "brandFaq": {
     "en": "What about a brand partnership?",

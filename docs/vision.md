@@ -35,7 +35,7 @@ DTRT Lab is an independent writing studio for local businesses.
 
 Do not claim those 3 clients exist. AFTERLIGHT stays labeled “in development / not for sale.” Do not put stream chrome, the game, or the results dashboard on the company face.
 
-Public pages as of 2026-10-15 still list three Whop writing plans (Mini Social Pack $50, Week Pack $129, Writing Retainer — Starter $250/30 days) and still contain `/live/` URLs. Strategy names the paid offer The Starter Fix. Renaming tiers, promising 48 hours on the website, or moving `/live/` links is a site change and waits for Ian’s explicit instruction in chat.
+The live $50 checkout, checked 2026-10-15, is titled Mini Social Pack: “Shop-ready posts. Writing only. You paste.” The company pages use that name and that sentence. The Starter Fix name and the 48-hour audit stay the intended offer until that Whop title says the same thing. `/live/` URLs still exist and stay off the company face.
 
 ## Personal vision (Ian)
 

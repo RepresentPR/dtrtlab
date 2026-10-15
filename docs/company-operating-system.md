@@ -32,7 +32,7 @@ AI spend (company vs experiments): [`docs/ai-spend-ops.md`](ai-spend-ops.md).
 - Stage 1 target by 2026-12-31, as a goal and not a result: 10 Free Plans, 2–3 paid Starter Fixes, 3 testimonials. Do not publish those numbers as done.
 - Freeze `/live/`, streaming, and AFTERLIGHT onto `/lab.html` until the first 3 paying clients. AFTERLIGHT stays “in development / not for sale.” Do not claim those clients exist.
 
-Public catalog as of 2026-10-15, which this operating-system note does not rewrite: Free plan, Mini Social Pack $50, Week Pack $129, and Writing Retainer — Starter $250/30 days on Whop. Driving the $50 offer does not include renaming or deleting those tiers. That is a pricing-structure change and waits for an explicit site instruction from Ian.
+Public catalog as of 2026-10-15: Free plan, then Mini Social Pack $50 on Whop. The checkout page still says “Shop-ready posts. Writing only. You paste.” The company face matches that sentence. Week Pack and the retainer are not on the company pages.
 
 ## Honest baseline
 
@@ -54,7 +54,7 @@ Public production rule: **never make a visitor hunt for 30 minutes**. The path i
 | Action | One-click destination |
 | --- | --- |
 | **Free plan** | `/contact.html?intent=free-plan` |
-| **$50 writing offer** | Existing $50 Whop plan, still labeled Mini Social Pack until Ian renames it |
+| **$50 writing offer** | Mini Social Pack on Whop. Same name on the site and at checkout. |
 | **Company hub** | `/company.html` (press / brand / careers / proof) |
 | **Contact** | `/contact.html` |
 

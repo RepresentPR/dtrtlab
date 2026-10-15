@@ -22,7 +22,7 @@ Writing for local businesses. Do the right thing. Free plan at dtrtlab.com
 ## Lab — YouTube (@DTRTLabYT)
 
 ```
-DTRT Lab writes for local businesses. Do the right thing. Free plan and writing plans: dtrtlab.com. Hobby clips are not the company offer.
+DTRT Lab writes for local businesses. Do the right thing. Free plan: dtrtlab.com. Hobby clips are not the company offer.
 ```
 
 ## Lab — TikTok (@iananthonyfc)
