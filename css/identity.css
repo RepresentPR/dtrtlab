@@ -4,3 +4,6 @@ body{background:#080808;color:#fafafa}body::before{display:none}a:focus-visible,
 
 .hobby-banner{margin:0;padding:14px 0;border-bottom:1px solid #303030;color:#b6b6b6;font-size:15px;line-height:1.45}.hobby-banner a{text-decoration:underline;text-underline-offset:3px}.nav-end .nav-socials a,.nav .links a{min-height:44px}.whop-row{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}.whop-row a{min-height:48px}
 h1.page-heading{font:700 clamp(32px,5vw,64px)/1.1 "Source Sans 3",Arial,sans-serif;letter-spacing:-.04em;margin:8px 0 24px}.wrap h2{font-family:"Source Sans 3",Arial,sans-serif;font-weight:650}.nav-row{min-width:0}
+/* Theme A · Local Pro overrides (navy #0B2545 + green #13C27A). */
+:root{--bg:#0B2545;--panel:#0B2545;--ink:#fff;--muted:#DCE6F2;--dim:#DCE6F2;--line:rgba(220,230,242,.28);--accent:#13C27A;--acid:#13C27A;--on:#0B2545}
+body{background:#0B2545;color:#fff}.nav,.top{background:#0B2545;border-color:rgba(220,230,242,.28)}.cta,.nav-cta,.studio-button{background:#13C27A;color:#0B2545!important;border-color:#13C27A}.card{background:rgba(220,230,242,.06);border-color:rgba(220,230,242,.28)}

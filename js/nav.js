@@ -28,8 +28,8 @@
   var lang = /(?:\?|&)lang=es(?:&|$)/.test(location.search) ? "es" : "en";
   document.documentElement.lang = lang;
   var ui = lang === "es"
-    ? { primary: "Principal", free: "Plan gratis", packages: "Paquetes", company: "Empresa", contact: "Contacto", shop: "Tienda", hobby: "Lab / Pasatiempo", press: "Prensa", brand: "Marca", privacy: "Privacidad", terms: "Términos", cookies: "Cookies", refunds: "Reembolsos", home: "Inicio", menu: "Menú", close: "Cerrar", credit: "DTRT Lab · Escritura para negocios locales" }
-    : { primary: "Primary", free: "Free plan", packages: "Packages", company: "Company", contact: "Contact", shop: "Shop", hobby: "Lab / Hobby", press: "Press", brand: "Brand", privacy: "Privacy", terms: "Terms", cookies: "Cookies", refunds: "Refunds", home: "Home", menu: "Menu", close: "Close", credit: "DTRT Lab · Writing for local businesses" };
+    ? { primary: "Principal", free: "Empieza por $50", packages: "Paquetes", company: "Empresa", contact: "Contacto", shop: "Tienda", hobby: "Lab / Pasatiempo", press: "Prensa", brand: "Marca", privacy: "Privacidad", terms: "Términos", cookies: "Cookies", refunds: "Reembolsos", home: "Inicio", menu: "Menú", close: "Cerrar", credit: "Ian | DTRT Lab · Clinton, Southern Maryland" }
+    : { primary: "Primary", free: "Start for $50", packages: "Packages", company: "Company", contact: "Contact", shop: "Shop", hobby: "Lab / Hobby", press: "Press", brand: "Brand", privacy: "Privacy", terms: "Terms", cookies: "Cookies", refunds: "Refunds", home: "Home", menu: "Menu", close: "Close", credit: "Ian | DTRT Lab · Clinton, Southern Maryland" };
   function langHref(code) {
     var q = new URLSearchParams(location.search);
     q.set("lang", code);
@@ -40,12 +40,11 @@
     '<div class="wrap nav-row">' +
     '<a class="brand" href="' + root + 'index.html"><img class="brand-mark" src="' +
     root +
-    'img/brand/mark.svg" alt="DTRT Lab" width="36" height="36"><span>DTRT LAB</span></a>' +
+    'img/brand/mark.svg" alt="DTRT Lab" width="36" height="36"><span>Ian | DTRT Lab</span></a>' +
     '<nav class="links" id="site-links" aria-label="' + ui.primary + '">' +
-    link("index.html#packages", ui.packages, false) +
-    link("company.html", ui.company, companyOn) +
-    link("shop.html", ui.shop, file === "shop.html") +
-    link("about.html", lang === "es" ? "Acerca" : "About", aboutOn) +
+    link("index.html#prices", lang === "es" ? "Precios" : "Prices", false) +
+    link("index.html#how", lang === "es" ? "Cómo funciona" : "How it works", false) +
+    link("index.html#about", lang === "es" ? "Sobre Ian" : "About Ian", aboutOn) +
     link("contact.html", ui.contact, contactOn) +
     '<a href="' + langHref("en") + '" lang="en" hreflang="en"' + (lang === "en" ? ' aria-current="page"' : "") + '>EN</a>' +
     '<a href="' + langHref("es") + '" lang="es" hreflang="es"' + (lang === "es" ? ' aria-current="page"' : "") + '>ES</a>' +
@@ -53,7 +52,7 @@
     "</nav>" +
     '<div class="nav-end">' +
     '<div class="nav-socials nav-socials-desktop" data-social-slot="nav"></div>' +
-    '<a class="nav-cta" id="nav-start" href="' + root + 'contact.html?intent=free-plan">' + ui.free + '</a>' +
+    '<a class="nav-cta" id="nav-start" href="https://whop.com/checkout/plan_HAGSLXXUeGkcz" rel="noopener noreferrer">' + ui.free + '</a>' +
     '<button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-links">' + ui.menu + '</button>' +
     "</div>" +
     "</div>";
@@ -65,7 +64,7 @@
     document.head.appendChild(adapt);
   }
 
-  var identity = document.createElement("link"); identity.rel="stylesheet"; identity.href=root+"css/identity.css?v=20261010n"; document.head.appendChild(identity);
+  var identity = document.createElement("link"); identity.rel="stylesheet"; identity.href=root+"css/identity.css?v=20261015-theme-a"; document.head.appendChild(identity);
 
   if (!window.__donateInit) { var ds = document.createElement("script"); ds.src = root + "js/donate.js?v=20261009"; ds.defer = true; document.head.appendChild(ds); }
 
@@ -77,19 +76,15 @@
     foot.innerHTML =
       '<div class="wrap">' +
       "<span>" + ui.credit + "</span>" +
-      '<a href="' + root + 'contact.html?intent=free-plan">' + ui.free + '</a>' +
-      '<a href="' + root + 'index.html#packages">' + ui.packages + '</a>' +
-      '<a href="' + root + 'shop.html">' + ui.shop + '</a>' +
-      '<a href="' + root + 'company.html">' + ui.company + '</a>' +
+      '<a href="' + root + 'index.html#prices">' + (lang === "es" ? "Precios" : "Prices") + '</a>' +
+      '<a href="https://whop.com/checkout/plan_Vn0gQGFWQx9CA" rel="noopener noreferrer">' + (lang === "es" ? "Reescritura gratis" : "Free first-line rewrite") + '</a>' +
       '<a href="' + root + 'contact.html">' + ui.contact + '</a>' +
-      '<a href="' + root + 'press.html">' + ui.press + '</a>' +
       '<a href="' + root + 'brand.html">' + ui.brand + '</a>' +
       '<a href="' + root + 'find.html">X · Instagram</a>' +
       '<a href="' + root + 'legal/privacy.html">' + ui.privacy + '</a>' +
       '<a href="' + root + 'legal/terms.html">' + ui.terms + '</a>' +
       '<a href="' + root + 'legal/cookies.html">' + ui.cookies + '</a>' +
       '<a href="' + root + 'legal/refunds.html">' + ui.refunds + '</a>' +
-      '<a href="' + root + 'lab.html">' + ui.hobby + '</a>' +
       "</div>" +
       '<div class="wrap socials" data-social-slot="footer"></div>';
   }

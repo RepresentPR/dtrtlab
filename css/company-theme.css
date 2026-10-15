@@ -17,3 +17,15 @@ button,input,select,textarea{font-family:inherit}
 img,video,canvas{max-width:100%}
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #fff;outline-offset:5px}
 @media(max-width:700px){.wrap{width:auto!important;margin-inline:18px!important}.top{position:static!important}.top nav{display:flex;flex-wrap:wrap;gap:12px}.nav-row{flex-wrap:wrap}.brand{white-space:nowrap}table{font-size:13px}}
+
+/* Theme A · Local Pro (locked 2026-10-15 → 2027-01-13): navy #0B2545 + green #13C27A, white/#DCE6F2 text. */
+:root{--bg:#0B2545;--card:#0B2545;--panel:#0B2545;--ink:#fff;--text:#fff;--muted:#DCE6F2;--line:rgba(220,230,242,.28);--accent:#13C27A;--hot:#13C27A;--orange:#13C27A}
+body{background:#0B2545!important;color:#fff!important}
+a:hover{color:#13C27A}
+.card,.panel,.chip{background:rgba(220,230,242,.06);border-color:rgba(220,230,242,.28)}
+.top,#site-nav,.site-header{background:#0B2545!important;border-bottom:1px solid rgba(220,230,242,.28)!important}
+.nav-cta,.cta,.button{background:#13C27A!important;color:#0B2545!important;border-color:#13C27A!important;border-radius:8px!important}
+.ghost,.secondary{background:transparent!important;color:#fff!important;border:1px solid #DCE6F2!important}
+footer{color:#DCE6F2}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline-color:#13C27A}
+footer,#site-foot,.site-foot{background:#0B2545!important;color:#DCE6F2!important}

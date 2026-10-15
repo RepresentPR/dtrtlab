@@ -29,28 +29,23 @@ test('brand kit has the public paste text and a short bio', () => {
   assert.doesNotMatch(kit, /@gmail\.com|PayPal/);
 });
 
-test('business pages name writing plans and keep hobby off the company face', () => {
+test('business pages show theme A offers and keep hobby off the company face', () => {
   const home = read('index.html');
   const main = home.match(/<main[\s\S]*?<\/main>/)[0];
-  assert.match(main, /Writing for local businesses/);
-  assert.match(home, /href="\/lab\.html"/);
+  assert.match(main, /Stay on the chair\. <span>We write your posts\.<\/span>/);
+  assert.match(main, /For Clinton \+ Southern Maryland shops\. Writing only\. No contract\./);
+  for (const id of ['plan_HAGSLXXUeGkcz', 'plan_RVDjSToI7vKOM', 'plan_kZqq0jgr6VrGG', 'plan_Vn0gQGFWQx9CA']) assert.match(main, new RegExp(id));
+  assert.match(main, /DTRT 7-Day Do-It-Right Guarantee/);
+  assert.doesNotMatch(home, /free plan|Puerto Rico|PayPal|Stripe|twitch\.tv|\/cs2\.html|\/afterlight\.html|#080808|cfe35a/i);
   assert.doesNotMatch(main, /\/careers\.html/i);
-  for (const file of ['company.html', 'contact.html', 'shop.html', 'support.html']) {
+  for (const file of ['find.html', 'contact.html']) {
     const html = read(file);
-    assert.match(html, /plan_HAGSLXXUeGkcz/, file);
-    assert.match(html, /plan_RVDjSToI7vKOM/, file);
-    assert.match(html, /plan_kZqq0jgr6VrGG/, file);
-    assert.doesNotMatch(html, /@gmail\.com|PayPal G/, file);
+    assert.match(html, /theme-a\.css/, file);
+    assert.doesNotMatch(html, /free plan|Puerto Rico|@gmail\.com|PayPal/i, file);
   }
-  const find = read('find.html');
-  assert.match(find, /data-find-page/);
-  assert.match(find, /data-find-group="lab"/);
-  assert.match(find, /data-find-limit="x,instagram"/);
-  assert.doesNotMatch(find, /data-find-group="stream"|data-find-group="career"/);
   const cs2 = read('cs2.html');
   for (const id of ['votes', 'tabs', 'account', 'notes']) {
     assert.match(cs2, new RegExp('id="' + id + '"[^>]*hidden|hidden[^>]*id="' + id + '"'));
   }
-  assert.doesNotMatch(read('contact.html'), /Work opportunity/);
   assert.match(read('brand.html'), /brand-kit\.md/);
 });

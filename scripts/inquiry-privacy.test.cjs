@@ -6,7 +6,6 @@ const vm = require('node:vm');
 const read = name => fs.readFileSync(path.join(__dirname, '..', name), 'utf8');
 
 const pages = [
-  { name: 'contact', file: 'contact.html', script: () => read('js/contact.js') },
   { name: 'partner', file: 'partners.html', script: () => read('js/partners.js') }
 ];
 

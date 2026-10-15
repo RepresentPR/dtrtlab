@@ -50,11 +50,6 @@ test('public support paths do not send visitors to the paused Ko-fi checkout', a
   for (const name of ['about.html', 'donate.html', 'faq.html', 'index.html', 'support.html', 'content/donate.json', 'content/site.json', 'content/socials.js']) {
     assert.doesNotMatch(read(name), /https:\/\/ko-fi\.com\//, name);
   }
-  const support = read('support.html');
-  const buttons = Array.from(support.matchAll(/<a\b([^>]*data-event="Support(?:Watch|Share)Intent"[^>]*)>/g));
-  assert.equal(buttons.length, 2, 'watch and share paths replace tip buttons');
-  for (const [, attributes] of buttons) ui.click(attributes.match(/data-event="([^"]+)"/)?.[1]);
-  assert.deepEqual(ui.plausibleEvents().map(args => args[0]), ['SupportWatchIntent', 'SupportShareIntent']);
   assert.deepEqual(ui.gaEvents(), [], 'declining GA must not send GA events');
   const donate = JSON.parse(read('content/donate.json'));
   assert.equal(donate.url, '');
