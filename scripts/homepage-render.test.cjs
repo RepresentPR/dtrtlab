@@ -31,7 +31,8 @@ test('hobby archive renders on lab.html and the homepage stays the theme A writi
   assert.ok(nodes.get('queue-list').children.length, 'saved queue state renders');
   assert.match(html, /id="gaming-archive"[^>]*><details>/, 'gaming archive is collapsed on the hobby page');
   assert.doesNotMatch(home, /id="gaming-archive"/);
-  assert.match(home, /Ian Ferraro, local in Clinton/);
+  assert.match(home, /I'm Ian Ferraro, in the DMV Area\./);
+  assert.doesNotMatch(home, /Clinton|Southern Maryland|SoMD/i);
   assert.match(home, /Stay on the chair\./);
   assert.match(home, /https:\/\/whop\.com\/checkout\/plan_HAGSLXXUeGkcz/);
   assert.match(home, /https:\/\/whop\.com\/checkout\/plan_RVDjSToI7vKOM/);

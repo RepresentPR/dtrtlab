@@ -32,8 +32,14 @@ test('brand kit has the public paste text and a short bio', () => {
 test('business pages show theme A offers and keep hobby off the company face', () => {
   const home = read('index.html');
   const main = home.match(/<main[\s\S]*?<\/main>/)[0];
-  assert.match(main, /Stay on the chair\. <span>We write your posts\.<\/span>/);
-  assert.match(main, /For Clinton \+ Southern Maryland shops\. Writing only\. No contract\./);
+  assert.match(main, /We study what makes big companies win, <span>and hand the playbook to yours\.<\/span>/);
+  assert.match(main, /Do the right thing\. We help businesses grow\./);
+  assert.match(main, /DMV Area/);
+  assert.match(main, /Mine\. Test\. Playbook\. Deliver\./);
+  assert.match(home, /"name": "Washington DC metropolitan area \(DMV\)"/);
+  for (const file of ['index.html', 'find.html', 'contact.html', 'js/nav.js', 'legal/terms.html', 'content/company.json']) {
+    assert.doesNotMatch(read(file), /Clinton|Southern Maryland|SoMD/i, file + ' carries no day-job location');
+  }
   for (const id of ['plan_HAGSLXXUeGkcz', 'plan_RVDjSToI7vKOM', 'plan_kZqq0jgr6VrGG', 'plan_Vn0gQGFWQx9CA']) assert.match(main, new RegExp(id));
   assert.match(main, /DTRT 7-Day Do-It-Right Guarantee/);
   assert.doesNotMatch(home, /free plan|Puerto Rico|PayPal|Stripe|twitch\.tv|\/cs2\.html|\/afterlight\.html|#080808|cfe35a/i);
