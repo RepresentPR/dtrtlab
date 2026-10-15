@@ -69,7 +69,7 @@ Use these exact blocks so the profiles match the site. Link the business home, n
 
 - Handle: @DTRTLab
 - Profile URL: https://x.com/DTRTLab
-- Bio: I'm Ian. I help DMV small businesses get more customers. I fix your Google listing, reviews and posts, then show you the numbers 30 days later. Start at $50
+- Bio: I'm Ian. I help DMV small businesses get more customers. I do the work, then show you your numbers at 30 days. Try me for $50
 - Link: https://dtrtlab.com/
 - Link label: DTRT Lab
 
@@ -93,7 +93,7 @@ Use these exact blocks so the profiles match the site. Link the business home, n
 
 - Handle: @DTRTLabYT
 - Profile URL: https://www.youtube.com/@DTRTLabYT
-- Bio: I'm Ian Ferraro. I help small businesses in the DMV Area (DC, Maryland, Virginia) get more customers. I fix your Google listing, reviews and posts, then show you the numbers 30 days later. You don't need to learn AI, because I do the work. Writing only: you keep your passwords. No contract. Start at $50. dtrtlab dot com
+- Bio: I'm Ian Ferraro. I help small businesses in the DMV Area (DC, Maryland, Virginia) get more customers. I fix your Google listing, reviews and posts, then show you the numbers 30 days later. You don't need to learn AI, because I do the work. Try me for $50: 1 hook + 5 captions. Writing only: you keep your passwords. No contract. dtrtlab dot com
 - Link: https://dtrtlab.com/
 - Link label: DTRT Lab
 
@@ -109,6 +109,6 @@ Use these exact blocks so the profiles match the site. Link the business home, n
 
 - Mini Social Pack — $50 — https://whop.com/checkout/plan_HAGSLXXUeGkcz
 - Week Pack — $129 — https://whop.com/checkout/plan_RVDjSToI7vKOM
-- Writing Retainer — Starter — $250/30 days — https://whop.com/checkout/plan_kZqq0jgr6VrGG
+- Writing Retainer · Review Desk — $250/30 days — https://whop.com/checkout/plan_kZqq0jgr6VrGG
 
 These are writing plans. Payment is on Whop. The website does not collect card numbers. Public email: hello@dtrtlab.com.

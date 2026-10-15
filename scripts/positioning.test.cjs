@@ -41,7 +41,17 @@ test('homepage sells the work, the person and the 30-day numbers', () => {
   const home = read('index.html');
   assert.doesNotMatch(home, METHOD, 'homepage keeps the research method internal');
   const main = home.match(/<main[\s\S]*?<\/main>/)[0];
-  assert.match(main, /I'm Ian\. I fix your Google listing, reviews and posts, then show you the numbers 30 days later\. You don't need to learn AI, because I do the work\./);
+  assert.match(main, /I'm Ian\. I fix your Google listing, reviews and posts, then show you the numbers 30 days later\. You don't need to learn AI, because I do the work\. Try me for \$50: 1 hook \+ 5 captions\./);
+  // The $50 Mini stays exactly 1 hook + 5 captions; Google listing work lives only in the $250 Fix.
+  const offers = [...main.matchAll(/<article class="offer[^"]*"[\s\S]*?<\/article>/g)].map(m => m[0]);
+  assert.equal(offers.length, 4, 'Mini, Week Pack, Review Desk, AI Visibility Fix');
+  const mini = offers.find(o => /Mini Social Pack/.test(o));
+  assert.match(mini, /1 hook \+ 5 captions/);
+  assert.doesNotMatch(mini, /Google listing|listing/i, 'no listing work at $50');
+  for (const o of offers.filter(o => !/AI Visibility Fix/.test(o))) assert.match(o, /numbers check/i, 'every tier has a day-30 numbers check');
+  assert.match(main, /<h3>Writing Retainer · Review Desk<\/h3>/);
+  assert.match(main, /Do you use AI\?/);
+  assert.match(main, /mailto:hello@dtrtlab\.com\?subject=CHECK/);
   assert.match(main, /<h2 id="how-title">Fix\. Measure\. Report\.<\/h2>/);
   assert.match(main, /AI Visibility Fix[\s\S]*?\$250[\s\S]*?Day-30 re-check/);
   assert.match(main, /Reply CHECK and I'll run it on your business free\./);
@@ -50,6 +60,12 @@ test('homepage sells the work, the person and the 30-day numbers', () => {
   for (const file of ['index.html', 'find.html', 'contact.html', 'brand-kit.md', 'content/company.json', 'content/site.json', 'legal/terms.html']) {
     assert.doesNotMatch(read(file), /body shop|auto ?body|collision repair/i, file + ' has no body-shop examples');
   }
+  const kit = read('brand-kit.md');
+  for (const line of kit.split('\n').filter(l => /^- Bio:/.test(l) && /\$50/.test(l) && /Google listing/.test(l))) {
+    assert.match(line, /1 hook \+ 5 captions/, 'a bio that mentions listing work and $50 must say what $50 buys');
+  }
+  assert.doesNotMatch(read('AGENTS.md'), /Ian gives an explicit instruction|unless Ian explicitly instructs/, 'positioning sign-off moved to DTRT Co-Founder');
+  assert.match(read('AGENTS.md'), /never merge positioning/);
   for (const m of main.matchAll(/>([^<>]+)<\/(?:p|h1|h2|h3|li|summary|a)>/g)) {
     assert.doesNotMatch(m[1].trim(), /:$/, 'copy never ends on a colon: ' + m[1].trim());
   }
