@@ -52,7 +52,7 @@ I'm Ian. I build the AI office manager for DMV service businesses. Reply SYSTEM 
 
 ### Long
 
-DTRT Lab builds DTRT Job Desk, the AI office manager for DMV service businesses: every job tracked, every customer updated, every quote followed up, and a report card on the owner's phone each night. It's set up inside the apps the business already uses, never with a password. Job Desk is $1,500 setup + $250/mo and starts with a free written map (Reply SYSTEM). The first step can be the free AI check (Reply CHECK) and the AI Visibility Fix, $250 one-time. Smaller writing plans stay on Whop: Writing Retainer · Review Desk $250/30 days, Mini Social Pack $50 and Week Pack $129. The mission is do the right thing: help real local operators, not extract from them. The studio is independent, based in the DMV Area, and open to any age and any size business or idea. Shop checkout on the site is not live. The stream, The Lab Files, CS2, and the game are hobby, on a separate page, and AFTERLIGHT is in development and not for sale. Contact hello@dtrtlab.com.
+DTRT Lab builds DTRT Job Desk, the AI office manager for DMV service businesses: every job tracked, every customer updated, every quote followed up, and a report card on the owner's phone each night. It's set up inside the apps the business already uses, never with a password. Job Desk is $1,500 setup + $250/mo and starts with a free written map (Reply SYSTEM). The first step can be the free AI check (Reply CHECK) and the AI Visibility Fix, $250 one-time. The Writing Retainer · Review Desk, $250/30 days, stays on Whop. The mission is do the right thing: help real local operators, not extract from them. The studio is independent, based in the DMV Area, and open to any age and any size business or idea. Shop checkout on the site is not live. The stream, The Lab Files, CS2, and the game are hobby, on a separate page, and AFTERLIGHT is in development and not for sale. Contact hello@dtrtlab.com.
 
 ## Profile photo and banner
 
@@ -107,9 +107,7 @@ Use these exact blocks so the profiles match the site. Link the business home, n
 
 ## Offers named on the site
 
-- Mini Social Pack — $50 — https://whop.com/checkout/plan_HAGSLXXUeGkcz
-- Week Pack — $129 — https://whop.com/checkout/plan_RVDjSToI7vKOM
 - Writing Retainer · Review Desk — $250/30 days — https://whop.com/checkout/plan_kZqq0jgr6VrGG
 - AI Visibility Fix — $250 one-time — https://whop.com/checkout/plan_yuDiw93Zp6Uvr
 
-These are writing plans. Payment is on Whop. The website does not collect card numbers. Public email: hello@dtrtlab.com.
+These plans are paid on Whop. The website does not collect card numbers. Public email: hello@dtrtlab.com.
