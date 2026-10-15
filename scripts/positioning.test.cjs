@@ -58,24 +58,21 @@ test('homepage leads with the Job Desk and keeps the small plans lower in pricin
   assert.match(desk, /3 Job Desk clients at a time/);
   assert.match(desk, /can't promise revenue/i);
   assert.doesNotMatch(desk, /\$50|\$129|Mini|Week Pack/, 'small plans stay out of the Job Desk section');
-  assert.ok(main.indexOf('id="job-desk"') < main.indexOf('id="prices"') && main.indexOf('id="prices"') < main.indexOf('id="how"'), 'Job Desk first, then pricing, then Fix/Measure/Report');
-  // The $50 Mini stays exactly 1 hook + 5 captions; Google listing work lives only in the $250 Fix.
+  assert.ok(main.indexOf('id="job-desk"') < main.indexOf('id="prices"') && main.indexOf('id="prices"') < main.indexOf('id="about"'), 'Job Desk first, then pricing');
+  assert.doesNotMatch(main, /id="how"|id="free-rewrite"/, '30-day numbers section and free rewrite are retired');
+  // Mini Social Pack and Week Pack retired 2026-10-15 (Co-Founder; 0 Whop memberships).
   const offers = [...main.matchAll(/<article class="offer[^"]*"[\s\S]*?<\/article>/g)].map(m => m[0]);
-  assert.equal(offers.length, 5, 'Job Desk, AI Visibility Fix, Review Desk, Mini, Week Pack');
+  assert.equal(offers.length, 3, 'Job Desk, AI Visibility Fix, Review Desk');
   const names = offers.map(o => o.match(/<h3>([^<]+)<\/h3>/)[1]);
-  assert.deepEqual(names, ['DTRT Job Desk', 'AI Visibility Fix', 'Writing Retainer · Review Desk', 'Mini Social Pack', 'Week Pack'], 'Mini and Week Pack sit lowest in pricing');
-  const mini = offers.find(o => /Mini Social Pack/.test(o));
-  assert.doesNotMatch(mini, /Start here/, 'Mini is no longer the lead offer');
-  assert.match(mini, /1 hook \+ 5 captions/);
-  assert.doesNotMatch(mini, /Google listing|listing/i, 'no listing work at $50');
-  for (const o of offers.filter(o => !/AI Visibility Fix|DTRT Job Desk/.test(o))) assert.match(o, /numbers check/i, 'every writing tier has a day-30 numbers check');
+  assert.deepEqual(names, ['DTRT Job Desk', 'AI Visibility Fix', 'Writing Retainer · Review Desk']);
+  for (const o of offers) assert.doesNotMatch(o, /numbers check/i, 'the day-30 numbers pitch is retired');
+  assert.doesNotMatch(main, /Mini Social Pack|Week Pack|plan_HAGSLXXUeGkcz|plan_RVDjSToI7vKOM/);
   assert.match(main, /<h3>Writing Retainer · Review Desk<\/h3>/);
   assert.match(main, /Do you use AI\?/);
   assert.match(main, /mailto:hello@dtrtlab\.com\?subject=CHECK/);
   const fix = offers.find(o => /AI Visibility Fix/.test(o));
   assert.match(fix, /class="btn" href="https:\/\/whop\.com\/checkout\/plan_yuDiw93Zp6Uvr"/, 'Fix button goes to its Whop checkout');
   assert.match(fix, /href="mailto:[^"]*subject=CHECK[^"]*"[^>]*>Reply CHECK and I'll run it on your business free\.<\/a>/, 'CHECK mailto is only the free check');
-  assert.match(main, /<h2 id="how-title">Fix\. Measure\. Report\.<\/h2>/);
   assert.match(main, /AI Visibility Fix[\s\S]*?\$250[\s\S]*?Day-30 re-check/);
   assert.match(main, /Reply CHECK and I'll run it on your business free\./);
   assert.match(main, /Review Desk/);

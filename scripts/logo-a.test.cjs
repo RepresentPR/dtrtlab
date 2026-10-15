@@ -12,7 +12,7 @@ test('favicon, app icon, avatar and share-card sizes', () => {
     'img/brand/avatar-a.png': 512, 'img/brand/avatar-a-400.png': 400, 'img/brand/avatar-a-1080.png': 1080,
   };
   for (const [f, n] of Object.entries(want)) assert.deepStrictEqual(pngSize(f), [n, n], f);
-  for (const f of ['img/brand/og-theme-a.png', 'img/brand/og-owner-dashboard.png', 'img/brand/dtrt-social.png']) assert.deepStrictEqual(pngSize(f), [1200, 630], f);
+  for (const f of ['img/brand/og-job-desk-2026-10-15.png', 'img/brand/og-theme-a.png', 'img/brand/og-owner-dashboard.png', 'img/brand/dtrt-social.png']) assert.deepStrictEqual(pngSize(f), [1200, 630], f);
   assert.ok(fs.statSync(path.join(ROOT, 'favicon.ico')).size > 0);
 });
 test('mark SVGs are Logo A in locked Theme A colors', () => {
