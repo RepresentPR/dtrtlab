@@ -1,407 +1,400 @@
-/* DTRT Job Desk demo. Every name, number and job below is invented.
-   "Sample Heating & Air Co." is a fictional company. */
+/* DTRT Job Desk demo v2. Every name, number and job below is invented.
+   "Sample Heating & Air Co." is a fictional company. Demo clock: Thu, Oct 15, 4:50 PM. */
 window.DEMO = {
   company: "Sample Heating & Air Co. (demo)",
-  shortName: "Sample Heating & Air",
-  owner: "Dana (demo owner)",
-  area: "DMV Area",
+  owner: "Dana",
   today: "Thu, Oct 15",
-  techs: ["Andre", "Jess", "Sam"],
-  stages: [
-    { id: "lead", label: "Lead" },
-    { id: "quoted", label: "Quoted" },
-    { id: "scheduled", label: "Scheduled" },
-    { id: "progress", label: "In progress" },
-    { id: "done", label: "Done" }
+  nowLabel: "4:50 PM",
+  nowMin: 16 * 60 + 50,
+  sendTimes: ["6:00 PM", "7:00 PM", "8:00 PM", "9:00 PM", "6:00 AM (next morning)", "7:00 AM (next morning)"],
+  sendAt: "8:00 PM",
+  levels: {
+    L0: "Off: never automated",
+    L1: "Suggest: you do it",
+    L2: "Ask me: draft, you approve",
+    L3: "Auto + undo: runs, tells you, can undo",
+    L4: "Auto: shown in the log only"
+  },
+  automations: [
+    { id: "report", name: "Nightly Report Card", level: "L4", on: true, what: "One phone screen at your send time: what needs you, 4 numbers vs last week.", never: "Any number that isn't counted from the day's records" },
+    { id: "email", name: "Email and web form → job card", level: "L3", on: true, what: "Creates the job card when it's sure (95%+ confident). Sends it to Needs you when it isn't. Files newsletters.", never: "Delete an email" },
+    { id: "reply", name: "First \"got it\" reply to a new lead", level: "L2", on: true, what: "Drafts the first reply in your voice. You approve it. Leads waiting over 15 minutes turn red.", never: "Quote a price, diagnose, or promise a time" },
+    { id: "status", name: "Job status texts", level: "L3", on: true, what: "Booked, tech on the way, part ordered, job done. Sent through your own field-service app. Promoted from L2 after a clean week.", never: "Text anyone without consent on file, or after STOP" },
+    { id: "nudge", name: "Quote nudges (day 2, 5, 10)", level: "L2", on: true, marketing: true, what: "Up to 3 nudges per open quote. Stops the moment the customer replies.", never: "Offer a price or discount; keep going after a reply" },
+    { id: "reviewask", name: "Review request after every job", level: "L3", on: true, what: "The same Google review link goes to every finished job, whatever their rating.", never: "Hold the link back from anyone based on their score" },
+    { id: "reviewreply", name: "Replies to public reviews", level: "L2", on: true, what: "Drafts replies to new reviews for you to approve.", never: "Auto-reply to a negative review" },
+    { id: "callback", name: "Low score (6 or below) → callback", level: "L1", on: true, what: "Puts \"call them\" in Needs you with what they said.", never: "Let the system contact an upset customer" },
+    { id: "safety", name: "Safety words (gas, CO, sparks, flood)", level: "L1", on: true, urgent: true, what: "Pings your phone right away. Max 2 urgent pings a day.", never: "Give technical or safety advice" },
+    { id: "schedule", name: "Scheduling suggestions", level: "L1", on: true, what: "Suggests open slots. You book.", never: "Book on a closed day" },
+    { id: "money", name: "Prices, refunds, invoices, payments", level: "L0", on: false, locked: true, what: "Never automated. Always you.", never: "Ever automated" }
   ],
   jobs: [
-    { id: "J-1041", customer: "Maria L.", town: "Bowie", type: "No heat, furnace clicks", stage: "lead", source: "Web form", value: null, age: "18 min", firstReplyMin: 4 },
-    { id: "J-1042", customer: "Kevin O.", town: "Laurel", type: "Thermostat swap", stage: "lead", source: "Email", value: null, age: "1 hr", firstReplyMin: 6 },
-    { id: "J-1043", customer: "Priya S.", town: "Silver Spring", type: "Second-floor room too hot", stage: "lead", source: "Missed call", value: null, age: "2 hr", firstReplyMin: 2 },
-    { id: "J-1031", customer: "Tom B.", town: "Greenbelt", type: "Heat pump replacement", stage: "quoted", value: 9800, quoteDay: 2, age: "2 days" },
-    { id: "J-1029", customer: "Alicia R.", town: "Beltsville", type: "Ductless mini-split, 2 zones", stage: "quoted", value: 7400, quoteDay: 5, age: "5 days" },
-    { id: "J-1024", customer: "Grace H.", town: "Waldorf", type: "Furnace + AC combo", stage: "quoted", value: 12600, quoteDay: 10, age: "10 days" },
-    { id: "J-1035", customer: "Luis M.", town: "Hyattsville", type: "Duct cleaning + sealing", stage: "quoted", value: 1150, quoteDay: 1, age: "1 day" },
-    { id: "J-1037", customer: "Nina P.", town: "Bowie", type: "Fall heating tune-up", stage: "scheduled", value: 149, when: "Fri 8-10 AM", tech: "Jess" },
-    { id: "J-1038", customer: "Omar F.", town: "College Park", type: "Water heater flush", stage: "scheduled", value: 189, when: "Fri 1-3 PM", tech: "Sam" },
-    { id: "J-1033", customer: "Beth C.", town: "Crofton", type: "Heat pump install", stage: "scheduled", value: 8900, when: "Mon all day", tech: "Andre", note: "Part ordered, arrives Fri" },
-    { id: "J-1039", customer: "Carlos D.", town: "Laurel", type: "Blower motor repair", stage: "progress", value: 640, tech: "Andre", note: "Tech on site 2:10 PM" },
-    { id: "J-1040", customer: "Helen W.", town: "Glenn Dale", type: "AC shutdown for winter", stage: "progress", value: 129, tech: "Jess", note: "Tech on the way, ETA 3:30 PM" },
-    { id: "J-1034", customer: "Rob T.", town: "Bowie", type: "Furnace ignitor replaced", stage: "done", value: 385, tech: "Sam" },
-    { id: "J-1036", customer: "Sofia K.", town: "Largo", type: "Fall heating tune-up", stage: "done", value: 149, tech: "Jess" },
-    { id: "J-1032", customer: "Mark E.", town: "Mitchellville", type: "Condensate line clog", stage: "done", value: 210, tech: "Andre" }
+    { id: "J-1041", customer: "Maria L.", town: "Bowie", problem: "No heat", stage: "lead", source: "Web form", inMin: 16 * 60 + 2, replyMin: null,
+      events: [["4:02 PM", "Customer", "Web form: \"No heat, furnace clicks but won't start.\""], ["4:02 PM", "System", "Job card created (web form, 99% confident)"], ["4:02 PM", "System", "First reply drafted. Waiting for your OK"]] },
+    { id: "J-1046", customer: "Rachel T.", town: "Largo", problem: "Gas smell near furnace", stage: "lead", source: "Email", inMin: 16 * 60 + 21, replyMin: 3,
+      events: [["4:21 PM", "Customer", "Email: \"Faint gas smell near the furnace since this afternoon.\""], ["4:21 PM", "System", "Safety word found (gas). Urgent ping to your phone. No advice sent"], ["4:24 PM", "You", "Called Rachel. Told her to leave and call the gas company. Tech booked after the all-clear"]] },
+    { id: "J-1042", customer: "Kevin O.", town: "Laurel", problem: "Thermostat blank", stage: "lead", source: "Email", inMin: 13 * 60 + 12, replyMin: 6,
+      events: [["1:12 PM", "Customer", "Email: \"Thermostat screen went blank. New batteries didn't help.\""], ["1:12 PM", "System", "Job card created (97% confident)"], ["1:18 PM", "You", "Approved the first reply"]] },
+    { id: "J-1043", customer: "Priya S.", town: "Silver Spring", problem: "Upstairs too hot", stage: "lead", source: "Missed call", inMin: 11 * 60 + 40, replyMin: 2,
+      events: [["11:40 AM", "Customer", "Missed call"], ["11:42 AM", "You", "Texted back from your app"]] },
+    { id: "J-1031", customer: "Tom B.", town: "Greenbelt", problem: "Heat pump replacement", stage: "quoted", value: 9800, quoteDay: 2, nudge: 0, sent: "Tue",
+      events: [["Mon 10:00 AM", "Tech", "Site visit"], ["Tue 4:30 PM", "You", "Quote sent: $9,800 (2 options)"], ["Today", "System", "Nudge 1 of 3 drafted. Waiting for your OK"]] },
+    { id: "J-1029", customer: "Alicia R.", town: "Beltsville", problem: "2-zone mini-split", stage: "quoted", value: 7400, quoteDay: 5, nudge: 1, sent: "Sat",
+      events: [["Sat 11:00 AM", "You", "Quote sent: $7,400"], ["Mon 9:00 AM", "System", "Nudge 1 of 3 sent with your OK (text)"], ["Today", "System", "Nudge 2 of 3 drafted. Waiting for your OK"]] },
+    { id: "J-1024", customer: "Grace H.", town: "Waldorf", problem: "Furnace + AC combo", stage: "quoted", value: 12600, quoteDay: 10, nudge: 3, sent: "Mon 10/5",
+      events: [["Mon 10/5", "You", "Quote sent: $12,600"], ["Wed 10/7", "System", "Nudge 1 of 3 sent with your OK"], ["Sat 10/10", "System", "Nudge 2 of 3 sent with your OK (email)"], ["Today 9:00 AM", "System", "Nudge 3 of 3 sent with your OK. No more nudges"]] },
+    { id: "J-1035", customer: "Luis M.", town: "Hyattsville", problem: "Duct cleaning + sealing", stage: "quoted", value: 1150, quoteDay: 1, nudge: 0, sent: "Wed",
+      events: [["Wed 3:00 PM", "You", "Quote sent: $1,150"], ["Fri 9:00 AM", "System", "Nudge 1 of 3 due"]] },
+    { id: "J-1037", customer: "Nina P.", town: "Bowie", problem: "Heating tune-up", stage: "scheduled", value: 149, when: "Fri 8-10 AM", tech: "Jess",
+      events: [["Wed", "Customer", "Booked online"], ["10:05 AM", "System", "\"Booked\" text sent"]] },
+    { id: "J-1038", customer: "Omar F.", town: "College Park", problem: "Water heater flush", stage: "scheduled", value: 189, when: "Fri 1-3 PM", tech: "Sam",
+      events: [["Tue", "You", "Booked by phone"]] },
+    { id: "J-1033", customer: "Beth C.", town: "Crofton", problem: "Heat pump install", stage: "scheduled", value: 8900, when: "Mon all day", tech: "Andre", partDays: 3,
+      events: [["Mon", "You", "Quote won: $8,900"], ["Mon 2:00 PM", "Tech", "Part ordered"], ["11:20 AM", "System", "\"Part ordered\" text sent. Part waiting 3 days"]] },
+    { id: "J-1039", customer: "Carlos D.", town: "Laurel", problem: "Blower motor repair", stage: "progress", value: 640, tech: "Andre",
+      events: [["2:10 PM", "Tech", "On site"]] },
+    { id: "J-1040", customer: "Helen W.", town: "Glenn Dale", problem: "AC winter shutdown", stage: "progress", value: 129, tech: "Jess",
+      events: [["2:58 PM", "System", "\"Tech on the way\" text sent"], ["3:31 PM", "Tech", "On site"]] },
+    { id: "J-1034", customer: "Rob T.", town: "Bowie", problem: "Furnace ignitor", stage: "done", value: 385, tech: "Sam",
+      events: [["9:40 AM", "System", "\"Job done\" text sent"], ["9:45 AM", "System", "Review link sent"], ["11:02 AM", "Customer", "Scored 10/10 and posted a Google review"]] },
+    { id: "J-1036", customer: "Sofia K.", town: "Largo", problem: "Heating tune-up", stage: "done", value: 149, tech: "Jess",
+      events: [["12:15 PM", "System", "\"Job done\" text sent"], ["12:20 PM", "System", "Review link sent"]] },
+    { id: "J-1032", customer: "Mark E.", town: "Mitchellville", problem: "Condensate line clog", stage: "done", value: 210, tech: "Andre",
+      events: [["4:05 PM", "System", "\"Job done\" text sent"], ["4:10 PM", "System", "Review link sent"]] },
+    { id: "J-1025", customer: "Paul G.", town: "Lanham", problem: "Furnace tune-up", stage: "done", value: 149, tech: "Sam", earlier: true,
+      events: [["Wed 10:30 AM", "System", "\"Job done\" text sent"], ["Wed 10:35 AM", "System", "Review link sent"], ["Wed 6:12 PM", "Customer", "Scored 3/10: \"Tech left a mess by the unit.\""], ["Wed 6:12 PM", "System", "Callback added to Needs you"]] },
+    { id: "J-1027", customer: "Ann V.", town: "Cheverly", problem: "AC repair", stage: "done", value: 420, tech: "Andre", earlier: true,
+      events: [["Wed 3:10 PM", "System", "Review link sent"], ["Wed 8:40 PM", "Customer", "Scored 6/10: \"Fixed, but I had to call twice to get a time.\""], ["Wed 8:40 PM", "System", "Callback added to Needs you"]] }
   ],
-  /* Status-update texts. Each is triggered by a job event and sent through the
-     owner's own field-service app (its registered business texting). */
-  textTemplates: [
-    { id: "booked", trigger: "Job moves to Scheduled", title: "Booked", body: "Hi {first}, you're booked with Sample Heating & Air for {when}. {tech} will be your tech. Reply here to change the time." },
-    { id: "ontheway", trigger: "Tech taps 'On my way'", title: "Tech on the way", body: "Hi {first}, {tech} is on the way and should arrive around {eta}. Reply here if anything changed." },
-    { id: "part", trigger: "Part marked 'Ordered'", title: "Part ordered", body: "Hi {first}, the part for your {type} is ordered and should arrive {partEta}. We'll text you as soon as it's in to book the install." },
-    { id: "done", trigger: "Job moves to Done", title: "Job done", body: "Hi {first}, your {type} is done. Thanks for choosing Sample Heating & Air. Your invoice is on the way by email. Questions? Just reply." }
+  closed: [
+    { id: "J-1022", customer: "Dave N.", problem: "AC replacement", value: 4900, result: "won", afterNudge: 2 },
+    { id: "J-1019", customer: "Ellen K.", problem: "Duct repair", value: 2350, result: "won", afterNudge: 1 },
+    { id: "J-1020", customer: "Frank Z.", problem: "Thermostat upgrade", value: 780, result: "lost", note: "Went with another company" }
   ],
+  queue: [
+    { id: "q-maria", kind: "reply", auto: "reply", job: "J-1041", verb: "Reply to", why: "New lead from the web form: no heat, furnace clicks.", red: true,
+      draft: "Hi Maria, thanks for reaching out to Sample Heating & Air. Sorry you're without heat. What's a good time today or tomorrow for a tech to come out? Dana" },
+    { id: "q-paul", kind: "callback", auto: "callback", job: "J-1025", verb: "Call", why: "Scored 3/10 yesterday: \"Tech left a mess by the unit.\"", red: true, complaint: true },
+    { id: "q-tom", kind: "nudge", auto: "nudge", job: "J-1031", verb: "Send nudge 1 of 3 to", why: "Quote open 2 days, no reply yet.", channel: "Text",
+      draft: "Hi Tom, it's Dana at Sample Heating & Air. Any questions on the heat pump quote? Happy to walk through the two options." },
+    { id: "q-alicia", kind: "nudge", auto: "nudge", job: "J-1029", verb: "Send nudge 2 of 3 to", why: "Quote open 5 days. Nudge 1 sent Monday, no reply.", channel: "Text",
+      draft: "Hi Alicia, checking in on the 2-zone mini-split quote. If timing is the question, we have install openings the week of Oct 26. Dana" },
+    { id: "q-june", kind: "email", auto: "email", verb: "Check new request from", customer: "June R.", why: "Email at 4:38 PM. 72% confident, so it waited for you: no street, and urgency unclear.",
+      guess: { Customer: "June R.", Town: "Glenarden (guessed)", Problem: "Water pooling under indoor unit", Urgency: "Today? (unsure)", Contact: "555-0177 · j.rivera@example.com" } },
+    { id: "q-ann", kind: "callback", auto: "callback", job: "J-1027", verb: "Call", why: "Scored 6/10 yesterday: \"Fixed, but I had to call twice to get a time.\"" }
+  ],
+  log: [
+    { t: "9:40 AM", auto: "status", job: "J-1034", text: "\"Job done\" text to Rob T.", result: "Delivered", undo: "sent" },
+    { t: "9:45 AM", auto: "reviewask", job: "J-1034", text: "Review link to Rob T.", result: "Delivered · scored 10/10", undo: "sent" },
+    { t: "10:05 AM", auto: "status", job: "J-1037", text: "\"Booked\" text to Nina P.", result: "Delivered", undo: "sent" },
+    { t: "11:20 AM", auto: "status", job: "J-1033", text: "\"Part ordered\" text to Beth C.", result: "Delivered", undo: "sent" },
+    { t: "12:15 PM", auto: "status", job: "J-1036", text: "\"Job done\" text to Sofia K.", result: "Delivered", undo: "sent" },
+    { t: "12:20 PM", auto: "reviewask", job: "J-1036", text: "Review link to Sofia K.", result: "Delivered · scored 9/10", undo: "sent" },
+    { t: "1:12 PM", auto: "email", job: "J-1042", text: "Email from kevin.o@example.com → job card J-1042", result: "97% confident", undo: "open" },
+    { t: "1:18 PM", auto: "reply", job: "J-1042", text: "First reply to Kevin O., sent with your OK", result: "Delivered · 6 min after the email", undo: "sent" },
+    { t: "2:58 PM", auto: "status", job: "J-1040", text: "\"Tech on the way\" text to Helen W.", result: "Delivered", undo: "sent" },
+    { t: "3:30 PM", auto: "email", text: "Email from newsletter@example.com filed (not a request)", result: "Filed, no job card", undo: "open" },
+    { t: "4:05 PM", auto: "status", job: "J-1032", text: "\"Job done\" text to Mark E.", result: "Delivered", undo: "sent" },
+    { t: "4:10 PM", auto: "reviewask", job: "J-1032", text: "Review link to Mark E.", result: "Delivered · no score yet", undo: "sent" },
+    { t: "4:21 PM", auto: "safety", job: "J-1046", text: "Safety word \"gas\" in Rachel T.'s email → urgent ping to you", result: "You called her at 4:24 PM. No advice was sent", undo: "none" },
+    { t: "4:38 PM", auto: "email", text: "Email from j.rivera@example.com → Needs you (72% confident)", result: "Waiting for you", undo: "none" }
+  ],
+  lastWeek: { medianReply: 22, quotesOpen: 24300, doneToday: 2, doneValue: 510, updated: 4 },
+  trust: { consent: 41, texted: 43, optOuts: 0, reviewSent: 9, reviewDone: 9 },
   footer: "Automated update from Sample Heating & Air. Reply STOP to opt out.",
-  followFooter: "Automated reminder from Sample Heating & Air. Reply STOP to opt out.",
-  sentTexts: [
-    { job: "J-1040", tpl: "ontheway", time: "2:58 PM", vars: { eta: "3:30 PM" } },
-    { job: "J-1033", tpl: "part", time: "11:20 AM", vars: { partEta: "Friday" } },
-    { job: "J-1037", tpl: "booked", time: "10:05 AM", vars: {} },
-    { job: "J-1034", tpl: "done", time: "9:40 AM", vars: {} },
-    { job: "J-1036", tpl: "done", time: "12:15 PM", vars: {} },
-    { job: "J-1032", tpl: "done", time: "4:05 PM", vars: {} }
-  ],
-  /* Quote follow-up: day 2, day 5 and day 10 nudges. Stops the moment the customer replies. */
-  followups: [
-    { job: "J-1031", day: 2, status: "due", channel: "Text", draft: "Hi Tom, it's Dana at Sample Heating & Air. Any questions on the heat pump quote? Happy to walk through the two options by text." },
-    { job: "J-1029", day: 5, status: "due", channel: "Email", draft: "Hi Alicia, just checking in on the 2-zone mini-split quote. If timing is the issue, we have install openings the week of Oct 26." },
-    { job: "J-1024", day: 10, status: "due", channel: "Text", draft: "Hi Grace, last check-in from me on the furnace + AC quote. If you went another way, no problem at all. Just reply 'pass' and we'll close it out." },
-    { job: "J-1029", day: 2, status: "sent", channel: "Text", sentAt: "Mon 9:00 AM", draft: "Hi Alicia, it's Dana. Any questions on the mini-split quote?" },
-    { job: "J-1024", day: 2, status: "sent", channel: "Text", sentAt: "Wed 10/7 9:00 AM", draft: "Hi Grace, it's Dana. Any questions on the furnace + AC quote?" },
-    { job: "J-1024", day: 5, status: "sent", channel: "Email", sentAt: "Sat 9:00 AM", draft: "Hi Grace, checking in on the furnace + AC quote." },
-    { job: "J-1035", day: 2, status: "upcoming", channel: "Text", due: "Fri 9:00 AM", draft: "Hi Luis, any questions on the duct cleaning quote?" },
-    { job: "J-1022", customer: "Dave N.", day: 5, status: "stopped", channel: "Text", stoppedNote: "Customer replied 'yes, book it' on Mon. Follow-ups stopped, job booked.", draft: "" }
-  ],
-  /* Email-to-task intake. Fake addresses on example.com. */
-  emails: [
-    { id: "E1", from: "kevin.o@example.com", name: "Kevin O.", time: "1:12 PM", subject: "thermostat", body: "Hi, my thermostat screen went blank this morning. New batteries didn't help. I'm in Laurel. Can someone come Friday or Monday? Call or text 555-0143.", task: { customer: "Kevin O.", town: "Laurel", issue: "Thermostat screen blank, new batteries tried", urgency: "Normal", preferred: "Fri or Mon", contact: "555-0143 (text OK)" }, converted: true, jobId: "J-1042" },
-    { id: "E2", from: "j.rivera@example.com", name: "June R.", time: "2:40 PM", subject: "Water dripping from the AC closet!!", body: "There's water pooling under the unit in our hall closet, maybe a cup an hour. AC is off for the season. Glenarden. Home after 4 today. 555-0177", task: { customer: "June R.", town: "Glenarden", issue: "Water pooling under indoor unit (AC off)", urgency: "Today", preferred: "After 4 PM today", contact: "555-0177" }, converted: false },
-    { id: "E3", from: "pm.desk@example.com", name: "Ridge Court Rentals (demo)", time: "3:05 PM", subject: "Unit 4B no heat - tenant request", body: "Tenant in 4B reports no heat since last night. Gas furnace, about 12 years old. Access through the leasing office, 9-5 weekdays. Please send a quote before any repair over $500.", task: { customer: "Ridge Court Rentals (demo)", town: "Bowie", issue: "No heat in unit 4B, 12-yr gas furnace", urgency: "Today", preferred: "Weekdays 9-5 via office", contact: "Reply by email. Quote needed over $500" }, converted: false },
-    { id: "E4", from: "newsletter@example.com", name: "Supply Weekly", time: "3:30 PM", subject: "Fall promo on filters", body: "Save 10% on bulk filter orders this week...", task: null, converted: false, skipped: "Not a customer request. Left in inbox, no task made." }
-  ],
-  /* Review requests. EVERY finished job gets the same review link. A score of 6 or
-     below never blocks the link; it also flags the owner to call. */
-  reviews: [
-    { job: "J-1034", score: 10, comment: "Sam was on time and explained everything.", requested: "9:45 AM", posted: true },
-    { job: "J-1036", score: 9, comment: "Quick and tidy.", requested: "12:20 PM", posted: false },
-    { job: "J-1032", score: null, comment: "", requested: "4:10 PM", posted: false },
-    { job: "J-1027", customer: "Ann V.", type: "AC repair", score: 6, comment: "Fixed, but had to call twice to get a time.", requested: "Wed 3:15 PM", posted: false },
-    { job: "J-1025", customer: "Paul G.", type: "Furnace tune-up", score: 3, comment: "Tech left a mess by the unit.", requested: "Wed 11:00 AM", posted: false },
-    { job: "J-1023", customer: "Rita J.", type: "Duct repair", score: 8, comment: "Good price.", requested: "Tue 2:30 PM", posted: true }
-  ],
-  reportExtras: { newReviewsGoogle: 2, avgRatingWeek: "4.8", missedCallsTexted: 3, revenueDone: null }
+  nudgeFooter: "Sample Heating & Air. Reply STOP to opt out."
 };
 
-/* DTRT Job Desk demo app. Static, no backend, no network calls. Fictional data only. */
+/* DTRT Job Desk demo v2: Tonight · Needs you · Jobs · Autopilot. Static, no network calls, fictional data. */
 (function () {
   "use strict";
-  var D, S; // D = original data, S = working state
+  var S, view = { stage: "lead", editing: null };
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var esc = function (t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
-  var money = function (n) { return n == null ? "" : "$" + n.toLocaleString("en-US"); };
-  var first = function (name) { return String(name).split(" ")[0]; };
-  var initials = function (name) { return String(name).split(" ").map(function (p) { return p[0]; }).join("").slice(0, 2).toUpperCase(); };
-
+  var money = function (n) { return "$" + Math.round(n).toLocaleString("en-US"); };
+  var first = function (n) { return String(n).split(" ")[0]; };
   var I = {
-    home: '<path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/>',
-    board: '<rect x="3" y="4" width="5" height="16" rx="1.5"/><rect x="10" y="4" width="5" height="11" rx="1.5"/><rect x="17" y="4" width="4" height="7" rx="1.5"/>',
-    text: '<path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/>',
-    follow: '<circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/>',
-    inbox: '<path d="M3 13l3-8h12l3 8v6H3z"/><path d="M3 13h5l1 2h6l1-2h5"/>',
-    star: '<path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8 6.6 19.7l1.1-6.1L3.2 9.4l6.1-.8z"/>',
-    report: '<rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M9 15v2M12 12v5M15 9v8"/>'
+    tonight: '<path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>',
+    needs: '<path d="M4 6h16M4 12h10M4 18h7"/><circle cx="19" cy="17" r="3"/>',
+    jobs: '<rect x="3" y="4" width="5" height="16" rx="1.5"/><rect x="10" y="4" width="5" height="11" rx="1.5"/><rect x="17" y="4" width="4" height="7" rx="1.5"/>',
+    auto: '<path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3.2"/>'
   };
   var icon = function (k) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + I[k] + "</svg>"; };
-
   var ROUTES = [
-    { id: "overview", label: "Overview", short: "Home", ic: "home" },
-    { id: "board", label: "Job board", short: "Jobs", ic: "board" },
-    { id: "texts", label: "Status texts", short: "Texts", ic: "text" },
-    { id: "followups", label: "Quote follow-ups", short: "Quotes", ic: "follow" },
-    { id: "inbox", label: "Email to task", short: "Inbox", ic: "inbox" },
-    { id: "reviews", label: "Reviews", short: "Reviews", ic: "star" },
-    { id: "report", label: "Nightly Report Card", short: "Report", ic: "report" }
+    { id: "tonight", label: "Tonight", ic: "tonight" },
+    { id: "needs", label: "Needs you", ic: "needs" },
+    { id: "jobs", label: "Jobs", ic: "jobs" },
+    { id: "autopilot", label: "Autopilot", ic: "auto" }
   ];
-  var NEXT = { lead: "quoted", quoted: "scheduled", scheduled: "progress", progress: "done" };
-  var MOVE_TEXT = { quoted: null, scheduled: "booked", progress: "ontheway", done: "done" };
-  var boardStage = "lead";
-  var selText = 0, selMail = "E2";
+  var STAGES = [["lead", "Lead"], ["quoted", "Quoted"], ["scheduled", "Scheduled"], ["progress", "In progress"], ["done", "Done"]];
 
   function init() {
-    D = window.DEMO;
-    S = JSON.parse(JSON.stringify(D));
-    S.callbacksDone = {};
-    S.sessionSends = 0;
+    S = JSON.parse(JSON.stringify(window.DEMO));
+    S.clock = S.nowMin;
+    S.textsExtra = 0;
   }
   function job(id) { return S.jobs.find(function (j) { return j.id === id; }); }
-  function custOf(o) { var j = job(o.job); return o.customer || (j && j.customer) || ""; }
-  function typeOf(o) { var j = job(o.job); return o.type || (j && j.type) || ""; }
-  function fill(tplId, j, vars) {
-    var t = S.textTemplates.find(function (x) { return x.id === tplId; });
-    var v = Object.assign({ first: first(j.customer), when: j.when || "Fri 8-10 AM", tech: j.tech || "Andre", eta: "4:30 PM", type: j.type.toLowerCase(), partEta: "Friday" }, vars || {});
-    return t.body.replace(/\{(\w+)\}/g, function (_, k) { return v[k] != null ? v[k] : ""; });
-  }
+  function auto(id) { return S.automations.find(function (a) { return a.id === id; }); }
+  function jname(j) { return j.id + " · " + j.customer + " · " + j.town + " · " + j.problem; }
+  function chip(level) { return '<span class="lv lv' + level.slice(1) + '" title="' + esc(S.levels[level]) + '">' + level + " · " + esc(S.levels[level].split(":")[0]) + "</span>"; }
+  function stamp() { S.clock += 1; var h = Math.floor(S.clock / 60), m = S.clock % 60; return ((h + 11) % 12 + 1) + ":" + (m < 10 ? "0" : "") + m + (h >= 12 ? " PM" : " AM"); }
   function toast(msg) { var t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(t._h); t._h = setTimeout(function () { t.classList.remove("show"); }, 2600); }
-  function head(title, sub, extra) {
-    return '<div class="head"><div><span class="tag demo-tag">Demo · fictional data</span><h1>' + esc(title) + "</h1><p>" + sub + "</p></div>" + (extra || "") + "</div>";
-  }
+  function waitMin(j) { return j.replyMin == null ? S.nowMin - j.inMin : null; }
 
-  /* ---------- metrics (Report Card + KPI strip use the same numbers) ---------- */
+  /* ---------- queue + metrics ---------- */
+  function rank(q) {
+    var j = q.job && job(q.job), amt = (j && j.value) || 0;
+    if (q.safety) return [0, 0];
+    if (q.red) return [1, -amt];
+    return [2, -amt, q.kind === "email" ? 0 : 1];
+  }
+  function queue() {
+    return S.queue.filter(function (q) { return !q.done; }).sort(function (a, b) {
+      var x = rank(a), y = rank(b);
+      for (var i = 0; i < 3; i++) { if ((x[i] || 0) !== (y[i] || 0)) return (x[i] || 0) - (y[i] || 0); }
+      return 0;
+    });
+  }
+  function qWho(q) { return q.customer || job(q.job).customer; }
+  function qMoney(q) { var j = q.job && job(q.job); return j && j.value && q.kind === "nudge" ? money(j.value) : ""; }
+  function qWhy(q) {
+    var j = q.job && job(q.job);
+    if (q.kind === "reply" && j) { var w = waitMin(j); return "Lead waiting " + w + " min. " + q.why; }
+    return q.why;
+  }
   function metrics() {
-    var by = function (st) { return S.jobs.filter(function (j) { return j.stage === st; }); };
-    var leads = by("lead"), quoted = by("quoted");
-    var rt = S.jobs.filter(function (j) { return j.firstReplyMin != null; }).map(function (j) { return j.firstReplyMin; }).sort(function (a, b) { return a - b; });
-    var median = rt.length ? (rt.length % 2 ? rt[(rt.length - 1) / 2] : Math.round((rt[rt.length / 2 - 1] + rt[rt.length / 2]) / 2)) : null;
-    var scored = S.reviews.filter(function (r) { return r.score != null; });
-    var low = scored.filter(function (r) { return r.score <= 6; });
-    var openCallbacks = low.filter(function (r) { return !S.callbacksDone[r.job]; });
-    var fuSent = S.followups.filter(function (f) { return f.status === "sent"; }).length;
-    var fuDue = S.followups.filter(function (f) { return f.status === "due"; }).length;
-    var mails = S.emails.filter(function (e) { return e.task; });
-    var mailsOpen = mails.filter(function (e) { return !e.converted; }).length;
-    var m = {
-      newLeads: leads.length, quotesOpen: quoted.length,
-      quotesValue: quoted.reduce(function (a, j) { return a + (j.value || 0); }, 0),
-      quotesStale: quoted.filter(function (j) { return j.quoteDay > 3; }).length,
-      scheduled: by("scheduled").length, inProgress: by("progress").length, done: by("done").length,
-      doneValue: by("done").reduce(function (a, j) { return a + (j.value || 0); }, 0),
-      textsSent: S.sentTexts.length, fuSent: fuSent, fuDue: fuDue,
-      reviewsAsked: S.reviews.length, reviewsIn: scored.length,
-      avgScore: scored.length ? (scored.reduce(function (a, r) { return a + r.score; }, 0) / scored.length) : null,
-      lowCount: low.length, openCallbacks: openCallbacks,
-      medianReply: median, mailsToTasks: mails.filter(function (e) { return e.converted; }).length, mailsOpen: mailsOpen
+    var replies = S.jobs.filter(function (j) { return j.replyMin != null; }).map(function (j) { return j.replyMin; }).sort(function (a, b) { return a - b; });
+    var n = replies.length, median = n ? (n % 2 ? replies[(n - 1) / 2] : Math.round((replies[n / 2 - 1] + replies[n / 2]) / 2)) : null;
+    var quoted = S.jobs.filter(function (j) { return j.stage === "quoted"; });
+    var doneToday = S.jobs.filter(function (j) { return j.stage === "done" && !j.earlier; });
+    var log = S.log.filter(function (l) { return l.undo !== "undone"; });
+    var count = function (a) { return log.filter(function (l) { return l.auto === a; }).length; };
+    var won = S.closed.filter(function (c) { return c.result === "won"; });
+    return {
+      median: median, waiting: S.jobs.filter(function (j) { return j.stage === "lead" && waitMin(j) != null; }),
+      quotesOpen: quoted.reduce(function (a, j) { return a + j.value; }, 0), quotesN: quoted.length,
+      stale: quoted.filter(function (j) { return j.quoteDay > 7; }),
+      done: doneToday.length, doneValue: doneToday.reduce(function (a, j) { return a + j.value; }, 0),
+      updated: count("status") + S.textsExtra,
+      texts: count("status"), asks: count("reviewask"), sorted: count("email"), pings: count("safety"), okSends: log.filter(function (l) { return l.withOk; }).length + count("reply"),
+      actions: log.length, recovered: won.filter(function (c) { return c.afterNudge; }).reduce(function (a, c) { return a + c.value; }, 0),
+      won: won, lost: S.closed.filter(function (c) { return c.result === "lost"; }),
+      on: S.automations.filter(function (a) { return a.on && !a.locked; }).length, paused: S.automations.filter(function (a) { return !a.on && !a.locked; }).length
     };
-    // Grade: start at 100 and subtract for things left undone. Rules are shown on the card.
-    var pts = 100 - 3 * openCallbacks.length - 3 * m.fuDue - 3 * mailsOpen - (median != null && median > 60 ? 10 : 0);
-    m.points = Math.max(0, pts);
-    m.grade = pts >= 95 ? "A" : pts >= 88 ? "B+" : pts >= 75 ? "B" : pts >= 60 ? "C" : "D";
-    return m;
+  }
+  function arrow(now, then, lowerIsBetter) {
+    if (then == null || now === then) return '<i class="ar flat">→ same as last week</i>';
+    var up = now > then, good = lowerIsBetter ? !up : up;
+    return '<i class="ar ' + (good ? "good" : "bad") + '">' + (up ? "▲" : "▼") + " vs " + then + "</i>";
   }
 
   /* ---------- screens ---------- */
   var V = {};
-  V.overview = function () {
-    return '<section class="hero"><div><span class="tag">DTRT Job Desk · demo</span><h1>An AI office manager for a busy HVAC company. <em>You do the work. The system does the follow-up.</em></h1>' +
-      '<p>This is a clickable demo built on a fictional company, Sample Heating &amp; Air Co. Every job tracked, every customer updated, every quote followed up, and a report card on the owner\'s phone each night.</p>' +
-      '<a class="btn g" href="#board">Open the job board</a> <a class="btn o" href="#report" style="margin-left:6px">See tonight\'s Report Card</a> <a class="btn o" href="sample-map.pdf" download style="margin-left:6px">Sample map (PDF)</a></div>' +
-      '<div class="flow" aria-label="How a job flows">' +
-      ["Request comes in by email, web form or missed call", "It becomes a job card in seconds", "Customer gets a status text at each step", "Open quotes get a polite day 2, 5 and 10 nudge", "Every finished job gets a review request", "Owner gets one Report Card each night"].map(function (t, i) { return "<div><i>" + (i + 1) + "</i>" + t + "</div>"; }).join("") +
-      "</div></section>" +
-      '<div class="grid mods">' + [
-        ["board", "board", "Job board", "Lead, quoted, scheduled, in progress, done. Click any job to move it and see the text the customer gets."],
-        ["texts", "text", "Status texts", "\"Booked\", \"tech on the way\", \"part ordered\", \"job done\". Sent through the owner's own field-service app."],
-        ["followups", "follow", "Quote follow-ups", "Day 2, day 5 and day 10 nudges in the owner's voice. They stop the moment the customer replies."],
-        ["inbox", "inbox", "Email to task", "A customer email turns into a job card with the name, town, problem and best time pulled out."],
-        ["reviews", "star", "Reviews", "Every customer gets the same review link. A score of 6 or below also flags a callback for the owner."],
-        ["report", "report", "Nightly Report Card", "Jobs, open quotes, follow-ups, reviews and reply time on one phone screen at 8 PM."]
-      ].map(function (m) { return '<a class="card mod" href="#' + m[0] + '"><div class="ic">' + icon(m[1]) + "</div><h3>" + m[2] + "</h3><p>" + m[3] + "</p></a>"; }).join("") + "</div>" +
-      '<div class="card" style="padding:16px;margin-top:14px"><b>What always stays human</b><p style="margin:6px 0 0;color:var(--muted);font-size:13.5px">Pricing, judgment calls, complaints and anything personal. The owner can switch any automation off, and holds every new message type for approval until it has run clean for a week.</p></div>' +
-      '<p class="note">Demo only. Sample Heating &amp; Air Co., its owner, staff, customers, phone numbers and emails are all invented. Numbers on these screens come from the demo data, not from a real business.</p>';
+  V.tonight = function () {
+    var m = metrics(), q = queue(), lw = S.lastWeek, n = q.length;
+    var sentence = (m.done + " jobs done (" + money(m.doneValue) + "). ") + (n ? (n === 1 ? "1 thing needs you" : n + " things need you") + (q.filter(function (x) { return x.red; }).length ? ", " + q.filter(function (x) { return x.red; }).length + " before 9 AM." : ".") : "Nothing needs you tonight.");
+    var items = q.slice(0, 3).map(function (x) {
+      return '<a class="rc-item' + (x.red ? " red" : "") + '" href="#needs" data-focus="' + x.id + '"><b>' + esc(x.verb) + " " + esc(qWho(x)) + "</b><span>" + esc(qWhy(x)) + (qMoney(x) ? " · " + qMoney(x) : "") + "</span></a>";
+    }).join("");
+    var more = n > 3 ? '<a class="rc-more" href="#needs">+' + (n - 3) + " more in Needs you</a>" : "";
+    var kpi = function (label, val, sub, arr, cls) { return '<div class="kpi2 ' + (cls || "") + '"><span>' + label + "</span><b>" + val + "</b>" + arr + (sub ? "<small>" + sub + "</small>" : "") + "</div>"; };
+    var card = '<div class="rc2" id="reportCard">' +
+      '<div class="rc2-h"><div><small>REPORT CARD · ' + esc(S.today.toUpperCase()) + " · DEMO</small><h2>Sample Heating &amp; Air Co.</h2></div>" +
+      '<span class="status ' + (n ? "need" : "clear") + '">' + (n ? n + " need you" : "All clear") + "</span></div>" +
+      '<p class="rc2-s">' + esc(sentence) + "</p>" +
+      (n ? '<div class="rc-items">' + items + more + "</div>" : '<div class="rc-clear">✓ All clear. Autopilot has the rest.</div>') +
+      '<div class="kpis2">' +
+      kpi("First reply (median)", (m.median != null ? m.median + " min" : "—"), m.waiting.length ? '<em class="red-t">' + m.waiting.length + " lead waiting</em>" : "", arrow(m.median, lw.medianReply, true)) +
+      kpi("Quotes open", money(m.quotesOpen), m.stale.length ? '<em class="red-t">' + money(m.stale.reduce(function (a, j) { return a + j.value; }, 0)) + " over 7 days</em>" : "", arrow(Math.round(m.quotesOpen / 1000), Math.round(lw.quotesOpen / 1000), false).replace(/vs (\d+)/, "vs $$$1k")) +
+      kpi("Jobs done today", m.done + " · " + money(m.doneValue), "", arrow(m.done, lw.doneToday, false)) +
+      kpi("Customers updated", m.updated, "0 opt-outs", arrow(m.updated, lw.updated, false)) +
+      "</div>" +
+      '<a class="rc2-auto" href="#autopilot">Autopilot did ' + m.actions + " things: " + m.texts + " texts, " + m.asks + " review asks, " + m.sorted + " emails sorted, " + m.pings + " urgent ping · 0 errors →</a>" +
+      '<div class="rc2-f"><span>' + m.on + " automations on" + (m.paused ? ", " + m.paused + " paused" : "") + " · checked " + esc(S.nowLabel) + '</span><label>Sends <select id="sendAt" aria-label="Report Card send time">' + S.sendTimes.map(function (t) { return "<option" + (t === S.sendAt ? " selected" : "") + ">" + t + "</option>"; }).join("") + "</select></label></div></div>";
+    var side = '<div class="side-info"><div class="card pad"><b>How the Report Card works</b><ul class="ul"><li>Leads with <b>All clear</b> or <b>N need you</b>, then 4 numbers vs last week.</li><li>At most 3 things that need you, sorted: safety, then urgent (a waiting lead or an unhappy customer), then money at stake.</li><li>4 numbers, each compared with last week.</li><li>One line on what Autopilot did, linked to the full log.</li></ul></div>' +
+      '<div class="card pad"><b>Send time</b><p class="mut">8:00 PM by default. You pick the time at setup and can change it anytime. One text with a link, email as backup. Urgent pings only for safety words or a lead waiting over an hour, max 2 a day.</p></div>' +
+      '<div class="card pad"><b>Try it</b><p class="mut">Approve something in Needs you, then come back. The card updates.</p><a class="btn n s" href="#needs">Open Needs you</a></div></div>';
+    return '<div class="head tight"><div><span class="tag demo-tag">Demo · fictional data</span><h1>Tonight</h1><p class="hide-m">Preview of tonight\'s Report Card, live as of ' + esc(S.nowLabel) + ".</p></div></div>" +
+      '<div class="tonight"><div class="rc-frame">' + card + "</div>" + side + "</div>";
   };
 
-  V.board = function () {
-    var m = metrics();
-    var kpis = '<div class="kpis">' + [
-      [m.newLeads, "New leads"], [m.quotesOpen, "Quotes open · " + money(m.quotesValue)], [m.scheduled, "Scheduled"], [m.inProgress, "In progress"], [m.done, "Done today · " + money(m.doneValue)]
-    ].map(function (k) { return '<div class="card kpi"><b>' + k[0] + "</b><span>" + k[1] + "</span></div>"; }).join("") + "</div>";
-    var seg = '<div class="seg" role="tablist" aria-label="Stage">' + S.stages.map(function (s) {
-      var n = S.jobs.filter(function (j) { return j.stage === s.id; }).length;
-      return '<button role="tab" data-seg="' + s.id + '" class="' + (s.id === boardStage ? "on" : "") + '" aria-selected="' + (s.id === boardStage) + '">' + s.label + " (" + n + ")</button>";
-    }).join("") + "</div>";
-    var cols = S.stages.map(function (s) {
-      var js = S.jobs.filter(function (j) { return j.stage === s.id; });
-      return '<section class="col' + (s.id === boardStage ? " on" : "") + '" aria-label="' + s.label + '"><h2>' + s.label + "<span>" + js.length + "</span></h2>" +
-        (js.length ? js.map(card).join("") : '<div class="empty">Nothing here</div>') + "</section>";
+  V.needs = function () {
+    var q = queue();
+    var cards = q.map(function (x) {
+      var j = x.job && job(x.job), a = auto(x.auto);
+      var meta = '<div class="chips">' + chip(a.level) + (x.kind === "nudge" ? '<span class="mk">Marketing: consent on file</span>' : "") + (x.red ? '<span class="chip r">' + (x.kind === "reply" ? "Waiting " + waitMin(j) + " min" : "Unhappy customer") + "</span>" : "") + (qMoney(x) ? '<span class="chip n">' + qMoney(x) + " quote</span>" : "") + "</div>";
+      var body = "";
+      if (x.draft) {
+        body = view.editing === x.id ? '<textarea class="ed" id="ed-' + x.id + '" rows="3">' + esc(x.draft) + '</textarea><div class="row-btn"><button class="btn g s" data-save="' + x.id + '">Save draft</button></div>'
+          : '<div class="draft">' + esc(x.draft) + (x.kind === "nudge" ? "<small>" + esc(S.nudgeFooter) + "</small>" : "") + "</div>";
+      }
+      if (x.guess) body = '<dl class="kv">' + Object.keys(x.guess).map(function (k) { return "<dt>" + k + "</dt><dd>" + esc(x.guess[k]) + "</dd>"; }).join("") + "</dl>";
+      var ap = { reply: "Approve & send", nudge: "Approve & send", callback: "Approve: I called", email: "Approve: make job card" }[x.kind];
+      return '<article class="card qcard' + (x.red ? " red" : "") + '" id="' + x.id + '"><div class="qh"><div><b>' + esc(x.verb) + " " + esc(qWho(x)) + "</b>" + (j ? '<button class="lnk" data-job="' + j.id + '">' + esc(jname(j)) + "</button>" : "") + "</div></div>" +
+        '<p class="why">' + esc(qWhy(x)) + "</p>" + meta + body +
+        '<div class="row-btn"><button class="btn g s" data-ap="' + x.id + '">' + ap + "</button>" + (x.draft ? '<button class="btn l s" data-edit="' + x.id + '">Edit</button>' : (x.guess ? '<button class="btn l s" data-edit="' + x.id + '">Edit</button>' : '<button class="btn l s" data-edit="' + x.id + '">Edit note</button>')) + '<button class="btn l s" data-skip="' + x.id + '">Skip</button></div></article>';
     }).join("");
-    return head("Job board", "Every job in one place. Click a card to see its history and move it forward; the customer's text is shown before anything goes out.") + kpis + seg + '<div class="board">' + cols + "</div>";
+    return '<div class="head"><div><span class="tag demo-tag">Demo · fictional data</span><h1>Needs you <span class="badge">' + q.length + "</span></h1><p>Everything that needs a person, from every part of the system, in one list. Sorted: safety first, then urgent, then money at stake.</p></div></div>" +
+      (q.length ? '<div class="qlist">' + cards + "</div>" : '<div class="card pad clear-big">✓ All clear. Nothing needs you. <a href="#tonight">See tonight\'s Report Card</a></div>');
+  };
+
+  V.jobs = function () {
+    var m = metrics();
+    var cols = STAGES.map(function (s) {
+      var js = S.jobs.filter(function (j) { return j.stage === s[0] && !(j.earlier); });
+      return '<section class="col' + (s[0] === view.stage ? " on" : "") + '" aria-label="' + s[1] + '"><h2>' + s[1] + "<span>" + js.length + "</span></h2>" + (js.length ? js.map(card).join("") : '<div class="empty">Nothing here</div>') + "</section>";
+    }).join("");
+    var seg = '<div class="seg" role="tablist" aria-label="Stage">' + STAGES.map(function (s) {
+      var n = S.jobs.filter(function (j) { return j.stage === s[0] && !j.earlier; }).length;
+      return '<button role="tab" data-seg="' + s[0] + '" class="' + (s[0] === view.stage ? "on" : "") + '" aria-selected="' + (s[0] === view.stage) + '">' + s[1] + " (" + n + ")</button>";
+    }).join("") + "</div>";
+    var outcome = '<div class="card pad outcomes"><div><b>Quotes this week</b><span class="mut">Won ' + m.won.length + " · Lost " + m.lost.length + " · Open " + m.quotesN + '</span></div><div class="oc">' +
+      m.won.map(function (c) { return '<span class="chip g">Won ' + money(c.value) + " · " + esc(c.customer) + (c.afterNudge ? " · after nudge " + c.afterNudge : "") + "</span>"; }).join("") +
+      m.lost.map(function (c) { return '<span class="chip l">Lost ' + money(c.value) + " · " + esc(c.customer) + "</span>"; }).join("") +
+      '</div><div class="rec"><b>' + money(m.recovered) + '</b><span>won after a follow-up nudge this week</span></div></div>';
+    return '<div class="head"><div><span class="tag demo-tag">Demo · fictional data</span><h1>Jobs</h1><p>One board, every job named the same way. Tap a job for its full timeline. Green on track · amber waiting · red needs you.</p></div></div>' + outcome + seg + '<div class="board">' + cols + "</div>";
   };
   function card(j) {
-    var chips = "";
-    if (j.stage === "lead") chips += '<span class="chip g">Replied in ' + j.firstReplyMin + " min</span>";
-    if (j.stage === "quoted") chips += '<span class="chip ' + (j.quoteDay >= 10 ? "b" : j.quoteDay >= 5 ? "w" : "n") + '">Quote day ' + j.quoteDay + "</span>";
-    if (j.when) chips += '<span class="chip n">' + esc(j.when) + "</span>";
-    if (j.note) chips += '<span class="chip w">' + esc(j.note) + "</span>";
-    if (j.stage === "done") { var r = S.reviews.find(function (x) { return x.job === j.id; }); if (r) chips += '<span class="chip ' + (r.score != null && r.score <= 6 ? "b" : "g") + '">' + (r.score == null ? "Review asked" : "Score " + r.score + "/10") + "</span>"; }
-    return '<button class="job" data-job="' + j.id + '"><div class="top"><span>' + j.id + "</span><span>" + (j.value ? money(j.value) : esc(j.source || "")) + "</span></div><b>" + esc(j.customer) + '</b><div class="meta">' + esc(j.type) + " · " + esc(j.town) + (j.tech ? " · " + esc(j.tech) : "") + "</div>" + chips + "</button>";
+    var c = "";
+    if (j.stage === "lead") { var w = waitMin(j); c += w != null ? '<span class="chip ' + (w > 15 ? "r" : "a") + '">Waiting ' + w + " min</span>" : '<span class="chip g">Replied in ' + j.replyMin + " min</span>"; if (j.id === "J-1046") c += '<span class="chip r">Safety ping</span>'; }
+    if (j.stage === "quoted") c += '<span class="chip ' + (j.quoteDay > 7 ? "r" : j.quoteDay >= 5 ? "a" : "n") + '">Day ' + j.quoteDay + " · nudge " + Math.min(j.nudge + (j.nudge < 3 ? 1 : 0), 3) + " of 3" + (j.nudge >= 3 ? " sent" : "") + "</span>";
+    if (j.when) c += '<span class="chip n">' + esc(j.when) + "</span>";
+    if (j.partDays) c += '<span class="chip a">Part waiting ' + j.partDays + " days</span>";
+    if (j.stage === "done") c += '<span class="chip g">Review link sent</span>';
+    var dot = j.stage === "lead" && waitMin(j) > 15 || (j.stage === "quoted" && j.quoteDay > 7) ? "r" : (j.partDays || (j.stage === "quoted" && j.quoteDay >= 5)) ? "a" : "g";
+    return '<button class="job" data-job="' + j.id + '"><div class="top"><span><i class="dot ' + dot + '"></i>' + j.id + "</span><span>" + (j.value ? money(j.value) : esc(j.source || "")) + "</span></div><b>" + esc(j.customer) + '</b><div class="meta">' + esc(j.town) + " · " + esc(j.problem) + (j.tech ? " · " + esc(j.tech) : "") + "</div>" + c + "</button>";
   }
 
-  V.texts = function () {
-    var list = S.sentTexts.map(function (t, i) {
-      var j = job(t.job), tp = S.textTemplates.find(function (x) { return x.id === t.tpl; });
-      return '<button class="row' + (i === selText ? " on" : "") + '" data-text="' + i + '"><span class="av">' + initials(j.customer) + '</span><span class="main"><b>' + esc(j.customer) + " · " + tp.title + "</b><p>" + esc(fill(t.tpl, j, t.vars)) + '</p></span><span class="side-t">' + t.time + "</span></button>";
-    }).join("");
-    var t = S.sentTexts[selText] || S.sentTexts[0], j = job(t.job), tp = S.textTemplates.find(function (x) { return x.id === t.tpl; });
-    var phone = '<div class="phone" aria-label="Text message preview"><div class="screen"><div class="sbar"><span>' + t.time.replace(/ (AM|PM)/, "") + '</span><span>5G ▮▮▮</span></div><div class="thead"><div class="av">SH</div><b>Sample Heating &amp; Air</b><br><span style="color:var(--muted)">(demo) business line</span></div>' +
-      '<div class="msgs"><span class="when">Today ' + t.time + '</span><div class="bub">' + esc(fill(t.tpl, j, t.vars)) + "<small>" + esc(S.footer) + "</small></div>" +
-      (t.tpl === "ontheway" ? '<div class="bub me">ok thanks!</div>' : "") + "</div></div></div>" +
-      '<p class="note" style="text-align:center">Preview. ' + esc(j.customer) + " is a fictional customer.</p>";
-    var trig = '<div class="card trig" style="margin-top:16px"><h3>When texts go out</h3>' + S.textTemplates.map(function (x, i) {
-      return '<div class="trow"><span>' + esc(x.trigger) + '</span><span class="arrow">→</span><b>' + esc(x.title) + '</b><button class="switch" role="switch" aria-checked="true" aria-label="' + esc(x.title) + ' text on or off" data-switch="' + i + '"></button></div>';
-    }).join("") + '<p class="note" style="margin-top:8px">Texts go through the owner\'s own field-service app and its registered business number, only to customers who agreed to texts. Every text says it\'s automated and includes STOP to opt out. Customer replies land with the owner, not a bot.</p></div>';
-    return head("Status texts", "Customers stop calling to ask \"where are we?\". Each job event sends a short update. " + S.sentTexts.length + " sent today.") +
-      '<div class="two texts-two"><div><div class="card list">' + list + "</div>" + trig + "</div><div>" + phone + "</div></div>";
-  };
-
-  V.followups = function () {
-    var ladder = function (f) {
-      return '<div class="ladder">' + [2, 5, 10].map(function (d) {
-        var c = d < f.day ? "d" : d === f.day ? "c" : "";
-        return '<span class="' + c + '">Day ' + d + "</span>";
-      }).join("") + "</div>";
-    };
-    var due = S.followups.filter(function (f) { return f.status === "due"; });
-    var dueHtml = due.length ? due.map(function (f) {
-      var j = job(f.job), idx = S.followups.indexOf(f);
-      return '<div class="card fu"><div class="daybadge"><span><b>' + f.day + "</b>day</span></div><div><b>" + esc(j.customer) + "</b> · " + esc(j.type) + " · " + money(j.value) + '<div class="meta" style="font-size:12.5px;color:var(--muted)">Quote sent ' + j.age + " ago · via " + f.channel + "</div>" + ladder(f) + '<div class="draft">' + esc(f.draft) + (f.channel === "Text" ? '<small style="display:block;color:var(--muted);font-size:11px;margin-top:4px">' + esc(S.followFooter) + "</small>" : "") + '</div></div><div class="acts"><button class="btn g s" data-fu="send" data-i="' + idx + '">Approve &amp; send</button><button class="btn l s" data-fu="skip" data-i="' + idx + '">Skip</button></div></div>';
-    }).join('<div style="height:10px"></div>') : '<div class="card empty">All caught up. No follow-ups waiting.</div>';
-    var rows = function (st, label) {
-      var fs = S.followups.filter(function (f) { return f.status === st; });
-      if (!fs.length) return "";
-      return '<h2 class="sec-t">' + label + " (" + fs.length + ')</h2><div class="card list">' + fs.map(function (f) {
-        return '<div class="row"><span class="av">D' + f.day + '</span><span class="main"><b>' + esc(custOf(f)) + "</b> · day " + f.day + " · " + f.channel + "<p>" + esc(f.stoppedNote || f.draft) + '</p></span><span class="side-t">' + esc(f.sentAt || f.due || (st === "skipped" ? "Skipped" : "Stopped")) + "</span></div>";
-      }).join("") + "</div>";
-    };
-    var toggle = '<div class="card" style="padding:10px 14px;display:flex;gap:10px;align-items:center;font-size:13.5px"><span>Send automatically at 9 AM</span><button class="switch" role="switch" aria-checked="false" aria-label="Send follow-ups automatically" id="autoFu"></button><span style="color:var(--muted)">Off: hold for my OK</span></div>';
-    return head("Quote follow-ups", "Open quotes get a friendly nudge on day 2, day 5 and day 10, written in the owner's voice. Any reply from the customer stops the sequence.", toggle) +
-      '<h2 class="sec-t" style="margin-top:0">Waiting for your OK (' + due.length + ")</h2>" + dueHtml + rows("upcoming", "Coming up") + rows("sent", "Sent") + rows("skipped", "Skipped") + rows("stopped", "Stopped because the customer replied");
-  };
-
-  V.inbox = function () {
-    var list = S.emails.map(function (e) {
-      var st = e.skipped ? '<span class="chip n">Not a request</span>' : e.converted ? '<span class="chip g">Job ' + (e.jobId || "") + "</span>" : '<span class="chip w">Task drafted</span>';
-      return '<button class="row' + (e.id === selMail ? " on" : "") + '" data-mail="' + e.id + '"><span class="av">' + initials(e.name) + '</span><span class="main"><b>' + esc(e.name) + "</b><p>" + esc(e.subject) + "</p>" + st + '</span><span class="side-t">' + e.time + "</span></button>";
-    }).join("");
-    var e = S.emails.find(function (x) { return x.id === selMail; }) || S.emails[0];
-    var det = '<div class="card mail"><div class="from">From ' + esc(e.name) + " &lt;" + esc(e.from) + "&gt; · " + e.time + "</div><h3>" + esc(e.subject) + '</h3><div class="body">' + esc(e.body) + "</div>";
-    if (e.task) {
-      det += '<div class="extract"><h4>Pulled out automatically</h4><dl class="kv">' + [["Customer", e.task.customer], ["Town", e.task.town], ["Problem", e.task.issue], ["Urgency", e.task.urgency], ["Best time", e.task.preferred], ["Contact", e.task.contact]].map(function (kv) {
-        return "<dt>" + kv[0] + "</dt><dd>" + (kv[0] === "Urgency" && kv[1] === "Today" ? '<span class="chip b" style="margin:0">Today</span>' : esc(kv[1])) + "</dd>";
-      }).join("") + "</dl>" +
-        (e.converted ? '<p style="margin:12px 0 0;font-size:13.5px"><span class="chip g" style="margin:0">Done</span> Job card <b>' + e.jobId + '</b> is on the board as a lead. <a href="#board">Open board</a></p>' : '<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn g s" data-mk="' + e.id + '">Add to job board</button><button class="btn l s" data-ack="' + e.id + '">Preview reply</button></div><div id="ackBox"></div>') + "</div>";
-    } else {
-      det += '<p class="note"><span class="chip n" style="margin:0">Skipped</span> ' + esc(e.skipped) + "</p>";
-    }
-    det += "</div>";
-    return head("Email to task", "Requests that arrive by email or web form become job cards with the details pulled out, so nothing sits unread in an inbox.") + '<div class="two"><div class="card list">' + list + "</div><div>" + det + "</div></div>";
-  };
-
-  V.reviews = function () {
-    var rows = S.reviews.map(function (r) {
-      var low = r.score != null && r.score <= 6, called = S.callbacksDone[r.job];
-      var sc = r.score == null ? '<span class="score none">—</span>' : '<span class="score' + (low ? " low" : "") + '">' + r.score + "</span>";
-      var status = r.score == null ? "Asked " + r.requested + ". No answer yet." : (r.posted ? "Posted a Google review" : "Review link sent " + r.requested);
-      var extra = low ? (called ? '<span class="chip g">Owner called back</span>' : '<span class="chip b">Callback flagged for Dana</span><br><button class="btn n s" style="margin-top:8px" data-cb="' + r.job + '">Mark as called</button>') : "";
-      return '<div class="row' + (low && !called ? " flag" : "") + '">' + sc + '<span class="main"><b>' + esc(custOf(r)) + "</b> · " + esc(typeOf(r)) + (r.comment ? "<p>\"" + esc(r.comment) + "\"</p>" : "") + '<p style="font-size:12px">' + status + "</p>" + extra + "</span></div>";
-    }).join("");
+  V.autopilot = function () {
     var m = metrics();
-    return head("Reviews", "After every finished job the customer gets one short question (0 to 10) and the same Google review link. " + m.reviewsIn + " scored, average " + (m.avgScore ? m.avgScore.toFixed(1) : "-") + ".") +
-      '<div class="rule"><span style="font-size:18px">✓</span><span><b>Every customer gets the review link, whatever they score.</b> Low scores are never hidden or held back. A score of 6 or below also flags a callback, so the owner can make it right. Replies to reviews are written by a person.</span></div>' +
-      '<div class="two"><div class="card list">' + rows + '</div><div class="card" style="padding:14px"><b>Sample request (text)</b><div class="preview">Hi Rob, thanks for having us out today. How did Sam do, from 0 to 10? If you have a minute, a Google review helps a small local company a lot: [review link]<small style="display:block;color:var(--muted);font-size:11px;margin-top:6px">' + esc(S.footer) + '</small></div><p class="note">Low-score flags this week: <b>' + m.lowCount + "</b>. Open callbacks: <b>" + m.openCallbacks.length + "</b>.</p></div></div>";
+    var autos = S.automations.map(function (a) {
+      return '<div class="arow' + (a.on || a.locked ? "" : " paused") + '"><div class="amain"><div class="at"><b>' + esc(a.name) + "</b>" + chip(a.level) + (a.marketing ? '<span class="mk">Marketing: consent on file</span>' : "") + (a.urgent ? '<span class="chip r">Urgent ping</span>' : "") + "</div><p>" + esc(a.what) + '</p><p class="never">Never: ' + esc(a.never) + "</p></div>" +
+        (a.locked ? '<span class="lockd">Always you</span>' : '<button class="switch" role="switch" aria-checked="' + a.on + '" aria-label="' + esc(a.name) + ' on or off" data-sw="' + a.id + '"></button>') + "</div>";
+    }).join("");
+    var log = S.log.slice().reverse().map(function (l, i) {
+      var a = auto(l.auto), idx = S.log.length - 1 - i;
+      var u = l.undo === "open" ? '<button class="btn l s" data-undo="' + idx + '">Undo</button>' : l.undo === "undone" ? '<span class="chip l">Undone</span>' : l.undo === "sent" ? '<span class="mut sm" title="Texts and emails can\'t be unsent">Sent</span>' : "";
+      return '<div class="lrow' + (l.undo === "undone" ? " undone" : "") + '"><span class="lt">' + l.t + '</span><div class="lm"><b>' + esc(l.text) + "</b><span>" + esc(a.name) + " · " + a.level + " · " + esc(l.result) + (l.job ? ' · <button class="lnk" data-job="' + l.job + '">' + l.job + "</button>" : "") + "</span></div>" + u + "</div>";
+    }).join("");
+    var t = S.trust;
+    var trust = '<div class="card pad trust"><h2>Trust panel</h2><div class="tgrid">' +
+      '<div><b>' + t.consent + " of " + t.texted + "</b><span>customers texted have consent on file. The other 2 get email only.</span></div>" +
+      "<div><b>" + t.optOuts + "</b><span>opt-outs (STOP) this week. STOP is honored instantly, in every automation.</span></div>" +
+      "<div><b>" + t.reviewSent + " of " + t.reviewDone + "</b><span>finished jobs got the same review link this week. No one is skipped for a low score.</span></div>" +
+      "<div><b>L2</b><span>Quote nudges are treated as marketing: written consent on file and STOP honored.</span></div></div>" +
+      '<p><b>Never automated:</b> prices, discounts, refunds, invoices, payments, diagnosis, safety advice, and replies to upset customers. Phone answering is not part of the Job Desk.</p>' +
+      '<p class="mut">Sends only through your own business number in your field-service app. Access only by your invite, never a password. A weekly review by DTRT Lab checks every log; anything about money or a customer complaint goes to you.</p></div>';
+    var ladder = '<div class="card pad"><b>Autonomy levels</b><ul class="lad">' + Object.keys(S.levels).map(function (k) { return "<li>" + chip(k) + " " + esc(S.levels[k].split(": ")[1] || "") + "</li>"; }).join("") + '</ul><p class="mut">An automation moves up a level only after a clean record (for example, a week with no wrong sends). It drops a level after any wrong send, complaint or jump in opt-outs.</p></div>';
+    var allPaused = S.automations.filter(function (a) { return !a.locked; }).every(function (a) { return !a.on; });
+    return '<div class="head"><div><span class="tag demo-tag">Demo · fictional data</span><h1>Autopilot</h1><p>Everything the system did on its own today, with Undo where it can still be undone. Every automation shows its level and has a pause switch.</p></div>' +
+      '<div class="card pause-all"><span>Pause all</span><button class="switch" role="switch" aria-checked="' + allPaused + '" aria-label="Pause all automations" id="pauseAll"></button></div></div>' +
+      '<div class="ap-grid"><div><h2 class="sec-t">Today\'s log · ' + m.actions + ' actions · 0 errors</h2><div class="card list" id="aplog">' + log + "</div>" + trust + "</div>" +
+      '<div><h2 class="sec-t">Automations</h2><div class="card list">' + autos + "</div>" + ladder +
+      '<div class="card pad links-m"><a href="sample-map.pdf" download>Sample map (PDF)</a> · <a href="/#job-desk">Back to dtrtlab.com</a></div></div></div>';
   };
 
-  V.report = function () {
-    var m = metrics();
-    var tiles = [
-      [m.done, "Jobs done today", ""], [m.scheduled + m.inProgress, "Booked or in progress", ""],
-      [m.quotesOpen, "Quotes open · " + money(m.quotesValue), m.quotesStale ? "alert" : ""], [m.fuSent, "Follow-ups sent this week", ""],
-      [m.textsSent, "Customers updated today", ""], [m.medianReply + " min", "Median first reply", ""],
-      [m.reviewsAsked, "Review requests this week", ""], [m.openCallbacks.length, "Low scores to call", m.openCallbacks.length ? "alert" : ""]
-    ].map(function (t) { return '<div class="rc-t ' + t[2] + '"><b>' + t[0] + "</b><span>" + t[1] + "</span></div>"; }).join("");
-    var todo = [];
-    m.openCallbacks.forEach(function (r) { todo.push("Call " + custOf(r) + " (scored " + r.score + "/10)"); });
-    if (m.fuDue) todo.push(m.fuDue + " quote follow-up" + (m.fuDue > 1 ? "s" : "") + " waiting for your OK");
-    S.emails.filter(function (e) { return e.task && !e.converted; }).forEach(function (e) { todo.push("New request: " + e.task.customer + " · " + e.task.issue); });
-    S.jobs.filter(function (j) { return j.stage === "scheduled" && j.note; }).forEach(function (j) { todo.push(j.customer + ": " + j.note); });
-    var card = '<div class="phone" id="reportPhone"><div class="screen rc"><div class="sbar"><span>8:00</span><span>5G ▮▮▮</span></div>' +
-      '<div class="rc-h"><small>DEMO · FICTIONAL DATA · ' + esc(S.today).toUpperCase() + '</small><h2>Tonight\'s Report Card</h2><small>Sample Heating &amp; Air Co. (demo)</small></div>' +
-      '<div class="rc-grade"><div class="g">' + m.grade + "</div><div><b>" + m.points + ' / 100 today</b><p>Loses points for callbacks, follow-ups and requests still waiting.</p><div class="bar"><i style="width:' + m.points + '%"></i></div></div></div>' +
-      '<div class="rc-tiles">' + tiles + "</div>" +
-      '<div class="rc-list"><h4>For tomorrow</h4>' + (todo.length ? "<ul>" + todo.slice(0, 5).map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul>" : "<p>Nothing waiting. Nice day.</p>") + "</div>" +
-      '<div class="rc-foot">DTRT Job Desk · demo · every number comes from the demo data</div></div></div>';
-    var side = '<div><div class="card" style="padding:16px"><b>How the Report Card works</b><ul style="margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:13.5px"><li>Arrives on the owner\'s phone at 8 PM as one image or email.</li><li>Every number is counted from the day\'s own job, text, quote and review records.</li><li>Score starts at 100: minus 3 for each open callback, follow-up waiting or request not on the board yet, and minus 10 if the median first reply takes over an hour.</li><li>"For tomorrow" lists the few things that need a person.</li></ul></div>' +
-      '<div class="card" style="padding:16px;margin-top:14px"><b>Try it</b><p style="margin:6px 0 10px;color:var(--muted);font-size:13.5px">Approve a follow-up, mark a callback done or turn an email into a job, then come back. The card updates.</p><a class="btn n s" href="#followups">Quote follow-ups</a> <a class="btn l s" href="#reviews">Reviews</a> <a class="btn l s" href="#inbox">Inbox</a></div></div>';
-    return head("Nightly Report Card", "One screen the owner reads at night: what got done, what's waiting, and what needs a person tomorrow.") + '<div class="rc-wrap"><div>' + card + "</div>" + side + "</div>";
-  };
-
-  /* ---------- drawer (job detail) ---------- */
+  /* ---------- job drawer ---------- */
   function openJob(id) {
-    var j = job(id), idx = S.stages.findIndex(function (s) { return s.id === j.stage; });
-    var tl = S.stages.map(function (s, i) { return '<li class="' + (i > idx ? "todo" : "") + '"><b>' + s.label + "</b>" + (i === idx ? " · now" : "") + "</li>"; }).join("");
-    var nx = NEXT[j.stage], prev = "";
-    if (nx) {
-      var tpl = MOVE_TEXT[nx], nlabel = S.stages.find(function (s) { return s.id === nx; }).label;
-      var pj = Object.assign({}, j, { when: j.when || "Fri 8-10 AM", tech: j.tech || "Andre" });
-      prev = '<h3 style="font-size:15px;margin:16px 0 4px">Move to ' + nlabel + "</h3>" +
-        (tpl ? '<div class="preview"><small style="color:var(--muted)">Text the customer will get</small><div class="bub" style="margin-top:6px;max-width:100%">' + esc(fill(tpl, pj)) + "<small>" + esc(S.footer) + "</small></div>" + (nx === "done" ? '<p style="margin:8px 0 0;font-size:12.5px;color:var(--muted)">A review request goes out 5 minutes later.</p>' : "") + "</div>" :
-          '<div class="preview" style="font-size:13.5px">The quote goes out by email and the day 2, 5 and 10 follow-ups are lined up.</div>') +
-        '<button class="btn g" style="margin-top:12px;width:100%;justify-content:center" data-move="' + j.id + '">Move to ' + nlabel + (tpl ? " and send" : "") + "</button>";
-    } else prev = '<div class="preview" style="font-size:13.5px">Finished. The customer got a "job done" text and a review request.</div>';
+    var j = job(id); if (!j) return;
+    var tl = j.events.map(function (e) { return '<li class="ev ' + e[1].toLowerCase() + '"><span class="et">' + esc(e[0]) + " · " + esc(e[1]) + "</span>" + esc(e[2]) + "</li>"; }).join("");
+    var acts = "";
+    if (j.stage === "quoted") acts = '<div class="row-btn"><button class="btn g s" data-won="' + j.id + '">Mark won</button><button class="btn l s" data-lost="' + j.id + '">Mark lost</button></div>';
     var d = $("#drawer");
-    d.innerHTML = '<button class="x" data-close aria-label="Close">×</button><span class="tag demo-tag">Demo · fictional</span><h2 id="drawerTitle">' + esc(j.customer) + '</h2><div style="color:var(--muted)">' + j.id + " · " + esc(j.type) + " · " + esc(j.town) + (j.value ? " · " + money(j.value) : "") + "</div><ul class=\"tl\">" + tl + "</ul>" + prev;
+    d.innerHTML = '<button class="x" data-close aria-label="Close">×</button><span class="tag demo-tag">Demo · fictional</span><h2 id="drawerTitle">' + esc(j.customer) + '</h2><div class="mut">' + esc(jname(j)) + (j.value ? " · " + money(j.value) : "") + '</div><h3 class="sec-t">Timeline</h3><ol class="tl">' + tl + "</ol>" + acts;
     d.hidden = false; $("#drawerBg").hidden = false; d.querySelector("[data-close]").focus();
   }
   function closeJob() { $("#drawer").hidden = true; $("#drawerBg").hidden = true; }
-  function moveJob(id) {
-    var j = job(id), nx = NEXT[j.stage]; if (!nx) return;
-    if (j.stage === "quoted") S.followups.forEach(function (f) { if (f.job === j.id && (f.status === "due" || f.status === "upcoming")) { f.status = "stopped"; f.stoppedNote = "Job booked today. Follow-ups stopped automatically."; } });
-    j.stage = nx;
-    if (nx === "quoted") { j.value = j.value || 480; j.quoteDay = 0; j.age = "today"; }
-    if (nx === "scheduled") { j.when = j.when || "Fri 8-10 AM"; j.tech = j.tech || "Andre"; }
-    if (nx === "progress") { j.note = "Tech on the way"; }
-    if (nx === "done") { j.note = null; S.reviews.unshift({ job: j.id, score: null, comment: "", requested: "just now", posted: false }); }
-    var tpl = MOVE_TEXT[nx];
-    if (tpl) S.sentTexts.unshift({ job: j.id, tpl: tpl, time: "4:52 PM", vars: {} });
-    boardStage = nx; closeJob(); render();
-    toast(tpl ? "Moved. Preview text logged for " + j.customer + " (demo, nothing sent)." : "Moved to Quoted. Follow-ups lined up.");
+
+  /* ---------- actions ---------- */
+  function approve(id) {
+    var x = S.queue.find(function (q) { return q.id === id; }); if (!x || x.done) return;
+    var t = stamp(), j = x.job && job(x.job);
+    x.done = true;
+    if (x.kind === "reply") { j.replyMin = S.clock - j.inMin; j.events.push([t, "You", "Approved the first reply (" + j.replyMin + " min after the request)"]); S.log.push({ t: t, auto: "reply", job: j.id, text: "First reply to " + j.customer + ", sent with your OK", result: "Delivered", undo: "sent" }); toast("Reply sent to " + j.customer + " (demo, nothing really sent)."); }
+    if (x.kind === "nudge") { j.nudge += 1; j.events.push([t, "System", "Nudge " + j.nudge + " of 3 sent with your OK"]); S.log.push({ t: t, auto: "nudge", job: j.id, text: "Nudge " + j.nudge + " of 3 to " + j.customer + ", sent with your OK", result: "Delivered", undo: "sent", withOk: true }); S.textsExtra += 0; toast("Nudge " + j.nudge + " of 3 sent to " + j.customer + " (demo)."); }
+    if (x.kind === "callback") { j.events.push([t, "You", "Called back"]); toast("Callback logged for " + j.customer + "."); }
+    if (x.kind === "email") {
+      var g = x.guess, nid = "J-1047";
+      S.jobs.unshift({ id: nid, customer: "June R.", town: "Glenarden", problem: "Water under indoor unit", stage: "lead", source: "Email", inMin: 16 * 60 + 38, replyMin: null, events: [["4:38 PM", "Customer", "Email: water pooling under the indoor unit"], [t, "You", "Checked the guessed fields and made the job card"]] });
+      S.log.push({ t: t, auto: "email", job: nid, text: "Job card " + nid + " made from j.rivera@example.com with your OK", result: "Fields checked by you", undo: "open" });
+      toast("Job card " + nid + " created for " + g.Customer + ".");
+    }
+    render();
+  }
+  function undo(i) {
+    var l = S.log[i]; if (!l || l.undo !== "open") return;
+    l.undo = "undone";
+    if (l.job && l.auto === "email") {
+      var j = job(l.job);
+      if (j && j.id === "J-1047") { S.jobs = S.jobs.filter(function (x) { return x.id !== "J-1047"; }); var q = S.queue.find(function (x) { return x.id === "q-june"; }); q.done = false; }
+      else if (j) { j.events.push([stamp(), "You", "Undid the auto-created job card (kept as an email)"]); j.stage = "lead"; j.undone = true; S.jobs = S.jobs.filter(function (x) { return x !== j; }); }
+    }
+    toast("Undone. Nothing was deleted; the email stays in the inbox.");
+    render();
   }
 
-  /* ---------- router + events ---------- */
-  function navHtml(cls) {
-    var r = (location.hash || "#overview").slice(1), m = metrics();
-    var counts = { followups: m.fuDue, inbox: m.mailsOpen, reviews: m.openCallbacks.length };
-    return ROUTES.filter(function (x) { return cls !== "tab" || x.id !== "overview"; }).map(function (x) {
-      return '<a class="' + (cls === "tab" ? "" : "navlink ") + (x.id === r ? "on" : "") + '" href="#' + x.id + '"' + (x.id === r ? ' aria-current="page"' : "") + ">" + icon(x.ic) + "<span>" + (cls === "tab" ? x.short : x.label) + "</span>" + (cls !== "tab" && counts[x.id] ? '<span class="count">' + counts[x.id] + "</span>" : "") + "</a>";
+  /* ---------- router ---------- */
+  function navHtml(tab) {
+    var r = route(), n = queue().length;
+    return ROUTES.map(function (x) {
+      return '<a class="' + (tab ? "" : "navlink ") + (x.id === r ? "on" : "") + '" href="#' + x.id + '"' + (x.id === r ? ' aria-current="page"' : "") + ">" + icon(x.ic) + "<span>" + x.label + "</span>" + (x.id === "needs" && n ? '<span class="count">' + n + "</span>" : "") + "</a>";
     }).join("");
   }
+  function route() { var r = (location.hash || "#tonight").slice(1); return V[r] ? r : "tonight"; }
   function render() {
-    var r = (location.hash || "#overview").slice(1);
-    if (!V[r]) r = "overview";
+    var r = route();
     $("#main").innerHTML = V[r]();
-    $("#nav").innerHTML = navHtml("side");
-    $("#tabbar").innerHTML = navHtml("tab");
+    $("#nav").innerHTML = navHtml(false);
+    $("#tabbar").innerHTML = navHtml(true);
     document.title = ROUTES.find(function (x) { return x.id === r; }).label + " · Job Desk demo (fictional data)";
   }
   document.addEventListener("click", function (ev) {
-    var t = ev.target.closest("[data-job],[data-seg],[data-text],[data-fu],[data-mail],[data-mk],[data-ack],[data-cb],[data-move],[data-close],[data-switch],#autoFu,#reset,#drawerBg");
+    var t = ev.target.closest("[data-job],[data-seg],[data-ap],[data-edit],[data-save],[data-skip],[data-undo],[data-sw],[data-won],[data-lost],[data-close],[data-focus],#pauseAll,#reset,#drawerBg");
     if (!t) return;
     if (t.id === "drawerBg" || t.hasAttribute("data-close")) return closeJob();
     if (t.id === "reset") { init(); render(); return toast("Demo reset."); }
+    if (t.dataset.focus) { S.focus = t.dataset.focus; return; }
     if (t.dataset.job) return openJob(t.dataset.job);
-    if (t.dataset.move) return moveJob(t.dataset.move);
-    if (t.dataset.seg) { boardStage = t.dataset.seg; return render(); }
-    if (t.dataset.text) { selText = +t.dataset.text; render(); if (innerWidth < 980) $(".phone").scrollIntoView({ behavior: "smooth" }); return; }
-    if (t.dataset.mail) { selMail = t.dataset.mail; render(); if (innerWidth < 980) $(".mail").scrollIntoView({ behavior: "smooth" }); return; }
-    if (t.dataset.fu) {
-      var f = S.followups[+t.dataset.i], j = job(f.job);
-      if (t.dataset.fu === "send") { f.status = "sent"; f.sentAt = "Today 4:52 PM"; toast("Day " + f.day + " follow-up approved for " + j.customer + " (demo, nothing sent)."); }
-      else { f.status = "skipped"; toast("Skipped. " + j.customer + "'s quote stays open."); }
-      return render();
+    if (t.dataset.seg) { view.stage = t.dataset.seg; return render(); }
+    if (t.dataset.ap) return approve(t.dataset.ap);
+    if (t.dataset.edit) {
+      var qx = S.queue.find(function (q) { return q.id === t.dataset.edit; });
+      if (qx.draft) { view.editing = qx.id; render(); var e = $("#ed-" + qx.id); if (e) e.focus(); return; }
+      return toast(qx.guess ? "In the real system you'd fix any guessed field here." : "Add a note for the job timeline (demo).");
     }
-    if (t.dataset.mk) {
-      var e = S.emails.find(function (x) { return x.id === t.dataset.mk; });
-      var id = "J-10" + (44 + S.jobs.length - 15);
-      S.jobs.unshift({ id: id, customer: e.task.customer, town: e.task.town, type: e.task.issue, stage: "lead", source: "Email", age: "now", firstReplyMin: 3 });
-      e.converted = true; e.jobId = id; boardStage = "lead"; render();
-      return toast("Job card " + id + " created for " + e.task.customer + ".");
+    if (t.dataset.save) { var q2 = S.queue.find(function (q) { return q.id === t.dataset.save; }); q2.draft = $("#ed-" + q2.id).value; view.editing = null; render(); return toast("Draft saved. Approve to send."); }
+    if (t.dataset.skip) { var q3 = S.queue.find(function (q) { return q.id === t.dataset.skip; }); q3.done = true; render(); return toast("Skipped. It won't come back tonight."); }
+    if (t.dataset.undo) return undo(+t.dataset.undo);
+    if (t.dataset.won || t.dataset.lost) {
+      var j = job(t.dataset.won || t.dataset.lost), won = !!t.dataset.won;
+      S.closed.unshift({ id: j.id, customer: j.customer, problem: j.problem, value: j.value, result: won ? "won" : "lost", afterNudge: won && j.nudge ? j.nudge : 0 });
+      j.events.push([stamp(), "You", won ? "Marked won" : "Marked lost"]);
+      if (won) { j.stage = "scheduled"; j.when = "To book"; } else { S.jobs = S.jobs.filter(function (x) { return x !== j; }); }
+      S.queue.forEach(function (q) { if (q.job === j.id && q.kind === "nudge") q.done = true; });
+      closeJob(); render(); return toast(won ? "Won. Remaining nudges stopped." : "Lost. Nudges stopped.");
     }
-    if (t.dataset.ack) {
-      var e2 = S.emails.find(function (x) { return x.id === t.dataset.ack; });
-      var hi = /\(demo\)/.test(e2.task.customer) ? "Hi there" : "Hi " + first(e2.task.customer);
-      $("#ackBox").innerHTML = '<div class="preview" style="font-size:13.5px"><small style="color:var(--muted)">Reply draft (owner approves before it goes)</small><p style="margin:6px 0 0">' + esc(hi) + ", thanks for reaching out to Sample Heating &amp; Air. We got your note and we'll get back to you shortly to set a time. Dana</p></div>";
-      return;
-    }
-    if (t.dataset.cb) { S.callbacksDone[t.dataset.cb] = true; render(); return toast("Callback marked done."); }
-    if (t.dataset.switch != null || t.id === "autoFu") {
-      var on = t.getAttribute("aria-checked") === "true"; t.setAttribute("aria-checked", String(!on));
-      return toast(t.id === "autoFu" ? (on ? "Follow-ups held for your OK." : "Follow-ups will send at 9 AM (demo).") : "Text " + (on ? "paused" : "turned on") + " (demo).");
+    if (t.dataset.sw) { var a = auto(t.dataset.sw); a.on = !a.on; render(); return toast(a.name + (a.on ? " is back on." : " paused. Nothing from it runs until you turn it back on.")); }
+    if (t.id === "pauseAll") {
+      var anyOn = S.automations.some(function (x) { return x.on && !x.locked; });
+      S.automations.forEach(function (x) { if (!x.locked) x.on = !anyOn; }); render();
+      return toast(anyOn ? "All automations paused." : "All automations back on.");
     }
   });
+  document.addEventListener("change", function (ev) {
+    if (ev.target.id === "sendAt") { S.sendAt = ev.target.value; toast("Report Card will send at " + S.sendAt + " (demo setting)."); }
+  });
   document.addEventListener("keydown", function (ev) { if (ev.key === "Escape") closeJob(); });
-  window.addEventListener("hashchange", function () { closeJob(); render(); window.scrollTo(0, 0); });
-  window.__jobDeskReset = function () { init(); boardStage = "lead"; selText = 0; selMail = "E2"; closeJob(); render(); };
+  window.addEventListener("hashchange", function () {
+    closeJob(); render(); window.scrollTo(0, 0);
+    if (S.focus) { var el = document.getElementById(S.focus); S.focus = null; if (el) { el.classList.add("focus"); el.scrollIntoView({ block: "center" }); } }
+  });
+  window.__jobDeskReset = function () { init(); view.stage = "lead"; view.editing = null; closeJob(); render(); };
+  window.__jobDeskOpen = openJob;
   init(); render();
 })();
 
-/* Guided auto-play for screen recording. Turn on with ?tour=1 (add &loop=1 to repeat).
-   About 30 seconds: board -> status text -> quote nudge -> review flag -> nightly Report Card. */
+/* Guided auto-play for screen recording: ?tour=1 (&loop=1 repeats, &delay=ms waits). About 30 seconds:
+   Tonight -> Needs you (approve) -> quote nudge -> job timeline -> Autopilot log + Undo -> trust panel -> Tonight. */
 (function () {
   "use strict";
   var q = new URLSearchParams(location.search);
@@ -421,64 +414,55 @@ window.DEMO = {
   var wait = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
   function say(n, title, sub) {
     cap.classList.remove("show");
-    return wait(180).then(function () {
-      cap.innerHTML = '<span class="n">' + n + "</span><div><b>" + title + "</b>" + (sub ? "<small>" + sub + "</small>" : "") + "</div>";
-      cap.classList.add("show");
-    });
+    return wait(160).then(function () { cap.innerHTML = '<span class="n">' + n + "</span><div><b>" + title + "</b>" + (sub ? "<small>" + sub + "</small>" : "") + "</div>"; cap.classList.add("show"); });
   }
-  function go(hash) { location.hash = hash; window.scrollTo(0, 0); return wait(350); }
-  function scrollTo(sel, block) { var el = $(sel); if (el) el.scrollIntoView({ behavior: "smooth", block: block || "center" }); return wait(700); }
+  function go(h) { location.hash = h; return wait(350); }
+  function center(sel, block) { var el = $(sel); if (el) el.scrollIntoView({ behavior: "smooth", block: block || "center" }); return wait(650); }
   function point(sel) {
     var el = $(sel); if (!el) return wait(10);
     var r = el.getBoundingClientRect();
-    cur.style.transform = "translate(" + (r.left + r.width / 2) + "px," + (r.top + r.height / 2) + "px)";
-    cur.classList.add("on");
-    return wait(650);
+    cur.style.transform = "translate(" + (r.left + r.width / 2) + "px," + (r.top + r.height / 2) + "px)"; cur.classList.add("on");
+    return wait(600);
   }
-  function tap(sel) {
-    return point(sel).then(function () {
-      var el = $(sel); cur.classList.add("tap");
-      return wait(220).then(function () { cur.classList.remove("tap"); if (el) el.click(); return wait(250); });
-    });
-  }
+  function tap(sel) { return point(sel).then(function () { var el = $(sel); cur.classList.add("tap"); return wait(200).then(function () { cur.classList.remove("tap"); if (el) el.click(); return wait(250); }); }); }
   function glow(sel) { var el = $(sel); if (el) el.classList.add("tour-glow"); }
+  function hide() { cur.classList.remove("on"); }
   var t0;
   function run() {
-    window.__tourDone = false;
-    window.__jobDeskReset();
+    window.__tourDone = false; window.__jobDeskReset(); location.hash = "tonight"; window.scrollTo(0, 0);
     var mobile = innerWidth < 760;
     t0 = performance.now(); prog.firstChild.style.transition = "none"; prog.firstChild.style.width = "0";
-    requestAnimationFrame(function () { prog.firstChild.style.transition = "width 30s linear"; prog.firstChild.style.width = "100%"; });
-    return go("board")
-      .then(function () { return say(1, "Every job in one place", "Lead, quoted, scheduled, in progress, done"); })
-      .then(function () { return wait(1600); })
-      .then(function () { return mobile ? tap('[data-seg="quoted"]') : point('[data-job="J-1031"]'); })
-      .then(function () { return say(2, "Book a job. The customer gets a text.", "Sent from the owner's own field-service app"); })
-      .then(function () { return tap('[data-job="J-1031"]'); })
-      .then(function () { return wait(1400); })
-      .then(function () { return tap('[data-move="J-1031"]'); })
-      .then(function () { cur.classList.remove("on"); return go("texts"); })
-      .then(function () { return wait(10); })
-      .then(function () { glow(".phone .bub"); return wait(2300); })
-      .then(function () { return go("followups"); })
-      .then(function () { return say(3, "Every quote gets followed up", "Day 2, 5 and 10. Stops when the customer replies"); })
-      .then(function () { glow(".fu"); return wait(1500); })
-      .then(function () { return tap('[data-fu="send"]'); })
-      .then(function () { return wait(1600); })
-      .then(function () { cur.classList.remove("on"); return go("reviews"); })
-      .then(function () { return say(4, "Score of 6 or below? Call them back.", "Every customer still gets the same review link"); })
-      .then(function () { return scrollTo(".row.flag"); })
-      .then(function () { glow(".row.flag"); return wait(2000); })
-      .then(function () { return tap('[data-cb="J-1025"]'); })
+    requestAnimationFrame(function () { prog.firstChild.style.transition = "width 27s linear"; prog.firstChild.style.width = "100%"; });
+    return wait(300)
+      .then(function () { return say(1, "Tonight: what needs you, in one screen", "All clear or N need you. 3 items max, 4 numbers vs last week"); })
+      .then(function () { glow(".status"); return wait(1800); })
+      .then(function () { glow(".kpis2"); return wait(1500); })
+      .then(function () { return tap('[data-focus="q-maria"]'); })
+      .then(function () { return wait(400); })
+      .then(function () { return say(2, "Needs you: one queue", "Approve, edit or skip. This lead has waited too long"); })
+      .then(function () { glow("#q-maria"); return wait(1400); })
+      .then(function () { return tap('[data-ap="q-maria"]'); })
+      .then(function () { hide(); return center("#q-tom"); })
+      .then(function () { return say(3, "Quote nudge 1 of 3, $9,800", "Treated as marketing: consent on file, STOP honored"); })
+      .then(function () { glow("#q-tom"); return wait(1600); })
+      .then(function () { return tap('[data-ap="q-tom"]'); })
+      .then(function () { hide(); return go("jobs"); })
+      .then(function () { return say(4, "Jobs: one timeline per job", "Day count, nudge 2 of 3, won/lost, $ recovered"); })
+      .then(function () { return mobile ? tap('[data-seg="quoted"]') : wait(900); })
+      .then(function () { return tap('[data-job="J-1029"]'); })
+      .then(function () { return wait(2300); })
+      .then(function () { $("[data-close]") && $("[data-close]").click(); hide(); return go("autopilot"); })
+      .then(function () { return say(5, "Autopilot: everything it did, with Undo", "Every automation shows its level, L0 to L4"); })
       .then(function () { return wait(900); })
-      .then(function () { cur.classList.remove("on"); return go("report"); })
-      .then(function () { return say(5, "A Report Card on your phone every night", "Jobs, quotes, follow-ups, reviews, reply time"); })
-      .then(function () { return mobile ? scrollTo("#reportPhone", "start") : wait(10); })
-      .then(function () { return wait(mobile ? 2200 : 3000); })
-      .then(function () { return mobile ? scrollTo(".rc-list", "center") : wait(10); })
-      .then(function () { return wait(1600); })
-      .then(function () { return say("✓", "DTRT Job Desk", "Reply SYSTEM for a free map · dtrtlab.com"); })
-      .then(function () { return wait(2400); })
+      .then(function () { return mobile ? center('[data-undo]') : wait(10); })
+      .then(function () { return tap("[data-undo]"); })
+      .then(function () { return wait(1300); })
+      .then(function () { hide(); return center(".trust", mobile ? "start" : "center"); })
+      .then(function () { return say(6, "Trust panel", "Consent, opt-outs, the same review link for everyone, never-automated list"); })
+      .then(function () { glow(".trust"); return wait(2600); })
+      .then(function () { return go("tonight"); })
+      .then(function () { window.scrollTo(0, 0); return say("✓", "Fewer things need you tonight", "Reply SYSTEM for a free map · dtrtlab.com"); })
+      .then(function () { glow(".status"); return wait(2600); })
       .then(function () { window.__tourDone = true; window.__tourMs = Math.round(performance.now() - t0); if (q.get("loop") === "1") return wait(800).then(run); });
   }
   window.addEventListener("load", function () { wait(q.get("delay") ? +q.get("delay") : 600).then(run); });

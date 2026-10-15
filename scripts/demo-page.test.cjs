@@ -24,3 +24,20 @@ test('/demo data stays fictional: labeled company, 555 numbers, example.com emai
   for (const m of js.matchAll(/\b\d{3}-\d{4}\b/g)) assert.match(m[0], /^555-01\d\d$/, `non-fictional number ${m[0]}`);
   for (const m of js.matchAll(/[\w.+-]+@([\w-]+\.[\w.]+)/g)) assert.strictEqual(m[1], 'example.com', `non-fictional email ${m[0]}`);
 });
+test('/demo v2 has the 4 screens: Tonight, Needs you, Jobs, Autopilot', () => {
+  const js = read('demo/demo.js');
+  for (const r of ['tonight', 'needs', 'jobs', 'autopilot']) assert.match(js, new RegExp(`["']${r}["']`), `route ${r} missing`);
+  for (const t of ['Tonight', 'Needs you', 'Jobs', 'Autopilot']) assert.ok(js.includes(t), `screen label ${t} missing`);
+});
+test('/demo Report Card leads with All clear or N need you, with no letter grade (D2)', () => {
+  const js = read('demo/demo.js');
+  assert.ok(js.includes('All clear') && js.includes('need you'), 'status line missing');
+  assert.ok(js.includes('Report Card'), 'keeps the name Report Card');
+  assert.doesNotMatch(js, /\bgrade\b/i, 'no letter grade on the Report Card');
+});
+test('/demo labels every automation level (L0-L4) and quote nudges as marketing', () => {
+  const js = read('demo/demo.js');
+  for (const l of ['L0', 'L1', 'L2', 'L3', 'L4']) assert.ok(js.includes(l), `level ${l} missing`);
+  assert.ok(js.includes('Marketing: consent on file'), 'quote nudges carry the marketing label (D5)');
+  assert.match(js, /Reply STOP to opt out/, 'automated texts honor STOP');
+});
