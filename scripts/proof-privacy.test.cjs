@@ -9,10 +9,10 @@ test('public proof.json carries only non-sensitive aggregate counts', (t) => {
   const s = JSON.stringify(p).toLowerCase();
   for (const bad of ['revenue', 'usd', '$', 'caliber', 'email', '@', 'lead', 'whop']) assert.ok(!s.includes(bad), `proof.json mentions ${bad}`);
 });
-test('hq data is committed only as ciphertext', (t) => {
-  if (!fs.existsSync('hq/owner.enc.json')) return t.skip('hq not added yet');
-  assert.ok(!fs.existsSync('hq/owner.json'), 'plaintext owner data must not be committed');
-  const e = JSON.parse(fs.readFileSync('hq/owner.enc.json', 'utf8'));
+test('live owner data is committed only as ciphertext', (t) => {
+  if (!fs.existsSync('live/owner.enc.json')) return t.skip('owner dashboard not added yet');
+  assert.ok(!fs.existsSync('live/owner.json'), 'plaintext owner data must not be committed');
+  const e = JSON.parse(fs.readFileSync('live/owner.enc.json', 'utf8'));
   assert.deepStrictEqual(Object.keys(e).sort(), ['ct', 'iter', 'iv', 'kdf', 'salt', 'v']);
   assert.ok(e.iter >= 600000);
 });
