@@ -125,8 +125,8 @@
     "es": "DTRT JOB DESK"
   },
   "packagesTitle": {
-    "en": "Start free. Buy a writing plan on Whop.",
-    "es": "Empieza gratis. Compra un plan de escritura en Whop."
+    "en": "Start with a free map. Paid plans are on Whop.",
+    "es": "Empieza con un mapa gratis. Los planes de pago están en Whop."
   },
   "packagesLead": {
     "en": "The free plan is writing, and it is not a purchase. Paid plans use the live Whop checkout. This website does not collect card numbers.",
@@ -305,8 +305,8 @@
     "es": "Precios"
   },
   "supportRoute": {
-    "en": "Free writing plan, or a named writing plan on Whop.",
-    "es": "Plan de escritura gratis, o un plan de escritura con nombre en Whop."
+    "en": "A free map, or a paid plan on Whop.",
+    "es": "Un mapa gratis, o un plan de pago en Whop."
   },
   "startEyebrow": {
     "en": "A USEFUL PLACE TO START",
@@ -502,8 +502,8 @@
     "es": "Cookies (inglés)"
   },
   "supportTitle": {
-    "en": "Start with<br>a writing plan.",
-    "es": "Empieza con<br>un plan de escritura."
+    "en": "Start with<br>a free map.",
+    "es": "Empieza con<br>un mapa gratis."
   },
   "supportLead": {
     "en": "DTRT Lab writes for local businesses. The free plan is not a purchase. Paid plans are on Whop.<br>Direct tips are temporarily unavailable.",
@@ -582,8 +582,8 @@
     "es": "Precios"
   },
   "streamTitle": {
-    "en": "Buy a writing plan<br>on Whop.",
-    "es": "Compra un plan de escritura<br>en Whop."
+    "en": "Paid plans are<br>on Whop.",
+    "es": "Los planes de pago<br>están en Whop."
   },
   "streamLead": {
     "en": "These three plans are the paid writing offer. This website does not collect card numbers.",

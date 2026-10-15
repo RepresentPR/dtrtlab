@@ -30,7 +30,7 @@
     en: {
       categories: { '': 'Choose one', 'Free plan': 'Free plan', 'Paid project inquiry': 'Paid project inquiry', 'Shop interest': 'Shop interest', Highlight: 'Highlight', Partner: 'Partner', 'Work opportunity': 'Work opportunity', Website: 'Website', Other: 'Other' },
       defaults: { 'Free plan': 'Free plan — business or idea', 'Paid project inquiry': 'Discuss a paid project', 'Shop interest': 'Shop interest — product I’d buy' },
-      title: 'Say hello to DTRT Lab', freeTitle: 'Your free writing plan starts here', paidTitle: 'Discuss writing for your business', shopTitle: 'Tell us what you’d buy', pageTitle: 'Contact — DTRT Lab',
+      title: 'Say hello to DTRT Lab', freeTitle: 'Your free map starts here', paidTitle: 'Discuss writing for your business', shopTitle: 'Tell us what you’d buy', pageTitle: 'Contact — DTRT Lab',
       freeContext: 'Three practical priorities, one sample improvement and one next step. Free, with no purchase required. Implementation is agreed separately. Open to any age / any size idea.',
       paidContext: 'Tell us what you need written. Writing Retainer — Starter $250/30 days is paid on Whop. Custom work still needs a written scope first. This page does not collect a card.',
       shopContext: 'Checkout is not live. Tell us which digital or merch item you’d buy so we can open the store with real demand. No charge from this page.',
@@ -44,7 +44,7 @@
       nav: 'Main navigation', footer: 'Footer', routes: 'Ways to connect', inquiry: 'Email inquiry',
       labels: {
         'contact-skip': 'Skip to content', 'contact-nav-work': 'Packages', 'contact-nav-results': 'Company', 'contact-nav-about': 'About', 'contact-nav-partner': 'Partner', 'contact-current-link': 'Contact',
-        'contact-intro': 'Choose a free writing plan, a named writing plan on Whop, or send a question. You stay in control of sending the email.',
+        'contact-intro': 'Ask for a free map, see the paid plans on Whop, or send a question. You stay in control of sending the email.',
         'contact-free-route': 'Free plan', 'contact-paid-route': 'Discuss writing', 'contact-support-route': 'Prices', 'contact-email-intro': 'Email',
         'contact-privacy-note': 'Share public information only; no passwords, customer records or financial details are needed.', 'category-label': 'Category',
         'free-plan-details-title': 'Two required details', 'project-label': '1. Public business link or brief idea description (required)',

@@ -5,7 +5,7 @@
 // AGENTS.md, README.md) are outside this guard; brand-kit.md is linked from
 // /brand.html, so it is checked too.
 // Retired 2026-10-15 (Co-Founder): free first-line rewrite, "Stay on the chair /
-// We write your posts", data-method pitch, writing plans, day-30 numbers,
+// We write your posts", data-method pitch, writing plan(s), writing partnerships, day-30 numbers,
 // Start at $50, Mini Social Pack, Week Pack.
 const test = require('node:test');
 const assert = require('node:assert/strict');
@@ -19,7 +19,8 @@ const PHRASES = [
   /We write your posts/i,
   /\bpublic data\b/i,
   /from public sources/i,
-  /Writing plans/i,
+  /\bwriting plans?\b/i, // singular and plural, any case
+  /\bwriting partnerships?\b/i,
   /30-day numbers/i,
   /day-30 numbers/i,
   /Start at \$50/i,
