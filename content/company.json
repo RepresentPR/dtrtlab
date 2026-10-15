@@ -1,17 +1,17 @@
 {
   "legalName": "DTRT Lab",
-  "displayName": "DTRT Lab",
+  "displayName": "Ian | DTRT Lab",
   "founder": "Ian Ferraro",
   "foundedYear": 2024,
   "entityStatus": "independent_creator",
   "entityNote": "Independent creator / studio project. Formal entity registration (LLC or equivalent) is a planned operating step, not claimed as complete on this site.",
-  "hqRegion": "Puerto Rico",
+  "hqRegion": "Clinton, Southern Maryland",
   "hqCountry": "US",
   "audience": {
     "madeForAll": true,
     "global": true,
     "ageInclusive": true,
-    "note": "Free plans, paid work, and shop interest are open to any age with a business, idea, or interest in Lab work. Building toward a durable global company from Puerto Rico without fake scale claims."
+    "note": "Local shops in Clinton and Southern Maryland. Writing only. No contract."
   },
   "url": "https://dtrtlab.com/",
   "logo": "https://dtrtlab.com/img/brand/dtrt-social.png",
@@ -36,19 +36,15 @@
   "findMe": "https://dtrtlab.com/find.html",
   "products": [
     {
-      "name": "DTRT Lab free plan",
+      "name": "Free first-line rewrite",
       "status": "live",
-      "description": "Public offer: send a business link or idea plus one goal; receive a free practical plan. Open to any age / any size business or idea."
+      "description": "Send one post or caption line with your business name and type of shop; get it rewritten free.",
+      "url": "https://whop.com/checkout/plan_Vn0gQGFWQx9CA"
     },
     {
       "name": "Shop interest catalog",
       "status": "interest_open",
       "description": "Digital packs and print-on-demand merch interest list at /shop.html. Checkout is not live."
-    },
-    {
-      "name": "DTRT AFTERLIGHT",
-      "status": "in_development",
-      "description": "Story-driven FPS campaign set in Puerto Rico. Volume One is readable. No public download."
     }
   ],
   "shop": {
@@ -64,16 +60,47 @@
     "Do the right thing.",
     "Make useful stuff.",
     "Have fun doing it.",
-    "Show the process with dated public evidence.",
-    "Use future Lab revenue to help Puerto Rico businesses (no program active yet)."
+    "Show the process with dated public evidence."
   ],
   "mission": "Make useful stuff for all ages and any size idea. Have fun doing it. Show the process with dated public evidence.",
-  "northStar": "A durable independent entertainment and usefulness company — Made for all, global by design — that can eventually fund help for Puerto Rico businesses — not a vanity brand.",
+  "northStar": "A durable local writing studio that helps Clinton and Southern Maryland shops show up online without leaving the chair — not a vanity brand.",
   "outOfVision": [
     "Cloning third-party software via reverse engineering as a growth strategy",
     "Fake scale, fake store, fake hiring, or fake fundraising",
     "Hype tools that trade trust for reach"
   ],
   "visionDoc": "docs/vision.md",
-  "lastReviewed": "2026-10-13"
+  "lastReviewed": "2026-10-13",
+  "serviceArea": "Clinton + Southern Maryland shops",
+  "offers": [
+    {
+      "name": "Mini Social Pack",
+      "priceUsd": 50,
+      "deliverables": "1 hook + 5 captions",
+      "url": "https://whop.com/checkout/plan_HAGSLXXUeGkcz"
+    },
+    {
+      "name": "Week Pack",
+      "priceUsd": 129,
+      "deliverables": "A week of posts + review-request scripts + review replies",
+      "url": "https://whop.com/checkout/plan_RVDjSToI7vKOM"
+    },
+    {
+      "name": "Writing Retainer",
+      "priceUsd": 250,
+      "billing": "30 days",
+      "deliverables": "30 days of posts + review scripts and replies, monthly",
+      "url": "https://whop.com/checkout/plan_kZqq0jgr6VrGG"
+    }
+  ],
+  "guarantee": "DTRT 7-Day Do-It-Right Guarantee: ask for any fix within 7 days of delivery and I rewrite it free.",
+  "theme": {
+    "name": "A · Local Pro",
+    "lockedUntil": "2027-01-13",
+    "navy": "#0B2545",
+    "green": "#13C27A",
+    "light": "#DCE6F2",
+    "headline": "Stay on the chair. We write your posts.",
+    "sub": "For Clinton + Southern Maryland shops. Writing only. No contract."
+  }
 }
