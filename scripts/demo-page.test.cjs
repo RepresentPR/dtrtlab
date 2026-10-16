@@ -300,6 +300,8 @@ test('homepage describes the Job Desk as approve-only', () => {
   assert.match(home, /Job-status messages drafted for you to approve/);
   assert.match(home, /follow-up drafted on time, and it goes out when you approve it/);
   assert.match(home, /a review request drafted after each job for you to approve/);
+  assert.match(home, /draft your quote follow-ups to send when you approve them/);
+  assert.doesNotMatch(foldBanned(home), /\bfollow up your quotes\b/i, 'FAQ says the Job Desk follows up quotes by itself');
   assert.doesNotMatch(foldBanned(home), /review requests? (sent )?after each job and replies/i, 'line 110 reverted to review requests sent after each job');
 });
 test('no served page claims the Job Desk acts without the owner', () => {

@@ -58,6 +58,9 @@ const PHRASES = [
   /Review Desk/i,
   /Review-Desk/i,
   /7-Day Do-It-Right Guarantee/i,
+  /\bwrites? for local businesses/i,
+  /\bwritten deliverables/i,
+  /\bgrowth studio/i,
   /7-Day Guarantee/i,
   /I rewrite it free/i,
   /rewrite it free/i,
@@ -108,6 +111,9 @@ const PHRASES = [
 
 const PLANTS = [
   ['first-line', 'first-line rewrite'],
+  ['writes-local', 'DTRT Lab writes for local businesses'],
+  ['written-deliverables', 'with written deliverables, such as captions'],
+  ['growth-studio', 'an independent growth-studio'],
   ['chair', 'Stay on the chair'],
   ['posts', 'We write your posts'],
   ['public-data', 'public data'],

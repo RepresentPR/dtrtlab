@@ -34,6 +34,8 @@ const RETIRED_ES = new RegExp([
   '\\bplanes de (escritura|redaccion)',
   '\\breescri\\w* gratis',
   '\\bgarantia de 7 dias',
+  '\\bentregables escritos',
+  '\\bestudio (independiente )?de crecimiento',
 ].join('|'), 'i');
 
 function deaccent(text) {
