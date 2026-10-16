@@ -32,10 +32,12 @@ const PHRASES = [
   /companies mined/i,
   /studied companies/i,
   /mined companies/i,
-  // Split so the place name is not a literal token in this public test file.
-  new RegExp(['Pue', 'rto Rico'].join(''), 'i'),
   /rewrite it free/i,
 ];
+// The place name is the owner's fiction setting. It is retired only on business
+// pages. The token is split so this public test file does not spell it out.
+const PLACE = new RegExp(['Pue', 'rto Rico'].join(''), 'i');
+const BUSINESS = /^(index|find|partners|prices|contact|careers)\.html$|^(job-desk|legal|proof|live)\//;
 const SERVED = /\.(html?|js|mjs|json|webmanifest)$/i;
 const SKIP_DIRS = new Set(['.git', 'node_modules', 'scripts', 'docs']);
 
@@ -55,10 +57,15 @@ test('retired copy stays off every served HTML, JS and JSON file', () => {
   assert.ok(files.some(f => f.endsWith(path.join('versions', 'index.html'))), 'versions/ is served and checked');
   const hits = [];
   for (const file of files) {
+    const rel = path.relative(ROOT, file).split(path.sep).join('/');
     const text = fs.readFileSync(file, 'utf8');
     for (const rx of PHRASES) {
       const m = text.match(rx);
-      if (m) hits.push(`${path.relative(ROOT, file)}: "${m[0]}"`);
+      if (m) hits.push(`${rel}: "${m[0]}"`);
+    }
+    if (BUSINESS.test(rel)) {
+      const m = text.match(PLACE);
+      if (m) hits.push(`${rel}: "${m[0]}"`);
     }
   }
   assert.deepEqual(hits, [], 'retired copy found:\n' + hits.join('\n'));
