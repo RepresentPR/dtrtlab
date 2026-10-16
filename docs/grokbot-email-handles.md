@@ -16,7 +16,7 @@ Official help: [Give your Bot an email address](https://cursor.com/help/grok-bot
 
 | Rank | Local part | Full address | Why |
 | --- | --- | --- | --- |
-| **1** | `dtrt` | `dtrt@mail.grokbot.com` | Shortest brand signal. Easy to say/type. Lab + personal north star in four letters. |
+| **1** | `dtrt` | local part only; the full address stays off the public site | Shortest brand signal. Easy to say/type. Lab + personal north star in four letters. |
 | **2** | `dtrtlab` | `dtrtlab@mail.grokbot.com` | Clear company face if `dtrt` is taken. Matches site/X. |
 | **3** | `useful` | `useful@mail.grokbot.com` | Vision pillar (“make useful stuff”). Short, readable, growth-minded. |
 | **4** | `ianfc` | `ianfc@mail.grokbot.com` | Personal short handle (Ian Ferraro / TikTok lane) if brand locals are gone. |

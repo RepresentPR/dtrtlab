@@ -50,7 +50,8 @@ test('/map/ posts the free office map form to FormSubmit', () => {
   assert.ok(formMatch, 'map page has a form');
   const form = formMatch[0];
   assert.match(form, /\bmethod="POST"/);
-  assert.match(form, /\baction="https:\/\/formsubmit\.co\/dtrt@mail\.grokbot\.com"/);
+  assert.match(form, /\baction="https:\/\/formsubmit\.co\/b40eb14cdacd80c1b58eebb8ec124fe3"/);
+  assert.doesNotMatch(form, /@/);
   assert.match(html, /Get your free office map/);
   assert.match(html, /Answer 3 short questions\. Your written map arrives within 3 business days\. No calls\./);
   assert.match(html, /Prefer email\?/);
@@ -87,6 +88,22 @@ test('/map/ posts the free office map form to FormSubmit', () => {
 
   const privacy = fs.readFileSync(path.join(root, 'legal/privacy.html'), 'utf8');
   assert.match(privacy, /The free office map form sends your answers by email through FormSubmit \(formsubmit\.co\) so we can write your map\. We use those answers only for that\./);
+});
+
+test('the FormSubmit inbox address is not in any served file', () => {
+  const inbox = ['dtrt', 'mail.grokbot.com'].join('@');
+  const skip = new Set(['node_modules']);
+  function walkServed(dir, out = []) {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (entry.name.startsWith('.') || skip.has(entry.name)) continue;
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) walkServed(full, out);
+      else if (fs.statSync(full).size < 5e6) out.push(full);
+    }
+    return out;
+  }
+  const hits = walkServed(root).filter((file) => fs.readFileSync(file, 'utf8').includes(inbox));
+  assert.deepEqual(hits.map((file) => path.relative(root, file)), []);
 });
 
 test('AGENTS.md and README.md do not publish retired offers', () => {
