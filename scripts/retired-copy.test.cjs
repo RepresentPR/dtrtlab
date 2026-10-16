@@ -1,9 +1,8 @@
 // Guard: retired offers and pitches must not come back on the served site.
-// Netlify publishes the whole repo ("publish = ."), so every tracked HTML, JS,
-// JSON and webmanifest file is public, including versions/. Only scripts/
-// (tests that name these phrases on purpose) and internal docs (docs/*.md,
-// AGENTS.md, README.md) are outside this guard; brand-kit.md is linked from
-// /brand.html, so it is checked too.
+// Pages publishes the staged tree (scripts/stage-site.cjs), not the whole repo.
+// This guard still scans the HTML, JS, JSON, and webmanifest files that tree
+// includes, plus versions/ and brand-kit.md (linked from /brand.html). scripts/
+// and docs/ are not published.
 // Retired 2026-10-15 (Co-Founder): free first-line rewrite, "Stay on the chair /
 // We write your posts", data-method pitch, writing plans, day-30 numbers,
 // Start at $50, Mini Social Pack, Week Pack.

@@ -1,0 +1,41 @@
+# GitHub Pages currently publishes the main branch with its built-in builder.
+# .nojekyll must stay absent: with that file present, Pages skips Jekyll and
+# serves every tracked file, including docs/. This exclude list is the publish
+# filter for that branch build. scripts/stage-site.cjs reads the same list when
+# Pages is switched to GitHub Actions (.github/workflows/pages.yml).
+# Pages turns on jekyll-theme-primer and jekyll-optional-front-matter by default.
+# theme: null keeps the primer stylesheet out. require_front_matter stops
+# Markdown without front matter (brand-kit.md) from also being published as HTML.
+require_front_matter: true
+theme: null
+exclude:
+  - docs
+  - scripts
+  - tools
+  - .github
+  - .cursor
+  - node_modules
+  - brand-assets
+  - outputs
+  - _site
+  - AGENTS.md
+  - README.md
+  - .env.example
+  - .gitignore
+  - live/README.md
+  - media/intake/README.md
+  - media/intake/.gitignore
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .sass-cache
+  - .jekyll-cache
+  - gemfiles
+  - vendor/bundle
+  - vendor/cache
+  - vendor/gems
+  - vendor/ruby
+include:
+  - .well-known
+  - _headers
+  - CNAME

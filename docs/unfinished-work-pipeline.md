@@ -51,7 +51,7 @@ Agent cannot finish these without your login/UI:
 2. LinkedIn About / Featured — kept in private notes  
 3. GitHub profile UI + `RepresentPR/RepresentPR` README  
 4. Photos — `docs/visual-photo-scatter.md`  
-6. Grok Bot email approve (`dtrt` → …) — `docs/grokbot-email-handles.md`  
+6. Grok Bot email approve — the shortlist file was removed from the repo on 2026-10-16. Do not add a claim list back under `docs/`.  
 7. Optional: Gmail Send-as `hello@` (receive already live)  
 8. Postiz: delete DRAFT dupes + broken X QUEUE (see above)
 
