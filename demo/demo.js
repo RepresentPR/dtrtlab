@@ -295,7 +295,7 @@ window.DEMO = {
       '<div class="card pause-all"><span>Pause all</span><button class="switch" role="switch" aria-checked="' + allPaused + '" aria-label="Pause all automations" id="pauseAll"></button></div></div>' +
       '<div class="ap-grid"><div><h2 class="sec-t">Today\'s log · ' + m.actions + ' actions · 0 errors</h2><div class="card list" id="aplog">' + log + "</div>" + trust + "</div>" +
       '<div><h2 class="sec-t">Automations</h2><div class="card list">' + autos + "</div>" + ladder +
-      '<div class="card pad links-m"><a href="sample-map.pdf" download>Sample map (PDF)</a> · <a href="/#job-desk">Back to dtrtlab.com</a></div></div></div>';
+      '<div class="card pad links-m"><a href="/#job-desk">Back to dtrtlab.com</a></div></div></div>';
   };
 
   /* ---------- job drawer ---------- */
