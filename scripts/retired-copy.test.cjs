@@ -15,6 +15,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { isExcluded, loadExclude } = require('./stage-site.cjs');
+const { loosen } = require('./served-fold.cjs');
 
 const ROOT = path.join(__dirname, '..');
 const EXCLUDE = loadExclude();
@@ -178,14 +179,6 @@ const PLANTS = [
   ['gaithersburg', 'Gaithersburg'],
   ['germantown', 'Germantown'],
 ];
-
-function loosen(text, foldUnderscore) {
-  let body = String(text)
-    .replace(/[\u201c\u201d\u2018\u2019"'`]/g, '')
-    .replace(/[-–—]/g, ' ');
-  if (foldUnderscore) body = body.replace(/_/g, ' ');
-  return body.replace(/\s+/g, ' ');
-}
 
 function scanPatterns(rel, text, patterns, foldUnderscore) {
   if (EXEMPT.has(rel)) return [];

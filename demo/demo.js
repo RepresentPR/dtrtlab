@@ -1,7 +1,7 @@
 /* DTRT Job Desk demo v2. Every name, number and job below is invented.
-   "Sample Heating & Air Co." is a fictional company. Demo clock: Thu, Oct 15, 4:50 PM. */
+   "Pretendwell Heating & Air Co." is a fictional company. Demo clock: Thu, Oct 15, 4:50 PM. */
 window.DEMO = {
-  company: "Sample Heating & Air Co. (demo)",
+  company: "Pretendwell Heating & Air Co. (demo)",
   owner: "Dana",
   today: "Thu, Oct 15",
   nowLabel: "4:50 PM",
@@ -73,10 +73,10 @@ window.DEMO = {
   ],
   queue: [
     { id: "q-maria", kind: "reply", auto: "reply", job: "J-1041", verb: "Reply to", why: "New lead from the web form: no heat, furnace clicks.",
-      draft: "Hi Maria, thanks for reaching out to Sample Heating & Air. Sorry you're without heat. What's a good time today or tomorrow for a tech to come out? Dana" },
+      draft: "Hi Maria, thanks for reaching out to Pretendwell Heating & Air. Sorry you're without heat. What's a good time today or tomorrow for a tech to come out? Dana" },
     { id: "q-paul", kind: "callback", auto: "callback", job: "J-1025", verb: "Call", why: "Scored 3/10 yesterday: \"Tech left a mess by the unit.\"", red: true, complaint: true },
     { id: "q-tom", kind: "nudge", auto: "nudge", job: "J-1031", verb: "Send nudge 1 of 3 to", why: "Quote open 2 days, no reply yet.", channel: "Text",
-      draft: "Hi Tom, it's Dana at Sample Heating & Air. Any questions on the heat pump quote? Happy to walk through the two options." },
+      draft: "Hi Tom, it's Dana at Pretendwell Heating & Air. Any questions on the heat pump quote? Happy to walk through the two options." },
     { id: "q-alicia", kind: "nudge", auto: "nudge", job: "J-1029", verb: "Send nudge 2 of 3 to", why: "Quote open 5 days. Nudge 1 sent Monday, no reply.", channel: "Text",
       draft: "Hi Alicia, checking in on the 2-zone mini-split quote. If timing is the question, we have install openings the week of Oct 26. Dana" },
     { id: "q-june", kind: "email", auto: "email", verb: "Check new request from", customer: "June R.", why: "Email at 4:38 PM. Only 72% confident: no street, and urgency unclear. Check the guessed fields.",
@@ -101,8 +101,8 @@ window.DEMO = {
   ],
   lastWeek: { medianReply: 22, quotesOpen: 24300, doneToday: 2, doneValue: 510, updated: 4 },
   trust: { consent: 41, texted: 43, optOuts: 0, reviewSent: 9, reviewDone: 9 },
-  footer: "Automated update from Sample Heating & Air. Reply STOP to opt out.",
-  nudgeFooter: "Sample Heating & Air. Reply STOP to opt out."
+  footer: "Automated update from Pretendwell Heating & Air. Reply STOP to opt out.",
+  nudgeFooter: "Pretendwell Heating & Air. Reply STOP to opt out."
 };
 
 /* DTRT Job Desk demo v2: Tonight · Needs you · Jobs · Autopilot. Static, no network calls, fictional data. */
@@ -204,7 +204,7 @@ window.DEMO = {
     var more = n > 3 ? '<a class="rc-more" href="#needs">+' + (n - 3) + " more in Needs you</a>" : "";
     var kpi = function (label, val, sub, arr, cls) { return '<div class="kpi2 ' + (cls || "") + '"><span>' + label + "</span><b>" + val + "</b>" + arr + (sub ? "<small>" + sub + "</small>" : "") + "</div>"; };
     var card = '<div class="rc2" id="reportCard">' +
-      '<div class="rc2-h"><div><small>REPORT CARD · ' + esc(S.today.toUpperCase()) + " · DEMO</small><h2>Sample Heating &amp; Air Co.</h2></div>" +
+      '<div class="rc2-h"><div><small>REPORT CARD · ' + esc(S.today.toUpperCase()) + " · DEMO</small><h2>Pretendwell Heating &amp; Air Co.</h2></div>" +
       '<span class="status ' + (n ? "need" : "clear") + '">' + (n ? n + " need you" : "All clear") + "</span></div>" +
       '<p class="rc2-s">' + esc(sentence) + "</p>" +
       (n ? '<div class="rc-items">' + items + more + "</div>" : '<div class="rc-clear">✓ All clear. Autopilot has the rest.</div>') +
