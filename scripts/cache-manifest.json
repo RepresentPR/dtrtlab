@@ -160,8 +160,8 @@
     "key": null
   },
   "demo/demo.js": {
-    "hash": "07c7419c35ded3ac6098d12d1c78360cd0ddb6ccf85ccfa183e019eb4358505e",
-    "key": "20261016-qa3"
+    "hash": "f2fca723853660a2bdb6730fbf902ba313df6f9fee3ee9100126d8fcf293249e",
+    "key": "20261016-qa4"
   },
   "job-desk/how-it-works/article.css": {
     "hash": "2f9b43d1c90a501c3b9e4cdea120195dbe9932edb70760a59cdb80d331fc0da6",
@@ -355,7 +355,7 @@
     "key": null
   },
   "sw.js": {
-    "hash": "38084ca7ec3eb2b9cc78164535ed259b04d2734bb0ed403561e77b9c598e4373",
+    "hash": "48b681e1fff34c2aa0ba30f1b754b7beb344c5e4aa74499460d241293b253756",
     "key": null
   },
   "watch/watch.css": {

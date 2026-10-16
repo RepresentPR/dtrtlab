@@ -17,6 +17,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { isExcluded, loadExclude } = require('./stage-site.cjs');
+const { loosen, joinedNameHits } = require('./served-fold.cjs');
 
 const ROOT = path.join(__dirname, '..');
 const EXCLUDE = loadExclude();
@@ -217,19 +218,6 @@ const JOINED = [
   'Glenn Dale',
 ];
 
-function loosen(text, foldUnderscore) {
-  let body = String(text)
-    .replace(/[\u201c\u201d\u2018\u2019"'`]/g, '')
-    .replace(/[-–—]/g, ' ');
-  if (foldUnderscore) body = body.replace(/_/g, ' ');
-  if (foldUnderscore === 'name') body = body.replace(/\./g, ' ');
-  return body.replace(/\s+/g, ' ');
-}
-
-function joinedKey(text) {
-  return String(text).toLowerCase().replace(/[^a-z0-9]/g, '');
-}
-
 function scanPatterns(rel, text, patterns, foldUnderscore) {
   if (EXEMPT.has(rel)) return [];
   const hits = [];
@@ -248,21 +236,7 @@ function scanText(rel, text) {
 
 function scanJoined(rel) {
   if (EXEMPT.has(rel)) return [];
-  const hits = [];
-  for (const segment of String(rel).split('/')) {
-    const folded = joinedKey(segment.replace(/\.[^.]+$/, ''));
-    for (const phrase of JOINED) {
-      const needle = joinedKey(phrase);
-      // Short joins such as somd match the whole stem only, so they do not
-      // fire inside a longer word (ransomdemand). Longer joins still match
-      // as a substring of that stem.
-      const short = needle.length < 8;
-      if (needle.length >= 4 && (short ? folded === needle : folded.includes(needle))) {
-        hits.push(rel + ': ' + needle);
-      }
-    }
-  }
-  return hits;
+  return joinedNameHits(rel, JOINED);
 }
 
 function scanName(rel) {

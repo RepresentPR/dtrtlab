@@ -3,8 +3,34 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('fs');
 const path = require('path');
+const { isExcluded, loadExclude } = require('./stage-site.cjs');
+const { foldBanned } = require('./served-fold.cjs');
 const ROOT = path.resolve(__dirname, '..');
 const read = (f) => fs.readFileSync(path.join(ROOT, f), 'utf8');
+const RETIRED_DEMO_NAME = 'Sample' + ' Heating';
+const RETIRED_NAME = /sample heating/i;
+// Same served-file set as scripts/retired-copy.test.cjs. foldBanned()
+// reuses that file's loosen() matcher, then also folds entities, tags,
+// and simple JS string joins before the case-insensitive name check.
+const SERVED = /\.(html?|js|mjs|json|md|css|txt|webmanifest|svg|xml|toml)$|^(_headers|netlify\.toml|sitemap\.xml)$/i;
+const SERVED_TYPES = ['html', 'js', 'json', 'md', 'css', 'txt', 'webmanifest', 'svg', 'xml', 'toml'];
+const RASTER_EMBED = /data:image\/(?:jpeg|png);base64/i;
+// These served SVGs embed a real photo or a demo screenshot on purpose.
+// The three how-it-works shots that painted the retired name in JPEG
+// pixels were deleted. They are not on this list.
+const RASTER_SVG_ALLOW = [
+  'img/company/ian-headshot.svg',
+  'job-desk/how-it-works/img/job.svg',
+  'job-desk/how-it-works/img/autopilot.svg',
+];
+
+function isServedFile(name) {
+  return SERVED.test(name) || path.extname(name) === '';
+}
+
+function retiredNameHits(text) {
+  return RETIRED_NAME.test(foldBanned(text));
+}
 test('/demo exists and shows the "Demo, fictional data" banner outside the JS-rendered views', () => {
   const s = read('demo/index.html');
   const ribbon = (s.match(/<div class="ribbon"[^>]*>([\s\S]*?)<\/div>/) || [])[1] || '';
@@ -21,9 +47,88 @@ test('/demo ships its own assets, and the homepage links to it', () => {
 });
 test('/demo data stays fictional: labeled company, 555 numbers, example.com emails', () => {
   const js = read('demo/demo.js');
-  assert.match(js, /Sample Heating & Air Co\. \(demo\)/);
+  assert.match(js, /Pretendwell Heating & Air Co\. \(demo\)/);
+  assert.equal(js.includes(RETIRED_DEMO_NAME), false);
   for (const m of js.matchAll(/\b\d{3}-\d{4}\b/g)) assert.match(m[0], /^555-01\d\d$/, `non-fictional number ${m[0]}`);
   for (const m of js.matchAll(/[\w.+-]+@([\w-]+\.[\w.]+)/g)) assert.strictEqual(m[1], 'example.com', `non-fictional email ${m[0]}`);
+});
+test('the retired demo business name stays off every served file', () => {
+  const exclude = loadExclude();
+  const hits = [];
+  function walk(dir) {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (e.name === '.git') continue;
+      const p = path.join(dir, e.name);
+      const rel = path.relative(ROOT, p).split(path.sep).join('/');
+      if (isExcluded(rel, exclude)) continue;
+      if (e.isDirectory()) walk(p);
+      else if (e.isFile()) {
+        if (retiredNameHits(rel)) hits.push(rel + ' (filename)');
+        if (isServedFile(e.name) && fs.statSync(p).size < 5e6 && retiredNameHits(fs.readFileSync(p, 'utf8'))) hits.push(rel);
+      }
+    }
+  }
+  walk(ROOT);
+  assert.deepEqual(hits, [], 'retired demo name found:\n' + hits.join('\n'));
+});
+
+const NAME_PLANTS = [
+  ['lowercase', 'sample heating'],
+  ['uppercase', 'SAMPLE HEATING'],
+  ['mixed-case', 'sAmPlE hEaTiNg'],
+  ['entity-amp', 'Sample&amp;Heating'],
+  ['entity-double-amp', 'Sample&amp;amp;Heating'],
+  ['entity-nbsp', 'Sample&nbsp;Heating'],
+  ['line-break', 'Sample\nHeating'],
+  ['spaced-break', 'Sample \n Heating'],
+  ['tag-br', 'Sample<br>Heating'],
+  ['tag-span', 'Sample<span class="x">Heating</span>'],
+  ['js-join', "'Sample' + ' Heating'"],
+  ['js-join-mixed-quotes', '"Sample" + \' Heating\''],
+  ['slug', 'sample-heating'],
+  ['underscore', 'sample_heating'],
+];
+
+for (const [id, text] of NAME_PLANTS) {
+  test('planted retired demo name (' + id + ') fails in every served file type', () => {
+    for (const ext of SERVED_TYPES) {
+      assert.equal(retiredNameHits(text), true, id + ' was allowed in .' + ext);
+    }
+  });
+}
+
+test('planted retired demo name fails in a slug or file name', () => {
+  for (const rel of ['img/sample-heating.svg', 'img/sample_heating.png', 'sample-heating.html', 'Sample_Heating.js']) {
+    assert.equal(retiredNameHits(rel), true, rel);
+  }
+});
+
+test('a served SVG may embed a jpeg or png only when it is on the allowlist', () => {
+  const exclude = loadExclude();
+  const allow = new Set(RASTER_SVG_ALLOW);
+  const embedded = [];
+  function walk(dir) {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (e.name === '.git') continue;
+      const p = path.join(dir, e.name);
+      const rel = path.relative(ROOT, p).split(path.sep).join('/');
+      if (isExcluded(rel, exclude)) continue;
+      if (e.isDirectory()) walk(p);
+      else if (e.isFile() && e.name.endsWith('.svg') && RASTER_EMBED.test(fs.readFileSync(p, 'utf8'))) embedded.push(rel);
+    }
+  }
+  walk(ROOT);
+  for (const rel of RASTER_SVG_ALLOW) {
+    assert.match(read(rel), RASTER_EMBED, rel + ' is allowlisted but does not embed a raster');
+  }
+  assert.deepEqual(embedded.filter((rel) => !allow.has(rel)), [], 'served SVG embeds a raster outside the allowlist:\n' + embedded.join('\n'));
+  assert.deepEqual(RASTER_SVG_ALLOW.filter((rel) => !embedded.includes(rel)), [], 'allowlist entry is not a served raster SVG');
+  for (const name of ['tonight.svg', 'needs.svg', 'edit.svg']) {
+    const rel = 'job-desk/how-it-works/img/' + name;
+    assert.equal(fs.existsSync(path.join(ROOT, rel)), false, rel);
+    assert.equal(embedded.includes(rel), false, rel);
+  }
+  assert.doesNotMatch(read('job-desk/how-it-works/index.html'), /tonight\.svg|needs\.svg|edit\.svg/);
 });
 test('/demo v2 has the 4 screens: Tonight, Needs you, Jobs, Autopilot', () => {
   const js = read('demo/demo.js');
