@@ -93,8 +93,8 @@
     "es": "DTRT Lab escribe para negocios locales. Empieza con un plan gratis y luego elige un paquete de escritura. Envía un enlace y una meta."
   },
   "homeMeta": {
-    "en": "DTRT Lab writes for local businesses. Mission: Do the right thing. Free plan, plus Writing Retainer — Starter $250/30 days. Checkout for that plan is on Whop.",
-    "es": "DTRT Lab escribe para negocios locales. Misión: Do the right thing. Plan gratis, Writing Retainer — Starter $250/30 días. El pago de esos planes de escritura es en Whop."
+    "en": "DTRT Lab builds the AI office manager for local service businesses. Public offers: DTRT Job Desk (free office map, then $1,500 setup + $250/mo) and the AI Visibility Fix (free AI check, then $250 one-time with a day-30 re-check).",
+    "es": "DTRT Lab construye el gerente de oficina con IA para negocios de servicios locales. Ofertas públicas: DTRT Job Desk (mapa de oficina gratis, luego $1,500 de configuración + $250/mes) y AI Visibility Fix (revisión de IA gratis, luego $250 una vez, con una revisión al día 30)."
   },
   "packagesDown": {
     "en": "See packages <span aria-hidden=\"true\">↓</span>",
@@ -169,8 +169,8 @@
     "es": "Ver precios <span aria-hidden=\"true\">↗</span>"
   },
   "buyRetainer": {
-    "en": "Buy Writing Retainer — Starter · $250/30 days <span aria-hidden=\"true\">↗</span>",
-    "es": "Comprar Writing Retainer — Starter · $250/30 días <span aria-hidden=\"true\">↗</span>"
+    "en": "See the AI Visibility Fix · $250 <span aria-hidden=\"true\">↗</span>",
+    "es": "Ver AI Visibility Fix · $250 <span aria-hidden=\"true\">↗</span>"
   },
   "packagesPayNote": {
     "en": "Shop, merch, and game checkout on this site stay off. Refunds for the three Whop plans follow Whop’s policy. Questions: <a href=\"mailto:hello@dtrtlab.com\">hello@dtrtlab.com</a> · <a href=\"/legal/refunds.html\">Refunds</a>.",
@@ -185,8 +185,8 @@
     "es": "Precios"
   },
   "packagesRoute": {
-    "en": "Writing Retainer — Starter $250/30 days.",
-    "es": "Writing Retainer — Starter $250/30 días."
+    "en": "DTRT Job Desk and the AI Visibility Fix.",
+    "es": "DTRT Job Desk y AI Visibility Fix."
   },
   "contactRoute": {
     "en": "hello@dtrtlab.com. Nothing is sent until you press Send in your email app.",
@@ -590,8 +590,8 @@
     "es": "Estos tres planes son la oferta de escritura de pago. Este sitio no recoge números de tarjeta."
   },
   "streamCopy": {
-    "en": "Writing Retainer — Starter $250/30 days. Refunds follow Whop. Shop and game checkout on this site stay off.",
-    "es": "Writing Retainer — Starter $250/30 días. Los reembolsos siguen a Whop. La tienda y el juego no se cobran en este sitio."
+    "en": "The AI Visibility Fix is $250 one-time. Refunds for past plans follow Whop. Shop and game checkout on this site stay off.",
+    "es": "AI Visibility Fix cuesta $250 una vez. Los reembolsos de planes anteriores siguen a Whop. La tienda y el juego no se cobran en este sitio."
   },
   "twitchOptions": {
     "en": "See prices ↗",
@@ -602,8 +602,8 @@
     "es": "Ver precios ↗"
   },
   "twitchChat": {
-    "en": "Buy Writing Retainer — Starter · $250/30 days ↗",
-    "es": "Comprar Writing Retainer — Starter · $250/30 días ↗"
+    "en": "See prices ↗",
+    "es": "Ver precios ↗"
   },
   "beforeSupport": {
     "en": "Before you support",

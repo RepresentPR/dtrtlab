@@ -51,7 +51,7 @@ test('job application letters are not in the repo', () => {
 });
 
 // Personal webmail addresses never belong in this public repo. Business addresses
-// (@dtrtlab.com, @mail.grokbot.com) are fine; example/test domains are ignored.
+// (@dtrtlab.com) are fine; example/test domains are ignored.
 test('no personal webmail addresses in any public file', () => {
   const PERSONAL = /[a-z0-9._%+-]+@(gmail|googlemail|outlook|hotmail|live|msn|icloud|me|mac|yahoo|aol|proton|protonmail|pm|gmx|zoho)\.[a-z.]{2,}/gi;
   const hits = [];

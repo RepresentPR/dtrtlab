@@ -57,21 +57,17 @@ test('public support paths do not send visitors to the paused Ko-fi checkout', a
   assert.doesNotMatch(read('donate.html'), /donate-qr\.svg/, 'retired checkout QR must not render');
 });
 
-test('a valid prepared partnership email emits one intent and no private form fields', async () => {
+test('a partnership note is the map form, not a prepared mailto', async () => {
   const ui = await page({ consent: 'yes' });
-  ui.submit();
-  const email = new URL(ui.location.href);
-  assert.equal(email.protocol, 'mailto:');
-  assert.equal(email.pathname, 'hello@dtrtlab.com');
-  assert.match(email.searchParams.get('body'), /EMAIL: private@example\.test/);
-  assert.deepEqual(ui.plausibleEvents(), [['PartnershipBriefPrepared', undefined]]);
-  assert.deepEqual(ui.gaEvents(), [['event', 'PartnershipBriefPrepared']]);
-  assert.match(ui.status.textContent, /has not sent your enquiry/);
+  assert.match(read('partners.html'), /href="\/map\/\?want=partner"/);
+  assert.doesNotMatch(read('js/partners.js'), /mailto:/);
+  assert.equal(ui.location.href, '');
+  assert.deepEqual(ui.plausibleEvents(), []);
+  assert.deepEqual(ui.gaEvents(), []);
 });
 
-test('invalid partnership forms neither navigate nor record a prepared brief', async () => {
+test('loading the partnership script neither navigates nor records a brief', async () => {
   const ui = await page({ valid: false });
-  ui.submit();
   assert.equal(ui.location.href, '');
   assert.deepEqual(ui.plausibleEvents(), []);
   assert.deepEqual(ui.gaEvents(), []);
@@ -82,19 +78,18 @@ test('privacy opt-out blocks support and brief events even with a pre-existing c
   const calls = [];
   ui.window.plausible = (...args) => calls.push(args);
   ui.click('SupportTipIntent');
-  ui.submit();
   assert.deepEqual(calls, []);
   assert.deepEqual(ui.gaEvents(), []);
   assert.equal(ui.scripts.length, 0);
-  assert.match(ui.location.href, /^mailto:/, 'privacy choice must not disable the enquiry');
+  assert.equal(ui.location.href, '');
+  assert.match(read('partners.html'), /href="\/map\/\?want=partner"/, 'privacy choice must not remove the enquiry');
 });
 
-test('missing or failed analytics never prevents preparing the email', async () => {
+test('missing or failed analytics never blocks the partnership page', async () => {
   for (const analytics of [undefined, () => { throw new Error('collector blocked'); }]) {
     const ui = await page();
     ui.window.dtrtTrackEvent = analytics;
-    assert.doesNotThrow(() => ui.submit());
-    assert.match(ui.location.href, /^mailto:/);
-    assert.match(ui.status.textContent, /has not sent your enquiry/);
+    assert.equal(ui.location.href, '');
+    assert.match(read('partners.html'), /href="\/map\/\?want=partner"/);
   }
 });

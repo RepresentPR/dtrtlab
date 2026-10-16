@@ -4,6 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const root = path.join(__dirname, '..');
+const CANONICAL = "Answer 3 short questions and you'll get a free one-page office map within 3 business days.";
 const skip = new Set(['docs', 'scripts', 'tools', 'node_modules', 'brand-assets']);
 
 function walk(dir) {
@@ -53,11 +54,18 @@ test('/map/ posts the free office map form to FormSubmit', () => {
   assert.match(form, /\baction="https:\/\/formsubmit\.co\/b40eb14cdacd80c1b58eebb8ec124fe3"/);
   assert.doesNotMatch(form, /@/);
   assert.match(html, /Get your free office map/);
-  assert.match(html, /Answer 3 short questions\. Your written map arrives within 3 business days\. No calls\./);
+  assert.equal(html.split(CANONICAL).length - 1, 3, 'map metas and subline use the canonical sentence');
   assert.match(html, /Prefer email\?/);
   assert.match(html, /id="hello-email">hello@dtrtlab\.com</);
-  assert.match(html, /id="copy-email"/);
+  assert.match(html, /class="btn line sm"[^>]*id="copy-email"/);
+  assert.match(html, /<span class="ask">Phone \(optional\)<\/span>/);
   assert.doesNotMatch(html, /<a\b[^>]*href="mailto:/i, 'the map page does not use a mailto link');
+  assert.match(html, /value="Free office map" required checked/);
+  assert.match(html, /value="Free AI visibility check" required/);
+  assert.match(html, /value="Partnership" required/);
+  const wantJs = fs.readFileSync(path.join(root, 'js/map-want.js'), 'utf8');
+  assert.match(wantJs, /want === 'check'[\s\S]*Free AI visibility check/);
+  assert.match(wantJs, /want === 'partner'[\s\S]*Partnership/);
 
   const tags = [...form.matchAll(/<(input|select|textarea)\b[^>]*>/gi)].map((match) => match[0]);
   const byName = new Map(tags.map((tag) => [attr(tag, 'name'), tag]));
@@ -73,7 +81,8 @@ test('/map/ posts the free office map form to FormSubmit', () => {
   assert.match(byName.get('email'), /\brequired\b/);
   assert.doesNotMatch(byName.get('Phone'), /\brequired\b/);
   assert.equal(attr(byName.get('_honey'), 'name'), '_honey');
-  assert.equal(attr(byName.get('_subject'), 'value'), 'New office map request (dtrtlab.com)');
+  assert.equal(attr(byName.get('_subject'), 'value'), 'New request (dtrtlab.com)');
+  assert.ok(byName.has('What do you want'), 'missing field What do you want');
   assert.equal(attr(byName.get('_captcha'), 'value'), 'false');
   assert.equal(attr(byName.get('_template'), 'value'), 'table');
   assert.equal(attr(byName.get('_next'), 'value'), 'https://dtrtlab.com/map/thanks/');
@@ -83,15 +92,17 @@ test('/map/ posts the free office map form to FormSubmit', () => {
   assert.doesNotMatch(form, /name="[^"]*(town|address)[^"]*"/i, 'no town or address field');
 
   const thanks = fs.readFileSync(path.join(root, 'map/thanks/index.html'), 'utf8');
-  assert.match(thanks, /Got it\. Your map is on the way within 3 business days\. Watch your inbox\./);
+  assert.match(thanks, /Got it\. Watch your inbox\. You'll hear back within 3 business days\./);
+  assert.doesNotMatch(thanks, /Your map is on the way/);
   assert.match(thanks, /<a\b[^>]*href="\/"[^>]*>Back home<\/a>/);
 
   const privacy = fs.readFileSync(path.join(root, 'legal/privacy.html'), 'utf8');
-  assert.match(privacy, /The free office map form sends your answers by email through FormSubmit \(formsubmit\.co\) so we can write your map\. We use those answers only for that\./);
+  assert.match(privacy, /The form on \/map\/ sends your answers by email through FormSubmit \(formsubmit\.co\) so we can write your map, run the free AI check, or reply to a partnership note\. We use those answers only for that\./);
 });
 
 test('the FormSubmit inbox address is not in any served file', () => {
-  const inbox = ['dtrt', 'mail.grokbot.com'].join('@');
+  const host = ['mail', String.fromCharCode(103, 114, 111, 107, 98, 111, 116), 'com'].join('.');
+  const inbox = ['dtrt', host].join('@');
   const skip = new Set(['node_modules']);
   function walkServed(dir, out = []) {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -104,6 +115,87 @@ test('the FormSubmit inbox address is not in any served file', () => {
   }
   const hits = walkServed(root).filter((file) => fs.readFileSync(file, 'utf8').includes(inbox));
   assert.deepEqual(hits.map((file) => path.relative(root, file)), []);
+});
+
+test('the free-map promise uses one canonical sentence', () => {
+  const required = ['index.html', 'map/index.html', 'job-desk/how-it-works/index.html', 'contact.html'];
+  for (const name of required) {
+    assert.ok(fs.readFileSync(path.join(root, name), 'utf8').includes(CANONICAL), name);
+  }
+  const near = /3 short questions|written map arrives|one-page map of your office|asks 3 short questions|free one-page map:/i;
+  for (const file of walk(root)) {
+    const rest = fs.readFileSync(file, 'utf8').split(CANONICAL).join('');
+    assert.doesNotMatch(rest, near, path.relative(root, file));
+  }
+});
+
+test('CHECK and partnership CTAs use the map form', () => {
+  const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+  const find = fs.readFileSync(path.join(root, 'find.html'), 'utf8');
+  const partners = fs.readFileSync(path.join(root, 'partners.html'), 'utf8');
+  assert.match(home, /href="\/map\/\?want=check"[^>]*>Get my free AI check<\/a>/);
+  assert.match(find, /href="\/map\/\?want=check"[^>]*>Get my free AI check<\/a>/);
+  assert.match(partners, /href="\/map\/\?want=partner"/);
+  assert.doesNotMatch(home + find + partners, /Reply CHECK|Prepare email/);
+  assert.doesNotMatch(fs.readFileSync(path.join(root, 'js/partners.js'), 'utf8'), /mailto:/);
+});
+
+test('brand kit does not say Reply SYSTEM', () => {
+  assert.doesNotMatch(fs.readFileSync(path.join(root, 'brand-kit.md'), 'utf8'), /Reply SYSTEM/);
+});
+
+test('served docs and scripts do not name the bot mail host', () => {
+  const needle = String.fromCharCode(103, 114, 111, 107, 98, 111, 116);
+  const skip = new Set(['node_modules', '__pycache__']);
+  const hits = [];
+  function walkNamed(dir) {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (entry.name.startsWith('.') || skip.has(entry.name)) continue;
+      const full = path.join(dir, entry.name);
+      const rel = path.relative(root, full);
+      if (rel.toLowerCase().includes(needle)) hits.push(rel);
+      if (entry.isDirectory()) walkNamed(full);
+      else if (fs.statSync(full).size < 5e6 && fs.readFileSync(full, 'utf8').toLowerCase().includes(needle)) hits.push(rel);
+    }
+  }
+  walkNamed(path.join(root, 'docs'));
+  walkNamed(path.join(root, 'scripts'));
+  assert.deepEqual(hits, []);
+});
+
+test('served docs and owner-dashboard tiles omit retired small-plan names', () => {
+  const banned = ['$50', 'Starter Fix', 'Mini'];
+  function walkMd(dir, out = []) {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (entry.name.startsWith('.')) continue;
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) walkMd(full, out);
+      else if (entry.name.endsWith('.md')) out.push(full);
+    }
+    return out;
+  }
+  for (const file of walkMd(path.join(root, 'docs'))) {
+    const text = fs.readFileSync(file, 'utf8');
+    for (const phrase of banned) {
+      assert.equal(text.includes(phrase), false, path.relative(root, file) + ' still says ' + phrase);
+    }
+  }
+  const dash = fs.readFileSync(path.join(root, 'live/dashboard.js'), 'utf8');
+  const tiles = [...dash.matchAll(/tile\('([^']*)'/g)].map((match) => match[1]);
+  assert.ok(tiles.length > 5, 'found dashboard tiles');
+  for (const label of tiles) {
+    for (const phrase of banned) {
+      assert.equal(label.includes(phrase), false, 'tile still says ' + phrase + ': ' + label);
+    }
+  }
+});
+
+test('theme A buttons inherit the page font and the form hover stays readable', () => {
+  const css = fs.readFileSync(path.join(root, 'css/theme-a.css'), 'utf8');
+  assert.match(css, /\.btn\{[^}]*font-family:inherit/);
+  assert.match(css, /\.map-form \.btn:hover\{background:var\(--navy\);color:var\(--white\)/);
+  assert.match(css, /\.map-form \.ask\{white-space:nowrap\}/);
+  assert.doesNotMatch(css, /\.fallback \.btn\{width:100%\}/);
 });
 
 test('AGENTS.md and README.md do not publish retired offers', () => {

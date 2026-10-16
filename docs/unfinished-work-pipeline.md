@@ -51,7 +51,7 @@ Agent cannot finish these without your login/UI:
 2. LinkedIn About / Featured — kept in private notes  
 3. GitHub profile UI + `RepresentPR/RepresentPR` README  
 4. Photos — `docs/visual-photo-scatter.md`  
-6. Grok Bot email approve (`dtrt` → …) — `docs/grokbot-email-handles.md`  
+6. Bot email approve (`dtrt` → …) — the shortlist stays off the public site  
 7. Optional: Gmail Send-as `hello@` (receive already live)  
 8. Postiz: delete DRAFT dupes + broken X QUEUE (see above)
 
@@ -95,6 +95,7 @@ Agent cannot finish these without your login/UI:
 | 2026-10-13 | AI templates · Find-me live · AI spend ops | Bios paste · Postiz DRAFT cleanup |
 | 2026-10-13 | **Company live reaudit:** site HTTP 200s, email MX, tests green, #32/#25 closed, audit-site path fixed, find-me tests, **X captions re-queued with plain dtrtlab.com** | SCHEDULED waves · Ian unlock list · Postiz DRAFT discard |
 | 2026-10-14 | Business-first site revamp drafted: writing plans on Whop, hobby on `/lab.html`, `brand-kit.md` | Ian still pastes the bios into each social profile |
-| 2026-10-15 | Agent floor: founder boundaries, Stage 1 freeze, “if unsure, ship” revoked for brand, price, and scope | Public catalog unchanged: Free plan + Mini Social Pack $50, Week Pack $129, Writing Retainer — Starter $250/30 days. Ian named “The Starter Fix ($50 flat writing audit)” in chat. Site rename or tier changes wait for an explicit instruction. No claim of 3 paying clients |
-| 2026-10-15 | Operating system: first-chair agents execute; Ian accepts, rejects, prices, commits, unlocks, and sets brand. Ops bandwidth is the $50 Starter Fix. Hobby stays on `/lab.html` | Live Whop tier labels and prices unchanged |
-| 2026-10-15 | Vision: writing studio for local businesses. Offer is Free Plan + Starter Fix ($50, 48 hours). Target by 2026-12-31: 10 Free Plans, 2–3 paid audits, 3 testimonials. Freeze adds `/live/` with streaming and AFTERLIGHT | Targets are not results. Site tier names and `/live/` URLs unchanged pending an explicit site instruction |
+| 2026-10-15 | Agent floor: founder boundaries, Stage 1 freeze, “if unsure, ship” revoked for brand, price, and scope | Public catalog at that date was the free plan plus three Whop writing tiers. A flat writing audit was named in chat. Site rename waited for an explicit instruction. No claim of 3 paying clients |
+| 2026-10-15 | Operating system: first-chair agents execute; Ian accepts, rejects, prices, commits, unlocks, and sets brand. Ops bandwidth was the writing studio’s paid offer. Hobby stays on `/lab.html` | Live Whop tier labels and prices unchanged on that date |
+| 2026-10-15 | Vision: studio for local businesses. Offer at that date was a free plan plus a flat writing audit. Target by 2026-12-31: 10 free deliveries, 2–3 paid starts, 3 testimonials. Freeze adds `/live/` with streaming and AFTERLIGHT | Targets are not results. Site tier names and `/live/` URLs were unchanged pending an explicit site instruction |
+| 2026-10-16 | Public offers are only DTRT Job Desk (free office map, then $1,500 setup + $250/mo) and the AI Visibility Fix (free AI check, then $250 one-time with a day-30 re-check). Older writing tiers are retired | Refund rights for past plans stay on the legal pages |

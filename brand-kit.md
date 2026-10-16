@@ -48,11 +48,11 @@ Buttons are green with navy text, or outlined in the current text color. The old
 
 ### One line (under 150 characters)
 
-I'm Ian. I build the AI office manager for DMV service businesses. Reply SYSTEM and I'll map yours free. dtrtlab.com
+I'm Ian. I build the AI office manager for DMV service businesses. Get a free office map at dtrtlab.com.
 
 ### Long
 
-DTRT Lab builds DTRT Job Desk, the AI office manager for DMV service businesses: every job tracked, every customer updated, every quote followed up, and a report card on the owner's phone each night. It's set up inside the apps the business already uses, never with a password. Job Desk is $1,500 setup + $250/mo and starts with a free written map (Reply SYSTEM). The first step can be the free AI check (Reply CHECK) and the AI Visibility Fix, $250 one-time. The Writing Retainer · Review Desk, $250/30 days, stays on Whop. The mission is do the right thing: help real local operators, not extract from them. The studio is independent, based in the DMV Area, and open to any age and any size business or idea. Shop checkout on the site is not live. The stream, The Lab Files, CS2, and the game are hobby, on a separate page, and AFTERLIGHT is in development and not for sale. Contact hello@dtrtlab.com.
+DTRT Lab builds DTRT Job Desk, the AI office manager for DMV service businesses: every job tracked, every customer updated, every quote followed up, and a report card on the owner's phone each night. It's set up inside the apps the business already uses, never with a password. Job Desk is a free office map, then $1,500 setup + $250/mo. The first step can be the free AI check and the AI Visibility Fix, $250 one-time with a day-30 re-check. The mission is do the right thing: help real local operators, not extract from them. The studio is independent, based in the DMV Area, and open to any age and any size business or idea. Shop checkout on the site is not live. The stream, The Lab Files, CS2, and the game are hobby, on a separate page, and AFTERLIGHT is in development and not for sale. Contact hello@dtrtlab.com.
 
 ## Profile photo and banner
 
@@ -69,7 +69,7 @@ Use these exact blocks so the profiles match the site. Link the business home, n
 
 - Handle: @DTRTLab
 - Profile URL: https://x.com/DTRTLab
-- Bio: I'm Ian. I build the AI office manager for DMV service businesses: jobs tracked, customers updated, quotes followed up. Reply SYSTEM for a free map.
+- Bio: I'm Ian. I build the AI office manager for DMV service businesses: jobs tracked, customers updated, quotes followed up. Free office map at dtrtlab.com/map/.
 - Link: https://dtrtlab.com/
 - Link label: DTRT Lab
 
@@ -107,7 +107,7 @@ Use these exact blocks so the profiles match the site. Link the business home, n
 
 ## Offers named on the site
 
-- Writing Retainer · Review Desk — $250/30 days — https://whop.com/checkout/plan_kZqq0jgr6VrGG
-- AI Visibility Fix — $250 one-time — https://whop.com/checkout/plan_yuDiw93Zp6Uvr
+- DTRT Job Desk — free office map, then $1,500 setup + $250/mo — https://dtrtlab.com/map/
+- AI Visibility Fix — free AI check, then $250 one-time with a day-30 re-check — https://whop.com/checkout/plan_yuDiw93Zp6Uvr
 
 These plans are paid on Whop. The website does not collect card numbers. Public email: hello@dtrtlab.com.

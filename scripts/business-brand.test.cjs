@@ -18,7 +18,7 @@ test('brand kit has the public paste text and a short bio', () => {
   assert.match(fs.readFileSync(path.join(root, 'css/theme-a.css'), 'utf8'), /--navy:#0B2545;--green:#13C27A/, 'kit matches the site CSS');
   assert.match(kit, /Source Sans 3/);
   assert.match(kit, /Source Serif 4/);
-  const oneLine = kit.match(/I'm Ian\. I build the AI office manager for DMV service businesses\. Reply SYSTEM and I'll map yours free\. dtrtlab\.com/);
+  const oneLine = kit.match(/I'm Ian\. I build the AI office manager for DMV service businesses\. Get a free office map at dtrtlab\.com\./);
   assert.ok(oneLine, 'one-line bio is present');
   assert.ok(oneLine[0].length < 150);
   for (const name of ['X', 'Instagram', 'TikTok', 'YouTube', 'Twitch']) {
@@ -28,7 +28,7 @@ test('brand kit has the public paste text and a short bio', () => {
   assert.match(kit, /https:\/\/www\.instagram\.com\/officiallydtrt\//);
   // Mini Social Pack and Week Pack retired 2026-10-15 (Co-Founder): no links to their Whop plans.
   assert.doesNotMatch(kit, /plan_HAGSLXXUeGkcz|plan_RVDjSToI7vKOM/);
-  assert.match(kit, /plan_kZqq0jgr6VrGG/);
+  assert.doesNotMatch(kit, /plan_kZqq0jgr6VrGG|Reply SYSTEM/);
   assert.match(kit, /plan_yuDiw93Zp6Uvr/);
   assert.doesNotMatch(kit, /@gmail\.com|PayPal/);
 });
@@ -45,7 +45,8 @@ test('business pages show theme A offers and keep hobby off the company face', (
   for (const file of ['index.html', 'find.html', 'contact.html', 'js/nav.js', 'legal/terms.html', 'content/company.json']) {
     assert.doesNotMatch(read(file), /Clinton|Southern Maryland|SoMD/i, file + ' carries no day-job location');
   }
-  for (const id of ['plan_kZqq0jgr6VrGG', 'plan_yuDiw93Zp6Uvr']) assert.match(main, new RegExp(id));
+  assert.match(main, /plan_yuDiw93Zp6Uvr/);
+  assert.doesNotMatch(main, /plan_kZqq0jgr6VrGG/);
   for (const id of ['plan_HAGSLXXUeGkcz', 'plan_RVDjSToI7vKOM', 'plan_Vn0gQGFWQx9CA']) assert.doesNotMatch(home, new RegExp(id), 'retired offer link: ' + id);
   assert.match(main, /DTRT 7-Day Do-It-Right Guarantee/);
   assert.doesNotMatch(home, /free plan|PayPal|Stripe|twitch\.tv|\/cs2\.html|\/afterlight\.html|#080808|cfe35a/i);

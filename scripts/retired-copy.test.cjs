@@ -27,6 +27,8 @@ const PHRASES = [
   /plan_RVDjSToI7vKOM/,
   /Mini Social Pack/i,
   /Week Pack/i,
+  /Writing Retainer/i,
+  /plan_kZqq0jgr6VrGG/,
 ];
 const SERVED = /\.(html?|js|mjs|json|webmanifest)$/i;
 const SKIP_DIRS = new Set(['.git', 'node_modules', 'scripts', 'docs']);

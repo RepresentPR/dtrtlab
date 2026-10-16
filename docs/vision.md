@@ -10,21 +10,21 @@ This is the filter for every product, post, tool, and partnership. If an idea fa
 
 ## Current strategic focus
 
-DTRT Lab is an independent writing studio for local businesses.
+DTRT Lab builds the AI office manager for local service businesses.
 
-**Core mission.** Do the right thing for local businesses: clear, high-conversion writing, copy audits, and practical workflow clarity.
+**Core mission.** Do the right thing for local businesses: a free office map, then the office work handled inside the apps they already use.
 
-**Commercial offer.**
+**Commercial offer.** As of 2026-10-16 the public offers are only these two.
 
 | Offer | What it is |
 | --- | --- |
-| **Free Plan** | Diagnostic storefront review through the static intake. No purchase. |
-| **The Starter Fix** | $50 flat writing audit, delivered in 48 hours. |
+| **DTRT Job Desk** | Free office map, then $1,500 setup + $250/mo. |
+| **AI Visibility Fix** | Free AI check, then $250 one-time with a day-30 re-check. |
 
-**Stage 1 target, by 2026-12-31.** These are goals, not results. As of 2026-10-15 no delivery count or testimonial count is claimed.
+**Stage 1 target, by 2026-12-31.** These are goals, not results. As of 2026-10-16 no delivery count or testimonial count is claimed.
 
-- Deliver 10 Free Plans
-- Close 2–3 paid Starter Fixes
+- Deliver 10 free office maps
+- Close 2–3 paid starts on the public offers
 - Secure 3 testimonials
 
 **The freeze.** Until the writing studio closes its first 3 paying clients, these stay frozen and sequestered to `/lab.html`:
@@ -35,7 +35,7 @@ DTRT Lab is an independent writing studio for local businesses.
 
 Do not claim those 3 clients exist. AFTERLIGHT stays labeled “in development / not for sale.” Do not put stream chrome, the game, or the results dashboard on the company face.
 
-Public pages as of 2026-10-15 still list three Whop writing plans (Mini Social Pack $50, Week Pack $129, Writing Retainer — Starter $250/30 days) and still contain `/live/` URLs. Strategy names the paid offer The Starter Fix. Renaming tiers, promising 48 hours on the website, or moving `/live/` links is a site change and waits for Ian’s explicit instruction in chat.
+Public pages as of 2026-10-16 list DTRT Job Desk and the AI Visibility Fix. Older writing tiers are retired. `/live/` stays off the company face under the freeze.
 
 ## Personal vision (Ian)
 
@@ -49,7 +49,7 @@ Public pages as of 2026-10-15 still list three Whop writing plans (Mini Social P
 
 Ask before shipping or adopting a tool:
 
-1. Does it help a local business get a clearer Free Plan or a real $50 Starter Fix?
+1. Does it help a local business get a clearer free office map, a Job Desk, or the AI Visibility Fix?
 2. Can we show dated evidence without lying?
 3. Does it move durable craft or revenue forward, even slowly, without theater?
 4. Would we be proud if a local business owner or a journalist read it tomorrow?
@@ -67,7 +67,7 @@ If no, or if it only copies someone else’s product in secret, it is out. Durin
 ## In vision right now
 
 1. Free Plan intake and delivery
-2. $50 Starter Fix, scoped as a flat writing audit, only when the public offer matches what a customer can buy
+2. Paid Job Desk setup and the AI Visibility Fix, only as the public offer describes them
 3. Testimonials only from real clients, with permission
 4. Company foundation kept honest: legal, brand, press, `hello@dtrtlab.com`
 5. Entity and send-as `hello@` when Ian is ready

@@ -12,7 +12,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--green);outline-offs
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:72px}
 .brand{font-weight:800;font-size:21px;text-decoration:none;letter-spacing:-.01em}.brand b{color:var(--green)}
 .top nav{display:flex;gap:20px;align-items:center;font-size:15px;font-weight:600}.top nav a{text-decoration:none}.top nav a:not(.btn):hover{color:var(--green)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:12px 22px;border-radius:8px;font-weight:800;font-size:17px;text-decoration:none;border:2px solid var(--green);background:var(--green);color:var(--navy)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:12px 22px;border-radius:8px;font-family:inherit;font-weight:800;font-size:17px;text-decoration:none;border:2px solid var(--green);background:var(--green);color:var(--navy)}
 .btn:hover{background:var(--white);border-color:var(--white)}
 .btn.line{background:transparent;color:inherit;border-color:currentColor}.btn.line:hover{background:var(--light);color:var(--navy);border-color:var(--light)}
 .btn.sm{min-height:40px;padding:8px 14px;font-size:15px}
@@ -81,8 +81,14 @@ footer.foot nav{display:flex;flex-wrap:wrap;gap:10px 18px}footer.foot a{text-dec
 .map-form input,.map-form select,.map-form textarea{font:inherit;font-size:17px;color:var(--navy);background:var(--white);border:2px solid var(--navy);border-radius:8px;padding:12px 14px;min-height:50px;width:100%}
 .map-form textarea{min-height:140px;resize:vertical}
 .map-form .opt{font-weight:600}
+.map-form .ask{white-space:nowrap}
 .map-form .btn{justify-self:start}
+.map-form .btn:hover{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.map-form fieldset.want{border:0;margin:0;padding:0;display:grid;gap:8px}
+.map-form fieldset.want legend{font-weight:800;font-size:15px;padding:0}
+.map-form fieldset.want label{display:flex;align-items:center;gap:10px}
+.map-form fieldset.want input{width:auto;min-height:0;accent-color:var(--navy)}
 .fallback{margin-top:28px;font-size:16px;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
 .fallback .btn{min-height:40px;padding:8px 14px;font-size:15px}
 .hp{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
-@media(max-width:560px){.map-form .btn,.fallback .btn{width:100%}}
+@media(max-width:560px){.map-form .btn{width:100%}}

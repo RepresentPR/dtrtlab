@@ -64,20 +64,19 @@ test('homepage leads with the Job Desk and keeps the small plans lower in pricin
   assert.doesNotMatch(main, /id="how"|id="free-rewrite"/, '30-day numbers section and free rewrite are retired');
   // Mini Social Pack and Week Pack retired 2026-10-15 (Co-Founder; 0 Whop memberships).
   const offers = [...main.matchAll(/<article class="offer[^"]*"[\s\S]*?<\/article>/g)].map(m => m[0]);
-  assert.equal(offers.length, 3, 'Job Desk, AI Visibility Fix, Review Desk');
+  assert.equal(offers.length, 2, 'Job Desk and AI Visibility Fix');
   const names = offers.map(o => o.match(/<h3>([^<]+)<\/h3>/)[1]);
-  assert.deepEqual(names, ['DTRT Job Desk', 'AI Visibility Fix', 'Writing Retainer · Review Desk']);
+  assert.deepEqual(names, ['DTRT Job Desk', 'AI Visibility Fix']);
   for (const o of offers) assert.doesNotMatch(o, /numbers check/i, 'the day-30 numbers pitch is retired');
-  assert.doesNotMatch(main, /Mini Social Pack|Week Pack|plan_HAGSLXXUeGkcz|plan_RVDjSToI7vKOM/);
-  assert.match(main, /<h3>Writing Retainer · Review Desk<\/h3>/);
+  assert.doesNotMatch(main, /Mini Social Pack|Week Pack|Writing Retainer|plan_HAGSLXXUeGkcz|plan_RVDjSToI7vKOM|plan_kZqq0jgr6VrGG/);
   assert.match(main, /Do you use AI\?/);
-  assert.match(main, /mailto:hello@dtrtlab\.com\?subject=CHECK/);
+  assert.doesNotMatch(main, /mailto:hello@dtrtlab\.com\?subject=CHECK/);
   const fix = offers.find(o => /AI Visibility Fix/.test(o));
   assert.match(fix, /class="btn" href="https:\/\/whop\.com\/checkout\/plan_yuDiw93Zp6Uvr"/, 'Fix button goes to its Whop checkout');
-  assert.match(fix, /href="mailto:[^"]*subject=CHECK[^"]*"[^>]*>Reply CHECK and I'll run it on your business free\.<\/a>/, 'CHECK mailto is only the free check');
+  assert.match(fix, /href="\/map\/\?want=check"[^>]*>Get my free AI check<\/a>/);
   assert.match(main, /AI Visibility Fix[\s\S]*?\$250[\s\S]*?Day-30 re-check/);
-  assert.match(main, /Reply CHECK and I'll run it on your business free\./);
-  assert.match(main, /Review Desk/);
+  assert.doesNotMatch(main, /Reply CHECK/);
+  assert.match(main, /Review Desk module/);
   assert.match(main, /can't promise/i, 'no guaranteed results (FTC-safe)');
   for (const file of ['index.html', 'find.html', 'contact.html', 'brand-kit.md', 'content/company.json', 'content/site.json', 'legal/terms.html']) {
     assert.doesNotMatch(read(file), /body shop|auto ?body|collision repair/i, file + ' has no body-shop examples');

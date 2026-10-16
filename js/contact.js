@@ -32,7 +32,7 @@
       defaults: { 'Free plan': 'Free plan — business or idea', 'Paid project inquiry': 'Discuss a paid project', 'Shop interest': 'Shop interest — product I’d buy' },
       title: 'Say hello to DTRT Lab', freeTitle: 'Your free writing plan starts here', paidTitle: 'Discuss writing for your business', shopTitle: 'Tell us what you’d buy', pageTitle: 'Contact — DTRT Lab',
       freeContext: 'Three practical priorities, one sample improvement and one next step. Free, with no purchase required. Implementation is agreed separately. Open to any age / any size idea.',
-      paidContext: 'Tell us what you need written. Writing Retainer — Starter $250/30 days is paid on Whop. Custom work still needs a written scope first. This page does not collect a card.',
+      paidContext: 'Tell us what you need. DTRT Job Desk is a free office map, then $1,500 setup + $250/mo. The AI Visibility Fix is a free AI check, then $250 one-time with a day-30 re-check. Custom work still needs a written scope first. This page does not collect a card.',
       shopContext: 'Checkout is not live. Tell us which digital or merch item you’d buy so we can open the store with real demand. No charge from this page.',
       context: 'This page prepares an email. It does not send a request or confirm a booking.', optionalMessage: 'Other context (optional)', requiredMessage: 'Message (required)',
       category: 'Category', subject: 'Subject', name: 'Name', reply: 'Reply email', project: 'Business link or idea', goal: 'Goal', to: 'To',
