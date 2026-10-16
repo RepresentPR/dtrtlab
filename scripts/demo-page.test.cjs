@@ -4,7 +4,7 @@ const assert = require('node:assert');
 const fs = require('fs');
 const path = require('path');
 const { isExcluded, loadExclude } = require('./stage-site.cjs');
-const { containsRetiredDemoName } = require('./served-fold.cjs');
+const { containsRetiredDemoName, foldBanned } = require('./served-fold.cjs');
 const ROOT = path.resolve(__dirname, '..');
 const read = (f) => fs.readFileSync(path.join(ROOT, f), 'utf8');
 const RETIRED_DEMO_NAME = 'Sample' + ' Heating';
@@ -173,18 +173,30 @@ test('/demo Report Card leads with All clear or N need you, with no letter grade
   assert.ok(js.includes('Report Card'), 'keeps the name Report Card');
   assert.doesNotMatch(js, /\bgrade\b/i, 'no letter grade on the Report Card');
 });
-test('/demo labels every automation level (L0-L4) and quote nudges as marketing', () => {
+test('/demo is approve-only: no autonomy levels, quote nudges labeled as marketing, STOP honored', () => {
   const js = read('demo/demo.js');
-  for (const l of ['L0', 'L1', 'L2', 'L3', 'L4']) assert.ok(js.includes(l), `level ${l} missing`);
+  assert.doesNotMatch(js, /\blevel: "L\d"/, 'no autonomy level on any message type: approve-only is the only mode shown');
+  assert.doesNotMatch(js, /\blevels: \{/, 'no autonomy ladder in the data');
+  assert.doesNotMatch(js, /Autopilot did/, 'no "Autopilot did N things" line');
   assert.ok(js.includes('Marketing: consent on file'), 'quote nudges carry the marketing label (D5)');
-  assert.match(js, /Reply STOP to opt out/, 'automated texts honor STOP');
+  assert.match(js, /Reply STOP to opt out/, 'texts honor STOP');
+  assert.doesNotMatch(js, /Automated (update|reminder)/, 'no "automated" message footers');
 });
-test('/demo keeps email -> job card at L2 (owner approves) until it proves 95%, and puts a waiting lead first', () => {
+test('/demo: every customer message in the full log was approved by the owner, and Autopilot is an opt-in shown OFF', () => {
   const js = read('demo/demo.js');
-  const email = (js.match(/\{ id: "email",[^\n]*/) || [''])[0];
-  assert.match(email, /level: "L2"/, 'email -> job card is L2');
-  assert.ok(email.includes('L3 after it proves 95% on your mail'), 'L3 label shown as the next step');
-  assert.match(js, /lead waiting over 15 min/i, 'queue rule: a lead waiting over 15 min counts as urgent');
+  const ctx = { window: {} };
+  require('vm').runInNewContext(js.slice(0, js.indexOf('\n};') + 3), ctx);
+  const D = ctx.window.DEMO;
+  const SENDS = ['status', 'reviewask', 'nudge', 'reply'];
+  for (const l of D.log) if (SENDS.includes(l.auto)) assert.strictEqual(l.approvedBy, 'owner', `log entry not owner-approved: ${l.t} ${l.text}`);
+  for (const l of D.log) if (!SENDS.includes(l.auto) && l.undo === 'sent') assert.fail(`unexpected send in log: ${l.text}`);
+  for (const j of D.jobs) for (const e of j.events) if (/\bsent\b/i.test(e[2]) && !/quote sent|nothing sent|no advice sent/i.test(e[2])) assert.match(e[2], /^Approved by owner · /, `job ${j.id} event sent without owner approval: ${e[2]}`);
+  assert.strictEqual(D.autopilotOptIn, false, 'Autopilot opt-in setting is OFF');
+  assert.match(js, /Autopilot \(opt-in setting\)/, 'Autopilot shown only as a labeled opt-in setting');
+  assert.match(js, /aria-checked="false" aria-label="Autopilot, opt-in, currently off"/, 'opt-in switch rendered OFF');
+});
+test('/demo puts a lead waiting over 15 min first in the queue', () => {
+  assert.match(read('demo/demo.js'), /lead waiting over 15 min/i, 'queue rule: a lead waiting over 15 min counts as urgent');
 });
 test('/demo job cards use made-up street addresses and never name a real town', () => {
   const towns = ['Bowie', 'Lanham', 'Clinton', 'Largo', 'Greenbelt', 'Laurel', 'College Park',
@@ -207,4 +219,129 @@ test('/demo job cards use made-up street addresses and never name a real town', 
     assert.strictEqual(key, 'street', `job field is ${key}`);
     assert.match(val, /^\d+ [A-Z][a-z]+ (Ct|Ln|Way|Dr|Pl|Rd|Ter|Ave|St|Cir)$/, `not a short made-up street: ${val}`);
   }
+});
+// Runs demo/demo.js in a VM with a minimal DOM stub and returns the HTML of one view.
+function renderDemoView(view) {
+  const js = read('demo/demo.js');
+  const els = {};
+  const el = (k) => (els[k] = els[k] || { innerHTML: '', textContent: '', hidden: true, classList: { add() {}, remove() {} }, querySelector: () => null, focus() {}, appendChild() {} });
+  const ctx = {
+    window: {}, location: { hash: '#' + view, search: '' }, URLSearchParams,
+    document: { querySelector: (s) => el(s), getElementById: (s) => el('#' + s), addEventListener() {}, createElement: () => el(Math.random()), body: el('body') },
+    setTimeout, clearTimeout, console,
+  };
+  ctx.window.addEventListener = () => {};
+  ctx.window.scrollTo = () => {};
+  require('vm').runInNewContext(js, ctx);
+  return { html: els['#main'].innerHTML, DEMO: ctx.window.DEMO };
+}
+function clock(min) { const h = Math.floor(min / 60), m = min % 60; return ((h + 11) % 12 + 1) + ':' + String(m).padStart(2, '0') + (h >= 12 ? ' PM' : ' AM'); }
+test('/demo reply chips come from an explicit repliedBy on every lead with a reply time', () => {
+  const { html, DEMO } = renderDemoView('jobs');
+  const BY = ['owner-approved', 'owner-manual'];
+  for (const j of DEMO.jobs) {
+    if (j.replyMin == null) { assert.equal(j.repliedBy, undefined, `${j.id} has repliedBy but no reply time`); continue; }
+    assert.ok(BY.includes(j.repliedBy), `${j.id} has a reply time but repliedBy is ${JSON.stringify(j.repliedBy)}`);
+    if (j.repliedBy === 'owner-approved') assert.ok(DEMO.log.some((l) => l.auto === 'reply' && l.job === j.id && l.approvedBy === 'owner'), `${j.id}: no owner-approved reply in the log`);
+    else assert.ok(j.events.some((e) => e[1] === 'You' && e[0] === clock(j.inMin + j.replyMin)), `${j.id}: no owner event at ${clock(j.inMin + j.replyMin)}`);
+  }
+  // rendered board: every "... in N min" reply chip is one of the two owner labels
+  const text = html.replace(/<[^>]+>/g, ' ');
+  const any = [...text.matchAll(/\b(?:replied|sent|answered|responded)(?:\s+\w+)?\s+in\s+\d+\s*min/gi)].length;
+  const ok = [...text.matchAll(/(?:Approved and sent|You replied yourself) in \d+ min/g)].length;
+  assert.ok(ok >= 3, 'reply chips rendered');
+  assert.equal(any, ok, 'a reply chip is not labeled "Approved and sent" or "You replied yourself"');
+  // source, with JS string joins folded: no other "replied/sent in" wording
+  const src = foldBanned(read('demo/demo.js')).replace(/approved and sent in|you replied yourself in/gi, '');
+  assert.doesNotMatch(src, /\b(?:replied|sent)\s+in\b/i, 'other "Replied in" / "Sent in" wording in demo.js');
+});
+test('how-it-works is approve-only: no levels table, no level chips, no autonomy lines, nudges approved before they send', () => {
+  const s = read('job-desk/how-it-works/index.html');
+  const folded = foldBanned(s);
+  assert.doesNotMatch(s, /<table\b[^>]*\bclass\s*=\s*["'][^"']*\blevels\b/i, 'levels table removed (any attribute order)');
+  assert.doesNotMatch(folded, /\bL[0-4]\s*(?:·|&middot;|:|-|–|—|\|)\s*\w/i, 'no L0-L4 level chip');
+  for (const re of [/runs? on its own/i, /Autopilot did/i, /Auto\s*\+\s*undo/i, /auto[- ]?send/i, /Autopilot levels/i, /levels and undo/i, /shown in the log only/i])
+    assert.doesNotMatch(folded, re, `autonomy wording: ${re}`);
+  for (const f of s.matchAll(/<figure\b[\s\S]*?<\/figure>/gi)) {
+    const alts = [...f[0].matchAll(/\balt\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/gi)].map((m) => m[1] ?? m[2] ?? m[3]);
+    const caps = [...f[0].matchAll(/<figcaption\b[^>]*>([\s\S]*?)<\/figcaption>/gi)].map((m) => m[1].replace(/<[^>]+>/g, ' '));
+    for (const t of [...alts, ...caps]) assert.doesNotMatch(t, /\blevels?\b|\bL[0-4]\b|auto[- ]?(?:send|undo)|promoted|autopilot/i, `figure text: ${t}`);
+  }
+  assert.match(s, /up to 3 drafted nudges[^<]*each one goes out only when you approve it/);
+  for (const m of s.matchAll(/<meta\b[^>]*\b(?:name|property)\s*=\s*["'](?:og:|twitter:)?description["'][^>]*>/gi))
+    assert.doesNotMatch(m[0], /Autopilot|undo/i, `description: ${m[0]}`);
+});
+test('served code comments say what the code does, with no internal agent or ruling notes', () => {
+  const { isExcluded: excl, loadExclude: load } = require('./stage-site.cjs');
+  const exclude = load();
+  const BAD = /co[\s_-]*founder|\bbrain\b|\bQA\b|\brulings?\b|sand-subagent|\bsubagent\b|\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b/i;
+  const hits = [];
+  (function walk(dir) {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (e.name === '.git') continue;
+      const p = path.join(dir, e.name);
+      const rel = path.relative(ROOT, p).split(path.sep).join('/');
+      if (excl(rel, exclude)) continue;
+      if (e.isDirectory()) { walk(p); continue; }
+      if (!/\.(m?js|html?|css|svg|xml)$/i.test(e.name) || fs.statSync(p).size > 5e6) continue;
+      const text = fs.readFileSync(p, 'utf8');
+      const comments = [...text.matchAll(/<!--[\s\S]*?-->|\/\*[\s\S]*?\*\//g)].map((m) => m[0]);
+      if (/\.(m?js|html?)$/i.test(e.name)) for (const m of text.matchAll(/(?:^|[\s;{}(),])(\/\/[^\n]*)/g)) comments.push(m[1]);
+      for (const c of comments) if (BAD.test(c)) hits.push(rel + ': ' + c.slice(0, 80));
+    }
+  })(ROOT);
+  assert.deepEqual(hits, [], 'internal notes in served comments:\n' + hits.join('\n'));
+});
+test('homepage describes the Job Desk as approve-only', () => {
+  const home = read('index.html');
+  assert.match(home, /Job Desk drafts the office work for you to approve\./);
+  assert.match(home, /the Job Desk demo for a fictional HVAC company\./);
+  assert.doesNotMatch(home, /Job Desk handles|Job Desk running on/i);
+  assert.match(home, /Job-status messages drafted for you to approve/);
+  assert.match(home, /follow-up drafted on time, and it goes out when you approve it/);
+  assert.match(home, /a review request drafted after each job for you to approve/);
+  assert.match(home, /draft your quote follow-ups to send when you approve them/);
+  assert.doesNotMatch(foldBanned(home), /\bfollow up your quotes\b/i, 'FAQ says the Job Desk follows up quotes by itself');
+  assert.doesNotMatch(foldBanned(home), /review requests? (sent )?after each job and replies/i, 'line 110 reverted to review requests sent after each job');
+});
+test('no served page claims the Job Desk acts without the owner', () => {
+  const { isExcluded: excl, loadExclude: load } = require('./stage-site.cjs');
+  const exclude = load();
+  const BAD = require('./approve-terms.cjs').AUTONOMY_EN;
+  const hits = [];
+  (function walk(dir) {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (e.name === '.git') continue;
+      const p = path.join(dir, e.name);
+      const rel = path.relative(ROOT, p).split(path.sep).join('/');
+      if (excl(rel, exclude)) continue;
+      if (e.isDirectory()) { walk(p); continue; }
+      if (!/\.(m?js|html?|json|md|txt|svg|xml)$/i.test(e.name) || fs.statSync(p).size > 5e6) continue;
+      const m = foldBanned(fs.readFileSync(p, 'utf8')).match(BAD);
+      if (m) hits.push(rel + ': ' + m[0]);
+    }
+  })(ROOT);
+  assert.deepEqual(hits, [], 'autonomy wording on served pages:\n' + hits.join('\n'));
+});
+test('undo never reads as unsending a message: descriptions and demo copy', () => {
+  const { isExcluded: excl, loadExclude: load } = require('./stage-site.cjs');
+  const exclude = load();
+  const hits = [];
+  (function walk(dir) {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (e.name === '.git') continue;
+      const p = path.join(dir, e.name);
+      const rel = path.relative(ROOT, p).split(path.sep).join('/');
+      if (excl(rel, exclude)) continue;
+      if (e.isDirectory()) { walk(p); continue; }
+      if (!/\.html?$/i.test(e.name)) continue;
+      for (const m of fs.readFileSync(p, 'utf8').matchAll(/<meta\b[^>]*\b(?:name|property)\s*=\s*["'](?:og:|twitter:)?(?:description|title)["'][^>]*>/gi))
+        if (/\bundo/i.test(m[0])) hits.push(rel + ': ' + m[0].slice(0, 90));
+    }
+  })(ROOT);
+  assert.deepEqual(hits, [], 'undo in a page description:\n' + hits.join('\n'));
+  const js = foldBanned(read('demo/demo.js'));
+  assert.doesNotMatch(js, /(?:sent|message|log)[^."]{0,40}with undo|undo where it (?:still )?can/i, 'demo copy implies a sent message can be undone');
+  const hiw = read('job-desk/how-it-works/index.html');
+  assert.match(hiw, /Texts and emails can't be unsent/);
 });

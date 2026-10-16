@@ -5,7 +5,8 @@
 # Pages is switched to GitHub Actions (.github/workflows/pages.yml).
 # Pages turns on jekyll-theme-primer and jekyll-optional-front-matter by default.
 # theme: null keeps the primer stylesheet out. require_front_matter stops
-# Markdown without front matter (brand-kit.md) from also being published as HTML.
+# Markdown without front matter from being published as HTML. brand-kit.md is
+# internal paste text for profiles and is excluded below.
 require_front_matter: true
 theme: null
 exclude:
@@ -19,6 +20,7 @@ exclude:
   - outputs
   - _site
   - AGENTS.md
+  - brand-kit.md
   - README.md
   - .env.example
   - .gitignore

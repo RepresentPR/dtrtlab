@@ -19,7 +19,6 @@ Logo: **Concept A, "D/ Refined"** (approved 2026-10-15). A geometric **D** built
 - Clear space: at least the D's stroke width (2u = 1/8 of the mark) on every side; minimum size 16 px (favicon) or 24 px elsewhere.
 - On photos, place the mark on a solid navy or white field, never directly on a busy image.
 - Wordmark in the interface: **DTRT** with **THE LAB** set small beside it. Do not restack it into a new logo.
-- Source and construction drawings: Brain note `research/logo-geometry-2026-10-15` (private).
 
 ## Colors (Theme A, locked 2026-10-15)
 

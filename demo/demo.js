@@ -8,63 +8,59 @@ window.DEMO = {
   nowMin: 16 * 60 + 50,
   sendTimes: ["6:00 PM", "7:00 PM", "8:00 PM", "9:00 PM", "6:00 AM (next morning)", "7:00 AM (next morning)"],
   sendAt: "8:00 PM",
-  levels: {
-    L0: "Off: never automated",
-    L1: "Suggest: you do it",
-    L2: "Ask me: draft, you approve",
-    L3: "Auto + undo: runs, tells you, can undo",
-    L4: "Auto: shown in the log only"
-  },
+  /* Every customer message is a draft until the owner approves it. Autopilot (sending without asking) is an
+     opt-in setting; it is false here and the demo never turns it on. */
+  autopilotOptIn: false,
   automations: [
-    { id: "report", name: "Nightly Report Card", level: "L4", on: true, what: "One phone screen at your send time: what needs you, 4 numbers vs last week.", never: "Any number that isn't counted from the day's records" },
-    { id: "email", name: "Email and web form → job card", level: "L2", next: "L3 after it proves 95% on your mail", on: true, what: "Drafts the job card from each email or web form. You approve it with one tap. Under 95% confident, it shows the guessed fields to check. Suggests filing newsletters.", never: "Delete an email, or make a job card without your OK" },
-    { id: "reply", name: "First \"got it\" reply to a new lead", level: "L2", on: true, what: "Drafts the first reply in your voice. You approve it. Leads waiting over 15 minutes turn red.", never: "Quote a price, diagnose, or promise a time" },
-    { id: "status", name: "Job status texts", level: "L3", on: true, what: "Booked, tech on the way, part ordered, job done. Sent through your own field-service app. Promoted from L2 after a clean week.", never: "Text anyone without consent on file, or after STOP" },
-    { id: "nudge", name: "Quote nudges (day 2, 5, 10)", level: "L2", on: true, marketing: true, what: "Up to 3 nudges per open quote. Stops the moment the customer replies.", never: "Offer a price or discount; keep going after a reply" },
-    { id: "reviewask", name: "Review request after every job", level: "L3", on: true, what: "The same Google review link goes to every finished job, whatever their rating.", never: "Hold the link back from anyone based on their score" },
-    { id: "reviewreply", name: "Replies to public reviews", level: "L2", on: true, what: "Drafts replies to new reviews for you to approve.", never: "Auto-reply to a negative review" },
-    { id: "callback", name: "Low score (6 or below) → callback", level: "L1", on: true, what: "Puts \"call them\" in Needs you with what they said.", never: "Let the system contact an upset customer" },
-    { id: "safety", name: "Safety words (gas, CO, sparks, flood)", level: "L1", on: true, urgent: true, what: "Pings your phone right away. Max 2 urgent pings a day.", never: "Give technical or safety advice" },
-    { id: "schedule", name: "Scheduling suggestions", level: "L1", on: true, what: "Suggests open slots. You book.", never: "Book on a closed day" },
-    { id: "money", name: "Prices, refunds, invoices, payments", level: "L0", on: false, locked: true, what: "Never automated. Always you.", never: "Ever automated" }
+    { id: "report", name: "Nightly Report Card", on: true, what: "One phone screen to you at your send time: what needs you, 4 numbers vs last week. Never sent to a customer.", never: "Any number that isn't counted from the day's records" },
+    { id: "email", name: "Email and web form → job card", on: true, what: "Drafts the job card with the fields filled in and a confidence score. You approve it. Suggests filing newsletters.", never: "Delete an email" },
+    { id: "reply", name: "First \"got it\" reply to a new lead", on: true, what: "Drafts the first reply in your voice. You approve it. Leads waiting over 15 minutes turn red.", never: "Quote a price, diagnose, or promise a time" },
+    { id: "status", name: "Job status texts", on: true, what: "Booked, tech on the way, part ordered, job done. Drafted at each step; sent from your business number only after you approve.", never: "Text anyone without consent on file, or after STOP" },
+    { id: "nudge", name: "Quote nudges (day 2, 5, 10)", on: true, marketing: true, what: "Up to 3 drafted nudges per open quote, each sent only after you approve. Drafts stop the moment the customer replies.", never: "Offer a price or discount; keep going after a reply" },
+    { id: "reviewask", name: "Review request after every job", on: true, what: "Drafts the same Google review link for every finished job, whatever their rating. Sent after you approve.", never: "Hold the link back from anyone based on their score" },
+    { id: "reviewreply", name: "Replies to public reviews", on: true, what: "Drafts replies to new reviews for you to approve.", never: "Reply to any review without your OK" },
+    { id: "callback", name: "Low score (6 or below) → callback", on: true, what: "Puts \"call them\" in Needs you with what they said.", never: "Let the system contact an upset customer" },
+    { id: "safety", name: "Safety words (gas, CO, sparks, flood)", on: true, urgent: true, what: "Pings your phone right away (to you only). Max 2 urgent pings a day.", never: "Give technical or safety advice, or message the customer" },
+    { id: "schedule", name: "Scheduling suggestions", on: true, what: "Suggests open slots. You book.", never: "Book on a closed day" },
+    { id: "money", name: "Prices, refunds, invoices, payments", on: false, locked: true, what: "Never drafted. Always you.", never: "Ever drafted or sent by the system" }
   ],
   jobs: [
     { id: "J-1041", customer: "Maria L.", street: "14 Maple Ct", problem: "No heat", stage: "lead", source: "Web form", inMin: 16 * 60 + 2, replyMin: null,
       events: [["4:02 PM", "Customer", "Web form: \"No heat, furnace clicks but won't start.\""], ["4:02 PM", "System", "Job card drafted (web form, 99% confident)"], ["4:03 PM", "You", "Approved the job card"], ["4:03 PM", "System", "First reply drafted. Waiting for your OK"]] },
-    { id: "J-1046", customer: "Rachel T.", street: "220 Birch Ln", problem: "Gas smell near furnace", stage: "lead", source: "Email", inMin: 16 * 60 + 21, replyMin: 3,
-      events: [["4:21 PM", "Customer", "Email: \"Faint gas smell near the furnace since this afternoon.\""], ["4:21 PM", "System", "Safety word found (gas). Urgent ping to your phone. No advice sent"], ["4:24 PM", "You", "Called Rachel. Told her to leave and call the gas company. Tech booked after the all-clear"]] },
-    { id: "J-1042", customer: "Kevin O.", street: "9 Willow Way", problem: "Thermostat blank", stage: "lead", source: "Email", inMin: 13 * 60 + 12, replyMin: 6,
+    { id: "J-1046", customer: "Rachel T.", street: "220 Birch Ln", problem: "Gas smell near furnace", stage: "lead", source: "Email", inMin: 16 * 60 + 21, replyMin: 3, repliedBy: "owner-manual",
+      events: [["4:21 PM", "Customer", "Email: \"Faint gas smell near the furnace since this afternoon.\""], ["4:21 PM", "System", "Safety word found (gas). Urgent ping to your phone only. Nothing sent to the customer"], ["4:24 PM", "You", "Called Rachel. Told her to leave and call the gas company. Tech booked after the all-clear"]] },
+    { id: "J-1042", customer: "Kevin O.", street: "9 Willow Way", problem: "Thermostat blank", stage: "lead", source: "Email", inMin: 13 * 60 + 12, replyMin: 6, repliedBy: "owner-approved",
       events: [["1:12 PM", "Customer", "Email: \"Thermostat screen went blank. New batteries didn't help.\""], ["1:12 PM", "System", "Job card drafted (97% confident)"], ["1:13 PM", "You", "Approved the job card"], ["1:18 PM", "You", "Approved the first reply"]] },
-    { id: "J-1043", customer: "Priya S.", street: "318 Fern Dr", problem: "Upstairs too hot", stage: "lead", source: "Missed call", inMin: 11 * 60 + 40, replyMin: 2,
-      events: [["11:40 AM", "Customer", "Missed call"], ["11:42 AM", "You", "Texted back from your app"]] },
+    { id: "J-1043", customer: "Priya S.", street: "318 Fern Dr", problem: "Upstairs too hot", stage: "lead", source: "Missed call", inMin: 11 * 60 + 40, replyMin: 2, repliedBy: "owner-manual",
+      events: [["11:40 AM", "Customer", "Missed call"], ["11:42 AM", "You", "Texted back yourself"]] },
     { id: "J-1031", customer: "Tom B.", street: "75 Juniper Pl", problem: "Heat pump replacement", stage: "quoted", value: 9800, quoteDay: 2, nudge: 0, sent: "Tue",
       events: [["Mon 10:00 AM", "Tech", "Site visit"], ["Tue 4:30 PM", "You", "Quote sent: $9,800 (2 options)"], ["Today", "System", "Nudge 1 of 3 drafted. Waiting for your OK"]] },
     { id: "J-1029", customer: "Alicia R.", street: "1402 Sparrow Rd", problem: "2-zone mini-split", stage: "quoted", value: 7400, quoteDay: 5, nudge: 1, sent: "Sat",
-      events: [["Sat 11:00 AM", "You", "Quote sent: $7,400"], ["Mon 9:00 AM", "System", "Nudge 1 of 3 sent with your OK (text)"], ["Today", "System", "Nudge 2 of 3 drafted. Waiting for your OK"]] },
+      events: [["Sat 11:00 AM", "You", "Quote sent: $7,400"], ["Mon 9:14 AM", "You", "Approved by owner · nudge 1 of 3 sent (text)"], ["Today", "System", "Nudge 2 of 3 drafted. Waiting for your OK"]] },
     { id: "J-1024", customer: "Grace H.", street: "63 Hemlock Ter", problem: "Furnace + AC combo", stage: "quoted", value: 12600, quoteDay: 10, nudge: 3, sent: "Mon 10/5",
-      events: [["Mon 10/5", "You", "Quote sent: $12,600"], ["Wed 10/7", "System", "Nudge 1 of 3 sent with your OK"], ["Sat 10/10", "System", "Nudge 2 of 3 sent with your OK (email)"], ["Today 9:00 AM", "System", "Nudge 3 of 3 sent with your OK. No more nudges"]] },
+      events: [["Mon 10/5", "You", "Quote sent: $12,600"], ["Wed 10/7", "You", "Approved by owner · nudge 1 of 3 sent"], ["Sat 10/10", "You", "Approved by owner · nudge 2 of 3 sent (email)"], ["Today 9:12 AM", "You", "Approved by owner · nudge 3 of 3 sent. No more nudges"]] },
     { id: "J-1035", customer: "Luis M.", street: "27 Bluebird Ave", problem: "Duct cleaning + sealing", stage: "quoted", value: 1150, quoteDay: 1, nudge: 0, sent: "Wed",
-      events: [["Wed 3:00 PM", "You", "Quote sent: $1,150"], ["Fri 9:00 AM", "System", "Nudge 1 of 3 due"]] },
+      events: [["Wed 3:00 PM", "You", "Quote sent: $1,150"], ["Fri", "System", "Nudge 1 of 3 will be drafted for your OK"]] },
     { id: "J-1037", customer: "Nina P.", street: "410 Chestnut St", problem: "Heating tune-up", stage: "scheduled", value: 149, when: "Fri 8-10 AM", tech: "Jess",
-      events: [["Wed", "Customer", "Booked online"], ["10:05 AM", "System", "\"Booked\" text sent"]] },
+      events: [["Wed", "Customer", "Booked online"], ["10:05 AM", "You", "Approved by owner · \"Booked\" text sent"]] },
     { id: "J-1038", customer: "Omar F.", street: "88 Poplar Ct", problem: "Water heater flush", stage: "scheduled", value: 189, when: "Fri 1-3 PM", tech: "Sam",
       events: [["Tue", "You", "Booked by phone"]] },
     { id: "J-1033", customer: "Beth C.", street: "5 Dogwood Cir", problem: "Heat pump install", stage: "scheduled", value: 8900, when: "Mon all day", tech: "Andre", partDays: 3,
-      events: [["Mon", "You", "Quote won: $8,900"], ["Mon 2:00 PM", "Tech", "Part ordered"], ["11:20 AM", "System", "\"Part ordered\" text sent. Part waiting 3 days"]] },
+      events: [["Mon", "You", "Quote won: $8,900"], ["Mon 2:00 PM", "Tech", "Part ordered"], ["11:20 AM", "You", "Approved by owner · \"Part ordered\" text sent. Part waiting 3 days"]] },
     { id: "J-1039", customer: "Carlos D.", street: "1190 Hazel Ln", problem: "Blower motor repair", stage: "progress", value: 640, tech: "Andre",
       events: [["2:10 PM", "Tech", "On site"]] },
     { id: "J-1040", customer: "Helen W.", street: "36 Wren Way", problem: "AC winter shutdown", stage: "progress", value: 129, tech: "Jess",
-      events: [["2:58 PM", "System", "\"Tech on the way\" text sent"], ["3:31 PM", "Tech", "On site"]] },
+      events: [["2:58 PM", "You", "Approved by owner · \"Tech on the way\" text sent"], ["3:31 PM", "Tech", "On site"]] },
     { id: "J-1034", customer: "Rob T.", street: "702 Hickory Dr", problem: "Furnace ignitor", stage: "done", value: 385, tech: "Sam",
-      events: [["9:40 AM", "System", "\"Job done\" text sent"], ["9:45 AM", "System", "Review link sent"], ["11:02 AM", "Customer", "Scored 10/10 and posted a Google review"]] },
+      events: [["9:40 AM", "You", "Approved by owner · \"Job done\" text sent"], ["9:45 AM", "You", "Approved by owner · review link sent"], ["11:02 AM", "Customer", "Scored 10/10 and posted a Google review"]] },
     { id: "J-1036", customer: "Sofia K.", street: "19 Thistle Pl", problem: "Heating tune-up", stage: "done", value: 149, tech: "Jess",
-      events: [["12:15 PM", "System", "\"Job done\" text sent"], ["12:20 PM", "System", "Review link sent"]] },
+      events: [["12:15 PM", "You", "Approved by owner · \"Job done\" text sent"], ["12:20 PM", "You", "Approved by owner · review link sent"]] },
     { id: "J-1032", customer: "Mark E.", street: "244 Robin Rd", problem: "Condensate line clog", stage: "done", value: 210, tech: "Andre",
-      events: [["4:05 PM", "System", "\"Job done\" text sent"], ["4:10 PM", "System", "Review link sent"]] },
+      events: [["4:05 PM", "You", "Approved by owner · \"Job done\" text sent"], ["4:10 PM", "You", "Approved by owner · review link sent"]] },
     { id: "J-1025", customer: "Paul G.", street: "51 Spruce Ct", problem: "Furnace tune-up", stage: "done", value: 149, tech: "Sam", earlier: true,
-      events: [["Wed 10:30 AM", "System", "\"Job done\" text sent"], ["Wed 10:35 AM", "System", "Review link sent"], ["Wed 6:12 PM", "Customer", "Scored 3/10: \"Tech left a mess by the unit.\""], ["Wed 6:12 PM", "System", "Callback added to Needs you"]] },
+      events: [["Wed 10:30 AM", "You", "Approved by owner · \"Job done\" text sent"], ["Wed 10:35 AM", "You", "Approved by owner · review link sent"], ["Wed 6:12 PM", "Customer", "Scored 3/10: \"Tech left a mess by the unit.\""], ["Wed 6:12 PM", "System", "Callback added to Needs you"]] },
     { id: "J-1027", customer: "Ann V.", street: "133 Alder Ave", problem: "AC repair", stage: "done", value: 420, tech: "Andre", earlier: true,
-      events: [["Wed 3:10 PM", "System", "Review link sent"], ["Wed 8:40 PM", "Customer", "Scored 6/10: \"Fixed, but I had to call twice to get a time.\""], ["Wed 8:40 PM", "System", "Callback added to Needs you"]] }
+      events: [["Wed 3:10 PM", "You", "Approved by owner · review link sent"], ["Wed 8:40 PM", "Customer", "Scored 6/10: \"Fixed, but I had to call twice to get a time.\""], ["Wed 8:40 PM", "System", "Callback added to Needs you"]] }
   ],
   closed: [
     { id: "J-1022", customer: "Dave N.", problem: "AC replacement", value: 4900, result: "won", afterNudge: 2 },
@@ -77,35 +73,38 @@ window.DEMO = {
     { id: "q-paul", kind: "callback", auto: "callback", job: "J-1025", verb: "Call", why: "Scored 3/10 yesterday: \"Tech left a mess by the unit.\"", red: true, complaint: true },
     { id: "q-tom", kind: "nudge", auto: "nudge", job: "J-1031", verb: "Send nudge 1 of 3 to", why: "Quote open 2 days, no reply yet.", channel: "Text",
       draft: "Hi Tom, it's Dana at Pretendwell Heating & Air. Any questions on the heat pump quote? Happy to walk through the two options." },
-    { id: "q-alicia", kind: "nudge", auto: "nudge", job: "J-1029", verb: "Send nudge 2 of 3 to", why: "Quote open 5 days. Nudge 1 sent Monday, no reply.", channel: "Text",
+    { id: "q-alicia", kind: "nudge", auto: "nudge", job: "J-1029", verb: "Send nudge 2 of 3 to", why: "Quote open 5 days. Nudge 1 (approved by you, sent Mon) got no reply.", channel: "Text",
       draft: "Hi Alicia, checking in on the 2-zone mini-split quote. If timing is the question, we have install openings the week of Oct 26. Dana" },
     { id: "q-june", kind: "email", auto: "email", verb: "Check new request from", customer: "June R.", why: "Email at 4:38 PM. Only 72% confident: no street, and urgency unclear. Check the guessed fields.",
       guess: { Customer: "June R.", Street: "Not given (check)", Problem: "Water pooling under indoor unit", Urgency: "Today? (unsure)", Contact: "555-0177 · j.rivera@example.com" } },
     { id: "q-ann", kind: "callback", auto: "callback", job: "J-1027", verb: "Call", why: "Scored 6/10 yesterday: \"Fixed, but I had to call twice to get a time.\"" }
   ],
+  /* Today's full log. Every customer message here was approved by the owner first (approvedBy: "owner");
+     to: "owner" items go only to the owner. Nothing in this log went out without the owner's OK. */
   log: [
-    { t: "9:40 AM", auto: "status", job: "J-1034", text: "\"Job done\" text to Rob T.", result: "Delivered", undo: "sent" },
-    { t: "9:45 AM", auto: "reviewask", job: "J-1034", text: "Review link to Rob T.", result: "Delivered · scored 10/10", undo: "sent" },
-    { t: "10:05 AM", auto: "status", job: "J-1037", text: "\"Booked\" text to Nina P.", result: "Delivered", undo: "sent" },
-    { t: "11:20 AM", auto: "status", job: "J-1033", text: "\"Part ordered\" text to Beth C.", result: "Delivered", undo: "sent" },
-    { t: "12:15 PM", auto: "status", job: "J-1036", text: "\"Job done\" text to Sofia K.", result: "Delivered", undo: "sent" },
-    { t: "12:20 PM", auto: "reviewask", job: "J-1036", text: "Review link to Sofia K.", result: "Delivered · scored 9/10", undo: "sent" },
-    { t: "1:12 PM", auto: "email", job: "J-1042", text: "Job card J-1042 from kevin.o@example.com, made with your OK", result: "97% confident", undo: "open" },
-    { t: "1:18 PM", auto: "reply", job: "J-1042", text: "First reply to Kevin O., sent with your OK", result: "Delivered · 6 min after the email", undo: "sent" },
-    { t: "2:58 PM", auto: "status", job: "J-1040", text: "\"Tech on the way\" text to Helen W.", result: "Delivered", undo: "sent" },
-    { t: "3:30 PM", auto: "email", text: "Email from newsletter@example.com filed with your OK (not a request)", result: "Filed, no job card", undo: "open" },
-    { t: "4:05 PM", auto: "status", job: "J-1032", text: "\"Job done\" text to Mark E.", result: "Delivered", undo: "sent" },
-    { t: "4:10 PM", auto: "reviewask", job: "J-1032", text: "Review link to Mark E.", result: "Delivered · no score yet", undo: "sent" },
-    { t: "4:21 PM", auto: "safety", job: "J-1046", text: "Safety word \"gas\" in Rachel T.'s email → urgent ping to you", result: "You called her at 4:24 PM. No advice was sent", undo: "none" },
+    { t: "9:12 AM", auto: "nudge", job: "J-1024", text: "Nudge 3 of 3 to Grace H.", result: "Delivered", undo: "sent", approvedBy: "owner" },
+    { t: "9:40 AM", auto: "status", job: "J-1034", text: "\"Job done\" text to Rob T.", result: "Delivered", undo: "sent", approvedBy: "owner" },
+    { t: "9:45 AM", auto: "reviewask", job: "J-1034", text: "Review link to Rob T.", result: "Delivered · scored 10/10", undo: "sent", approvedBy: "owner" },
+    { t: "10:05 AM", auto: "status", job: "J-1037", text: "\"Booked\" text to Nina P.", result: "Delivered", undo: "sent", approvedBy: "owner" },
+    { t: "11:20 AM", auto: "status", job: "J-1033", text: "\"Part ordered\" text to Beth C.", result: "Delivered", undo: "sent", approvedBy: "owner" },
+    { t: "12:15 PM", auto: "status", job: "J-1036", text: "\"Job done\" text to Sofia K.", result: "Delivered", undo: "sent", approvedBy: "owner" },
+    { t: "12:20 PM", auto: "reviewask", job: "J-1036", text: "Review link to Sofia K.", result: "Delivered · scored 9/10", undo: "sent", approvedBy: "owner" },
+    { t: "1:12 PM", auto: "email", job: "J-1042", text: "Job card J-1042 from kevin.o@example.com", result: "You checked the fields · 97% confident", undo: "open", approvedBy: "owner" },
+    { t: "1:18 PM", auto: "reply", job: "J-1042", text: "First reply to Kevin O.", result: "Delivered · 6 min after the email", undo: "sent", approvedBy: "owner" },
+    { t: "2:58 PM", auto: "status", job: "J-1040", text: "\"Tech on the way\" text to Helen W.", result: "Delivered", undo: "sent", approvedBy: "owner" },
+    { t: "3:30 PM", auto: "email", text: "Newsletter from newsletter@example.com filed (not a request)", result: "Filed, no job card", undo: "open", approvedBy: "owner" },
+    { t: "4:05 PM", auto: "status", job: "J-1032", text: "\"Job done\" text to Mark E.", result: "Delivered", undo: "sent", approvedBy: "owner" },
+    { t: "4:10 PM", auto: "reviewask", job: "J-1032", text: "Review link to Mark E.", result: "Delivered · no score yet", undo: "sent", approvedBy: "owner" },
+    { t: "4:21 PM", auto: "safety", job: "J-1046", text: "Safety word \"gas\" in Rachel T.'s email → urgent ping to you", result: "To you only. You called her at 4:24 PM. Nothing was sent to the customer", undo: "none", to: "owner" },
     { t: "4:38 PM", auto: "email", text: "Email from j.rivera@example.com → Needs you (72% confident)", result: "Waiting for you", undo: "none" }
   ],
   lastWeek: { medianReply: 22, quotesOpen: 24300, doneToday: 2, doneValue: 510, updated: 4 },
   trust: { consent: 41, texted: 43, optOuts: 0, reviewSent: 9, reviewDone: 9 },
-  footer: "Automated update from Pretendwell Heating & Air. Reply STOP to opt out.",
+  footer: "From Pretendwell Heating & Air. Reply STOP to opt out.",
   nudgeFooter: "Pretendwell Heating & Air. Reply STOP to opt out."
 };
 
-/* DTRT Job Desk demo v2: Tonight · Needs you · Jobs · Autopilot. Static, no network calls, fictional data. */
+/* DTRT Job Desk demo v2: Tonight · Needs you · Jobs · Sent log & settings (approve-only). Static, no network calls, fictional data. */
 (function () {
   "use strict";
   var S, view = { stage: "lead", editing: null };
@@ -124,7 +123,7 @@ window.DEMO = {
     { id: "tonight", label: "Tonight", ic: "tonight" },
     { id: "needs", label: "Needs you", ic: "needs" },
     { id: "jobs", label: "Jobs", ic: "jobs" },
-    { id: "autopilot", label: "Autopilot", ic: "auto" }
+    { id: "autopilot", label: "Sent log & settings", ic: "auto" }
   ];
   var STAGES = [["lead", "Lead"], ["quoted", "Quoted"], ["scheduled", "Scheduled"], ["progress", "In progress"], ["done", "Done"]];
 
@@ -136,7 +135,7 @@ window.DEMO = {
   function job(id) { return S.jobs.find(function (j) { return j.id === id; }); }
   function auto(id) { return S.automations.find(function (a) { return a.id === id; }); }
   function jname(j) { return j.id + " · " + j.customer + " · " + j.street + " · " + j.problem; }
-  function chip(level) { return '<span class="lv lv' + level.slice(1) + '" title="' + esc(S.levels[level]) + '">' + level + " · " + esc(S.levels[level].split(":")[0]) + "</span>"; }
+  function chip() { return ""; } // renders no level chip on queue cards
   function stamp() { S.clock += 1; var h = Math.floor(S.clock / 60), m = S.clock % 60; return ((h + 11) % 12 + 1) + ":" + (m < 10 ? "0" : "") + m + (h >= 12 ? " PM" : " AM"); }
   function toast(msg) { var t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(t._h); t._h = setTimeout(function () { t.classList.remove("show"); }, 2600); }
   function waitMin(j) { return j.replyMin == null ? S.nowMin - j.inMin : null; }
@@ -173,18 +172,20 @@ window.DEMO = {
     var quoted = S.jobs.filter(function (j) { return j.stage === "quoted"; });
     var doneToday = S.jobs.filter(function (j) { return j.stage === "done" && !j.earlier; });
     var log = S.log.filter(function (l) { return l.undo !== "undone"; });
-    var count = function (a) { return log.filter(function (l) { return l.auto === a; }).length; };
+    var SENDS = ["status", "reviewask", "nudge", "reply"]; // customer-facing message types
+    var sent = log.filter(function (l) { return l.approvedBy === "owner" && SENDS.indexOf(l.auto) >= 0; });
+    var count = function (a) { return sent.filter(function (l) { return l.auto === a; }).length; }; // owner-approved sends only
     var won = S.closed.filter(function (c) { return c.result === "won"; });
     return {
       median: median, waiting: S.jobs.filter(function (j) { return j.stage === "lead" && waitMin(j) != null; }),
       quotesOpen: quoted.reduce(function (a, j) { return a + j.value; }, 0), quotesN: quoted.length,
       stale: quoted.filter(function (j) { return j.quoteDay > 7; }),
       done: doneToday.length, doneValue: doneToday.reduce(function (a, j) { return a + j.value; }, 0),
-      updated: count("status") + S.textsExtra,
-      texts: count("status"), asks: count("reviewask"), sorted: count("email"), pings: count("safety"), okSends: log.filter(function (l) { return l.withOk; }).length + count("reply"),
-      actions: log.length, recovered: won.filter(function (c) { return c.afterNudge; }).reduce(function (a, c) { return a + c.value; }, 0),
+      updated: count("status") + S.textsExtra, sortedCards: log.filter(function (l) { return l.auto === "email" && l.approvedBy === "owner"; }).length,
+      texts: count("status"), asks: count("reviewask"),
+      sent: sent.length, nudges: count("nudge"), replies: count("reply"), recovered: won.filter(function (c) { return c.afterNudge; }).reduce(function (a, c) { return a + c.value; }, 0),
       won: won, lost: S.closed.filter(function (c) { return c.result === "lost"; }),
-      on: S.automations.filter(function (a) { return a.on && !a.locked; }).length, paused: S.automations.filter(function (a) { return !a.on && !a.locked; }).length
+      paused: S.automations.filter(function (a) { return !a.on && !a.locked; }).length
     };
   }
   function arrow(now, then, lowerIsBetter) {
@@ -207,16 +208,16 @@ window.DEMO = {
       '<div class="rc2-h"><div><small>REPORT CARD · ' + esc(S.today.toUpperCase()) + " · DEMO</small><h2>Pretendwell Heating &amp; Air Co.</h2></div>" +
       '<span class="status ' + (n ? "need" : "clear") + '">' + (n ? n + " need you" : "All clear") + "</span></div>" +
       '<p class="rc2-s">' + esc(sentence) + "</p>" +
-      (n ? '<div class="rc-items">' + items + more + "</div>" : '<div class="rc-clear">✓ All clear. Autopilot has the rest.</div>') +
+      (n ? '<div class="rc-items">' + items + more + "</div>" : '<div class="rc-clear">✓ All clear. Nothing is waiting for your OK.</div>') +
       '<div class="kpis2">' +
       kpi("First reply (median)", (m.median != null ? m.median + " min" : "—"), m.waiting.length ? '<em class="red-t">' + m.waiting.length + " lead waiting</em>" : "", arrow(m.median, lw.medianReply, true)) +
       kpi("Quotes open", money(m.quotesOpen), m.stale.length ? '<em class="red-t">' + money(m.stale.reduce(function (a, j) { return a + j.value; }, 0)) + " over 7 days</em>" : "", arrow(Math.round(m.quotesOpen / 1000), Math.round(lw.quotesOpen / 1000), false).replace(/vs (\d+)/, "vs $$$1k")) +
       kpi("Jobs done today", m.done + " · " + money(m.doneValue), "", arrow(m.done, lw.doneToday, false)) +
-      kpi("Customers updated", m.updated, "0 opt-outs", arrow(m.updated, lw.updated, false)) +
+      kpi("Status texts you approved", m.updated, "0 opt-outs", arrow(m.updated, lw.updated, false)) +
       "</div>" +
-      '<a class="rc2-auto" href="#autopilot">Autopilot did ' + m.actions + " things: " + m.texts + " texts, " + m.asks + " review asks, " + m.sorted + " emails sorted, " + m.pings + " urgent ping · 0 errors →</a>" +
-      '<div class="rc2-f"><span>' + m.on + " automations on" + (m.paused ? ", " + m.paused + " paused" : "") + " · checked " + esc(S.nowLabel) + '</span><label>Sends <select id="sendAt" aria-label="Report Card send time">' + S.sendTimes.map(function (t) { return "<option" + (t === S.sendAt ? " selected" : "") + ">" + t + "</option>"; }).join("") + "</select></label></div></div>";
-    var side = '<div class="side-info"><div class="card pad"><b>How the Report Card works</b><ul class="ul"><li>Leads with <b>All clear</b> or <b>N need you</b>, then 4 numbers vs last week.</li><li>At most 3 things that need you, sorted: safety, then urgent (a lead waiting over 15 minutes or an unhappy customer), then money at stake, then what is due.</li><li>4 numbers, each compared with last week.</li><li>One line on what Autopilot did, linked to the full log.</li></ul></div>' +
+      '<a class="rc2-auto" href="#autopilot">You approved ' + m.sent + " sends today: " + m.texts + " status texts, " + m.asks + " review asks, " + m.nudges + (m.nudges === 1 ? " quote nudge, " : " quote nudges, ") + m.replies + (m.replies === 1 ? " reply" : " replies") + " · Approved by owner · sent →</a>" +
+      '<div class="rc2-f"><span>Autopilot (opt-in): OFF · every message waits for your OK' + (m.paused ? " · " + m.paused + " drafts paused" : "") + " · checked " + esc(S.nowLabel) + '</span><label>Sends <select id="sendAt" aria-label="Report Card send time">' + S.sendTimes.map(function (t) { return "<option" + (t === S.sendAt ? " selected" : "") + ">" + t + "</option>"; }).join("") + "</select></label></div></div>";
+    var side = '<div class="side-info"><div class="card pad"><b>How the Report Card works</b><ul class="ul"><li>Leads with <b>All clear</b> or <b>N need you</b>, then 4 numbers vs last week.</li><li>At most 3 things that need you, sorted: safety, then urgent (a lead waiting over 15 minutes or an unhappy customer), then money at stake, then what is due.</li><li>4 numbers, each compared with last week.</li><li>One line on what you approved and sent today, linked to the full log.</li></ul></div>' +
       '<div class="card pad"><b>Send time</b><p class="mut">8:00 PM by default. You pick the time at setup and can change it anytime. One text with a link, email as backup. Urgent pings only for safety words or a lead waiting over an hour, max 2 a day.</p></div>' +
       '<div class="card pad"><b>Try it</b><p class="mut">Approve something in Needs you, then come back. The card updates.</p><a class="btn n s" href="#needs">Open Needs you</a></div></div>';
     return '<div class="head tight"><div><span class="tag demo-tag">Demo · fictional data</span><h1>Tonight</h1><p class="hide-m">Preview of tonight\'s Report Card, live as of ' + esc(S.nowLabel) + ".</p></div></div>" +
@@ -227,7 +228,7 @@ window.DEMO = {
     var q = queue();
     var cards = q.map(function (x) {
       var j = x.job && job(x.job), a = auto(x.auto);
-      var meta = '<div class="chips">' + chip(a.level) + (x.kind === "nudge" ? '<span class="mk">Marketing: consent on file</span>' : "") + (waitingLead(x) ? '<span class="chip r wait" title="Lead waiting ' + waitingLead(x) + ' min">' + waitingLead(x) + " min</span>" : x.red ? '<span class="chip r">Unhappy customer</span>' : "") + (a.next ? '<span class="mk">' + esc(a.next) + "</span>" : "") + (qMoney(x) ? '<span class="chip n">' + qMoney(x) + " quote</span>" : "") + "</div>";
+      var meta = '<div class="chips">' + chip(a.level) + (x.kind === "nudge" ? '<span class="mk">Marketing: consent on file</span>' : "") + (waitingLead(x) ? '<span class="chip r wait" title="Lead waiting ' + waitingLead(x) + ' min">' + waitingLead(x) + " min</span>" : x.red ? '<span class="chip r">Unhappy customer</span>' : "") + "" + (qMoney(x) ? '<span class="chip n">' + qMoney(x) + " quote</span>" : "") + "</div>";
       var body = "";
       if (x.draft) {
         body = view.editing === x.id ? '<textarea class="ed" id="ed-' + x.id + '" rows="3">' + esc(x.draft) + '</textarea><div class="row-btn"><button class="btn g s" data-save="' + x.id + '">Save draft</button></div>'
@@ -259,13 +260,16 @@ window.DEMO = {
       '</div><div class="rec"><b>' + money(m.recovered) + '</b><span>won after a follow-up nudge this week</span></div></div>';
     return '<div class="head"><div><span class="tag demo-tag">Demo · fictional data</span><h1>Jobs</h1><p>One board, every job named the same way. Tap a job for its full timeline. Green on track · amber waiting · red needs you.</p></div></div>' + outcome + seg + '<div class="board">' + cols + "</div>";
   };
+  // reply chip label comes only from the lead's repliedBy field; no label is shown without it
+  var REPLIED = { "owner-approved": "Approved and sent in ", "owner-manual": "You replied yourself in " };
+  function replyChip(j) { var l = REPLIED[j.repliedBy]; return l ? '<span class="chip g">' + l + j.replyMin + " min</span>" : ""; }
   function card(j) {
     var c = "";
-    if (j.stage === "lead") { var w = waitMin(j); c += w != null ? '<span class="chip ' + (w > 15 ? "r" : "a") + '">Waiting ' + w + " min</span>" : '<span class="chip g">Replied in ' + j.replyMin + " min</span>"; if (j.id === "J-1046") c += '<span class="chip r">Safety ping</span>'; }
-    if (j.stage === "quoted") c += '<span class="chip ' + (j.quoteDay > 7 ? "r" : j.quoteDay >= 5 ? "a" : "n") + '">Day ' + j.quoteDay + " · nudge " + Math.min(j.nudge + (j.nudge < 3 ? 1 : 0), 3) + " of 3" + (j.nudge >= 3 ? " sent" : "") + "</span>";
+    if (j.stage === "lead") { var w = waitMin(j); c += w != null ? '<span class="chip ' + (w > 15 ? "r" : "a") + '">Waiting ' + w + " min</span>" : replyChip(j); if (j.id === "J-1046") c += '<span class="chip r">Safety ping</span>'; }
+    if (j.stage === "quoted") c += '<span class="chip ' + (j.quoteDay > 7 ? "r" : j.quoteDay >= 5 ? "a" : "n") + '">Day ' + j.quoteDay + " · nudge " + Math.min(j.nudge + (j.nudge < 3 ? 1 : 0), 3) + " of 3" + (j.nudge >= 3 ? " approved &amp; sent" : "") + "</span>";
     if (j.when) c += '<span class="chip n">' + esc(j.when) + "</span>";
     if (j.partDays) c += '<span class="chip a">Part waiting ' + j.partDays + " days</span>";
-    if (j.stage === "done") c += '<span class="chip g">Review link sent</span>';
+    if (j.stage === "done") c += '<span class="chip g">Review link approved &amp; sent</span>';
     var dot = j.stage === "lead" && waitMin(j) > 15 || (j.stage === "quoted" && j.quoteDay > 7) ? "r" : (j.partDays || (j.stage === "quoted" && j.quoteDay >= 5)) ? "a" : "g";
     return '<button class="job" data-job="' + j.id + '"><div class="top"><span><i class="dot ' + dot + '"></i>' + j.id + "</span><span>" + (j.value ? money(j.value) : esc(j.source || "")) + "</span></div><b>" + esc(j.customer) + '</b><div class="meta">' + esc(j.street) + " · " + esc(j.problem) + (j.tech ? " · " + esc(j.tech) : "") + "</div>" + c + "</button>";
   }
@@ -273,28 +277,30 @@ window.DEMO = {
   V.autopilot = function () {
     var m = metrics();
     var autos = S.automations.map(function (a) {
-      return '<div class="arow' + (a.on || a.locked ? "" : " paused") + '"><div class="amain"><div class="at"><b>' + esc(a.name) + "</b>" + chip(a.level) + (a.marketing ? '<span class="mk">Marketing: consent on file</span>' : "") + (a.next ? '<span class="mk">' + esc(a.next) + "</span>" : "") + (a.urgent ? '<span class="chip r">Urgent ping</span>' : "") + "</div><p>" + esc(a.what) + '</p><p class="never">Never: ' + esc(a.never) + "</p></div>" +
+      return '<div class="arow' + (a.on || a.locked ? "" : " paused") + '"><div class="amain"><div class="at"><b>' + esc(a.name) + "</b>" + chip(a.level) + (a.marketing ? '<span class="mk">Marketing: consent on file</span>' : "") + "" + (a.urgent ? '<span class="chip r">Urgent ping</span>' : "") + "</div><p>" + esc(a.what) + '</p><p class="never">Never: ' + esc(a.never) + "</p></div>" +
         (a.locked ? '<span class="lockd">Always you</span>' : '<button class="switch" role="switch" aria-checked="' + a.on + '" aria-label="' + esc(a.name) + ' on or off" data-sw="' + a.id + '"></button>') + "</div>";
     }).join("");
     var log = S.log.slice().reverse().map(function (l, i) {
       var a = auto(l.auto), idx = S.log.length - 1 - i;
       var u = l.undo === "open" ? '<button class="btn l s" data-undo="' + idx + '">Undo</button>' : l.undo === "undone" ? '<span class="chip l">Undone</span>' : l.undo === "sent" ? '<span class="mut sm" title="Texts and emails can\'t be unsent">Sent</span>' : "";
-      return '<div class="lrow' + (l.undo === "undone" ? " undone" : "") + '"><span class="lt">' + l.t + '</span><div class="lm"><b>' + esc(l.text) + "</b><span>" + esc(a.name) + " · " + a.level + (a.next ? " (" + esc(a.next) + ")" : "") + " · " + esc(l.result) + (l.job ? ' · <button class="lnk" data-job="' + l.job + '">' + l.job + "</button>" : "") + "</span></div>" + u + "</div>";
+      var appr = l.approvedBy === "owner" ? (l.undo === "sent" ? "Approved by owner · sent · " : "Approved by owner · ") : (l.to === "owner" ? "To you only · " : "");
+      return '<div class="lrow' + (l.undo === "undone" ? " undone" : "") + '"><span class="lt">' + l.t + '</span><div class="lm"><b>' + esc(l.text) + "</b><span>" + appr + esc(a.name) + " · " + esc(l.result) + (l.job ? ' · <button class="lnk" data-job="' + l.job + '">' + l.job + "</button>" : "") + "</span></div>" + u + "</div>";
     }).join("");
     var t = S.trust;
     var trust = '<div class="card pad trust"><h2>Trust panel</h2><div class="tgrid">' +
       '<div><b>' + t.consent + " of " + t.texted + "</b><span>customers texted have consent on file. The other 2 get email only.</span></div>" +
-      "<div><b>" + t.optOuts + "</b><span>opt-outs (STOP) this week. STOP is honored instantly, in every automation.</span></div>" +
-      "<div><b>" + t.reviewSent + " of " + t.reviewDone + "</b><span>finished jobs got the same review link this week. No one is skipped for a low score.</span></div>" +
-      "<div><b>L2</b><span>Quote nudges are treated as marketing: written consent on file and STOP honored. New job cards wait for your OK too, until the system proves 95% on your own mail.</span></div></div>" +
-      '<p><b>Never automated:</b> prices, discounts, refunds, invoices, payments, diagnosis, safety advice, and replies to upset customers. Phone answering is not part of the Job Desk.</p>' +
-      '<p class="mut">Sends only through your own business number in your field-service app. Access only by your invite, never a password. A weekly review by DTRT Lab checks every log; anything about money or a customer complaint goes to you.</p></div>';
-    var ladder = '<div class="card pad"><b>Autonomy levels</b><ul class="lad">' + Object.keys(S.levels).map(function (k) { return "<li>" + chip(k) + " " + esc(S.levels[k].split(": ")[1] || "") + "</li>"; }).join("") + '</ul><p class="mut">An automation moves up a level only after a clean record (for example, a week with no wrong sends). It drops a level after any wrong send, complaint or jump in opt-outs. Email → job card stays at L2 (you approve) until it proves 95% accuracy on your own mail.</p></div>';
+      "<div><b>" + t.optOuts + "</b><span>opt-outs (STOP) this week. STOP is honored instantly, for every message type.</span></div>" +
+      "<div><b>" + t.reviewSent + " of " + t.reviewDone + "</b><span>finished jobs got the same review link this week, each approved by you. No one is skipped for a low score.</span></div>" +
+      "<div><b>Consent</b><span>Quote nudges are treated as marketing: written consent on file, STOP honored, and each one approved by you. New job cards wait for your OK too.</span></div></div>" +
+      '<p><b>Nothing goes to a customer without your OK.</b> Never drafted: prices, discounts, refunds, invoices, payments, diagnosis, safety advice, and replies to upset customers. Phone answering is not part of the Job Desk.</p>' +
+      '<p class="mut">Approved messages go only from your own business number. Access only by your invite, never a password. A weekly review by DTRT Lab checks every log; anything about money or a customer complaint goes to you.</p></div>';
+    var ladder = '<div class="card pad"><b>How it works</b><p class="mut">Every customer message is drafted and waits for your OK: Approve &amp; send, Edit or Skip. Nothing ever switches to sending by itself.</p></div>' +
+      '<div class="card pad apopt"><b>Autopilot (opt-in setting)</b><p class="mut">Would send drafts without asking you. Opt-in only; it is OFF, and this demo never turns it on.</p><div style="display:flex;gap:10px;align-items:center"><button class="switch" role="switch" aria-checked="false" aria-label="Autopilot, opt-in, currently off" id="apOptIn"></button><b>OFF</b></div></div>';
     var allPaused = S.automations.filter(function (a) { return !a.locked; }).every(function (a) { return !a.on; });
-    return '<div class="head"><div><span class="tag demo-tag">Demo · fictional data</span><h1>Autopilot</h1><p>Everything the system did on its own today, with Undo where it can still be undone. Every automation shows its level and has a pause switch.</p></div>' +
-      '<div class="card pause-all"><span>Pause all</span><button class="switch" role="switch" aria-checked="' + allPaused + '" aria-label="Pause all automations" id="pauseAll"></button></div></div>' +
-      '<div class="ap-grid"><div><h2 class="sec-t">Today\'s log · ' + m.actions + ' actions · 0 errors</h2><div class="card list" id="aplog">' + log + "</div>" + trust + "</div>" +
-      '<div><h2 class="sec-t">Automations</h2><div class="card list">' + autos + "</div>" + ladder +
+    return '<div class="head"><div><span class="tag demo-tag">Demo · fictional data</span><h1>Sent log &amp; settings</h1><p>Everything that went out today, each one approved by you first. Texts and emails can\'t be unsent; Undo only reverses a job card made from an email. Every message type shows how it works and has a pause switch for its drafts. Autopilot is an opt-in setting, and it is off.</p></div>' +
+      '<div class="card pause-all"><span>Pause all drafts</span><button class="switch" role="switch" aria-checked="' + allPaused + '" aria-label="Pause all drafts" id="pauseAll"></button></div></div>' +
+      '<div class="ap-grid"><div><h2 class="sec-t">Today\'s log · ' + S.log.length + ' entries · 0 errors</h2><div class="card list" id="aplog">' + log + "</div>" + trust + "</div>" +
+      '<div><h2 class="sec-t">Message types (you approve every send)</h2><div class="card list">' + autos + "</div>" + ladder +
       '<div class="card pad links-m"><a href="/#job-desk">Back to dtrtlab.com</a></div></div></div>';
   };
 
@@ -315,13 +321,13 @@ window.DEMO = {
     var x = S.queue.find(function (q) { return q.id === id; }); if (!x || x.done) return;
     var t = stamp(), j = x.job && job(x.job);
     x.done = true;
-    if (x.kind === "reply") { j.replyMin = S.clock - j.inMin; j.events.push([t, "You", "Approved the first reply (" + j.replyMin + " min after the request)"]); S.log.push({ t: t, auto: "reply", job: j.id, text: "First reply to " + j.customer + ", sent with your OK", result: "Delivered", undo: "sent" }); toast("Reply sent to " + j.customer + " (demo, nothing really sent)."); }
-    if (x.kind === "nudge") { j.nudge += 1; j.events.push([t, "System", "Nudge " + j.nudge + " of 3 sent with your OK"]); S.log.push({ t: t, auto: "nudge", job: j.id, text: "Nudge " + j.nudge + " of 3 to " + j.customer + ", sent with your OK", result: "Delivered", undo: "sent", withOk: true }); S.textsExtra += 0; toast("Nudge " + j.nudge + " of 3 sent to " + j.customer + " (demo)."); }
+    if (x.kind === "reply") { j.replyMin = S.clock - j.inMin; j.repliedBy = "owner-approved"; j.events.push([t, "You", "Approved the first reply (" + j.replyMin + " min after the request)"]); S.log.push({ t: t, auto: "reply", job: j.id, text: "First reply to " + j.customer, result: "Delivered", undo: "sent", approvedBy: "owner" }); toast("Approved by owner. Reply sent to " + j.customer + " (demo, nothing really sent)."); }
+    if (x.kind === "nudge") { j.nudge += 1; j.events.push([t, "You", "Approved by owner · nudge " + j.nudge + " of 3 sent"]); S.log.push({ t: t, auto: "nudge", job: j.id, text: "Nudge " + j.nudge + " of 3 to " + j.customer, result: "Delivered", undo: "sent", approvedBy: "owner" }); toast("Approved by owner. Nudge " + j.nudge + " of 3 sent to " + j.customer + " (demo, nothing really sent)."); }
     if (x.kind === "callback") { j.events.push([t, "You", "Called back"]); toast("Callback logged for " + j.customer + "."); }
     if (x.kind === "email") {
       var g = x.guess, nid = "J-1047";
       S.jobs.unshift({ id: nid, customer: "June R.", street: "Street not given", problem: "Water under indoor unit", stage: "lead", source: "Email", inMin: 16 * 60 + 38, replyMin: null, events: [["4:38 PM", "Customer", "Email: water pooling under the indoor unit"], [t, "You", "Checked the guessed fields and made the job card"]] });
-      S.log.push({ t: t, auto: "email", job: nid, text: "Job card " + nid + " made from j.rivera@example.com with your OK", result: "Fields checked by you", undo: "open" });
+      S.log.push({ t: t, auto: "email", job: nid, text: "Job card " + nid + " from j.rivera@example.com", result: "You checked the fields", undo: "open", approvedBy: "owner" });
       toast("Job card " + nid + " created for " + g.Customer + ".");
     }
     render();
@@ -332,7 +338,7 @@ window.DEMO = {
     if (l.job && l.auto === "email") {
       var j = job(l.job);
       if (j && j.id === "J-1047") { S.jobs = S.jobs.filter(function (x) { return x.id !== "J-1047"; }); var q = S.queue.find(function (x) { return x.id === "q-june"; }); q.done = false; }
-      else if (j) { j.events.push([stamp(), "You", "Undid the auto-created job card (kept as an email)"]); j.stage = "lead"; j.undone = true; S.jobs = S.jobs.filter(function (x) { return x !== j; }); }
+      else if (j) { j.events.push([stamp(), "You", "Undid the job card (kept as an email)"]); j.stage = "lead"; j.undone = true; S.jobs = S.jobs.filter(function (x) { return x !== j; }); }
     }
     toast("Undone. Nothing was deleted; the email stays in the inbox.");
     render();
@@ -354,7 +360,7 @@ window.DEMO = {
     document.title = ROUTES.find(function (x) { return x.id === r; }).label + " · Job Desk demo (fictional data)";
   }
   document.addEventListener("click", function (ev) {
-    var t = ev.target.closest("[data-job],[data-seg],[data-ap],[data-edit],[data-save],[data-skip],[data-undo],[data-sw],[data-won],[data-lost],[data-close],[data-focus],#pauseAll,#reset,#drawerBg");
+    var t = ev.target.closest("[data-job],[data-seg],[data-ap],[data-edit],[data-save],[data-skip],[data-undo],[data-sw],[data-won],[data-lost],[data-close],[data-focus],#pauseAll,#apOptIn,#reset,#drawerBg");
     if (!t) return;
     if (t.id === "drawerBg" || t.hasAttribute("data-close")) return closeJob();
     if (t.id === "reset") { init(); render(); return toast("Demo reset."); }
@@ -378,11 +384,12 @@ window.DEMO = {
       S.queue.forEach(function (q) { if (q.job === j.id && q.kind === "nudge") q.done = true; });
       closeJob(); render(); return toast(won ? "Won. Remaining nudges stopped." : "Lost. Nudges stopped.");
     }
-    if (t.dataset.sw) { var a = auto(t.dataset.sw); a.on = !a.on; render(); return toast(a.name + (a.on ? " is back on." : " paused. Nothing from it runs until you turn it back on.")); }
+    if (t.dataset.sw) { var a = auto(t.dataset.sw); a.on = !a.on; render(); return toast(a.name + (a.on ? ": drafts back on. Each still waits for your OK." : ": drafts paused.")); }
+    if (t.id === "apOptIn") return toast("Autopilot is an opt-in setting and stays OFF in this demo. Every message waits for your OK.");
     if (t.id === "pauseAll") {
       var anyOn = S.automations.some(function (x) { return x.on && !x.locked; });
       S.automations.forEach(function (x) { if (!x.locked) x.on = !anyOn; }); render();
-      return toast(anyOn ? "All automations paused." : "All automations back on.");
+      return toast(anyOn ? "All drafts paused." : "All drafts back on. Each still waits for your OK.");
     }
   });
   document.addEventListener("change", function (ev) {
@@ -399,7 +406,7 @@ window.DEMO = {
 })();
 
 /* Guided auto-play for screen recording: ?tour=1 (&loop=1 repeats, &delay=ms waits). About 30 seconds:
-   Tonight -> Needs you (approve) -> quote nudge -> job timeline -> Autopilot log + Undo -> trust panel -> Tonight. */
+   Tonight -> Needs you (approve) -> approve a quote nudge -> job timeline -> sent log (every send approved) + undo a job card -> trust panel -> Tonight. */
 (function () {
   "use strict";
   var q = new URLSearchParams(location.search);
@@ -448,7 +455,7 @@ window.DEMO = {
       .then(function () { glow("#q-maria"); return wait(1400); })
       .then(function () { return tap('[data-ap="q-maria"]'); })
       .then(function () { hide(); return center("#q-tom"); })
-      .then(function () { return say(3, "Quote nudge 1 of 3, $9,800", "Treated as marketing: consent on file, STOP honored"); })
+      .then(function () { return say(3, "Quote nudge 1 of 3, $9,800: you approve it", "Nothing sends without your OK. Consent on file, STOP honored"); })
       .then(function () { glow("#q-tom"); return wait(1600); })
       .then(function () { return tap('[data-ap="q-tom"]'); })
       .then(function () { hide(); return go("jobs"); })
@@ -457,13 +464,13 @@ window.DEMO = {
       .then(function () { return tap('[data-job="J-1029"]'); })
       .then(function () { return wait(2300); })
       .then(function () { $("[data-close]") && $("[data-close]").click(); hide(); return go("autopilot"); })
-      .then(function () { return say(5, "Autopilot: everything it did, with Undo", "Every automation shows its level. New job cards: L2, you approve"); })
+      .then(function () { return say(5, "Sent log: every send approved by you", "Autopilot is opt-in and OFF. Undo works on job cards, not sent texts"); })
       .then(function () { return wait(900); })
       .then(function () { return mobile ? center('[data-undo]') : wait(10); })
       .then(function () { return tap("[data-undo]"); })
       .then(function () { return wait(1300); })
       .then(function () { hide(); return center(".trust", mobile ? "start" : "center"); })
-      .then(function () { return say(6, "Trust panel", "Consent, opt-outs, the same review link for everyone, never-automated list"); })
+      .then(function () { return say(6, "Trust panel", "Consent, opt-outs, the same review link for everyone, never-drafted list"); })
       .then(function () { glow(".trust"); return wait(2600); })
       .then(function () { return go("tonight"); })
       .then(function () { window.scrollTo(0, 0); return say("✓", "Fewer things need you tonight", "Answer 3 short questions and you'll get a free one-page office map within 3 business days."); })
