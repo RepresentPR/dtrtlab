@@ -51,12 +51,26 @@ function normalize(fromRel, pathname) {
   return asset;
 }
 
+function stringConstants(text) {
+  const map = new Map();
+  const re = /(?:var|let|const)\s+([A-Za-z_$][\w$]*)\s*=\s*["']([^"']*)["']/g;
+  for (const match of String(text).matchAll(re)) map.set(match[1], match[2]);
+  return map;
+}
+
 function referencesIn(rel, text) {
+  const source = String(text);
+  const constants = stringConstants(source);
   const found = [];
   const re = /["']([^"']+\.(?:mjs|js|css)(?:\?[^"']*)?)["']/gi;
-  for (const match of String(text).matchAll(re)) {
-    const parts = splitUrl(match[1]);
-    const asset = normalize(rel, parts.pathname);
+  for (const match of source.matchAll(re)) {
+    let raw = match[1];
+    const after = source.slice(match.index + match[0].length);
+    const plus = after.match(/^\s*\+\s*([A-Za-z_$][\w$]*)/);
+    if (plus && constants.has(plus[1])) raw += constants.get(plus[1]);
+    const parts = splitUrl(raw);
+    const fromRoot = /\+\s*$/.test(source.slice(Math.max(0, match.index - 12), match.index));
+    const asset = normalize(rel, fromRoot ? '/' + parts.pathname : parts.pathname);
     if (!asset || !/\.(?:mjs|js|css)$/i.test(asset)) continue;
     found.push({ from: rel, asset, key: parts.key });
   }
@@ -67,8 +81,8 @@ function isAsset(rel) {
   return /\.(?:mjs|js|css)$/i.test(rel);
 }
 
-function isPage(rel) {
-  return rel === 'sw.js' || /\.html?$/i.test(rel);
+function isReferenceSource(rel) {
+  return isAsset(rel) || /\.html?$/i.test(rel);
 }
 
 function keyList(key) {
@@ -92,7 +106,7 @@ function collect(root) {
   const served = walk(base, base, exclude);
   const assets = served.filter(isAsset).sort();
   const byAsset = new Map(assets.map((rel) => [rel, []]));
-  for (const rel of served.filter(isPage)) {
+  for (const rel of served.filter(isReferenceSource)) {
     const text = fs.readFileSync(path.join(base, rel), 'utf8');
     for (const ref of referencesIn(rel, text)) {
       if (byAsset.has(ref.asset)) byAsset.get(ref.asset).push(ref);

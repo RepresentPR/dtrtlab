@@ -4,24 +4,21 @@ const assert = require('node:assert');
 const fs = require('fs');
 const path = require('path');
 const { isExcluded, loadExclude } = require('./stage-site.cjs');
-const { foldBanned } = require('./served-fold.cjs');
+const { containsRetiredDemoName } = require('./served-fold.cjs');
 const ROOT = path.resolve(__dirname, '..');
 const read = (f) => fs.readFileSync(path.join(ROOT, f), 'utf8');
 const RETIRED_DEMO_NAME = 'Sample' + ' Heating';
-const RETIRED_NAME = /sample heating/i;
-// Same served-file set as scripts/retired-copy.test.cjs. foldBanned()
-// reuses that file's loosen() matcher, then also folds entities, tags,
-// and simple JS string joins before the case-insensitive name check.
+// Same served-file set as scripts/retired-copy.test.cjs. The name check
+// reuses loosen() via containsRetiredDemoName().
 const SERVED = /\.(html?|js|mjs|json|md|css|txt|webmanifest|svg|xml|toml)$|^(_headers|netlify\.toml|sitemap\.xml)$/i;
 const SERVED_TYPES = ['html', 'js', 'json', 'md', 'css', 'txt', 'webmanifest', 'svg', 'xml', 'toml'];
-const RASTER_EMBED = /data:image\/(?:jpeg|png);base64/i;
-// These served SVGs embed a real photo or a demo screenshot on purpose.
-// The three how-it-works shots that painted the retired name in JPEG
-// pixels were deleted. They are not on this list.
+const RASTER_DATA = /data:image\//i;
+const RASTER_HREF = /\.(?:jpe?g|png|webp|gif)(?:[?#][^"']*)?$/i;
+// Real photo and the jobs demo screenshot. Autopilot's screenshot showed
+// auto-sending, so it was removed and is not listed.
 const RASTER_SVG_ALLOW = [
   'img/company/ian-headshot.svg',
   'job-desk/how-it-works/img/job.svg',
-  'job-desk/how-it-works/img/autopilot.svg',
 ];
 
 function isServedFile(name) {
@@ -29,7 +26,20 @@ function isServedFile(name) {
 }
 
 function retiredNameHits(text) {
-  return RETIRED_NAME.test(foldBanned(text));
+  return containsRetiredDemoName(text);
+}
+
+function svgLinksRaster(text) {
+  if (RASTER_DATA.test(text)) return true;
+  const tags = text.match(/<image\b[^>]*>/gi) || [];
+  for (const tag of tags) {
+    const attrs = tag.matchAll(/\b(?:xlink:href|href)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+))/gi);
+    for (const m of attrs) {
+      const val = (m[1] ?? m[2] ?? m[3] ?? '').trim();
+      if (RASTER_DATA.test(val) || RASTER_HREF.test(val)) return true;
+    }
+  }
+  return false;
 }
 test('/demo exists and shows the "Demo, fictional data" banner outside the JS-rendered views', () => {
   const s = read('demo/index.html');
@@ -87,6 +97,14 @@ const NAME_PLANTS = [
   ['js-join-mixed-quotes', '"Sample" + \' Heating\''],
   ['slug', 'sample-heating'],
   ['underscore', 'sample_heating'],
+  ['og-title', '<meta property="og:title" content="Sample Heating &amp; Air Co.">'],
+  ['alt', '<img alt="Sample Heating" src="/logo.svg">'],
+  ['href', '<a href="/sample-heating">Read</a>'],
+  ['js-unicode-space', 'Sample\\u0020Heating'],
+  ['hex-space', 'Sample\\x20Heating'],
+  ['percent-20', 'Sample%20Heating'],
+  ['dotted-file', 'Sample.Heating.jpg'],
+  ['joined-file', 'sampleheating.jpg'],
 ];
 
 for (const [id, text] of NAME_PLANTS) {
@@ -103,7 +121,7 @@ test('planted retired demo name fails in a slug or file name', () => {
   }
 });
 
-test('a served SVG may embed a jpeg or png only when it is on the allowlist', () => {
+test('a served SVG may embed or link a raster only when it is on the allowlist', () => {
   const exclude = loadExclude();
   const allow = new Set(RASTER_SVG_ALLOW);
   const embedded = [];
@@ -114,21 +132,35 @@ test('a served SVG may embed a jpeg or png only when it is on the allowlist', ()
       const rel = path.relative(ROOT, p).split(path.sep).join('/');
       if (isExcluded(rel, exclude)) continue;
       if (e.isDirectory()) walk(p);
-      else if (e.isFile() && e.name.endsWith('.svg') && RASTER_EMBED.test(fs.readFileSync(p, 'utf8'))) embedded.push(rel);
+      else if (e.isFile() && e.name.endsWith('.svg') && svgLinksRaster(fs.readFileSync(p, 'utf8'))) embedded.push(rel);
     }
   }
   walk(ROOT);
   for (const rel of RASTER_SVG_ALLOW) {
-    assert.match(read(rel), RASTER_EMBED, rel + ' is allowlisted but does not embed a raster');
+    assert.equal(svgLinksRaster(read(rel)), true, rel + ' is allowlisted but does not embed or link a raster');
   }
-  assert.deepEqual(embedded.filter((rel) => !allow.has(rel)), [], 'served SVG embeds a raster outside the allowlist:\n' + embedded.join('\n'));
+  assert.deepEqual(embedded.filter((rel) => !allow.has(rel)), [], 'served SVG embeds or links a raster outside the allowlist:\n' + embedded.join('\n'));
   assert.deepEqual(RASTER_SVG_ALLOW.filter((rel) => !embedded.includes(rel)), [], 'allowlist entry is not a served raster SVG');
-  for (const name of ['tonight.svg', 'needs.svg', 'edit.svg']) {
+  for (const name of ['tonight.svg', 'needs.svg', 'edit.svg', 'autopilot.svg']) {
     const rel = 'job-desk/how-it-works/img/' + name;
     assert.equal(fs.existsSync(path.join(ROOT, rel)), false, rel);
     assert.equal(embedded.includes(rel), false, rel);
   }
-  assert.doesNotMatch(read('job-desk/how-it-works/index.html'), /tonight\.svg|needs\.svg|edit\.svg/);
+  assert.doesNotMatch(read('job-desk/how-it-works/index.html'), /tonight\.svg|needs\.svg|edit\.svg|autopilot\.svg/);
+});
+
+test('svg raster plants cover data images and path-based image hrefs', () => {
+  assert.equal(svgLinksRaster('<svg><image href="data:image/webp;base64,abc"/></svg>'), true);
+  assert.equal(svgLinksRaster('<svg><image href="data:image/jpg;base64,abc"/></svg>'), true);
+  assert.equal(svgLinksRaster('<svg><image href="data:image/gif;base64,abc"/></svg>'), true);
+  assert.equal(svgLinksRaster('<svg><image href="data:image/png;base64,abc"/></svg>'), true);
+  assert.equal(svgLinksRaster('<svg><image href="data:image/svg+xml;base64,abc"/></svg>'), true);
+  assert.equal(svgLinksRaster('<svg><image xlink:href="photos/shot.png"/></svg>'), true);
+  assert.equal(svgLinksRaster("<svg><image href='a.jpeg'/></svg>"), true);
+  assert.equal(svgLinksRaster('<svg><image href="a.webp"/></svg>'), true);
+  assert.equal(svgLinksRaster('<svg><image href="img/a.gif?v=1"/></svg>'), true);
+  assert.equal(svgLinksRaster('<svg><rect href="a.png"/></svg>'), false);
+  assert.equal(svgLinksRaster('<svg><image href="icon.svg"/></svg>'), false);
 });
 test('/demo v2 has the 4 screens: Tonight, Needs you, Jobs, Autopilot', () => {
   const js = read('demo/demo.js');
