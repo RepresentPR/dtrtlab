@@ -76,3 +76,29 @@ test('branch publish config excludes docs and still ships .well-known', () => {
   assert.ok(include.includes('CNAME'));
 });
 });
+
+test('pages jekyll build has no brand-kit.html and no assets/css/style.css', () => {
+  const dest = fs.mkdtempSync(path.join(os.tmpdir(), 'dtrt-jekyll-'));
+  const ruby = `
+require 'jekyll'
+require 'jekyll-optional-front-matter'
+require 'jekyll-default-layout'
+raw = Jekyll::Configuration.new.read_config_file('_config.yml')
+pages_defaults = {
+  'theme' => 'jekyll-theme-primer',
+  'plugins' => ['jekyll-optional-front-matter', 'jekyll-default-layout']
+}
+config = Jekyll::Utils.deep_merge_hashes(pages_defaults, raw)
+config['theme'] = raw['theme'] if raw.key?('theme')
+full = Jekyll::Configuration.from(config)
+full['theme'] = config['theme'] if raw.key?('theme')
+full['source'] = Dir.pwd
+full['destination'] = ${JSON.stringify(dest)}
+full['quiet'] = true
+full['sass'] = { 'cache' => false }
+Jekyll::Site.new(full).process
+`;
+  execFileSync('ruby', ['-e', ruby], { cwd: ROOT, stdio: 'pipe' });
+  assert.equal(fs.existsSync(path.join(dest, 'brand-kit.html')), false);
+  assert.equal(fs.existsSync(path.join(dest, 'assets', 'css', 'style.css')), false);
+});
