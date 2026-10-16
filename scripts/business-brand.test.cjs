@@ -61,7 +61,8 @@ test('business pages show theme A offers and keep hobby off the company face', (
   })(root);
   assert.ok(exclude.includes('docs'), 'docs stays unpublished only while _config.yml excludes it');
   assert.ok(served.some(f => f.endsWith(path.join('clips', 'index.html'))), 'clips/index.html is checked');
-  assert.ok(served.some(f => f.endsWith('brand-kit.md')), 'brand-kit.md is served and checked');
+  assert.equal(served.some(f => f.endsWith('brand-kit.md')), false, 'brand-kit.md is not served');
+  served.push(path.join(root, 'brand-kit.md')); // still public in the repo, so still checked
   assert.equal(served.some(f => f.endsWith(path.join('docs', 'vision.md'))), false);
   assert.ok(served.length > 20, 'place guard scans served HTML, JS and JSON');
   for (const file of served) {
@@ -85,5 +86,5 @@ test('business pages show theme A offers and keep hobby off the company face', (
   for (const id of ['votes', 'tabs', 'account', 'notes']) {
     assert.match(cs2, new RegExp('id="' + id + '"[^>]*hidden|hidden[^>]*id="' + id + '"'));
   }
-  assert.match(read('brand.html'), /brand-kit\.md/);
+  assert.doesNotMatch(read('brand.html'), /brand-kit\.md/, 'brand.html does not link to the unpublished kit');
 });

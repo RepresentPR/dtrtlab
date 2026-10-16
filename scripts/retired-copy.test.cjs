@@ -5,7 +5,8 @@
 // sitemap.xml, netlify.toml, _headers, and every served file with no
 // extension, such as CNAME. docs/ is skipped only
 // because _config.yml lists it under exclude.
-// brand-kit.md is linked from /brand.html, so it is included.
+// brand-kit.md is not served (_config.yml exclude), but the repo is public,
+// so it is still scanned.
 // Filename exemptions are exact paths only. These files hold the ban lists:
 // scripts/demo-page.test.cjs, scripts/business-brand.test.cjs,
 // scripts/retired-copy.test.cjs, and scripts/private-terms.test.cjs.
@@ -277,7 +278,8 @@ test('retired copy stays off every served file', () => {
   assert.ok(rels.includes('versions/index.html'), 'versions/ is served and checked');
   assert.ok(rels.includes('live/dashboard.js'), 'live/dashboard.js is served and checked');
   assert.ok(rels.includes('legal/terms.html'), 'legal pages are checked, not skipped');
-  assert.ok(rels.includes('brand-kit.md'), 'brand-kit.md is served and checked');
+  assert.equal(rels.includes('brand-kit.md'), false, 'brand-kit.md is not served');
+  files.push(path.join(ROOT, 'brand-kit.md'));
   assert.ok(rels.includes('clips/index.html'), 'hobby pages are checked');
   assert.ok(rels.includes('afterlight.html'), 'fiction pages are checked');
   assert.ok(rels.includes('sitemap.xml'), 'sitemap.xml is checked');

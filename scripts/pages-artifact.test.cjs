@@ -1,6 +1,6 @@
 // The published site is the staged tree, not the git repo. docs/ and the
-// retired bot handle must never be in that tree. brand-kit.md stays: brand.html
-// links to it.
+// retired bot handle must never be in that tree. Neither is brand-kit.md: it is
+// internal profile paste text, excluded in _config.yml.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('fs');
@@ -28,7 +28,6 @@ test.before(() => {
   stage(staged);
   rels = walk(staged).map((f) => path.relative(staged, f).split(path.sep).join('/'));
   assert.ok(rels.includes('index.html'));
-  assert.ok(rels.includes('brand-kit.md'));
   assert.ok(rels.includes('.well-known/security.txt'));
   assert.ok(rels.includes('CNAME'));
   assert.ok(rels.includes('live/index.html'));
@@ -47,12 +46,22 @@ test('deploy artifact contains no docs and no retired bot handle', () => {
 });
 
 test('internal notes and non-site files stay out of the artifact', () => {
-  for (const rel of ['AGENTS.md', 'README.md', '.env.example', '.gitignore', 'live/README.md', 'media/intake/README.md', '_config.yml', 'scripts/stage-site.cjs']) {
+  for (const rel of ['AGENTS.md', 'README.md', '.env.example', '.gitignore', 'live/README.md', 'media/intake/README.md', '_config.yml', 'scripts/stage-site.cjs', 'brand-kit.md', 'brand-kit.html']) {
     assert.equal(rels.includes(rel), false, rel);
   }
   const trackedMd = execFileSync('git', ['ls-files'], { cwd: ROOT, encoding: 'utf8' }).split('\n').filter((f) => f.endsWith('.md'));
-  const leaked = trackedMd.filter((f) => f !== 'brand-kit.md' && rels.includes(f));
+  const leaked = trackedMd.filter((f) => rels.includes(f));
   assert.deepEqual(leaked, []);
+});
+
+test('brand-kit.md is excluded from the publish list and nothing served links to it', () => {
+  assert.ok(loadExclude().includes('brand-kit.md'), '_config.yml exclude lists brand-kit.md');
+  assert.ok(!rels.some((r) => /(^|\/)brand-kit\.(md|html)$/i.test(r)), 'no brand-kit file in the artifact');
+  const links = [];
+  for (const rel of rels.filter((r) => /\.(html?|js|mjs|json|xml|txt|webmanifest)$/i.test(r))) {
+    if (/brand-kit/i.test(fs.readFileSync(path.join(staged, rel), 'utf8'))) links.push(rel);
+  }
+  assert.deepEqual(links, [], 'served files that mention brand-kit');
 });
 
 test('served html does not link under /docs/', () => {
@@ -115,6 +124,7 @@ Jekyll::Site.new(full).process
 `;
   execFileSync('ruby', ['-e', ruby], { cwd: ROOT, stdio: 'pipe' });
   assert.equal(fs.existsSync(path.join(dest, 'brand-kit.html')), false);
+  assert.equal(fs.existsSync(path.join(dest, 'brand-kit.md')), false, 'jekyll build does not copy brand-kit.md');
   assert.equal(fs.existsSync(path.join(dest, 'assets', 'css', 'style.css')), false);
   } finally {
     fs.rmSync(dest, { recursive: true, force: true });

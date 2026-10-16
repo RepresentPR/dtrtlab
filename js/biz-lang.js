@@ -12,7 +12,7 @@
     "/about.html": { title: "Acerca de DTRT Lab", h1: "Escritura para negocios locales.", lead: "DTRT Lab es el negocio. La misión es Do the right thing: ayudar a operadores locales, no extraer de ellos." },
     "/shop.html": { title: "Tienda — DTRT Lab", h1: "La tienda no cobra.", lead: "El interés de la tienda sigue abierto y el checkout de mercancía no está activo. Los planes de escritura se pagan en Whop desde la página de inicio." },
     "/contact.html": { title: "Contacto — DTRT Lab", h1: "Saluda a DTRT Lab", lead: "Plan gratis, planes de escritura en Whop, o una pregunta. Tú envías el correo." },
-    "/brand.html": { title: "Marca — DTRT Lab", h1: "Marca DTRT Lab", lead: "Marca del negocio de escritura. El kit completo está en brand-kit.md." },
+    "/brand.html": { title: "Marca — DTRT Lab", h1: "Marca DTRT Lab", lead: "Marca del negocio de escritura." },
     "/press.html": { title: "Prensa — DTRT Lab", h1: "Prensa", lead: "Hechos con fecha. Sin escala falsa. DTRT Lab escribe para negocios locales." },
     "/find.html": { title: "X e Instagram — DTRT Lab", h1: "X e Instagram.", lead: "Las puertas públicas del negocio son X @DTRTLab e Instagram @officiallydtrt." },
     "/partners.html": { title: "Colabora — DTRT Lab", h1: "Colaboraciones de escritura.", lead: "Trabajo de escritura para un negocio local. No es un patrocinio del stream." },
