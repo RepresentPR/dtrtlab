@@ -1,5 +1,5 @@
-// The published site is the staged tree, not the git repo. docs/ and anything
-// matching grokbot must never be in that tree. brand-kit.md stays: brand.html
+// The published site is the staged tree, not the git repo. docs/ and the
+// retired bot handle must never be in that tree. brand-kit.md stays: brand.html
 // links to it.
 const test = require('node:test');
 const assert = require('node:assert/strict');
@@ -9,7 +9,7 @@ const path = require('path');
 const { execFileSync } = require('node:child_process');
 const { stage, loadExclude, parseList, ROOT } = require('./stage-site.cjs');
 
-const BANNED = /grokbot|mail\.grokbot\.com/i;
+const BANNED = new RegExp(String.fromCharCode(103, 114, 111, 107, 98, 111, 116), 'i');
 
 function walk(dir, out = []) {
   for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -34,7 +34,7 @@ test.before(() => {
   assert.ok(rels.includes('live/index.html'));
 });
 
-test('deploy artifact contains no docs/ and no grokbot material', () => {
+test('deploy artifact contains no docs and no retired bot handle', () => {
   assert.equal(fs.existsSync(path.join(staged, 'docs')), false);
   assert.ok(!rels.some((r) => r === 'docs' || r.startsWith('docs/')));
   const hits = [];

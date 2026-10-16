@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-const BANNED = /grokbot/i;
+const BANNED = new RegExp(String.fromCharCode(103, 114, 111, 107, 98, 111, 116), 'i');
 
 function parseList(yml, key) {
   const items = [];
@@ -42,7 +42,7 @@ function isExcluded(rel, entries) {
 }
 
 function assertPublishable(rel, buf) {
-  if (BANNED.test(rel) || buf.toString('latin1').toLowerCase().includes('grokbot')) {
+  if (BANNED.test(rel) || BANNED.test(buf.toString('latin1'))) {
     throw new Error('refusing to publish ' + rel);
   }
 }

@@ -137,14 +137,21 @@ test('CHECK and partnership CTAs use the map form', () => {
   assert.match(find, /href="\/map\/\?want=check"[^>]*>Get my free AI check<\/a>/);
   assert.match(partners, /href="\/map\/\?want=partner"/);
   assert.doesNotMatch(home + find + partners, /Reply CHECK|Prepare email/);
-  assert.doesNotMatch(fs.readFileSync(path.join(root, 'js/partners.js'), 'utf8'), /mailto:/);
+  assert.equal(fs.existsSync(path.join(root, 'js/partners.js')), false);
 });
 
-test('brand kit social lines ask to reply SYSTEM for a free office map', () => {
+test('brand kit social lines use the canonical map sentence and no retired offer', () => {
   const kit = fs.readFileSync(path.join(root, 'brand-kit.md'), 'utf8');
-  assert.match(kit, /Reply SYSTEM for a free office map/);
-  assert.doesNotMatch(kit, /DM SYSTEM/);
-  assert.doesNotMatch(kit.split('Reply SYSTEM for a free office map').join(''), /Reply SYSTEM/);
+  assert.match(kit, /Answer 3 short questions and you'll get a free one-page office map within 3 business days\./);
+  assert.doesNotMatch(kit, /DM SYSTEM|Reply SYSTEM|Writing Retainer|Review Desk|Starter Fix/);
+});
+
+test('a bug report has its own thanks page', () => {
+  const bug = fs.readFileSync(path.join(root, 'bug.html'), 'utf8');
+  assert.match(bug, /_next" value="https:\/\/dtrtlab\.com\/bug\/thanks\/"/);
+  const thanks = fs.readFileSync(path.join(root, 'bug/thanks/index.html'), 'utf8');
+  assert.match(thanks, /Thanks\. If you left an email, we'll follow up there\./);
+  assert.doesNotMatch(thanks, /Watch your inbox/);
 });
 
 test('served docs and scripts do not name the bot mail host', () => {

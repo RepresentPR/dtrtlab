@@ -1,4 +1,4 @@
-Contact: mailto:hello@dtrtlab.com
+Contact: https://dtrtlab.com/contact.html
 Preferred-Languages: en, es
 Canonical: https://dtrtlab.com/.well-known/security.txt
 Policy: https://dtrtlab.com/legal/privacy.html

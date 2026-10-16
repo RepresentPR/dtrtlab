@@ -1,4 +1,4 @@
-/* Live pulse: real-time Twitch + Kick status/viewers for dtrtlab.com. Keyless public sources only.
+/* Live pulse: real-time Twitch + Kick status/viewers for dtrtlab.com. Keyless.
    HONEST: Twitch/Kick refresh their public viewer counts roughly every 30-60 s, so we poll every 8-15 s and
    show "checked Ns ago" ticking every second. Numbers are never faked. Failure => "n/a", never a stale value. */
 (function () {

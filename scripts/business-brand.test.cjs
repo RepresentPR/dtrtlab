@@ -29,8 +29,8 @@ test('brand kit has the public paste text and a short bio', () => {
   // Mini Social Pack and Week Pack retired 2026-10-15 (Co-Founder): no links to their Whop plans.
   assert.doesNotMatch(kit, /plan_HAGSLXXUeGkcz|plan_RVDjSToI7vKOM/);
   assert.doesNotMatch(kit, /plan_kZqq0jgr6VrGG|DM SYSTEM/);
-  assert.match(kit, /Reply SYSTEM for a free office map/);
-  assert.doesNotMatch(kit.split('Reply SYSTEM for a free office map').join(''), /Reply SYSTEM/);
+  assert.match(kit, /Answer 3 short questions and you'll get a free one-page office map within 3 business days\./);
+  assert.doesNotMatch(kit, /Reply SYSTEM|Writing Retainer|Review Desk|Starter Fix|\$50/);
   assert.match(kit, /plan_yuDiw93Zp6Uvr/);
   assert.doesNotMatch(kit, /@gmail\.com|PayPal/);
 });
@@ -44,14 +44,15 @@ test('business pages show theme A offers and keep hobby off the company face', (
   assert.match(main, /DMV Area/);
   assert.doesNotMatch(main, /Fix\. Measure\. Report\./, 'the 30-day numbers section is retired');
   assert.match(home, /"name": "Washington DC metropolitan area \(DMV\)"/);
-  const place = /\bClinton\b|Southern Maryland|\bSoMD\b|\bBowie\b|\bLanham\b|\bLargo\b|\bWaldorf\b|Silver Spring|\bBaltimore\b|\bArlington\b|\bAnnapolis\b/i;
+  const place = /\bClinton\b|Southern Maryland|\bSoMD\b|Southern MD\b|So\.\s*MD\b|St\.?\s*Mary['’]s|\bCalvert\b|\bTysons\b|\bBowie\b|\bLanham\b|\bLargo\b|\bWaldorf\b|Silver Spring|\bBaltimore\b|\bArlington\b|\bAnnapolis\b|\bGreenbelt\b|\bBeltsville\b|\bLaurel\b|\bHyattsville\b|College Park|Glenn Dale|\bMitchellville\b|\bRockville\b|\bBethesda\b|\bAlexandria\b|\bFairfax\b|\bFrederick\b|\bGaithersburg\b|\bGermantown\b/i;
+  const nova = /\bNoVA\b/;
   const served = [];
   (function walkPlaces(dir) {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
       if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'scripts' || entry.name === 'docs') continue;
       const full = path.join(dir, entry.name);
       if (entry.isDirectory()) walkPlaces(full);
-      else if (/\.(html?|js|mjs|json|webmanifest)$/i.test(entry.name)) served.push(full);
+      else if (/\.(html?|js|mjs|json|md|css|txt|webmanifest)$/i.test(entry.name)) served.push(full);
     }
   })(root);
   assert.ok(served.some(f => f.endsWith(path.join('clips', 'index.html'))), 'clips/index.html is checked');
@@ -59,6 +60,7 @@ test('business pages show theme A offers and keep hobby off the company face', (
   for (const file of served) {
     const rel = path.relative(root, file).split(path.sep).join('/');
     assert.doesNotMatch(read(rel), place, rel + ' carries no day-job location');
+    assert.doesNotMatch(read(rel), nova, rel + ' carries no day-job location');
   }
   assert.match(main, /plan_yuDiw93Zp6Uvr/);
   assert.doesNotMatch(main, /plan_kZqq0jgr6VrGG/);

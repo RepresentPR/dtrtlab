@@ -75,7 +75,8 @@ footer.foot nav{display:flex;flex-wrap:wrap;gap:10px 18px}footer.foot a{text-dec
 .consent .cta.ghost{background:transparent;color:var(--white);border-color:rgba(220,230,242,.6)}
 .consent .cta:hover{background:var(--white);border-color:var(--white);color:var(--navy)}
 .consent .cta:focus-visible{outline:3px solid var(--green);outline-offset:2px}
-@media(max-width:560px){.consent .actions{width:100%}.consent .cta{flex:1}}
+@media(max-width:560px){.consent .actions{width:100%}.consent .cta{flex:1}body.consent-open .dock{bottom:var(--consent-h,0px)}}
+@media(max-width:390px){.consent{padding:8px 0 calc(8px + env(safe-area-inset-bottom,0px))}.consent .wrap{gap:8px}.consent p{font-size:13px;line-height:1.35}.consent .cta{white-space:normal;font-size:13px;min-height:40px;padding:6px 8px}}
 /* Free office map form (/map/). */
 .map-form{display:grid;gap:16px;max-width:640px;margin-top:8px}
 .map-form label{display:grid;gap:6px;font-weight:700;font-size:15px}

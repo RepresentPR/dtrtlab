@@ -33,7 +33,6 @@ async function page({ consent = 'no', optedOut = false, valid = true } = {}) {
     fetch: async () => ({ ok: true, json: async () => ({ gaMeasurementId: 'G-TEST' }) }),
     FormData: class { get(key) { return values[key]; } }
   });
-  vm.runInContext(read('js/partners.js'), context);
   vm.runInContext(read('js/analytics.js'), context);
   await new Promise(resolve => setImmediate(resolve));
   return {
@@ -60,7 +59,7 @@ test('public support paths do not send visitors to the paused Ko-fi checkout', a
 test('a partnership note is the map form, not a prepared mailto', async () => {
   const ui = await page({ consent: 'yes' });
   assert.match(read('partners.html'), /href="\/map\/\?want=partner"/);
-  assert.doesNotMatch(read('js/partners.js'), /mailto:/);
+  assert.equal(fs.existsSync(path.join(root, 'js/partners.js')), false);
   assert.equal(ui.location.href, '');
   assert.deepEqual(ui.plausibleEvents(), []);
   assert.deepEqual(ui.gaEvents(), []);
