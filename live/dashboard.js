@@ -21,7 +21,9 @@ g+=`<g fill="#9DB3CF" font-size="10">${[0,.5,1].map(f=>`<text x="0" y="${Y(mn+f*
 series.forEach(s=>{if(opts.bars){const bw=(W-P-8)/xs.length*.7;s.pts.forEach((p,i)=>{if(p[1]!=null)g+=`<rect x="${X(i)-bw/2}" y="${Y(p[1])}" width="${bw}" height="${H-P-Y(p[1])}" fill="${s.c}"/>`})}
 else{const pts=s.pts.map((p,i)=>p[1]==null?null:`${X(i)},${Y(p[1])}`).filter(Boolean);g+=`<polyline fill="none" stroke="${s.c}" stroke-width="2.5" points="${pts.join(' ')}"/>`+pts.map(q=>`<circle r="3" fill="${s.c}" cx="${q.split(',')[0]}" cy="${q.split(',')[1]}"/>`).join('')}});
 g+=`<g font-size="11">${series.map((s,i)=>`<text x="${P+i*120}" y="12" fill="${s.c}">■ ${s.n}</text>`).join('')}</g></svg>`;el.innerHTML=g}
-function render(o){const h=o.history,t=o.today;$('#stamp').textContent=`Last updated ${o.meta.updated_et} · brain ${o.meta.brain_at} · sources ${o.meta.sources_fetched_et||'n/a'} ET · day ${o.meta.days_running}`;
+let proofUpdated=null,shown=null;
+fetch('/content/proof.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{proofUpdated=d&&d.updated_et||'';if(shown)render(shown)}).catch(()=>{proofUpdated='';});
+function render(o){shown=o;const h=o.history,t=o.today;const when=proofUpdated==null?'loading…':(window.DTRTAsOf?DTRTAsOf.asOfLabel(proofUpdated):'as of '+(proofUpdated||'unknown'));$('#stamp').textContent=`${when} · brain ${o.meta.brain_at} · sources ${o.meta.sources_fetched_et||'n/a'} ET · day ${o.meta.days_running}`;
 const f=t.followers||{};$('#t-aud').innerHTML=[tile('Followers (known total)',t.followers_total_known,h,'followers_total_known',t.followers_complete?'':'partial: '+Object.entries(f).filter(e=>e[1]!=null).map(e=>e[0]).join(', ')+' only'),
 ...['x','instagram','tiktok','youtube','twitch'].map(p=>tile(p==='x'?'X':p[0].toUpperCase()+p.slice(1),f[p],null,null)),tile('Posts published',t.posts_published,h,'posts_published')].join('');
 chart($('#c-fol'),[{n:'followers (known)',c:'#13C27A',pts:h.map(d=>[d.date,d.followers_total_known])}]);$('#n-fol').textContent=t.followers_complete?'All platforms counted.':'Missing platforms are excluded, not estimated.';
