@@ -88,3 +88,13 @@ test('/map/ posts the free office map form to FormSubmit', () => {
   const privacy = fs.readFileSync(path.join(root, 'legal/privacy.html'), 'utf8');
   assert.match(privacy, /The free office map form sends your answers by email through FormSubmit \(formsubmit\.co\) so we can write your map\. We use those answers only for that\./);
 });
+
+test('AGENTS.md and README.md do not publish retired offers', () => {
+  const banned = ['$50', 'Mini Social Pack', 'Week Pack', 'Starter Fix', 'writing plan'];
+  for (const name of ['AGENTS.md', 'README.md']) {
+    const text = fs.readFileSync(path.join(root, name), 'utf8').toLowerCase();
+    for (const phrase of banned) {
+      assert.equal(text.includes(phrase.toLowerCase()), false, name + ' still says ' + phrase);
+    }
+  }
+});

@@ -19,15 +19,11 @@ The “if unsure, ship” fallback is revoked for brand positioning, pricing, an
 - Shipped code and live pages must match public claims.
 - Unshipped software, including AFTERLIGHT, stays labeled “in development / not for sale.”
 
-## 3. Single-offer focus (Plan A + Stage 1 freeze)
+## 3. Current offer
 
-Ian set the commercial offer, in chat on 2026-10-15, as the **Free Plan** (diagnostic storefront review) plus **The Starter Fix** ($50 flat writing audit delivered in 48 hours).
-
-Stage 1 target by 2026-12-31, recorded as a goal and not a result: 10 Free Plans, 2–3 paid Starter Fixes, and 3 testimonials. Do not claim any of those counts.
+Current offer and wording live in DTRT Co-Founder's rules, not in this repo. Don't state prices or offers in code or copy without checking content/*.json.
 
 Stage 1 freeze: the public results dashboard (moved from `/live/` to `/lab.html#public-results` on 2026-10-15), streaming, and AFTERLIGHT stay on `/lab.html` until the writing studio closes its first 3 paying clients. Do not claim those clients exist. Do not put the dashboard, stream chrome, or the game on the company face. AFTERLIGHT stays “in development / not for sale.”
-
-Public catalog as of 2026-10-15, which agents must not rewrite on their own: Free plan, plus three named Whop writing plans — Mini Social Pack $50, Week Pack $129, and Writing Retainer · Review Desk $250/30 days, plus the AI Visibility Fix $250 one-time (added 2026-10-15). Every tier includes a day-30 numbers check. Do not rename, delete or reprice a tier without DTRT Co-Founder's sign-off.
 
 ## Stack
 
@@ -55,7 +51,7 @@ Do not park ordinary bugfixes as “blocked on Ian.” Do not decide brand, pric
 
 - No fake scale, Fortune claims, fake clients, fake headcount, or “we're hiring” theater.
 - No cold spam.
-- Shop checkout stays **off** until payment + fulfillment are real (`checkoutLive: false`). Whop checkout for the named writing plans is the paid path already on the site.
+- Shop checkout stays **off** until payment + fulfillment are real (`checkoutLive: false`).
 - Do not put secrets, recovery codes, API tokens, or passwords in git (`secrets/`, `*recovery-codes*` are gitignored).
 - Do not reverse-engineer / clone third-party apps as a growth strategy.
 - Keep **company AI** (this Cursor agent + Postiz) separate from **experiment** API wallets; see `docs/ai-spend-ops.md`. Never put company secrets on young discount proxies.
@@ -67,7 +63,7 @@ Do not park ordinary bugfixes as “blocked on Ian.” Do not decide brand, pric
 
 ## Vision filter (every change)
 
-1. Clearer Free Plan or a real $50 Starter Fix for a local business?  
+1. Current offer and wording live in DTRT Co-Founder's rules, not in this repo. Don't state prices or offers in code or copy without checking content/*.json.  
 2. Dated evidence without lying?  
 3. Durable craft/revenue or trust/foundation for the company?  
 4. Proud if a local business owner or journalist read it tomorrow?
