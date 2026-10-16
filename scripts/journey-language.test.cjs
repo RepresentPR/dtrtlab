@@ -20,10 +20,11 @@ function htmlFiles(dir, out = []) {
 test('no page loads the removed contact or journey-language scripts', () => {
   assert.ok(!fs.existsSync(path.join(ROOT, 'js/contact.js')));
   assert.ok(!fs.existsSync(path.join(ROOT, 'js/journey-language.js')));
+  assert.ok(!fs.existsSync(path.join(ROOT, 'css/journey-language.css')));
   const hits = [];
   for (const file of htmlFiles(ROOT)) {
     const text = fs.readFileSync(file, 'utf8');
-    if (/contact\.js|journey-language\.js/.test(text)) hits.push(path.relative(ROOT, file));
+    if (/contact\.js|journey-language\.js|journey-language\.css/.test(text)) hits.push(path.relative(ROOT, file));
   }
   assert.deepEqual(hits, []);
 });
