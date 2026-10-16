@@ -45,7 +45,6 @@ test('business pages show theme A offers and keep hobby off the company face', (
   assert.doesNotMatch(main, /Fix\. Measure\. Report\./, 'the 30-day numbers section is retired');
   assert.match(home, /"name": "Washington DC metropolitan area \(DMV\)"/);
   const place = /\bClinton\b|Southern Maryland|\bSoMD\b|\bBowie\b|\bLanham\b|\bLargo\b|\bWaldorf\b|Silver Spring|\bBaltimore\b|\bArlington\b|\bAnnapolis\b/i;
-  const placeAllow = /^(?:afterlight|cs2|game|story|worlds|lab)\.html$|^(?:stories\/afterlight|watch|clips)\//;
   const served = [];
   (function walkPlaces(dir) {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -55,12 +54,11 @@ test('business pages show theme A offers and keep hobby off the company face', (
       else if (/\.(html?|js|mjs|json|webmanifest)$/i.test(entry.name)) served.push(full);
     }
   })(root);
+  assert.ok(served.some(f => f.endsWith(path.join('clips', 'index.html'))), 'clips/index.html is checked');
   assert.ok(served.length > 20, 'place guard scans served HTML, JS and JSON');
   for (const file of served) {
     const rel = path.relative(root, file).split(path.sep).join('/');
-    const text = read(rel);
-    if (placeAllow.test(rel) && place.test(text)) continue;
-    assert.doesNotMatch(text, place, rel + ' carries no day-job location');
+    assert.doesNotMatch(read(rel), place, rel + ' carries no day-job location');
   }
   assert.match(main, /plan_yuDiw93Zp6Uvr/);
   assert.doesNotMatch(main, /plan_kZqq0jgr6VrGG/);

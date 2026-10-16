@@ -51,18 +51,15 @@ const SKIP_DIRS = new Set(['.git', 'node_modules', 'scripts', 'docs']);
 
 // A hit is skipped only when the file and the phrase both match a row.
 // Legal pages are not skipped as a group. A past-plan refund sentence may
-// name a retired guarantee. Fiction and hobby pages may name a place that
-// belongs to the story or the stream archive. Offer names stay banned there.
+// name a retired guarantee. Clinton, Southern Maryland, and SoMD are banned
+// on every served file, including hobby and fiction pages. The Puerto Rico
+// flag images (img/flag.*) are the only hobby/fiction files outside this
+// text scan.
 const ALLOWLIST = [
   {
     file: /^legal\/(?:refunds|terms)\.html$/,
     line: /past plans follow Whop/i,
     phrase: /7-Day Do-It-Right Guarantee|I rewrite it free|7-DAY|DO-IT-RIGHT|Review Desk/i
-  },
-  {
-    file: /^(?:afterlight|cs2|game|story|worlds|lab)\.html$|^(?:stories\/afterlight|watch|clips)\//,
-    line: /.*/,
-    phrase: /\b(?:Clinton|SoMD|Bowie|Lanham|Largo|Waldorf|Baltimore|Arlington|Annapolis)\b|Southern Maryland|Silver Spring/i
   }
 ];
 
