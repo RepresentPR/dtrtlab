@@ -2,7 +2,8 @@
 // come back on the served site. Pages publishes the staged tree
 // (scripts/stage-site.cjs), not the whole repo. This guard scans every served
 // html, js, json, md, css, txt, webmanifest, svg, and xml file, plus
-// sitemap.xml, netlify.toml, and _headers. docs/ is skipped only
+// sitemap.xml, netlify.toml, _headers, and every served file with no
+// extension, such as CNAME. docs/ is skipped only
 // because _config.yml lists it under exclude.
 // brand-kit.md is linked from /brand.html, so it is included.
 // Filename exemptions are exact paths only. These files hold the ban lists:
@@ -178,20 +179,19 @@ const PLANTS = [
   ['germantown', 'Germantown'],
 ];
 
-const PLACES = PHRASES.slice(PHRASES.findIndex((rx) => rx.source === '\\bClinton\\b'));
-
-function loosen(text) {
-  return String(text)
+function loosen(text, foldUnderscore) {
+  let body = String(text)
     .replace(/[\u201c\u201d\u2018\u2019"'`]/g, '')
-    .replace(/[-–—]/g, ' ')
-    .replace(/\s+/g, ' ');
+    .replace(/[-–—]/g, ' ');
+  if (foldUnderscore) body = body.replace(/_/g, ' ');
+  return body.replace(/\s+/g, ' ');
 }
 
-function scanPatterns(rel, text, patterns) {
+function scanPatterns(rel, text, patterns, foldUnderscore) {
   if (EXEMPT.has(rel)) return [];
   const hits = [];
   const body = String(text).split(GROK_BOT).join('');
-  const loose = loosen(body);
+  const loose = loosen(body, foldUnderscore);
   for (const rx of patterns) {
     const m = body.match(rx) || loose.match(rx);
     if (m) hits.push(rel + ': ' + m[0]);
@@ -200,11 +200,15 @@ function scanPatterns(rel, text, patterns) {
 }
 
 function scanText(rel, text) {
-  return scanPatterns(rel, text, PHRASES);
+  return scanPatterns(rel, text, PHRASES, false);
 }
 
 function scanName(rel) {
-  return scanPatterns(rel, rel, PLACES);
+  return scanPatterns(rel, rel, PHRASES, true);
+}
+
+function isServedFile(name) {
+  return SERVED.test(name) || path.extname(name) === '';
 }
 
 function walk(dir, out = []) {
@@ -214,7 +218,7 @@ function walk(dir, out = []) {
     const rel = path.relative(ROOT, p).split(path.sep).join('/');
     if (isExcluded(rel, EXCLUDE)) continue;
     if (e.isDirectory()) walk(p, out);
-    else if (SERVED.test(e.name) && !EXEMPT.has(rel) && fs.statSync(p).size < 5e6) out.push(p);
+    else if (isServedFile(e.name) && !EXEMPT.has(rel) && fs.statSync(p).size < 5e6) out.push(p);
   }
   return out;
 }
@@ -243,6 +247,7 @@ test('retired copy stays off every served file', () => {
   assert.ok(rels.includes('sitemap.xml'), 'sitemap.xml is checked');
   assert.ok(rels.includes('netlify.toml'), 'netlify.toml is checked');
   assert.ok(rels.includes('_headers'), '_headers is checked');
+  assert.ok(rels.includes('CNAME'), 'extensionless CNAME is checked');
   assert.ok(rels.some((rel) => rel.endsWith('.svg')), 'svg files are checked');
   assert.ok(EXCLUDE.includes('docs'), 'docs skip comes from _config.yml exclude');
   assert.equal(isExcluded('docs/vision.md', EXCLUDE), true);
@@ -273,15 +278,24 @@ test('only the ban-list files are exempt, by exact path', () => {
   assert.ok(scanText('demo/sample.html', 'Clinton').length);
 });
 
-test('served file names are checked against place bans', () => {
+test('a planted ban in CNAME fails the scan', () => {
+  assert.ok(scanText('CNAME', 'Clinton').length);
+});
+
+test('served file names are checked against the full ban list', () => {
   assert.ok(scanName('img/clinton.jpg').length, 'img/clinton.jpg');
   assert.ok(scanName('img/Silver-Spring.webp').length, 'Silver-Spring');
+  assert.ok(scanName('img/Silver_Spring.jpg').length, 'Silver_Spring');
+  assert.ok(scanName('img/review-desk.png').length, 'review-desk');
+  assert.ok(scanName('img/plan_HAGSLXXUeGkcz.png').length, 'plan id');
+  const bot = String.fromCharCode(103, 114, 111, 107, 98, 111, 116);
+  assert.ok(scanName('img/' + bot + '.png').length, 'bot name');
   assert.ok(scanName('img/so-md.png').length, 'so-md');
   assert.equal(scanName('img/afterlight/cabo.jpg').length, 0);
   assert.equal(scanName('content/music-credits.json').length, 0);
   const hits = [];
   for (const rel of walkNames(ROOT)) hits.push(...scanName(rel));
-  assert.deepEqual(hits, [], 'place name in a served filename:\n' + hits.join('\n'));
+  assert.deepEqual(hits, [], 'banned term in a served filename:\n' + hits.join('\n'));
 });
 
 test('fiction filenames do not lift these bans', () => {
