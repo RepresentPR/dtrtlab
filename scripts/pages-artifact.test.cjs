@@ -6,7 +6,7 @@ const assert = require('node:assert/strict');
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
-const { execFileSync } = require('node:child_process');
+const { execFileSync, spawnSync } = require('node:child_process');
 const { stage, loadExclude, parseList, ROOT } = require('./stage-site.cjs');
 
 const BANNED = new RegExp(String.fromCharCode(103, 114, 111, 107, 98, 111, 116), 'i');
@@ -77,7 +77,12 @@ test('branch publish config excludes docs and still ships .well-known', () => {
 });
 });
 
-test('pages jekyll build has no brand-kit.html and no assets/css/style.css', () => {
+test('pages jekyll build has no brand-kit.html and no assets/css/style.css', (t) => {
+  const probe = spawnSync('ruby', ['-e', 'gem "jekyll"'], { encoding: 'utf8' });
+  if (probe.error || probe.status !== 0) {
+    t.skip('jekyll not installed');
+    return;
+  }
   const dest = fs.mkdtempSync(path.join(os.tmpdir(), 'dtrt-jekyll-'));
   const ruby = `
 require 'jekyll'

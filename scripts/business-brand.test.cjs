@@ -31,7 +31,7 @@ test('brand kit has the public paste text and a short bio', () => {
   assert.doesNotMatch(kit, /plan_HAGSLXXUeGkcz|plan_RVDjSToI7vKOM/);
   assert.doesNotMatch(kit, /plan_kZqq0jgr6VrGG|DM SYSTEM/);
   assert.match(kit, /Answer 3 short questions and you'll get a free one-page office map within 3 business days\./);
-  assert.doesNotMatch(kit, /Reply SYSTEM|Writing Retainer|Review Desk|Starter Fix|\$50/);
+  assert.doesNotMatch(kit, /Reply SYSTEM|Writing Retainer|Review Desk|Starter Fix|\$50|Writing Retainer · Review Desk|\$250\/30 days/);
   assert.match(kit, /plan_yuDiw93Zp6Uvr/);
   assert.doesNotMatch(kit, /@gmail\.com|PayPal/);
 });
@@ -66,8 +66,8 @@ test('business pages show theme A offers and keep hobby off the company face', (
   assert.ok(served.length > 20, 'place guard scans served HTML, JS and JSON');
   for (const file of served) {
     const rel = path.relative(root, file).split(path.sep).join('/');
-    assert.doesNotMatch(read(rel), place, rel + ' carries no day-job location');
-    assert.doesNotMatch(read(rel), nova, rel + ' carries no day-job location');
+    assert.doesNotMatch(read(rel), place, rel);
+    assert.doesNotMatch(read(rel), nova, rel);
   }
   assert.match(main, /plan_yuDiw93Zp6Uvr/);
   assert.doesNotMatch(main, /plan_kZqq0jgr6VrGG/);

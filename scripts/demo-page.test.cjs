@@ -49,8 +49,6 @@ test('/demo keeps email -> job card at L2 (owner approves) until it proves 95%, 
   assert.match(js, /lead waiting over 15 min/i, 'queue rule: a lead waiting over 15 min counts as urgent');
 });
 test('/demo job cards use made-up street addresses and never name a real town', () => {
-  // Real DMV-area towns and cities. The demo is a made-up company, so its jobs must not point at real places.
-  // (Some place names are already blocked repo-wide by private-terms.test.cjs and are left out here.)
   const towns = ['Bowie', 'Lanham', 'Clinton', 'Largo', 'Greenbelt', 'Laurel', 'College Park',
     'Silver Spring', 'Waldorf', 'Hyattsville', 'Beltsville', 'Crofton', 'Glenn Dale', 'Mitchellville', 'Cheverly',
     'Glenarden', 'Landover', 'Capitol Heights', 'District Heights', 'Suitland', 'Temple Hills', 'Oxon Hill',

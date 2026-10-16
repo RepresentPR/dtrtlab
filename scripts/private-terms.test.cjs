@@ -1,10 +1,7 @@
 // The git repo is public on GitHub. Pages publishes only the staged site
 // (scripts/stage-site.cjs, _config.yml), which omits docs/ and other internal
 // notes. This guard still scans tracked text, because the repo itself stays public.
-// It fails if private founder terms (moving plans, money planning, day-job
-// and job-search details) reappear in any tracked text file. Terms are stored as
-// truncated SHA-256 hashes so the guard itself does not publish them; the plain
-// list is kept in the founder's private notes.
+// Matches are stored as truncated SHA-256 hashes so this file does not repeat them.
 const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('fs');
@@ -13,13 +10,9 @@ const crypto = require('crypto');
 
 const h = (t) => crypto.createHash('sha256').update(t).digest('hex').slice(0, 16);
 const SINGLE = new Set(['cf6f0c3063e089ac', '5571bf8f246a2931', 'e424dce6bf0bec35', '0ab3f317e98a3b62', '05ef130c628dac68', 'fe01ce351aec9c1e', 'adaadd3c60c44e4a', '2f07555d3e64c04d', 'cc72610c2a2a7312', '5fb2fdb1225d36a6', '5bcc90c3fbdf6f53', 'b95650ceb482a474', 'e602c1e0fd248939', '1ffc0406b9891fcd', 'c06dc8cc17251ea4', '72b978cf9608f1ed', 'f0cd63a491438eb0', '8d002b8524b688cd', '45f43b33da941900', '5699322bbd0e3374', '56a5deb4a33ec689', 'd374b7957d914441', '80f62f3dae7789a4', 'c45b25cebbfe88b1']);
-const PAIRS = new Set(['4140ea46ab618ff1', '2c15efaff108ba54', 'f980fb0d42a0e7b3',
-  // founder's personal inboxes (local part + provider), 2026-10-15
-  'a3b410d9e8b85bfc', '80cb3f0913768a2b']);
-// Fiction allowlist is by filename. It lifts only the story-setting hashes
-// below (the private place, its towns, and the flag terms already in this set).
-// It never lifts day-job towns. Those bans are in retired-copy.test.cjs and
-// apply to every served file, including these fiction files.
+const PAIRS = new Set(['4140ea46ab618ff1', '2c15efaff108ba54', 'f980fb0d42a0e7b3', 'a3b410d9e8b85bfc', '80cb3f0913768a2b']);
+// Filename allowlist. It lifts only the hashes in FICTION_OK.
+// It does not lift the terms enforced by retired-copy.test.cjs.
 const FICTION_OK = new Set(['cf6f0c3063e089ac', '2f07555d3e64c04d', 'cc72610c2a2a7312', '5fb2fdb1225d36a6', '5bcc90c3fbdf6f53', 'b95650ceb482a474', 'e602c1e0fd248939', '72b978cf9608f1ed', 'f0cd63a491438eb0', '8d002b8524b688cd', '45f43b33da941900', '5699322bbd0e3374', '56a5deb4a33ec689', 'd374b7957d914441', '80f62f3dae7789a4', 'c45b25cebbfe88b1']);
 const FICTION_FILES = [
   /^afterlight\.html$/,
@@ -86,14 +79,14 @@ function offenses(file, text) {
   return hits;
 }
 
-test('no private founder terms in any public file', () => {
+test('banned hashes stay out of public files', () => {
   const hits = [];
   for (const file of walk('.').map((f) => f.replace(/^\.\//, ''))) hits.push(...offenses(file, fs.readFileSync(file, 'utf8')));
   for (const file of walkPaths('.')) hits.push(...offenses(file, file));
-  assert.deepStrictEqual(hits, [], 'private terms found:\n' + hits.join('\n'));
+  assert.deepStrictEqual(hits, [], 'banned hash found:\n' + hits.join('\n'));
 });
 
-test('fiction filenames lift only the story-setting hashes', () => {
+test('fiction filenames lift only the allowlisted hashes', () => {
   const setting = String.fromCharCode(80, 117, 101, 114, 116, 111, 32, 82, 105, 99, 111);
   const town = String.fromCharCode(82, 105, 110, 99, 243, 110);
   const small = String.fromCharCode(80, 82, 32, 115, 109, 97, 108, 108);
@@ -117,7 +110,7 @@ test('fiction filenames lift only the story-setting hashes', () => {
   assert.ok(offenses('scripts/map-form.test.cjs', setting).length);
 });
 
-test('job application letters are not in the repo', () => {
+test('docs/applications is not in the repo', () => {
   assert.ok(!fs.existsSync('docs/applications'), 'docs/applications must stay out of the public repo');
 });
 

@@ -1,4 +1,4 @@
-// Guard: retired offers, old guarantees, and day-job place names must not
+// Guard: retired offers, old guarantees, and the terms below must not
 // come back on the served site. Pages publishes the staged tree
 // (scripts/stage-site.cjs), not the whole repo. This guard scans every served
 // html, js, json, md, css, txt, and webmanifest file. docs/ is skipped only
@@ -223,7 +223,7 @@ test('only the ban-list files are exempt, by exact path', () => {
   assert.ok(scanText('demo/sample.html', 'Clinton').length);
 });
 
-test('fiction filenames do not lift day-job place or offer bans', () => {
+test('fiction filenames do not lift these bans', () => {
   assert.ok(scanText('afterlight.html', 'Clinton').length);
   assert.ok(scanText('stories/afterlight/island.html', 'Southern Maryland').length);
   assert.ok(scanText('clips/index.html', 'SoMD').length);
