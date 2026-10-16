@@ -107,13 +107,17 @@ test('retired copy stays off every served HTML, JS and JSON file', () => {
   assert.deepEqual(hits, [], 'retired copy found:\n' + hits.join('\n'));
 });
 
-test('the why-dont-you clip stays removed', () => {
-  assert.equal(fs.existsSync(path.join(ROOT, 'img/thumbs/why-dont-you.jpg')), false);
-  assert.equal(fs.existsSync(path.join(ROOT, 'watch/media/why-dont-you.mp4')), false);
+test('the removed clips stay off the served site', () => {
+  for (const name of ['why-dont-you', 'move-it']) {
+    assert.equal(fs.existsSync(path.join(ROOT, 'img/thumbs/' + name + '.jpg')), false, name);
+    assert.equal(fs.existsSync(path.join(ROOT, 'watch/media/' + name + '.mp4')), false, name);
+  }
+  const clips = fs.readFileSync(path.join(ROOT, 'clips/index.html'), 'utf8');
+  assert.doesNotMatch(clips, /why-dont-you|move-it/);
   const hits = [];
   for (const file of walk(ROOT)) {
     const text = fs.readFileSync(file, 'utf8');
-    if (text.includes('why-dont-you')) hits.push(path.relative(ROOT, file));
+    if (/why-dont-you|move-it/.test(text)) hits.push(path.relative(ROOT, file));
   }
   assert.deepEqual(hits, []);
 });
