@@ -168,6 +168,7 @@ test('contact.html posts to the form alias', () => {
   assert.match(topicJs, /dmca:\s*"DMCA notice"/);
   assert.match(topicJs, /privacy:\s*"Privacy request"/);
   assert.match(topicJs, /refund:\s*"Refund or billing"/);
+  assert.match(topicJs, /other:\s*"Other"/);
   const thanks = fs.readFileSync(path.join(root, 'contact/thanks/index.html'), 'utf8');
   assert.match(thanks, /Thanks\. We'll read this and reply by email\./);
   const dmca = fs.readFileSync(path.join(root, 'legal/dmca.html'), 'utf8');
@@ -182,6 +183,29 @@ test('contact.html posts to the form alias', () => {
       assert.match(href, /^\/contact\.html(?:\?|$)/, path.relative(root, file) + ' contact form href ' + href);
     }
   }
+});
+
+test('every topic query in served files has a contact-topic mapping', () => {
+  const topicJs = fs.readFileSync(path.join(root, 'js/contact-topic.js'), 'utf8');
+  const mapped = new Set([...topicJs.matchAll(/([a-z0-9]+):\s*"/g)].map((match) => match[1]));
+  assert.ok(mapped.has('other') && mapped.has('dmca') && mapped.has('privacy') && mapped.has('refund'));
+  const seen = [];
+  for (const file of walk(root)) {
+    const page = fs.readFileSync(file, 'utf8');
+    const rel = path.relative(root, file);
+    for (const anchor of anchors(page)) {
+      const href = attr('<a ' + anchor.attrs + '>', 'href');
+      const found = href.match(/[?&]topic=([^&#"']+)/);
+      if (!found) continue;
+      const key = decodeURIComponent(found[1]);
+      seen.push(rel + ' topic=' + key);
+      assert.ok(mapped.has(key), rel + ' links topic=' + key + ' with no mapping');
+    }
+  }
+  assert.ok(seen.some((item) => item.endsWith('topic=other')));
+  assert.ok(seen.some((item) => item.endsWith('topic=dmca')));
+  assert.ok(seen.some((item) => item.endsWith('topic=privacy')));
+  assert.ok(seen.some((item) => item.endsWith('topic=refund')));
 });
 
 test('a bug report has its own thanks page', () => {

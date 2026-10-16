@@ -10,6 +10,8 @@
 // scripts/demo-page.test.cjs, scripts/business-brand.test.cjs,
 // scripts/retired-copy.test.cjs, and scripts/private-terms.test.cjs.
 // There is no legal-page exception and no fiction exception for these phrases.
+// File names treat "." inside a name like a space or hyphen (Silver.Spring.jpg)
+// and also match the joined form with no separator (reviewdesk.png).
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -179,12 +181,53 @@ const PLANTS = [
   ['germantown', 'Germantown'],
 ];
 
+const JOINED = [
+  'first-line rewrite',
+  'Stay on the chair',
+  'We write your posts',
+  'public data',
+  'from public sources',
+  'Writing plans',
+  '30-day numbers',
+  'day-30 numbers',
+  'Starter Fix',
+  'Reply SYSTEM',
+  'DM SYSTEM',
+  'Reply CHECK',
+  'the Mini plan',
+  'CCC ONE',
+  'Ops Trax',
+  'Mini Social Pack',
+  'Week Pack',
+  'Writing Retainer',
+  'Review Desk',
+  '7-Day Do-It-Right Guarantee',
+  '7-Day Guarantee',
+  'I rewrite it free',
+  'rewrite it free',
+  'rewrite free',
+  'free rewrites',
+  'fix it for free',
+  'Southern Maryland',
+  'Southern MD',
+  'So MD',
+  "St Mary's",
+  'Silver Spring',
+  'College Park',
+  'Glenn Dale',
+];
+
 function loosen(text, foldUnderscore) {
   let body = String(text)
     .replace(/[\u201c\u201d\u2018\u2019"'`]/g, '')
     .replace(/[-–—]/g, ' ');
   if (foldUnderscore) body = body.replace(/_/g, ' ');
+  if (foldUnderscore === 'name') body = body.replace(/\./g, ' ');
   return body.replace(/\s+/g, ' ');
+}
+
+function joinedKey(text) {
+  return String(text).toLowerCase().replace(/[^a-z0-9]/g, '');
 }
 
 function scanPatterns(rel, text, patterns, foldUnderscore) {
@@ -203,8 +246,21 @@ function scanText(rel, text) {
   return scanPatterns(rel, text, PHRASES, false);
 }
 
+function scanJoined(rel) {
+  if (EXEMPT.has(rel)) return [];
+  const hits = [];
+  for (const segment of String(rel).split('/')) {
+    const folded = joinedKey(segment.replace(/\.[^.]+$/, ''));
+    for (const phrase of JOINED) {
+      const needle = joinedKey(phrase);
+      if (needle.length >= 4 && folded.includes(needle)) hits.push(rel + ': ' + needle);
+    }
+  }
+  return hits;
+}
+
 function scanName(rel) {
-  return scanPatterns(rel, rel, PHRASES, true);
+  return scanPatterns(rel, rel, PHRASES, 'name').concat(scanJoined(rel));
 }
 
 function isServedFile(name) {
@@ -286,7 +342,10 @@ test('served file names are checked against the full ban list', () => {
   assert.ok(scanName('img/clinton.jpg').length, 'img/clinton.jpg');
   assert.ok(scanName('img/Silver-Spring.webp').length, 'Silver-Spring');
   assert.ok(scanName('img/Silver_Spring.jpg').length, 'Silver_Spring');
+  assert.ok(scanName('img/Silver.Spring.jpg').length, 'Silver.Spring');
+  assert.ok(scanName('img/silverspring.jpg').length, 'silverspring');
   assert.ok(scanName('img/review-desk.png').length, 'review-desk');
+  assert.ok(scanName('img/reviewdesk.png').length, 'reviewdesk');
   assert.ok(scanName('img/plan_HAGSLXXUeGkcz.png').length, 'plan id');
   const bot = String.fromCharCode(103, 114, 111, 107, 98, 111, 116);
   assert.ok(scanName('img/' + bot + '.png').length, 'bot name');
