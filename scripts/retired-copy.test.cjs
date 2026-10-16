@@ -49,17 +49,25 @@ const PHRASES = [
 const SERVED = /\.(html?|js|mjs|json|webmanifest)$/i;
 const SKIP_DIRS = new Set(['.git', 'node_modules', 'scripts', 'docs']);
 
-// A hit is skipped only when the file and the phrase both match a row.
-// Legal pages are not skipped as a group. A past-plan refund sentence may
-// name a retired guarantee. Clinton, Southern Maryland, and SoMD are banned
-// on every served file, including hobby and fiction pages. The Puerto Rico
-// flag images (img/flag.*) are the only hobby/fiction files outside this
-// text scan.
+// A hit is skipped only when the file and the phrase both match one sentence.
+// Legal pages are not skipped as a group. The old guarantee name is allowed
+// only inside a sentence that is a historical refund for a past plan: it
+// contains "past plan", "previous plan", or a dated phrase. Review Desk has
+// no legal exception unless that same kind of sentence contains it. Day-job
+// place names are banned on every served file, including hobby and fiction
+// pages. Flag images (img/flag.*) are the only hobby/fiction files outside
+// this text scan.
+const HISTORICAL_REFUND = /past plan|previous plan|(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},?\s+\d{4}/i;
 const ALLOWLIST = [
   {
-    file: /^legal\/(?:refunds|terms)\.html$/,
-    line: /past plans follow Whop/i,
-    phrase: /7-Day Do-It-Right Guarantee|I rewrite it free|7-DAY|DO-IT-RIGHT|Review Desk/i
+    file: /^legal\/[^/]+\.html$/,
+    line: HISTORICAL_REFUND,
+    phrase: /7-Day Do-It-Right Guarantee|I rewrite it free|7-DAY|DO-IT-RIGHT/i
+  },
+  {
+    file: /^legal\/[^/]+\.html$/,
+    line: HISTORICAL_REFUND,
+    phrase: /Review Desk/i
   }
 ];
 
@@ -74,8 +82,9 @@ function walk(dir, out = []) {
 }
 
 function allowed(rel, text, rx) {
-  return text.split(/\n/).some((line) => (
-    ALLOWLIST.some((row) => row.file.test(rel) && row.line.test(line) && row.phrase.test(line) && rx.test(line))
+  const sentences = text.split(/\n/).flatMap((line) => line.split(/(?<=[.!?])\s+/));
+  return sentences.some((sentence) => (
+    ALLOWLIST.some((row) => row.file.test(rel) && row.line.test(sentence) && row.phrase.test(sentence) && rx.test(sentence))
   ));
 }
 
