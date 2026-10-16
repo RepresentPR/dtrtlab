@@ -3,8 +3,10 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('fs');
 const path = require('path');
+const { isExcluded, loadExclude } = require('./stage-site.cjs');
 const ROOT = path.resolve(__dirname, '..');
 const read = (f) => fs.readFileSync(path.join(ROOT, f), 'utf8');
+const RETIRED_DEMO_NAME = 'Sample' + ' Heating';
 test('/demo exists and shows the "Demo, fictional data" banner outside the JS-rendered views', () => {
   const s = read('demo/index.html');
   const ribbon = (s.match(/<div class="ribbon"[^>]*>([\s\S]*?)<\/div>/) || [])[1] || '';
@@ -21,9 +23,27 @@ test('/demo ships its own assets, and the homepage links to it', () => {
 });
 test('/demo data stays fictional: labeled company, 555 numbers, example.com emails', () => {
   const js = read('demo/demo.js');
-  assert.match(js, /Sample Heating & Air Co\. \(demo\)/);
+  assert.match(js, /Pretendwell Heating & Air Co\. \(demo\)/);
+  assert.equal(js.includes(RETIRED_DEMO_NAME), false);
   for (const m of js.matchAll(/\b\d{3}-\d{4}\b/g)) assert.match(m[0], /^555-01\d\d$/, `non-fictional number ${m[0]}`);
   for (const m of js.matchAll(/[\w.+-]+@([\w-]+\.[\w.]+)/g)) assert.strictEqual(m[1], 'example.com', `non-fictional email ${m[0]}`);
+});
+test('the retired demo business name stays off every served file', () => {
+  const exclude = loadExclude();
+  const needle = Buffer.from(RETIRED_DEMO_NAME);
+  const hits = [];
+  function walk(dir, rel) {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (e.name === '.git') continue;
+      const child = rel ? rel + '/' + e.name : e.name;
+      if (isExcluded(child, exclude)) continue;
+      const p = path.join(dir, e.name);
+      if (e.isDirectory()) walk(p, child);
+      else if (e.isFile() && fs.readFileSync(p).includes(needle)) hits.push(child);
+    }
+  }
+  walk(ROOT, '');
+  assert.deepEqual(hits, [], 'retired demo name found:\n' + hits.join('\n'));
 });
 test('/demo v2 has the 4 screens: Tonight, Needs you, Jobs, Autopilot', () => {
   const js = read('demo/demo.js');
