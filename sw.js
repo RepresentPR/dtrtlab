@@ -1,10 +1,11 @@
 /* DTRT Lab service worker.
-   A new cache name drops old cached files; revised script URLs use a new
-   ?v= key. GitHub Pages cannot set Cache-Control.
+   A new cache name drops old cached files, including a removed clip
+   thumbnail. Revised script URLs use a new ?v= key.
+   GitHub Pages cannot set Cache-Control.
    HTML is network-first (updates roll out). Other same-origin files
    are stale-while-revalidate. JSON and third parties are not cached.
 */
-var VERSION = "20261015-og-job-desk";
+var VERSION = "20261016-drop-clip";
 var CACHE = "dtrtlab-" + VERSION;
 var PRECACHE = [
   "/",

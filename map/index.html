@@ -23,7 +23,7 @@
 <meta name="twitter:image" content="https://dtrtlab.com/img/brand/og-job-desk-2026-10-15.png">
 <title>Get your free office map — Ian | DTRT Lab</title>
   <meta name="description" content="Answer 3 short questions and you'll get a free one-page office map within 3 business days.">
-  <link rel="stylesheet" href="/css/theme-a.css?v=20261016-qa">
+  <link rel="stylesheet" href="/css/theme-a.css?v=20261016-qa2">
   <link rel="canonical" href="https://dtrtlab.com/map/">
 </head>
 <body>
@@ -53,29 +53,54 @@
             <label><input type="radio" name="What do you want" value="Free AI visibility check" required> Free AI visibility check</label>
             <label><input type="radio" name="What do you want" value="Partnership" required> Partnership</label>
           </fieldset>
-          <label for="business-name">Business name
-            <input id="business-name" name="Business name" type="text" required autocomplete="organization" maxlength="200">
-          </label>
-          <label for="business-type">Type of business
-            <select id="business-type" name="Type of business" required>
-              <option value="">Choose one</option>
-              <option>HVAC</option>
-              <option>Plumbing</option>
-              <option>Electrical</option>
-              <option>Property management</option>
-              <option>Remodeling</option>
-              <option>Other</option>
-            </select>
-          </label>
-          <label for="week">What eats most of your week?
-            <textarea id="week" name="What eats most of your week?" required rows="5" maxlength="4000"></textarea>
-          </label>
+          <div data-ask="map check">
+            <label for="business-name">Business name
+              <input id="business-name" name="Business name" type="text" data-req="1" required autocomplete="organization" maxlength="200">
+            </label>
+          </div>
+          <div data-ask="map">
+            <label for="business-type">Type of business
+              <select id="business-type" name="Type of business" data-req="1" required>
+                <option value="">Choose one</option>
+                <option>HVAC</option>
+                <option>Plumbing</option>
+                <option>Electrical</option>
+                <option>Property management</option>
+                <option>Remodeling</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label for="week">What eats most of your week?
+              <textarea id="week" name="What eats most of your week?" data-req="1" required rows="5" maxlength="4000"></textarea>
+            </label>
+          </div>
+          <div data-ask="check" hidden>
+            <label for="website">Website
+              <input id="website" name="Website" type="text" data-req="1" inputmode="url" maxlength="300" disabled>
+            </label>
+            <label for="city">City or service area
+              <input id="city" name="City or service area" type="text" data-req="1" maxlength="200" disabled>
+            </label>
+          </div>
+          <div data-ask="partner" hidden>
+            <label for="your-name">Your name
+              <input id="your-name" name="Your name" type="text" data-req="1" autocomplete="name" maxlength="200" disabled>
+            </label>
+            <label for="brand">Brand or website
+              <input id="brand" name="Brand or website" type="text" data-req="1" maxlength="300" disabled>
+            </label>
+            <label for="together">What should we work on?
+              <textarea id="together" name="What should we work on?" data-req="1" rows="5" maxlength="4000" disabled></textarea>
+            </label>
+          </div>
           <label for="email">Email
             <input id="email" name="email" type="email" required autocomplete="email" maxlength="200">
           </label>
-          <label for="phone"><span class="ask">Phone (optional)</span>
-            <input id="phone" name="Phone" type="tel" autocomplete="tel" maxlength="40">
-          </label>
+          <div data-ask="map">
+            <label for="phone"><span class="ask">Phone (optional)</span>
+              <input id="phone" name="Phone" type="tel" autocomplete="tel" maxlength="40">
+            </label>
+          </div>
           <button class="btn" type="submit">Send my answers</button>
           <p class="fine">We use your answers only to reply to this request. <a href="/legal/privacy.html">Privacy</a></p>
         </form>

@@ -140,8 +140,11 @@ test('CHECK and partnership CTAs use the map form', () => {
   assert.doesNotMatch(fs.readFileSync(path.join(root, 'js/partners.js'), 'utf8'), /mailto:/);
 });
 
-test('brand kit does not say Reply SYSTEM', () => {
-  assert.doesNotMatch(fs.readFileSync(path.join(root, 'brand-kit.md'), 'utf8'), /Reply SYSTEM/);
+test('brand kit social lines ask to reply SYSTEM for a free office map', () => {
+  const kit = fs.readFileSync(path.join(root, 'brand-kit.md'), 'utf8');
+  assert.match(kit, /Reply SYSTEM for a free office map/);
+  assert.doesNotMatch(kit, /DM SYSTEM/);
+  assert.doesNotMatch(kit.split('Reply SYSTEM for a free office map').join(''), /Reply SYSTEM/);
 });
 
 test('served docs and scripts do not name the bot mail host', () => {

@@ -39,6 +39,7 @@ h2{font-size:clamp(30px,4vw,44px);line-height:1.1;letter-spacing:-.02em;font-wei
 .offer .btn{margin-top:auto}.offer .btn:hover{background:var(--navy);color:var(--white);border-color:var(--navy)}
 .fine{font-size:15px;margin-top:20px;max-width:75ch}
 .guarantee{background:var(--navy);color:var(--white);border-radius:12px;padding:30px 28px;margin-top:34px;display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center}
+.guarantee.plain{display:block}
 .guarantee .seal{width:84px;height:84px;border-radius:50%;background:var(--green);color:var(--navy);display:grid;place-items:center;font-weight:800;text-align:center;font-size:14px;line-height:1.1}
 .guarantee h3{font-size:24px;font-weight:800}.guarantee p{color:var(--light);margin-top:6px}
 .steps{list-style:none;padding:0;margin:30px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:s}
@@ -92,3 +93,7 @@ footer.foot nav{display:flex;flex-wrap:wrap;gap:10px 18px}footer.foot a{text-dec
 .fallback .btn{min-height:40px;padding:8px 14px;font-size:15px}
 .hp{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
 @media(max-width:560px){.map-form .btn{width:100%}}
+.map-form [hidden]{display:none}
+body.full{min-height:100vh;display:flex;flex-direction:column}
+body.full main{flex:1 0 auto;display:flex;flex-direction:column}
+body.full main > .hero{flex:1 0 auto}

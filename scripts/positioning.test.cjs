@@ -54,7 +54,7 @@ test('homepage leads with the Job Desk and keeps the small plans lower in pricin
   assert.doesNotMatch(nav, /\$50|plan_HAGSLXXUeGkcz/, 'Mini is off the nav');
   const desk = main.match(/<section id="job-desk"[\s\S]*?<\/section>/)[0];
   assert.match(desk, /\$1,500<small> setup<\/small> \+ \$250<small>\/mo<\/small>/);
-  for (const item of ['Nightly report card', 'Job tracking', 'Customer updates', 'Quote follow-up', 'Email-to-task', 'Review Desk module', 'AI Visibility']) assert.match(desk, new RegExp(item));
+  for (const item of ['Nightly report card', 'Job tracking', 'Customer updates', 'Quote follow-up', 'Email-to-task', 'Review replies', 'AI Visibility']) assert.match(desk, new RegExp(item));
   assert.match(desk, /Never a password/);
   assert.match(desk, /remove me anytime/);
   assert.match(desk, /3 Job Desk clients at a time/);
@@ -76,7 +76,8 @@ test('homepage leads with the Job Desk and keeps the small plans lower in pricin
   assert.match(fix, /href="\/map\/\?want=check"[^>]*>Get my free AI check<\/a>/);
   assert.match(main, /AI Visibility Fix[\s\S]*?\$250[\s\S]*?Day-30 re-check/);
   assert.doesNotMatch(main, /Reply CHECK/);
-  assert.match(main, /Review Desk module/);
+  assert.match(main, /Review replies/);
+  assert.doesNotMatch(main, /Review Desk/);
   assert.match(main, /can't promise/i, 'no guaranteed results (FTC-safe)');
   for (const file of ['index.html', 'find.html', 'contact.html', 'brand-kit.md', 'content/company.json', 'content/site.json', 'legal/terms.html']) {
     assert.doesNotMatch(read(file), /body shop|auto ?body|collision repair/i, file + ' has no body-shop examples');

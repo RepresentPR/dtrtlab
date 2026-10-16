@@ -18,7 +18,7 @@ const PAIRS = new Set(['4140ea46ab618ff1', '2c15efaff108ba54', 'f980fb0d42a0e7b3
 // in-story moves. Nothing else may.
 const FICTION_OK = new Set(['cf6f0c3063e089ac', '2f07555d3e64c04d', 'cc72610c2a2a7312', '5fb2fdb1225d36a6', '5bcc90c3fbdf6f53', 'b95650ceb482a474', 'e602c1e0fd248939']);
 const FICTION_FILES = [/^afterlight\.html$/, /^story\.html$/, /^game\.html$/, /^worlds\.html$/, /^stories\/afterlight\//, /^content\/afterlight\.json$/, /^content\/product\.json$/, /^tools\/build_afterlight\.py$/];
-const ALLOWED_NEXT = { '1ffc0406b9891fcd': 'deductible' }; // donation disclaimer in js/journey-language.js
+const ALLOWED_NEXT = { '1ffc0406b9891fcd': 'deductible' }; // donation disclaimer; js/journey-language.js was removed 2026-10-16
 const TEXT = /\.(html?|js|mjs|cjs|json|md|txt|css|xml|yml|yaml|toml|webmanifest|py|sh|ps1|svg)$|^(_headers|CNAME|robots\.txt|security\.txt)$/i;
 const SKIP_DIRS = new Set(['.git', 'node_modules']);
 

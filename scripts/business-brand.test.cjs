@@ -28,7 +28,9 @@ test('brand kit has the public paste text and a short bio', () => {
   assert.match(kit, /https:\/\/www\.instagram\.com\/officiallydtrt\//);
   // Mini Social Pack and Week Pack retired 2026-10-15 (Co-Founder): no links to their Whop plans.
   assert.doesNotMatch(kit, /plan_HAGSLXXUeGkcz|plan_RVDjSToI7vKOM/);
-  assert.doesNotMatch(kit, /plan_kZqq0jgr6VrGG|Reply SYSTEM/);
+  assert.doesNotMatch(kit, /plan_kZqq0jgr6VrGG|DM SYSTEM/);
+  assert.match(kit, /Reply SYSTEM for a free office map/);
+  assert.doesNotMatch(kit.split('Reply SYSTEM for a free office map').join(''), /Reply SYSTEM/);
   assert.match(kit, /plan_yuDiw93Zp6Uvr/);
   assert.doesNotMatch(kit, /@gmail\.com|PayPal/);
 });
@@ -42,13 +44,29 @@ test('business pages show theme A offers and keep hobby off the company face', (
   assert.match(main, /DMV Area/);
   assert.doesNotMatch(main, /Fix\. Measure\. Report\./, 'the 30-day numbers section is retired');
   assert.match(home, /"name": "Washington DC metropolitan area \(DMV\)"/);
-  for (const file of ['index.html', 'find.html', 'contact.html', 'js/nav.js', 'legal/terms.html', 'content/company.json']) {
-    assert.doesNotMatch(read(file), /Clinton|Southern Maryland|SoMD/i, file + ' carries no day-job location');
+  const place = /\bClinton\b|Southern Maryland|\bSoMD\b|\bBowie\b|\bLanham\b|\bLargo\b|\bWaldorf\b|Silver Spring|\bBaltimore\b|\bArlington\b|\bAnnapolis\b/i;
+  const placeAllow = /^(?:afterlight|cs2|game|story|worlds|lab)\.html$|^(?:stories\/afterlight|watch|clips)\//;
+  const served = [];
+  (function walkPlaces(dir) {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'scripts' || entry.name === 'docs') continue;
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) walkPlaces(full);
+      else if (/\.(html?|js|mjs|json|webmanifest)$/i.test(entry.name)) served.push(full);
+    }
+  })(root);
+  assert.ok(served.length > 20, 'place guard scans served HTML, JS and JSON');
+  for (const file of served) {
+    const rel = path.relative(root, file).split(path.sep).join('/');
+    const text = read(rel);
+    if (placeAllow.test(rel) && place.test(text)) continue;
+    assert.doesNotMatch(text, place, rel + ' carries no day-job location');
   }
   assert.match(main, /plan_yuDiw93Zp6Uvr/);
   assert.doesNotMatch(main, /plan_kZqq0jgr6VrGG/);
   for (const id of ['plan_HAGSLXXUeGkcz', 'plan_RVDjSToI7vKOM', 'plan_Vn0gQGFWQx9CA']) assert.doesNotMatch(home, new RegExp(id), 'retired offer link: ' + id);
-  assert.match(main, /DTRT 7-Day Do-It-Right Guarantee/);
+  assert.doesNotMatch(home, /7-Day Do-It-Right Guarantee|I rewrite it free|7-DAY|DO-IT-RIGHT/);
+  assert.match(main, /If it's not right, I fix it at no charge\./);
   assert.doesNotMatch(home, /free plan|PayPal|Stripe|twitch\.tv|\/cs2\.html|\/afterlight\.html|#080808|cfe35a/i);
   assert.doesNotMatch(main, /\/careers\.html/i);
   for (const file of ['find.html', 'contact.html']) {

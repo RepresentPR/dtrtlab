@@ -77,7 +77,7 @@ Use these exact blocks so the profiles match the site. Link the business home, n
 
 - Handle: @officiallydtrt
 - Profile URL: https://www.instagram.com/officiallydtrt/
-- Bio: Ian | DTRT Lab · DMV Area / The AI office manager for service businesses. / Jobs tracked, customers updated, quotes followed up. / DM SYSTEM for a free map 👇
+- Bio: Ian | DTRT Lab · DMV Area / The AI office manager for service businesses. / Jobs tracked, customers updated, quotes followed up. / Reply SYSTEM for a free office map 👇
 - Link: https://dtrtlab.com/
 - Link label: DTRT Lab
 
@@ -85,7 +85,7 @@ Use these exact blocks so the profiles match the site. Link the business home, n
 
 - Handle: @iananthonyfc
 - Profile URL: https://www.tiktok.com/@iananthonyfc
-- Bio: AI office manager for DMV service businesses. DM SYSTEM for a free map
+- Bio: AI office manager for DMV service businesses. Reply SYSTEM for a free office map
 - Link: https://dtrtlab.com/
 - Link label: DTRT Lab
 
