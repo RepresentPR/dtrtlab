@@ -1,7 +1,8 @@
 // Guard: retired offers, old guarantees, and day-job place names must not
 // come back on the served site. Pages publishes the staged tree
 // (scripts/stage-site.cjs), not the whole repo. This guard scans every served
-// html, js, json, md, css, txt, and webmanifest file. docs/ is not published.
+// html, js, json, md, css, txt, and webmanifest file. docs/ is skipped only
+// because _config.yml lists it under exclude.
 // brand-kit.md is linked from /brand.html, so it is included.
 // Filename exemptions are exact paths only. These files hold the ban lists:
 // scripts/demo-page.test.cjs, scripts/business-brand.test.cjs,
@@ -193,6 +194,9 @@ test('retired copy stays off every served file', () => {
   assert.ok(rels.includes('brand-kit.md'), 'brand-kit.md is served and checked');
   assert.ok(rels.includes('clips/index.html'), 'hobby pages are checked');
   assert.ok(rels.includes('afterlight.html'), 'fiction pages are checked');
+  assert.ok(EXCLUDE.includes('docs'), 'docs skip comes from _config.yml exclude');
+  assert.equal(isExcluded('docs/vision.md', EXCLUDE), true);
+  assert.equal(isExcluded('docs/vision.md', EXCLUDE.filter((item) => item !== 'docs')), false, 'docs is scanned when it leaves the exclude list');
   assert.equal(rels.includes('docs/vision.md'), false, 'docs/ is not served');
   for (const rel of EXEMPT) assert.equal(rels.includes(rel), false, rel);
   const hits = [];

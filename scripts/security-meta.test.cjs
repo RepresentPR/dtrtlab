@@ -5,10 +5,15 @@ const assert = require('node:assert');
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const { isExcluded, loadExclude } = require('./stage-site.cjs');
 const ROOT = path.resolve(__dirname, '..');
-const SKIP = new Set(['docs', 'scripts', 'tools', 'node_modules', 'brand-assets']);
-const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) =>
-  e.name.startsWith('.') || SKIP.has(e.name) ? [] : e.isDirectory() ? walk(path.join(d, e.name)) : e.name.endsWith('.html') ? [path.join(d, e.name)] : []);
+const EXCLUDE = loadExclude();
+const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => {
+  const p = path.join(d, e.name);
+  const rel = path.relative(ROOT, p).split(path.sep).join('/');
+  if (isExcluded(rel, EXCLUDE)) return [];
+  return e.isDirectory() ? walk(p) : e.name.endsWith('.html') ? [p] : [];
+});
 const csp = (s) => (s.match(/<meta http-equiv="Content-Security-Policy" content="([^"]+)"/i) || [])[1];
 function inlineHashes(s) {
   return [...s.matchAll(/<script(?![^>]*\bsrc=)([^>]*)>([\s\S]*?)<\/script>/gi)]

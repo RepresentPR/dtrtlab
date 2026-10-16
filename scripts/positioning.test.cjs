@@ -3,17 +3,21 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { execFileSync } = require('node:child_process');
+const { isExcluded, loadExclude } = require('./stage-site.cjs');
 
 const root = path.join(__dirname, '..');
 const read = name => fs.readFileSync(path.join(root, name), 'utf8');
 // Locked 2026-10-15 (Co-Founder): we do the work, Ian is accountable, you see your numbers at 30 days.
 // Research method stays internal; public pages never lead with it.
+// docs/ is omitted only when _config.yml excludes it. versions, media, and clips
+// stay off the company-face lead check even though Pages still serves them.
 const METHOD = /public data|playbooks?|filings|earnings calls?/i;
-const PUBLIC_EXCLUDE = /^(docs|scripts|tools|versions|media|clips|node_modules)\//;
+const PUBLIC_EXCLUDE = /^(scripts|tools|versions|media|clips|node_modules)\//;
+const EXCLUDE = loadExclude();
 
 function publicPages() {
   return execFileSync('git', ['ls-files', '*.html'], { cwd: root, encoding: 'utf8' })
-    .split('\n').filter(Boolean).filter(file => !PUBLIC_EXCLUDE.test(file));
+    .split('\n').filter(Boolean).filter(file => !PUBLIC_EXCLUDE.test(file) && !isExcluded(file, EXCLUDE));
 }
 
 function leadText(html) {

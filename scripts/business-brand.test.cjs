@@ -2,6 +2,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const { isExcluded, loadExclude } = require('./stage-site.cjs');
 const root = path.join(__dirname, '..');
 const read = name => fs.readFileSync(path.join(root, name), 'utf8');
 
@@ -46,18 +47,22 @@ test('business pages show theme A offers and keep hobby off the company face', (
   assert.match(home, /"name": "Washington DC metropolitan area \(DMV\)"/);
   const place = /\bClinton\b|Southern Maryland|\bSoMD\b|Southern MD\b|So\.\s*MD\b|St\.?\s*Mary['’]s|\bCalvert\b|\bTysons\b|\bBowie\b|\bLanham\b|\bLargo\b|\bWaldorf\b|Silver Spring|\bBaltimore\b|\bArlington\b|\bAnnapolis\b|\bGreenbelt\b|\bBeltsville\b|\bLaurel\b|\bHyattsville\b|College Park|Glenn Dale|\bMitchellville\b|\bRockville\b|\bBethesda\b|\bAlexandria\b|\bFairfax\b|\bFrederick\b|\bGaithersburg\b|\bGermantown\b/i;
   const nova = /\bNoVA\b/;
+  const exclude = loadExclude();
   const served = [];
   (function walkPlaces(dir) {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'docs') continue;
       const full = path.join(dir, entry.name);
       const rel = path.relative(root, full).split(path.sep).join('/');
+      if (isExcluded(rel, exclude)) continue;
       if (rel === 'scripts/demo-page.test.cjs' || rel === 'scripts/business-brand.test.cjs' || rel === 'scripts/retired-copy.test.cjs' || rel === 'scripts/private-terms.test.cjs') continue;
       if (entry.isDirectory()) walkPlaces(full);
-      else if (/\.(html?|js|mjs|json|md|css|txt|webmanifest)$/i.test(entry.name)) served.push(full);
+      else if (/\.(html?|js|mjs|json|md|css|txt|webmanifest)$/i.test(entry.name) && fs.statSync(full).size < 5e6) served.push(full);
     }
   })(root);
+  assert.ok(exclude.includes('docs'), 'docs stays unpublished only while _config.yml excludes it');
   assert.ok(served.some(f => f.endsWith(path.join('clips', 'index.html'))), 'clips/index.html is checked');
+  assert.ok(served.some(f => f.endsWith('brand-kit.md')), 'brand-kit.md is served and checked');
+  assert.equal(served.some(f => f.endsWith(path.join('docs', 'vision.md'))), false);
   assert.ok(served.length > 20, 'place guard scans served HTML, JS and JSON');
   for (const file of served) {
     const rel = path.relative(root, file).split(path.sep).join('/');

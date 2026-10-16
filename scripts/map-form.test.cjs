@@ -3,14 +3,16 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 
+const { isExcluded, loadExclude } = require('./stage-site.cjs');
 const root = path.join(__dirname, '..');
 const CANONICAL = "Answer 3 short questions and you'll get a free one-page office map within 3 business days.";
-const skip = new Set(['docs', 'scripts', 'tools', 'node_modules', 'brand-assets']);
+const exclude = loadExclude();
 
 function walk(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
-    if (entry.name.startsWith('.') || skip.has(entry.name)) return [];
     const full = path.join(dir, entry.name);
+    const rel = path.relative(root, full).split(path.sep).join('/');
+    if (isExcluded(rel, exclude)) return [];
     if (entry.isDirectory()) return walk(full);
     return entry.name.endsWith('.html') ? [full] : [];
   });

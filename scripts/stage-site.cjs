@@ -30,7 +30,6 @@ function loadExclude(root = ROOT) {
 
 function isExcluded(rel, entries) {
   const norm = rel.split(path.sep).join('/');
-  if (norm === 'docs' || norm.startsWith('docs/')) return true;
   if (norm.endsWith('/.gitkeep') || norm === '.gitkeep') return true;
   if (norm === '_config.yml' || norm === '_site' || norm.startsWith('_site/')) return true;
   if (norm === '.git' || norm.startsWith('.git/')) return true;
