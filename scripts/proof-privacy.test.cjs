@@ -4,9 +4,11 @@ const fs = require('fs');
 test('public proof.json carries only non-sensitive aggregate counts', (t) => {
   if (!fs.existsSync('content/proof.json')) return t.skip('proof page not added yet');
   const p = JSON.parse(fs.readFileSync('content/proof.json', 'utf8'));
-  const allowed = ['updated_et', 'days_running', 'companies_studied', 'sources_collected', 'knowledge_notes', 'posts_published', 'audience_total', 'history'];
-  for (const k of Object.keys(p)) assert.ok(allowed.includes(k), `unexpected key ${k}`);
+  const allowed = ['updated_et', 'days_running', 'sources_collected', 'knowledge_notes', 'posts_published', 'audience_total', 'history'];
   const s = JSON.stringify(p).toLowerCase();
+  for (const k of Object.keys(p)) assert.ok(allowed.includes(k), `unexpected key ${k}`);
+  assert.ok(!Object.prototype.hasOwnProperty.call(p, 'companies_studied'), 'companies_studied is forbidden');
+  assert.ok(!s.includes('companies_studied'), 'companies_studied is forbidden');
   for (const bad of ['revenue', 'usd', '$', 'email', '@', 'lead', 'whop']) assert.ok(!s.includes(bad), `proof.json mentions ${bad}`);
 });
 test('live owner data is committed only as ciphertext', (t) => {

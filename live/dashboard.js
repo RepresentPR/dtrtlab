@@ -30,7 +30,7 @@ chart($('#c-plat'),Object.keys(PC).map(p=>({n:p,c:PC[p],pts:h.map(d=>[d.date,(d.
 const pb=o.posts_by_day||{};chart($('#c-posts'),[{n:'posts/day',c:'#13C27A',pts:Object.entries(pb)}],{bars:1,zero:1});
 $('#t-pipe').innerHTML=[tile('Leads tracked',t.leads,h,'leads'),tile('Pitches drafted',t.pitches,h,'pitches'),tile('Pitched (sent)',t.pitched,h,'pitched'),tile('Won',t.won,h,'won'),tile('Form submissions',t.form_submissions,h,'form_submissions'),tile('Site visits (7d)',t.site_visits_7d,h,'site_visits_7d')].join('');
 $('#t-rev').innerHTML=[tile('Whop orders',t.whop_orders,h,'whop_orders'),tile('Whop members',t.whop_members,h,'whop_members'),tile('Whop revenue total ($, rounded)',t.revenue_total_usd_rounded,h,'revenue_total_usd_rounded')].join('');
-$('#t-data').innerHTML=[tile('Brain notes',t.notes,h,'notes'),tile('Sources cited',t.sources,h,'sources'),tile('Companies mined',t.companies,h,'companies'),tile('Links per note',t.links_per_note,h,'links_per_note')].join('');
+$('#t-data').innerHTML=[tile('Brain notes',t.notes,h,'notes'),tile('Sources cited',t.sources,h,'sources'),tile('Links per note',t.links_per_note,h,'links_per_note')].join('');
 chart($('#c-brain'),[{n:'notes',c:'#13C27A',pts:h.map(d=>[d.date,d.notes])},{n:'links ÷10',c:'#5BC0EB',pts:h.map(d=>[d.date,d.links==null?null:Math.round(d.links/10)])},{n:'sources',c:'#F4D35E',pts:h.map(d=>[d.date,d.sources])}],{zero:1});
 chart($('#c-new'),[{n:'new notes',c:'#13C27A',pts:h.map(d=>[d.date,d.new_notes])}],{bars:1,zero:1});
 $('#nc').innerHTML=(o.not_connected||[]).map(x=>`<li>${x}</li>`).join('')||'<li>everything connected</li>';$('#lock').hidden=true;$('#dash').hidden=false}
