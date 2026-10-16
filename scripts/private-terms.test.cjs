@@ -26,6 +26,12 @@ const PLACE_PAIRS = new Set(['f50b92b29527bc02', '76fe6138e7cacf54', 'c297e3f103
 const ALLOWED_NEXT = { '1ffc0406b9891fcd': 'deductible' }; // donation disclaimer; js/journey-language.js was removed 2026-10-16
 const TEXT = /\.(html?|js|mjs|cjs|json|md|txt|css|xml|yml|yaml|toml|webmanifest|py|sh|ps1|svg)$|^(_headers|CNAME|robots\.txt|security\.txt)$/i;
 const SKIP_DIRS = new Set(['.git', 'node_modules']);
+const EXEMPT = new Set([
+  'scripts/demo-page.test.cjs',
+  'scripts/business-brand.test.cjs',
+  'scripts/retired-copy.test.cjs',
+  'scripts/private-terms.test.cjs',
+]);
 
 function walk(dir, out = []) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -42,7 +48,9 @@ function fold(text) {
 }
 
 function offenses(file, text) {
-  const fiction = FICTION_FILES.some((rx) => rx.test(file));
+  const rel = String(file).replace(/^\.\//, '');
+  if (EXEMPT.has(rel)) return [];
+  const fiction = FICTION_FILES.some((rx) => rx.test(rel));
   const hits = [];
   const toks = fold(text).split(/[^a-z0-9]+/).filter(Boolean);
   for (let i = 0; i < toks.length; i++) {
@@ -82,6 +90,8 @@ test('fiction filenames lift only the story-setting hashes', () => {
   }
   assert.deepStrictEqual(offenses('afterlight.html', 'Clinton'), []);
   assert.deepStrictEqual(offenses('index.html', 'SoMD'), []);
+  for (const rel of EXEMPT) assert.deepStrictEqual(offenses(rel, setting), [], rel);
+  assert.ok(offenses('scripts/map-form.test.cjs', setting).length);
 });
 
 test('job application letters are not in the repo', () => {

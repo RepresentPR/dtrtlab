@@ -3,7 +3,9 @@
 // (scripts/stage-site.cjs), not the whole repo. This guard scans every served
 // html, js, json, md, css, txt, and webmanifest file. docs/ is not published.
 // brand-kit.md is linked from /brand.html, so it is included.
-// scripts/demo-page.test.cjs is the only exempt file, by that exact path.
+// Filename exemptions are exact paths only. These files hold the ban lists:
+// scripts/demo-page.test.cjs, scripts/business-brand.test.cjs,
+// scripts/retired-copy.test.cjs, and scripts/private-terms.test.cjs.
 // There is no legal-page exception and no fiction exception for these phrases.
 const test = require('node:test');
 const assert = require('node:assert/strict');
@@ -13,7 +15,12 @@ const { isExcluded, loadExclude } = require('./stage-site.cjs');
 
 const ROOT = path.join(__dirname, '..');
 const EXCLUDE = loadExclude();
-const EXEMPT = 'scripts/demo-page.test.cjs';
+const EXEMPT = new Set([
+  'scripts/demo-page.test.cjs',
+  'scripts/business-brand.test.cjs',
+  'scripts/retired-copy.test.cjs',
+  'scripts/private-terms.test.cjs',
+]);
 const GROK_BOT = 'Grok bot';
 const SERVED = /\.(html?|js|mjs|json|md|css|txt|webmanifest)$/i;
 const TYPES = ['html', 'js', 'json', 'md', 'css', 'txt', 'webmanifest'];
@@ -155,7 +162,7 @@ const PLANTS = [
 ];
 
 function scanText(rel, text) {
-  if (rel === EXEMPT) return [];
+  if (EXEMPT.has(rel)) return [];
   const hits = [];
   const body = String(text).split(GROK_BOT).join('');
   for (const rx of PHRASES) {
@@ -172,7 +179,7 @@ function walk(dir, out = []) {
     const rel = path.relative(ROOT, p).split(path.sep).join('/');
     if (isExcluded(rel, EXCLUDE)) continue;
     if (e.isDirectory()) walk(p, out);
-    else if (SERVED.test(e.name) && rel !== EXEMPT && fs.statSync(p).size < 5e6) out.push(p);
+    else if (SERVED.test(e.name) && !EXEMPT.has(rel) && fs.statSync(p).size < 5e6) out.push(p);
   }
   return out;
 }
@@ -187,7 +194,7 @@ test('retired copy stays off every served file', () => {
   assert.ok(rels.includes('clips/index.html'), 'hobby pages are checked');
   assert.ok(rels.includes('afterlight.html'), 'fiction pages are checked');
   assert.equal(rels.includes('docs/vision.md'), false, 'docs/ is not served');
-  assert.equal(rels.includes(EXEMPT), false);
+  for (const rel of EXEMPT) assert.equal(rels.includes(rel), false, rel);
   const hits = [];
   for (const file of files) {
     const rel = path.relative(ROOT, file).split(path.sep).join('/');
@@ -203,8 +210,11 @@ test('the product name Grok bot stays allowed by that exact string', () => {
   assert.ok(scanText('cs2.html', handle[0].toUpperCase() + handle.slice(1)).length);
 });
 
-test('the demo page test is the only exempt file', () => {
-  assert.deepEqual(scanText(EXEMPT, 'Clinton mailto: Reply SYSTEM $50'), []);
+test('only the ban-list files are exempt, by exact path', () => {
+  const sample = 'Clinton mailto: Reply SYSTEM $50';
+  for (const rel of EXEMPT) assert.deepEqual(scanText(rel, sample), [], rel);
+  assert.ok(scanText('scripts/map-form.test.cjs', 'Clinton').length);
+  assert.ok(scanText('scripts/homepage-render.test.cjs', 'Clinton').length);
   assert.ok(scanText('scripts/other-demo.test.cjs', 'Clinton').length);
   assert.ok(scanText('demo/sample.html', 'Clinton').length);
 });

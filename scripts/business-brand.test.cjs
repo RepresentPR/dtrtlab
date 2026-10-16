@@ -49,8 +49,10 @@ test('business pages show theme A offers and keep hobby off the company face', (
   const served = [];
   (function walkPlaces(dir) {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'scripts' || entry.name === 'docs') continue;
+      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'docs') continue;
       const full = path.join(dir, entry.name);
+      const rel = path.relative(root, full).split(path.sep).join('/');
+      if (rel === 'scripts/demo-page.test.cjs' || rel === 'scripts/business-brand.test.cjs' || rel === 'scripts/retired-copy.test.cjs' || rel === 'scripts/private-terms.test.cjs') continue;
       if (entry.isDirectory()) walkPlaces(full);
       else if (/\.(html?|js|mjs|json|md|css|txt|webmanifest)$/i.test(entry.name)) served.push(full);
     }
