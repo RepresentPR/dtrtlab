@@ -23,7 +23,7 @@ Do not invent a legal-entity suffix in public copy until `content/company.json` 
 - Anchor lines: **Do the right thing. Make useful stuff. Have fun doing it.** Long-term: Lab revenue → help small businesses (not active yet — do not overclaim).
 - **Made for all:** any age, any size business or idea, global by design. Do not age-gate free plans or shop interest.
 - Shop: interest catalog at `/shop.html` — digital + POD snowball path; never imply a live cart until `checkoutLive` is true in `content/shop.json`.
-- Full alignment filter: `docs/vision.md`.
+- Full alignment filter: `.github/docs/vision.md`.
 
 ## Visual
 

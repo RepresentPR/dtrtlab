@@ -1,6 +1,6 @@
 # Social bios — paste kit (vision-aligned)
 
-**Canonical paste text is [`/brand-kit.md`](../brand-kit.md).** Use that file for X, Instagram, TikTok, YouTube, and Twitch.  
+**Canonical paste text is [`/brand-kit.md`](../../brand-kit.md).** Use that file for X, Instagram, TikTok, YouTube, and Twitch.  
 **Updated:** 2026-10-14
 
 The blocks below match the brand kit so an older bookmark still pastes the business.
@@ -78,7 +78,7 @@ DTRTC is the entertainment stream — separate from the Lab company face on purp
 DTRT Lab · useful work in public · dtrtlab.com/find.html
 ```
 
-**README:** use `docs/github-profile-readme-template.md`. Set hireable only if you want inbound.
+**README:** use `.github/docs/github-profile-readme-template.md`. Set hireable only if you want inbound.
 
 ---
 

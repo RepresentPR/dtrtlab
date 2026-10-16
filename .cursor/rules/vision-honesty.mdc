@@ -5,14 +5,14 @@ alwaysApply: true
 
 # Vision + honesty (always)
 
-Read `@docs/vision.md` before shipping product, copy, metrics, or social.
+Read `@.github/docs/vision.md` before shipping product, copy, metrics, or social.
 
 ## Must
 
 - Do the right thing: honest status, dated evidence, no fake scale.
 - Make useful stuff: free plans and clear next steps for any age / any size idea.
 - Dual brand: Lab = usefulness · DTRTC = entertainment. Same founder, separate surfaces.
-- Ian Ferraro is the sole founder and decides positioning, pricing, and product scope. Agents execute inside the current offer. If unsure about brand, price, or scope, stop and ask (`@AGENTS.md`, `@docs/company-operating-system.md`).
+- Ian Ferraro is the sole founder and decides positioning, pricing, and product scope. Agents execute inside the current offer. If unsure about brand, price, or scope, stop and ask (`@AGENTS.md`, `@.github/docs/company-operating-system.md`).
 
 ## Never
 
@@ -23,4 +23,4 @@ Read `@docs/vision.md` before shipping product, copy, metrics, or social.
 
 ## When writing for customers or social
 
-Prefer templates in `@docs/templates/` over generic AI marketing voice.
+Prefer templates in `@.github/docs/templates/` over generic AI marketing voice.

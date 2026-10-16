@@ -32,4 +32,4 @@ Also give one on-screen text line (≤6 words).
 
 ## Related
 
-VO scripts + scheduled waves: `docs/social-refresh-pack.md`
+VO scripts + scheduled waves: `.github/docs/social-refresh-pack.md`

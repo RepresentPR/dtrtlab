@@ -1,8 +1,8 @@
 // Guard: retired offers and pitches must not come back on the served site.
-// Netlify publishes the whole repo ("publish = ."), so every tracked HTML, JS,
-// JSON and webmanifest file is public, including versions/. Only scripts/
-// (tests that name these phrases on purpose) and internal docs (docs/*.md,
-// AGENTS.md, README.md) are outside this guard; brand-kit.md is linked from
+// GitHub Pages publishes this repo from main at "/". It does not serve the
+// .github directory, so internal notes live in .github/docs and stay out of
+// this scan. scripts/ (tests that name these phrases on purpose), AGENTS.md,
+// and README.md are outside the phrase scan; brand-kit.md is linked from
 // /brand.html, so it is checked too.
 // Retired 2026-10-15 (Co-Founder): free first-line rewrite, "Stay on the chair /
 // We write your posts", data-method pitch, writing plan(s), writing partnerships, day-30 numbers,
@@ -28,6 +28,13 @@ const PHRASES = [
   /plan_RVDjSToI7vKOM/,
   /Mini Social Pack/i,
   /Week Pack/i,
+  /companies studied/i,
+  /companies mined/i,
+  /studied companies/i,
+  /mined companies/i,
+  // Split so the place name is not a literal token in this public test file.
+  new RegExp(['Pue', 'rto Rico'].join(''), 'i'),
+  /rewrite it free/i,
 ];
 const SERVED = /\.(html?|js|mjs|json|webmanifest)$/i;
 const SKIP_DIRS = new Set(['.git', 'node_modules', 'scripts', 'docs']);
@@ -43,6 +50,7 @@ function walk(dir, out = []) {
 }
 
 test('retired copy stays off every served HTML, JS and JSON file', () => {
+  assert.ok(!fs.existsSync(path.join(ROOT, 'docs')), 'docs/ must stay out of the published root');
   const files = walk(ROOT).concat(path.join(ROOT, 'brand-kit.md'));
   assert.ok(files.some(f => f.endsWith(path.join('versions', 'index.html'))), 'versions/ is served and checked');
   const hits = [];
@@ -54,4 +62,11 @@ test('retired copy stays off every served HTML, JS and JSON file', () => {
     }
   }
   assert.deepEqual(hits, [], 'retired copy found:\n' + hits.join('\n'));
+  const linked = [];
+  for (const file of files) {
+    if (!/\.html?$/i.test(file)) continue;
+    const text = fs.readFileSync(file, 'utf8');
+    if (/href=["'][^"']*docs\//i.test(text)) linked.push(path.relative(ROOT, file));
+  }
+  assert.deepEqual(linked, [], 'public page links to docs/: ' + linked.join(', '));
 });

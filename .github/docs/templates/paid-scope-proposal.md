@@ -9,7 +9,7 @@
 ```
 You are drafting a paid-scope email for DTRT Lab (Ian Ferraro).
 
-Rules from docs/vision.md:
+Rules from .github/docs/vision.md:
 - Paid work only after written scope.
 - No fake guarantees, Fortune claims, or invented past client logos.
 - Clear deliverables, what is out of scope, and how satisfaction is checked.

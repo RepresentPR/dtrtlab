@@ -5,7 +5,7 @@
 **Blocker:** This agent **cannot open Apple iCloud or your phone** unless you send photos through one of the intake paths below. Once photos land, selection + scatter can run in the same session.
 
 **Last built:** 2026-10-13  
-**Brand rules:** `docs/brand-playbook.md` · Studio Identity `#080808` / `#fafafa` · real work over abstract decoration  
+**Brand rules:** `.github/docs/brand-playbook.md` · Studio Identity `#080808` / `#fafafa` · real work over abstract decoration  
 **Intake drop:** `media/intake/` (gitignored originals) → curated exports go to `img/`
 
 ---

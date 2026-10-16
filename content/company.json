@@ -63,7 +63,7 @@
     "Fake scale, fake store, fake hiring, or fake fundraising",
     "Hype tools that trade trust for reach"
   ],
-  "visionDoc": "docs/vision.md",
+  "visionDoc": ".github/docs/vision.md",
   "lastReviewed": "2026-10-13",
   "serviceArea": "DMV Area businesses (DC, Maryland, Virginia)",
   "offers": [

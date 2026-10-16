@@ -12,6 +12,6 @@ media/intake/
   REJECT.md     ← optional notes on quarantined files
 ```
 
-Full plan: `docs/visual-photo-scatter.md`
+Full plan: `.github/docs/visual-photo-scatter.md`
 
 **Send photos via:** Postiz upload widget in chat · chat attachments · iCloud Shared Album / Drive link · zip into `raw/`.

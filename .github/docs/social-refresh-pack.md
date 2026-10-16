@@ -150,7 +150,7 @@ Polished captions scheduled (type `schedule`) — **discard older DRAFT duplicat
 | 3 Free plan (Chris) | Oct 16 16:00–18:00 | [X](https://platform.postiz.com/p/cmv6w8x2f0knyqw0yzmfuhavk?share=true) · [IG](https://platform.postiz.com/p/cmv6w8xff0knzqw0y3mof0lhl?share=true) · [TikTok](https://platform.postiz.com/p/cmv6w8xof0ko0qw0yk2aqt1gg?share=true) · [YT unlisted](https://platform.postiz.com/p/cmv6w8y0e0ko1qw0y4szm6zou?share=true) |
 
 **X polish:** captions use plain `dtrtlab.com` (HTTPS links get stripped).  
-**Track file:** `docs/unfinished-work-pipeline.md`  
+**Track file:** `.github/docs/unfinished-work-pipeline.md`  
 
 ### X caption repair (2026-10-13)
 

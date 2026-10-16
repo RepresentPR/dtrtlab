@@ -3,7 +3,7 @@
 **Purpose:** Prove the company public surface is live and unbroken; only scheduled work and true Ian unlocks remain.  
 **Rule:** Never put secrets, recovery codes, API tokens, or passwords in this file or any git-tracked path.  
 **Last audited:** 2026-10-13 (agent live reaudit)  
-**Vision filter:** `docs/vision.md`  
+**Vision filter:** `.github/docs/vision.md`  
 **Authority:** Ian Ferraro sets positioning, pricing, and scope. Agents execute inside the current offer and stop when unsure (`AGENTS.md`).
 
 ---
@@ -47,11 +47,11 @@
 
 Agent cannot finish these without your login/UI:
 
-1. Paste bios from `brand-kit.md` (same text in `docs/social-bios-paste.md`) onto X, Instagram, TikTok, YouTube, and Twitch  
+1. Paste bios from `brand-kit.md` (same text in `.github/docs/social-bios-paste.md`) onto X, Instagram, TikTok, YouTube, and Twitch  
 2. LinkedIn About / Featured — kept in private notes  
 3. GitHub profile UI + `RepresentPR/RepresentPR` README  
-4. Photos — `docs/visual-photo-scatter.md`  
-6. Grok Bot email approve (`dtrt` → …) — `docs/grokbot-email-handles.md`  
+4. Photos — `.github/docs/visual-photo-scatter.md`  
+6. Grok Bot email approve (`dtrt` → …) — `.github/docs/grokbot-email-handles.md`  
 7. Optional: Gmail Send-as `hello@` (receive already live)  
 8. Postiz: delete DRAFT dupes + broken X QUEUE (see above)
 
@@ -81,7 +81,7 @@ Agent cannot finish these without your login/UI:
 - Fortune-scale or fake follower claims  
 - CS2 community ahead of Lab face  
 - Committing secrets “just for backup”  
-- Mass free-trial / discount-proxy company backbone (`docs/ai-spend-ops.md`)
+- Mass free-trial / discount-proxy company backbone (`.github/docs/ai-spend-ops.md`)
 
 ---
 

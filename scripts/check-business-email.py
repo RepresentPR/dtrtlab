@@ -49,7 +49,7 @@ def main() -> int:
     print()
     if not mx:
         print("STATUS: NO MX — Cloudflare Email Routing is not enabled yet.")
-        print("ACTION: docs/business-email-asap.md → enable Email Routing, then re-run this script.")
+        print("ACTION: .github/docs/business-email-asap.md → enable Email Routing, then re-run this script.")
         return 2
     if mx_ok:
         print("STATUS: Cloudflare-style MX present.")
