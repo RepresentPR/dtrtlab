@@ -45,7 +45,9 @@ test('homepage leads with the Job Desk and keeps the small plans lower in pricin
   const hero = main.match(/<section class="hero"[\s\S]*?<\/section>/)[0];
   assert.match(hero, /I build the AI office manager <span>for DMV service businesses\.<\/span>/);
   assert.match(hero, /Every job tracked, every customer updated, every quote followed up, and a report card on your phone each night\./);
-  assert.match(hero, /href="mailto:hello@dtrtlab\.com\?subject=SYSTEM[^"]*"[^>]*>Reply SYSTEM and I'll map yours free\.<\/a>/, 'Reply SYSTEM CTA');
+  assert.match(hero, /href="\/map\/"[^>]*>Get my free office map<\/a>/, 'free map form CTA');
+  assert.doesNotMatch(hero, /mailto:/, 'hero CTA is the on-site form, not a mailto link');
+  assert.doesNotMatch(home, /Reply SYSTEM/, 'Reply SYSTEM stays off the website');
   assert.doesNotMatch(hero.replace(/<a [^>]*>/g, ''), /\$\s?\d/, 'no price in the hero');
   assert.doesNotMatch(hero, /plan_HAGSLXXUeGkcz|plan_RVDjSToI7vKOM|Mini|Week Pack/, 'Mini and Week Pack are off the hero');
   const nav = home.match(/<nav aria-label="Main navigation">[\s\S]*?<\/nav>/)[0];
