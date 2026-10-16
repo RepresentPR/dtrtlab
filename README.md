@@ -9,7 +9,7 @@ Public site for **[dtrtlab.com](https://dtrtlab.com)** — Ian Ferraro’s indep
 
 | Path | Job |
 | --- | --- |
-| `/` + free plan tool | Usefulness — send a link + goal, get a practical plan |
+| `/` | Current offer and wording live in DTRT Co-Founder's rules, not in this repo. Don't state prices or offers in code or copy without checking content/*.json. |
 | `/company.html`, `/shop.html` | Company story + shop **interest** (checkout off until real) |
 | `/find.html` | One digest for all public socials (Lab / stream / career) |
 | `/live/`, `/history.html` | Dated evidence — no vanity metrics without context |

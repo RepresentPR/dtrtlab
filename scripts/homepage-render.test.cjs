@@ -36,7 +36,7 @@ test('hobby archive renders on lab.html and the homepage stays the theme A writi
   assert.doesNotMatch(home, /Stay on the chair/);
   assert.match(home, /<meta property="og:image" content="https:\/\/dtrtlab\.com\/img\/brand\/og-job-desk-2026-10-15\.png">/);
   assert.doesNotMatch(home, /plan_HAGSLXXUeGkcz|plan_RVDjSToI7vKOM/);
-  assert.match(home, /https:\/\/whop\.com\/checkout\/plan_kZqq0jgr6VrGG/);
+  assert.doesNotMatch(home, /https:\/\/whop\.com\/checkout\/plan_kZqq0jgr6VrGG/);
   assert.match(home, /https:\/\/whop\.com\/checkout\/plan_yuDiw93Zp6Uvr/);
   assert.doesNotMatch(home, /plan_Vn0gQGFWQx9CA|id="free-rewrite"/, 'free first-line rewrite is retired');
   assert.doesNotMatch(home, /@gmail\.com|PayPal/);

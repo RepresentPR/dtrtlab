@@ -37,6 +37,6 @@
       grid.innerHTML = products.map(card).join('') || '<p>No products listed yet.</p>';
     })
     .catch(() => {
-      grid.innerHTML = '<p class="shop-note">Catalog could not load. Email <a href="mailto:hello@dtrtlab.com">hello@dtrtlab.com</a> or <a href="/contact.html?intent=shop-interest">send shop interest</a>.</p>';
+      grid.innerHTML = '<p class="shop-note">Catalog could not load. <a href="/contact.html?intent=shop-interest">Send shop interest</a>.</p>';
     });
 })();

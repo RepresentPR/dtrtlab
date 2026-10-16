@@ -1,4 +1,4 @@
-/* Live extras: latest supporters, Google review card, Free Promo spotlight (PR small businesses / creators).
+/* Live extras: latest supporters, Google review card, Free Promo spotlight (small businesses / creators).
    Data: content/supporters.json, content/reviews.json, content/promo.json. Nothing renders that is not real data.
    Works on /live (relative ../content) and in OBS (data-base="https://dtrtlab.com/content/"). */
 (function(){

@@ -4,12 +4,14 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('fs');
 const path = require('path');
+const { isExcluded, loadExclude } = require('./stage-site.cjs');
 const ROOT = path.resolve(__dirname, '..');
-const SKIP_DIRS = new Set(['docs', 'scripts', 'tools', 'node_modules', 'brand-assets']);
+const EXCLUDE = loadExclude();
 function walk(d) {
   return fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => {
-    if (e.name.startsWith('.') || SKIP_DIRS.has(e.name)) return [];
     const p = path.join(d, e.name);
+    const rel = path.relative(ROOT, p).split(path.sep).join('/');
+    if (isExcluded(rel, EXCLUDE)) return [];
     return e.isDirectory() ? walk(p) : p.endsWith('.html') ? [p] : [];
   });
 }

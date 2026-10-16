@@ -33,23 +33,21 @@
     <div class="wrap">
       <p class="kicker">Bugs</p>
       <h1 class="page-heading">Report.</h1>
-      <form class="stack" id="bug-form">
-        <label>Email <input name="email" type="email"></label>
-        <label>What happened <textarea name="description" required></textarea></label>
+      <form class="stack" id="bug-form" method="POST" action="https://formsubmit.co/b40eb14cdacd80c1b58eebb8ec124fe3" accept-charset="UTF-8">
+        <input type="hidden" name="_subject" value="Bug report">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://dtrtlab.com/bug/thanks/">
+        <label>Email <input name="email" type="email" autocomplete="email" maxlength="200"></label>
+        <label>What happened <textarea name="description" required maxlength="4000"></textarea></label>
         <input type="hidden" name="category" value="bug">
-        <input class="hp" name="company" tabindex="-1" autocomplete="off">
+        <p class="hp" aria-hidden="true"><label>Leave this blank <input type="text" name="_honey" tabindex="-1" autocomplete="off" value=""></label></p>
         <button class="cta" type="submit">Send</button>
-        <p data-status class="note muted">Opens mail to hello@dtrtlab.com</p>
+        <p class="note muted">We use this only to reply about the bug. <a href="/legal/privacy.html">Privacy</a></p>
       </form>
     </div>
   </section>
   <footer id="site-foot"></footer>
-  <script defer src="js/nav.js?v=20261011-paymenthold1"></script>
-  <script defer src="js/forms.js?v=20261010n"></script>
-  <script>
-document.addEventListener('DOMContentLoaded', function () {
-DTRT.bindForm(document.getElementById("bug-form"));
-});
-</script>
+  <script defer src="js/nav.js?v=20261016-contact"></script>
 <script src="/js/experience.js?v=20261011-credibility1" defer></script></body>
 </html>

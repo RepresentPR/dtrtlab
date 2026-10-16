@@ -12,7 +12,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--green);outline-offs
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:72px}
 .brand{font-weight:800;font-size:21px;text-decoration:none;letter-spacing:-.01em}.brand b{color:var(--green)}
 .top nav{display:flex;gap:20px;align-items:center;font-size:15px;font-weight:600}.top nav a{text-decoration:none}.top nav a:not(.btn):hover{color:var(--green)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:12px 22px;border-radius:8px;font-weight:800;font-size:17px;text-decoration:none;border:2px solid var(--green);background:var(--green);color:var(--navy)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:12px 22px;border-radius:8px;font-family:inherit;font-weight:800;font-size:17px;text-decoration:none;border:2px solid var(--green);background:var(--green);color:var(--navy)}
 .btn:hover{background:var(--white);border-color:var(--white)}
 .btn.line{background:transparent;color:inherit;border-color:currentColor}.btn.line:hover{background:var(--light);color:var(--navy);border-color:var(--light)}
 .btn.sm{min-height:40px;padding:8px 14px;font-size:15px}
@@ -39,6 +39,7 @@ h2{font-size:clamp(30px,4vw,44px);line-height:1.1;letter-spacing:-.02em;font-wei
 .offer .btn{margin-top:auto}.offer .btn:hover{background:var(--navy);color:var(--white);border-color:var(--navy)}
 .fine{font-size:15px;margin-top:20px;max-width:75ch}
 .guarantee{background:var(--navy);color:var(--white);border-radius:12px;padding:30px 28px;margin-top:34px;display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center}
+.guarantee.plain{display:block}
 .guarantee .seal{width:84px;height:84px;border-radius:50%;background:var(--green);color:var(--navy);display:grid;place-items:center;font-weight:800;text-align:center;font-size:14px;line-height:1.1}
 .guarantee h3{font-size:24px;font-weight:800}.guarantee p{color:var(--light);margin-top:6px}
 .steps{list-style:none;padding:0;margin:30px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:s}
@@ -74,4 +75,26 @@ footer.foot nav{display:flex;flex-wrap:wrap;gap:10px 18px}footer.foot a{text-dec
 .consent .cta.ghost{background:transparent;color:var(--white);border-color:rgba(220,230,242,.6)}
 .consent .cta:hover{background:var(--white);border-color:var(--white);color:var(--navy)}
 .consent .cta:focus-visible{outline:3px solid var(--green);outline-offset:2px}
-@media(max-width:560px){.consent .actions{width:100%}.consent .cta{flex:1}}
+@media(max-width:560px){.consent .actions{width:100%}.consent .cta{flex:1}body.consent-open .dock{bottom:var(--consent-h,0px)}}
+@media(max-width:390px){.consent{padding:8px 0 calc(8px + env(safe-area-inset-bottom,0px))}.consent .wrap{gap:8px}.consent p{font-size:13px;line-height:1.35}.consent .cta{white-space:normal;font-size:13px;min-height:40px;padding:6px 8px}}
+/* Free office map form (/map/). */
+.map-form{display:grid;gap:16px;max-width:640px;margin-top:8px}
+.map-form label{display:grid;gap:6px;font-weight:700;font-size:15px}
+.map-form input,.map-form select,.map-form textarea{font:inherit;font-size:17px;color:var(--navy);background:var(--white);border:2px solid var(--navy);border-radius:8px;padding:12px 14px;min-height:50px;width:100%}
+.map-form textarea{min-height:140px;resize:vertical}
+.map-form .opt{font-weight:600}
+.map-form .ask{white-space:nowrap}
+.map-form .btn{justify-self:start}
+.map-form .btn:hover{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.map-form fieldset.want{border:0;margin:0;padding:0;display:grid;gap:8px}
+.map-form fieldset.want legend{font-weight:800;font-size:15px;padding:0}
+.map-form fieldset.want label{display:flex;align-items:center;gap:10px}
+.map-form fieldset.want input{width:auto;min-height:0;accent-color:var(--navy)}
+.fallback{margin-top:28px;font-size:16px;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.fallback .btn{min-height:40px;padding:8px 14px;font-size:15px}
+.hp{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+@media(max-width:560px){.map-form .btn{width:100%}}
+.map-form [hidden]{display:none}
+body.full{min-height:100vh;display:flex;flex-direction:column}
+body.full main{flex:1 0 auto;display:flex;flex-direction:column}
+body.full main > .hero{flex:1 0 auto}

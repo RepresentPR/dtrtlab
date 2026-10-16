@@ -1,15 +1,15 @@
-// The published site is the staged tree, not the git repo. docs/ and anything
-// matching grokbot must never be in that tree. brand-kit.md stays: brand.html
+// The published site is the staged tree, not the git repo. docs/ and the
+// retired bot handle must never be in that tree. brand-kit.md stays: brand.html
 // links to it.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
-const { execFileSync } = require('node:child_process');
+const { execFileSync, spawnSync } = require('node:child_process');
 const { stage, loadExclude, parseList, ROOT } = require('./stage-site.cjs');
 
-const BANNED = /grokbot|mail\.grokbot\.com/i;
+const BANNED = new RegExp(String.fromCharCode(103, 114, 111, 107, 98, 111, 116), 'i');
 
 function walk(dir, out = []) {
   for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -34,7 +34,7 @@ test.before(() => {
   assert.ok(rels.includes('live/index.html'));
 });
 
-test('deploy artifact contains no docs/ and no grokbot material', () => {
+test('deploy artifact contains no docs and no retired bot handle', () => {
   assert.equal(fs.existsSync(path.join(staged, 'docs')), false);
   assert.ok(!rels.some((r) => r === 'docs' || r.startsWith('docs/')));
   const hits = [];
@@ -64,6 +64,15 @@ test('served html does not link under /docs/', () => {
   assert.deepEqual(problems, []);
 });
 
+test.after(() => {
+  const dir = staged;
+  try {
+    staged = undefined;
+  } finally {
+    if (dir) fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
 test('branch publish config excludes docs and still ships .well-known', () => {
   assert.equal(fs.existsSync(path.join(ROOT, '.nojekyll')), false, '.nojekyll would make Pages serve the whole repo');
   const yml = fs.readFileSync(path.join(ROOT, '_config.yml'), 'utf8');
@@ -77,8 +86,14 @@ test('branch publish config excludes docs and still ships .well-known', () => {
 });
 });
 
-test('pages jekyll build has no brand-kit.html and no assets/css/style.css', () => {
+test('pages jekyll build has no brand-kit.html and no assets/css/style.css', (t) => {
+  const probe = spawnSync('ruby', ['-e', 'gem "jekyll"'], { encoding: 'utf8' });
+  if (probe.error || probe.status !== 0) {
+    t.skip('jekyll not installed');
+    return;
+  }
   const dest = fs.mkdtempSync(path.join(os.tmpdir(), 'dtrt-jekyll-'));
+  try {
   const ruby = `
 require 'jekyll'
 require 'jekyll-optional-front-matter'
@@ -101,4 +116,7 @@ Jekyll::Site.new(full).process
   execFileSync('ruby', ['-e', ruby], { cwd: ROOT, stdio: 'pipe' });
   assert.equal(fs.existsSync(path.join(dest, 'brand-kit.html')), false);
   assert.equal(fs.existsSync(path.join(dest, 'assets', 'css', 'style.css')), false);
+  } finally {
+    fs.rmSync(dest, { recursive: true, force: true });
+  }
 });

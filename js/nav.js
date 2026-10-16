@@ -28,8 +28,8 @@
   var lang = /(?:\?|&)lang=es(?:&|$)/.test(location.search) ? "es" : "en";
   document.documentElement.lang = lang;
   var ui = lang === "es"
-    ? { primary: "Principal", free: "Escribe SYSTEM", packages: "Paquetes", company: "Empresa", contact: "Contacto", shop: "Tienda", hobby: "Lab / Pasatiempo", press: "Prensa", brand: "Marca", privacy: "Privacidad", terms: "Términos", cookies: "Cookies", refunds: "Reembolsos", home: "Inicio", menu: "Menú", close: "Cerrar", credit: "Ian | DTRT Lab · DMV Area (DC · MD · VA)" }
-    : { primary: "Primary", free: "Reply SYSTEM", packages: "Packages", company: "Company", contact: "Contact", shop: "Shop", hobby: "Lab / Hobby", press: "Press", brand: "Brand", privacy: "Privacy", terms: "Terms", cookies: "Cookies", refunds: "Refunds", home: "Home", menu: "Menu", close: "Close", credit: "Ian | DTRT Lab · DMV Area (DC · MD · VA)" };
+    ? { primary: "Principal", free: "Mapa de oficina gratis", packages: "Paquetes", company: "Empresa", contact: "Contacto", shop: "Tienda", hobby: "Lab / Pasatiempo", press: "Prensa", brand: "Marca", privacy: "Privacidad", terms: "Términos", cookies: "Cookies", refunds: "Reembolsos", home: "Inicio", menu: "Menú", close: "Cerrar", credit: "Ian | DTRT Lab · DMV Area (DC · MD · VA)" }
+    : { primary: "Primary", free: "Get my free office map", packages: "Packages", company: "Company", contact: "Contact", shop: "Shop", hobby: "Lab / Hobby", press: "Press", brand: "Brand", privacy: "Privacy", terms: "Terms", cookies: "Cookies", refunds: "Refunds", home: "Home", menu: "Menu", close: "Close", credit: "Ian | DTRT Lab · DMV Area (DC · MD · VA)" };
   function langHref(code) {
     var q = new URLSearchParams(location.search);
     q.set("lang", code);
@@ -52,7 +52,7 @@
     "</nav>" +
     '<div class="nav-end">' +
     '<div class="nav-socials nav-socials-desktop" data-social-slot="nav"></div>' +
-    '<a class="nav-cta" id="nav-start" href="mailto:hello@dtrtlab.com?subject=SYSTEM">' + ui.free + '</a>' +
+    '<a class="nav-cta" id="nav-start" href="' + root + 'map/">' + ui.free + '</a>' +
     '<button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-links">' + ui.menu + '</button>' +
     "</div>" +
     "</div>";
@@ -298,7 +298,7 @@
     .catch(function () {});
 
   var analytics = document.createElement("script");
-  analytics.src = root + "js/analytics.js?v=" + ASSET_V;
+  analytics.src = root + "js/analytics.js?v=20261016-contact";
   analytics.async = true;
   document.head.appendChild(analytics);
 
@@ -341,7 +341,7 @@
 
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register(root + "sw.js?v=" + ASSET_V).catch(function () {});
+      navigator.serviceWorker.register(root + "sw.js?v=20261016-contact").catch(function () {});
     });
   }
 })();
