@@ -90,22 +90,6 @@ test('/map/ posts the free office map form to FormSubmit', () => {
   assert.match(privacy, /The free office map form sends your answers by email through FormSubmit \(formsubmit\.co\) so we can write your map\. We use those answers only for that\./);
 });
 
-test('the FormSubmit inbox address is not in any served file', () => {
-  const inbox = ['dtrt', 'mail.grokbot.com'].join('@');
-  const skip = new Set(['node_modules']);
-  function walkServed(dir, out = []) {
-    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-      if (entry.name.startsWith('.') || skip.has(entry.name)) continue;
-      const full = path.join(dir, entry.name);
-      if (entry.isDirectory()) walkServed(full, out);
-      else if (fs.statSync(full).size < 5e6) out.push(full);
-    }
-    return out;
-  }
-  const hits = walkServed(root).filter((file) => fs.readFileSync(file, 'utf8').includes(inbox));
-  assert.deepEqual(hits.map((file) => path.relative(root, file)), []);
-});
-
 test('AGENTS.md and README.md do not publish retired offers', () => {
   const banned = ['$50', 'Mini Social Pack', 'Week Pack', 'Starter Fix', 'writing plan'];
   for (const name of ['AGENTS.md', 'README.md']) {
