@@ -22,7 +22,7 @@ Writing for local businesses. Do the right thing. Free plan at dtrtlab.com
 ## Lab — YouTube (@DTRTLabYT)
 
 ```
-DTRT Lab writes for local businesses. Do the right thing. Free plan and writing plans: dtrtlab.com. Hobby clips are not the company offer.
+DTRT Lab builds the AI office manager for local service businesses. Do the right thing. DTRT Job Desk and the AI Visibility Fix: dtrtlab.com. Hobby clips are not the company offer.
 ```
 
 ## Lab — TikTok (@iananthonyfc)
@@ -53,7 +53,7 @@ Useful Lab work → dtrtlab.com/find.html
 ## Career — LinkedIn (headline)
 
 ```
-Founder at DTRT Lab · Big-company playbooks for small businesses · DMV Area
+Founder at DTRT Lab · Job Desk and the AI Visibility Fix · DMV Area
 ```
 
 **About (short block to paste near top)**

@@ -70,7 +70,29 @@
     });
   }
 
+  function measureBar(bar) {
+    if (!bar || !document.body || !document.body.style) return;
+    var h = bar.offsetHeight || 0;
+    document.body.style.paddingBottom = h ? h + "px" : "";
+    if (document.body.classList) {
+      if (h) document.body.classList.add("consent-open");
+      else document.body.classList.remove("consent-open");
+    }
+    if (document.documentElement && document.documentElement.style) {
+      document.documentElement.style.setProperty("--consent-h", h + "px");
+    }
+  }
+
+  function clearBarSpace() {
+    if (document.body && document.body.style) document.body.style.paddingBottom = "";
+    if (document.body && document.body.classList) document.body.classList.remove("consent-open");
+    if (document.documentElement && document.documentElement.style) {
+      document.documentElement.style.removeProperty("--consent-h");
+    }
+  }
+
   function hideBar(bar) {
+    clearBarSpace();
     if (bar && bar.parentNode) bar.parentNode.removeChild(bar);
   }
 
@@ -150,6 +172,10 @@
       '<button class="cta ghost" type="button" data-ga="no">No Google cookies</button>' +
       "</div></div>";
     document.body.appendChild(bar);
+    measureBar(bar);
+    if (typeof window.addEventListener === "function") {
+      window.addEventListener("resize", function () { measureBar(bar); });
+    }
     bar.addEventListener("click", function (e) {
       var btn = e.target && e.target.closest && e.target.closest("[data-ga]");
       if (!btn) return;

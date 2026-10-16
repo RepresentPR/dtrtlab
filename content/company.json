@@ -67,14 +67,21 @@
   "serviceArea": "DMV Area businesses (DC, Maryland, Virginia)",
   "offers": [
     {
-      "name": "Writing Retainer",
+      "name": "DTRT Job Desk",
+      "priceUsd": 1500,
+      "billing": "setup, then $250/month",
+      "deliverables": "Free office map, then job tracking, customer updates, quote follow-up, and a nightly report card.",
+      "url": "https://dtrtlab.com/map/"
+    },
+    {
+      "name": "AI Visibility Fix",
       "priceUsd": 250,
-      "billing": "30 days",
-      "deliverables": "30 days of posts + review scripts and replies, monthly",
-      "url": "https://whop.com/checkout/plan_kZqq0jgr6VrGG"
+      "billing": "one-time",
+      "deliverables": "Free AI check, then every listing fix, with a day-30 re-check.",
+      "url": "https://whop.com/checkout/plan_yuDiw93Zp6Uvr"
     }
   ],
-  "guarantee": "DTRT 7-Day Do-It-Right Guarantee: ask for any fix within 7 days of delivery and I rewrite it free.",
+  "guarantee": "If it's not right, I fix it at no charge.",
   "theme": {
     "name": "A · Local Pro",
     "lockedUntil": "2027-01-13",
@@ -82,6 +89,6 @@
     "green": "#13C27A",
     "light": "#DCE6F2",
     "headline": "I build the AI office manager for DMV service businesses.",
-    "sub": "Every job tracked, every customer updated, every quote followed up, and a report card on your phone each night. Reply SYSTEM and I'll map yours free."
+    "sub": "Every job tracked, every customer updated, every quote followed up, and a report card on your phone each night. Get a free written office map at dtrtlab.com/map/."
   }
 }

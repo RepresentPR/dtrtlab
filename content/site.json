@@ -4,7 +4,7 @@
   "creator": "Ian Ferraro",
   "legalName": "DTRT Lab",
   "tagline": "DTRT AFTERLIGHT — the island remembers.",
-  "oneSentence": "Ian | DTRT Lab builds DTRT Job Desk, the AI office manager for DMV Area service businesses: every job tracked, every customer updated, every quote followed up, and a report card each night. Reply SYSTEM for a free written map.",
+  "oneSentence": "Ian | DTRT Lab builds DTRT Job Desk, the AI office manager for DMV Area service businesses: every job tracked, every customer updated, every quote followed up, and a report card each night. Get a free written office map at dtrtlab.com/map/.",
   "preorderEnabled": false,
   "preorderPriceUsd": null,
   "preorderNote": "Price and checkout stay off until a PayPal sandbox app is configured and a price is set in .env. This is a release candidate, not 1.0.",

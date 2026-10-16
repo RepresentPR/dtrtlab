@@ -3,7 +3,7 @@
 
 Creates destination + routes:
   hello@dtrtlab.com  → destination (public)
-  ian@dtrtlab.com    → destination (founder / CEO personal work)
+  ian@dtrtlab.com    → destination
 
 Env:
   CF_API_TOKEN   required (Zone Email Routing Edit + Zone Read, or Account Email Routing)

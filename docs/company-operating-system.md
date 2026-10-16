@@ -28,15 +28,15 @@ AI spend (company vs experiments): [`docs/ai-spend-ops.md`](ai-spend-ops.md).
 ## 2. Execution velocity and conversion
 
 - Remove unnecessary tool bloat and multi-tier complexity from operations. Do not add dashboards, offer tiers, or tools that do not move the writing pipeline.
-- Put operational bandwidth on the **Free Plan** and **The Starter Fix** ($50 flat writing audit delivered in 48 hours).
-- Stage 1 target by 2026-12-31, as a goal and not a result: 10 Free Plans, 2–3 paid Starter Fixes, 3 testimonials. Do not publish those numbers as done.
+- Put operational bandwidth on the free office map, **DTRT Job Desk** ($1,500 setup + $250/mo), and the **AI Visibility Fix** (free AI check, then $250 one-time with a day-30 re-check).
+- Stage 1 target by 2026-12-31, as a goal and not a result: 10 free office maps, 2–3 paid starts, 3 testimonials. Do not publish those numbers as done.
 - Freeze `/live/`, streaming, and AFTERLIGHT onto `/lab.html` until the first 3 paying clients. AFTERLIGHT stays “in development / not for sale.” Do not claim those clients exist.
 
-Public catalog as of 2026-10-15, which this operating-system note does not rewrite: Free plan, Mini Social Pack $50, Week Pack $129, and Writing Retainer — Starter $250/30 days on Whop. Driving the $50 offer does not include renaming or deleting those tiers. That is a pricing-structure change and waits for an explicit site instruction from Ian.
+Public catalog as of 2026-10-16: DTRT Job Desk (free office map, then $1,500 setup + $250/mo) and the AI Visibility Fix (free AI check, then $250 one-time with a day-30 re-check). Older writing tiers are retired.
 
 ## Honest baseline
 
-DTRT Lab’s Stage 1 operating identity is Ian Ferraro’s writing studio for local businesses: Free Plan, then the $50 Starter Fix. Hobby, streaming, and AFTERLIGHT stay on `/lab.html`. Personal aim: do the right thing, make useful stuff, show the process, and eventually reinvest studio revenue in local usefulness. Entity, capital, people, and compliance are operating steps, not website copy. Do not claim a top-50 company, a team, or paying-client counts that are not dated.
+DTRT Lab’s Stage 1 operating identity is Ian Ferraro’s studio for local service businesses: a free office map, then DTRT Job Desk or the AI Visibility Fix. Hobby, streaming, and AFTERLIGHT stay on `/lab.html`. Personal aim: do the right thing, make useful stuff, show the process, and eventually reinvest studio revenue in local usefulness. Entity, capital, people, and compliance are operating steps, not website copy. Do not claim a top-50 company, a team, or paying-client counts that are not dated.
 
 ## What “full company” means here (phased)
 
@@ -44,17 +44,17 @@ DTRT Lab’s Stage 1 operating identity is Ian Ferraro’s writing studio for lo
 | --- | --- | --- |
 | **A. Public foundation** | Legal pages, press kit, brand kit, security contact, careers/investors honesty, schema, sitemap, company inbox | Shipped on site (keep honest as facts change) |
 | **B. Operating company** | Registered entity, bank, accounting, insurance, trademarks, send-as `@dtrtlab.com`, DMARC hygiene | External — owner actions |
-| **C. Product company** | One paid writing offer with real delivery, then a store only when fulfillment is real | $50 writing path is the operating focus. `/shop.html` stays an interest catalog (`checkoutLive: false`) |
+| **C. Product company** | Two public offers with real delivery, then a store only when fulfillment is real | Job Desk and the AI Visibility Fix are the operating focus. `/shop.html` stays an interest catalog (`checkoutLive: false`) |
 | **D. Scaled company** | Hiring, fundraising or profit engine, multi-person leadership, formal security/compliance | Future — do not fake on site |
 
 ## Visitor pipeline (dummy-proof, one-click)
 
-Public production rule: **never make a visitor hunt for 30 minutes**. The path is Free Plan, then the $50 writing offer. Do not add steps.
+Public production rule: **never make a visitor hunt for 30 minutes**. The path is the free office map, then Job Desk or the AI Visibility Fix. Do not add steps.
 
 | Action | One-click destination |
 | --- | --- |
-| **Free plan** | `/contact.html?intent=free-plan` |
-| **$50 writing offer** | Existing $50 Whop plan, still labeled Mini Social Pack until Ian renames it |
+| **Free office map** | `/map/` |
+| **Free AI check** | `/map/?want=check` |
 | **Company hub** | `/company.html` (press / brand / careers / proof) |
 | **Contact** | `/contact.html` |
 
@@ -87,7 +87,7 @@ Homepage: header, sticky dock, and hero lead with the Free Plan and must not bur
 
 Track weekly in private notes, and publish only figures that are dated and real:
 
-- Free Plans delivered, and paid $50 Starter Fixes actually delivered, against the 2026-12-31 target (10 free, 2–3 paid, 3 testimonials). Record a count only when the work is done.
+- Free office maps delivered, and paid Job Desk or AI Visibility Fix work actually delivered, against the 2026-12-31 target (10 free, 2–3 paid, 3 testimonials). Record a count only when the work is done.
 - Public evidence quality (dated, honest, attributable)
 - Inbound trust: real replies to `hello@dtrtlab.com`, zero bounced `@dtrtlab.com` mail
 - Cash: runway months (private) — precondition for any small-business help program
@@ -104,4 +104,4 @@ AFTERLIGHT chapter counts are hobby notes, not the studio’s operating metric d
 
 ## Tooling policy
 
-Adopt a tool only when it speeds the Free Plan or the $50 Starter Fix pipeline. Decline extra suites, cloned-product pitches, and anything whose main job is entertainment infrastructure on the company face. Trending is not a reason to add a tool.
+Adopt a tool only when it speeds the free office map, Job Desk, or AI Visibility Fix pipeline. Decline extra suites, cloned-product pitches, and anything whose main job is entertainment infrastructure on the company face. Trending is not a reason to add a tool.
