@@ -6,3 +6,4 @@ secrets/
 *recovery-codes*
 __pycache__/
 outputs/
+_site/

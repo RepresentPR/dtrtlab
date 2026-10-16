@@ -1,4 +1,6 @@
 {
+  "buildCommand": "node scripts/stage-site.cjs _site",
+  "outputDirectory": "_site",
   "cleanUrls": false,
   "trailingSlash": false,
   "headers": [

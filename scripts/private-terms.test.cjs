@@ -1,5 +1,7 @@
-// Every file in this repo is public (GitHub + GitHub Pages serves the whole tree).
-// This guard fails if private founder terms (moving plans, money planning, day-job
+// The git repo is public on GitHub. Pages publishes only the staged site
+// (scripts/stage-site.cjs, _config.yml), which omits docs/ and other internal
+// notes. This guard still scans tracked text, because the repo itself stays public.
+// It fails if private founder terms (moving plans, money planning, day-job
 // and job-search details) reappear in any tracked text file. Terms are stored as
 // truncated SHA-256 hashes so the guard itself does not publish them; the plain
 // list is kept in the founder's private notes.
@@ -50,8 +52,8 @@ test('job application letters are not in the repo', () => {
   assert.ok(!fs.existsSync('docs/applications'), 'docs/applications must stay out of the public repo');
 });
 
-// Personal webmail addresses never belong in this public repo. Business addresses
-// (@dtrtlab.com) are fine; example/test domains are ignored.
+// Personal webmail addresses never belong in this public repo. The company
+// domain is fine; example/test domains are ignored.
 test('no personal webmail addresses in any public file', () => {
   const PERSONAL = /[a-z0-9._%+-]+@(gmail|googlemail|outlook|hotmail|live|msn|icloud|me|mac|yahoo|aol|proton|protonmail|pm|gmx|zoho)\.[a-z.]{2,}/gi;
   const hits = [];
