@@ -1,0 +1,36 @@
+# GitHub Pages currently publishes the main branch with its built-in builder.
+# .nojekyll must stay absent: with that file present, Pages skips Jekyll and
+# serves every tracked file, including docs/. This exclude list is the publish
+# filter for that branch build. scripts/stage-site.cjs reads the same list when
+# Pages is switched to GitHub Actions (.github/workflows/pages.yml).
+exclude:
+  - docs
+  - scripts
+  - tools
+  - .github
+  - .cursor
+  - node_modules
+  - brand-assets
+  - outputs
+  - _site
+  - AGENTS.md
+  - README.md
+  - .env.example
+  - .gitignore
+  - live/README.md
+  - media/intake/README.md
+  - media/intake/.gitignore
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .sass-cache
+  - .jekyll-cache
+  - gemfiles
+  - vendor/bundle
+  - vendor/cache
+  - vendor/gems
+  - vendor/ruby
+include:
+  - .well-known
+  - _headers
+  - CNAME

@@ -64,6 +64,7 @@ Do not park ordinary bugfixes as “blocked on Ian.” Do not decide brand, pric
 - Public contact is `hello@dtrtlab.com` (not Outlook on the site).
 - Bot data commits go straight to `main` by design. The stats-refresh bot (`.github/workflows/live-refresh.yml`, commits as `dtrt-live-bot`, message `chore(live): refresh aggregates`) pushes only the encrypted owner data file (`live/owner.enc.json` today; `hq/owner.enc.json` if the dashboard ever moves back to `/hq/`) and `content/proof.json`, every 2 hours. Outside AIs (Muse, ChatGPT, Cursor, etc.) should not flag those commits or open PRs to revert them. The existing `stats: refresh` commits that touch only `content/stats.json` / `content/clips.json` are also expected. Anything else pushed directly to `main` without a PR is worth flagging.
 - GitHub Pages cannot send security headers, so every public page carries a meta Content-Security-Policy (`scripts/security-meta.test.cjs`). If you change an inline `<script>` on `/live/` or `/proof/`, update its `sha256-` hash in that page's CSP. Pin workflow actions to full commit SHAs and keep `permissions:` minimal.
+- Do not add `.nojekyll`. With it, Pages serves the whole repo, including `docs/`. Internal notes stay out of the published site (`_config.yml`, `scripts/stage-site.cjs`). `brand-kit.md` stays published because `/brand.html` links to it.
 
 ## Vision filter (every change)
 

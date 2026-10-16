@@ -1,0 +1,62 @@
+name: pages
+# Branch builds already publish through Jekyll using the exclude list in
+# _config.yml. This workflow is the publisher once Pages source is GitHub
+# Actions. Until then it only reads the build type, so the two-hour stats
+# push does not upload the site twice.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions: {}
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pages: write
+    outputs:
+      build_type: ${{ steps.cfg.outputs.build_type }}
+    steps:
+      - name: Read Pages build type
+        id: cfg
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          bt=$(gh api "repos/${{ github.repository }}/pages" --jq .build_type)
+          echo "build_type=$bt" >> "$GITHUB_OUTPUT"
+  build:
+    needs: gate
+    if: needs.gate.outputs.build_type == 'workflow'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      actions: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - name: Stage public site
+        run: node scripts/stage-site.cjs _site
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: _site
+          include-hidden-files: true
+  deploy:
+    needs: [gate, build]
+    if: needs.gate.outputs.build_type == 'workflow'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
