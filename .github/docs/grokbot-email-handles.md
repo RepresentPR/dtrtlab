@@ -43,7 +43,7 @@ Official help: [Give your Bot an email address](https://cursor.com/help/grok-bot
 ## What this agent already did
 
 - Posted to X tagging `@bot` with the priority list (first free only; wait for your approval card).  
-- Logged this shortlist in `docs/unfinished-work-pipeline.md`.
+- Logged this shortlist in `.github/docs/unfinished-work-pipeline.md`.
 
 ## What Ian must do (2 minutes)
 

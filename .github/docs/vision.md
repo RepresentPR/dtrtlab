@@ -76,6 +76,6 @@ If no, or if it only copies someone else’s product in secret, it is out. Durin
 ## Related
 
 - Agent floor: `AGENTS.md`
-- Operating split and Stage 1 execution: `docs/company-operating-system.md`
-- Brand voice and marks: `docs/brand-playbook.md`
+- Operating split and Stage 1 execution: `.github/docs/company-operating-system.md`
+- Brand voice and marks: `.github/docs/brand-playbook.md`
 - Machine-readable facts: `content/company.json`

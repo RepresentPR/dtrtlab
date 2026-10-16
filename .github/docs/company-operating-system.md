@@ -2,7 +2,7 @@
 
 **Purpose:** Run a small writing studio with a clear executive split. Scale only with dated proof. Do not pretend the studio is already a large company.
 
-**Vision alignment:** Long-term filter lives in [`docs/vision.md`](vision.md). Day-to-day execution obeys [`AGENTS.md`](../AGENTS.md). Stage 1 keeps the public face on the B2B writing studio.
+**Vision alignment:** Long-term filter lives in [`.github/docs/vision.md`](vision.md). Day-to-day execution obeys [`AGENTS.md`](../../AGENTS.md). Stage 1 keeps the public face on the B2B writing studio.
 
 **Last reviewed:** 2026-10-15
 
@@ -10,7 +10,7 @@
 
 | Seat | Who | Does |
 | --- | --- | --- |
-| **First chair — operations** | AI agents | Ordinary tasks, social drafts, code builds, GitHub pull requests, and pipeline tracking in [`docs/unfinished-work-pipeline.md`](unfinished-work-pipeline.md). Strictly obey [`AGENTS.md`](../AGENTS.md). |
+| **First chair — operations** | AI agents | Ordinary tasks, social drafts, code builds, GitHub pull requests, and pipeline tracking in [`.github/docs/unfinished-work-pipeline.md`](unfinished-work-pipeline.md). Strictly obey [`AGENTS.md`](../../AGENTS.md). |
 | **Second chair — founder** | Ian Ferraro | Absolute authority over acceptance, rejection, pricing, commitments, credential unlocks, and brand positioning. |
 
 **No autonomous overrides.** Agents may not unilaterally pivot company identity, modify pricing structures, or remove professional portfolios.
@@ -21,9 +21,9 @@ Ordinary bugfixes, tests, and honesty fixes still ship. Do not park that work as
 
 **Ian unlocks:** acceptance or rejection of work and clients, pricing, commitments, GitHub profile UI, LinkedIn paste, photo dump from phone/iCloud, Grok Bot approval cards, legal entity / counsel / bank, and any brand-positioning change.
 
-Track file: [`docs/unfinished-work-pipeline.md`](unfinished-work-pipeline.md).  
-AI templates: [`docs/templates/`](templates/README.md) · root [`AGENTS.md`](../AGENTS.md).  
-AI spend (company vs experiments): [`docs/ai-spend-ops.md`](ai-spend-ops.md).
+Track file: [`.github/docs/unfinished-work-pipeline.md`](unfinished-work-pipeline.md).  
+AI templates: [`.github/docs/templates/`](templates/README.md) · root [`AGENTS.md`](../../AGENTS.md).  
+AI spend (company vs experiments): [`.github/docs/ai-spend-ops.md`](ai-spend-ops.md).
 
 ## 2. Execution velocity and conversion
 
@@ -91,7 +91,7 @@ Track weekly in private notes, and publish only figures that are dated and real:
 - Public evidence quality (dated, honest, attributable)
 - Inbound trust: real replies to `hello@dtrtlab.com`, zero bounced `@dtrtlab.com` mail
 - Cash: runway months (private) — precondition for any small-business help program
-- Vision filter: no clone-hacks, no fake scale, no invented client count (see `docs/vision.md`)
+- Vision filter: no clone-hacks, no fake scale, no invented client count (see `.github/docs/vision.md`)
 
 AFTERLIGHT chapter counts are hobby notes, not the studio’s operating metric during Stage 1.
 

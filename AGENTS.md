@@ -1,8 +1,8 @@
 # DTRT Lab — agent instructions
 
 Portable floor for Cursor, Codex, Copilot, and other coding agents.  
-Canonical vision: `docs/vision.md` · Ops authority: `docs/company-operating-system.md`  
-Prompt pack: `docs/templates/`
+Canonical vision: `.github/docs/vision.md` · Ops authority: `.github/docs/company-operating-system.md`  
+Prompt pack: `.github/docs/templates/`
 
 ## 1. Founder boundaries
 
@@ -58,7 +58,7 @@ Do not park ordinary bugfixes as “blocked on Ian.” Do not decide brand, pric
 - Shop checkout stays **off** until payment + fulfillment are real (`checkoutLive: false`). Whop checkout for the named writing plans is the paid path already on the site.
 - Do not put secrets, recovery codes, API tokens, or passwords in git (`secrets/`, `*recovery-codes*` are gitignored).
 - Do not reverse-engineer / clone third-party apps as a growth strategy.
-- Keep **company AI** (this Cursor agent + Postiz) separate from **experiment** API wallets; see `docs/ai-spend-ops.md`. Never put company secrets on young discount proxies.
+- Keep **company AI** (this Cursor agent + Postiz) separate from **experiment** API wallets; see `.github/docs/ai-spend-ops.md`. Never put company secrets on young discount proxies.
 - Keep Lab usefulness surfaces separate from DTRTC stream chrome. Stage 1 freeze keeps the public results dashboard, streaming, and AFTERLIGHT on `/lab.html`. `/live/` is now the private owner dashboard: encrypted aggregates only (`live/owner.enc.json`), unlinked and `noindex`; `/hq/` redirects to it. Never commit its plaintext data or password.
 - AFTERLIGHT / game status stays honest (“in development / not for sale”).
 - Public contact is `hello@dtrtlab.com` (not Outlook on the site).
@@ -72,7 +72,7 @@ Do not park ordinary bugfixes as “blocked on Ian.” Do not decide brand, pric
 3. Durable craft/revenue or trust/foundation for the company?  
 4. Proud if a local business owner or journalist read it tomorrow?
 
-If no → skip. Canonical strategy is `docs/vision.md`. During the freeze, do not spend company time on the public results dashboard, streaming, or AFTERLIGHT.
+If no → skip. Canonical strategy is `.github/docs/vision.md`. During the freeze, do not spend company time on the public results dashboard, streaming, or AFTERLIGHT.
 
 ## Conventions
 
@@ -80,7 +80,7 @@ If no → skip. Canonical strategy is `docs/vision.md`. During the freeze, do no
 - One purpose per PR when possible; conventional commits (`feat`, `fix`, `docs`, `chore`).
 - Prefer real workshop/product imagery over abstract decoration on Lab face.
 - EN/ES journey where the site already supports it; don’t invent fake localization coverage.
-- When writing copy or prompts, use `docs/templates/` — don’t invent hype patterns.
+- When writing copy or prompts, use `.github/docs/templates/` — don’t invent hype patterns.
 
 ## Do not touch without an explicit ask
 
@@ -96,4 +96,4 @@ If no → skip. Canonical strategy is `docs/vision.md`. During the freeze, do no
 - Relevant `node --test` scripts pass for touched surfaces
 - Vision filter checked
 - Brand, pricing, and scope questions asked of DTRT Co-Founder instead of guessed
-- Unfinished loops logged in `docs/unfinished-work-pipeline.md` when work spans sessions
+- Unfinished loops logged in `.github/docs/unfinished-work-pipeline.md` when work spans sessions

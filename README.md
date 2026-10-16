@@ -3,7 +3,7 @@
 Public site for **[dtrtlab.com](https://dtrtlab.com)** — Ian Ferraro’s independent studio.
 
 **Company face:** make useful stuff, show dated evidence, Made for all.  
-**Entertainment face:** DTRTC (stream/clips) and **DTRT AFTERLIGHT** (story world; game in development). Same founder, different surfaces — see `docs/vision.md`.
+**Entertainment face:** DTRTC (stream/clips) and **DTRT AFTERLIGHT** (story world; game in development). Same founder, different surfaces — see `.github/docs/vision.md`.
 
 ## What this repo is
 
@@ -14,18 +14,18 @@ Public site for **[dtrtlab.com](https://dtrtlab.com)** — Ian Ferraro’s indep
 | `/find.html` | One digest for all public socials (Lab / stream / career) |
 | `/live/`, `/history.html` | Dated evidence — no vanity metrics without context |
 | `/afterlight.html`, `/clips/` | Entertainment / story / clips — honest status |
-| `docs/vision.md` | Decision filter for every change |
+| `.github/docs/vision.md` | Decision filter for every change |
 
 Do **not** claim a live store, open raise, hiring pipeline, Fortune rank, or reverse-engineered third-party games.
 
 ## Vision & ops docs
 
-- Vision filter: [`docs/vision.md`](docs/vision.md)
-- Operating system: [`docs/company-operating-system.md`](docs/company-operating-system.md)
-- Brand: [`docs/brand-playbook.md`](docs/brand-playbook.md)
-- Agent floor: [`AGENTS.md`](AGENTS.md) · Cursor rules: [`.cursor/rules/`](.cursor/rules/)
-- AI prompt templates: [`docs/templates/`](docs/templates/README.md)
-- GitHub alignment audit: [`docs/github-vision-alignment-audit.md`](docs/github-vision-alignment-audit.md)
+- Vision filter: `.github/docs/vision.md` (not published on the site)
+- Operating system: `.github/docs/company-operating-system.md`
+- Brand: `.github/docs/brand-playbook.md`
+- Agent floor: `AGENTS.md` · Cursor rules: `.cursor/rules/`
+- AI prompt templates: `.github/docs/templates/`
+- GitHub alignment audit: `.github/docs/github-vision-alignment-audit.md`
 
 ## Local
 

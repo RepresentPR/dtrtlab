@@ -2,7 +2,7 @@
 
 **Last reviewed:** 2026-10-13  
 **Owner:** Ian Ferraro (budget) · Agent (execution under vision)  
-**Filter:** `docs/vision.md` — useful, honest, no trust-burning growth hacks.
+**Filter:** `.github/docs/vision.md` — useful, honest, no trust-burning growth hacks.
 
 ---
 
@@ -126,7 +126,7 @@ If “no” → experiment wallet only, or skip.
 
 ## Related
 
-- Authority: `docs/company-operating-system.md`  
-- Vision: `docs/vision.md`  
-- Pipeline: `docs/unfinished-work-pipeline.md`  
-- Templates: `docs/templates/`
+- Authority: `.github/docs/company-operating-system.md`  
+- Vision: `.github/docs/vision.md`  
+- Pipeline: `.github/docs/unfinished-work-pipeline.md`  
+- Templates: `.github/docs/templates/`

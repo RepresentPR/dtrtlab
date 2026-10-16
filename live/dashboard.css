@@ -1,5 +1,6 @@
-:root{--navy:#0B2545;--navy2:#123563;--green:#13C27A;--ink:#EAF2FB;--mut:#9DB3CF;--red:#ff6b6b}
-*{box-sizing:border-box}body{margin:0;background:var(--navy);color:var(--ink);font:15px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+@font-face{font-family:'DTRT Sans';src:url('/assets/fonts/source-sans-3-latin.woff2') format('woff2');font-display:swap}
+:root{--navy:#0B2545;--navy2:#123563;--green:#13C27A;--ink:#EAF2FB;--mut:#9DB3CF;--red:#ff6b6b;font-family:'DTRT Sans',"Source Sans 3",Arial,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--navy);color:var(--ink);font:15px/1.4 'DTRT Sans',"Source Sans 3",Arial,sans-serif}
 main{max-width:980px;margin:0 auto;padding:16px}h1{font-size:20px;margin:4px 0}h1 b{color:var(--green)}h2{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin:22px 0 8px}
 h3{font-size:14px;margin:0 0 6px;color:var(--mut);font-weight:600}header{display:flex;flex-wrap:wrap;align-items:center;gap:8px;justify-content:space-between}
 #stamp{color:var(--mut);font-size:12px;margin:0}.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}@media(min-width:700px){.tiles{grid-template-columns:repeat(4,1fr)}}

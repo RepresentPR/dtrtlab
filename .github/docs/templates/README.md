@@ -1,7 +1,7 @@
 # AI templates — vision-aligned pack
 
 **Purpose:** Reusable prompts and agent floors that help **DTRT Lab** and **Ian’s career** without hype theater.  
-**Filter:** `docs/vision.md`  
+**Filter:** `.github/docs/vision.md`  
 **Last built:** 2026-10-13
 
 ## What we implemented (adopted)
@@ -9,7 +9,7 @@
 | Template | Helps | File |
 | --- | --- | --- |
 | Agent floor (AGENTS.md) | Every coding agent stays on vision | `/AGENTS.md` |
-| AI spend ops | One chat / one agent; company vs experiment wallets | `/docs/ai-spend-ops.md` |
+| AI spend ops | One chat / one agent; company vs experiment wallets | `/.github/docs/ai-spend-ops.md` |
 | Cursor always-on rules | Honesty + dual brand in every chat | `.cursor/rules/*.mdc` |
 | Free plan delivery | Useful Lab product | `free-plan-delivery.md` |
 | Paid scope proposal | Honest paid work (no fake guarantees) | `paid-scope-proposal.md` |
@@ -38,4 +38,4 @@
 
 ## Related
 
-- Social VO pack: `docs/social-refresh-pack.md`  
+- Social VO pack: `.github/docs/social-refresh-pack.md`  

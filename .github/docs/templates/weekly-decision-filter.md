@@ -8,7 +8,7 @@
 ```
 Run DTRT Lab’s weekly decision filter.
 
-Vision pillars (docs/vision.md):
+Vision pillars (.github/docs/vision.md):
 - Do the right thing / honest evidence
 - Make useful stuff (free plans)
 - Have fun (creator craft alive)

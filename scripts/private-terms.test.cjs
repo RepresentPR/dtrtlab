@@ -47,7 +47,7 @@ test('no private founder terms in any public file', () => {
 });
 
 test('job application letters are not in the repo', () => {
-  assert.ok(!fs.existsSync('docs/applications'), 'docs/applications must stay out of the public repo');
+  assert.ok(!fs.existsSync('docs/applications') && !fs.existsSync('.github/docs/applications'), 'application letters must stay out of the repo');
 });
 
 // Personal webmail addresses never belong in this public repo. Business addresses

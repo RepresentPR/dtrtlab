@@ -2,7 +2,7 @@
 
 <!-- What changed and why. One purpose per PR when possible. -->
 
-## Vision filter (`docs/vision.md`)
+## Vision filter (`.github/docs/vision.md`)
 
 - [ ] Makes something **more useful** or the story world **more real**
 - [ ] Can show **dated evidence** without lying

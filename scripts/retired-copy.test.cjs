@@ -1,11 +1,11 @@
 // Guard: retired offers and pitches must not come back on the served site.
-// Netlify publishes the whole repo ("publish = ."), so every tracked HTML, JS,
-// JSON and webmanifest file is public, including versions/. Only scripts/
-// (tests that name these phrases on purpose) and internal docs (docs/*.md,
-// AGENTS.md, README.md) are outside this guard; brand-kit.md is linked from
+// GitHub Pages publishes this repo from main at "/". It does not serve the
+// .github directory, so internal notes live in .github/docs and stay out of
+// this scan. scripts/ (tests that name these phrases on purpose), AGENTS.md,
+// and README.md are outside the phrase scan; brand-kit.md is linked from
 // /brand.html, so it is checked too.
 // Retired 2026-10-15 (Co-Founder): free first-line rewrite, "Stay on the chair /
-// We write your posts", data-method pitch, writing plans, day-30 numbers,
+// We write your posts", data-method pitch, writing plan(s), writing partnerships, day-30 numbers,
 // Start at $50, Mini Social Pack, Week Pack.
 const test = require('node:test');
 const assert = require('node:assert/strict');
@@ -19,7 +19,8 @@ const PHRASES = [
   /We write your posts/i,
   /\bpublic data\b/i,
   /from public sources/i,
-  /Writing plans/i,
+  /\bwriting plans?\b/i, // singular and plural, any case
+  /\bwriting partnerships?\b/i,
   /30-day numbers/i,
   /day-30 numbers/i,
   /Start at \$50/i,
@@ -27,7 +28,16 @@ const PHRASES = [
   /plan_RVDjSToI7vKOM/,
   /Mini Social Pack/i,
   /Week Pack/i,
+  /companies studied/i,
+  /companies mined/i,
+  /studied companies/i,
+  /mined companies/i,
+  /rewrite it free/i,
 ];
+// The place name is the owner's fiction setting. It is retired only on business
+// pages. The token is split so this public test file does not spell it out.
+const PLACE = new RegExp(['Pue', 'rto Rico'].join(''), 'i');
+const BUSINESS = /^(index|find|partners|prices|contact|careers)\.html$|^(job-desk|legal|proof|live)\//;
 const SERVED = /\.(html?|js|mjs|json|webmanifest)$/i;
 const SKIP_DIRS = new Set(['.git', 'node_modules', 'scripts', 'docs']);
 
@@ -42,15 +52,28 @@ function walk(dir, out = []) {
 }
 
 test('retired copy stays off every served HTML, JS and JSON file', () => {
+  assert.ok(!fs.existsSync(path.join(ROOT, 'docs')), 'docs/ must stay out of the published root');
   const files = walk(ROOT).concat(path.join(ROOT, 'brand-kit.md'));
   assert.ok(files.some(f => f.endsWith(path.join('versions', 'index.html'))), 'versions/ is served and checked');
   const hits = [];
   for (const file of files) {
+    const rel = path.relative(ROOT, file).split(path.sep).join('/');
     const text = fs.readFileSync(file, 'utf8');
     for (const rx of PHRASES) {
       const m = text.match(rx);
-      if (m) hits.push(`${path.relative(ROOT, file)}: "${m[0]}"`);
+      if (m) hits.push(`${rel}: "${m[0]}"`);
+    }
+    if (BUSINESS.test(rel)) {
+      const m = text.match(PLACE);
+      if (m) hits.push(`${rel}: "${m[0]}"`);
     }
   }
   assert.deepEqual(hits, [], 'retired copy found:\n' + hits.join('\n'));
+  const linked = [];
+  for (const file of files) {
+    if (!/\.html?$/i.test(file)) continue;
+    const text = fs.readFileSync(file, 'utf8');
+    if (/href=["'][^"']*docs\//i.test(text)) linked.push(path.relative(ROOT, file));
+  }
+  assert.deepEqual(linked, [], 'public page links to docs/: ' + linked.join(', '));
 });

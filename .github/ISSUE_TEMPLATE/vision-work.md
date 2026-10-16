@@ -1,6 +1,6 @@
 ---
 name: Vision-aligned work
-about: Propose useful Lab work, evidence, or AFTERLIGHT craft — filtered by docs/vision.md
+about: Propose useful Lab work, evidence, or AFTERLIGHT craft — filtered by .github/docs/vision.md
 title: "[vision] "
 labels: []
 ---

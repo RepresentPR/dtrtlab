@@ -63,7 +63,7 @@
     "Fake scale, fake store, fake hiring, or fake fundraising",
     "Hype tools that trade trust for reach"
   ],
-  "visionDoc": "docs/vision.md",
+  "visionDoc": ".github/docs/vision.md",
   "lastReviewed": "2026-10-13",
   "serviceArea": "DMV Area businesses (DC, Maryland, Virginia)",
   "offers": [
@@ -75,7 +75,7 @@
       "url": "https://whop.com/checkout/plan_kZqq0jgr6VrGG"
     }
   ],
-  "guarantee": "DTRT 7-Day Do-It-Right Guarantee: ask for any fix within 7 days of delivery and I rewrite it free.",
+  "guarantee": "DTRT 7-Day Do-It-Right Guarantee: ask for any fix within 7 days of delivery. If it's not right, I fix it at no charge.",
   "theme": {
     "name": "A · Local Pro",
     "lockedUntil": "2027-01-13",

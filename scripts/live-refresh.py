@@ -48,6 +48,25 @@ def postiz_published():
     posts = d.get("posts", d) if isinstance(d, dict) else d
     return sum(1 for p in posts if str(p.get("state", p.get("status", ""))).upper() == "PUBLISHED")
 
+# Retired with the companies / Mini / free-rewrite offers. Never write them back.
+RETIRED_KEYS = {"companies", "companies_studied", "mini_new_shops", "mini_reorders",
+                "rewrites_requested", "rewrites_on_time"}
+
+def retired_key(k):
+    lk = str(k).lower().replace("-", "_")
+    return k in RETIRED_KEYS or "companies_studied" in lk or lk.startswith("mini") or "rewrite" in lk
+
+def strip_retired(d):
+    if isinstance(d, dict):
+        for k in list(d):
+            if retired_key(k):
+                d.pop(k, None)
+    return d
+
+def retired_note(x):
+    s = str(x).lower()
+    return "free rewrite" in s or "companies studied" in s or "companies mined" in s or "mini social" in s or "mini reorder" in s
+
 def main():
     pw = os.environ["LIVE_PASSWORD"]
     owner = decrypt(json.load(open(ENC)), pw)
@@ -69,8 +88,11 @@ def main():
     today["followers_total_known"] = sum(known) if known else None
     today["followers_complete"] = bool(f) and all(isinstance(v, int) for v in f.values())
     today["date"] = now.strftime("%Y-%m-%d")
-    hist = [d for d in owner.get("history", []) if d["date"] != today["date"]] + [today]
+    strip_retired(today)
+    hist = [strip_retired(d) for d in owner.get("history", []) if d["date"] != today["date"]] + [today]
     owner["history"], owner["today"] = hist, today
+    if isinstance(owner.get("not_connected"), list):
+        owner["not_connected"] = [x for x in owner["not_connected"] if not retired_note(x)]
     owner["meta"].update({"updated_et": now.strftime("%Y-%m-%d %H:%M ET"), "errors": errors,
                           "days_running": (now.date() - dt.date.fromisoformat(owner["meta"]["start"])).days})
     json.dump(encrypt(owner, pw), open(ENC, "w"))
@@ -80,9 +102,10 @@ def main():
     proof.update({"updated_et": owner["meta"]["updated_et"], "days_running": owner["meta"]["days_running"],
                   "posts_published": today.get("posts_published"),
                   "audience_total": today["followers_total_known"] if today["followers_complete"] else None})
-    ph = [d for d in proof.get("history", []) if d["date"] != today["date"]]
+    strip_retired(proof)
+    ph = [strip_retired(d) for d in proof.get("history", []) if d["date"] != today["date"]]
     ph.append({"date": today["date"], "notes": today.get("notes"), "sources": today.get("sources"),
-               "companies": today.get("companies"), "posts": today.get("posts_published")})
+               "posts": today.get("posts_published")})
     proof["history"] = ph
     json.dump(proof, open(PROOF, "w"), indent=1)
     print("refreshed", owner["meta"]["updated_et"], "errors:", errors or "none")

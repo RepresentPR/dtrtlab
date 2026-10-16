@@ -1,7 +1,7 @@
 # Find me — mentor map (vision reaudit)
 
 **Last reviewed:** 2026-10-13  
-**Filter:** `docs/vision.md` — useful, honest, dual-brand, no fake scale.  
+**Filter:** `.github/docs/vision.md` — useful, honest, dual-brand, no fake scale.  
 **Canonical data:** `content/socials.js` → `/find.html` + quiet strip (`js/find-me.js`).
 
 ---
@@ -44,7 +44,7 @@
 
 ## Live channel paste (Ian unlock — agent cannot edit locked bios)
 
-Paste kit: `docs/social-bios-paste.md`.
+Paste kit: `.github/docs/social-bios-paste.md`.
 
 Priority unlocks (agent 1st chair; Ian 2nd):
 
@@ -69,7 +69,7 @@ If it burns trust for reach → **out**. Use dated proof + useful free plans ins
 
 ## Related
 
-- Bios: `docs/social-bios-paste.md`  
-- Captions / VO: `docs/social-refresh-pack.md`  
-- GitHub: `docs/github-profile-readme-template.md`  
-- Vision: `docs/vision.md`
+- Bios: `.github/docs/social-bios-paste.md`  
+- Captions / VO: `.github/docs/social-refresh-pack.md`  
+- GitHub: `.github/docs/github-profile-readme-template.md`  
+- Vision: `.github/docs/vision.md`

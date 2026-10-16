@@ -2,7 +2,7 @@
 
 **Audited:** 2026-10-13  
 **Account:** [github.com/RepresentPR](https://github.com/RepresentPR)  
-**Vision filter:** `docs/vision.md`  
+**Vision filter:** `.github/docs/vision.md`  
 **Tools used:** GitHub MCP (`get_me`, `search_repositories`, `list_*`, `pull_request_read`, `get_file_contents`, `ui_get`, `search_*`) + `gh` API where allowed
 
 ---
@@ -57,7 +57,7 @@ Biggest gaps: empty profile (no bio/blog/location), `hireable: true` (reads as h
 
 ## Goals vs vision (work in flight)
 
-### Vision priorities (from `docs/vision.md`)
+### Vision priorities (from `.github/docs/vision.md`)
 
 1. Free plans / usefulness  
 2. Shop interest (checkout off)  
