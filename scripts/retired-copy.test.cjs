@@ -1,7 +1,8 @@
 // Guard: retired offers, old guarantees, and the terms below must not
 // come back on the served site. Pages publishes the staged tree
 // (scripts/stage-site.cjs), not the whole repo. This guard scans every served
-// html, js, json, md, css, txt, and webmanifest file. docs/ is skipped only
+// html, js, json, md, css, txt, webmanifest, svg, and xml file, plus
+// sitemap.xml, netlify.toml, and _headers. docs/ is skipped only
 // because _config.yml lists it under exclude.
 // brand-kit.md is linked from /brand.html, so it is included.
 // Filename exemptions are exact paths only. These files hold the ban lists:
@@ -23,8 +24,8 @@ const EXEMPT = new Set([
   'scripts/private-terms.test.cjs',
 ]);
 const GROK_BOT = 'Grok bot';
-const SERVED = /\.(html?|js|mjs|json|md|css|txt|webmanifest)$/i;
-const TYPES = ['html', 'js', 'json', 'md', 'css', 'txt', 'webmanifest'];
+const SERVED = /\.(html?|js|mjs|json|md|css|txt|webmanifest|svg|xml|toml)$|^(_headers|netlify\.toml|sitemap\.xml)$/i;
+const TYPES = ['html', 'js', 'json', 'md', 'css', 'txt', 'webmanifest', 'svg', 'xml', 'toml'];
 
 const PHRASES = [
   /first-line rewrite/i,
@@ -41,7 +42,11 @@ const PHRASES = [
   new RegExp(String.fromCharCode(103, 114, 111, 107, 98, 111, 116), 'i'),
   /mailto:/i,
   /Reply SYSTEM/i,
+  /DM SYSTEM/i,
   /Reply CHECK/i,
+  /the Mini plan/i,
+  /CCC ONE/i,
+  /Ops Trax/i,
   /Mini Social Pack/i,
   /Week Pack/i,
   /Writing Retainer/i,
@@ -50,6 +55,7 @@ const PHRASES = [
   /7-Day Do-It-Right Guarantee/i,
   /7-Day Guarantee/i,
   /I rewrite it free/i,
+  /rewrite it free/i,
   /rewrite free/i,
   /free rewrites/i,
   /fix it for free/i,
@@ -65,7 +71,8 @@ const PHRASES = [
   /Southern Maryland/i,
   /\bSoMD\b/i,
   /Southern MD\b/i,
-  /So\.\s*MD\b/,
+  /So\.\s*MD\b/i,
+  /\bSo\s+MD\b/i,
   /\bNoVA\b/,
   /St\.?\s*Mary['’]s/i,
   /\bCalvert\b/i,
@@ -109,15 +116,22 @@ const PLANTS = [
   ['handle', String.fromCharCode(103, 114, 111, 107, 98, 111, 116)],
   ['mailto', 'mailto:hello@example.test'],
   ['reply-system', 'Reply SYSTEM'],
+  ['reply-quoted', 'Reply "SYSTEM"'],
+  ['dm-system', 'DM SYSTEM'],
   ['reply-check', 'Reply CHECK'],
+  ['mini-plan', 'the Mini plan'],
+  ['ccc-one', 'CCC ONE'],
+  ['ops-trax', 'Ops Trax'],
   ['mini', 'Mini Social Pack'],
   ['week', 'Week Pack'],
   ['retainer', 'Writing Retainer'],
   ['review-desk', 'Review Desk'],
+  ['review-desk-gap', 'Review  Desk'],
   ['review-desk-hyphen', 'Review-Desk'],
   ['guarantee-name', '7-Day Do-It-Right Guarantee'],
   ['guarantee-short', '7-Day Guarantee'],
   ['rewrite-free-sentence', 'I rewrite it free'],
+  ['rewrite-it-free', 'rewrite it free'],
   ['rewrite-free', 'rewrite free'],
   ['free-rewrites', 'free rewrites'],
   ['fix-free', 'fix it for free'],
@@ -134,6 +148,7 @@ const PLANTS = [
   ['somd', 'SoMD'],
   ['southern-md', 'Southern MD'],
   ['so-md', 'So. MD'],
+  ['so-md-plain', 'So MD'],
   ['nova', 'NoVA'],
   ['st-marys', "St. Mary's"],
   ['calvert', 'Calvert'],
@@ -143,6 +158,7 @@ const PLANTS = [
   ['largo', 'Largo'],
   ['waldorf', 'Waldorf'],
   ['silver-spring', 'Silver Spring'],
+  ['silver-spring-hyphen', 'Silver-Spring'],
   ['baltimore', 'Baltimore'],
   ['arlington', 'Arlington'],
   ['annapolis', 'Annapolis'],
@@ -162,15 +178,33 @@ const PLANTS = [
   ['germantown', 'Germantown'],
 ];
 
-function scanText(rel, text) {
+const PLACES = PHRASES.slice(PHRASES.findIndex((rx) => rx.source === '\\bClinton\\b'));
+
+function loosen(text) {
+  return String(text)
+    .replace(/[\u201c\u201d\u2018\u2019"'`]/g, '')
+    .replace(/[-–—]/g, ' ')
+    .replace(/\s+/g, ' ');
+}
+
+function scanPatterns(rel, text, patterns) {
   if (EXEMPT.has(rel)) return [];
   const hits = [];
   const body = String(text).split(GROK_BOT).join('');
-  for (const rx of PHRASES) {
-    const m = body.match(rx);
+  const loose = loosen(body);
+  for (const rx of patterns) {
+    const m = body.match(rx) || loose.match(rx);
     if (m) hits.push(rel + ': ' + m[0]);
   }
   return hits;
+}
+
+function scanText(rel, text) {
+  return scanPatterns(rel, text, PHRASES);
+}
+
+function scanName(rel) {
+  return scanPatterns(rel, rel, PLACES);
 }
 
 function walk(dir, out = []) {
@@ -185,6 +219,18 @@ function walk(dir, out = []) {
   return out;
 }
 
+function walkNames(dir, out = []) {
+  for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (e.name === '.git') continue;
+    const p = path.join(dir, e.name);
+    const rel = path.relative(ROOT, p).split(path.sep).join('/');
+    if (isExcluded(rel, EXCLUDE)) continue;
+    if (e.isDirectory()) walkNames(p, out);
+    else if (!EXEMPT.has(rel)) out.push(rel);
+  }
+  return out;
+}
+
 test('retired copy stays off every served file', () => {
   const files = walk(ROOT);
   const rels = files.map((f) => path.relative(ROOT, f).split(path.sep).join('/'));
@@ -194,6 +240,10 @@ test('retired copy stays off every served file', () => {
   assert.ok(rels.includes('brand-kit.md'), 'brand-kit.md is served and checked');
   assert.ok(rels.includes('clips/index.html'), 'hobby pages are checked');
   assert.ok(rels.includes('afterlight.html'), 'fiction pages are checked');
+  assert.ok(rels.includes('sitemap.xml'), 'sitemap.xml is checked');
+  assert.ok(rels.includes('netlify.toml'), 'netlify.toml is checked');
+  assert.ok(rels.includes('_headers'), '_headers is checked');
+  assert.ok(rels.some((rel) => rel.endsWith('.svg')), 'svg files are checked');
   assert.ok(EXCLUDE.includes('docs'), 'docs skip comes from _config.yml exclude');
   assert.equal(isExcluded('docs/vision.md', EXCLUDE), true);
   assert.equal(isExcluded('docs/vision.md', EXCLUDE.filter((item) => item !== 'docs')), false, 'docs is scanned when it leaves the exclude list');
@@ -221,6 +271,17 @@ test('only the ban-list files are exempt, by exact path', () => {
   assert.ok(scanText('scripts/homepage-render.test.cjs', 'Clinton').length);
   assert.ok(scanText('scripts/other-demo.test.cjs', 'Clinton').length);
   assert.ok(scanText('demo/sample.html', 'Clinton').length);
+});
+
+test('served file names are checked against place bans', () => {
+  assert.ok(scanName('img/clinton.jpg').length, 'img/clinton.jpg');
+  assert.ok(scanName('img/Silver-Spring.webp').length, 'Silver-Spring');
+  assert.ok(scanName('img/so-md.png').length, 'so-md');
+  assert.equal(scanName('img/afterlight/cabo.jpg').length, 0);
+  assert.equal(scanName('content/music-credits.json').length, 0);
+  const hits = [];
+  for (const rel of walkNames(ROOT)) hits.push(...scanName(rel));
+  assert.deepEqual(hits, [], 'place name in a served filename:\n' + hits.join('\n'));
 });
 
 test('fiction filenames do not lift these bans', () => {

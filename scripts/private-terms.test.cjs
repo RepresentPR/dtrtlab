@@ -22,6 +22,7 @@ const FICTION_FILES = [
   /^stories\/afterlight\//,
   /^content\/afterlight\.json$/,
   /^content\/product\.json$/,
+  /^media\.html$/,
   /^tools\/build_afterlight\.py$/,
   /^img\/afterlight\/rincon\.avif$/,
   /^img\/afterlight\/rincon\.jpg$/,
@@ -90,7 +91,7 @@ test('fiction filenames lift only the allowlisted hashes', () => {
   const setting = String.fromCharCode(80, 117, 101, 114, 116, 111, 32, 82, 105, 99, 111);
   const town = String.fromCharCode(82, 105, 110, 99, 243, 110);
   const small = String.fromCharCode(80, 82, 32, 115, 109, 97, 108, 108);
-  for (const file of ['afterlight.html', 'story.html', 'game.html', 'worlds.html', 'stories/afterlight/island.html', 'stories/afterlight/volume-one/index.html', 'content/afterlight.json', 'content/product.json', 'tools/build_afterlight.py', 'img/afterlight/rincon.avif', 'img/afterlight/rincon.jpg', 'img/afterlight/rincon.webp']) {
+  for (const file of ['afterlight.html', 'story.html', 'game.html', 'worlds.html', 'stories/afterlight/island.html', 'stories/afterlight/volume-one/index.html', 'content/afterlight.json', 'content/product.json', 'media.html', 'tools/build_afterlight.py', 'img/afterlight/rincon.avif', 'img/afterlight/rincon.jpg', 'img/afterlight/rincon.webp']) {
     assert.deepStrictEqual(offenses(file, setting), [], file);
     assert.deepStrictEqual(offenses(file, town), [], file);
     assert.deepStrictEqual(offenses(file, small), [], file);

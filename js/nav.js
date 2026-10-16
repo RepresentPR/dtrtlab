@@ -298,7 +298,7 @@
     .catch(function () {});
 
   var analytics = document.createElement("script");
-  analytics.src = root + "js/analytics.js?v=" + ASSET_V;
+  analytics.src = root + "js/analytics.js?v=20261016-contact";
   analytics.async = true;
   document.head.appendChild(analytics);
 
@@ -341,7 +341,7 @@
 
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register(root + "sw.js?v=" + ASSET_V).catch(function () {});
+      navigator.serviceWorker.register(root + "sw.js?v=20261016-contact").catch(function () {});
     });
   }
 })();

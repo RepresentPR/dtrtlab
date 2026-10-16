@@ -56,7 +56,7 @@ test('business pages show theme A offers and keep hobby off the company face', (
       if (isExcluded(rel, exclude)) continue;
       if (rel === 'scripts/demo-page.test.cjs' || rel === 'scripts/business-brand.test.cjs' || rel === 'scripts/retired-copy.test.cjs' || rel === 'scripts/private-terms.test.cjs') continue;
       if (entry.isDirectory()) walkPlaces(full);
-      else if (/\.(html?|js|mjs|json|md|css|txt|webmanifest)$/i.test(entry.name) && fs.statSync(full).size < 5e6) served.push(full);
+      else if ((/\.(html?|js|mjs|json|md|css|txt|webmanifest|svg|xml|toml)$/i.test(entry.name) || /^(?:_headers|netlify\.toml|sitemap\.xml)$/i.test(entry.name)) && fs.statSync(full).size < 5e6) served.push(full);
     }
   })(root);
   assert.ok(exclude.includes('docs'), 'docs stays unpublished only while _config.yml excludes it');

@@ -64,6 +64,15 @@ test('served html does not link under /docs/', () => {
   assert.deepEqual(problems, []);
 });
 
+test.after(() => {
+  const dir = staged;
+  try {
+    staged = undefined;
+  } finally {
+    if (dir) fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
 test('branch publish config excludes docs and still ships .well-known', () => {
   assert.equal(fs.existsSync(path.join(ROOT, '.nojekyll')), false, '.nojekyll would make Pages serve the whole repo');
   const yml = fs.readFileSync(path.join(ROOT, '_config.yml'), 'utf8');
@@ -84,6 +93,7 @@ test('pages jekyll build has no brand-kit.html and no assets/css/style.css', (t)
     return;
   }
   const dest = fs.mkdtempSync(path.join(os.tmpdir(), 'dtrt-jekyll-'));
+  try {
   const ruby = `
 require 'jekyll'
 require 'jekyll-optional-front-matter'
@@ -106,4 +116,7 @@ Jekyll::Site.new(full).process
   execFileSync('ruby', ['-e', ruby], { cwd: ROOT, stdio: 'pipe' });
   assert.equal(fs.existsSync(path.join(dest, 'brand-kit.html')), false);
   assert.equal(fs.existsSync(path.join(dest, 'assets', 'css', 'style.css')), false);
+  } finally {
+    fs.rmSync(dest, { recursive: true, force: true });
+  }
 });

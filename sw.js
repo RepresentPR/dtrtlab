@@ -5,7 +5,7 @@
    HTML is network-first (updates roll out). Other same-origin files
    are stale-while-revalidate. JSON and third parties are not cached.
 */
-var VERSION = "20261016-form-v3";
+var VERSION = "20261016-form-v4";
 var CACHE = "dtrtlab-" + VERSION;
 var PRECACHE = [
   "/",
@@ -41,9 +41,9 @@ var PRECACHE = [
   "/css/adapt.css?v=20261010n",
   "/css/hub.css?v=20261010n",
   "/css/afterlight.css?v=20261010n",
-  "/js/nav.js?v=20261012-language2",
+  "/js/nav.js?v=20261016-contact",
   "/js/hub.js?v=20261010n",
-  "/js/analytics.js?v=20261012-language2",
+  "/js/analytics.js?v=20261016-contact",
   "/js/product.js?v=20261010n",
   "/js/media.js?v=20261010n",
   "/js/content.js?v=20261010n",

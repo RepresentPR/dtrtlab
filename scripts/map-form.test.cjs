@@ -148,6 +148,42 @@ test('brand kit social lines use the canonical map sentence and no retired offer
   assert.doesNotMatch(kit, /DM SYSTEM|Reply SYSTEM|Writing Retainer|Review Desk|Starter Fix/);
 });
 
+test('contact.html posts to the form alias', () => {
+  const html = fs.readFileSync(path.join(root, 'contact.html'), 'utf8');
+  const formMatch = html.match(/<form\b[\s\S]*?<\/form>/i);
+  assert.ok(formMatch, 'contact.html has a form');
+  const form = formMatch[0];
+  assert.match(form, /\bmethod="POST"/);
+  assert.match(form, /\baction="https:\/\/formsubmit\.co\/b40eb14cdacd80c1b58eebb8ec124fe3"/);
+  assert.doesNotMatch(form, /@/);
+  assert.match(form, /name="_honey"/);
+  assert.match(form, /name="email"[^>]*\brequired\b|\brequired\b[^>]*name="email"/);
+  for (const topic of ['General', 'DMCA notice', 'Privacy request', 'Refund or billing', 'Other']) {
+    assert.match(form, new RegExp('<option[^>]*>' + topic + '</option>'));
+  }
+  assert.match(form, /name="Name"/);
+  assert.match(form, /name="Message"/);
+  assert.equal(attr([...form.matchAll(/<input\b[^>]*name="_next"[^>]*>/gi)][0][0], 'value'), 'https://dtrtlab.com/contact/thanks/');
+  const topicJs = fs.readFileSync(path.join(root, 'js/contact-topic.js'), 'utf8');
+  assert.match(topicJs, /dmca:\s*"DMCA notice"/);
+  assert.match(topicJs, /privacy:\s*"Privacy request"/);
+  assert.match(topicJs, /refund:\s*"Refund or billing"/);
+  const thanks = fs.readFileSync(path.join(root, 'contact/thanks/index.html'), 'utf8');
+  assert.match(thanks, /Thanks\. We'll read this and reply by email\./);
+  const dmca = fs.readFileSync(path.join(root, 'legal/dmca.html'), 'utf8');
+  assert.match(dmca, /Send notices through our <a href="\/contact\.html\?topic=dmca">contact form<\/a> \(choose DMCA notice\)\./);
+  assert.match(fs.readFileSync(path.join(root, 'legal/privacy.html'), 'utf8'), /href="\/contact\.html\?topic=privacy"/);
+  assert.match(fs.readFileSync(path.join(root, 'legal/refunds.html'), 'utf8'), /href="\/contact\.html\?topic=refund"/);
+  for (const file of walk(root)) {
+    const page = fs.readFileSync(file, 'utf8');
+    for (const anchor of anchors(page)) {
+      if (!/contact form/i.test(anchor.text)) continue;
+      const href = attr('<a ' + anchor.attrs + '>', 'href');
+      assert.match(href, /^\/contact\.html(?:\?|$)/, path.relative(root, file) + ' contact form href ' + href);
+    }
+  }
+});
+
 test('a bug report has its own thanks page', () => {
   const bug = fs.readFileSync(path.join(root, 'bug.html'), 'utf8');
   assert.match(bug, /_next" value="https:\/\/dtrtlab\.com\/bug\/thanks\/"/);
