@@ -253,7 +253,13 @@ function scanJoined(rel) {
     const folded = joinedKey(segment.replace(/\.[^.]+$/, ''));
     for (const phrase of JOINED) {
       const needle = joinedKey(phrase);
-      if (needle.length >= 4 && folded.includes(needle)) hits.push(rel + ': ' + needle);
+      // Short joins such as somd match the whole stem only, so they do not
+      // fire inside a longer word (ransomdemand). Longer joins still match
+      // as a substring of that stem.
+      const short = needle.length < 8;
+      if (needle.length >= 4 && (short ? folded === needle : folded.includes(needle))) {
+        hits.push(rel + ': ' + needle);
+      }
     }
   }
   return hits;
@@ -350,6 +356,8 @@ test('served file names are checked against the full ban list', () => {
   const bot = String.fromCharCode(103, 114, 111, 107, 98, 111, 116);
   assert.ok(scanName('img/' + bot + '.png').length, 'bot name');
   assert.ok(scanName('img/so-md.png').length, 'so-md');
+  assert.ok(scanName('img/somd.png').length, 'somd');
+  assert.equal(scanName('img/ransomdemand.png').length, 0, 'somd inside a longer word');
   assert.equal(scanName('img/afterlight/cabo.jpg').length, 0);
   assert.equal(scanName('content/music-credits.json').length, 0);
   const hits = [];
