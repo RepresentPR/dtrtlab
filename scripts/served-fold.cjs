@@ -1,11 +1,29 @@
 // Shared text fold for served-file guards.
 // loosen() is the matcher scripts/retired-copy.test.cjs uses for slugs,
 // underscores, quotes, and collapsed whitespace.
+function decodeEscapes(text) {
+  let body = String(text).replace(/%20/gi, ' ');
+  body = body.replace(/\\u([0-9a-fA-F]{4})/g, (all, hex) => String.fromCharCode(parseInt(hex, 16)));
+  body = body.replace(/\\x([0-9a-fA-F]{2})/g, (all, hex) => String.fromCharCode(parseInt(hex, 16)));
+  return body;
+}
+
+// Keep the values the name guard must see. Tag stripping would otherwise
+// drop og:title / meta content, alt, title, href, and src.
+function attributeValues(text) {
+  const parts = [];
+  const re = /\b(?:content|alt|title|href|src)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+))/gi;
+  for (const m of String(text).matchAll(re)) parts.push(m[1] ?? m[2] ?? m[3] ?? '');
+  return parts.join(' ');
+}
+
 function loosen(text, foldUnderscore) {
-  let body = String(text)
+  let body = decodeEscapes(text)
     .replace(/[\u201c\u201d\u2018\u2019"'`]/g, '')
     .replace(/[-–—]/g, ' ');
-  if (foldUnderscore) body = body.replace(/_/g, ' ');
+  // File-name folds (the name guard, and retired-copy filename scans)
+  // also split on underscores and dots: Sample.Heating.jpg, sample_heating.
+  if (foldUnderscore) body = body.replace(/[_.]/g, ' ');
   return body.replace(/\s+/g, ' ');
 }
 
@@ -32,13 +50,27 @@ function decodeEntities(text) {
 }
 
 // Case folding is left to the caller's /i pattern. This prepares entities,
-// tags, simple JS string joins, hyphens, and underscores.
+// attribute values, tags, simple JS string joins, hyphens, and underscores.
 function foldBanned(text) {
-  let body = decodeEntities(text);
+  let body = decodeEscapes(text);
+  body = decodeEntities(body);
+  const attrs = attributeValues(body);
   body = body.replace(/<[^>]*>/g, ' ');
+  body = body + ' ' + attrs;
   body = body.replace(/['"`]\s*\+\s*['"`]/g, '');
   body = body.replace(/&/g, ' ');
   return loosen(body, true);
 }
 
-module.exports = { loosen, foldBanned };
+const JOINED_NAME = /^sampleheating$/i;
+
+function containsRetiredDemoName(text) {
+  const folded = foldBanned(text);
+  if (/sample heating/i.test(folded)) return true;
+  for (const token of folded.split(/[\s/]+/)) {
+    if (JOINED_NAME.test(token)) return true;
+  }
+  return false;
+}
+
+module.exports = { loosen, foldBanned, containsRetiredDemoName };
