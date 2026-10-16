@@ -27,6 +27,28 @@ function loosen(text, foldUnderscore) {
   return body.replace(/\s+/g, ' ');
 }
 
+function joinedKey(text) {
+  return String(text).toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+// Joined filename stems with no separator (reviewdesk.png, silverspring.jpg).
+// Short needles such as somd match the whole stem only, so they do not fire
+// inside a longer word (ransomdemand). Dots are already separators in loosen().
+function joinedNameHits(rel, phrases) {
+  const hits = [];
+  for (const segment of String(rel).split('/')) {
+    const folded = joinedKey(segment.replace(/\.[^.]+$/, ''));
+    for (const phrase of phrases) {
+      const needle = joinedKey(phrase);
+      const short = needle.length < 8;
+      if (needle.length >= 4 && (short ? folded === needle : folded.includes(needle))) {
+        hits.push(rel + ': ' + needle);
+      }
+    }
+  }
+  return hits;
+}
+
 function decodeEntities(text) {
   let body = String(text);
   for (let i = 0; i < 3; i++) {
@@ -73,4 +95,4 @@ function containsRetiredDemoName(text) {
   return false;
 }
 
-module.exports = { loosen, foldBanned, containsRetiredDemoName };
+module.exports = { loosen, foldBanned, containsRetiredDemoName, joinedNameHits };

@@ -10,12 +10,14 @@
 // scripts/demo-page.test.cjs, scripts/business-brand.test.cjs,
 // scripts/retired-copy.test.cjs, and scripts/private-terms.test.cjs.
 // There is no legal-page exception and no fiction exception for these phrases.
+// File names treat "." inside a name like a space or hyphen (Silver.Spring.jpg)
+// and also match the joined form with no separator (reviewdesk.png).
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { isExcluded, loadExclude } = require('./stage-site.cjs');
-const { loosen } = require('./served-fold.cjs');
+const { loosen, joinedNameHits } = require('./served-fold.cjs');
 
 const ROOT = path.join(__dirname, '..');
 const EXCLUDE = loadExclude();
@@ -180,6 +182,42 @@ const PLANTS = [
   ['germantown', 'Germantown'],
 ];
 
+const JOINED = [
+  'first-line rewrite',
+  'Stay on the chair',
+  'We write your posts',
+  'public data',
+  'from public sources',
+  'Writing plans',
+  '30-day numbers',
+  'day-30 numbers',
+  'Starter Fix',
+  'Reply SYSTEM',
+  'DM SYSTEM',
+  'Reply CHECK',
+  'the Mini plan',
+  'CCC ONE',
+  'Ops Trax',
+  'Mini Social Pack',
+  'Week Pack',
+  'Writing Retainer',
+  'Review Desk',
+  '7-Day Do-It-Right Guarantee',
+  '7-Day Guarantee',
+  'I rewrite it free',
+  'rewrite it free',
+  'rewrite free',
+  'free rewrites',
+  'fix it for free',
+  'Southern Maryland',
+  'Southern MD',
+  'So MD',
+  "St Mary's",
+  'Silver Spring',
+  'College Park',
+  'Glenn Dale',
+];
+
 function scanPatterns(rel, text, patterns, foldUnderscore) {
   if (EXEMPT.has(rel)) return [];
   const hits = [];
@@ -196,8 +234,13 @@ function scanText(rel, text) {
   return scanPatterns(rel, text, PHRASES, false);
 }
 
+function scanJoined(rel) {
+  if (EXEMPT.has(rel)) return [];
+  return joinedNameHits(rel, JOINED);
+}
+
 function scanName(rel) {
-  return scanPatterns(rel, rel, PHRASES, true);
+  return scanPatterns(rel, rel, PHRASES, 'name').concat(scanJoined(rel));
 }
 
 function isServedFile(name) {
@@ -279,11 +322,16 @@ test('served file names are checked against the full ban list', () => {
   assert.ok(scanName('img/clinton.jpg').length, 'img/clinton.jpg');
   assert.ok(scanName('img/Silver-Spring.webp').length, 'Silver-Spring');
   assert.ok(scanName('img/Silver_Spring.jpg').length, 'Silver_Spring');
+  assert.ok(scanName('img/Silver.Spring.jpg').length, 'Silver.Spring');
+  assert.ok(scanName('img/silverspring.jpg').length, 'silverspring');
   assert.ok(scanName('img/review-desk.png').length, 'review-desk');
+  assert.ok(scanName('img/reviewdesk.png').length, 'reviewdesk');
   assert.ok(scanName('img/plan_HAGSLXXUeGkcz.png').length, 'plan id');
   const bot = String.fromCharCode(103, 114, 111, 107, 98, 111, 116);
   assert.ok(scanName('img/' + bot + '.png').length, 'bot name');
   assert.ok(scanName('img/so-md.png').length, 'so-md');
+  assert.ok(scanName('img/somd.png').length, 'somd');
+  assert.equal(scanName('img/ransomdemand.png').length, 0, 'somd inside a longer word');
   assert.equal(scanName('img/afterlight/cabo.jpg').length, 0);
   assert.equal(scanName('content/music-credits.json').length, 0);
   const hits = [];
