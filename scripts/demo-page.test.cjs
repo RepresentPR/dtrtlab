@@ -12,10 +12,11 @@ test('/demo exists and shows the "Demo, fictional data" banner outside the JS-re
   assert.ok(s.indexOf('class="ribbon"') < s.indexOf('id="main"'), 'banner sits above every view');
   assert.match(s, /<title>[^<]*demo[^<]*<\/title>/i);
 });
-test('/demo ships its own assets and the sample map, and the homepage links to it', () => {
+test('/demo ships its own assets, and the homepage links to it', () => {
   for (const f of ['demo/app.css', 'demo/demo.js']) assert.ok(fs.existsSync(path.join(ROOT, f)), `${f} missing`);
-  assert.strictEqual(fs.readFileSync(path.join(ROOT, 'demo/sample-map.pdf')).subarray(0, 5).toString(), '%PDF-');
-  assert.match(read('demo/index.html'), /href="sample-map\.pdf"/);
+  assert.equal(fs.existsSync(path.join(ROOT, 'demo/sample-map.pdf')), false);
+  assert.doesNotMatch(read('demo/index.html'), /sample-map\.pdf/);
+  assert.doesNotMatch(read('demo/demo.js'), /sample-map\.pdf/);
   assert.match(read('index.html'), /href="\/demo\/"[^>]*>See a sample</);
 });
 test('/demo data stays fictional: labeled company, 555 numbers, example.com emails', () => {
