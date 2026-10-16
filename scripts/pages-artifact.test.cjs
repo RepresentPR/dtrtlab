@@ -98,7 +98,12 @@ test('branch publish config excludes docs and still ships .well-known', () => {
 test('pages jekyll build has no brand-kit.html and no assets/css/style.css', (t) => {
   const probe = spawnSync('ruby', ['-e', 'gem "jekyll"'], { encoding: 'utf8' });
   if (probe.error || probe.status !== 0) {
-    t.skip('jekyll not installed');
+    // Skipping is fine on a laptop. In CI the workflow installs Jekyll, so a
+    // missing Jekyll there is a setup failure, not a reason to skip.
+    if (process.env.CI || process.env.DTRT_REQUIRE_JEKYLL) {
+      assert.fail('jekyll is not installed, and this test must run in CI (see .github/workflows/tests.yml)');
+    }
+    t.skip('jekyll not installed (local run only)');
     return;
   }
   const dest = fs.mkdtempSync(path.join(os.tmpdir(), 'dtrt-jekyll-'));
@@ -129,4 +134,14 @@ Jekyll::Site.new(full).process
   } finally {
     fs.rmSync(dest, { recursive: true, force: true });
   }
+});
+
+test('CI installs Jekyll and requires the branch-build test to run', () => {
+  const wf = fs.readFileSync(path.join(ROOT, '.github/workflows/tests.yml'), 'utf8');
+  assert.match(wf, /ruby\/setup-ruby@[0-9a-f]{40}/, 'tests workflow installs Ruby');
+  assert.match(wf, /BUNDLE_GEMFILE: .*gemfiles\/pages\/Gemfile/, 'tests workflow uses the Pages Gemfile');
+  assert.match(wf, /DTRT_REQUIRE_JEKYLL: "1"/, 'tests workflow makes a Jekyll skip fail');
+  assert.match(wf, /bundle exec node --test scripts\/\*\.test\.cjs/, 'node tests run under bundle exec');
+  assert.match(fs.readFileSync(path.join(ROOT, 'gemfiles/pages/Gemfile'), 'utf8'), /gem "github-pages"/);
+  assert.ok(loadExclude().includes('gemfiles'), 'gemfiles/ is not served');
 });

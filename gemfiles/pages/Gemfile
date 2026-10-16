@@ -1,0 +1,5 @@
+# Jekyll for the GitHub Pages branch-build test (scripts/pages-artifact.test.cjs).
+# Used by .github/workflows/tests.yml through BUNDLE_GEMFILE. Not served.
+source "https://rubygems.org"
+gem "github-pages", "= 232", group: :jekyll_plugins
+gem "webrick"

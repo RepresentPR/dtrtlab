@@ -299,11 +299,13 @@ test('homepage describes the Job Desk as approve-only', () => {
   assert.doesNotMatch(home, /Job Desk handles|Job Desk running on/i);
   assert.match(home, /Job-status messages drafted for you to approve/);
   assert.match(home, /follow-up drafted on time, and it goes out when you approve it/);
+  assert.match(home, /a review request drafted after each job for you to approve/);
+  assert.doesNotMatch(foldBanned(home), /review requests? (sent )?after each job and replies/i, 'line 110 reverted to review requests sent after each job');
 });
 test('no served page claims the Job Desk acts without the owner', () => {
   const { isExcluded: excl, loadExclude: load } = require('./stage-site.cjs');
   const exclude = load();
-  const BAD = /job desk (handles|runs|does it)|runs? (it )?on its own|does it for you|autopilot did|automatically sends?|sends? automatically|auto[- ]?sends?\b|auto \+ undo/i;
+  const BAD = require('./approve-terms.cjs').AUTONOMY_EN;
   const hits = [];
   (function walk(dir) {
     for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
