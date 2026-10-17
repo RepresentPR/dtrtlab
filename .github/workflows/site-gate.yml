@@ -1,0 +1,35 @@
+name: site-gate
+# Audit Fix 7: automated regression gate. Runs every Node test (scripts/*.test.cjs), including
+# the Fix 7 static checks and the headless-Chromium overlay / CTA-click / crawl checks, on every
+# pull request and once a day (the daily run catches /proof data going stale with no PR).
+on:
+  pull_request: {}
+  schedule:
+    - cron: "23 13 * * *"   # daily 13:23 UTC (9:23 AM EDT / 8:23 AM EST)
+  workflow_dispatch: {}
+permissions: {}   # least privilege: granted per job below
+concurrency: { group: "site-gate-${{ github.ref }}", cancel-in-progress: true }
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          fetch-depth: 0             # Fix 7 #5 diffs the PR against its base branch
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "20"
+      - name: Install Playwright + Chromium outside the repo (Netlify publishes the repo root)
+        run: |
+          npm install --prefix "$RUNNER_TEMP/pw" --no-save --no-audit --no-fund playwright@1.63.0
+          "$RUNNER_TEMP/pw/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Node tests + Fix 7 site gate
+        env:
+          NODE_PATH: ${{ runner.temp }}/pw/node_modules
+          FIX7_REQUIRE_BROWSER: "1"   # a missing browser fails the run instead of skipping
+          FIX7_BASE_REF: ${{ github.event_name == 'pull_request' && format('origin/{0}', github.base_ref) || '' }}
+        run: node --test --test-reporter=spec scripts/*.test.cjs
