@@ -15,9 +15,6 @@ jobs:
       contents: read
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/pages/Gemfile
-      # Keep installed gems out of the workspace. bundler-cache writes
-      # vendor/bundle here, and the public-file scan then reads gem sources.
-      BUNDLE_PATH: ${{ runner.temp }}/bundle
       BUNDLE_FROZEN: "true"
       DTRT_REQUIRE_JEKYLL: "1"
     steps:
@@ -28,7 +25,11 @@ jobs:
         with:
           ruby-version: "3.3"
       - name: Install Pages gems
-        run: bundle install
+        # bundler-cache writes vendor/bundle in the workspace, and the
+        # public-file scan then reads gem sources. $RUNNER_TEMP is outside it.
+        run: |
+          bundle config set --global path "$RUNNER_TEMP/bundle"
+          bundle install
       - name: Node tests (with Jekyll)
         run: bundle exec node --test scripts/*.test.cjs
       - name: Node module tests
