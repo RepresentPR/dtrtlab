@@ -9,10 +9,11 @@ function decodeEscapes(text) {
 }
 
 // Keep the values the name guard must see. Tag stripping would otherwise
-// drop og:title / meta content, alt, title, href, and src.
+// drop og:title / meta content, alt, title, href, src, and the text a reader
+// or screen reader gets from aria-label, aria-description and placeholder.
 function attributeValues(text) {
   const parts = [];
-  const re = /\b(?:content|alt|title|href|src)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+))/gi;
+  const re = /(?<![\w-])(?:content|alt|title|href|src|aria-label|aria-description|aria-placeholder|placeholder)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+))/gi;
   for (const m of String(text).matchAll(re)) parts.push(m[1] ?? m[2] ?? m[3] ?? '');
   return parts.join(' ');
 }
