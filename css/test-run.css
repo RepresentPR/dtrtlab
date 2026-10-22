@@ -1,0 +1,11 @@
+#test-run{display:grid;grid-template-columns:1fr;gap:16px;margin:0 0 24px}
+@media (min-width:760px){#test-run{grid-template-columns:1fr 1fr}}
+#test-run .tr-side{border:1px solid rgba(127,127,127,.35);border-radius:12px;padding:18px}
+#test-run .tr-tag{display:inline-block;font-size:.75rem;letter-spacing:.08em;padding:2px 8px;border:1px solid currentColor;border-radius:999px}
+#test-run dl{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;margin:12px 0 0}
+#test-run dt{opacity:.75}
+#test-run dd{margin:0;font-weight:600}
+#test-run .tr-metrics{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+#test-run .tr-metrics article{border:1px solid rgba(127,127,127,.25);border-radius:10px;padding:12px}
+#test-run .tr-metrics strong{display:block;font-size:1.6rem;margin:4px 0}
+#test-run .as-of{font-size:.75rem;opacity:.75;margin:0}
