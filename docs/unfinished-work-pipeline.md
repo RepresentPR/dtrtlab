@@ -8,6 +8,17 @@
 
 ---
 
+## October 22 recovery checkpoint — supersedes older readiness labels below
+
+- Intake PR: new masked owner-mailbox route plus request references on map/contact/bug forms. A local-source test was read in the owner's mailbox after activation; it initially reached Spam. Production-domain activation and a live receipt check are still required before calling the route operational.
+- Original production-form test reached its thanks page; original receiving-mailbox receipt remains unverified. Old email LIVE rows below are historical and not proof of current routing.
+- Private order ledger and fulfillment packet exist outside this public-site repository. Their synthetic tests do not prove live payment/delivery access or customer revenue. No public checkout flag changed.
+- Seller/payment readback remains unverified at Ian's direction. No new paid commitments until seller, exact scope, fees, delivery and required day-30 obligations are checked.
+- Shared recovery instructions: docs/operations-recovery.md, version DTRT-OPS-2026-10-22.1. Remote AI acknowledgments and remote brain-store reconciliation remain pending; do not overwrite a mirror or declare synchronization complete.
+- Initial Windows checkout before this repair: 214 Node tests, 211 passed, 2 failed (cache-manifest and /proof inline CSP), 1 skipped. Those two failures were checkout line-ending artifacts: restoring repository LF bytes in this isolated worktree makes the final suite pass (218 tests: 217 passed, 0 failed, 1 skipped). No unrelated source or public CSP change was needed.
+
+---
+
 ## Company LIVE (verified this audit)
 
 | Surface | Status | Evidence |

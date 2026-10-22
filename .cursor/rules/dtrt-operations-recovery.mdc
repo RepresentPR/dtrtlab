@@ -1,0 +1,6 @@
+---
+description: Use one versioned DTRT recovery workflow for intake, payment and delivery
+alwaysApply: true
+---
+
+Read docs/operations-recovery.md before DTRT work. Current version DTRT-OPS-2026-10-22.1. Treat this file as a pointer, not another editable copy of policy. Newer explicit Ian instructions prevail. Preserve existing offers, real obligations and security controls. Provider/inbox evidence establishes paid/sent; model output and draft packets do not. No remote AI adoption or successful production loop is implied by a copied file. Do not sync unverified remote mirrors or buy credits to bypass an unavailable research agent.
