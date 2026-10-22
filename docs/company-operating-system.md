@@ -1,10 +1,10 @@
 # DTRT Lab — company operating system
 
-**Purpose:** Run a small writing studio with a clear executive split. Scale only with dated proof. Do not pretend the studio is already a large company.
+**Purpose:** Run the existing local-service studio offers with a clear executive split. Scale only with dated proof. Do not pretend the studio is already a large company. October 22 recovery workflow: [operations-recovery.md](operations-recovery.md).
 
 **Vision alignment:** Long-term filter lives in [`docs/vision.md`](vision.md). Day-to-day execution obeys [`AGENTS.md`](../AGENTS.md). Stage 1 keeps the public face on the B2B writing studio.
 
-**Last reviewed:** 2026-10-15
+**Last reviewed:** 2026-10-22 (recovery workflow and authority reconciliation only; external readiness is not established)
 
 ## 1. Executive split and decision authority
 
@@ -13,11 +13,13 @@
 | **First chair — operations** | AI agents | Ordinary tasks, social drafts, code builds, GitHub pull requests, and pipeline tracking in [`docs/unfinished-work-pipeline.md`](unfinished-work-pipeline.md). Strictly obey [`AGENTS.md`](../AGENTS.md). |
 | **Second chair — founder** | Ian Ferraro | Absolute authority over acceptance, rejection, pricing, commitments, credential unlocks, and brand positioning. |
 
+Ian's ultimate authority is unchanged. His October 15 delegation to Co-Founder covers positioning, pricing, tiers and commitments within its explicit scope, as AGENTS.md records. The founder seat above identifies ultimate authority, not revocation of that delegation. Newer explicit Ian instructions prevail. When Co-Founder is unavailable, preserve existing public terms and hold unresolved offer changes; continue ordinary private repair work.
+
 **No autonomous overrides.** Agents may not unilaterally pivot company identity, modify pricing structures, or remove professional portfolios.
 
-Ordinary bugfixes, tests, and honesty fixes still ship. Do not park that work as “blocked on Ian.” Do not decide acceptance, price, a client commitment, or brand when unsure — stop and ask Ian.
+Ordinary bugfixes, tests, and honesty fixes still proceed through reviewable pull requests. Do not park that work as “blocked on Ian.” Do not guess acceptance, price, a client commitment, or brand: use the existing offer and delegated authority, or hold that change for the accountable owner.
 
-**Agent executes:** PR merges that stay inside the current offer, conflict resolution, docs that do not change the offer, site fixes, Postiz drafts of writing-studio work, Gmail action digests, vault hygiene, audits.
+**Agent executes:** conflict resolution, docs that do not change the offer, site fixes, tests and pull requests, Postiz drafts within the current offer, authorized Gmail action digests, vault hygiene, audits. A document's task list is not itself permission to merge, send, publish or spend; use current owner authorization for the concrete action.
 
 **Ian unlocks:** acceptance or rejection of work and clients, pricing, commitments, GitHub profile UI, LinkedIn paste, photo dump from phone/iCloud, Grok Bot approval cards, legal entity / counsel / bank, and any brand-positioning change.
 

@@ -53,7 +53,7 @@ test('/map/ posts the free office map form to FormSubmit', () => {
   assert.ok(formMatch, 'map page has a form');
   const form = formMatch[0];
   assert.match(form, /\bmethod="POST"/);
-  assert.match(form, /\baction="https:\/\/formsubmit\.co\/b40eb14cdacd80c1b58eebb8ec124fe3"/);
+  assert.match(form, /\baction="https:\/\/formsubmit\.co\/1699e573400d41d7563b054a41602e1f"/);
   assert.doesNotMatch(form, /@/);
   assert.match(html, /Get your free office map/);
   assert.equal(html.split(CANONICAL).length - 1, 3, 'map metas and subline use the canonical sentence');
@@ -154,7 +154,7 @@ test('contact.html posts to the form alias', () => {
   assert.ok(formMatch, 'contact.html has a form');
   const form = formMatch[0];
   assert.match(form, /\bmethod="POST"/);
-  assert.match(form, /\baction="https:\/\/formsubmit\.co\/b40eb14cdacd80c1b58eebb8ec124fe3"/);
+  assert.match(form, /\baction="https:\/\/formsubmit\.co\/1699e573400d41d7563b054a41602e1f"/);
   assert.doesNotMatch(form, /@/);
   assert.match(form, /name="_honey"/);
   assert.match(form, /name="email"[^>]*\brequired\b|\brequired\b[^>]*name="email"/);

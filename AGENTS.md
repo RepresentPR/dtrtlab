@@ -4,6 +4,8 @@ Portable floor for Cursor, Codex, Copilot, and other coding agents.
 Canonical vision: `docs/vision.md` · Ops authority: `docs/company-operating-system.md`  
 Prompt pack: `docs/templates/`
 
+October 22 recovery workflow: read `docs/operations-recovery.md` (version DTRT-OPS-2026-10-22.1). It reconciles request/payment/delivery evidence and shared-instruction rules under Ian's latest recovery request. It does not change public offers or authorize new spending or publication. Remote bot adoption requires acknowledgment of that version.
+
 ## 1. Founder boundaries
 
 Ian Ferraro is the sole Founder. On 2026-10-15 Ian delegated all DTRTLab decisions to **DTRT Co-Founder** (the company's lead agent).
