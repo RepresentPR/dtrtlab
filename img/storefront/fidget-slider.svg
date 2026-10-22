@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 800">
+  <title>Illustrative drawing of a fidget slider with a blank hub</title>
+  <rect width="640" height="800" fill="#e7dfcd"/>
+  <rect x="120" y="300" width="400" height="160" rx="80" fill="#f6f3eb" stroke="#172d28" stroke-width="8"/>
+  <rect x="250" y="332" width="220" height="96" rx="48" fill="#172d28"/>
+  <circle cx="250" cy="380" r="54" fill="#d7c7a1" stroke="#172d28" stroke-width="8"/>
+  <text x="320" y="740" text-anchor="middle" fill="#172d28" font-family="system-ui,sans-serif" font-size="22">Illustrative</text>
+</svg>

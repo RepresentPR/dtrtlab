@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 800">
+  <title>Illustrative drawing of a water bottle with time markers</title>
+  <rect width="640" height="800" fill="#e4e8dc"/>
+  <rect x="248" y="78" width="144" height="36" rx="8" fill="#53635b"/>
+  <rect x="228" y="108" width="184" height="28" rx="6" fill="#172d28"/>
+  <rect x="196" y="148" width="248" height="520" rx="48" fill="#f6f3eb" stroke="#172d28" stroke-width="8"/>
+  <path d="M250 250h140M250 340h140M250 430h140M250 520h140" stroke="#172d28" stroke-width="4"/>
+  <text x="400" y="256" fill="#172d28" font-family="system-ui,sans-serif" font-size="22">9</text>
+  <text x="400" y="346" fill="#172d28" font-family="system-ui,sans-serif" font-size="22">12</text>
+  <text x="400" y="436" fill="#172d28" font-family="system-ui,sans-serif" font-size="22">3</text>
+  <text x="400" y="526" fill="#172d28" font-family="system-ui,sans-serif" font-size="22">5</text>
+  <text x="320" y="740" text-anchor="middle" fill="#172d28" font-family="system-ui,sans-serif" font-size="22">Illustrative</text>
+</svg>
