@@ -1,0 +1,59 @@
+{
+  "reviewedAt": "2026-10-22",
+  "status": "draft_for_review",
+  "checkoutLive": false,
+  "preordersEnabled": false,
+  "supplierAgreementsVerified": false,
+  "products": [
+    {
+      "id": "wooden-domino-set",
+      "name": "Handcrafted wooden domino set",
+      "status": "sourcing_in_progress",
+      "priceUsd": null,
+      "sku": null,
+      "supplier": null,
+      "stockVerified": false,
+      "shippingPromise": null
+    },
+    {
+      "id": "adult-fidget-roller",
+      "name": "Premium silent adult fidget roller",
+      "status": "sourcing_in_progress",
+      "priceUsd": null,
+      "sku": null,
+      "supplier": null,
+      "stockVerified": false,
+      "shippingPromise": null
+    },
+    {
+      "id": "ratcheting-screwdriver",
+      "name": "Compact ratcheting screwdriver",
+      "status": "sourcing_in_progress",
+      "priceUsd": null,
+      "sku": null,
+      "supplier": null,
+      "stockVerified": false,
+      "shippingPromise": null
+    },
+    {
+      "id": "recipe-journal",
+      "name": "Family recipe keepsake journal",
+      "status": "sourcing_in_progress",
+      "priceUsd": null,
+      "sku": null,
+      "supplier": null,
+      "stockVerified": false,
+      "shippingPromise": null
+    },
+    {
+      "id": "selfwatering-planter",
+      "name": "Self-watering designer planter",
+      "status": "sourcing_in_progress",
+      "priceUsd": null,
+      "sku": null,
+      "supplier": null,
+      "stockVerified": false,
+      "shippingPromise": null
+    }
+  ]
+}
