@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 800">
+  <title>Illustrative drawing of a kinetic desk ball for ages 14 and up</title>
+  <rect width="640" height="800" fill="#dbe4df"/>
+  <circle cx="320" cy="360" r="150" fill="none" stroke="#172d28" stroke-width="10"/>
+  <circle cx="320" cy="360" r="96" fill="none" stroke="#5b685a" stroke-width="8"/>
+  <circle cx="360" cy="320" r="48" fill="none" stroke="#172d28" stroke-width="8"/>
+  <circle cx="300" cy="400" r="22" fill="#c6a15b"/>
+  <text x="320" y="580" text-anchor="middle" fill="#172d28" font-family="system-ui,sans-serif" font-size="28">14+</text>
+  <text x="320" y="740" text-anchor="middle" fill="#172d28" font-family="system-ui,sans-serif" font-size="22">Illustrative</text>
+</svg>

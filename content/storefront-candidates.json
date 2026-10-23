@@ -1,0 +1,71 @@
+{
+  "reviewedAt": "2026-10-22",
+  "status": "draft_for_review",
+  "checkoutLive": false,
+  "preordersEnabled": false,
+  "ordersOpen": false,
+  "supplierCostConfirmed": false,
+  "supplierAgreementsVerified": false,
+  "visuals": "illustrative_placeholder",
+  "shipping": "Ships from the US in 1–3 business days. Arrival is about 3–7 days. The supplier listing says shipping in about 3 days. That timing is not reconfirmed in the account, so this page does not promise a shorter window.",
+  "returns": "Full refund if the item is damaged or not delivered.",
+  "returnsLimit": "This page does not promise any refund beyond damage or non-delivery.",
+  "products": [
+    {
+      "id": "water-bottle",
+      "name": "Water bottle",
+      "priceUsd": 29.99,
+      "page": "storefront/water-bottle.html",
+      "image": "img/storefront/water-bottle.svg",
+      "visibility": "preview",
+      "hidden": false,
+      "ageLabel": null,
+      "orderable": false
+    },
+    {
+      "id": "sunset-lamp",
+      "name": "Sunset lamp",
+      "priceUsd": 29.99,
+      "page": "storefront/sunset-lamp.html",
+      "image": "img/storefront/sunset-lamp.svg",
+      "visibility": "preview",
+      "hidden": false,
+      "ageLabel": null,
+      "orderable": false
+    },
+    {
+      "id": "kinetic-desk-ball",
+      "name": "Kinetic desk ball",
+      "priceUsd": 24.99,
+      "page": "storefront/kinetic-desk-ball.html",
+      "image": "img/storefront/kinetic-desk-ball.svg",
+      "visibility": "preview",
+      "hidden": false,
+      "ageLabel": "14+",
+      "orderable": false
+    },
+    {
+      "id": "hmbmo-fidget-slider",
+      "name": "HMBMO fidget slider",
+      "priceUsd": 22.99,
+      "page": "storefront/hmbmo-fidget-slider.html",
+      "image": "img/storefront/fidget-slider.svg",
+      "visibility": "coming_soon",
+      "hidden": true,
+      "ageLabel": null,
+      "hold": "Magnets and any hub logo are not verified.",
+      "orderable": false
+    },
+    {
+      "id": "flip-cube-timer",
+      "name": "Flip-cube timer",
+      "priceUsd": 24.99,
+      "page": "storefront/flip-cube-timer.html",
+      "image": "img/storefront/flip-cube-timer.svg",
+      "visibility": "preview",
+      "hidden": false,
+      "ageLabel": null,
+      "orderable": false
+    }
+  ]
+}

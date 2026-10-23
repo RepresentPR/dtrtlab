@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 800">
+  <title>Illustrative drawing of a flip-cube timer</title>
+  <rect width="640" height="800" fill="#dee4cc"/>
+  <polygon points="320,180 500,270 320,360 140,270" fill="#f6f3eb" stroke="#172d28" stroke-width="8"/>
+  <polygon points="140,270 320,360 320,560 140,470" fill="#e4e8dc" stroke="#172d28" stroke-width="8"/>
+  <polygon points="500,270 320,360 320,560 500,470" fill="#c9cfc3" stroke="#172d28" stroke-width="8"/>
+  <text x="390" y="470" fill="#172d28" font-family="Georgia,serif" font-size="64">25</text>
+  <text x="320" y="740" text-anchor="middle" fill="#172d28" font-family="system-ui,sans-serif" font-size="22">Illustrative</text>
+</svg>
