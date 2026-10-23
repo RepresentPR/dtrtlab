@@ -1,7 +1,7 @@
 (()=>{const $=s=>document.getElementById(s);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const NA='not measured yet';
-function candles(c){if(!c.length)return`<div class="empty">Score history: ${NA}.<br>The first 4-hour candle appears after the first scored day.</div>`;
+function candles(c){if(!c.length)return`<div class="empty">The first candle appears after the next hand update.</div>`;
 const W=Math.max(320,c.length*14),H=220,lo=Math.min(...c.map(x=>x.l)),hi=Math.max(...c.map(x=>x.h)),r=hi-lo||1,y=v=>(H-10-(v-lo)/r*(H-20)).toFixed(1);
 return`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Daily Improvement Score candles">`+c.map((x,i)=>{const up=x.c>=x.o,col=up?'#13C27A':'#FF7A7A',cx=i*14+7;
 return`<line x1="${cx}" x2="${cx}" y1="${y(x.h)}" y2="${y(x.l)}" stroke="${col}"/><rect x="${cx-4}" width="8" y="${y(Math.max(x.o,x.c))}" height="${Math.max(1,Math.abs(y(x.o)-y(x.c)))}" fill="${col}"><title>${esc(x.t)} O${x.o} H${x.h} L${x.l} C${x.c}</title></rect>`}).join('')+'</svg>'}
