@@ -1,8 +1,7 @@
-:root{--n:#0B2545;--n2:#0f2f57;--g:#13C27A;--r:#E5484D;--t:#E8EEF6;--m:#8FA3BF}
+:root{--n:#0B2545;--n2:#0f2f57;--g:#13C27A;--r:#FF7A7A;--t:#E8EEF6;--m:#8FA3BF}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(1200px 600px at 80% -10%,#13406f,transparent),var(--n);color:var(--t);font:16px/1.45 "Source Sans 3","DTRT Sans",system-ui,sans-serif}
 .top{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;max-width:1200px;margin:auto}
 .logo{color:var(--g);text-decoration:none;font-weight:800;font-size:20px}.logo b{color:var(--t)}
-.pill{font-size:13px;color:var(--m);border:1px solid #23466f;border-radius:99px;padding:4px 10px}.pill:before{content:"● ";color:var(--g)}
 main{max-width:1200px;margin:auto;padding:0 16px;display:grid;gap:16px}
 .card{background:rgba(15,47,87,.7);border:1px solid #23466f;border-radius:16px;padding:18px;box-shadow:0 0 0 1px rgba(19,194,122,.05),0 10px 30px rgba(0,0,0,.25)}
 h1{margin:0 0 4px;font-size:30px}h2{margin:0 0 12px;font-size:18px;color:var(--m);font-weight:600}.sub{margin:0;color:var(--m)}
