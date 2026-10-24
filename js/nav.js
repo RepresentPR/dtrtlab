@@ -298,7 +298,7 @@
     .catch(function () {});
 
   var analytics = document.createElement("script");
-  analytics.src = root + "js/analytics.js?v=20261016-contact";
+  analytics.src = root + "js/analytics.js?v=20261024-analytics";
   analytics.async = true;
   document.head.appendChild(analytics);
 
@@ -341,7 +341,7 @@
 
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register(root + "sw.js?v=20261016-approveonly-v2").catch(function () {});
+      navigator.serviceWorker.register(root + "sw.js?v=20261024-analytics").catch(function () {});
     });
   }
 })();
