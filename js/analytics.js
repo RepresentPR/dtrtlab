@@ -35,20 +35,6 @@
     );
   }
 
-  function startPlausible() {
-    window.plausible =
-      window.plausible ||
-      function () {
-        (window.plausible.q = window.plausible.q || []).push(arguments);
-      };
-    var s = document.createElement("script");
-    s.defer = true;
-    s.setAttribute("data-domain", "dtrtlab.com");
-    s.src = "https://plausible.io/js/script.outbound-links.file-downloads.tagged-events.js";
-    document.head.appendChild(s);
-    if (/^404\b/.test(document.title)) track("404", { path: location.pathname });
-  }
-
   function startGa(id) {
     if (!id || optedOut || gaOn) return;
     gaOn = true;
@@ -186,7 +172,6 @@
   }
 
   bindClicks();
-  if (!optedOut) startPlausible();
 
   fetch(root + "content/site.json", { cache: "no-store" })
     .then(function (r) {
