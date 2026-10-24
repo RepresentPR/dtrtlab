@@ -21,10 +21,12 @@ test('every indexable public page loads GoatCounter exactly once', () => {
     assert.equal(s.split('data-goatcounter=').length - 1, 1, `${rel}: GoatCounter must appear once`);
     assert.ok(s.includes(SNIP), `${rel}: use the standard GoatCounter snippet`);
     const csp = (s.match(/Content-Security-Policy" content="([^"]*)"/) || [])[1] || '';
-    const ss = (csp.match(/script-src ([^;]+)/) || [])[1];
-    if (ss) assert.ok(ss.includes('https://gc.zgo.at'), `${rel}: CSP script-src must allow gc.zgo.at`);
-    const cs = (csp.match(/connect-src ([^;]+)/) || [])[1];
-    if (cs) assert.ok(cs.includes('https://dtrtlab.goatcounter.com') && !cs.includes("'none'"), `${rel}: CSP connect-src must allow the count endpoint`);
+    const directive = (name) => ((csp.match(new RegExp('(?:^|;)\\s*' + name + '\\s+([^;]+)')) || [])[1] || '').trim();
+    const allows = (policy, host) => policy.includes(host) && !policy.includes("'none'");
+    const scriptPolicy = directive('script-src') || directive('default-src');
+    if (scriptPolicy) assert.ok(allows(scriptPolicy, 'https://gc.zgo.at'), `${rel}: CSP script-src, or default-src when script-src is absent, must allow https://gc.zgo.at`);
+    const connectPolicy = directive('connect-src') || directive('default-src');
+    if (connectPolicy) assert.ok(allows(connectPolicy, 'https://dtrtlab.goatcounter.com'), `${rel}: CSP connect-src, or default-src when connect-src is absent, must allow https://dtrtlab.goatcounter.com`);
   }
 });
 test('private owner dashboard and noindex pages never load GoatCounter', () => {

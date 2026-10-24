@@ -177,8 +177,8 @@
     "key": "20261010n"
   },
   "js/analytics.js": {
-    "hash": "d88be43646b21a7dc2870f59101fb8754d5cc636a973f45e07aefcbe96ca03ea",
-    "key": "20261024-analytics"
+    "hash": "ae8ff695d302279fa4909c82d58d9cc9564bcbd4908cd286cf0f7ccddb01f076",
+    "key": "20261024-analytics2"
   },
   "js/biz-lang.js": {
     "hash": "3e7c22d91938d7eeb0fb009450b2b0b177366190d3e8e1ff80d2db4bea61f2bc",
@@ -299,8 +299,8 @@
     "key": "20261010n"
   },
   "js/nav.js": {
-    "hash": "22ceafb2003c901d6e874d16c4a41a7867e7412829a5d3ef2b27bfbd165a85e4",
-    "key": "20261024-analytics"
+    "hash": "cac1abbf6c76045fb11c5085e401887f2ef5b0e36ada4dd2b106261b80940c88",
+    "key": "20261024-analytics2"
   },
   "js/plan-tool.js": {
     "hash": "9de027be16fc7356c3a60f14674ee6dbc7e2cec16e35669036b8be53cada563a",
@@ -319,8 +319,8 @@
     "key": "20261010n"
   },
   "js/scene-nav.js": {
-    "hash": "19b6c0587ebf38cc095c1b62d3ab3ed04d62776c9bc359b1cb7ee7a9bc71c146",
-    "key": "20261024-analytics"
+    "hash": "cb545900674c1dee638c024657040df1f923bff22e4dc8ec7da9c5fec8f35beb",
+    "key": "20261024-analytics2"
   },
   "js/shop.js": {
     "hash": "1d629e1828cded14e2a3e055e89b5c3e2109271fa33192c201144889dc1f76c1",
@@ -375,8 +375,8 @@
     "key": null
   },
   "sw.js": {
-    "hash": "e0337c573b85fe94dc483bde6c5a140f1652d7c78ebe04603d9ed998e4f96aed",
-    "key": "20261024-analytics"
+    "hash": "94d71445c13e1b75c0e8a3553be878b4ed1039cd58f089a03b71b12abfa11b53",
+    "key": "20261024-analytics2"
   },
   "watch/watch.css": {
     "hash": "0b8026e65ae3b40c91b7dfdf31a94e579c60b0222bd1d5ce8999b2ffc29870f1",

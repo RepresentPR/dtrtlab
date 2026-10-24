@@ -15,7 +15,6 @@
 
   function track(name, props) {
     if (optedOut) return;
-    if (window.plausible) window.plausible(name, props ? { props: props } : undefined);
     if (gaOn && window.gtag) window.gtag("event", name);
   }
 
@@ -88,7 +87,7 @@
 
   function showChoice(choice) {
     if (!status || !allow || !withdraw || typeof allow.addEventListener !== "function") return;
-    if (optedOut) status.textContent = "Your browser privacy signal blocks site analytics.";
+    if (optedOut) status.textContent = "Your browser privacy signal blocks Google Analytics.";
     else if (!gaId) status.textContent = "Google Analytics is not configured on this site.";
     else if (choice === "yes") status.textContent = "Google Analytics is allowed in this browser.";
     else status.textContent = "Google Analytics is off in this browser.";
