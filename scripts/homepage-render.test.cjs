@@ -5,7 +5,7 @@ const path = require('node:path');
 const campaign = require('../js/campaign-home.js');
 const root = path.join(__dirname, '..');
 
-test('hobby archive renders on lab.html and the homepage stays the theme A writing business', async () => {
+test('hobby archive renders on lab.html and the homepage remains the public company notebook', async () => {
   const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
   const html = fs.readFileSync(path.join(root, 'lab.html'), 'utf8');
   const nodes = new Map();
@@ -31,13 +31,15 @@ test('hobby archive renders on lab.html and the homepage stays the theme A writi
   assert.ok(nodes.get('queue-list').children.length, 'saved queue state renders');
   assert.match(html, /id="gaming-archive"[^>]*><details>/, 'gaming archive is collapsed on the hobby page');
   assert.doesNotMatch(home, /id="gaming-archive"/);
-  assert.match(home, /I'm Ian Ferraro, in the DMV Area\./);
+  assert.match(home, /\bIan\b/);
+  assert.doesNotMatch(home, /Ian\s+Ferraro/i, 'homepage uses the approved public name, including metadata');
+  assert.match(home.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' '), /An open record\s+of what we\s+build/i);
   assert.doesNotMatch(home, /Clinton|Southern Maryland|SoMD/i);
   assert.doesNotMatch(home, /Stay on the chair/);
-  assert.match(home, /<meta property="og:image" content="https:\/\/dtrtlab\.com\/img\/brand\/og-job-desk-2026-10-15\.png">/);
+  assert.match(home, /<meta\b[^>]*property="og:image"[^>]*content="https:\/\/dtrtlab\.com\/img\/[^"?]+(?:\?[^" ]+)?"/);
   assert.doesNotMatch(home, /plan_HAGSLXXUeGkcz|plan_RVDjSToI7vKOM/);
   assert.doesNotMatch(home, /https:\/\/whop\.com\/checkout\/plan_kZqq0jgr6VrGG/);
-  assert.match(home, /https:\/\/whop\.com\/checkout\/plan_yuDiw93Zp6Uvr/);
+  assert.doesNotMatch(home, /https:\/\/whop\.com\/checkout\//, 'seller readiness is unverified; homepage routes to inquiry');
   assert.doesNotMatch(home, /plan_Vn0gQGFWQx9CA|id="free-rewrite"/, 'free first-line rewrite is retired');
   assert.doesNotMatch(home, /@gmail\.com|PayPal/);
   const main = home.match(/<main[\s\S]*?<\/main>/)?.[0] || '';

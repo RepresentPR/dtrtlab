@@ -119,11 +119,13 @@ test('the FormSubmit inbox address is not in any served file', () => {
   assert.deepEqual(hits.map((file) => path.relative(root, file)), []);
 });
 
-test('the free-map promise uses one canonical sentence', () => {
-  const required = ['index.html', 'map/index.html', 'job-desk/how-it-works/index.html', 'contact.html'];
+test('existing form pages retain their canonical promise while the homepage makes no unapproved deadline', () => {
+  const required = ['map/index.html', 'job-desk/how-it-works/index.html', 'contact.html'];
   for (const name of required) {
     assert.ok(fs.readFileSync(path.join(root, name), 'utf8').includes(CANONICAL), name);
   }
+  const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+  assert.doesNotMatch(home, /(?:within|in)\s+3\s+business days/i);
   const near = /3 short questions|written map arrives|one-page map of your office|asks 3 short questions|free one-page map:/i;
   for (const file of walk(root)) {
     const rest = fs.readFileSync(file, 'utf8').split(CANONICAL).join('');
@@ -135,7 +137,7 @@ test('CHECK and partnership CTAs use the map form', () => {
   const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
   const find = fs.readFileSync(path.join(root, 'find.html'), 'utf8');
   const partners = fs.readFileSync(path.join(root, 'partners.html'), 'utf8');
-  assert.match(home, /href="\/map\/\?want=check"[^>]*>Get my free AI check<\/a>/);
+  assert.match(home, /<a\b[^>]*href="\/map\/\?want=check"[^>]*>[\s\S]*?<\/a>/);
   assert.match(find, /href="\/map\/\?want=check"[^>]*>Get my free AI check<\/a>/);
   assert.match(partners, /href="\/map\/\?want=partner"/);
   assert.doesNotMatch(home + find + partners, /Reply CHECK|Prepare email/);
