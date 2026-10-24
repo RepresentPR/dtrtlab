@@ -305,7 +305,7 @@
     .catch(function () {});
 
   var analytics = document.createElement("script");
-  analytics.src = root + "js/analytics.js";
+  analytics.src = root + "js/analytics.js?v=20261024-analytics2";
   analytics.defer = true;
   document.head.appendChild(analytics);
 })();

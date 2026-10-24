@@ -177,11 +177,8 @@
     "key": "20261010n"
   },
   "js/analytics.js": {
-    "hash": "d7f2a8bb3617fbee3a3defc810f81ffbb008f4c4d86effee49ad1b8b488489ed",
-    "key": [
-      "20261016-contact",
-      null
-    ]
+    "hash": "ae8ff695d302279fa4909c82d58d9cc9564bcbd4908cd286cf0f7ccddb01f076",
+    "key": "20261024-analytics2"
   },
   "js/biz-lang.js": {
     "hash": "3e7c22d91938d7eeb0fb009450b2b0b177366190d3e8e1ff80d2db4bea61f2bc",
@@ -302,8 +299,8 @@
     "key": "20261010n"
   },
   "js/nav.js": {
-    "hash": "b4349c0cf89a1347a8f3411b4c440eb50152354e307f0409b678790a2d2a0a91",
-    "key": "20261016-approveonly-v2"
+    "hash": "cac1abbf6c76045fb11c5085e401887f2ef5b0e36ada4dd2b106261b80940c88",
+    "key": "20261024-analytics2"
   },
   "js/plan-tool.js": {
     "hash": "9de027be16fc7356c3a60f14674ee6dbc7e2cec16e35669036b8be53cada563a",
@@ -322,8 +319,8 @@
     "key": "20261010n"
   },
   "js/scene-nav.js": {
-    "hash": "4d39455f0f4d4a85ab6744d2ca183296ea25ea13871ac5e997dd37d18a990440",
-    "key": "20261016-contact"
+    "hash": "cb545900674c1dee638c024657040df1f923bff22e4dc8ec7da9c5fec8f35beb",
+    "key": "20261024-analytics2"
   },
   "js/shop.js": {
     "hash": "1d629e1828cded14e2a3e055e89b5c3e2109271fa33192c201144889dc1f76c1",
@@ -378,8 +375,8 @@
     "key": null
   },
   "sw.js": {
-    "hash": "e993a7e5a637217d92eb14916cd833cbabd38667b6933ce447077f6e4d8c63af",
-    "key": "20261016-approveonly-v2"
+    "hash": "94d71445c13e1b75c0e8a3553be878b4ed1039cd58f089a03b71b12abfa11b53",
+    "key": "20261024-analytics2"
   },
   "watch/watch.css": {
     "hash": "0b8026e65ae3b40c91b7dfdf31a94e579c60b0222bd1d5ce8999b2ffc29870f1",

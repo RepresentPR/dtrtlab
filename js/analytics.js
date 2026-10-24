@@ -15,7 +15,6 @@
 
   function track(name, props) {
     if (optedOut) return;
-    if (window.plausible) window.plausible(name, props ? { props: props } : undefined);
     if (gaOn && window.gtag) window.gtag("event", name);
   }
 
@@ -33,20 +32,6 @@
       },
       true
     );
-  }
-
-  function startPlausible() {
-    window.plausible =
-      window.plausible ||
-      function () {
-        (window.plausible.q = window.plausible.q || []).push(arguments);
-      };
-    var s = document.createElement("script");
-    s.defer = true;
-    s.setAttribute("data-domain", "dtrtlab.com");
-    s.src = "https://plausible.io/js/script.outbound-links.file-downloads.tagged-events.js";
-    document.head.appendChild(s);
-    if (/^404\b/.test(document.title)) track("404", { path: location.pathname });
   }
 
   function startGa(id) {
@@ -102,7 +87,7 @@
 
   function showChoice(choice) {
     if (!status || !allow || !withdraw || typeof allow.addEventListener !== "function") return;
-    if (optedOut) status.textContent = "Your browser privacy signal blocks site analytics.";
+    if (optedOut) status.textContent = "Your browser privacy signal blocks Google Analytics.";
     else if (!gaId) status.textContent = "Google Analytics is not configured on this site.";
     else if (choice === "yes") status.textContent = "Google Analytics is allowed in this browser.";
     else status.textContent = "Google Analytics is off in this browser.";
@@ -186,7 +171,6 @@
   }
 
   bindClicks();
-  if (!optedOut) startPlausible();
 
   fetch(root + "content/site.json", { cache: "no-store" })
     .then(function (r) {
