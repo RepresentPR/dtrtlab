@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; manifest-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; media-src 'self'; manifest-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="no-referrer">
 <title>DTRT Lab — an open record of useful work</title>
@@ -27,8 +27,9 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=la20261015" sizes="180x180">
 <link rel="manifest" href="/site.webmanifest?v=la20261015">
 <meta name="theme-color" content="#0B2545">
-<link rel="stylesheet" href="/css/knowledge-home.css?v=20261024-hub1">
+<link rel="stylesheet" href="/css/knowledge-home.css?v=20261024-media1">
 <script type="module" src="/js/knowledge-guide.mjs?v=20261024-hub2"></script>
+<script type="module" src="/js/homepage-video.mjs?v=20261024-media1"></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -61,6 +62,27 @@
 <p class="assistant-note">Looking for something else? <a href="#request">Prepare an idea on this device ↓</a></p>
 </div>
 </section>
+</section>
+
+<section class="section film-section" id="film" aria-labelledby="film-title">
+<div class="section-head"><div><p class="eyebrow">A SHORT INTRODUCTION</p><h2 id="film-title">Ideas need direction.</h2></div><p>15 seconds · Grok narration<br>Press play to watch with sound.</p></div>
+<div class="video-frame" id="homepage-video-frame">
+<video id="homepage-video" controls playsinline preload="none" aria-label="DTRT Lab introduction" aria-describedby="film-context"
+  poster="/media/homepage/homepage-experience-v05-desktop-poster.png"
+  data-desktop-src="/media/homepage/homepage-experience-v05-desktop.mp4"
+  data-portrait-src="/media/homepage/homepage-experience-v05-mobile.mp4"
+  data-desktop-poster="/media/homepage/homepage-experience-v05-desktop-poster.png"
+  data-portrait-poster="/media/homepage/homepage-experience-v05-mobile-poster.png">
+<source src="/media/homepage/homepage-experience-v05-desktop.mp4" type="video/mp4">
+<track kind="captions" src="/media/homepage/homepage-experience-v05-captions.vtt" srclang="en" label="English">
+Your browser cannot play this video. Use a video link or read the transcript below.
+</video>
+</div>
+<div class="film-details">
+<p id="film-context">Actual homepage footage, an AI-generated card scene, and Grok narration. The assistant shown is a scripted preview; live AI is not connected.</p>
+<p class="film-links"><a href="/media/homepage/homepage-experience-v05-desktop.mp4">Open landscape video (1.8 MB)</a><a href="/media/homepage/homepage-experience-v05-mobile.mp4">Open portrait video (2.7 MB)</a></p>
+<details><summary>Read the transcript and visual description</summary><p><strong>Narration:</strong> Ideas are everywhere. Direction changes everything. Explore the work. Follow what comes next. DTRT Lab.</p><p><strong>Visuals:</strong> A green card introduces the company notebook. The actual homepage shows the scripted assistant preview and paths into DTRT Lab’s work. The closing card reads “Do the right thing. Show the work.” and “dtrtlab.com.” The card scene is labeled AI-generated.</p></details>
+</div>
 </section>
 
 <section class="section" id="work">
