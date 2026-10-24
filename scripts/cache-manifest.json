@@ -102,8 +102,8 @@
     "key": null
   },
   "css/knowledge-home.css": {
-    "hash": "9236563d7bc51130c59be0c2a0db0b76e53f8e0b64bc0aaac8d69f573a64a041",
-    "key": "20261024-hub1"
+    "hash": "e517a0938a2305bc893a703c658987a9522bc6319543c2dc7f9ffa405a040533",
+    "key": "20261024-media1"
   },
   "css/lab-results.css": {
     "hash": "13da1bff3da419d00aa77359aceb2a6da1fd0cea3615f29570f7c4c198a7193a",
@@ -269,6 +269,10 @@
     "hash": "42e259322f7c16cb0270b200af93944c582893a0cf8a6bf4fae57ee619705b53",
     "key": null
   },
+  "js/homepage-video.mjs": {
+    "hash": "a813b9fc86fb4533d3d45b640b2da7f8ab3dac7c57a76e00758e8fe05f7c84e0",
+    "key": "20261024-media1"
+  },
   "js/hub.js": {
     "hash": "418e6994e8185e534afebcc88f2961ef23f2bdd5d7af126c29d2f8b45f56815f",
     "key": "20261010n"
@@ -314,8 +318,8 @@
     "key": "20261010n"
   },
   "js/nav.js": {
-    "hash": "b4349c0cf89a1347a8f3411b4c440eb50152354e307f0409b678790a2d2a0a91",
-    "key": "20261016-approveonly-v2"
+    "hash": "82e4c9255a98a7c94c61eb879f6d8c6fb42dc1344cc489d46b5955587307a854",
+    "key": "20261024-media1"
   },
   "js/plan-tool.js": {
     "hash": "9de027be16fc7356c3a60f14674ee6dbc7e2cec16e35669036b8be53cada563a",
@@ -390,8 +394,8 @@
     "key": null
   },
   "sw.js": {
-    "hash": "e993a7e5a637217d92eb14916cd833cbabd38667b6933ce447077f6e4d8c63af",
-    "key": "20261016-approveonly-v2"
+    "hash": "25ac5094644b66ad1b2477997e2680fc56a6c9cc52ff29a2e323a5fdc139d047",
+    "key": "20261024-media1"
   },
   "watch/watch.css": {
     "hash": "0b8026e65ae3b40c91b7dfdf31a94e579c60b0222bd1d5ce8999b2ffc29870f1",
