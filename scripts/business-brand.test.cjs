@@ -45,7 +45,7 @@ test('business homepage keeps approved service scope and hobby off the company f
   assert.match(main, /works remotely/);
   assert.doesNotMatch(main, /Fix\. Measure\. Report\./, 'the 30-day numbers section is retired');
   assert.doesNotMatch(home, /Ian\s+Ferraro/i, 'homepage keeps the public brand Ian, including metadata');
-  const place = /\bClinton\b|Southern Maryland|\bSoMD\b|Southern MD\b|So\.\s*MD\b|St\.?\s*Mary['’]s|\bCalvert\b|\bTysons\b|\bBowie\b|\bLanham\b|\bLargo\b|\bWaldorf\b|Silver Spring|\bBaltimore\b|\bArlington\b|\bAnnapolis\b|\bGreenbelt\b|\bBeltsville\b|\bLaurel\b|\bHyattsville\b|College Park|Glenn Dale|\bMitchellville\b|\bRockville\b|\bBethesda\b|\bAlexandria\b|\bFairfax\b|\bFrederick\b|\bGaithersburg\b|\bGermantown\b|\bDMV\b|Washington,?\s+D\.?C\.?|\bD\.C\.|\bMaryland\b|\bVirginia\b/i;
+  const place = /\bClinton\b|Southern Maryland|\bSoMD\b|Southern MD\b|So\.\s*MD\b|St\.?\s*Mary['’]s|\bCalvert\b|\bTysons\b|\bBowie\b|\bLanham\b|\bLargo\b|\bWaldorf\b|Silver Spring|\bBaltimore\b|\bArlington\b|\bAnnapolis\b|\bGreenbelt\b|\bBeltsville\b|\bLaurel\b|\bHyattsville\b|College Park|Glenn Dale|\bMitchellville\b|\bRockville\b|\bBethesda\b|\bAlexandria\b|\bFairfax\b|\bFrederick\b|\bGaithersburg\b|\bGermantown\b|\bDMV\b|Washington,?\s+D\.?C\.?|\bD\.C\.|\bMaryland\b|\bVirginia\b|\bAñasco\b|\bAnasco\b|\bMayagüez\b|\bMayaguez\b|Cabo Rojo|\bRincón\b|\bRincon\b|\bAguadilla\b|\bUtuado\b|\bHumacao\b|Río Grande|Rio Grande|Old San Juan|\bSan Juan\b/i;
   const regionAbbr = /\bDC\b|\bMD\b|\bVA\b/;
   const nova = /\bNoVA\b/;
   const exclude = loadExclude();

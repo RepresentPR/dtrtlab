@@ -154,11 +154,8 @@
     "key": null
   },
   "css/theme-a.css": {
-    "hash": "ab32d450de74899eacb7902c1ff84cc5ddc8ae4e7ab442d72b4034673c1584bc",
-    "key": [
-      "20261016-qa",
-      "20261016-qa2"
-    ]
+    "hash": "74aeefa24aedd7873444488b4109ebbde86a966755a74c54e97d2d8876567795",
+    "key": "20261025-region2"
   },
   "css/then-now.css": {
     "hash": "7e4a491e9d1738bef5f99570d53542d497716c2121a5b44960b34156e1cbecb8",
@@ -170,7 +167,7 @@
   },
   "demo/demo.js": {
     "hash": "e606f65d626159c18f6777f7efff2cbb0dbff5aae56b614834a9862acba4d30d",
-    "key": "20261025-region1"
+    "key": "20261025-region2"
   },
   "job-desk/how-it-works/article.css": {
     "hash": "2f9b43d1c90a501c3b9e4cdea120195dbe9932edb70760a59cdb80d331fc0da6",
@@ -180,16 +177,9 @@
     "hash": "ed742bb0cad9aa80be07d9c97fbf6c7ba2fe62fa827ef749ae08b29a7561b6f2",
     "key": "20261010n"
   },
-  "js/analytics.js": {
-    "hash": "d7f2a8bb3617fbee3a3defc810f81ffbb008f4c4d86effee49ad1b8b488489ed",
-    "key": [
-      "20261016-contact",
-      null
-    ]
-  },
   "js/biz-lang.js": {
     "hash": "4d8e559b8a04e10d4e55ca24726e8418e72d27ea45073203070ca95d404481fe",
-    "key": "20261025-region1"
+    "key": "20261025-region2"
   },
   "js/calm.js": {
     "hash": "0405c18592b384288ccddc73a9948b1517c5cb88224f3b6f2cac6b817302f03f",
@@ -311,15 +301,15 @@
   },
   "js/map-want.js": {
     "hash": "00fe062bcf8fb8591832e661eebf6856c160de6fad2ef71369886babbf16b49f",
-    "key": "20261025-region1"
+    "key": "20261025-region2"
   },
   "js/media.js": {
     "hash": "cd208aa1427b91b3e57fb49a314a9dfd1320d043d4e0b0284c87a52d7fafc8ab",
     "key": "20261010n"
   },
   "js/nav.js": {
-    "hash": "a98b2b22b91cc031f0533edd9d895f7a6bed09898d2f1f08f9bd74744fd0d46f",
-    "key": "20261025-region1"
+    "hash": "65be418a5129918a3522ff063a5205de706e914c62fddb8ab8660bc850adda9a",
+    "key": "20261025-region2"
   },
   "js/plan-tool.js": {
     "hash": "9de027be16fc7356c3a60f14674ee6dbc7e2cec16e35669036b8be53cada563a",
@@ -338,8 +328,8 @@
     "key": "20261010n"
   },
   "js/scene-nav.js": {
-    "hash": "4d39455f0f4d4a85ab6744d2ca183296ea25ea13871ac5e997dd37d18a990440",
-    "key": "20261016-contact"
+    "hash": "1b5bd65af8350b4d0be671458939e0a462b89eeb89d6006ffe786137374c394d",
+    "key": "20261025-region2"
   },
   "js/shop.js": {
     "hash": "1d629e1828cded14e2a3e055e89b5c3e2109271fa33192c201144889dc1f76c1",
@@ -394,8 +384,8 @@
     "key": null
   },
   "sw.js": {
-    "hash": "ebf84d2b86f0c022842b19d9e9cc660426926b55bad8072714fbe00cdbffa9d9",
-    "key": "20261025-region1"
+    "hash": "72246d791ae25f29408deb05aac76d44e8a6c1498b64a3a249d55c2ada99174b",
+    "key": "20261025-region2"
   },
   "watch/watch.css": {
     "hash": "0b8026e65ae3b40c91b7dfdf31a94e579c60b0222bd1d5ce8999b2ffc29870f1",

@@ -304,8 +304,4 @@
     })
     .catch(function () {});
 
-  var analytics = document.createElement("script");
-  analytics.src = root + "js/analytics.js";
-  analytics.defer = true;
-  document.head.appendChild(analytics);
 })();

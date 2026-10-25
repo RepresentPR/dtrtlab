@@ -117,6 +117,22 @@ const PHRASES = [
   /\bDC\b/,
   /\bMD\b/,
   /\bVA\b/,
+  // AFTERLIGHT used real Puerto Rico municipalities. The story places are invented.
+  /\bAñasco\b/i,
+  /\bAnasco\b/i,
+  /\bMayagüez\b/i,
+  /\bMayaguez\b/i,
+  /Cabo Rojo/i,
+  /\bRincón\b/i,
+  /\bRincon\b/i,
+  /\bAguadilla\b/i,
+  /\bUtuado\b/i,
+  /\bHumacao\b/i,
+  /Río Grande/i,
+  /Rio Grande/i,
+  /Old San Juan/i,
+  /\bSan Juan\b/i,
+  /\$1,500 setup \+ \$250\/mo/,
 ];
 
 const PLANTS = [
@@ -206,6 +222,21 @@ const PLANTS = [
   ['abbr-dc', 'in DC today'],
   ['abbr-md', 'in MD today'],
   ['abbr-va', 'in VA today'],
+  ['anasco', 'Añasco'],
+  ['anasco-plain', 'Anasco'],
+  ['mayaguez', 'Mayagüez'],
+  ['mayaguez-plain', 'Mayaguez'],
+  ['cabo-rojo', 'Cabo Rojo'],
+  ['rincon', 'Rincón'],
+  ['rincon-plain', 'Rincon'],
+  ['aguadilla', 'Aguadilla'],
+  ['utuado', 'Utuado'],
+  ['humacao', 'Humacao'],
+  ['rio-grande', 'Río Grande'],
+  ['rio-grande-plain', 'Rio Grande'],
+  ['old-san-juan', 'Old San Juan'],
+  ['san-juan', 'San Juan'],
+  ['setup-250', '$1,500 setup + $250/mo'],
 ];
 
 const JOINED = [
@@ -247,6 +278,16 @@ const JOINED = [
   'Washington D.C',
   'Maryland',
   'Virginia',
+  'Anasco',
+  'Mayaguez',
+  'Cabo Rojo',
+  'Rincon',
+  'Aguadilla',
+  'Utuado',
+  'Humacao',
+  'Rio Grande',
+  'Old San Juan',
+  'San Juan',
 ];
 
 function scanPatterns(rel, text, patterns, foldUnderscore) {

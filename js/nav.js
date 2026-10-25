@@ -90,7 +90,7 @@
 
   if (!document.querySelector('script[src*="js/biz-lang.js"]')) {
     var bizLang = document.createElement("script");
-    bizLang.src = root + "js/biz-lang.js?v=20261025-region1";
+    bizLang.src = root + "js/biz-lang.js?v=20261025-region2";
     bizLang.defer = true;
     document.head.appendChild(bizLang);
   }
@@ -297,10 +297,6 @@
     })
     .catch(function () {});
 
-  var analytics = document.createElement("script");
-  analytics.src = root + "js/analytics.js?v=20261016-contact";
-  analytics.async = true;
-  document.head.appendChild(analytics);
 
   var seen = Object.create(null);
   function prefetch(href) {
@@ -341,7 +337,7 @@
 
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register(root + "sw.js?v=20261025-region1").catch(function () {});
+      navigator.serviceWorker.register(root + "sw.js?v=20261025-region2").catch(function () {});
     });
   }
 })();
