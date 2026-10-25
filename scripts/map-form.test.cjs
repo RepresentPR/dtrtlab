@@ -5,7 +5,7 @@ const path = require('node:path');
 
 const { isExcluded, loadExclude } = require('./stage-site.cjs');
 const root = path.join(__dirname, '..');
-const CANONICAL = "Answer 3 short questions and you'll get a free one-page office map within 3 business days.";
+const CANONICAL = "Answer 3 short questions and we'll follow up by email.";
 const exclude = loadExclude();
 
 function walk(dir) {
@@ -94,7 +94,7 @@ test('/map/ posts the free office map form to FormSubmit', () => {
   assert.doesNotMatch(form, /name="[^"]*(town|address)[^"]*"/i, 'no town or address field');
 
   const thanks = fs.readFileSync(path.join(root, 'map/thanks/index.html'), 'utf8');
-  assert.match(thanks, /Got it\. Watch your inbox\. You'll hear back within 3 business days\./);
+  assert.match(thanks, /Got it\. Watch your inbox\. We'll follow up by email\./);
   assert.doesNotMatch(thanks, /Your map is on the way/);
   assert.match(thanks, /<a\b[^>]*href="\/"[^>]*>Back home<\/a>/);
 
@@ -146,7 +146,7 @@ test('CHECK and partnership CTAs use the map form', () => {
 
 test('brand kit social lines use the canonical map sentence and no retired offer', () => {
   const kit = fs.readFileSync(path.join(root, 'brand-kit.md'), 'utf8');
-  assert.match(kit, /Answer 3 short questions and you'll get a free one-page office map within 3 business days\./);
+  assert.match(kit, /Answer 3 short questions and we'll follow up by email\./);
   assert.doesNotMatch(kit, /DM SYSTEM|Reply SYSTEM|Writing Retainer|Review Desk|Starter Fix/);
 });
 

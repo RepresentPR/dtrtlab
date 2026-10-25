@@ -7,8 +7,8 @@
   var path = (location.pathname || "/").replace(/\/index\.html$/, "/");
   if (path.length > 1 && path.endsWith("/")) path = path.slice(0, -1);
   var pages = {
-    "/brand.html": { title: "Marca — DTRT Lab", h1: "Kit de marca de DTRT Lab", lead: "El nombre de la empresa es DTRT Lab. La cuenta es @DTRTLab. El negocio es el DTRT Job Desk, un gerente de oficina con IA para negocios de servicios del área DMV. Las solicitudes de prensa empiezan en <a href=\"/press.html\">Prensa</a>." },
-    "/careers.html": { title: "Empleo — DTRT Lab", h1: "No estamos contratando.", lead: "No hay puestos abiertos ni solicitudes de empleo en este sitio. DTRT Lab vende sistemas de oficina con IA para negocios de servicios del área DMV: el DTRT Job Desk y el AI Visibility Fix." },
+    "/brand.html": { title: "Marca — DTRT Lab", h1: "Kit de marca de DTRT Lab", lead: "El nombre de la empresa es DTRT Lab. La cuenta es @DTRTLab. El negocio es el DTRT Job Desk, un gerente de oficina con IA para pequeños negocios de servicios. Las solicitudes de prensa empiezan en <a href=\"/press.html\">Prensa</a>." },
+    "/careers.html": { title: "Empleo — DTRT Lab", h1: "No estamos contratando.", lead: "No hay puestos abiertos ni solicitudes de empleo en este sitio. DTRT Lab vende sistemas de oficina con IA para pequeños negocios de servicios: el DTRT Job Desk y el AI Visibility Fix." },
     "/donate.html": { title: "Apoyo — DTRT Lab", h1: "Sin propinas directas.", lead: "Las propinas directas no están disponibles por ahora. Los planes pagados están en Whop. Esta página no hace cargos a ninguna tarjeta." },
     "/404.html": { title: "No encontrada — DTRT Lab", h1: "Esa página no está.", lead: "Vuelve al inicio del negocio o a Lab / Pasatiempo." },
     "/legal/terms.html": { title: "Términos — DTRT Lab", h1: "Términos de uso", lead: "Última actualización: 16 de octubre de 2026. Estos términos cubren dtrtlab.com y las páginas relacionadas de DTRT Lab. Preguntas: <a href=\"/contact.html\">formulario de contacto</a>." },

@@ -2,12 +2,12 @@
   'use strict';
   const copy = {
     map: {
-      where: 'Free map · DMV Area',
+      where: 'Free map',
       title: 'Get your free office map',
-      sub: "Answer 3 short questions and you'll get a free one-page office map within 3 business days."
+      sub: "Answer 3 short questions and we'll follow up by email."
     },
     check: {
-      where: 'Free AI check · DMV Area',
+      where: 'Free AI check',
       title: 'Get your free AI check',
       sub: 'Business name, website, and the city or service area you cover.'
     },

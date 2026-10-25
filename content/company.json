@@ -5,13 +5,13 @@
   "foundedYear": 2024,
   "entityStatus": "independent_creator",
   "entityNote": "Independent creator / studio project. Formal entity registration is a planned operating step, not claimed as complete on this site.",
-  "hqRegion": "DMV Area (DC, Maryland, Virginia)",
+  "hqRegion": "Ian works remotely",
   "hqCountry": "US",
   "audience": {
     "madeForAll": true,
     "global": true,
     "ageInclusive": true,
-    "note": "Small businesses of every kind, starting in the DMV Area. Writing only, no passwords. No contract."
+    "note": "Small businesses of every kind. Writing only, no passwords. No contract."
   },
   "url": "https://dtrtlab.com/",
   "logo": "https://dtrtlab.com/img/brand/icon-512.png",
@@ -64,21 +64,17 @@
     "Hype tools that trade trust for reach"
   ],
   "lastReviewed": "2026-10-13",
-  "serviceArea": "DMV Area businesses (DC, Maryland, Virginia)",
+  "serviceArea": "Small service businesses",
   "offers": [
     {
       "name": "DTRT Job Desk",
-      "priceUsd": 1500,
-      "billing": "setup, then $250/month",
       "deliverables": "Free office map, then job tracking, customer updates, quote follow-up, and a nightly report card.",
       "url": "https://dtrtlab.com/map/"
     },
     {
       "name": "AI Visibility Fix",
-      "priceUsd": 250,
-      "billing": "one-time",
-      "deliverables": "Free AI check, then every listing fix, with a day-30 re-check.",
-      "url": "https://whop.com/checkout/plan_yuDiw93Zp6Uvr"
+      "deliverables": "Free AI check, then listing and service corrections for you to apply.",
+      "url": "https://dtrtlab.com/map/?want=check"
     }
   ],
   "guarantee": "If it's not right, I fix it at no charge.",
@@ -88,7 +84,7 @@
     "navy": "#0B2545",
     "green": "#13C27A",
     "light": "#DCE6F2",
-    "headline": "I build the AI office manager for DMV service businesses.",
+    "headline": "I build the AI office manager for small service businesses.",
     "sub": "Every job tracked, every customer updated, every quote followed up, and a report card on your phone each night. Get a free written office map at dtrtlab.com/map/."
   }
 }

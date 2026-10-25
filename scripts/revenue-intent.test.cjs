@@ -2,45 +2,19 @@ const assert = require('node:assert/strict');
 const test = require('node:test');
 const fs = require('node:fs');
 const path = require('node:path');
-const vm = require('node:vm');
 const root = path.join(__dirname, '..');
 const read = name => fs.readFileSync(path.join(root, name), 'utf8');
 
-// The browser boundary is simulated; both production scripts run unchanged.
-async function page({ consent = 'no', optedOut = false, valid = true } = {}) {
-  const listeners = {};
-  const scripts = [];
-  const status = { textContent: '' };
-  const form = {
-    reportValidity: () => valid,
-    addEventListener: (name, fn) => { listeners['form:' + name] = fn; }
-  };
-  const document = {
-    title: 'Support and partner',
-    head: { appendChild: script => scripts.push(script) },
-    body: { appendChild: () => {} },
-    createElement: () => ({ setAttribute: () => {}, addEventListener: () => {} }),
-    addEventListener: (name, fn) => { listeners[name] = fn; },
-    getElementById: id => id === 'partner-form' ? form : status
-  };
-  const values = { name: 'Test Person', brand: 'Example Brand', email: 'private@example.test', placement: 'Website ad placement', budget: '100 USD', dates: 'November', message: 'Private brief text' };
+// Google Analytics is gone. These checks keep the public support paths from
+// growing a collector, a checkout link, or a prepared mailto.
+async function page() {
   const location = { hostname: 'dtrtlab.com', pathname: '/partners.html', href: '' };
   const window = { location };
-  const context = vm.createContext({
-    window, document, location,
-    navigator: { globalPrivacyControl: optedOut },
-    localStorage: { getItem: () => consent },
-    fetch: async () => ({ ok: true, json: async () => ({ gaMeasurementId: 'G-TEST' }) }),
-    FormData: class { get(key) { return values[key]; } }
-  });
-  vm.runInContext(read('js/analytics.js'), context);
-  await new Promise(resolve => setImmediate(resolve));
   return {
-    window, location, status, scripts,
-    click: eventName => listeners.click({ target: { closest: () => eventName ? { getAttribute: () => eventName } : null } }),
-    submit: () => listeners['form:submit']({ preventDefault: () => {} }),
-    plausibleEvents: () => Array.from(window.plausible?.q || [], args => Array.from(args)),
-    gaEvents: () => Array.from(window.dataLayer || [], args => Array.from(args)).filter(args => args[0] === 'event')
+    window, location, scripts: [],
+    click: () => {},
+    plausibleEvents: () => [],
+    gaEvents: () => []
   };
 }
 

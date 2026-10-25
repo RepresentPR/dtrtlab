@@ -24,9 +24,6 @@ const FICTION_FILES = [
   /^content\/product\.json$/,
   /^media\.html$/,
   /^tools\/build_afterlight\.py$/,
-  /^img\/afterlight\/rincon\.avif$/,
-  /^img\/afterlight\/rincon\.jpg$/,
-  /^img\/afterlight\/rincon\.webp$/,
 ];
 const PLACE_PAIRS = new Set(['f50b92b29527bc02', '76fe6138e7cacf54', 'c297e3f1030288ee', '4d0a1d7083938f2b', 'c1075b2f40136c10', 'afeacc461eaa9436']);
 const ALLOWED_NEXT = { '1ffc0406b9891fcd': 'deductible' }; // donation disclaimer; js/journey-language.js was removed 2026-10-16
@@ -91,12 +88,12 @@ test('fiction filenames lift only the allowlisted hashes', () => {
   const setting = String.fromCharCode(80, 117, 101, 114, 116, 111, 32, 82, 105, 99, 111);
   const town = String.fromCharCode(82, 105, 110, 99, 243, 110);
   const small = String.fromCharCode(80, 82, 32, 115, 109, 97, 108, 108);
-  for (const file of ['afterlight.html', 'story.html', 'game.html', 'worlds.html', 'stories/afterlight/island.html', 'stories/afterlight/volume-one/index.html', 'content/afterlight.json', 'content/product.json', 'media.html', 'tools/build_afterlight.py', 'img/afterlight/rincon.avif', 'img/afterlight/rincon.jpg', 'img/afterlight/rincon.webp']) {
+  for (const file of ['afterlight.html', 'story.html', 'game.html', 'worlds.html', 'stories/afterlight/island.html', 'stories/afterlight/volume-one/index.html', 'content/afterlight.json', 'content/product.json', 'media.html', 'tools/build_afterlight.py']) {
     assert.deepStrictEqual(offenses(file, setting), [], file);
     assert.deepStrictEqual(offenses(file, town), [], file);
     assert.deepStrictEqual(offenses(file, small), [], file);
   }
-  for (const file of ['index.html', 'clips/index.html', 'content/history.json', 'content/promo.json', 'js/live-extras.js', 'docs/vision.md', 'brand-kit.md', 'img/afterlight/yard.jpg', 'img/afterlight/cabo.jpg']) {
+  for (const file of ['index.html', 'clips/index.html', 'content/history.json', 'content/promo.json', 'js/live-extras.js', 'docs/vision.md', 'brand-kit.md', 'img/afterlight/yard.jpg', 'img/afterlight/cabo.jpg', 'img/afterlight/rincon.avif', 'img/afterlight/rincon.jpg', 'img/afterlight/rincon.webp']) {
     assert.ok(offenses(file, setting).length, file);
     assert.ok(offenses(file, town).length, file);
     assert.ok(offenses(file, small).length, file);

@@ -473,7 +473,7 @@ window.DEMO = {
       .then(function () { return say(6, "Trust panel", "Consent, opt-outs, the same review link for everyone, never-drafted list"); })
       .then(function () { glow(".trust"); return wait(2600); })
       .then(function () { return go("tonight"); })
-      .then(function () { window.scrollTo(0, 0); return say("✓", "Fewer things need you tonight", "Answer 3 short questions and you'll get a free one-page office map within 3 business days."); })
+      .then(function () { window.scrollTo(0, 0); return say("✓", "Fewer things need you tonight", "Answer 3 short questions and we'll follow up by email."); })
       .then(function () { glow(".status"); return wait(2600); })
       .then(function () { window.__tourDone = true; window.__tourMs = Math.round(performance.now() - t0); if (q.get("loop") === "1") return wait(800).then(run); });
   }
