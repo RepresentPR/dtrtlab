@@ -28,13 +28,14 @@ test('untrusted request text is preserved as data, not HTML',()=>{
   const r=prepareRequest({topic:'software',need:'<img src=x onerror=alert(1)>',consent:true});
   assert.equal(r.need,'<img src=x onerror=alert(1)>');
 });
-test('public guide cannot send or track and private source remains excluded',()=>{
+test('public guide cannot submit a form and private source remains excluded',()=>{
   const root=new URL('../',import.meta.url);
   const html=fs.readFileSync(new URL('index.html',root),'utf8');
   const js=fs.readFileSync(new URL('js/knowledge-guide.mjs',root),'utf8');
   assert.match(html,/How can I help you today\?/);
   assert.match(html,/Live AI is not connected/);
-  assert.match(html,/connect-src 'none'/);
+  assert.match(html,/connect-src https:\/\/dtrtlab\.goatcounter\.com/);
+  assert.doesNotMatch(html,/connect-src[^;]*'none'/);
   assert.match(html,/form-action 'none'/);
   assert.doesNotMatch(html,/noindex|PRIVATE HOMEPAGE CONCEPT/);
   assert.doesNotMatch(js,/fetch\(|XMLHttpRequest|sendBeacon|localStorage|sessionStorage|innerHTML/);
