@@ -101,6 +101,10 @@
     "hash": "9e0e4239668b7b9cc26609ee0a4d183beba7575df18d4d1473e1bf3b6d307f23",
     "key": null
   },
+  "css/knowledge-home.css": {
+    "hash": "e517a0938a2305bc893a703c658987a9522bc6319543c2dc7f9ffa405a040533",
+    "key": "20261024-media1"
+  },
   "css/lab-results.css": {
     "hash": "13da1bff3da419d00aa77359aceb2a6da1fd0cea3615f29570f7c4c198a7193a",
     "key": "20261015-move1"
@@ -262,6 +266,10 @@
     "hash": "42e259322f7c16cb0270b200af93944c582893a0cf8a6bf4fae57ee619705b53",
     "key": null
   },
+  "js/homepage-video.mjs": {
+    "hash": "a813b9fc86fb4533d3d45b640b2da7f8ab3dac7c57a76e00758e8fe05f7c84e0",
+    "key": "20261024-media1"
+  },
   "js/hub.js": {
     "hash": "418e6994e8185e534afebcc88f2961ef23f2bdd5d7af126c29d2f8b45f56815f",
     "key": "20261010n"
@@ -269,6 +277,14 @@
   "js/intake-reference.js": {
     "hash": "b9c238299887a71e4abcf2f7fe0232e3050b7a1d3c2da005c359bd32eb1d08f4",
     "key": "20261022-1"
+  },
+  "js/knowledge-guide.mjs": {
+    "hash": "128e5a40db913421d1db2a717f6c9adfcad9c7e1e8da863bae193ff000b7a8f0",
+    "key": "20261024-hub2"
+  },
+  "js/knowledge-model.mjs": {
+    "hash": "4a34868c73ab3fac54d11e680b7380e300047a202b0f80e8d10a53e6ea70acc6",
+    "key": "20261024-hub1"
   },
   "js/latest-clips.js": {
     "hash": "12b07c2561307c7352a97eda755e1d2fd6b78837906c3ffe9a186a708f72008d",
@@ -375,7 +391,7 @@
     "key": null
   },
   "sw.js": {
-    "hash": "94d71445c13e1b75c0e8a3553be878b4ed1039cd58f089a03b71b12abfa11b53",
+    "hash": "b59990562ea406e784450a261d41d7c958be5d2227dab01d948e517c999d64f5",
     "key": "20261024-analytics2"
   },
   "watch/watch.css": {

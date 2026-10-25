@@ -36,15 +36,15 @@ test('brand kit has the public paste text and a short bio', () => {
   assert.doesNotMatch(kit, /@gmail\.com|PayPal/);
 });
 
-test('business pages show theme A offers and keep hobby off the company face', () => {
+test('business homepage keeps approved service scope and hobby off the company face', () => {
   const home = read('index.html');
   const main = home.match(/<main[\s\S]*?<\/main>/)[0];
-  assert.match(main, /I build the AI office manager <span>for DMV service businesses\.<\/span>/);
-  assert.match(main, /<h2 id="cta-title">Do the right thing\.<\/h2>/);
+  assert.match(main.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' '), /An open record\s+of what we\s+build/i);
+  assert.match(main, /Do the right thing\./i);
   assert.doesNotMatch(home, /We help businesses grow/);
   assert.match(main, /DMV Area/);
   assert.doesNotMatch(main, /Fix\. Measure\. Report\./, 'the 30-day numbers section is retired');
-  assert.match(home, /"name": "Washington DC metropolitan area \(DMV\)"/);
+  assert.doesNotMatch(home, /Ian\s+Ferraro/i, 'homepage keeps the public brand Ian, including metadata');
   const place = /\bClinton\b|Southern Maryland|\bSoMD\b|Southern MD\b|So\.\s*MD\b|St\.?\s*Mary['’]s|\bCalvert\b|\bTysons\b|\bBowie\b|\bLanham\b|\bLargo\b|\bWaldorf\b|Silver Spring|\bBaltimore\b|\bArlington\b|\bAnnapolis\b|\bGreenbelt\b|\bBeltsville\b|\bLaurel\b|\bHyattsville\b|College Park|Glenn Dale|\bMitchellville\b|\bRockville\b|\bBethesda\b|\bAlexandria\b|\bFairfax\b|\bFrederick\b|\bGaithersburg\b|\bGermantown\b/i;
   const nova = /\bNoVA\b/;
   const exclude = loadExclude();
@@ -70,7 +70,8 @@ test('business pages show theme A offers and keep hobby off the company face', (
     assert.doesNotMatch(read(rel), place, rel);
     assert.doesNotMatch(read(rel), nova, rel);
   }
-  assert.match(main, /plan_yuDiw93Zp6Uvr/);
+  assert.match(main, /href="\/map\/\?want=check"/);
+  assert.doesNotMatch(home, /https:\/\/whop\.com\/checkout\//, 'homepage has no payment invitation before seller readiness');
   assert.doesNotMatch(main, /plan_kZqq0jgr6VrGG/);
   for (const id of ['plan_HAGSLXXUeGkcz', 'plan_RVDjSToI7vKOM', 'plan_Vn0gQGFWQx9CA']) assert.doesNotMatch(home, new RegExp(id), 'retired offer link: ' + id);
   assert.doesNotMatch(home, /7-Day Do-It-Right Guarantee|I rewrite it free|7-DAY|DO-IT-RIGHT/);

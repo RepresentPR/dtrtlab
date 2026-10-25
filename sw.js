@@ -3,7 +3,8 @@
    thumbnail. Revised script URLs use a new ?v= key.
    GitHub Pages cannot set Cache-Control.
    HTML is network-first (updates roll out). Other same-origin files
-   are stale-while-revalidate. JSON and third parties are not cached.
+   are stale-while-revalidate. Media, byte ranges, JSON and third
+   parties bypass this worker's cache.
 */
 var VERSION = "20261024-analytics2";
 var CACHE = "dtrtlab-" + VERSION;
@@ -174,6 +175,10 @@ self.addEventListener("fetch", function (event) {
   var url;
   try { url = new URL(request.url); } catch (error) { return; }
   if (url.origin !== self.location.origin) return;
+  // Let the browser handle media streaming/seeking, including direct downloads.
+  if (request.destination === "video" || request.destination === "audio" ||
+      request.headers.has("range") ||
+      /\.(mp4|webm|ogv|mov|m4v|avi|mpeg|mpg|3gp|3g2|mp3|m4a|aac|wav|ogg|oga|opus|flac)$/i.test(url.pathname)) return;
   if (url.pathname.indexOf("/content/") === 0 && /\.json$/i.test(url.pathname)) return;
   if (isDocument(request, url)) {
     event.respondWith(networkFirst(request));

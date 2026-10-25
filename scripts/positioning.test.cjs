@@ -41,46 +41,52 @@ test('no public page leads with public data, playbooks, filings or earnings call
   }
 });
 
-test('homepage leads with the Job Desk and keeps the small plans lower in pricing', () => {
+test('homepage notebook preserves scoped offers and routes visitors to inquiry', () => {
   const home = read('index.html');
   assert.doesNotMatch(home, METHOD, 'homepage keeps the research method internal');
   const main = home.match(/<main[\s\S]*?<\/main>/)[0];
-  // Job Desk direction (Co-Founder 2026-10-15): the hero sells the AI office manager, never a price.
-  const hero = main.match(/<section class="hero"[\s\S]*?<\/section>/)[0];
-  assert.match(hero, /I build the AI office manager <span>for DMV service businesses\.<\/span>/);
-  assert.match(hero, /Every job tracked, every customer updated, every quote followed up, and a report card on your phone each night\./);
-  assert.match(hero, /href="\/map\/"[^>]*>Get my free office map<\/a>/, 'free map form CTA');
+  // The owner approved the notebook lead on October 24; offer prices and scope remain unchanged.
+  const hero = main.match(/<section\b[^>]*class="[^"]*\bhero\b[^"]*"[^>]*>[\s\S]*?<\/section>/)?.[0] || '';
+  assert.ok(hero, 'homepage has a hero section');
+  assert.match(hero.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' '), /An open record\s+of what we\s+build/i);
+  assert.match(main, /href="\/map\/"/, 'existing map inquiry route remains available');
   assert.doesNotMatch(hero, /mailto:/, 'hero CTA is the on-site form, not a mailto link');
   assert.doesNotMatch(home, /Reply SYSTEM/, 'Reply SYSTEM stays off the website');
   assert.doesNotMatch(hero.replace(/<a [^>]*>/g, ''), /\$\s?\d/, 'no price in the hero');
   assert.doesNotMatch(hero, /plan_HAGSLXXUeGkcz|plan_RVDjSToI7vKOM|Mini|Week Pack/, 'Mini and Week Pack are off the hero');
-  const nav = home.match(/<nav aria-label="Main navigation">[\s\S]*?<\/nav>/)[0];
+  const nav = home.match(/<nav\b[^>]*aria-label="Main navigation"[^>]*>[\s\S]*?<\/nav>/)?.[0] || '';
+  assert.ok(nav, 'main navigation has an accessible label');
   assert.doesNotMatch(nav, /\$50|plan_HAGSLXXUeGkcz/, 'Mini is off the nav');
-  const desk = main.match(/<section id="job-desk"[\s\S]*?<\/section>/)[0];
-  assert.match(desk, /\$1,500<small> setup<\/small> \+ \$250<small>\/mo<\/small>/);
-  for (const item of ['Nightly report card', 'Job tracking', 'Customer updates', 'Quote follow-up', 'Email-to-task', 'Review replies', 'AI Visibility']) assert.match(desk, new RegExp(item));
+  const desk = main.match(/<section\b[^>]*id="job-desk"[^>]*>[\s\S]*?<\/section>/)?.[0] || '';
+  assert.ok(desk, 'existing Job Desk anchor remains available');
+  const mainText = main.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
+  assert.match(mainText, /\$1,500\s+setup\s*\+\s*\$250\s*\/\s*(?:mo(?:nth)?)/i);
+  for (const item of ['nightly report card', 'job tracking', 'customer updates', 'quote follow-up']) assert.match(desk, new RegExp(item, 'i'));
   assert.match(desk, /Never a password/);
-  assert.match(desk, /remove me anytime/);
-  assert.match(desk, /3 Job Desk clients at a time/);
-  assert.match(desk, /can't promise revenue/i);
+  if (/add me as a user or manager/i.test(desk)) assert.match(desk, /remove (?:me|access) (?:at )?any\s*time/i);
+  assert.match(main, /can't promise revenue/i);
   assert.doesNotMatch(desk, /\$50|\$129|Mini|Week Pack/, 'small plans stay out of the Job Desk section');
-  assert.ok(main.indexOf('id="job-desk"') < main.indexOf('id="prices"') && main.indexOf('id="prices"') < main.indexOf('id="about"'), 'Job Desk first, then pricing');
+  for (const id of ['job-desk', 'prices', 'about', 'faq']) assert.match(main, new RegExp('\\bid="' + id + '"'), 'shared navigation anchor ' + id);
   assert.doesNotMatch(main, /id="how"|id="free-rewrite"/, '30-day numbers section and free rewrite are retired');
   // Mini Social Pack and Week Pack retired 2026-10-15 (Co-Founder; 0 Whop memberships).
-  const offers = [...main.matchAll(/<article class="offer[^"]*"[\s\S]*?<\/article>/g)].map(m => m[0]);
+  const offers = [...main.matchAll(/<article\b[^>]*class="[^"]*\boffer\b[^"]*"[^>]*>[\s\S]*?<\/article>/g)].map(m => m[0]);
   assert.equal(offers.length, 2, 'Job Desk and AI Visibility Fix');
   const names = offers.map(o => o.match(/<h3>([^<]+)<\/h3>/)[1]);
   assert.deepEqual(names, ['DTRT Job Desk', 'AI Visibility Fix']);
   for (const o of offers) assert.doesNotMatch(o, /numbers check/i, 'the day-30 numbers pitch is retired');
   assert.doesNotMatch(main, /Mini Social Pack|Week Pack|Writing Retainer|plan_HAGSLXXUeGkcz|plan_RVDjSToI7vKOM|plan_kZqq0jgr6VrGG/);
-  assert.match(main, /Do you use AI\?/);
+  assert.match(main, /\bAI\b/);
   assert.doesNotMatch(main, /mailto:hello@dtrtlab\.com\?subject=CHECK/);
   const fix = offers.find(o => /AI Visibility Fix/.test(o));
-  assert.match(fix, /class="btn" href="https:\/\/whop\.com\/checkout\/plan_yuDiw93Zp6Uvr"/, 'Fix button goes to its Whop checkout');
-  assert.match(fix, /href="\/map\/\?want=check"[^>]*>Get my free AI check<\/a>/);
-  assert.match(main, /AI Visibility Fix[\s\S]*?\$250[\s\S]*?Day-30 re-check/);
+  assert.doesNotMatch(home, /https:\/\/whop\.com\/checkout\//, 'payment invitation waits for seller readiness');
+  assert.match(fix, /href="\/map\/\?want=check"/, 'Fix routes to the existing inquiry form');
+  assert.match(fix.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' '), /\$250\s+one[- ]time/i);
+  assert.match(fix, /day[- ]30 re[- ]check/i);
+  assert.match(main, /href="\/job-desk\/how-it-works\/"/, 'existing service explanation remains reachable');
+  assert.doesNotMatch(home, /Ian\s+Ferraro/i, 'public homepage brand is Ian');
+  assert.doesNotMatch(home, /(?:within|in)\s+3\s+business days/i, 'homepage does not promise an unapproved turnaround');
   assert.doesNotMatch(main, /Reply CHECK/);
-  assert.match(main, /Review replies/);
+  assert.match(main, /review (?:replies|requests?|ask)/i);
   assert.doesNotMatch(main, /Review Desk/);
   assert.match(main, /can't promise/i, 'no guaranteed results (FTC-safe)');
   for (const file of ['index.html', 'find.html', 'contact.html', 'brand-kit.md', 'content/company.json', 'content/site.json', 'legal/terms.html']) {

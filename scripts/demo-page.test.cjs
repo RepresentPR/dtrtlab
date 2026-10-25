@@ -53,7 +53,7 @@ test('/demo ships its own assets, and the homepage links to it', () => {
   assert.equal(fs.existsSync(path.join(ROOT, 'demo/sample-map.pdf')), false);
   assert.doesNotMatch(read('demo/index.html'), /sample-map\.pdf/);
   assert.doesNotMatch(read('demo/demo.js'), /sample-map\.pdf/);
-  assert.match(read('index.html'), /href="\/demo\/"[^>]*>See a sample</);
+  assert.match(read('index.html'), /<a\b[^>]*href="\/demo\/"[^>]*>[\s\S]*?<\/a>/);
 });
 test('/demo data stays fictional: labeled company, 555 numbers, example.com emails', () => {
   const js = read('demo/demo.js');
@@ -294,13 +294,15 @@ test('served code comments say what the code does, with no internal agent or rul
 });
 test('homepage describes the Job Desk as approve-only', () => {
   const home = read('index.html');
-  assert.match(home, /Job Desk drafts the office work for you to approve\./);
-  assert.match(home, /the Job Desk demo for a fictional HVAC company\./);
+  const desk = home.match(/<section\b[^>]*id="job-desk"[^>]*>[\s\S]*?<\/section>/)?.[0] || '';
+  assert.ok(desk, 'homepage preserves the Job Desk section');
+  assert.match(desk, /draft[\s\S]*?(?:approve|approval)|(?:approve|approval)[\s\S]*?draft/i);
+  assert.match(home, /fictional[^.]{0,100}(?:demo|HVAC|company|data)|(?:demo|HVAC)[^.]{0,100}fictional/i);
   assert.doesNotMatch(home, /Job Desk handles|Job Desk running on/i);
-  assert.match(home, /Job-status messages drafted for you to approve/);
-  assert.match(home, /follow-up drafted on time, and it goes out when you approve it/);
-  assert.match(home, /a review request drafted after each job for you to approve/);
-  assert.match(home, /draft your quote follow-ups to send when you approve them/);
+  assert.match(desk, /(?:messages?|updates?|follow-ups?)[^.]*draft|draft[^.]*?(?:messages?|updates?|follow-ups?)/i);
+  for (const type of ['messages?', 'quote follow-ups?', 'review requests?']) {
+    assert.match(desk, new RegExp(type + '[^.]*draft[^.]*approv', 'i'), 'each customer-message type is drafted for approval: ' + type);
+  }
   assert.doesNotMatch(foldBanned(home), /\bfollow up your quotes\b/i, 'FAQ says the Job Desk follows up quotes by itself');
   assert.doesNotMatch(foldBanned(home), /review requests? (sent )?after each job and replies/i, 'line 110 reverted to review requests sent after each job');
 });
