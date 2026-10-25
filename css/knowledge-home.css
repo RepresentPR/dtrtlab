@@ -4,6 +4,6 @@
 
 .film-section{background:#f2f4ee}.video-frame{width:100%;max-width:1120px;margin:0 auto;aspect-ratio:16/9;background:#0b2545;border-radius:6px;overflow:hidden}.video-frame video{display:block;width:100%;height:100%;object-fit:contain}.video-frame[data-layout=portrait]{max-width:380px;aspect-ratio:9/16}.film-details{max-width:880px;margin:22px auto 0;font-size:14px;color:#536469}.film-links{display:flex;flex-wrap:wrap;gap:12px 24px}.film-details summary{cursor:pointer;color:#173f2b;text-decoration:underline;text-underline-offset:4px}.film-details details p{margin-top:16px}@media(max-width:600px) and (orientation:portrait){.video-frame:not([data-layout]){max-width:380px;aspect-ratio:9/16}}
 
-.inside-the-lab .hero{grid-template-columns:minmax(0,1fr)}
+.inside-the-lab .hero{grid-template-columns:minmax(0,1fr);justify-items:center}.inside-the-lab .hero-copy{max-width:40rem;width:100%}
 .inside-the-lab .team-grid{align-items:start}
 .inside-the-lab .team-grid .work-card{min-height:0}
