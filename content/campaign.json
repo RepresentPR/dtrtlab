@@ -143,7 +143,7 @@
           "postUrl": "https://www.youtube.com/watch?v=8uQyfvJnofI"
         },
         {
-          "platform": "YouTube free plan ES",
+          "platform": "YouTube free office map ES",
           "value": 12,
           "basis": "Native YouTube public watch-page view counter scraped 2026-10-12T19:05:00Z; first inventory inclusion.",
           "observedAt": "2026-10-12T19:05:00Z",
@@ -157,7 +157,7 @@
           "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695578463264132365"
         },
         {
-          "platform": "TikTok free plan",
+          "platform": "TikTok free office map",
           "value": 4,
           "basis": "Native TikTok playCount from public page JSON scraped 2026-10-12T19:05:00Z; first inventory inclusion.",
           "observedAt": "2026-10-12T19:05:00Z",
@@ -396,7 +396,7 @@
         },
         {
           "platform": "X",
-          "title": "Free plan for U.S. businesses | DTRT Lab",
+          "title": "Free office map for U.S. businesses | DTRT Lab",
           "url": "https://x.com/DTRTLab/status/2109455613294260309",
           "publishedAt": "2026-10-12T01:26:24.000000Z",
           "note": "X excluded from headline video-view totals by policy"
@@ -467,7 +467,7 @@
   ],
   "queue": [],
   "evidenceNotes": [
-    "YouTube campaign counters refreshed 2026-10-12T19:05:00Z: Door 1356, Anubis 550, Knife 1474, preview 410, episode 33, Make your work clear 41, From Ideas 4, free-plan ES 12. Campaign composite now 10,794; lifetime 155,246. Instagram/TikTok Oct 12 business posts still pending owner counters.",
+    "YouTube campaign counters refreshed 2026-10-12T19:05:00Z: Door 1356, Anubis 550, Knife 1474, preview 410, episode 33, Make your work clear 41, From Ideas 4, free office map ES 12. Campaign composite now 10,794; lifetime 155,246. Instagram/TikTok Oct 12 business posts still pending owner counters.",
     "Numbers re-audit 2026-10-12: Instagram Professional Insights Sep 12\u2013Oct 11 = 20.0K views, 0 new followers, 58 content shared. /live Instagram inventory remains a 37-Reel lifetime sum (18,460), a different metric. Instagram Door inventory corrected from 979 to 1,544. Campaign-added headline is now 8,945; do not compare it to Insights 20.0K.",
     "Lifetime goal: 250,000 overall reported video views by December 31 Eastern. Known total 153,397 after Door Instagram correction; historical coverage is not campaign growth.",
     "96 public measured records plus seven private/unlisted YouTube records in aggregate: 103 measured posts. Focused updates cover four YouTube Shorts, five TikTok posts and four Instagram Reels. X is excluded from headline totals. Other inventory dates remain unchanged.",
@@ -707,7 +707,7 @@
       "timestampPrecision": "second"
     },
     {
-      "title": "A free plan for your business | DTRT Lab",
+      "title": "A free office map for your business | DTRT Lab",
       "platform": "TikTok",
       "url": "https://www.tiktok.com/@iananthonyfc/video/7695586470303747341",
       "publishedAt": "2026-10-12T01:26:00.000000Z",
@@ -725,7 +725,7 @@
       "timestampPrecision": "second"
     },
     {
-      "title": "Free plan for U.S. businesses | DTRT Lab",
+      "title": "Free office map for U.S. businesses | DTRT Lab",
       "platform": "X",
       "url": "https://x.com/DTRTLab/status/2109455613294260309",
       "publishedAt": "2026-10-12T01:26:24.000000Z",

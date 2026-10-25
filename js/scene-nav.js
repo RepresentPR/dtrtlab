@@ -39,7 +39,7 @@
     "</nav>" +
     '<div class="nav-end">' +
     '<div class="nav-socials nav-socials-desktop" data-social-slot="nav"></div>' +
-    '<a class="nav-cta" id="nav-start" href="' + root + 'contact.html?intent=free-plan">Free plan</a>' +
+    '<a class="nav-cta" id="nav-start" href="' + root + 'contact.html?intent=free-map">Free office map</a>' +
     '<button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-links">Menu</button>' +
     "</div>" +
     "</div>";
@@ -59,7 +59,7 @@
     foot.innerHTML =
       '<div class="wrap">' +
       "<span>DTRT Lab · Do the right thing.</span>" +
-      '<a href="' + root + 'contact.html?intent=free-plan">Free plan</a>' +
+      '<a href="' + root + 'contact.html?intent=free-map">Free office map</a>' +
       '<a href="' + root + 'index.html#prices">Prices</a>' +
       '<a href="' + root + 'index.html">Home</a>' +
       '<a href="' + root + 'contact.html">Contact</a>' +

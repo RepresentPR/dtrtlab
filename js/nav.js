@@ -337,7 +337,7 @@
 
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register(root + "sw.js?v=20261025-region2").catch(function () {});
+      navigator.serviceWorker.register(root + "sw.js?v=20261025-freemap1").catch(function () {});
     });
   }
 })();

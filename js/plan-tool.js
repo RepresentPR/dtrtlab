@@ -1,4 +1,4 @@
-/* Interactive free-plan tool — guided steps, no network, visitor sends email themselves. */
+/* Interactive office map tool — guided steps, no network, visitor sends email themselves. */
 (function (root, factory) {
   'use strict';
   const api = factory();
@@ -12,7 +12,7 @@
 
   const strings = {
     en: {
-      toolTitle: 'Free plan tool',
+      toolTitle: 'Office map tool',
       stepOf: (n, total) => 'Step ' + n + ' of ' + total,
       back: 'Back',
       next: 'Continue',
@@ -40,7 +40,7 @@
       summaryType: 'Starting with',
       summaryProject: 'Link or idea',
       summaryGoal: 'Goal',
-      prepare: 'Prepare free-plan email',
+      prepare: 'Prepare office map email',
       edit: 'Change answers',
       sample: 'See a sample plan first',
       missingProject: 'Add a link or a short idea description to continue.',
@@ -146,7 +146,7 @@
   }
 
   function contactHandoffUrl(language) {
-    return '/contact.html?intent=free-plan&lang=' + (language === 'es' ? 'es' : 'en') + '#free-plan-fields';
+    return '/contact.html?intent=free-map&lang=' + (language === 'es' ? 'es' : 'en') + '#message';
   }
 
   function mount(document, win) {

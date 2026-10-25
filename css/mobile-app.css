@@ -1,4 +1,4 @@
-/* Mobile app shell + interactive free-plan tool (Studio Identity). */
+/* Mobile app shell + interactive office-map tool (Studio Identity). */
 .plan-tool{margin:28px auto 8px;border:1px solid var(--line,#303030);background:#0d0d0d;padding:0;overflow:hidden;scroll-margin-top:18px}
 .plan-tool-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-bottom:1px solid var(--line,#303030)}
 .plan-tool-head h2{font-size:18px;letter-spacing:-.03em;margin:0;font-weight:750}
@@ -49,8 +49,8 @@
   .hero-lang{display:block}
   .hero-social{display:flex}
   .packages,.mission,.contact-band{display:block}
-  .action-map,.site-map[data-journey-label=usefulRoutes],.free-plan-copy,.free-plan-heading,.free-plan-intake,.join,.journey-coverage,.journey-evidence-note{display:none!important}
-  .free-plan{border:0;padding:0;display:block;margin:0}
+  .action-map,.site-map[data-journey-label=usefulRoutes],.office-map-copy,.office-map-heading,.office-map-intake,.join,.journey-coverage,.journey-evidence-note{display:none!important}
+  .office-map{border:0;padding:0;display:block;margin:0}
   .plan-tool{margin-top:0;border-left:0;border-right:0;border-radius:0}
   .highlights-section{padding-top:36px;padding-bottom:28px}
   .showcase-grid{gap:14px}

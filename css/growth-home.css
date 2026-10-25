@@ -42,13 +42,13 @@
 .hero-bleed .hero h1,.hero-bleed h1{font-size:clamp(48px,7.2vw,92px);line-height:1.02;letter-spacing:-4px;max-width:16ch}
 .hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:28px}
 .hero-actions .text-link{padding:14px 8px}.hero-note{font-size:13px;color:var(--muted);margin-top:20px}
-.free-plan{border-block:1px solid #fafafa;padding-block:32px;display:grid;grid-template-columns:.85fr 1.15fr;gap:28px 48px;scroll-margin-top:24px}
-.free-plan h2{font-size:42px;line-height:1.12;letter-spacing:-1.3px;margin-top:14px}.free-plan h2 span{font-size:30px;color:#d0d0d0}
+.office-map{border-block:1px solid #fafafa;padding-block:32px;display:grid;grid-template-columns:.85fr 1.15fr;gap:28px 48px;scroll-margin-top:24px}
+.office-map h2{font-size:42px;line-height:1.12;letter-spacing:-1.3px;margin-top:14px}.office-map h2 span{font-size:30px;color:#d0d0d0}
 .highlights-section .eyebrow,.release-copy .eyebrow{color:var(--formalin)}
-.free-plan-copy>p{font-size:18px;line-height:1.55;margin-bottom:16px}.free-plan-copy>p[lang=es]{color:#c3c2bb}
-.free-plan .offer-scope,.free-plan .offer-note{font-size:12px;color:var(--muted);line-height:1.6}.offer-scope span,.offer-note span{display:block;margin-top:5px}
-.free-plan-intake{grid-column:1/-1;border-top:1px solid var(--line);padding-top:25px;max-width:900px}.free-plan-intake h3{font-size:24px;margin-bottom:12px}.free-plan-intake>p{font-size:15px;line-height:1.6;color:#c3c2bb}.free-plan-intake ol{font-size:17px;line-height:1.7;padding-left:23px;margin:12px 0}
-.free-plan-actions{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 14px}.free-plan-actions .button{gap:20px}
+.office-map-copy>p{font-size:18px;line-height:1.55;margin-bottom:16px}.office-map-copy>p[lang=es]{color:#c3c2bb}
+.office-map .offer-scope,.office-map .offer-note{font-size:12px;color:var(--muted);line-height:1.6}.offer-scope span,.offer-note span{display:block;margin-top:5px}
+.office-map-intake{grid-column:1/-1;border-top:1px solid var(--line);padding-top:25px;max-width:900px}.office-map-intake h3{font-size:24px;margin-bottom:12px}.office-map-intake>p{font-size:15px;line-height:1.6;color:#c3c2bb}.office-map-intake ol{font-size:17px;line-height:1.7;padding-left:23px;margin:12px 0}
+.office-map-actions{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 14px}.office-map-actions .button{gap:20px}
 .showcase-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:28px}
 .release-card{min-width:0;border:1px solid var(--line);background:#151515}
 .release-card>a{display:block;height:100%}.release-card>a:hover h3{text-decoration:underline;text-decoration-color:var(--orange);text-underline-offset:5px}
@@ -62,7 +62,7 @@
 .archive-section h3{font-size:19px;margin:26px 0 14px}.archive-section .highlight-row h3{margin:0}
 .archive-links{display:flex;flex-wrap:wrap;gap:20px 32px;margin-top:24px}.site-footer{flex-wrap:wrap}.site-footer nav{flex-wrap:wrap;gap:12px 20px}
 @media(max-width:900px){.showcase-grid{gap:20px}.release-copy{padding:20px}.release-copy h3{font-size:25px}}
-@media(max-width:640px){.free-plan{grid-template-columns:1fr;gap:20px;padding-block:25px}.free-plan h2{font-size:36px}.free-plan h2 span{font-size:27px}.free-plan-copy>p{font-size:16px}.free-plan-actions .button{width:100%;font-size:13px}.free-plan-intake{padding-top:20px}}
+@media(max-width:640px){.office-map{grid-template-columns:1fr;gap:20px;padding-block:25px}.office-map h2{font-size:36px}.office-map h2 span{font-size:27px}.office-map-copy>p{font-size:16px}.office-map-actions .button{width:100%;font-size:13px}.office-map-intake{padding-top:20px}}
 .mission{padding:56px 0 12px}.mission h2{font-size:clamp(36px,5vw,56px);letter-spacing:-1.6px;line-height:1.05;margin:12px 0 16px;max-width:16ch}.mission p{max-width:68ch;font-size:18px;line-height:1.55}
 .packages{padding:28px 0 36px}.packages-lead,.packages-note{max-width:72ch;color:#c3c2bb;font-size:16px;line-height:1.55}.packages-note{font-size:13px;color:var(--muted);margin-top:18px}.packages-note a{text-decoration:underline;text-underline-offset:3px}
 .package-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:22px}
