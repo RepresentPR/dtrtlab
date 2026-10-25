@@ -19,7 +19,7 @@ test('brand kit has the public paste text and a short bio', () => {
   assert.match(fs.readFileSync(path.join(root, 'css/theme-a.css'), 'utf8'), /--navy:#0B2545;--green:#13C27A/, 'kit matches the site CSS');
   assert.match(kit, /Source Sans 3/);
   assert.match(kit, /Source Serif 4/);
-  const oneLine = kit.match(/I'm Ian\. I build the AI office manager for DMV service businesses\. Get a free office map at dtrtlab\.com\./);
+  const oneLine = kit.match(/I'm Ian\. I build the AI office manager for small service businesses\. Get a free office map at dtrtlab\.com\./);
   assert.ok(oneLine, 'one-line bio is present');
   assert.ok(oneLine[0].length < 150);
   for (const name of ['X', 'Instagram', 'TikTok', 'YouTube', 'Twitch']) {
@@ -30,9 +30,9 @@ test('brand kit has the public paste text and a short bio', () => {
   // Mini Social Pack and Week Pack retired 2026-10-15 (Co-Founder): no links to their Whop plans.
   assert.doesNotMatch(kit, /plan_HAGSLXXUeGkcz|plan_RVDjSToI7vKOM/);
   assert.doesNotMatch(kit, /plan_kZqq0jgr6VrGG|DM SYSTEM/);
-  assert.match(kit, /Answer 3 short questions and you'll get a free one-page office map within 3 business days\./);
+  assert.match(kit, /Answer 3 short questions and we'll follow up by email\./);
   assert.doesNotMatch(kit, /Reply SYSTEM|Writing Retainer|Review Desk|Starter Fix|\$50|Writing Retainer · Review Desk|\$250\/30 days/);
-  assert.match(kit, /plan_yuDiw93Zp6Uvr/);
+  assert.doesNotMatch(kit, /https:\/\/whop\.com\/checkout\/|plan_yuDiw93Zp6Uvr|\$1,500|\$250/, 'retired checkout and prices stay out of the paste kit');
   assert.doesNotMatch(kit, /@gmail\.com|PayPal/);
 });
 
@@ -42,10 +42,11 @@ test('business homepage keeps approved service scope and hobby off the company f
   assert.match(main.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' '), /An open record\s+of what we\s+build/i);
   assert.match(main, /Do the right thing\./i);
   assert.doesNotMatch(home, /We help businesses grow/);
-  assert.match(main, /DMV Area/);
+  assert.match(main, /works remotely/);
   assert.doesNotMatch(main, /Fix\. Measure\. Report\./, 'the 30-day numbers section is retired');
   assert.doesNotMatch(home, /Ian\s+Ferraro/i, 'homepage keeps the public brand Ian, including metadata');
-  const place = /\bClinton\b|Southern Maryland|\bSoMD\b|Southern MD\b|So\.\s*MD\b|St\.?\s*Mary['’]s|\bCalvert\b|\bTysons\b|\bBowie\b|\bLanham\b|\bLargo\b|\bWaldorf\b|Silver Spring|\bBaltimore\b|\bArlington\b|\bAnnapolis\b|\bGreenbelt\b|\bBeltsville\b|\bLaurel\b|\bHyattsville\b|College Park|Glenn Dale|\bMitchellville\b|\bRockville\b|\bBethesda\b|\bAlexandria\b|\bFairfax\b|\bFrederick\b|\bGaithersburg\b|\bGermantown\b/i;
+  const place = /\bClinton\b|Southern Maryland|\bSoMD\b|Southern MD\b|So\.\s*MD\b|St\.?\s*Mary['’]s|\bCalvert\b|\bTysons\b|\bBowie\b|\bLanham\b|\bLargo\b|\bWaldorf\b|Silver Spring|\bBaltimore\b|\bArlington\b|\bAnnapolis\b|\bGreenbelt\b|\bBeltsville\b|\bLaurel\b|\bHyattsville\b|College Park|Glenn Dale|\bMitchellville\b|\bRockville\b|\bBethesda\b|\bAlexandria\b|\bFairfax\b|\bFrederick\b|\bGaithersburg\b|\bGermantown\b|\bDMV\b|Washington,?\s+D\.?C\.?|\bD\.C\.|\bMaryland\b|\bVirginia\b/i;
+  const regionAbbr = /\bDC\b|\bMD\b|\bVA\b/;
   const nova = /\bNoVA\b/;
   const exclude = loadExclude();
   const served = [];
@@ -68,6 +69,7 @@ test('business homepage keeps approved service scope and hobby off the company f
   for (const file of served) {
     const rel = path.relative(root, file).split(path.sep).join('/');
     assert.doesNotMatch(read(rel), place, rel);
+    assert.doesNotMatch(read(rel), regionAbbr, rel);
     assert.doesNotMatch(read(rel), nova, rel);
   }
   assert.match(main, /href="\/map\/\?want=check"/);

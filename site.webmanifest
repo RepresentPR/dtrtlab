@@ -1,7 +1,7 @@
 {
   "name": "Ian | DTRT Lab",
   "short_name": "DTRT Lab",
-  "description": "The AI office manager for DMV service businesses.",
+  "description": "The AI office manager for small service businesses.",
   "start_url": "/",
   "display": "browser",
   "background_color": "#0B2545",

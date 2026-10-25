@@ -1,7 +1,7 @@
 {
   "parent": "DTRT Lab",
   "publicName": "DTRT AFTERLIGHT",
-  "tagline": "A story-driven FPS rooted in Puerto Rico. Skill, survival, and what you choose to record.",
+  "tagline": "A story-driven FPS. Skill, survival, and what you choose to record.",
   "oneSentence": "DTRT AFTERLIGHT is an original Windows FPS campaign in development, with a readable Volume One and an internal first-bullet training range. There is no public download.",
   "status": "in-development",
   "statusLabel": "In development",
@@ -31,7 +31,7 @@
     },
     {
       "id": "world",
-      "title": "Puerto Rican locations",
+      "title": "Story locations",
       "status": "in-development",
       "today": "Story stills and a regional route exist on the site. These are not complete playable maps.",
       "blurb": "Añasco, Mayagüez, Cabo Rojo, Rincón, and the road east. Interiors invented. Regions real."
@@ -84,7 +84,7 @@
     }
   ],
   "faq": [
-    { "q": "What is DTRT AFTERLIGHT?", "a": "A story-driven FPS campaign in development, set in Puerto Rico, under the DTRT Lab parent identity. Training is part of the game, not the whole product." },
+    { "q": "What is DTRT AFTERLIGHT?", "a": "A story-driven FPS campaign in development, under the DTRT Lab parent identity. Training is part of the game, not the whole product." },
     { "q": "Can I play it today?", "a": "There is no public download. Request access and wait for a yes. Volume One of the story is readable now." },
     { "q": "Is it only an aim trainer?", "a": "No. The public story and world stills exist alongside an internal first-bullet range; audio previews are paused pending a rights review. The campaign is not finished." },
     { "q": "Is it CS2, Valorant, or Tarkov?", "a": "No. Original game, original rifle (Kestrel), original map work. Not a clone, overlay, or cheat." },

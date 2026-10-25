@@ -28,8 +28,8 @@
   var lang = /(?:\?|&)lang=es(?:&|$)/.test(location.search) ? "es" : "en";
   document.documentElement.lang = lang;
   var ui = lang === "es"
-    ? { primary: "Principal", free: "Mapa de oficina gratis", packages: "Paquetes", company: "Empresa", contact: "Contacto", shop: "Tienda", hobby: "Lab / Pasatiempo", press: "Prensa", brand: "Marca", privacy: "Privacidad", terms: "Términos", cookies: "Cookies", refunds: "Reembolsos", home: "Inicio", menu: "Menú", close: "Cerrar", credit: "Ian | DTRT Lab · DMV Area (DC · MD · VA)" }
-    : { primary: "Primary", free: "Get my free office map", packages: "Packages", company: "Company", contact: "Contact", shop: "Shop", hobby: "Lab / Hobby", press: "Press", brand: "Brand", privacy: "Privacy", terms: "Terms", cookies: "Cookies", refunds: "Refunds", home: "Home", menu: "Menu", close: "Close", credit: "Ian | DTRT Lab · DMV Area (DC · MD · VA)" };
+    ? { primary: "Principal", free: "Mapa de oficina gratis", packages: "Paquetes", company: "Empresa", contact: "Contacto", shop: "Tienda", hobby: "Lab / Pasatiempo", press: "Prensa", brand: "Marca", privacy: "Privacidad", terms: "Términos", cookies: "Cookies", refunds: "Reembolsos", home: "Inicio", menu: "Menú", close: "Cerrar", credit: "Ian | DTRT Lab · trabaja en remoto" }
+    : { primary: "Primary", free: "Get my free office map", packages: "Packages", company: "Company", contact: "Contact", shop: "Shop", hobby: "Lab / Hobby", press: "Press", brand: "Brand", privacy: "Privacy", terms: "Terms", cookies: "Cookies", refunds: "Refunds", home: "Home", menu: "Menu", close: "Close", credit: "Ian | DTRT Lab · works remotely" };
   function langHref(code) {
     var q = new URLSearchParams(location.search);
     q.set("lang", code);
@@ -90,7 +90,7 @@
 
   if (!document.querySelector('script[src*="js/biz-lang.js"]')) {
     var bizLang = document.createElement("script");
-    bizLang.src = root + "js/biz-lang.js?v=20261016-approveonly-v2";
+    bizLang.src = root + "js/biz-lang.js?v=20261025-region1";
     bizLang.defer = true;
     document.head.appendChild(bizLang);
   }
@@ -341,7 +341,7 @@
 
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register(root + "sw.js?v=20261024-media1").catch(function () {});
+      navigator.serviceWorker.register(root + "sw.js?v=20261025-region1").catch(function () {});
     });
   }
 })();

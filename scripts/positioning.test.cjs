@@ -45,7 +45,7 @@ test('homepage notebook preserves scoped offers and routes visitors to inquiry',
   const home = read('index.html');
   assert.doesNotMatch(home, METHOD, 'homepage keeps the research method internal');
   const main = home.match(/<main[\s\S]*?<\/main>/)[0];
-  // The owner approved the notebook lead on October 24; offer prices and scope remain unchanged.
+  // The owner approved the notebook lead on October 24. Retired prices stay off this page.
   const hero = main.match(/<section\b[^>]*class="[^"]*\bhero\b[^"]*"[^>]*>[\s\S]*?<\/section>/)?.[0] || '';
   assert.ok(hero, 'homepage has a hero section');
   assert.match(hero.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' '), /An open record\s+of what we\s+build/i);
@@ -60,7 +60,7 @@ test('homepage notebook preserves scoped offers and routes visitors to inquiry',
   const desk = main.match(/<section\b[^>]*id="job-desk"[^>]*>[\s\S]*?<\/section>/)?.[0] || '';
   assert.ok(desk, 'existing Job Desk anchor remains available');
   const mainText = main.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
-  assert.match(mainText, /\$1,500\s+setup\s*\+\s*\$250\s*\/\s*(?:mo(?:nth)?)/i);
+  assert.doesNotMatch(mainText, /\$1,500|\$250/, 'retired prices stay off the homepage');
   for (const item of ['nightly report card', 'job tracking', 'customer updates', 'quote follow-up']) assert.match(desk, new RegExp(item, 'i'));
   assert.match(desk, /Never a password/);
   if (/add me as a user or manager/i.test(desk)) assert.match(desk, /remove (?:me|access) (?:at )?any\s*time/i);
@@ -80,8 +80,7 @@ test('homepage notebook preserves scoped offers and routes visitors to inquiry',
   const fix = offers.find(o => /AI Visibility Fix/.test(o));
   assert.doesNotMatch(home, /https:\/\/whop\.com\/checkout\//, 'payment invitation waits for seller readiness');
   assert.match(fix, /href="\/map\/\?want=check"/, 'Fix routes to the existing inquiry form');
-  assert.match(fix.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' '), /\$250\s+one[- ]time/i);
-  assert.match(fix, /day[- ]30 re[- ]check/i);
+  assert.doesNotMatch(fix, /\$\s?\d|day[- ]30 re[- ]check/i, 'the Visibility Fix shows no retired price or day-30 re-check');
   assert.match(main, /href="\/job-desk\/how-it-works\/"/, 'existing service explanation remains reachable');
   assert.doesNotMatch(home, /Ian\s+Ferraro/i, 'public homepage brand is Ian');
   assert.doesNotMatch(home, /(?:within|in)\s+3\s+business days/i, 'homepage does not promise an unapproved turnaround');

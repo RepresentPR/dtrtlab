@@ -107,6 +107,16 @@ const PHRASES = [
   /\bFrederick\b/i,
   /\bGaithersburg\b/i,
   /\bGermantown\b/i,
+  // Region names. DC, MD, and VA stay case-sensitive so markdown
+  // extensions and lowercase JavaScript identifiers are not hits.
+  /\bDMV\b/i,
+  /Washington,?\s+D\.?C\.?/i,
+  /\bD\.C\./,
+  /\bMaryland\b/i,
+  /\bVirginia\b/i,
+  /\bDC\b/,
+  /\bMD\b/,
+  /\bVA\b/,
 ];
 
 const PLANTS = [
@@ -187,6 +197,15 @@ const PLANTS = [
   ['frederick', 'Frederick'],
   ['gaithersburg', 'Gaithersburg'],
   ['germantown', 'Germantown'],
+  ['dmv', 'DMV Area'],
+  ['washington-dc', 'Washington DC'],
+  ['washington-dc-comma', 'Washington, D.C.'],
+  ['dc-dots', 'D.C.'],
+  ['maryland', 'Maryland'],
+  ['virginia', 'Virginia'],
+  ['abbr-dc', 'in DC today'],
+  ['abbr-md', 'in MD today'],
+  ['abbr-va', 'in VA today'],
 ];
 
 const JOINED = [
@@ -223,6 +242,11 @@ const JOINED = [
   'Silver Spring',
   'College Park',
   'Glenn Dale',
+  'DMV Area',
+  'Washington DC',
+  'Washington D.C',
+  'Maryland',
+  'Virginia',
 ];
 
 function scanPatterns(rel, text, patterns, foldUnderscore) {

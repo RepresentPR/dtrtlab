@@ -47,11 +47,11 @@ Buttons are green with navy text, or outlined in the current text color. The old
 
 ### One line (under 150 characters)
 
-I'm Ian. I build the AI office manager for DMV service businesses. Get a free office map at dtrtlab.com.
+I'm Ian. I build the AI office manager for small service businesses. Get a free office map at dtrtlab.com.
 
 ### Long
 
-DTRT Lab builds DTRT Job Desk, the AI office manager for DMV service businesses: every job tracked, every customer updated, every quote followed up, and a report card on the owner's phone each night. It's set up inside the apps the business already uses, never with a password. Job Desk is a free office map, then $1,500 setup + $250/mo. The first step can be the free AI check and the AI Visibility Fix, $250 one-time with a day-30 re-check. The mission is do the right thing: help real local operators, not extract from them. The studio is independent, based in the DMV Area, and open to any age and any size business or idea. Shop checkout on the site is not live. The stream, The Lab Files, CS2, and the game are hobby, on a separate page, and AFTERLIGHT is in development and not for sale. Contact hello@dtrtlab.com.
+DTRT Lab builds DTRT Job Desk, the AI office manager for small service businesses: every job tracked, every customer updated, every quote followed up, and a report card on the owner's phone each night. It's set up inside the apps the business already uses, never with a password. Job Desk starts with a free office map. The first step can be the free AI check and the AI Visibility Fix. The mission is do the right thing: help real local operators, not extract from them. The studio is independent. Ian works remotely, and it is open to any age and any size business or idea. Shop checkout on the site is not live. The stream, The Lab Files, CS2, and the game are hobby, on a separate page, and AFTERLIGHT is in development and not for sale. Contact hello@dtrtlab.com.
 
 ## Profile photo and banner
 
@@ -68,7 +68,7 @@ Use these exact blocks so the profiles match the site. Link the business home, n
 
 - Handle: @DTRTLab
 - Profile URL: https://x.com/DTRTLab
-- Bio: I'm Ian. I build the AI office manager for DMV service businesses: jobs tracked, customers updated, quotes followed up. Free office map at dtrtlab.com/map/.
+- Bio: I'm Ian. I build the AI office manager for small service businesses: jobs tracked, customers updated, quotes followed up. Free office map at dtrtlab.com/map/.
 - Link: https://dtrtlab.com/
 - Link label: DTRT Lab
 
@@ -76,7 +76,7 @@ Use these exact blocks so the profiles match the site. Link the business home, n
 
 - Handle: @officiallydtrt
 - Profile URL: https://www.instagram.com/officiallydtrt/
-- Bio: Ian | DTRT Lab · DMV Area / The AI office manager for service businesses. / Jobs tracked, customers updated, quotes followed up. / Answer 3 short questions and you'll get a free one-page office map within 3 business days. 👇
+- Bio: Ian | DTRT Lab · works remotely / The AI office manager for small service businesses. / Jobs tracked, customers updated, quotes followed up. / Answer 3 short questions and we'll follow up by email. 👇
 - Link: https://dtrtlab.com/
 - Link label: DTRT Lab
 
@@ -84,7 +84,7 @@ Use these exact blocks so the profiles match the site. Link the business home, n
 
 - Handle: @iananthonyfc
 - Profile URL: https://www.tiktok.com/@iananthonyfc
-- Bio: AI office manager for DMV service businesses. Answer 3 short questions and you'll get a free one-page office map within 3 business days.
+- Bio: AI office manager for small service businesses. Answer 3 short questions and we'll follow up by email.
 - Link: https://dtrtlab.com/
 - Link label: DTRT Lab
 
@@ -92,7 +92,7 @@ Use these exact blocks so the profiles match the site. Link the business home, n
 
 - Handle: @DTRTLabYT
 - Profile URL: https://www.youtube.com/@DTRTLabYT
-- Bio: I'm Ian Ferraro. I build the AI office manager for service businesses in the DMV Area (DC, Maryland, Virginia): every job tracked, every customer updated, every quote followed up, and a report card on your phone each night. It runs in the apps you already use, and I never ask for a password. Here you'll see how it works and the real work behind DTRT Lab. Email SYSTEM to hello@dtrtlab.com and I'll map yours free. dtrtlab dot com
+- Bio: I'm Ian Ferraro. I build the AI office manager for small service businesses: every job tracked, every customer updated, every quote followed up, and a report card on your phone each night. It runs in the apps you already use, and I never ask for a password. Here you'll see how it works and the real work behind DTRT Lab. Email SYSTEM to hello@dtrtlab.com and I'll map yours free. dtrtlab dot com
 - Link: https://dtrtlab.com/
 - Link label: DTRT Lab
 
@@ -100,13 +100,13 @@ Use these exact blocks so the profiles match the site. Link the business home, n
 
 - Channel: dtrtc
 - Profile URL: https://www.twitch.tv/dtrtc
-- Bio: Hobby stream. The business is DTRT Lab — the AI office manager for DMV service businesses. Do the right thing. dtrtlab.com
+- Bio: Hobby stream. The business is DTRT Lab — the AI office manager for small service businesses. Do the right thing. dtrtlab.com
 - Link: https://dtrtlab.com/
 - Link label: DTRT Lab
 
 ## Offers named on the site
 
-- DTRT Job Desk — free office map, then $1,500 setup + $250/mo — https://dtrtlab.com/map/
-- AI Visibility Fix — free AI check, then $250 one-time with a day-30 re-check — https://whop.com/checkout/plan_yuDiw93Zp6Uvr
+- DTRT Job Desk — free office map, then an agreed build — https://dtrtlab.com/map/
+- AI Visibility Fix — free AI check, then an agreed fix — https://dtrtlab.com/map/?want=check
 
-These plans are paid on Whop. The website does not collect card numbers. Public email: hello@dtrtlab.com.
+The website does not collect card numbers. Public email: hello@dtrtlab.com.
