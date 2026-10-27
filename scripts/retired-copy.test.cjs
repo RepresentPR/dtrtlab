@@ -133,6 +133,7 @@ const PHRASES = [
   /Old San Juan/i,
   /\bSan Juan\b/i,
   /\$1,500 setup \+ \$250\/mo/,
+  /free plan/i,
 ];
 
 const PLANTS = [
@@ -237,6 +238,7 @@ const PLANTS = [
   ['old-san-juan', 'Old San Juan'],
   ['san-juan', 'San Juan'],
   ['setup-250', '$1,500 setup + $250/mo'],
+  ['free-plan', 'Free plan'],
 ];
 
 const JOINED = [
@@ -288,6 +290,7 @@ const JOINED = [
   'Rio Grande',
   'Old San Juan',
   'San Juan',
+  'free plan',
 ];
 
 function scanPatterns(rel, text, patterns, foldUnderscore) {
