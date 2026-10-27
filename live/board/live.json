@@ -1,27 +1,115 @@
 {
   "schema": 1,
-  "updated": "2026-10-23T16:45:00-04:00",
+  "updated": "2026-10-27T02:43:45.239Z",
   "note": "Real data only. null = not measured yet. Updated by scripts/update-live.mjs.",
-  "headline": { "growthPct7d": null, "firstSale": false, "label": "Daily Improvement Score (DIS)" },
+  "headline": {
+    "growthPct7d": null,
+    "firstSale": false,
+    "label": "Daily Improvement Score (DIS)"
+  },
   "candles": [],
   "log": [
-    { "date": "2026-10-14", "title": "Business-first homepage relaunch", "pos": null, "neg": null },
-    { "date": "2026-10-15", "title": "Theme A brand rolled out site-wide", "pos": null, "neg": null },
-    { "date": "2026-10-15", "title": "DTRT Job Desk becomes the main offer", "pos": null, "neg": null },
-    { "date": "2026-10-15", "title": "Job Desk demo on a made-up HVAC company", "pos": null, "neg": null },
-    { "date": "2026-10-15", "title": "Retired old offers across the site", "pos": null, "neg": null },
-    { "date": "2026-10-15", "title": "Stopped serving internal docs", "pos": null, "neg": null },
-    { "date": "2026-10-16", "title": "Free-map form replaces email links", "pos": null, "neg": null },
-    { "date": "2026-10-18", "title": "Approve-only demo and homepage copy", "pos": null, "neg": null },
-    { "date": "2026-10-22", "title": "Monitored intake route prepared", "pos": null, "neg": null },
-    { "date": "2026-10-22", "title": "Product test pilot started", "pos": null, "neg": null }
+    {
+      "date": "2026-10-14",
+      "title": "Business-first homepage relaunch",
+      "pos": null,
+      "neg": null
+    },
+    {
+      "date": "2026-10-15",
+      "title": "Theme A brand rolled out site-wide",
+      "pos": null,
+      "neg": null
+    },
+    {
+      "date": "2026-10-15",
+      "title": "DTRT Job Desk becomes the main offer",
+      "pos": null,
+      "neg": null
+    },
+    {
+      "date": "2026-10-15",
+      "title": "Job Desk demo on a made-up HVAC company",
+      "pos": null,
+      "neg": null
+    },
+    {
+      "date": "2026-10-15",
+      "title": "Retired old offers across the site",
+      "pos": null,
+      "neg": null
+    },
+    {
+      "date": "2026-10-15",
+      "title": "Stopped serving internal docs",
+      "pos": null,
+      "neg": null
+    },
+    {
+      "date": "2026-10-16",
+      "title": "Free-map form replaces email links",
+      "pos": null,
+      "neg": null
+    },
+    {
+      "date": "2026-10-18",
+      "title": "Approve-only demo and homepage copy",
+      "pos": null,
+      "neg": null
+    },
+    {
+      "date": "2026-10-22",
+      "title": "Monitored intake route prepared",
+      "pos": null,
+      "neg": null
+    },
+    {
+      "date": "2026-10-22",
+      "title": "Product test pilot started",
+      "pos": null,
+      "neg": null
+    },
+    {
+      "date": "2026-10-26",
+      "title": "Founder sets the Library vision: the site is the public experiment",
+      "pos": null,
+      "neg": null
+    },
+    {
+      "date": "2026-10-26",
+      "title": "Daily report loop adopted: one goal, one report, every day",
+      "pos": null,
+      "neg": null
+    }
   ],
   "story": [
-    { "date": "2026-05-19", "title": "@DTRTLab opens on X" },
-    { "date": "2026-10-11", "title": "Growth campaign starts" },
-    { "date": "2026-10-14", "title": "Business-first direction: AI office systems for small businesses" },
-    { "date": "2026-10-15", "title": "DTRT Job Desk launches for small service businesses" },
-    { "date": "2026-10-22", "title": "Product test pilot begins" },
-    { "date": "2026-10-23", "title": "Daily 1% improvement loop and this board begins" }
+    {
+      "date": "2026-05-19",
+      "title": "@DTRTLab opens on X"
+    },
+    {
+      "date": "2026-10-11",
+      "title": "Growth campaign starts"
+    },
+    {
+      "date": "2026-10-14",
+      "title": "Business-first direction: AI office systems for small businesses"
+    },
+    {
+      "date": "2026-10-15",
+      "title": "DTRT Job Desk launches for small service businesses"
+    },
+    {
+      "date": "2026-10-22",
+      "title": "Product test pilot begins"
+    },
+    {
+      "date": "2026-10-23",
+      "title": "Daily 1% improvement loop and this board begins"
+    },
+    {
+      "date": "2026-10-26",
+      "title": "The public experiment begins: daily reports on the open record"
+    }
   ]
 }
