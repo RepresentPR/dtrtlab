@@ -29,7 +29,7 @@ p.m{color:var(--mut);font-size:13px}
 </style>  <script data-goatcounter="https://dtrtlab.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head><body><main>
 <div class="top"><a href="/">DTRT <b>LAB</b></a></div>
-<h1>Live proof</h1><span class="live"><span class="dot"></span><span id="stamp">live · loading…</span></span>
+<h1>Live proof</h1><span id="stamp">As of latest recorded update</span>
 <div class="strip" id="strip"></div>
 <p class="m">Counted automatically from our own records. A number appears only when it is measured; nothing is estimated.</p>
 <p><a href="/">← Back to DTRT Lab</a> · <a href="/content/proof.json">Raw numbers (JSON)</a></p>
@@ -38,5 +38,5 @@ p.m{color:var(--mut);font-size:13px}
 const f=v=>v==null?null:v.toLocaleString('en-US');
 const items=[['Posts published',d.posts_published],['Days building in public',d.days_running],['Total audience',d.audience_total]];
 document.getElementById('strip').innerHTML=items.filter(i=>i[1]!=null).map(i=>`<div class="s"><strong>${f(i[1])}</strong><small>${i[0]}</small></div>`).join('');
-document.getElementById('stamp').textContent='live · updated '+d.updated_et;})().catch(()=>{document.getElementById('stamp').textContent='live numbers unavailable right now'});
+document.getElementById('stamp').textContent='As of '+d.updated_et;})().catch(()=>{document.getElementById('stamp').textContent='Recorded numbers unavailable right now'});
 </script></body></html>
