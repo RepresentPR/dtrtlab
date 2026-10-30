@@ -125,10 +125,13 @@ test('existing form pages retain their canonical promise while the homepage make
     assert.ok(fs.readFileSync(path.join(root, name), 'utf8').includes(CANONICAL), name);
   }
   const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+  const homeReply = "Answer 3 short questions and we'll reply.";
+  assert.match(home, /Answer 3 short questions and we'll reply\./);
   assert.doesNotMatch(home, /(?:within|in)\s+3\s+business days/i);
+  assert.doesNotMatch(home, /by email/i);
   const near = /3 short questions|written map arrives|one-page map of your office|asks 3 short questions|free one-page map:/i;
   for (const file of walk(root)) {
-    const rest = fs.readFileSync(file, 'utf8').split(CANONICAL).join('');
+    const rest = fs.readFileSync(file, 'utf8').split(CANONICAL).join('').split(homeReply).join('');
     assert.doesNotMatch(rest, near, path.relative(root, file));
   }
 });

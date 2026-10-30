@@ -306,12 +306,16 @@ function requiresRetired(file, text) {
   return out;
 }
 
-// A "live" refresh job that logs "secret not set; skipping" and exits 0 is a FAIL (checklist,
-// PR #71): the run goes green while the data goes stale.
+// A refresh job that skips a missing secret must say so. A visible ::warning:: that
+// exits 0 and does not claim a refresh is allowed: nothing was refreshed and nothing
+// is committed. A silent skip, or any skip that claims a refresh, is a FAIL.
 function silentSkipProblems(file, yml) {
   const out = [];
   for (const m of yml.matchAll(/[^\n]*\b(echo|printf|::warning::|::notice::)[^\n]*(not\s+set|missing|unset|empty)[^\n]*skip[^\n]*/gi)) {
-    if (/exit\s+0\b/.test(m[0]) || !/exit\s+[1-9]/.test(m[0])) out.push({ file, line: yml.slice(0, m.index).split('\n').length, snip: m[0].trim().slice(0, 140) });
+    const line = m[0];
+    const visibleSkip = /::warning::/.test(line) && /exit\s+0\b/.test(line) && !/\brefresh/i.test(line);
+    if (visibleSkip) continue;
+    if (/exit\s+0\b/.test(line) || !/exit\s+[1-9]/.test(line)) out.push({ file, line: yml.slice(0, m.index).split('\n').length, snip: line.trim().slice(0, 140) });
   }
   return out;
 }

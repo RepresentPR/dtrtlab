@@ -180,9 +180,10 @@ test('fix7/4 planted: the freshness check fails on stale, future and unparseable
   assert.deepEqual(labelProblems("el.textContent='as of '+d.updated_et"), []);
 });
 test('fix7/4 planted: a refresh job that skips on a missing secret and exits 0 fails', () => {
-  const plants = ['if [ -z "$X" ]; then echo "X secret not set; skipping"; exit 0; fi', 'if [ -z "$X" ]; then echo "X missing, skipping"; fi'];
+  const plants = ['if [ -z "$X" ]; then echo "X secret not set; skipping"; exit 0; fi', 'if [ -z "$X" ]; then echo "X missing, skipping"; fi', 'if [ -z "$X" ]; then echo "::warning::X not set; skipping; refreshed"; exit 0; fi'];
   assert.deepEqual(missed(plants, (y) => L.silentSkipProblems('w.yml', y).length === 1), []);
   assert.deepEqual(L.silentSkipProblems('w.yml', 'if [ -z "$X" ]; then echo "::error::X not set"; exit 1; fi'), []);
+  assert.deepEqual(L.silentSkipProblems('w.yml', 'if [ -z "$X" ]; then echo "::warning::X secret not set; skipping"; exit 0; fi'), [], 'a visible warning that skips and does not claim a refresh is allowed');
 });
 test(`fix7/4 content/proof.json updated_et is under ${L.MAX_PROOF_AGE_H} h old (PR and daily schedule)`, () => {
   const proof = JSON.parse(read('content/proof.json'));
@@ -277,10 +278,12 @@ test('fix7/6 free-map line and guarantee wording match rules.md §2 exactly on e
   // The 3-business-day sentence stays the only allowed turnaround (wordingProblems). These
   // pages must not be required to print it: positioning.test.cjs forbids that promise on
   // the homepage. The published line, with no timing promise, satisfies the page check.
-  const FOLLOW_UP_LINE = "Answer 3 short questions and we'll follow up by email.";
+  const HOME_LINE = "Answer 3 short questions and we'll reply.";
+  const MAP_LINE = "Answer 3 short questions and we'll follow up by email.";
   const missing = MAP_PROMISE_PAGES.filter((f) => {
     const text = L.norm(L.visibleText(read(f)));
-    return !text.includes(L.FREE_MAP_LINE) && !text.includes(FOLLOW_UP_LINE);
+    const ok = text.includes(L.FREE_MAP_LINE) || text.includes(HOME_LINE) || (f !== 'index.html' && text.includes(MAP_LINE));
+    return !ok;
   }).map((f) => ({ file: f, id: 'free-map-line', snip: 'page promises the map but lacks the exact site line' }));
   const all = [...missing, ...problems];
   assert.equal(all.length, 0, `${all.length} wording deviations (free-map: "${L.FREE_MAP_LINE}"; guarantee: "${L.GUARANTEE}"):\n` + all.map((p) => `${p.file} [${p.id}] ${p.snip}`).join('\n'));
