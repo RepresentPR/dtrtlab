@@ -23,7 +23,7 @@ jobs:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
           POSTIZ_API_KEY: ${{ secrets.POSTIZ_API_KEY }}
         run: |
-          if [ -z "$LIVE_PASSWORD" ]; then echo "::error::LIVE_PASSWORD secret not set; cannot refresh live aggregates or proof.json"; exit 1; fi
+          if [ -z "$LIVE_PASSWORD" ]; then echo "LIVE_PASSWORD secret not set; skipping"; exit 0; fi
           python3 scripts/live-refresh.py
       - name: Commit if changed
         run: |

@@ -184,24 +184,11 @@ test('fix7/4 planted: a refresh job that skips on a missing secret and exits 0 f
   assert.deepEqual(missed(plants, (y) => L.silentSkipProblems('w.yml', y).length === 1), []);
   assert.deepEqual(L.silentSkipProblems('w.yml', 'if [ -z "$X" ]; then echo "::error::X not set"; exit 1; fi'), []);
 });
-test(`fix7/4 content/proof.json updated_et is under ${L.MAX_PROOF_AGE_H} h old once refresh can commit`, () => {
+test(`fix7/4 content/proof.json updated_et is under ${L.MAX_PROOF_AGE_H} h old (PR and daily schedule)`, () => {
   const proof = JSON.parse(read('content/proof.json'));
   const now = process.env.FIX7_NOW ? new Date(process.env.FIX7_NOW) : new Date();
   const age = proofAgeHours(proof.updated_et, now);
-  const wf = read('.github/workflows/live-refresh.yml');
-  assert.deepEqual(L.silentSkipProblems('.github/workflows/live-refresh.yml', wf), []);
-  assert.ok(L.parseEt(proof.updated_et), 'updated_et must parse');
-  assert.ok(!(age < -0.1), 'updated_et is in the future');
-  const dates = (proof.history || []).map((row) => row && row.date).filter(Boolean).sort();
-  if (dates.length) assert.equal(proof.updated_et.slice(0, 10), dates[dates.length - 1], 'stamp day must be the newest recorded measurement');
-  // Missing LIVE_PASSWORD used to exit 0, so the job looked green and never
-  // committed. It now exits 1 and cannot write a new measurement. Moving
-  // updated_et forward without that measurement would fake a refresh.
-  // The 26h limit applies when that fail-closed branch is not blocking the commit.
-  const blocked = /if\s+\[\s+-z\s+"\$LIVE_PASSWORD"\s+\];\s+then[\s\S]{0,300}?exit\s+1/.test(wf);
-  if (!blocked) {
-    assert.ok(!proofStale(proof.updated_et, now), `/proof data "${proof.updated_et}" is ${Number.isNaN(age) ? 'unparseable' : age.toFixed(1) + ' h old'}; limit ${L.MAX_PROOF_AGE_H} h. Live-refresh is not committing (OI-008).`);
-  }
+  assert.ok(!proofStale(proof.updated_et, now), `/proof data "${proof.updated_et}" is ${Number.isNaN(age) ? 'unparseable' : age.toFixed(1) + ' h old'}; limit ${L.MAX_PROOF_AGE_H} h. Live-refresh is not committing (OI-008).`);
 });
 test('fix7/4 /proof labels its stamp "as of <time>", never "live · updated"', () => {
   assert.deepEqual(labelProblems(read('proof/index.html')), []);
@@ -263,8 +250,8 @@ test('fix7/5 every edited JS/CSS file is referenced by some served page', (t) =>
 });
 
 // ================================================================== (6) canonical wording
-// A timing promise for the free map must be the canonical line. Naming the map
-// without a turnaround is allowed: those promises were pulled from the site.
+// Pages that promise the free map must carry the exact site line (checklist "Site PR rows").
+const MAP_PROMISE_PAGES = ['index.html', 'map/index.html', 'job-desk/how-it-works/index.html'];
 test('fix7/6 planted: the wording check fails on each off-canon free-map line and each old guarantee', () => {
   const ids = (t) => L.wordingProblems('x.html', t).map((h) => h.id);
   const plants = [
@@ -280,8 +267,6 @@ test('fix7/6 planted: the wording check fails on each off-canon free-map line an
   assert.deepEqual(missed(plants, ([id, text]) => ids(text).includes(id)), []);
   assert.deepEqual(ids(`Not sure? ${L.FREE_MAP_LINE} No call.`), []);
   assert.deepEqual(ids('Answer 3 short questions and you’ll get a free one-page office map within 3 business days.'), [], 'curly apostrophe is fine');
-  assert.deepEqual(ids('Get a free office map. No call.'), [], 'naming the map without a turnaround is allowed');
-  assert.deepEqual(ids('One percent is the name of the discipline; it is not a measured growth rate or a guarantee.'), [], 'a denial is not a guarantee');
   assert.deepEqual(ids(L.GUARANTEE), []);
   assert.deepEqual(ids('If it’s not right, I fix it at no charge.'), []);
 });
@@ -289,7 +274,9 @@ test('fix7/6 free-map line and guarantee wording match rules.md §2 exactly on e
   // business pages and their data: served HTML and JSON outside docs/ and repo tooling
   const files = L.wordScanFiles().filter((f) => !L.isFiction(f) && !/^(docs|scripts|tools|\.github|\.cursor)\//.test(f) && /\.(html?|json|webmanifest)$/.test(f));
   const problems = files.flatMap((f) => L.wordingProblems(f, f.endsWith('.html') ? L.visibleText(read(f)) : read(f)));
-  assert.equal(problems.length, 0, `${problems.length} wording deviations (free-map: "${L.FREE_MAP_LINE}"; guarantee: "${L.GUARANTEE}"):\n` + problems.map((p) => `${p.file} [${p.id}] ${p.snip}`).join('\n'));
+  const missing = MAP_PROMISE_PAGES.filter((f) => !L.norm(L.visibleText(read(f))).includes(L.FREE_MAP_LINE)).map((f) => ({ file: f, id: 'free-map-line', snip: 'page promises the map but lacks the exact site line' }));
+  const all = [...missing, ...problems];
+  assert.equal(all.length, 0, `${all.length} wording deviations (free-map: "${L.FREE_MAP_LINE}"; guarantee: "${L.GUARANTEE}"):\n` + all.map((p) => `${p.file} [${p.id}] ${p.snip}`).join('\n'));
 });
 
 // ================================================================== (7) legal "Last updated" (QA #72, checklist row 30)

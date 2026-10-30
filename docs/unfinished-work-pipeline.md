@@ -105,7 +105,7 @@ Agent cannot finish these without your login/UI:
 | 2026-10-13 | Agent-first merges #34 #31 #33 #35 #36 #37 #29; #32 absorbed | Ian unlocks |
 | 2026-10-13 | AI templates · Find-me live · AI spend ops | Bios paste · Postiz DRAFT cleanup |
 | 2026-10-13 | **Company live reaudit:** site HTTP 200s, email MX, tests green, #32/#25 closed, audit-site path fixed, find-me tests, **X captions re-queued with plain dtrtlab.com** | SCHEDULED waves · Ian unlock list · Postiz DRAFT discard |
-| 2026-10-14 | Business-first site revamp drafted: a retired writing offer on Whop, hobby on `/lab.html`, `brand-kit.md` | Ian still pastes the bios into each social profile |
+| 2026-10-14 | Business-first site revamp drafted: writing plans on Whop, hobby on `/lab.html`, `brand-kit.md` | Ian still pastes the bios into each social profile |
 | 2026-10-15 | Agent floor: founder boundaries, Stage 1 freeze, “if unsure, ship” revoked for brand, price, and scope | Public catalog at that date was the free plan plus three Whop writing tiers. A flat writing audit was named in chat. Site rename waited for an explicit instruction. No claim of 3 paying clients |
 | 2026-10-15 | Operating system: first-chair agents execute; Ian accepts, rejects, prices, commits, unlocks, and sets brand. Ops bandwidth was the writing studio’s paid offer. Hobby stays on `/lab.html` | Live Whop tier labels and prices unchanged on that date |
 | 2026-10-15 | Vision: studio for local businesses. Offer at that date was a free plan plus a flat writing audit. Target by 2026-12-31: 10 free deliveries, 2–3 paid starts, 3 testimonials. Freeze adds `/live/` with streaming and AFTERLIGHT | Targets are not results. Site tier names and `/live/` URLs were unchanged pending an explicit site instruction |

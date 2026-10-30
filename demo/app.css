@@ -315,7 +315,6 @@ body.touring .ribbon{z-index:55} body.touring .drawer{top:32px} body.touring .dr
   .rc-item.red span{white-space:normal;overflow:visible}
   .kpis2{padding:6px 10px;gap:5px}.kpi2{padding:5px 8px}.kpi2 b{font-size:17px}
   .rc2-auto{margin:0 10px 6px;padding:6px 9px}
-  .rc-items{max-height:112px;overflow:auto}
   .tgrid{grid-template-columns:1fr}
   .lt{width:54px}
 }
