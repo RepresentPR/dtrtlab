@@ -28,7 +28,9 @@
 <link rel="manifest" href="/site.webmanifest?v=la20261015">
 <meta name="theme-color" content="#0B2545">
 <link rel="stylesheet" href="/css/knowledge-home.css?v=20261025-insidelab2">
+<link rel="stylesheet" href="/css/story-stage.css?v=20261030-fire3">
 <script type="module" src="/js/knowledge-guide.mjs?v=20261024-hub2"></script>
+<script type="module" src="/js/story-guide.mjs?v=20261030-fire3"></script>
 <script type="module" src="/js/homepage-video.mjs?v=20261024-media1"></script>
 <script data-goatcounter="https://dtrtlab.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
@@ -41,6 +43,109 @@
 </header>
 <main id="main">
 <section class="hero">
+<div class="story-stage" role="region" aria-labelledby="story-kicker">
+<p class="story-kicker" id="story-kicker">The beginning of the story</p>
+<div class="story-row">
+<button class="story-side story-text" type="button" id="story-text" data-story-open="text" aria-controls="story-guide" aria-expanded="false" aria-haspopup="dialog">
+<span class="story-side-name">Text</span>
+<span class="story-side-label">Text us (number coming soon)</span>
+</button>
+<button class="story-fire" type="button" id="story-fire" data-story-open="start" aria-controls="story-guide" aria-expanded="false" aria-haspopup="dialog">
+<span class="flame-wrap" aria-hidden="true">
+<span class="flame-halo"></span>
+<svg class="flame" viewBox="0 0 120 160" width="120" height="160" aria-hidden="true" focusable="false">
+<path fill="#F4B942" d="M60 8c14 28 12 40 4 54 22-10 40 2 46 24 8 30-2 62-34 74-8 4-18 4-26 0C18 148 2 116 10 84c4-16 16-26 28-24-2-16 6-36 22-52z"/>
+<path fill="#E36A2F" d="M60 48c10 18 8 28 2 40 14-4 26 6 28 20 4 22-8 44-26 50-16 6-34-2-40-18-6-16-2-34 10-44 6 10 16 12 22 4 2-16 2-32 4-52z"/>
+<path fill="#FFF4D2" d="M62 86c6 10 6 18 2 28 6 2 12 10 10 20-4 14-20 18-30 10-8-8-8-20-2-28 4 6 12 8 16 2 2-10 2-20 4-32z"/>
+</svg>
+</span>
+<span class="story-fire-label">Curious? Click</span>
+<span class="visually-hidden">Opens a guide to pages on this site.</span>
+</button>
+<button class="story-side story-call" type="button" id="story-call" data-story-open="call" aria-controls="story-guide" aria-expanded="false" aria-haspopup="dialog">
+<span class="story-side-name">Call</span>
+<span class="story-side-label">Call us (number coming soon)</span>
+</button>
+</div>
+<p class="story-note">A floating fire stands in for a live assistant. The guide is scripted, works on this site only, and does not save what you choose.</p>
+<div id="story-guide" class="story-guide" role="dialog" aria-modal="true" aria-labelledby="story-title-start" hidden>
+<div class="story-guide-bar">
+<button type="button" id="story-back" hidden>Back</button>
+<button type="button" id="story-close">Close guide</button>
+</div>
+<div data-panel="start">
+<h2 id="story-title-start" tabindex="-1">Where should we look?</h2>
+<p>Pick a path. This guide only opens pages that are already on this site. It is scripted, and it does not save what you choose.</p>
+<div class="story-guide-actions">
+<button type="button" data-panel-target="business">Help for a business</button>
+<button type="button" data-panel-target="company">The company</button>
+<button type="button" data-panel-target="read">Pages to read</button>
+</div>
+</div>
+<div data-panel="business" hidden>
+<h2 id="story-title-business" tabindex="-1">Help for a business</h2>
+<p>These pages explain the free office map, the free AI check, how Job Desk is scoped, and a fictional software demo.</p>
+<div class="story-links">
+<a href="/map/">Get a free office map</a>
+<a href="/map/?want=check">Get a free AI check</a>
+<a href="/job-desk/how-it-works/">See how Job Desk is scoped</a>
+<a href="/demo/">See the fictional demo</a>
+</div>
+</div>
+<div data-panel="company" hidden>
+<h2 id="story-title-company" tabindex="-1">The company</h2>
+<p>Ian keeps this record in public. These pages say what DTRT Lab is and how to write.</p>
+<div class="story-links">
+<a href="/#about">About Ian</a>
+<a href="/find.html">Public links</a>
+<a href="/contact.html">Contact the company</a>
+<a href="/inside-the-lab/">Inside the Lab</a>
+<a href="/brand.html">Brand</a>
+</div>
+</div>
+<div data-panel="read" hidden>
+<h2 id="story-title-read" tabindex="-1">Pages to read</h2>
+<p>The notebook, the questions, and the site rules are already published.</p>
+<div class="story-links">
+<a href="/#knowledge">Company notebook</a>
+<a href="/#work">Work and its status</a>
+<a href="/#faq">Questions on this page</a>
+<a href="/legal/privacy.html">Privacy</a>
+<a href="/legal/terms.html">Terms</a>
+<a href="/legal/refunds.html">Refunds</a>
+</div>
+</div>
+<div data-panel="text" hidden>
+<h2 id="story-title-text" tabindex="-1">Text us (number coming soon)</h2>
+<p>No text number is published on this site. You can write through the contact page instead.</p>
+<div class="story-links"><a href="/contact.html">Open the contact page</a></div>
+</div>
+<div data-panel="call" hidden>
+<h2 id="story-title-call" tabindex="-1">Call us (number coming soon)</h2>
+<p>No phone number is published on this site. You can write through the contact page instead.</p>
+<div class="story-links"><a href="/contact.html">Open the contact page</a></div>
+</div>
+</div>
+<noscript>
+<nav class="story-fallback" aria-label="Site guide">
+<a href="/map/">Get a free office map</a>
+<a href="/map/?want=check">Get a free AI check</a>
+<a href="/job-desk/how-it-works/">See how Job Desk is scoped</a>
+<a href="/demo/">See the fictional demo</a>
+<a href="/#about">About Ian</a>
+<a href="/find.html">Public links</a>
+<a href="/contact.html">Contact the company</a>
+<a href="/inside-the-lab/">Inside the Lab</a>
+<a href="/brand.html">Brand</a>
+<a href="/#knowledge">Company notebook</a>
+<a href="/#work">Work and its status</a>
+<a href="/#faq">Questions on this page</a>
+<a href="/legal/privacy.html">Privacy</a>
+<a href="/legal/terms.html">Terms</a>
+<a href="/legal/refunds.html">Refunds</a>
+</nav>
+</noscript>
+</div>
 <div class="hero-copy">
 <p class="eyebrow"><span class="square"></span> DO THE RIGHT THING. SHOW THE WORK.</p>
 <h1>An open record<br>of what we <em>build.</em></h1>
