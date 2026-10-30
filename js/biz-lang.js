@@ -14,7 +14,7 @@
     "/legal/terms.html": { title: "Términos — DTRT Lab", h1: "Términos de uso", lead: "Última actualización: 30 de octubre de 2026. Estos términos cubren dtrtlab.com y las páginas relacionadas de DTRT Lab. Preguntas: <a href=\"/contact.html\">formulario de contacto</a>." },
     "/legal/privacy.html": { title: "Privacidad — DTRT Lab", h1: "Privacidad", lead: "Cómo DTRT Lab trata los mensajes, la analítica y los pagos que ocurren en Whop." },
     "/legal/cookies.html": { title: "Cookies — DTRT Lab", h1: "Cookies", lead: "Cookies, almacenamiento local y analítica en dtrtlab.com." },
-    "/legal/refunds.html": { title: "Reembolsos — DTRT Lab", h1: "Reembolsos", lead: "Última actualización: 15 de octubre de 2026. El checkout de la tienda, de la mercancía y del juego en dtrtlab.com no está activo, así que esas páginas no tienen nada que reembolsar." },
+    "/legal/refunds.html": { title: "Reembolsos — DTRT Lab", h1: "Reembolsos", lead: "Última actualización: 30 de octubre de 2026. El checkout de la tienda, de la mercancía y del juego en dtrtlab.com no está activo, así que esas páginas no tienen nada que reembolsar." },
     "/legal/dmca.html": { title: "DMCA — DTRT Lab", h1: "DMCA", lead: "Avisos de derechos de autor para DTRT Lab." }
   };
   var page = pages[path];
