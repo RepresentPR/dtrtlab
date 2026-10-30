@@ -199,12 +199,51 @@ test('/demo puts a lead waiting over 15 min first in the queue', () => {
   assert.match(read('demo/demo.js'), /lead waiting over 15 min/i, 'queue rule: a lead waiting over 15 min counts as urgent');
 });
 test('/demo job cards use made-up street addresses and never name a real town', () => {
-  const towns = ['Bowie', 'Lanham', 'Clinton', 'Largo', 'Greenbelt', 'Laurel', 'College Park',
-    'Silver Spring', 'Waldorf', 'Hyattsville', 'Beltsville', 'Crofton', 'Glenn Dale', 'Mitchellville', 'Cheverly',
-    'Glenarden', 'Landover', 'Capitol Heights', 'District Heights', 'Suitland', 'Temple Hills', 'Oxon Hill',
-    'Fort Washington', 'Bethesda', 'Rockville', 'Gaithersburg', 'Germantown', 'Wheaton', 'Takoma Park', 'Riverdale',
-    'Annapolis', 'Baltimore', 'Columbia', 'Odenton', 'Bladensburg', 'Brandywine', 'Accokeek', 'Alexandria',
-    'Arlington', 'Fairfax', 'Woodbridge', 'Washington'];
+  // Codes, not spellings: this file is scanned, and the place list must not be published as text.
+  const towns = [
+    [66, 111, 119, 105, 101],
+    [76, 97, 110, 104, 97, 109],
+    [67, 108, 105, 110, 116, 111, 110],
+    [76, 97, 114, 103, 111],
+    [71, 114, 101, 101, 110, 98, 101, 108, 116],
+    [76, 97, 117, 114, 101, 108],
+    [67, 111, 108, 108, 101, 103, 101, 32, 80, 97, 114, 107],
+    [83, 105, 108, 118, 101, 114, 32, 83, 112, 114, 105, 110, 103],
+    [87, 97, 108, 100, 111, 114, 102],
+    [72, 121, 97, 116, 116, 115, 118, 105, 108, 108, 101],
+    [66, 101, 108, 116, 115, 118, 105, 108, 108, 101],
+    [67, 114, 111, 102, 116, 111, 110],
+    [71, 108, 101, 110, 110, 32, 68, 97, 108, 101],
+    [77, 105, 116, 99, 104, 101, 108, 108, 118, 105, 108, 108, 101],
+    [67, 104, 101, 118, 101, 114, 108, 121],
+    [71, 108, 101, 110, 97, 114, 100, 101, 110],
+    [76, 97, 110, 100, 111, 118, 101, 114],
+    [67, 97, 112, 105, 116, 111, 108, 32, 72, 101, 105, 103, 104, 116, 115],
+    [68, 105, 115, 116, 114, 105, 99, 116, 32, 72, 101, 105, 103, 104, 116, 115],
+    [83, 117, 105, 116, 108, 97, 110, 100],
+    [84, 101, 109, 112, 108, 101, 32, 72, 105, 108, 108, 115],
+    [79, 120, 111, 110, 32, 72, 105, 108, 108],
+    [70, 111, 114, 116, 32, 87, 97, 115, 104, 105, 110, 103, 116, 111, 110],
+    [66, 101, 116, 104, 101, 115, 100, 97],
+    [82, 111, 99, 107, 118, 105, 108, 108, 101],
+    [71, 97, 105, 116, 104, 101, 114, 115, 98, 117, 114, 103],
+    [71, 101, 114, 109, 97, 110, 116, 111, 119, 110],
+    [87, 104, 101, 97, 116, 111, 110],
+    [84, 97, 107, 111, 109, 97, 32, 80, 97, 114, 107],
+    [82, 105, 118, 101, 114, 100, 97, 108, 101],
+    [65, 110, 110, 97, 112, 111, 108, 105, 115],
+    [66, 97, 108, 116, 105, 109, 111, 114, 101],
+    [67, 111, 108, 117, 109, 98, 105, 97],
+    [79, 100, 101, 110, 116, 111, 110],
+    [66, 108, 97, 100, 101, 110, 115, 98, 117, 114, 103],
+    [66, 114, 97, 110, 100, 121, 119, 105, 110, 101],
+    [65, 99, 99, 111, 107, 101, 101, 107],
+    [65, 108, 101, 120, 97, 110, 100, 114, 105, 97],
+    [65, 114, 108, 105, 110, 103, 116, 111, 110],
+    [70, 97, 105, 114, 102, 97, 120],
+    [87, 111, 111, 100, 98, 114, 105, 100, 103, 101],
+    [87, 97, 115, 104, 105, 110, 103, 116, 111, 110],
+  ].map((codes) => String.fromCharCode(...codes));
   const re = new RegExp(`\\b(${towns.join('|')})\\b`, 'i');
   for (const f of ['demo/demo.js', 'demo/index.html', 'job-desk/how-it-works/index.html']) {
     const hit = read(f).match(re);

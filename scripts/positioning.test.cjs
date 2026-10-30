@@ -92,8 +92,9 @@ test('homepage notebook preserves scoped offers and routes visitors to inquiry',
     assert.doesNotMatch(read(file), /body shop|auto ?body|collision repair/i, file + ' has no body-shop examples');
   }
   const kit = read('brand-kit.md');
-  for (const line of kit.split('\n').filter(l => /^- Bio:/.test(l) && /\$50/.test(l) && /Google listing/.test(l))) {
-    assert.match(line, /1 hook \+ 5 captions/, 'a bio that mentions listing work and $50 must say what $50 buys');
+  const BIO_PRICE = /\$50/;
+  for (const line of kit.split('\n').filter(l => /^- Bio:/.test(l) && BIO_PRICE.test(l) && /Google listing/.test(l))) {
+    assert.match(line, /1 hook \+ 5 captions/, 'a bio that mentions listing work and a price must say what that price buys');
   }
   assert.doesNotMatch(read('AGENTS.md'), /Ian gives an explicit instruction|unless Ian explicitly instructs/, 'positioning sign-off moved to DTRT Co-Founder');
   assert.match(read('AGENTS.md'), /never merge positioning/);

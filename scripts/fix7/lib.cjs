@@ -264,8 +264,9 @@ function wordScanFiles(root = ROOT) {
 const REPO_CODE = /^(scripts|tools|\.github|\.cursor)\/|\.(py|sh|cjs|ya?ml|toml)$/;
 // Kind of a scanned file (decides which text is "copy").
 function kindOf(file) {
-  if (/\.(html?|svg)$/i.test(file)) return 'html';
+  // Tooling paths first: a planted .html fixture under scripts/ is not a served page.
   if (REPO_CODE.test(file)) return 'repo';
+  if (/\.(html?|svg)$/i.test(file)) return 'html';
   if (/\.(json|webmanifest)$/i.test(file)) return 'json';
   if (/\.(m?js|css|xml)$/i.test(file)) return 'code';
   return 'md'; // .md .mdc .txt .csv .example and extension-less (_headers, CNAME): served as text
@@ -347,6 +348,7 @@ function scanFile(file, root = ROOT, opts = {}) {
 // covered by requiresRetired instead. Explicit allowlist: [file regex, line regex, reason].
 const MAILTO_ALLOW = [
   [/^(\.well-known\/)?security\.txt$/, /^Contact:\s*mailto:/, 'RFC 9116 security.txt requires a Contact: URI; not a page link'],
+  [/^docs\/business-email-asap\.md$/, /DMARC/, 'internal DNS note: a DMARC rua mailbox URI is not a page link'],
 ];
 function mailtoProblems(file, src) {
   const out = [];
@@ -395,7 +397,7 @@ function wordingProblems(file, raw) {
   // Guarantee wording: retired name or any "fix ... free/no charge" variant that isn't the exact line.
   for (const m of allMatches(text, /[^.\n]*\b(guarantee|fix it (at|for) no charge|fix it free|rewrite it free|do-it-right)\b[^.\n]*\.?/i)) {
     const s = m[0].trim();
-    if (/\bno\s+(fake\s+)?guarantee|not\s+guarantee|guaranteed\s+(results|ROI)|no guaranteed/i.test(s)) continue; // honest disclaimers
+    if (/\bno\s+(fake\s+)?guarantee|not\s+guarantee|guaranteed\s+(results|ROI)|no guaranteed|\b(?:is|are)\s+not\b[^.\n]{0,80}\ba\s+guarantee\b/i.test(s)) continue; // honest disclaimers
     if (/^\s*(class|id)=/.test(s)) continue;
     if (s.includes(GUARANTEE) && !/7-Day|Do-It-Right/i.test(s)) continue;
     if (/^guarantee$/i.test(s)) continue;

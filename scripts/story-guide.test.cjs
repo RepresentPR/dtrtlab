@@ -13,12 +13,12 @@ test('homepage fire guide is scripted, local, and has no phone number', () => {
   const stage = html.match(/<div class="story-stage"[\s\S]*?<section class="assistant"/)?.[0] || '';
   assert.ok(stage, 'story stage is present before the existing assistant');
   assert.match(stage, /Curious\? Click/);
-  assert.match(stage, /Text us \(number coming soon\)/);
-  assert.match(stage, /Call us \(number coming soon\)/);
+  assert.doesNotMatch(stage, /number coming soon/);
+  assert.match(stage, /href="\/map\/"/);
   assert.match(stage, /id="story-fire"/);
   assert.match(stage, /role="dialog"/);
   assert.match(stage, /aria-controls="story-guide"/);
-  assert.match(html, /\/css\/story-stage\.css\?v=20261030-fire4/);
+  assert.match(html, /\/css\/story-stage\.css\?v=20261030-guide1/);
   assert.match(html, /\/js\/story-guide\.mjs\?v=20261030-fire4/);
   assert.match(css, /#0B2545/);
   assert.match(css, /#13C27A/);

@@ -98,10 +98,11 @@ test('branch publish config excludes docs and still ships .well-known', () => {
 test('pages jekyll build has no brand-kit.html and no assets/css/style.css', (t) => {
   const probe = spawnSync('ruby', ['-e', 'gem "jekyll"'], { encoding: 'utf8' });
   if (probe.error || probe.status !== 0) {
-    // Skipping is fine on a laptop. In CI the workflow installs Jekyll, so a
-    // missing Jekyll there is a setup failure, not a reason to skip.
-    if (process.env.CI || process.env.DTRT_REQUIRE_JEKYLL) {
-      assert.fail('jekyll is not installed, and this test must run in CI (see .github/workflows/tests.yml)');
+    // Skipping is fine on a laptop and in site-gate, which does not install
+    // Jekyll. The tests workflow sets DTRT_REQUIRE_JEKYLL, so a missing
+    // Jekyll there is a setup failure, not a reason to skip.
+    if (process.env.DTRT_REQUIRE_JEKYLL) {
+      assert.fail('jekyll is not installed, and this test must run in the tests workflow (see .github/workflows/tests.yml)');
     }
     t.skip('jekyll not installed (local run only)');
     return;
