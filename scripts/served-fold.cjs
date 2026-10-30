@@ -33,7 +33,7 @@ function joinedKey(text) {
 }
 
 // Joined filename stems with no separator (reviewdesk.png, silverspring.jpg).
-// Short needles such as somd match the whole stem only, so they do not fire
+// Short needles of a few letters match the whole stem only, so they do not fire
 // inside a longer word (ransomdemand). Dots are already separators in loosen().
 function joinedNameHits(rel, phrases) {
   const hits = [];

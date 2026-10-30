@@ -31,7 +31,7 @@ python3 scripts/check-business-email.py
 
 Token needs: Account Email Routing Addresses Edit, Zone Email Routing Rules Edit, Zone Read, resource = `dtrtlab.com`.
 
-Optional cleanup: DMARC currently reports to `dmarc_rua@onsecureserver.net` (old GoDaddy residue). Change DMARC `rua` to `mailto:hello@dtrtlab.com` or remove if unused.
+Optional cleanup: DMARC currently reports to `dmarc_rua@onsecureserver.net` (old GoDaddy residue). Change DMARC `rua` to `hello@dtrtlab.com` or remove if unused.
 
 ## Send as hello@ (pick one)
 
@@ -67,4 +67,4 @@ Gmail → Settings → Accounts → **Send mail as** → Add `hello@dtrtlab.com`
 - [ ] Choose Zoho / Workspace / M365 for sending
 - [ ] Merge site cutover PR
 - [ ] Update Instagram/X/YouTube “email” fields if any
-- [ ] Optional: change DMARC `rua` from `dmarc_rua@onsecureserver.net` to `mailto:hello@dtrtlab.com`
+- [ ] Optional: change DMARC `rua` from `dmarc_rua@onsecureserver.net` to `hello@dtrtlab.com`

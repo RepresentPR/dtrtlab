@@ -360,7 +360,8 @@ function mailtoProblems(file, src) {
   return out;
 }
 function mailtoScan(root = ROOT) {
-  return wordScanFiles(root).filter((f) => kindOf(f) !== 'repo').flatMap((f) => mailtoProblems(f, fs.readFileSync(path.join(root, f), 'utf8')));
+  // Guard fixtures plant a mailto link for the browser check. They are not site pages.
+  return wordScanFiles(root).filter((f) => kindOf(f) !== 'repo' && !isGuardFile(f)).flatMap((f) => mailtoProblems(f, fs.readFileSync(path.join(root, f), 'utf8')));
 }
 
 // ---------------------------------------------------------------- canonical wording (rules.md §2)
@@ -467,7 +468,7 @@ function legalStampProblems(file, baseHtml, headHtml, now = new Date()) {
 
 // JS/CSS that exist for Node tests or tooling, not for pages. Reason required.
 const UNREFERENCED_ALLOW = [
-  // none yet: [/^js\/example\.js$/, 'why it is not loaded by a page'],
+  [/^sw\.js$/, 'the browser gate blocks service workers, so registration does not fetch this file; nav.js still references it'],
 ];
 
 module.exports = {

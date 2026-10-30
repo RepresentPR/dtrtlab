@@ -6,6 +6,7 @@ let preference=false;try{preference=sessionStorage.getItem('dtrt-sound')==='on';
 function remember(){try{sessionStorage.setItem('dtrt-sound',enabled?'on':'off');sessionStorage.setItem('dtrt-volume',volume.value);}catch{}}
 
 const style=document.createElement('link');style.rel='stylesheet';style.href='/css/experience.css?v=20261010n';document.head.append(style);
+const phoneFix=document.createElement('style');phoneFix.textContent='@media(max-width:760px){.experience-controls{position:static!important;margin:12px;width:max-content}}';document.head.append(phoneFix);
 const controls=document.createElement('div');controls.className='experience-controls';controls.innerHTML='<button type="button" class="sound-toggle" aria-pressed="false">Sound off <span aria-hidden="true">◌</span></button><label class="sound-volume">Volume <input type="range" min="0" max="100" value="25" aria-label="Sound volume"></label>';document.body.append(controls);
 const button=controls.querySelector('button'),volume=controls.querySelector('input');
 let ctx,master,enabled=false,lastTone=0;try{volume.value=sessionStorage.getItem('dtrt-volume')||'25';}catch{}
