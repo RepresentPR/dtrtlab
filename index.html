@@ -28,7 +28,7 @@
 <link rel="manifest" href="/site.webmanifest?v=la20261015">
 <meta name="theme-color" content="#0B2545">
 <link rel="stylesheet" href="/css/knowledge-home.css?v=20261025-insidelab2">
-<link rel="stylesheet" href="/css/story-stage.css?v=20261030-fire4">
+<link rel="stylesheet" href="/css/story-stage.css?v=20261030-guide1">
 <script type="module" src="/js/knowledge-guide.mjs?v=20261024-hub2"></script>
 <script type="module" src="/js/story-guide.mjs?v=20261030-fire4"></script>
 <script type="module" src="/js/homepage-video.mjs?v=20261024-media1"></script>
@@ -36,7 +36,7 @@
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="preview-bar">THE DTRT LAB NOTEBOOK <span>Updated October 24, 2026</span></div>
+<div class="preview-bar">THE DTRT LAB NOTEBOOK <span id="notebook-updated" data-content-date="2026-10-30">Updated October 30, 2026</span></div>
 <header class="header">
 <a class="wordmark" href="#main"><img class="brand-mark" src="/img/brand/mark.svg?v=la20261015" alt="" width="34" height="34">DTRT <strong>LAB</strong></a>
 <nav aria-label="Main navigation"><a href="#knowledge">The knowledge hub</a><a href="#work">Our work</a><a href="#campaign">This week</a><a class="nav-button" href="/map/">Get a free office map ↗</a></nav>
@@ -46,10 +46,6 @@
 <div class="story-stage" role="region" aria-labelledby="story-kicker">
 <p class="story-kicker" id="story-kicker">The beginning of the story</p>
 <div class="story-row">
-<button class="story-side story-text" type="button" id="story-text" data-story-open="text" aria-controls="story-guide" aria-expanded="false" aria-haspopup="dialog">
-<span class="story-side-name">Text</span>
-<span class="story-side-label">Text us (number coming soon)</span>
-</button>
 <button class="story-fire" type="button" id="story-fire" data-story-open="start" aria-controls="story-guide" aria-expanded="false" aria-haspopup="dialog">
 <span class="flame-wrap" aria-hidden="true">
 <span class="flame-halo"></span>
@@ -62,11 +58,8 @@
 <span class="story-fire-label">Curious? Click</span>
 <span class="visually-hidden">Opens a guide to pages on this site.</span>
 </button>
-<button class="story-side story-call" type="button" id="story-call" data-story-open="call" aria-controls="story-guide" aria-expanded="false" aria-haspopup="dialog">
-<span class="story-side-name">Call</span>
-<span class="story-side-label">Call us (number coming soon)</span>
-</button>
 </div>
+<p class="story-help"><a href="/map/">Get a free office map</a></p>
 <p class="story-note">A floating fire stands in for a live assistant. The guide is scripted, works on this site only, and does not save what you choose.</p>
 <div id="story-guide" class="story-guide" role="dialog" aria-modal="true" aria-labelledby="story-title-start" hidden>
 <div class="story-guide-bar">
@@ -114,16 +107,6 @@
 <a href="/legal/terms.html">Terms</a>
 <a href="/legal/refunds.html">Refunds</a>
 </div>
-</div>
-<div data-panel="text" hidden>
-<h2 id="story-title-text" tabindex="-1">Text us (number coming soon)</h2>
-<p>No text number is published on this site. You can write through the contact page instead.</p>
-<div class="story-links"><a href="/contact.html">Open the contact page</a></div>
-</div>
-<div data-panel="call" hidden>
-<h2 id="story-title-call" tabindex="-1">Call us (number coming soon)</h2>
-<p>No phone number is published on this site. You can write through the contact page instead.</p>
-<div class="story-links"><a href="/contact.html">Open the contact page</a></div>
 </div>
 </div>
 <noscript>

@@ -24,10 +24,13 @@
 }
 .story-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
   gap: clamp(10px, 2vw, 28px);
   align-items: center;
 }
+.story-help { margin: 0; text-align: center; }
+.story-help a { color: #fff; font-weight: 800; }
 .story-stage button, .story-guide a {
   font: inherit;
   cursor: pointer;
