@@ -3,7 +3,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const { ROOT, PAGE, contentCommit, formatStamp } = require('./lab-updated.cjs');
+const { ROOT, PAGE, CONTENT_DATE, formatContentDate, stampProblems } = require('./lab-updated.cjs');
 
 const read = (name) => fs.readFileSync(path.join(ROOT, name), 'utf8');
 
@@ -57,12 +57,9 @@ test('sitemap omits homepage redirect URLs', () => {
 
 test('inside the lab no longer shows the old October 25 stamp', () => {
   const html = read(PAGE);
-  const expected = formatStamp(contentCommit().iso);
-  const found = html.match(/id="lab-updated">Updated ([^<]+)</);
-  assert.ok(found, 'stamp missing');
-  assert.equal(found[1], expected);
+  const expected = formatContentDate(CONTENT_DATE);
+  assert.deepEqual(stampProblems(html, 'lab-updated'), []);
   assert.doesNotMatch(html, /Updated October 25, 2026/);
   const planted = html.replace(`Updated ${expected}`, 'Updated October 25, 2026');
-  assert.match(planted, /Updated October 25, 2026/);
-  assert.notEqual((planted.match(/id="lab-updated">Updated ([^<]+)</) || [])[1], expected);
+  assert.deepEqual(stampProblems(planted, 'lab-updated'), [`stamp says October 25, 2026`]);
 });
