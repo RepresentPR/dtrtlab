@@ -18,8 +18,8 @@ test('homepage fire guide is scripted, local, and has no phone number', () => {
   assert.match(stage, /id="story-fire"/);
   assert.match(stage, /role="dialog"/);
   assert.match(stage, /aria-controls="story-guide"/);
-  assert.match(html, /\/css\/story-stage\.css\?v=20261030-fire3/);
-  assert.match(html, /\/js\/story-guide\.mjs\?v=20261030-fire3/);
+  assert.match(html, /\/css\/story-stage\.css\?v=20261030-fire4/);
+  assert.match(html, /\/js\/story-guide\.mjs\?v=20261030-fire4/);
   assert.match(css, /#0B2545/);
   assert.match(css, /#13C27A/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);

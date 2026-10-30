@@ -2,7 +2,7 @@
 .hero { align-items: start; }
 .story-stage {
   grid-column: 1 / -1;
-  margin: -36px -5vw 48px;
+  margin: -68px -5vw 48px;
   padding: 36px 5vw 32px;
   min-height: calc(100svh - 150px);
   display: flex;
@@ -179,13 +179,27 @@
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-12px); }
 }
+@media (max-width: 1000px) {
+  .story-stage { margin-top: -43px; }
+}
+@media (max-width: 760px) {
+  .story-stage { margin-top: -38px; }
+}
 @media (max-width: 720px) {
-  .story-stage { margin-top: -20px; padding-top: 28px; gap: 16px; min-height: calc(100svh - 120px); }
+  .story-stage { padding-top: 28px; gap: 16px; min-height: calc(100svh - 120px); }
   .story-side { min-height: 132px; padding: 12px 8px; }
   .story-side-label { font-size: 16px; }
   .flame-wrap { width: 104px; height: 132px; }
   .flame { width: 84px; height: 112px; }
   .flame-halo { width: 92px; height: 92px; }
+}
+@media (max-width: 480px) {
+  .story-row { grid-template-columns: 1fr; gap: 14px; }
+  .story-fire { order: 1; justify-self: center; }
+  .story-text { order: 2; }
+  .story-call { order: 3; }
+  .story-side { width: 100%; min-height: 0; padding: 14px 16px; }
+  .story-side-label { font-size: 18px; line-height: 1.25; }
 }
 @media (prefers-reduced-motion: reduce) {
   .flame-wrap { animation: none; }

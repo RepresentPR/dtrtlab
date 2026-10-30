@@ -154,8 +154,8 @@
     "key": null
   },
   "css/story-stage.css": {
-    "hash": "c74940c8879952bbf5f29328c32d52693130a01b16d04009a325a34e7e8009e0",
-    "key": "20261030-fire3"
+    "hash": "1f99ec5f78d5bb1ce80aa9672e9037c0e4f2fb9d28135f11f9645e4e37a580f2",
+    "key": "20261030-fire4"
   },
   "css/theme-a.css": {
     "hash": "74aeefa24aedd7873444488b4109ebbde86a966755a74c54e97d2d8876567795",
@@ -345,7 +345,7 @@
   },
   "js/story-guide.mjs": {
     "hash": "697f5dd0f1a5b342f074d5f46c88af832adc5e9b953566eee363a3b1cf626314",
-    "key": "20261030-fire3"
+    "key": "20261030-fire4"
   },
   "js/stream-gain.js": {
     "hash": "142087a19f9f88f1d6842717498294b15e284c15de8987423ee676f44d57903d",
