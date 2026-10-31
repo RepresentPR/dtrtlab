@@ -36,6 +36,13 @@ test('hobby archive renders on lab.html and the homepage remains the public comp
   assert.match(home.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' '), /An open record\s+of what we\s+build/i);
   assert.doesNotMatch(home, /Clinton|Southern Maryland|SoMD/i);
   assert.doesNotMatch(home, /Stay on the chair/);
+  assert.match(home, /<p class="eyebrow">CURRENT CHECK<\/p>/);
+  assert.doesNotMatch(home, /AS OF OCT 29|as of October 29/);
+  assert.match(home, /<p class="deadline">Review was Sunday, October 25 · 12:00 noon Eastern \(past\)<\/p>/);
+  assert.doesNotMatch(home, /Review: Sunday, October 25/);
+  assert.match(home, /<b>Review outcome not verified<\/b>/);
+  assert.match(home, /href="#campaign">Ended week<\/a>/);
+  assert.match(home, /id="notebook-updated"[^>]*>Updated October 30, 2026</);
   assert.match(home, /<meta\b[^>]*property="og:image"[^>]*content="https:\/\/dtrtlab\.com\/img\/[^"?]+(?:\?[^" ]+)?"/);
   assert.doesNotMatch(home, /plan_HAGSLXXUeGkcz|plan_RVDjSToI7vKOM/);
   assert.doesNotMatch(home, /https:\/\/whop\.com\/checkout\/plan_kZqq0jgr6VrGG/);
