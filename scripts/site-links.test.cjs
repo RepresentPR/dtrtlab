@@ -81,6 +81,22 @@ test('sitemap.xml lists only same-site URLs that exist', () => {
     assert.ok(loc === 'https://dtrtlab.com/live/showcase.html' || !/^https:\/\/dtrtlab\.com\/(live|hq)\//.test(loc), `private page in sitemap: ${loc}`);
   }
 });
+test('showcase.html does not link to the /live/ owner dashboard', () => {
+  const file = path.join(ROOT, 'live/showcase.html');
+  const s = fs.readFileSync(file, 'utf8');
+  const anchors = [...s.matchAll(/<a\b[^>]*\shref\s*=\s*["']([^"']+)["']/gi)].map((m) => m[1]);
+  const toDash = [];
+  const toLab = [];
+  for (const raw of anchors) {
+    const clean = raw.split('#')[0].split('?')[0];
+    const target = resolveTarget(file, clean);
+    const rel = path.relative(ROOT, target).split(path.sep).join('/');
+    if (rel === 'live/index.html') toDash.push(raw);
+    if (rel === 'lab.html' && raw.includes('#public-results')) toLab.push(raw);
+  }
+  assert.deepStrictEqual(toDash, []);
+  assert.equal(toLab.length, 4, 'the four former dashboard links should open Lab / Hobby public results');
+});
 test('manifest icons exist', () => {
   const m = JSON.parse(fs.readFileSync(path.join(ROOT, 'site.webmanifest'), 'utf8'));
   for (const i of m.icons || []) assert.ok(fs.existsSync(path.join(ROOT, i.src.split('?')[0])), `manifest icon missing: ${i.src}`);

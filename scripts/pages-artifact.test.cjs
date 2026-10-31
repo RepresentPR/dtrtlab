@@ -142,6 +142,11 @@ test('CI installs Jekyll and requires the branch-build test to run', () => {
   assert.match(wf, /BUNDLE_GEMFILE: .*gemfiles\/pages\/Gemfile/, 'tests workflow uses the Pages Gemfile');
   assert.match(wf, /DTRT_REQUIRE_JEKYLL: "1"/, 'tests workflow makes a Jekyll skip fail');
   assert.match(wf, /bundle exec node --test scripts\/\*\.test\.cjs/, 'node tests run under bundle exec');
+  const gate = fs.readFileSync(path.join(ROOT, '.github/workflows/site-gate.yml'), 'utf8');
+  assert.match(gate, /ruby\/setup-ruby@[0-9a-f]{40}/, 'site-gate installs Ruby');
+  assert.match(gate, /BUNDLE_GEMFILE: .*gemfiles\/pages\/Gemfile/, 'site-gate uses the Pages Gemfile');
+  assert.match(gate, /DTRT_REQUIRE_JEKYLL: "1"/, 'site-gate makes a Jekyll skip fail');
+  assert.match(gate, /bundle exec node --test/, 'site-gate node tests run under bundle exec');
   assert.match(fs.readFileSync(path.join(ROOT, 'gemfiles/pages/Gemfile'), 'utf8'), /gem "github-pages"/);
   assert.ok(loadExclude().includes('gemfiles'), 'gemfiles/ is not served');
 });

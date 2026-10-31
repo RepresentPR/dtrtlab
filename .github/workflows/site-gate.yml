@@ -15,6 +15,10 @@ jobs:
     timeout-minutes: 15
     permissions:
       contents: read
+    env:
+      BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/pages/Gemfile
+      BUNDLE_FROZEN: "true"
+      DTRT_REQUIRE_JEKYLL: "1"
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
@@ -23,6 +27,15 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: "20"
+      - uses: ruby/setup-ruby@651ff0d62c5c79bed6d53ec518387aae20e72c1a # v1.329.0
+        with:
+          ruby-version: "3.3"
+      - name: Install Pages gems
+        # Same Gemfile as tests.yml. bundler-cache would write vendor/bundle into
+        # the workspace, which the public-file scan then reads. $RUNNER_TEMP is outside it.
+        run: |
+          bundle config set --global path "$RUNNER_TEMP/bundle"
+          bundle install
       - name: Install Playwright + Chromium outside the repo (Netlify publishes the repo root)
         run: |
           npm install --prefix "$RUNNER_TEMP/pw" --no-save --no-audit --no-fund playwright@1.63.0
@@ -32,4 +45,4 @@ jobs:
           NODE_PATH: ${{ runner.temp }}/pw/node_modules
           FIX7_REQUIRE_BROWSER: "1"   # a missing browser fails the run instead of skipping
           FIX7_BASE_REF: ${{ github.event_name == 'pull_request' && format('origin/{0}', github.base_ref) || '' }}
-        run: node --test --test-reporter=spec scripts/*.test.cjs
+        run: bundle exec node --test --test-reporter=spec scripts/*.test.cjs
