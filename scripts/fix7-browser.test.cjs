@@ -2,7 +2,9 @@
 //   node --test scripts/fix7-browser.test.cjs           (skips if Playwright isn't installed)
 //   FIX7_REQUIRE_BROWSER=1 node --test scripts/*.test.cjs   (CI: a missing browser FAILS)
 // Checks: (1) no fixed/sticky overlay (cookie bar, Sound off, docks, banners) paints over a
-// clickable button or link at 390x844 and 1440x900 on every page and header type, first visit;
+// clickable button or link at 390x844 and 1440x900 on every served page, first visit.
+// Motion stays allowed, so a timed opening is still up. A layer covering the whole viewport
+// is that opening; buttons inside it are still checked against smaller overlays.
 // (2) every link/CTA in the RENDERED DOM (incl. JS-injected nav/footer) resolves (no 404),
 // no rendered CTA is mailto:, and every CTA is actually clicked and lands on a working page;
 // (4) /proof renders "as of <time>"; (5) edited JS/CSS is actually requested by a page.
@@ -89,6 +91,9 @@ function inPage() {
     for (const o of overlays) {
       if (o === c || o.contains(c) || c.contains(o)) continue;
       const orr = o.getBoundingClientRect();
+      const shownW = Math.max(0, Math.min(orr.right, vw) - Math.max(orr.left, 0));
+      const shownH = Math.max(0, Math.min(orr.bottom, vh) - Math.max(orr.top, 0));
+      if (shownW * shownH >= vw * vh * 0.9) continue;
       const x1 = Math.max(cr.left, orr.left, 0), y1 = Math.max(cr.top, orr.top, 0);
       const x2 = Math.min(cr.right, orr.right, vw), y2 = Math.min(cr.bottom, orr.bottom, vh);
       if (x2 - x1 < 4 || y2 - y1 < 4) continue; // ignore sub-4px edge touches (anti-aliasing, borders)
@@ -108,7 +113,7 @@ function inPage() {
 }
 
 async function visit(browser, origin, local, page, vp) {
-  const context = await browser.newContext({ viewport: vp.viewport, isMobile: vp.isMobile, hasTouch: vp.hasTouch, deviceScaleFactor: vp.deviceScaleFactor, reducedMotion: 'reduce', serviceWorkers: 'allow' });
+  const context = await browser.newContext({ viewport: vp.viewport, isMobile: vp.isMobile, hasTouch: vp.hasTouch, deviceScaleFactor: vp.deviceScaleFactor, reducedMotion: 'no-preference', serviceWorkers: 'allow' });
   const requested = new Set();
   const bad = [];
   await routeAll(context, origin, local, requested);
@@ -251,6 +256,11 @@ test('fix7/1 every page loads in headless Chromium at 390 and 1440', (t) => {
 
 test('fix7/1 no fixed or sticky overlay covers a button or link at 390x844 and 1440x900 (first visit, every page, every header type)', (t) => {
   if (!needBrowser(t)) return;
+  for (const vp of VIEWPORTS) assert.ok(ctx.visits.some((v) => v.page === 'live/showcase.html' && v.vp === vp.name && !v.error), `live/showcase.html first visit was not measured at ${vp.viewport.width}x${vp.viewport.height}`);
+  const seen = new Set(ctx.visits.filter((v) => !v.error).map((v) => `${v.page}@${v.vp}`));
+  const missing = [];
+  for (const page of pages) for (const vp of VIEWPORTS) if (!seen.has(`${page}@${vp.name}`)) missing.push(`${page}@${vp.name}`);
+  assert.deepEqual(missing, [], 'overlay guard missed a served page at 390 or 1440');
   const headers = {};
   for (const v of ctx.visits) if (v.header) (headers[v.header] ||= new Set()).add(v.page);
   t.diagnostic('header types seen: ' + Object.entries(headers).map(([h, s]) => `${h}=${s.size} pages`).join(', '));

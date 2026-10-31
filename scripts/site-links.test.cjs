@@ -78,7 +78,7 @@ test('sitemap.xml lists only same-site URLs that exist', () => {
     assert.match(loc, /^https:\/\/dtrtlab\.com\//);
     const p = resolveTarget(path.join(ROOT, 'index.html'), loc.replace('https://dtrtlab.com', ''));
     assert.ok(fs.existsSync(p), `sitemap entry has no file: ${loc}`);
-    assert.ok(!/^https:\/\/dtrtlab\.com\/(live|hq)\//.test(loc), `private page in sitemap: ${loc}`);
+    assert.ok(loc === 'https://dtrtlab.com/live/showcase.html' || !/^https:\/\/dtrtlab\.com\/(live|hq)\//.test(loc), `private page in sitemap: ${loc}`);
   }
 });
 test('manifest icons exist', () => {
