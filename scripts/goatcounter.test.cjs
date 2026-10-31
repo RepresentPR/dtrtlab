@@ -1,5 +1,5 @@
-// GoatCounter (free, cookieless) loads once on every indexable public page,
-// and never on the private owner dashboard (/live, /hq) or noindex pages.
+// GoatCounter (free, cookieless) loads once on every indexable public page.
+// /live and /hq stay private unless the sitemap lists the page. noindex pages stay untagged.
 const assert = require('node:assert/strict');
 const test = require('node:test');
 const fs = require('node:fs');
@@ -14,7 +14,19 @@ function walk(d) {
   });
 }
 const pages = walk(ROOT).map(p => [path.relative(ROOT, p).split(path.sep).join('/'), fs.readFileSync(p, 'utf8')]);
-const isPrivate = (rel, s) => /^(live|hq)\//.test(rel) || /<meta name="robots" content="[^"]*noindex/i.test(s);
+function sitemapHtmlRels() {
+  const xml = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8');
+  return [...xml.matchAll(/<loc>\s*([^<\s]+)\s*<\/loc>/g)].flatMap((m) => {
+    const urlPath = m[1].replace(/^https:\/\/dtrtlab\.com/i, '') || '/';
+    let file = path.join(ROOT, urlPath.replace(/^\//, ''));
+    if (urlPath.endsWith('/') || (fs.existsSync(file) && fs.statSync(file).isDirectory())) file = path.join(file, 'index.html');
+    const rel = path.relative(ROOT, file).split(path.sep).join('/');
+    return rel.endsWith('.html') ? [rel] : [];
+  });
+}
+const SITEMAP_HTML = new Set(sitemapHtmlRels());
+const isNoindex = (s) => /<meta name="robots" content="[^"]*noindex/i.test(s);
+const isPrivate = (rel, s) => ((/^(live|hq)\//.test(rel) && !SITEMAP_HTML.has(rel)) || isNoindex(s));
 test('every indexable public page loads GoatCounter exactly once', () => {
   for (const [rel, s] of pages) {
     if (isPrivate(rel, s) || !s.includes('</head>')) continue;
@@ -32,17 +44,6 @@ test('every indexable public page loads GoatCounter exactly once', () => {
 test('private owner dashboard and noindex pages never load GoatCounter', () => {
   for (const [rel, s] of pages) if (isPrivate(rel, s)) assert.ok(!s.includes('goatcounter'), `${rel}: must not load GoatCounter`);
 });
-function sitemapHtmlRels() {
-  const xml = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8');
-  return [...xml.matchAll(/<loc>\s*([^<\s]+)\s*<\/loc>/g)].flatMap((m) => {
-    const urlPath = m[1].replace(/^https:\/\/dtrtlab\.com/i, '') || '/';
-    let file = path.join(ROOT, urlPath.replace(/^\//, ''));
-    if (urlPath.endsWith('/') || (fs.existsSync(file) && fs.statSync(file).isDirectory())) file = path.join(file, 'index.html');
-    const rel = path.relative(ROOT, file).split(path.sep).join('/');
-    return rel.endsWith('.html') ? [rel] : [];
-  });
-}
-const isNoindex = (s) => /<meta name="robots" content="[^"]*noindex/i.test(s);
 test('indexed sitemap HTML pages carry GoatCounter once; noindex pages and 404 do not', () => {
   const byRel = new Map(pages);
   const counted = [];
@@ -58,7 +59,8 @@ test('indexed sitemap HTML pages carry GoatCounter once; noindex pages and 404 d
   }
   // Adding or removing an indexed sitemap page must update this count on purpose.
   console.log(`indexed sitemap pages checked: ${counted.length}`);
-  assert.equal(counted.length, 34, `indexed sitemap pages checked: ${counted.length} (expected 34)`);
+  assert.equal(counted.length, 35, `indexed sitemap pages checked: ${counted.length} (expected 35)`);
+  assert.deepEqual(counted.filter((rel) => /^(live|hq)\//.test(rel)), ['live/showcase.html']);
   assert.ok(counted.every((rel) => !isNoindex(byRel.get(rel))), 'noindex pages are not counted');
   assert.equal(byRel.get('404.html').includes('goatcounter'), false, '404.html must not load GoatCounter');
   assert.equal(fs.existsSync(path.join(ROOT, 'private')), false, 'no file or directory under private/ may exist');
