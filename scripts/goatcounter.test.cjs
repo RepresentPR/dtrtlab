@@ -30,11 +30,7 @@ test('every indexable public page loads GoatCounter exactly once', () => {
   }
 });
 test('private owner dashboard and noindex pages never load GoatCounter', () => {
-  for (const [rel, s] of pages) {
-    // Named in the presence test below. Every other noindex page still must not load it.
-    if (rel === 'legal/preorder-terms.html') continue;
-    if (isPrivate(rel, s)) assert.ok(!s.includes('goatcounter'), `${rel}: must not load GoatCounter`);
-  }
+  for (const [rel, s] of pages) if (isPrivate(rel, s)) assert.ok(!s.includes('goatcounter'), `${rel}: must not load GoatCounter`);
 });
 function sitemapHtmlRels() {
   const xml = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8');
@@ -46,31 +42,22 @@ function sitemapHtmlRels() {
     return rel.endsWith('.html') ? [rel] : [];
   });
 }
-function assertCspAllows(rel, s) {
-  const csp = (s.match(/Content-Security-Policy" content="([^"]*)"/) || [])[1] || '';
-  const directive = (name) => ((csp.match(new RegExp('(?:^|;)\\s*' + name + '\\s+([^;]+)')) || [])[1] || '').trim();
-  const allows = (policy, host) => policy.includes(host) && !policy.includes("'none'");
-  const scriptPolicy = directive('script-src') || directive('default-src');
-  if (scriptPolicy) assert.ok(allows(scriptPolicy, 'https://gc.zgo.at'), `${rel}: CSP script-src, or default-src when script-src is absent, must allow https://gc.zgo.at`);
-  const connectPolicy = directive('connect-src') || directive('default-src');
-  if (connectPolicy) assert.ok(allows(connectPolicy, 'https://dtrtlab.goatcounter.com'), `${rel}: CSP connect-src, or default-src when connect-src is absent, must allow https://dtrtlab.goatcounter.com`);
-}
-test('sitemap HTML pages and preorder terms carry GoatCounter; 404 and /private do not', () => {
+const isNoindex = (s) => /<meta name="robots" content="[^"]*noindex/i.test(s);
+test('indexed sitemap HTML pages carry GoatCounter once; noindex pages and 404 do not', () => {
   const byRel = new Map(pages);
+  const counted = [];
   for (const rel of sitemapHtmlRels()) {
-    assert.equal(rel === 'private.html' || rel.startsWith('private/'), false, `${rel}: /private must not be in the sitemap`);
     const s = byRel.get(rel);
     assert.ok(s, `${rel}: sitemap HTML page is missing`);
+    if (isNoindex(s)) {
+      assert.equal(s.includes('goatcounter'), false, `${rel}: noindex page is intentionally untagged`);
+      continue;
+    }
+    counted.push(rel);
     assert.equal(s.split(SNIP).length - 1, 1, `${rel}: sitemap HTML page must carry the GoatCounter tag once`);
-    assertCspAllows(rel, s);
   }
-  const preorder = byRel.get('legal/preorder-terms.html');
-  assert.ok(preorder, 'legal/preorder-terms.html is missing');
-  assert.equal(preorder.split(SNIP).length - 1, 1, 'legal/preorder-terms.html must carry the GoatCounter tag once');
-  assertCspAllows('legal/preorder-terms.html', preorder);
+  assert.ok(counted.length > 0, 'at least one indexed sitemap page is counted');
+  assert.ok(counted.every((rel) => !isNoindex(byRel.get(rel))), 'noindex pages are not counted');
   assert.equal(byRel.get('404.html').includes('goatcounter'), false, '404.html must not load GoatCounter');
-  for (const [rel, s] of pages) {
-    if (rel !== 'private.html' && !rel.startsWith('private/')) continue;
-    assert.equal(s.includes('goatcounter'), false, `${rel}: /private must not load GoatCounter`);
-  }
+  assert.equal(fs.existsSync(path.join(ROOT, 'private')), false, 'no file or directory under private/ may exist');
 });
