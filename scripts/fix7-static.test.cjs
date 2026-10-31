@@ -338,6 +338,30 @@ test('fix7/7 body wording change without a Last updated bump fails', () => {
   const problems = L.legalStampProblems('legal/terms.html', page('<p>Checkout is not live.</p>'), page('<p>Checkout is live.</p>'), now);
   assert.ok(problems.some((p) => p.includes('still 2026-10-15')), problems.join('; '));
 });
+test('fix7/7 description change without a Last updated bump fails', () => {
+  const now = new Date('2026-10-16T14:00:00Z'); // 10:00 AM EDT Oct 16
+  const page = (desc) => `<head><title>Terms</title><meta name="description" content="${desc}"></head><p class="lead">Last updated October 15, 2026.</p><p>Checkout is not live.</p>`;
+  const problems = L.legalStampProblems('legal/terms.html', page('Terms for the site.'), page('Terms for these pages.'), now);
+  assert.ok(problems.some((p) => p.includes('still 2026-10-15')), problems.join('; '));
+  assert.deepEqual(L.legalStampProblems('legal/terms.html', page('Terms for the site.'), page('Terms for these pages.').replace('October 15, 2026', 'October 16, 2026'), now), []);
+});
+test('fix7/7 og:description change without a Last updated bump fails', () => {
+  const now = new Date('2026-10-16T14:00:00Z'); // 10:00 AM EDT Oct 16
+  const page = (desc) => `<head><title>Terms</title><meta property="og:description" content="${desc}"></head><p class="lead">Last updated October 15, 2026.</p><p>Checkout is not live.</p>`;
+  const swapped = (desc) => `<head><title>Terms</title><meta content="${desc}" property="og:description"></head><p class="lead">Last updated October 15, 2026.</p><p>Checkout is not live.</p>`;
+  const problems = L.legalStampProblems('legal/terms.html', page('Terms for the site.'), page('Terms for these pages.'), now);
+  assert.ok(problems.some((p) => p.includes('still 2026-10-15')), problems.join('; '));
+  const reordered = L.legalStampProblems('legal/terms.html', swapped('Terms for the site.'), swapped('Terms for these pages.'), now);
+  assert.ok(reordered.some((p) => p.includes('still 2026-10-15')), reordered.join('; '));
+});
+test('fix7/7 twitter:description change without a Last updated bump fails', () => {
+  const now = new Date('2026-10-16T14:00:00Z'); // 10:00 AM EDT Oct 16
+  const page = (desc, attr) => `<head><title>Terms</title><meta ${attr}="twitter:description" content="${desc}"></head><p class="lead">Last updated October 15, 2026.</p><p>Checkout is not live.</p>`;
+  for (const attr of ['name', 'property']) {
+    const problems = L.legalStampProblems('legal/terms.html', page('Card line.', attr), page('Updated card line.', attr), now);
+    assert.ok(problems.some((p) => p.includes('still 2026-10-15')), `${attr}: ${problems.join('; ')}`);
+  }
+});
 test('fix7/7 head title change without a Last updated bump fails', () => {
   const now = new Date('2026-10-16T14:00:00Z'); // 10:00 AM EDT Oct 16
   const page = (title) => `<head><title>${title}</title></head><p class="lead">Last updated October 15, 2026.</p><p>Checkout is not live.</p>`;

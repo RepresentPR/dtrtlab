@@ -56,7 +56,9 @@ test('indexed sitemap HTML pages carry GoatCounter once; noindex pages and 404 d
     counted.push(rel);
     assert.equal(s.split(SNIP).length - 1, 1, `${rel}: sitemap HTML page must carry the GoatCounter tag once`);
   }
-  assert.ok(counted.length > 0, 'at least one indexed sitemap page is counted');
+  // Adding or removing an indexed sitemap page must update this count on purpose.
+  console.log(`indexed sitemap pages checked: ${counted.length}`);
+  assert.equal(counted.length, 34, `indexed sitemap pages checked: ${counted.length} (expected 34)`);
   assert.ok(counted.every((rel) => !isNoindex(byRel.get(rel))), 'noindex pages are not counted');
   assert.equal(byRel.get('404.html').includes('goatcounter'), false, '404.html must not load GoatCounter');
   assert.equal(fs.existsSync(path.join(ROOT, 'private')), false, 'no file or directory under private/ may exist');
