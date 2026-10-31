@@ -321,6 +321,31 @@ test('fix7/7 planted: an edited legal page fails if "Last updated" is missing, u
   assert.deepEqual(L.legalStampProblems('legal/new.html', null, page('October 16, 2026'), now), [], 'new legal page with a stamp is fine');
   assert.equal(L.lastUpdated('Last updated October 3, 2026.'), '2026-10-03');
 });
+test('fix7/7 head-only script change passes without a Last updated bump', () => {
+  const now = new Date('2026-10-16T14:00:00Z'); // 10:00 AM EDT Oct 16
+  const page = (head, body) => `<head>${head}</head><p class="lead">Last updated October 15, 2026.</p>${body}`;
+  const head = '<title>Terms</title><meta name="description" content="Terms">';
+  const body = '<p>Checkout is not live.</p>';
+  const base = page(head, body);
+  const script = '<script src="//gc.zgo.at/count.js"></script>';
+  assert.deepEqual(L.legalStampProblems('legal/terms.html', base, page(head + script, body), now), []);
+  assert.deepEqual(L.legalStampProblems('legal/terms.html', page(head + script, body), base, now), []);
+  assert.deepEqual(L.legalStampProblems('legal/terms.html', base, page(head + '<meta name="robots" content="noindex">', body), now), []);
+});
+test('fix7/7 body wording change without a Last updated bump fails', () => {
+  const now = new Date('2026-10-16T14:00:00Z'); // 10:00 AM EDT Oct 16
+  const page = (body) => `<head><title>Terms</title></head><p class="lead">Last updated October 15, 2026.</p>${body}`;
+  const problems = L.legalStampProblems('legal/terms.html', page('<p>Checkout is not live.</p>'), page('<p>Checkout is live.</p>'), now);
+  assert.ok(problems.some((p) => p.includes('still 2026-10-15')), problems.join('; '));
+});
+test('fix7/7 head title change without a Last updated bump fails', () => {
+  const now = new Date('2026-10-16T14:00:00Z'); // 10:00 AM EDT Oct 16
+  const page = (title) => `<head><title>${title}</title></head><p class="lead">Last updated October 15, 2026.</p><p>Checkout is not live.</p>`;
+  const problems = L.legalStampProblems('legal/terms.html', page('Terms'), page('Preorder'), now);
+  assert.ok(problems.some((p) => p.includes('still 2026-10-15')), problems.join('; '));
+  const link = L.legalStampProblems('legal/terms.html', page('Terms'), page('Terms').replace('</head>', '<link rel="stylesheet" href="/css/lab.css"></head>'), now);
+  assert.ok(link.some((p) => p.includes('still 2026-10-15')), link.join('; '));
+});
 test('fix7/7 every legal page edited in this PR shows a fresh "Last updated" date', (t) => {
   const edited = L.editedFiles();
   if (!edited) return t.diagnostic('no FIX7_BASE_REF (not a PR run): legal stamp check skipped');

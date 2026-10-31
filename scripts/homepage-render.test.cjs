@@ -4,6 +4,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 const campaign = require('../js/campaign-home.js');
 const root = path.join(__dirname, '..');
+// Day 29 only. Boundaries keep October 290 and ranges such as October 19–25 out.
+const OCTOBER_29_BAN = /\bOct(ober)?\.? 29\b/i;
 
 test('hobby archive renders on lab.html and the homepage remains the public company notebook', async () => {
   const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
@@ -46,7 +48,7 @@ test('hobby archive renders on lab.html and the homepage remains the public comp
   // Notebook homepage publish: 86931fb, 2026-10-24 ("feat: publish the DTRT company notebook homepage", #88).
   const campaignSection = home.match(/<section\b[^>]*id="campaign"[^>]*>[\s\S]*?<\/section>/)?.[0] || '';
   assert.match(campaignSection, /<b>Homepage was released October 24 · other work in preparation<\/b>/);
-  assert.doesNotMatch(home, /Oct(ober)?\.? 29/i);
+  assert.doesNotMatch(home, OCTOBER_29_BAN);
   assert.match(home, /<meta\b[^>]*property="og:image"[^>]*content="https:\/\/dtrtlab\.com\/img\/[^"?]+(?:\?[^" ]+)?"/);
   assert.doesNotMatch(home, /plan_HAGSLXXUeGkcz|plan_RVDjSToI7vKOM/);
   assert.doesNotMatch(home, /https:\/\/whop\.com\/checkout\/plan_kZqq0jgr6VrGG/);
@@ -56,4 +58,13 @@ test('hobby archive renders on lab.html and the homepage remains the public comp
   const main = home.match(/<main[\s\S]*?<\/main>/)?.[0] || '';
   assert.doesNotMatch(main, /twitch\.tv|\/cs2\.html|\/afterlight\.html|\/clips\//i);
   assert.doesNotMatch(fs.readFileSync(path.join(root, 'watch/index.html'), 'utf8').match(/<footer[\s\S]*?<\/footer>/)?.[0] || '', /Ian Ferraro/i);
+});
+
+test('October 29 date ban matches that day in any case and not nearby text', () => {
+  for (const sample of ['Oct 29', 'oct 29', 'OCT 29', 'Oct. 29', 'oct. 29', 'OCT. 29', 'October 29', 'october 29', 'OCTOBER 29', 'oCtObEr 29']) {
+    assert.match(sample, OCTOBER_29_BAN, sample);
+  }
+  for (const sample of ['October 290', 'October 19–25']) {
+    assert.doesNotMatch(sample, OCTOBER_29_BAN, sample);
+  }
 });

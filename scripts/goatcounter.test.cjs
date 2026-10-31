@@ -32,3 +32,32 @@ test('every indexable public page loads GoatCounter exactly once', () => {
 test('private owner dashboard and noindex pages never load GoatCounter', () => {
   for (const [rel, s] of pages) if (isPrivate(rel, s)) assert.ok(!s.includes('goatcounter'), `${rel}: must not load GoatCounter`);
 });
+function sitemapHtmlRels() {
+  const xml = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8');
+  return [...xml.matchAll(/<loc>\s*([^<\s]+)\s*<\/loc>/g)].flatMap((m) => {
+    const urlPath = m[1].replace(/^https:\/\/dtrtlab\.com/i, '') || '/';
+    let file = path.join(ROOT, urlPath.replace(/^\//, ''));
+    if (urlPath.endsWith('/') || (fs.existsSync(file) && fs.statSync(file).isDirectory())) file = path.join(file, 'index.html');
+    const rel = path.relative(ROOT, file).split(path.sep).join('/');
+    return rel.endsWith('.html') ? [rel] : [];
+  });
+}
+const isNoindex = (s) => /<meta name="robots" content="[^"]*noindex/i.test(s);
+test('indexed sitemap HTML pages carry GoatCounter once; noindex pages and 404 do not', () => {
+  const byRel = new Map(pages);
+  const counted = [];
+  for (const rel of sitemapHtmlRels()) {
+    const s = byRel.get(rel);
+    assert.ok(s, `${rel}: sitemap HTML page is missing`);
+    if (isNoindex(s)) {
+      assert.equal(s.includes('goatcounter'), false, `${rel}: noindex page is intentionally untagged`);
+      continue;
+    }
+    counted.push(rel);
+    assert.equal(s.split(SNIP).length - 1, 1, `${rel}: sitemap HTML page must carry the GoatCounter tag once`);
+  }
+  assert.ok(counted.length > 0, 'at least one indexed sitemap page is counted');
+  assert.ok(counted.every((rel) => !isNoindex(byRel.get(rel))), 'noindex pages are not counted');
+  assert.equal(byRel.get('404.html').includes('goatcounter'), false, '404.html must not load GoatCounter');
+  assert.equal(fs.existsSync(path.join(ROOT, 'private')), false, 'no file or directory under private/ may exist');
+});
