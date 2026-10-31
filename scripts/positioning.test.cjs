@@ -94,9 +94,7 @@ test('homepage notebook preserves scoped offers and routes visitors to inquiry',
     assert.doesNotMatch(read(file), /body shop|auto ?body|collision repair/i, file + ' has no body-shop examples');
   }
   const kit = read('brand-kit.md');
-  for (const line of kit.split('\n').filter(l => /^- Bio:/.test(l) && l.includes('$' + '50') && /Google listing/.test(l))) { // retired price
-    assert.match(line, /1 hook \+ 5 captions/, 'a bio that mentions listing work and a price must say what that price buys');
-  }
+  assert.ok(!kit.split('\n').some((l) => /^- Bio:/.test(l) && /\$50/.test(l) && /Google listing/.test(l) && !/1 hook \+ 5 captions/.test(l)), 'a listing bio that names $50 must say what it buys');
   assert.doesNotMatch(read('AGENTS.md'), /Ian gives an explicit instruction|unless Ian explicitly instructs/, 'positioning sign-off moved to DTRT Co-Founder');
   assert.match(read('AGENTS.md'), /never merge positioning/);
   for (const m of main.matchAll(/>([^<>]+)<\/(?:p|h1|h2|h3|li|summary|a)>/g)) {

@@ -199,13 +199,8 @@ test('/demo puts a lead waiting over 15 min first in the queue', () => {
   assert.match(read('demo/demo.js'), /lead waiting over 15 min/i, 'queue rule: a lead waiting over 15 min counts as urgent');
 });
 test('/demo job cards use made-up street addresses and never name a real town', () => {
-  const towns = ['Bowie', 'Lanham', 'Clinton', 'Largo', 'Greenbelt', 'Laurel', 'College Park', // banned
-    'Silver Spring', 'Waldorf', 'Hyattsville', 'Beltsville', 'Crofton', 'Glenn Dale', 'Mitchellville', 'Cheverly', // banned
-    'Glenarden', 'Landover', 'Capitol Heights', 'District Heights', 'Suitland', 'Temple Hills', 'Oxon Hill', // banned
-    'Fort Washington', 'Bethesda', 'Rockville', 'Gaithersburg', 'Germantown', 'Wheaton', 'Takoma Park', 'Riverdale', // banned
-    'Annapolis', 'Baltimore', 'Columbia', 'Odenton', 'Bladensburg', 'Brandywine', 'Accokeek', 'Alexandria', // banned
-    'Arlington', 'Fairfax', 'Woodbridge', 'Washington']; // banned
-  const re = new RegExp(`\\b(${towns.join('|')})\\b`, 'i');
+  const TOWNS = ['Bowie', 'Lanham', 'Clinton', 'Largo', 'Greenbelt', 'Laurel', 'College Park', 'Silver Spring', 'Waldorf', 'Hyattsville', 'Beltsville', 'Crofton', 'Glenn Dale', 'Mitchellville', 'Cheverly', 'Glenarden', 'Landover', 'Capitol Heights', 'District Heights', 'Suitland', 'Temple Hills', 'Oxon Hill', 'Fort Washington', 'Bethesda', 'Rockville', 'Gaithersburg', 'Germantown', 'Wheaton', 'Takoma Park', 'Riverdale', 'Annapolis', 'Baltimore', 'Columbia', 'Odenton', 'Bladensburg', 'Brandywine', 'Accokeek', 'Alexandria', 'Arlington', 'Fairfax', 'Woodbridge', 'Washington'];
+  const re = new RegExp(`\\b(${TOWNS.join('|')})\\b`, 'i');
   for (const f of ['demo/demo.js', 'demo/index.html', 'job-desk/how-it-works/index.html']) {
     const hit = read(f).match(re);
     assert.strictEqual(hit, null, `${f} names a real town: ${hit && hit[0]}`);

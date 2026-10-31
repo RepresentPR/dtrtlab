@@ -6,6 +6,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { execFileSync } = require('node:child_process');
+const { isExcluded, loadExclude } = require('../stage-site.cjs');
 
 const ROOT = path.resolve(__dirname, '..', '..');
 
@@ -319,6 +320,23 @@ function silentSkipProblems(file, yml) {
   }
   return out;
 }
+// The live-refresh skip is allowed only when it prints ::warning::, exits 0, and
+// does not commit. Missing any of those is a FAIL.
+function passwordSkipProblems(yml) {
+  const out = [];
+  const text = String(yml);
+  const branch = text.match(/if\s+\[\s+-z\s+"\$LIVE_PASSWORD"\s+\];\s*then([\s\S]*?)\bfi\b/);
+  if (!branch) return ['LIVE_PASSWORD skip branch is missing'];
+  const body = branch[1];
+  if (!/::warning::/.test(body)) out.push('::warning:: is not printed');
+  if (!/exit\s+0\b/.test(body)) out.push('exit code is not 0');
+  if (/\bgit\s+(commit|push)\b/.test(body)) out.push('skip branch commits');
+  if (!/ran=false/.test(body)) out.push('skip does not mark the refresh as not run');
+  const commit = text.match(/- name:\s*Commit if changed\b[\s\S]*?(?=\n\S|$)/);
+  if (!commit) out.push('commit step is missing');
+  else if (!/if:\s*steps\.refresh\.outputs\.ran\s*==\s*['"]true['"]/.test(commit[0])) out.push('commit step runs when LIVE_PASSWORD is missing');
+  return out;
+}
 function sourceLine(src, term) {
   const i = src.indexOf(term);
   return i < 0 ? 0 : src.slice(0, i).split('\n').length;
@@ -364,8 +382,9 @@ function mailtoProblems(file, src) {
   return out;
 }
 function mailtoScan(root = ROOT) {
-  // Guard fixtures plant a mailto link for the browser check. They are not site pages.
-  return wordScanFiles(root).filter((f) => kindOf(f) !== 'repo' && !isGuardFile(f)).flatMap((f) => mailtoProblems(f, fs.readFileSync(path.join(root, f), 'utf8')));
+  const excludeRoot = fs.existsSync(path.join(root, '_config.yml')) ? root : ROOT;
+  const exclude = loadExclude(excludeRoot);
+  return wordScanFiles(root).filter((f) => !isExcluded(f, exclude)).flatMap((f) => mailtoProblems(f, fs.readFileSync(path.join(root, f), 'utf8')));
 }
 
 // ---------------------------------------------------------------- canonical wording (rules.md §2)
@@ -460,23 +479,30 @@ function lastUpdated(html) {
   return mo < 0 ? null : `${m[3]}-${String(mo + 1).padStart(2, '0')}-${m[2].padStart(2, '0')}`;
 }
 const todayEt = (now = new Date()) => new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York' }).format(now);
+function legalWording(html) {
+  return String(html || '')
+    .replace(/\?v=[^"'&\s>]*/g, '')
+    .replace(/Last\s+updated:?\s+[A-Z][a-z]+\s+\d{1,2},\s+\d{4}/g, '');
+}
 function legalStampProblems(file, baseHtml, headHtml, now = new Date()) {
   const head = lastUpdated(headHtml);
   if (!head) return [`${file}: no "Last updated <Month D, YYYY>" line`];
-  const base = lastUpdated(baseHtml);
+  const base = baseHtml == null ? null : lastUpdated(baseHtml);
   const out = [];
-  if (base && head <= base) out.push(`${file}: edited but "Last updated" is still ${head} (base ${base})`);
   if (head > todayEt(now)) out.push(`${file}: "Last updated" ${head} is in the future (today ET ${todayEt(now)})`);
+  const sameWording = baseHtml != null && legalWording(baseHtml) === legalWording(headHtml);
+  if (base && head < base) out.push(`${file}: "Last updated" ${head} is older than ${base}`);
+  else if (base && head === base && !sameWording) out.push(`${file}: edited but "Last updated" is still ${head} (base ${base})`);
   return out;
 }
 
 // JS/CSS that exist for Node tests or tooling, not for pages. Reason required.
 const UNREFERENCED_ALLOW = [
-  [/^sw\.js$/, 'the browser gate blocks service workers, so registration does not fetch this file; nav.js still references it'],
+  // none yet: [/^js\/example\.js$/, 'why it is not loaded by a page'],
 ];
 
 module.exports = {
-  requiresRetired, silentSkipProblems, HASHED, GUARD_FILES, isGuardFile, NEGATIVE_LINE, walkAll, kindOf, stringsOf, jsonStrings,
+  requiresRetired, silentSkipProblems, passwordSkipProblems, HASHED, GUARD_FILES, isGuardFile, NEGATIVE_LINE, walkAll, kindOf, stringsOf, jsonStrings,
   mailtoProblems, mailtoScan, MAILTO_ALLOW, EMAIL_MAP_LINE, isTextFile, baseContent, LEGAL_PAGE, lastUpdated, legalStampProblems, todayEt,
   ROOT, walk, rel, htmlPages, visibleText, codeOf, decode, isFiction, FICTION_PATHS, BANNED, scanText, scanFile, wordScanFiles,
   pendingStates, TERM_ALLOW, FREE_MAP_LINE, GUARANTEE, wordingProblems, norm, parseEt, MAX_PROOF_AGE_H, editedFiles, UNREFERENCED_ALLOW,

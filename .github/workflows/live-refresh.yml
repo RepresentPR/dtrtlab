@@ -18,14 +18,17 @@ jobs:
         with: { python-version: "3.12" }
       - run: pip install --quiet 'cryptography==46.0.3'
       - name: Refresh aggregates
+        id: refresh
         env:
           LIVE_PASSWORD: ${{ secrets.LIVE_PASSWORD }}
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
           POSTIZ_API_KEY: ${{ secrets.POSTIZ_API_KEY }}
         run: |
-          if [ -z "$LIVE_PASSWORD" ]; then echo "::warning::LIVE_PASSWORD secret not set; skipping"; exit 0; fi
+          if [ -z "$LIVE_PASSWORD" ]; then echo "::warning::LIVE_PASSWORD secret not set; skipping"; echo "ran=false" >> "$GITHUB_OUTPUT"; exit 0; fi
           python3 scripts/live-refresh.py
+          echo "ran=true" >> "$GITHUB_OUTPUT"
       - name: Commit if changed
+        if: steps.refresh.outputs.ran == 'true'
         run: |
           git config user.name "dtrt-live-bot"; git config user.email "live-bot@users.noreply.github.com"
           git add live/owner.enc.json; if [ -f content/proof.json ]; then git add content/proof.json; fi

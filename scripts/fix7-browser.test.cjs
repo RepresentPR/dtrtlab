@@ -22,7 +22,7 @@ const VIEWPORTS = [
 ];
 const CONCURRENCY = Number(process.env.FIX7_CONCURRENCY || 6);
 const SETTLE_MS = 350;
-const VISIT_LOADER = 'analytics' + '.js';
+const VISIT_LOADER = 'analytics.js';
 // Explicit overlay allowlist: [page regex, overlay selector regex, covered-element regex, reason].
 const OVERLAY_ALLOW = [
   // e.g. [/^live\//, /\.ticker/, /.*/, 'owner-only page behind a password'],
@@ -33,8 +33,7 @@ const SEEDED = 'scripts/fix7/fixtures/overlay-bad.html'; // seeded bad case; scr
 // Pages are loaded as https://dtrtlab.com/... and every dtrtlab.com request is answered from the
 // local server by request interception (nothing leaves the machine). The real hostname matters:
 // A cookie bar, when a page loads one, only appears on dtrtlab.com, and the pages' CSP
-// upgrades http subresources to https. The loader filename is built below so this file
-// does not contain the Google loader name the consent scan forbids.
+// upgrades http subresources to https.
 const SITE_HOST = /^(www\.)?dtrtlab\.com$/i;
 async function routeAll(context, origin, local, requested) {
   await context.route('**/*', async (route) => {
@@ -109,7 +108,7 @@ function inPage() {
 }
 
 async function visit(browser, origin, local, page, vp) {
-  const context = await browser.newContext({ viewport: vp.viewport, isMobile: vp.isMobile, hasTouch: vp.hasTouch, deviceScaleFactor: vp.deviceScaleFactor, reducedMotion: 'reduce', serviceWorkers: 'block' });
+  const context = await browser.newContext({ viewport: vp.viewport, isMobile: vp.isMobile, hasTouch: vp.hasTouch, deviceScaleFactor: vp.deviceScaleFactor, reducedMotion: 'reduce', serviceWorkers: 'allow' });
   const requested = new Set();
   const bad = [];
   await routeAll(context, origin, local, requested);

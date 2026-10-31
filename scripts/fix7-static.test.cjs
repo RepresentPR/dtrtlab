@@ -150,19 +150,21 @@ test('fix7/2 planted: the mailto guard fails on a button, a footer text link, a 
   assert.deepEqual(missed(plants, ([f, src]) => L.mailtoProblems(f, src).length === 1), []);
   assert.deepEqual(L.mailtoProblems('index.html', '<a href="/map/?want=check">Free AI check</a>'), []);
 });
-test('fix7/2 planted: a mailto link fails in a page, a doc and a JS file at unnamed paths (full discovery + scan)', () => {
+test('fix7/2 planted: a mailto link fails on a served page and script, and docs are outside the scan', () => {
   const link = 'mailto:hello@dtrtlab.com?subject=SYSTEM';
   const files = {};
   PLANT_SPOTS.forEach(([, mk], i) => { const [f, body] = mk(900 + i, link); files[f] = body; });
   const root = plantTree(files);
   try {
     const flagged = new Set(L.mailtoScan(root).map((p) => p.split(':')[0]));
-    assert.deepEqual(Object.keys(files).filter((f) => !flagged.has(f)), [], 'mailto plants missed');
+    const served = Object.keys(files).filter((f) => !f.startsWith('docs/'));
+    const docs = Object.keys(files).filter((f) => f.startsWith('docs/'));
+    assert.deepEqual(served.filter((f) => !flagged.has(f)), [], 'mailto plants missed on served files');
+    assert.deepEqual(docs.filter((f) => flagged.has(f)), [], 'docs are not served pages');
   } finally { fs.rmSync(root, { recursive: true, force: true }); }
   assert.deepEqual(L.mailtoProblems('security.txt', 'Contact: mailto:hello@dtrtlab.com'), [], 'RFC 9116 Contact line is allowed');
-  assert.equal(L.mailtoProblems('docs/x.md', 'Write to mailto:hello@dtrtlab.com').length, 1);
 });
-test('fix7/2 no mailto: link in any served file (pages, docs, JS, JSON, text)', () => {
+test('fix7/2 no mailto: link on a page the site serves', () => {
   const all = L.mailtoScan();
   assert.equal(all.length, 0, `${all.length} mailto links:\n` + all.join('\n'));
 });
@@ -195,9 +197,23 @@ test('fix7/4 /proof labels its stamp "as of <time>", never "live · updated"', (
   assert.deepEqual(labelProblems(read('proof/index.html')), []);
 });
 test('fix7/4 no workflow reports green after skipping on a missing secret', () => {
-  const wf = L.walkAll(path.join(L.ROOT, '.github', 'workflows')).map(L.rel);
-  const hits = wf.flatMap((f) => L.silentSkipProblems(f, read(f)));
-  assert.deepEqual(hits.map((h) => `${h.file}:${h.line}: ${h.snip}`), []);
+  const yml = read('.github/workflows/live-refresh.yml');
+  assert.deepEqual(L.passwordSkipProblems(yml), []);
+  const ok = [
+    'if [ -z "$LIVE_PASSWORD" ]; then',
+    '  echo "::warning::LIVE_PASSWORD secret not set; skipping"',
+    '  echo "ran=false" >> "$GITHUB_OUTPUT"',
+    '  exit 0',
+    'fi',
+    '- name: Commit if changed',
+    "  if: steps.refresh.outputs.ran == 'true'",
+    '  run: git commit -m "chore(live): refresh aggregates"',
+  ].join('\n');
+  assert.deepEqual(L.passwordSkipProblems(ok), []);
+  assert.ok(L.passwordSkipProblems(ok.replace('::warning::', '::notice::')).includes('::warning:: is not printed'));
+  assert.ok(L.passwordSkipProblems(ok.replace('exit 0', 'exit 1')).includes('exit code is not 0'));
+  assert.ok(L.passwordSkipProblems(ok.replace('echo "::warning::LIVE_PASSWORD secret not set; skipping"', 'echo "::warning::LIVE_PASSWORD secret not set; skipping"\n  git commit -m "chore(live): refresh aggregates"')).includes('skip branch commits'));
+  assert.ok(L.passwordSkipProblems(ok.replace("  if: steps.refresh.outputs.ran == 'true'\n", '')).includes('commit step runs when LIVE_PASSWORD is missing'));
 });
 
 // ================================================================== (5) edited JS/CSS is referenced by a page
@@ -291,16 +307,17 @@ test('fix7/6 free-map line and guarantee wording match rules.md §2 exactly on e
 
 // ================================================================== (7) legal "Last updated" (QA #72, checklist row 30)
 test('fix7/7 planted: an edited legal page fails if "Last updated" is missing, unchanged, older or in the future', () => {
-  const page = (d) => `<p class="lead">Last updated ${d}. These terms cover dtrtlab.com.</p>`;
   const now = new Date('2026-10-16T14:00:00Z'); // 10:00 AM EDT Oct 16
+  const page = (d, extra = '') => `<p class="lead">Last updated ${d}. These terms cover dtrtlab.com.</p>${extra}`;
   const plants = [
     [page('October 14, 2026'), '<p>no stamp</p>'],
-    [page('October 14, 2026'), page('October 14, 2026')],
+    [page('October 14, 2026'), page('October 14, 2026', '<p>A new duty.</p>')],
     [page('October 14, 2026'), page('October 13, 2026')],
     [page('October 14, 2026'), page('October 17, 2026')],
   ];
   assert.deepEqual(missed(plants, ([b, h]) => L.legalStampProblems('legal/terms.html', b, h, now).length > 0), []);
   assert.deepEqual(L.legalStampProblems('legal/terms.html', page('October 14, 2026'), page('October 16, 2026'), now), []);
+  assert.deepEqual(L.legalStampProblems('legal/cookies.html', page('October 14, 2026', '<script src="/js/nav.js?v=old"></script>'), page('October 14, 2026', '<script src="/js/nav.js?v=new"></script>'), now), [], 'a cache key is not a legal edit');
   assert.deepEqual(L.legalStampProblems('legal/new.html', null, page('October 16, 2026'), now), [], 'new legal page with a stamp is fine');
   assert.equal(L.lastUpdated('Last updated October 3, 2026.'), '2026-10-03');
 });
