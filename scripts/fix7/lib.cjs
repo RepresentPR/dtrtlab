@@ -470,6 +470,9 @@ function baseContent(file) {
 // ---------------------------------------------------------------- legal "Last updated" (QA #72, checklist row 30)
 // Every legal page a PR edits must show a fresh "Last updated <Month D, YYYY>" date: later than the
 // base version's date and not in the future (ET).
+// Head <script> and <meta> elements are not legal wording. Adding, removing, or rewriting
+// only those elements does not require a new stamp. A title change, any other head change,
+// and body text still do.
 const LEGAL_PAGE = /^legal\/[^/]+\.html$/;
 const MONTHS = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
 function lastUpdated(html) {
@@ -479,8 +482,13 @@ function lastUpdated(html) {
   return mo < 0 ? null : `${m[3]}-${String(mo + 1).padStart(2, '0')}-${m[2].padStart(2, '0')}`;
 }
 const todayEt = (now = new Date()) => new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York' }).format(now);
+function withoutHeadScriptOrMeta(html) {
+  return String(html || '').replace(/<head\b[^>]*>[\s\S]*?<\/head>/gi, (head) => head
+    .replace(/[ \t]*<script\b[^>]*>[\s\S]*?<\/script>[ \t]*(?:\r?\n)?/gi, '')
+    .replace(/[ \t]*<meta\b[^>]*\/?>[ \t]*(?:\r?\n)?/gi, ''));
+}
 function legalWording(html) {
-  return String(html || '')
+  return withoutHeadScriptOrMeta(html)
     .replace(/\?v=[^"'&\s>]*/g, '')
     .replace(/Last\s+updated:?\s+[A-Z][a-z]+\s+\d{1,2},\s+\d{4}/g, '');
 }

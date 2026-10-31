@@ -321,6 +321,23 @@ test('fix7/7 planted: an edited legal page fails if "Last updated" is missing, u
   assert.deepEqual(L.legalStampProblems('legal/new.html', null, page('October 16, 2026'), now), [], 'new legal page with a stamp is fine');
   assert.equal(L.lastUpdated('Last updated October 3, 2026.'), '2026-10-03');
 });
+test('fix7/7 head script and meta edits do not require a new legal stamp', () => {
+  const now = new Date('2026-10-16T14:00:00Z'); // 10:00 AM EDT Oct 16
+  const page = (head, body) => `<head>${head}</head><p class="lead">Last updated October 15, 2026.</p>${body}`;
+  const head = '<title>Terms</title><meta name="description" content="Terms">';
+  const body = '<p>Checkout is not live.</p>';
+  const base = page(head, body);
+  const script = '<script data-goatcounter="https://dtrtlab.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>';
+  assert.deepEqual(L.legalStampProblems('legal/preorder-terms.html', base, page(head + script, body), now), [], 'added head script');
+  assert.deepEqual(L.legalStampProblems('legal/preorder-terms.html', page(head + script, body), base, now), [], 'removed head script');
+  assert.deepEqual(L.legalStampProblems('legal/preorder-terms.html', base, page(head + '<meta name="robots" content="noindex">', body), now), [], 'added head meta');
+  const bodyEdit = L.legalStampProblems('legal/preorder-terms.html', base, page(head, '<p>Checkout is live.</p>'), now);
+  assert.ok(bodyEdit.some((p) => p.includes('still 2026-10-15')), 'body wording change without bump should fail: ' + bodyEdit.join('; '));
+  const titleEdit = L.legalStampProblems('legal/preorder-terms.html', base, page('<title>Preorder</title><meta name="description" content="Terms">', body), now);
+  assert.ok(titleEdit.some((p) => p.includes('still 2026-10-15')), 'head title change without bump should fail: ' + titleEdit.join('; '));
+  const linkEdit = L.legalStampProblems('legal/preorder-terms.html', base, page(head + '<link rel="stylesheet" href="/css/lab.css">', body), now);
+  assert.ok(linkEdit.some((p) => p.includes('still 2026-10-15')), 'other head content without bump should fail: ' + linkEdit.join('; '));
+});
 test('fix7/7 every legal page edited in this PR shows a fresh "Last updated" date', (t) => {
   const edited = L.editedFiles();
   if (!edited) return t.diagnostic('no FIX7_BASE_REF (not a PR run): legal stamp check skipped');
