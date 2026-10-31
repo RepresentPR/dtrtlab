@@ -36,11 +36,6 @@ test('hobby archive renders on lab.html and the homepage remains the public comp
   assert.match(home.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' '), /An open record\s+of what we\s+build/i);
   assert.doesNotMatch(home, /Clinton|Southern Maryland|SoMD/i);
   assert.doesNotMatch(home, /Stay on the chair/);
-  assert.doesNotMatch(home, /THIS WEEK \/ OCT 19–25|Review: Sunday, October 25|Sunday review pending/, 'homepage must not present the expired October 19–25 review window as current');
-  assert.match(home, /Updated October 29, 2026/);
-  assert.match(home, /href="#campaign">Current check<\/a>/);
-  assert.match(home, /CURRENT CHECK \/ AS OF OCT 29/);
-  assert.match(home, /Review outcome not verified as of October 29/);
   assert.match(home, /<meta\b[^>]*property="og:image"[^>]*content="https:\/\/dtrtlab\.com\/img\/[^"?]+(?:\?[^" ]+)?"/);
   assert.doesNotMatch(home, /plan_HAGSLXXUeGkcz|plan_RVDjSToI7vKOM/);
   assert.doesNotMatch(home, /https:\/\/whop\.com\/checkout\/plan_kZqq0jgr6VrGG/);

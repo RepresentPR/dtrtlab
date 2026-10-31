@@ -306,7 +306,7 @@ body.touring .ribbon{z-index:55} body.touring .drawer{top:32px} body.touring .dr
   .hide-m{display:none}
   .tonight{display:block}
   .rc-frame{background:none;padding:0;box-shadow:none;border-radius:0;margin:0 -6px}
-  .rc2{border-radius:16px;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .rc2{border-radius:16px;border:1px solid var(--line);box-shadow:var(--shadow);max-height:calc(100svh - 280px);overflow:auto}
   .head.tight{margin-bottom:8px}.head.tight>div{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.head.tight h1{font-size:18px;margin:0}.head.tight .demo-tag{margin:0}
   .rc2-h{padding:11px 14px 10px}.rc2-h h2{font-size:15.5px}.status{font-size:13px;padding:5px 10px}
   .rc2-s{padding:8px 14px 2px;font-size:13.5px}

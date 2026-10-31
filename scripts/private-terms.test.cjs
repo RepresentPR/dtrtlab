@@ -93,17 +93,19 @@ test('fiction filenames lift only the allowlisted hashes', () => {
     assert.deepStrictEqual(offenses(file, town), [], file);
     assert.deepStrictEqual(offenses(file, small), [], file);
   }
-  for (const file of ['index.html', 'clips/index.html', 'content/history.json', 'content/promo.json', 'js/live-extras.js', 'docs/vision.md', 'brand-kit.md', 'img/afterlight/yard.jpg', 'img/afterlight/cabo.jpg', 'img/afterlight/rincon.avif', 'img/afterlight/rincon.jpg', 'img/afterlight/rincon.webp']) {
+  const CHECKED = ['index.html', 'clips/index.html', 'content/history.json', 'content/promo.json', 'js/live-extras.js', 'docs/vision.md', 'brand-kit.md', 'img/afterlight/yard.jpg', 'img/afterlight/cabo.jpg', 'img/afterlight/rincon.avif', 'img/afterlight/rincon.jpg', 'img/afterlight/rincon.webp'];
+  for (const file of CHECKED) {
     assert.ok(offenses(file, setting).length, file);
     assert.ok(offenses(file, town).length, file);
     assert.ok(offenses(file, small).length, file);
   }
-  for (const townName of ['clinton', 'bowie', 'somd', 'baltimore', 'annapolis', 'greenbelt', 'hyattsville', 'beltsville']) {
+  const PLACE_NAMES = ['clinton', 'bowie', 'somd', 'baltimore', 'annapolis', 'greenbelt', 'hyattsville', 'beltsville'];
+  for (const townName of PLACE_NAMES) {
     assert.equal(FICTION_OK.has(h(townName)), false, townName);
     assert.equal(SINGLE.has(h(townName)), false, townName);
   }
-  assert.deepStrictEqual(offenses('afterlight.html', 'Clinton'), []);
-  assert.deepStrictEqual(offenses('index.html', 'SoMD'), []);
+  assert.ok(!offenses('afterlight.html', 'Clinton').length);
+  assert.ok(!offenses('index.html', 'SoMD').length);
   for (const rel of EXEMPT) assert.deepStrictEqual(offenses(rel, setting), [], rel);
   assert.ok(offenses('scripts/map-form.test.cjs', setting).length);
 });
