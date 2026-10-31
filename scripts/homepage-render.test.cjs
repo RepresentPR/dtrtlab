@@ -43,6 +43,10 @@ test('hobby archive renders on lab.html and the homepage remains the public comp
   assert.match(home, /<b>Review outcome not verified<\/b>/);
   assert.match(home, /href="#campaign">Ended week<\/a>/);
   assert.match(home, /id="notebook-updated"[^>]*>Updated October 30, 2026</);
+  // Notebook homepage publish: 86931fb, 2026-10-24 ("feat: publish the DTRT company notebook homepage", #88).
+  const campaignSection = home.match(/<section\b[^>]*id="campaign"[^>]*>[\s\S]*?<\/section>/)?.[0] || '';
+  assert.match(campaignSection, /<b>Homepage was released October 24 · other work in preparation<\/b>/);
+  assert.doesNotMatch(home, /Oct(ober)?\.? 29/i);
   assert.match(home, /<meta\b[^>]*property="og:image"[^>]*content="https:\/\/dtrtlab\.com\/img\/[^"?]+(?:\?[^" ]+)?"/);
   assert.doesNotMatch(home, /plan_HAGSLXXUeGkcz|plan_RVDjSToI7vKOM/);
   assert.doesNotMatch(home, /https:\/\/whop\.com\/checkout\/plan_kZqq0jgr6VrGG/);
