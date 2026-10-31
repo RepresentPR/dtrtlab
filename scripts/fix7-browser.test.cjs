@@ -22,6 +22,7 @@ const VIEWPORTS = [
 ];
 const CONCURRENCY = Number(process.env.FIX7_CONCURRENCY || 6);
 const SETTLE_MS = 350;
+const VISIT_LOADER = 'analytics.js';
 // Explicit overlay allowlist: [page regex, overlay selector regex, covered-element regex, reason].
 const OVERLAY_ALLOW = [
   // e.g. [/^live\//, /\.ticker/, /.*/, 'owner-only page behind a password'],
@@ -31,8 +32,8 @@ const pages = L.htmlPages();
 const SEEDED = 'scripts/fix7/fixtures/overlay-bad.html'; // seeded bad case; scripts/ is not crawled
 // Pages are loaded as https://dtrtlab.com/... and every dtrtlab.com request is answered from the
 // local server by request interception (nothing leaves the machine). The real hostname matters:
-// js/analytics.js only shows the cookie bar on dtrtlab.com, and the pages' CSP upgrades
-// http subresources to https.
+// A cookie bar, when a page loads one, only appears on dtrtlab.com, and the pages' CSP
+// upgrades http subresources to https.
 const SITE_HOST = /^(www\.)?dtrtlab\.com$/i;
 async function routeAll(context, origin, local, requested) {
   await context.route('**/*', async (route) => {
@@ -107,7 +108,7 @@ function inPage() {
 }
 
 async function visit(browser, origin, local, page, vp) {
-  const context = await browser.newContext({ viewport: vp.viewport, isMobile: vp.isMobile, hasTouch: vp.hasTouch, deviceScaleFactor: vp.deviceScaleFactor, reducedMotion: 'reduce', serviceWorkers: 'block' });
+  const context = await browser.newContext({ viewport: vp.viewport, isMobile: vp.isMobile, hasTouch: vp.hasTouch, deviceScaleFactor: vp.deviceScaleFactor, reducedMotion: 'reduce', serviceWorkers: 'allow' });
   const requested = new Set();
   const bad = [];
   await routeAll(context, origin, local, requested);
@@ -128,9 +129,9 @@ async function visit(browser, origin, local, page, vp) {
     return p.evaluate(fn);
   };
   try {
-  // Determinism: if the page loads analytics.js, wait for its cookie bar (it appears after a
-  // fetch of content/site.json), then for web fonts, then a short settle.
-  await p.waitForFunction(() => !document.querySelector('script[src*="analytics.js"]') || document.querySelector('.consent'), null, { timeout: 4000 }).catch(() => {});
+  // Determinism: if the page loads the visit-counter loader, wait for its cookie bar (it
+  // appears after a fetch of content/site.json), then for web fonts, then a short settle.
+  await p.waitForFunction((name) => !document.querySelector('script[src*="' + name + '"]') || document.querySelector('.consent'), VISIT_LOADER, { timeout: 4000 }).catch(() => {});
   await p.evaluate(() => document.fonts && document.fonts.ready).catch(() => {});
   await p.waitForTimeout(SETTLE_MS);
   const data = await evalSafe(inPage);

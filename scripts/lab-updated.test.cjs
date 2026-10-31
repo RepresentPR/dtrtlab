@@ -33,6 +33,7 @@ test('notebook and Inside the Lab stamps use the stored content date', () => {
   assert.equal(readStamp(lab, 'lab-updated').text, expected);
   assert.equal(readStamp(home, 'notebook-updated').text, expected);
   assert.match(sitemap, new RegExp(`<loc>https://dtrtlab\\.com/inside-the-lab/</loc><lastmod>${CONTENT_DATE}</lastmod>`));
+  assert.match(sitemap, new RegExp(`<loc>https://dtrtlab\\.com/</loc><lastmod>${CONTENT_DATE}</lastmod>`));
   const planted = lab.replace(`Updated ${expected}`, 'Updated October 25, 2026');
   assert.ok(stampProblems(planted, 'lab-updated').length > 0, 'planted wrong date was not caught');
 });

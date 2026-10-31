@@ -1,0 +1,7 @@
+[
+  {
+    "file": "scripts/fix7-browser.test.cjs",
+    "pattern": "analytics\\.js",
+    "reason": "The overlay check names this loader only to detect it. The file does not load the script."
+  }
+]

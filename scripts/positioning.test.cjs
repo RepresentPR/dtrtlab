@@ -83,7 +83,9 @@ test('homepage notebook preserves scoped offers and routes visitors to inquiry',
   assert.doesNotMatch(fix, /\$\s?\d|day[- ]30 re[- ]check/i, 'the Visibility Fix shows no retired price or day-30 re-check');
   assert.match(main, /href="\/job-desk\/how-it-works\/"/, 'existing service explanation remains reachable');
   assert.doesNotMatch(home, /Ian\s+Ferraro/i, 'public homepage brand is Ian');
+  assert.match(home, /Answer 3 short questions and we'll reply\./, 'homepage uses the exact reply line');
   assert.doesNotMatch(home, /(?:within|in)\s+3\s+business days/i, 'homepage does not promise an unapproved turnaround');
+  assert.doesNotMatch(home, /by email/i, 'homepage does not promise a reply channel');
   assert.doesNotMatch(main, /Reply CHECK/);
   assert.match(main, /review (?:replies|requests?|ask)/i);
   assert.doesNotMatch(main, /Review Desk/);
@@ -92,9 +94,7 @@ test('homepage notebook preserves scoped offers and routes visitors to inquiry',
     assert.doesNotMatch(read(file), /body shop|auto ?body|collision repair/i, file + ' has no body-shop examples');
   }
   const kit = read('brand-kit.md');
-  for (const line of kit.split('\n').filter(l => /^- Bio:/.test(l) && /\$50/.test(l) && /Google listing/.test(l))) {
-    assert.match(line, /1 hook \+ 5 captions/, 'a bio that mentions listing work and $50 must say what $50 buys');
-  }
+  assert.ok(!kit.split('\n').some((l) => /^- Bio:/.test(l) && /\$50/.test(l) && /Google listing/.test(l) && !/1 hook \+ 5 captions/.test(l)), 'a listing bio that names $50 must say what it buys');
   assert.doesNotMatch(read('AGENTS.md'), /Ian gives an explicit instruction|unless Ian explicitly instructs/, 'positioning sign-off moved to DTRT Co-Founder');
   assert.match(read('AGENTS.md'), /never merge positioning/);
   for (const m of main.matchAll(/>([^<>]+)<\/(?:p|h1|h2|h3|li|summary|a)>/g)) {
