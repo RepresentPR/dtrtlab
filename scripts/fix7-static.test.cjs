@@ -9,6 +9,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { execFileSync } = require('node:child_process');
 const L = require('./fix7/lib.cjs');
 
 const read = (f) => fs.readFileSync(path.join(L.ROOT, f), 'utf8');
@@ -218,21 +219,24 @@ test('fix7/4 proof freshness is a separate job and is not allowed to fail quietl
   assert.match(body, /L\.MAX_PROOF_AGE_H/);
   const liveAge = ['content/proof.json', 'updated_et is under'].join(' ');
   assert.equal(read('scripts/fix7-static.test.cjs').includes(liveAge), false);
-  for (const file of ['.github/workflows/site-gate.yml', '.github/workflows/tests.yml']) {
-    const yml = read(file);
-    const at = yml.indexOf('\n  proof-freshness:');
-    assert.ok(at > 0, file + ' is missing the proof-freshness job');
-    const job = yml.slice(at);
-    assert.match(job, /node --test --test-reporter=spec scripts\/freshness\/\*\.test\.cjs/);
-    assert.doesNotMatch(job, /continue-on-error\s*:/);
-    // A skipped required check counts as passing, and `|| true` / `exit 0` does the same.
-    assert.doesNotMatch(job, /^\s+if\s*:/m);
-    assert.doesNotMatch(job, /\|\|\s*(true|:)|exit 0/);
-  }
-  const hides = (snippet) => /^\s+if\s*:/m.test(snippet) || /\|\|\s*(true|:)|exit 0/.test(snippet);
-  assert.equal(hides('    if: false'), true);
-  assert.equal(hides('        if: ${{ false }}'), true);
-  assert.equal(hides('        run: node --test scripts/freshness/*.test.cjs || true'), true);
+  const report = JSON.parse(execFileSync('python3', [path.join(L.ROOT, 'scripts/proof_freshness_job.py'), '--self-test'], { encoding: 'utf8' }));
+  assert.deepEqual(report.clean, []);
+  assert.deepEqual(report.workflows, { 'site-gate.yml': [], 'tests.yml': [] });
+  // A skipped required check counts as a pass. These are parsed, not matched as text.
+  const bypasses = [
+    'job if: false',
+    'step if',
+    'run || true',
+    'run || echo stale',
+    'run || exit 0 with extra spaces',
+    'set +e',
+    'flow-style if: false',
+    'quoted continue-on-error',
+    'merge key carries if',
+    'anchor on the run command',
+  ];
+  for (const name of bypasses) assert.ok(report.mutations[name] && report.mutations[name].length > 0, name);
+  assert.equal(Object.keys(report.mutations).length, bypasses.length);
   assert.match(read('.github/workflows/site-gate.yml'), /bundle exec node --test --test-reporter=spec scripts\/\*\.test\.cjs/);
 });
 
