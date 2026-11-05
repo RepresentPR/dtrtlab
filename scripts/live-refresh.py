@@ -6,8 +6,8 @@ Env (repo secrets):
   X_BEARER_TOKEN    X API v2 bearer -> @DTRTLab followers
   POSTIZ_API_KEY    Postiz public API key -> published post count
 Never invents a number: a failed or skipped fetch leaves the previous value.
-updated_et moves only when every source returns a real value. A partial failure
-keeps that stamp and records the misses in meta.errors.
+updated_et moves only when every source returns a real value. A partial run
+sets meta.errors and writes nothing, so the old stamp, numbers and history stay.
 """
 import base64, datetime as dt, json, os, secrets, urllib.request, urllib.parse
 from zoneinfo import ZoneInfo
@@ -48,15 +48,20 @@ def postiz_published():
     q = urllib.parse.urlencode({"startDate": "2025-01-01T00:00:00.000Z",
                                 "endDate": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")})
     d = get("https://api.postiz.com/public/v1/posts?" + q, {"Authorization": k})
-    posts = d.get("posts", d) if isinstance(d, dict) else d
+    posts = d.get("posts") if isinstance(d, dict) else d
+    if not isinstance(posts, list):
+        raise ValueError("postiz reply has no posts list")
     return sum(1 for p in posts if str(p.get("state", p.get("status", ""))).upper() == "PUBLISHED")
 
 def refresh_owner(owner, now, sources):
     """Apply source callables. None is a skip. An exception is a failure.
+    On any skip or failure the only change is meta.errors: history, today and the stamp stay.
     updated_et advances only when every source returns a real value.
     """
     history = list(owner.get("history") or [])
     today = dict(history[-1]) if history else {}
+    if isinstance(today.get("followers"), dict):
+        today["followers"] = dict(today["followers"])
     errors = []
     for name, fn in sources:
         try:
@@ -71,32 +76,29 @@ def refresh_owner(owner, now, sources):
             today["followers"] = {**today.get("followers", {}), "x": value}
         else:
             today["posts_published"] = value
+    meta = owner.setdefault("meta", {})
+    if errors:
+        meta["errors"] = errors
+        return errors
     followers = today.get("followers", {})
     known = [v for v in followers.values() if isinstance(v, int)]
     today["followers_total_known"] = sum(known) if known else None
     today["followers_complete"] = bool(followers) and all(isinstance(v, int) for v in followers.values())
-    fresh = not errors
-    if fresh:
-        today["date"] = now.strftime("%Y-%m-%d")
-        history = [row for row in history if row.get("date") != today["date"]] + [today]
-    elif history:
-        today["date"] = history[-1].get("date")
-        history = history[:-1] + [today]
+    today["date"] = now.strftime("%Y-%m-%d")
+    history = [row for row in history if row.get("date") != today["date"]] + [today]
     owner["history"], owner["today"] = history, today
-    meta = owner.setdefault("meta", {})
     meta["errors"] = errors
     meta["days_running"] = (now.date() - dt.date.fromisoformat(meta["start"])).days
-    if fresh:
-        meta["updated_et"] = now.strftime("%Y-%m-%d %H:%M ET")
+    meta["updated_et"] = now.strftime("%Y-%m-%d %H:%M ET")
     return errors
 
 def refresh_proof(proof, owner, fresh):
+    if not fresh:
+        return
     today = owner.get("today", {})
     proof["days_running"] = owner["meta"]["days_running"]
     proof["posts_published"] = today.get("posts_published")
     proof["audience_total"] = today["followers_total_known"] if today.get("followers_complete") else None
-    if not fresh:
-        return
     proof["updated_et"] = owner["meta"]["updated_et"]
     ph = [row for row in proof.get("history", []) if row.get("date") != today["date"]]
     ph.append({"date": today["date"], "notes": today.get("notes"), "sources": today.get("sources"),
@@ -109,18 +111,22 @@ def main():
         owner = decrypt(json.load(handle), pw)
     now = dt.datetime.now(ET)
     errors = refresh_owner(owner, now, (("x", x_followers), ("postiz", postiz_published)))
+    stamp = owner["meta"].get("updated_et")
+    if errors:
+        # Do not re-encrypt. A new salt would make a "refresh" commit with nothing refreshed.
+        # Errors are printed here; the stored files stay on the last complete refresh.
+        print("unchanged", stamp, "errors:", errors)
+        return
     with open(ENC, "w") as handle:
         json.dump(encrypt(owner, pw), handle)
-    stamp = owner["meta"].get("updated_et")
-    fresh = not errors
     if not os.path.exists(PROOF):
-        print("refreshed" if fresh else "unchanged", stamp, "(no proof.json yet)", "errors:", errors or "none"); return
+        print("refreshed", stamp, "(no proof.json yet)", "errors: none"); return
     with open(PROOF) as handle:
         proof = json.load(handle)
-    refresh_proof(proof, owner, fresh)
+    refresh_proof(proof, owner, True)
     with open(PROOF, "w") as handle:
         json.dump(proof, handle, indent=1)
-    print("refreshed" if fresh else "unchanged", stamp, "errors:", errors or "none")
+    print("refreshed", stamp, "errors: none")
 
 if __name__ == "__main__":
     main()

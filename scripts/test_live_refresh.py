@@ -1,6 +1,9 @@
+import copy
 import importlib.util
+import io
 import json
 import os
+from contextlib import redirect_stdout
 from pathlib import Path
 import tempfile
 import unittest
@@ -82,43 +85,80 @@ class RefreshStampTests(unittest.TestCase):
         self.assertEqual(proof['updated_et'], STAMP)
         self.assertEqual(proof['posts_published'], 0)
 
-    def test_failed_or_skipped_fetch_keeps_the_old_stamp(self):
+    def test_partial_run_changes_only_errors(self):
         def boom():
             raise urllib.error.URLError('down')
         cases = [
-            (('x', lambda: None), ('postiz', lambda: 170), ['x: skipped'], 4, 170),
-            (('x', lambda: 9), ('postiz', lambda: None), ['postiz: skipped'], 9, 163),
-            (('x', boom), ('postiz', lambda: 170), ['x: URLError'], 4, 170),
-            (('x', lambda: 9), ('postiz', boom), ['postiz: URLError'], 9, 163),
-            (('x', lambda: None), ('postiz', lambda: None), ['x: skipped', 'postiz: skipped'], 4, 163),
-            (('x', boom), ('postiz', boom), ['x: URLError', 'postiz: URLError'], 4, 163),
+            (('x', lambda: None), ('postiz', lambda: 170), ['x: skipped']),
+            (('x', lambda: 9), ('postiz', lambda: None), ['postiz: skipped']),
+            (('x', boom), ('postiz', lambda: 170), ['x: URLError']),
+            (('x', lambda: 9), ('postiz', boom), ['postiz: URLError']),
+            (('x', lambda: None), ('postiz', lambda: None), ['x: skipped', 'postiz: skipped']),
+            (('x', boom), ('postiz', boom), ['x: URLError', 'postiz: URLError']),
         ]
-        for sources in cases:
-            x_fn, post_fn, expect, followers, posts = sources
-            errors, owner, proof = self.apply((x_fn, post_fn))
+        for x_fn, post_fn, expect in cases:
+            owner, proof = self.owner(), self.proof()
+            before_owner, before_proof = copy.deepcopy(owner), copy.deepcopy(proof)
+            errors = refresh.refresh_owner(owner, self.now(), (x_fn, post_fn))
+            refresh.refresh_proof(proof, owner, fresh=not errors)
             self.assertEqual(errors, expect)
-            self.assertEqual(owner['meta']['errors'], expect)
+            before_owner['meta']['errors'] = expect
+            self.assertEqual(owner, before_owner)
+            self.assertEqual(proof, before_proof)
+            self.assertEqual(owner['today']['followers']['x'], 4)
+            self.assertEqual(owner['today']['posts_published'], 163)
+            self.assertEqual(owner['history'][0]['followers']['x'], 4)
+            self.assertEqual(owner['history'][0]['posts_published'], 163)
             self.assertEqual(owner['meta']['updated_et'], OLD)
-            self.assertEqual(proof['updated_et'], OLD)
-            self.assertEqual([row['date'] for row in owner['history']], ['2026-10-15'])
-            self.assertEqual([row['date'] for row in proof['history']], ['2026-10-15'])
-            self.assertEqual(owner['today']['followers']['x'], followers)
-            self.assertEqual(owner['today']['posts_published'], posts)
-            self.assertEqual(proof['posts_published'], posts)
+            self.assertEqual(owner['meta']['days_running'], 48)
+            self.assertEqual(proof['posts_published'], 163)
             self.assertEqual(proof['audience_total'], None)
-            self.assertEqual(proof['companies_studied'], 9)
+            self.assertEqual(proof['days_running'], 48)
+            self.assertEqual(proof['updated_et'], OLD)
 
     def test_missing_token_helpers_are_skips(self):
+        owner, proof = self.owner(), self.proof()
+        before_owner, before_proof = copy.deepcopy(owner), copy.deepcopy(proof)
         with patch.dict(os.environ, {'X_BEARER_TOKEN': '', 'POSTIZ_API_KEY': ''}):
-            errors, owner, proof = self.apply((
+            errors = refresh.refresh_owner(owner, self.now(), (
                 ('x', refresh.x_followers),
                 ('postiz', refresh.postiz_published),
             ))
+            refresh.refresh_proof(proof, owner, fresh=not errors)
         self.assertEqual(errors, ['x: skipped', 'postiz: skipped'])
-        self.assertEqual(owner['meta']['updated_et'], OLD)
-        self.assertEqual(proof['updated_et'], OLD)
-        self.assertEqual(proof['posts_published'], 163)
+        before_owner['meta']['errors'] = errors
+        self.assertEqual(owner, before_owner)
+        self.assertEqual(proof, before_proof)
+
+    def test_postiz_error_body_is_not_zero_posts(self):
+        with patch.dict(os.environ, {'POSTIZ_API_KEY': 'k'}):
+            for body in ({}, {'error': 'limited'}, {'posts': None}, {'posts': 'nope'}):
+                with patch.object(refresh, 'get', return_value=body):
+                    with self.assertRaises(ValueError):
+                        refresh.postiz_published()
+            with patch.object(refresh, 'get', return_value={'posts': []}):
+                self.assertEqual(refresh.postiz_published(), 0)
+            with patch.object(refresh, 'get', return_value={'posts': [{'state': 'PUBLISHED'}, {'status': 'draft'}]}):
+                self.assertEqual(refresh.postiz_published(), 1)
+        owner, proof = self.owner(), self.proof()
+        before_owner, before_proof = copy.deepcopy(owner), copy.deepcopy(proof)
+        with patch.dict(os.environ, {'X_BEARER_TOKEN': 't', 'POSTIZ_API_KEY': 'k'}):
+            with patch.object(refresh, 'get', side_effect=[
+                {'data': {'public_metrics': {'followers_count': 12}}},
+                {},
+            ]):
+                errors = refresh.refresh_owner(owner, self.now(), (
+                    ('x', refresh.x_followers),
+                    ('postiz', refresh.postiz_published),
+                ))
+                refresh.refresh_proof(proof, owner, fresh=not errors)
+        self.assertEqual(errors, ['postiz: ValueError'])
+        before_owner['meta']['errors'] = errors
+        self.assertEqual(owner, before_owner)
+        self.assertEqual(proof, before_proof)
         self.assertEqual(owner['today']['followers']['x'], 4)
+        self.assertEqual(proof['posts_published'], 163)
+        self.assertEqual(proof['audience_total'], None)
 
     def _run_main(self, x_value, post_value):
         temp = tempfile.TemporaryDirectory()
@@ -156,17 +196,32 @@ class RefreshStampTests(unittest.TestCase):
             refresh.main()
         return saved, json.loads(proof_path.read_text(encoding='utf-8')), json.loads(enc.read_text(encoding='utf-8'))
 
-    def test_main_partial_failure_keeps_stamp_and_records_errors(self):
-        saved, proof, blob = self._run_main(None, 170)
-        self.assertEqual(blob, {'v': 1})
-        self.assertEqual(saved['pw'], 'secret')
-        self.assertEqual(saved['owner']['meta']['updated_et'], OLD)
-        self.assertEqual(saved['owner']['meta']['errors'], ['x: skipped'])
-        self.assertEqual(saved['owner']['today']['posts_published'], 170)
-        self.assertEqual(saved['owner']['today']['followers']['x'], 4)
-        self.assertEqual(proof['updated_et'], OLD)
-        self.assertEqual(proof['posts_published'], 170)
-        self.assertEqual(proof['history'], [{'date': '2026-10-15', 'notes': 348, 'sources': 745, 'companies': 9, 'posts': 163}])
+    def test_main_partial_failure_writes_nothing(self):
+        temp = tempfile.TemporaryDirectory()
+        self.addCleanup(temp.cleanup)
+        root = Path(temp.name)
+        enc, proof_path = root / 'owner.enc.json', root / 'proof.json'
+        enc.write_text('{"untouched":true}', encoding='utf-8')
+        proof_path.write_text(json.dumps(self.proof()), encoding='utf-8')
+        enc_before, proof_before = enc.read_bytes(), proof_path.read_bytes()
+        env = dict(os.environ)
+        env['LIVE_PASSWORD'] = 'secret'
+        log = io.StringIO()
+        with patch.dict(os.environ, env, clear=True), \
+             patch.object(refresh, 'ENC', str(enc)), \
+             patch.object(refresh, 'PROOF', str(proof_path)), \
+             patch.object(refresh, 'decrypt', return_value=self.owner()), \
+             patch.object(refresh, 'encrypt') as encrypt, \
+             patch.object(refresh, 'x_followers', return_value=None), \
+             patch.object(refresh, 'postiz_published', return_value=170), \
+             redirect_stdout(log):
+            refresh.main()
+        encrypt.assert_not_called()
+        self.assertEqual(enc.read_bytes(), enc_before)
+        self.assertEqual(proof_path.read_bytes(), proof_before)
+        self.assertIn('unchanged', log.getvalue())
+        self.assertIn('x: skipped', log.getvalue())
+        self.assertNotIn(STAMP, log.getvalue())
 
     def test_main_full_success_writes_the_new_stamp(self):
         saved, proof, blob = self._run_main(9, 170)
