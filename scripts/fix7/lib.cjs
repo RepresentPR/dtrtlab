@@ -1,6 +1,7 @@
 // Fix 7 site gate: shared rules, word lists, allowlists and helpers.
-// Used by scripts/fix7-static.test.cjs (no browser) and scripts/fix7-browser.test.cjs
-// (headless Chromium). Every allowlist below is explicit: add a path or pattern
+// Used by scripts/fix7-static.test.cjs (no browser), scripts/fix7-browser.test.cjs
+// (headless Chromium), and scripts/freshness/proof-freshness.test.cjs.
+// Every allowlist below is explicit: add a path or pattern
 // with a reason, never widen a regex to make a failure go away.
 'use strict';
 const fs = require('node:fs');

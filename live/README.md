@@ -7,5 +7,5 @@
 - Refresh: built on the agent box by `company_aggregates.py --site <checkout>` (after `brain_metrics.py`), then committed. See the PR description for the schedule.
 
 ## Refresh (what updates the numbers)
-1. **Automatic, every 2 h** — `.github/workflows/live-refresh.yml` runs `scripts/live-refresh.py`: decrypts with `LIVE_PASSWORD`, pulls X followers (`X_BEARER_TOKEN`) and Postiz published posts (`POSTIZ_API_KEY`), re-encrypts, updates `content/proof.json`, commits. Missing secret → that source is skipped; missing `LIVE_PASSWORD` → job exits without changes.
+1. **Automatic, every 2 h** — `.github/workflows/live-refresh.yml` runs `scripts/live-refresh.py`: decrypts with `LIVE_PASSWORD`, pulls X followers (`X_BEARER_TOKEN`) and Postiz published posts (`POSTIZ_API_KEY`), re-encrypts, updates `content/proof.json`, commits. A missing or failed X or Postiz fetch writes nothing: the stamp, public numbers and history stay, and the job log shows a warning with the errors. Missing `LIVE_PASSWORD` → the job exits without changes.
 2. **Agent push after each Brain ingest** — on the agent box: `brain_metrics.py`, `pipeline_counts.py`, then `company_aggregates.py --site <checkout>`; commit `live/owner.enc.json` + `content/proof.json` (Brain, pipeline, Whop counts).
