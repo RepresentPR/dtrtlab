@@ -7,7 +7,8 @@ Env (repo secrets):
   POSTIZ_API_KEY    Postiz public API key -> published post count
 Never invents a number: a failed or skipped fetch leaves the previous value.
 updated_et moves only when every source returns a real value. A partial run
-sets meta.errors and writes nothing, so the old stamp, numbers and history stay.
+sets meta.errors, prints a ::warning::, and writes nothing, so the old stamp,
+numbers and history stay.
 """
 import base64, datetime as dt, json, os, secrets, urllib.request, urllib.parse
 from zoneinfo import ZoneInfo
@@ -114,7 +115,8 @@ def main():
     stamp = owner["meta"].get("updated_et")
     if errors:
         # Do not re-encrypt. A new salt would make a "refresh" commit with nothing refreshed.
-        # Errors are printed here; the stored files stay on the last complete refresh.
+        # The warning is the visible signal; the stored files stay on the last complete refresh.
+        print("::warning::live refresh left the saved stamp unchanged (" + "; ".join(errors) + ")")
         print("unchanged", stamp, "errors:", errors)
         return
     with open(ENC, "w") as handle:

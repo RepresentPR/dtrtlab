@@ -219,8 +219,10 @@ class RefreshStampTests(unittest.TestCase):
         encrypt.assert_not_called()
         self.assertEqual(enc.read_bytes(), enc_before)
         self.assertEqual(proof_path.read_bytes(), proof_before)
+        self.assertIn('::warning::', log.getvalue())
         self.assertIn('unchanged', log.getvalue())
         self.assertIn('x: skipped', log.getvalue())
+        self.assertNotIn('secret', log.getvalue())
         self.assertNotIn(STAMP, log.getvalue())
 
     def test_main_full_success_writes_the_new_stamp(self):
