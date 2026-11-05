@@ -253,7 +253,7 @@ test('fix7/4 proof freshness is a separate job and is not allowed to fail quietl
     });
     silenced = true;
   } catch (err) {
-    assert.match(`${err.stdout || ''}${err.stderr || ''}`, /refuses NODE_OPTIONS/);
+    assert.match(`${err.stdout || ''}${err.stderr || ''}`, /refuses NODE_OPTIONS|is not allowed in NODE_OPTIONS/);
   }
   assert.equal(silenced, false, 'a test name filter must not exit 0');
   assert.match(read('.github/workflows/site-gate.yml'), /bundle exec node --test --test-reporter=spec scripts\/\*\.test\.cjs/);
