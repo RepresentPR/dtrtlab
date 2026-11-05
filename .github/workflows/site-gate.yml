@@ -1,7 +1,9 @@
 name: site-gate
-# Audit Fix 7: automated regression gate. Runs every Node test (scripts/*.test.cjs), including
-# the Fix 7 static checks and the headless-Chromium overlay / CTA-click / crawl checks, on every
-# pull request and once a day (the daily run catches /proof data going stale with no PR).
+# Audit Fix 7: automated regression gate. The gate job runs every Node test
+# (scripts/*.test.cjs), including the Fix 7 static checks and the headless-Chromium
+# overlay / CTA-click / crawl checks, on every pull request and once a day.
+# /proof age is the proof-freshness job. A stale stamp fails that job only, so it
+# cannot hide another break in gate. Do not set continue-on-error on it.
 on:
   pull_request: {}
   schedule:
@@ -46,3 +48,17 @@ jobs:
           FIX7_REQUIRE_BROWSER: "1"   # a missing browser fails the run instead of skipping
           FIX7_BASE_REF: ${{ github.event_name == 'pull_request' && format('origin/{0}', github.base_ref) || '' }}
         run: bundle exec node --test --test-reporter=spec scripts/*.test.cjs
+  proof-freshness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "20"
+      - name: /proof data is under 26 h old
+        run: node --test --test-reporter=spec scripts/freshness/*.test.cjs

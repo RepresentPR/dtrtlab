@@ -187,12 +187,7 @@ test('fix7/4 planted: a refresh job that skips on a missing secret and exits 0 f
   assert.deepEqual(L.silentSkipProblems('w.yml', 'if [ -z "$X" ]; then echo "::error::X not set"; exit 1; fi'), []);
   assert.deepEqual(L.silentSkipProblems('w.yml', 'if [ -z "$X" ]; then echo "::warning::X secret not set; skipping"; exit 0; fi'), [], 'a visible warning that skips and does not claim a refresh is allowed');
 });
-test(`fix7/4 content/proof.json updated_et is under ${L.MAX_PROOF_AGE_H} h old (PR and daily schedule)`, () => {
-  const proof = JSON.parse(read('content/proof.json'));
-  const now = process.env.FIX7_NOW ? new Date(process.env.FIX7_NOW) : new Date();
-  const age = proofAgeHours(proof.updated_et, now);
-  assert.ok(!proofStale(proof.updated_et, now), `/proof data "${proof.updated_et}" is ${Number.isNaN(age) ? 'unparseable' : age.toFixed(1) + ' h old'}; limit ${L.MAX_PROOF_AGE_H} h. Live-refresh is not committing (OI-008).`);
-});
+// Real /proof age (fix7/4) is scripts/freshness/proof-freshness.test.cjs, outside this glob.
 test('fix7/4 /proof labels its stamp "as of <time>", never "live · updated"', () => {
   assert.deepEqual(labelProblems(read('proof/index.html')), []);
 });
@@ -214,6 +209,24 @@ test('fix7/4 no workflow reports green after skipping on a missing secret', () =
   assert.ok(L.passwordSkipProblems(ok.replace('exit 0', 'exit 1')).includes('exit code is not 0'));
   assert.ok(L.passwordSkipProblems(ok.replace('echo "::warning::LIVE_PASSWORD secret not set; skipping"', 'echo "::warning::LIVE_PASSWORD secret not set; skipping"\n  git commit -m "chore(live): refresh aggregates"')).includes('skip branch commits'));
   assert.ok(L.passwordSkipProblems(ok.replace("  if: steps.refresh.outputs.ran == 'true'\n", '')).includes('commit step runs when LIVE_PASSWORD is missing'));
+});
+test('fix7/4 proof freshness is a separate job and is not allowed to fail quietly', () => {
+  const ageCheck = 'scripts/freshness/proof-freshness.test.cjs';
+  assert.equal(fs.existsSync(path.join(L.ROOT, ageCheck)), true);
+  const body = read(ageCheck);
+  assert.match(body, /content\/proof\.json updated_et is under/);
+  assert.match(body, /L\.MAX_PROOF_AGE_H/);
+  const liveAge = ['content/proof.json', 'updated_et is under'].join(' ');
+  assert.equal(read('scripts/fix7-static.test.cjs').includes(liveAge), false);
+  for (const file of ['.github/workflows/site-gate.yml', '.github/workflows/tests.yml']) {
+    const yml = read(file);
+    const at = yml.indexOf('\n  proof-freshness:');
+    assert.ok(at > 0, file + ' is missing the proof-freshness job');
+    const job = yml.slice(at);
+    assert.match(job, /node --test --test-reporter=spec scripts\/freshness\/\*\.test\.cjs/);
+    assert.doesNotMatch(job, /continue-on-error\s*:/);
+  }
+  assert.match(read('.github/workflows/site-gate.yml'), /bundle exec node --test --test-reporter=spec scripts\/\*\.test\.cjs/);
 });
 
 // ================================================================== (5) edited JS/CSS is referenced by a page
