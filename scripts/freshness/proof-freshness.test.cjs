@@ -1,6 +1,11 @@
 // Fix 7 #4, live /proof age only. Kept outside scripts/*.test.cjs so the gate job
 // stays about real breaks. Threshold and assertion are the same check as before.
 'use strict';
+// A name filter makes this file exit 0 with zero tests, which a required check treats as a pass.
+const inherited = `${process.env.NODE_OPTIONS || ''} ${process.execArgv.join(' ')}`;
+if (String(process.env.NODE_OPTIONS || '').trim() !== '' || /--test-name-pattern|--test-skip-pattern/.test(inherited)) {
+  throw new Error('proof-freshness refuses NODE_OPTIONS or a test name filter; zero tests would pass');
+}
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');

@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Allowlist for the proof-freshness job. Uses the system PyYAML (python3-yaml).
 
-A skipped required check counts as a pass, so the job is accepted only when its
-parsed keys and the test step's run command are exactly the expected ones.
+A skipped required check counts as a pass, so the workflow is accepted only
+when its top-level keys and the proof-freshness job match the allowlist.
+Workflow env and defaults are inherited by the job, so they are rejected.
 YAML merge keys, anchors and aliases inside the job are rejected.
 """
 import json
@@ -23,6 +24,11 @@ RUN = "node --test --test-reporter=spec scripts/freshness/*.test.cjs"
 STEP_NAME = "/proof data is under 26 h old"
 JOB_KEYS = {"name", "runs-on", "timeout-minutes", "permissions", "steps"}
 REQUIRED = {"runs-on", "timeout-minutes", "permissions", "steps"}
+# site-gate also has concurrency. tests does not. `on` is the YAML 1.1 boolean true.
+TOP_LEVEL = (
+    frozenset({"name", "on", "permissions", "concurrency", "jobs"}),
+    frozenset({"name", "on", "permissions", "jobs"}),
+)
 
 
 def _anchor_marks(text):
@@ -106,12 +112,34 @@ def _run_step(step):
     if not isinstance(step, dict):
         return ["freshness step is not a mapping"]
     out = []
-    if set(step) != {"name", "run"}:
+    if set(step) != {"name", "run", "env"}:
         out.append(f"freshness step keys are {sorted(step)}")
     if step.get("name") != STEP_NAME:
         out.append("freshness step name changed")
+    if step.get("env") != {"NODE_OPTIONS": ""}:
+        out.append("freshness step must set NODE_OPTIONS to an empty string")
     if step.get("run") != RUN:
         out.append("freshness step run is not the exact command")
+    return out
+
+
+def _workflow_keys(data):
+    keys = set()
+    for key in data:
+        # PyYAML parses the GitHub `on` key as boolean true.
+        keys.add("on" if key is True else key)
+    return keys
+
+
+def _workflow_problems(data):
+    keys = _workflow_keys(data)
+    out = []
+    if "env" in keys:
+        out.append("workflow env is inherited by proof-freshness")
+    if "defaults" in keys:
+        out.append("workflow defaults are inherited by proof-freshness")
+    if frozenset(keys) not in TOP_LEVEL:
+        out.append("workflow keys are " + " ".join(sorted(str(k) for k in keys)))
     return out
 
 
@@ -124,10 +152,11 @@ def problems(text):
         return [f"workflow YAML did not parse: {exc}"]
     if not isinstance(data, dict):
         return ["workflow is not a mapping"]
+    out = _workflow_problems(data)
     jobs = data.get("jobs")
     if not isinstance(jobs, dict) or "proof-freshness" not in jobs:
-        return ["proof-freshness job is missing"]
-    out = []
+        out.append("proof-freshness job is missing")
+        return out
     composed = _job_node(root)
     if composed is None:
         out.append("proof-freshness job is missing from the YAML node tree")
@@ -146,6 +175,7 @@ def _clean():
     return f"""
 name: example
 "on": workflow_dispatch
+permissions: {{}}
 jobs:
   proof-freshness:
     runs-on: ubuntu-latest
@@ -160,6 +190,8 @@ jobs:
         with:
           node-version: "20"
       - name: {STEP_NAME}
+        env:
+          NODE_OPTIONS: ""
         run: {RUN}
 """
 
@@ -203,6 +235,8 @@ jobs:
         run: {RUN}
 """
     anchored = base.replace(run_line, f"        run: &fresh {RUN}", 1)
+    env_block = "env:\n  NODE_OPTIONS: --test-name-pattern=zzz\n"
+    defaults_block = "defaults:\n  run:\n    shell: bash\n"
     return [
         ("job if: false", base.replace("  proof-freshness:\n", "  proof-freshness:\n    if: false\n", 1)),
         ("step if", base.replace(run_line, "        if: ${{ false }}\n" + run_line, 1)),
@@ -214,7 +248,24 @@ jobs:
         ("quoted continue-on-error", quoted),
         ("merge key carries if", merged),
         ("anchor on the run command", anchored),
+        ("workflow env NODE_OPTIONS", base.replace('"on": workflow_dispatch\n', '"on": workflow_dispatch\n' + env_block, 1)),
+        ("workflow defaults", base.replace('"on": workflow_dispatch\n', '"on": workflow_dispatch\n' + defaults_block, 1)),
+        ("step NODE_OPTIONS filter", base.replace('NODE_OPTIONS: ""', "NODE_OPTIONS: --test-name-pattern=zzz", 1)),
+        ("site-gate.yml workflow env", _insert_top("site-gate.yml", env_block)),
+        ("tests.yml workflow env", _insert_top("tests.yml", env_block)),
+        ("site-gate.yml workflow defaults", _insert_top("site-gate.yml", defaults_block)),
+        ("tests.yml workflow defaults", _insert_top("tests.yml", defaults_block)),
     ]
+
+
+def _insert_top(filename, block):
+    text = (ROOT / ".github" / "workflows" / filename).read_text(encoding="utf-8")
+    lines = text.splitlines(keepends=True)
+    for i, line in enumerate(lines):
+        if line.startswith("permissions:"):
+            lines.insert(i + 1, block)
+            return "".join(lines)
+    raise RuntimeError(filename + " has no top-level permissions")
 
 
 def self_test():

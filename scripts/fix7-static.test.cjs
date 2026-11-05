@@ -234,9 +234,28 @@ test('fix7/4 proof freshness is a separate job and is not allowed to fail quietl
     'quoted continue-on-error',
     'merge key carries if',
     'anchor on the run command',
+    'workflow env NODE_OPTIONS',
+    'workflow defaults',
+    'step NODE_OPTIONS filter',
+    'site-gate.yml workflow env',
+    'tests.yml workflow env',
+    'site-gate.yml workflow defaults',
+    'tests.yml workflow defaults',
   ];
   for (const name of bypasses) assert.ok(report.mutations[name] && report.mutations[name].length > 0, name);
   assert.equal(Object.keys(report.mutations).length, bypasses.length);
+  let silenced = false;
+  try {
+    execFileSync(process.execPath, ['--test', path.join(L.ROOT, ageCheck)], {
+      env: { PATH: process.env.PATH || '', NODE_OPTIONS: '--test-name-pattern=zzz' },
+      encoding: 'utf8',
+      stdio: 'pipe',
+    });
+    silenced = true;
+  } catch (err) {
+    assert.match(`${err.stdout || ''}${err.stderr || ''}`, /refuses NODE_OPTIONS/);
+  }
+  assert.equal(silenced, false, 'a test name filter must not exit 0');
   assert.match(read('.github/workflows/site-gate.yml'), /bundle exec node --test --test-reporter=spec scripts\/\*\.test\.cjs/);
 });
 
