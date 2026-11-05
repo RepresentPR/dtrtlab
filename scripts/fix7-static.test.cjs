@@ -225,7 +225,14 @@ test('fix7/4 proof freshness is a separate job and is not allowed to fail quietl
     const job = yml.slice(at);
     assert.match(job, /node --test --test-reporter=spec scripts\/freshness\/\*\.test\.cjs/);
     assert.doesNotMatch(job, /continue-on-error\s*:/);
+    // A skipped required check counts as passing, and `|| true` / `exit 0` does the same.
+    assert.doesNotMatch(job, /^\s+if\s*:/m);
+    assert.doesNotMatch(job, /\|\|\s*(true|:)|exit 0/);
   }
+  const hides = (snippet) => /^\s+if\s*:/m.test(snippet) || /\|\|\s*(true|:)|exit 0/.test(snippet);
+  assert.equal(hides('    if: false'), true);
+  assert.equal(hides('        if: ${{ false }}'), true);
+  assert.equal(hides('        run: node --test scripts/freshness/*.test.cjs || true'), true);
   assert.match(read('.github/workflows/site-gate.yml'), /bundle exec node --test --test-reporter=spec scripts\/\*\.test\.cjs/);
 });
 
