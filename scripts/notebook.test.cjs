@@ -69,7 +69,7 @@ test('2026-11-12 keeps the two notes and does not claim a platform post', () => 
   const day = entries.filter((entry) => entry.date === '2026-11-12');
   assert.deepEqual(day, [
     { date: '2026-11-12', title: 'Find the need', note: "Today's card: start with what people actually need." },
-    { date: '2026-11-12', title: 'Reply where they asked', note: "Today's card: answer people in the place they reached out." },
+    { date: '2026-11-12', title: 'Reply in the form they need', note: "Today's card: send the update in a form they can use, like a short text or a photo." },
   ]);
   const page = read(PAGE);
   const blocks = [...page.matchAll(/<article\b[\s\S]*?<\/article>/g)].map((match) => match[0]);
