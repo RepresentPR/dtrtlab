@@ -1,6 +1,7 @@
-// Content date for the public notebook and Inside the Lab.
-// The date lives in the page (data-content-date), not in a git commit timestamp,
-// so a later squash merge does not move it.
+// Inside the Lab keeps its own stored content date.
+// The homepage Updated stamp comes from the newest notebook entry
+// (scripts/build-notebook.cjs). Dates live in the page (data-content-date),
+// not in a git commit timestamp, so a later squash merge does not move them.
 'use strict';
 const path = require('node:path');
 

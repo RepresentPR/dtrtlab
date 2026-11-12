@@ -43,6 +43,10 @@ jobs:
           npm install --prefix "$RUNNER_TEMP/pw" --no-save --no-audit --no-fund playwright@1.63.0
           "$RUNNER_TEMP/pw/node_modules/.bin/playwright" install --with-deps chromium
       - name: Node tests + Fix 7 site gate
+        # scripts/notebook.test.cjs is the notebook freshness gate. A homepage
+        # stamp more than 48 hours behind the newest notebook entry fails this
+        # job. A notebook entry more than 72 hours old prints ::warning:: and
+        # does not fail, so an old log does not block an unrelated fix.
         env:
           NODE_PATH: ${{ runner.temp }}/pw/node_modules
           FIX7_REQUIRE_BROWSER: "1"   # a missing browser fails the run instead of skipping
