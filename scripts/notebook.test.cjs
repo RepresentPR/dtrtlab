@@ -119,6 +119,9 @@ test('exactly 48 hours does not fail, and more than 48 hours does', () => {
   assert.equal(late.fail.length, 1);
   assert.match(late.fail[0], /more than 48 hours older/);
   assert.ok(freshness({ homeIso: null, newestIso: '2026-11-12', now }).fail.length > 0);
+  const fallback = freshness({ homeIso: '2026-10-31', newestIso: '2026-11-02', now: new Date('2026-11-02T18:00:00-05:00') });
+  assert.ok(etMidnightMs('2026-11-02') - etMidnightMs('2026-10-31') > 48 * HOUR, 'fall-back makes two calendar days 49 Eastern hours');
+  assert.deepEqual(fallback.fail.filter((line) => /48 hours/.test(line)), []);
 });
 
 test('an entry more than 72 hours after ET midnight warns and does not fail the gate', () => {

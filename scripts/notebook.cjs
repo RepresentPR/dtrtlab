@@ -48,6 +48,10 @@ function etDateIso(now) {
   return `${part.year}-${month}-${day}`;
 }
 
+function calendarMs(iso) {
+  return validDay(iso) ? Date.parse(`${iso}T00:00:00.000Z`) : null;
+}
+
 function etMidnightMs(iso) {
   if (!validDay(iso)) return null;
   const [year, month, day] = iso.split('-').map(Number);
@@ -211,8 +215,9 @@ function entryDates(html) {
 function freshness({ homeIso, newestIso: newest, dates, now }) {
   const fail = [];
   let warn = null;
-  const homeMs = etMidnightMs(homeIso);
-  const newestMs = etMidnightMs(newest);
+  const homeMs = calendarMs(homeIso);
+  const newestMs = calendarMs(newest);
+  const newestEt = etMidnightMs(newest);
   const clockOk = now instanceof Date && !Number.isNaN(now.getTime());
   const today = clockOk ? etDateIso(now) : null;
   const dated = Array.isArray(dates) && dates.length ? dates : [newest];
@@ -225,8 +230,8 @@ function freshness({ homeIso, newestIso: newest, dates, now }) {
   else if (newestMs - homeMs > HOME_STALE_MS) {
     fail.push(`homepage content date ${homeIso} is more than 48 hours older than the newest notebook entry ${newest}`);
   }
-  if (newestMs != null && clockOk) {
-    const age = now.getTime() - newestMs;
+  if (newestEt != null && clockOk) {
+    const age = now.getTime() - newestEt;
     if (age > ENTRY_OLD_MS) warn = `newest notebook entry ${newest} is more than 72 hours old (${(age / HOUR).toFixed(1)} h)`;
   }
   return { fail, warn };
