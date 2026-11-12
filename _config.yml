@@ -21,6 +21,7 @@ exclude:
   - _site
   - AGENTS.md
   - brand-kit.md
+  - CONTRIBUTING.md
   - README.md
   - .env.example
   - .gitignore

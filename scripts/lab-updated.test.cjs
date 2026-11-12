@@ -1,5 +1,5 @@
-// The notebook and Inside the Lab stamps share one stored content date.
-// A later squash merge must not move that date.
+// Inside the Lab keeps its stored content date. The homepage stamp follows
+// the newest notebook entry. A later squash merge must not move either date.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -9,6 +9,7 @@ const { execFileSync } = require('node:child_process');
 const {
   ROOT, PAGE, HOME, SITEMAP, CONTENT_DATE, formatContentDate, readStamp, stampProblems,
 } = require('./lab-updated.cjs');
+const { loadEntries, newestIso } = require('./notebook.cjs');
 
 const read = (name) => fs.readFileSync(path.join(ROOT, name), 'utf8');
 
@@ -21,19 +22,21 @@ function git(dir, args, env) {
   });
 }
 
-test('notebook and Inside the Lab stamps use the stored content date', () => {
+test('Inside the Lab keeps its stored date and the homepage stamp follows the notebook', () => {
   const lab = read(PAGE);
   const home = read(HOME);
   const sitemap = read(SITEMAP);
   const expected = formatContentDate(CONTENT_DATE);
+  const notebookDate = newestIso(loadEntries().map((entry) => entry.date));
+  const notebookText = formatContentDate(notebookDate);
   assert.deepEqual(stampProblems(lab, 'lab-updated'), []);
   assert.deepEqual(stampProblems(home, 'notebook-updated'), []);
   assert.equal(readStamp(lab, 'lab-updated').iso, CONTENT_DATE);
-  assert.equal(readStamp(home, 'notebook-updated').iso, CONTENT_DATE);
+  assert.equal(readStamp(home, 'notebook-updated').iso, notebookDate);
   assert.equal(readStamp(lab, 'lab-updated').text, expected);
-  assert.equal(readStamp(home, 'notebook-updated').text, expected);
+  assert.equal(readStamp(home, 'notebook-updated').text, notebookText);
   assert.match(sitemap, new RegExp(`<loc>https://dtrtlab\\.com/inside-the-lab/</loc><lastmod>${CONTENT_DATE}</lastmod>`));
-  assert.match(sitemap, new RegExp(`<loc>https://dtrtlab\\.com/</loc><lastmod>${CONTENT_DATE}</lastmod>`));
+  assert.match(sitemap, new RegExp(`<loc>https://dtrtlab\\.com/</loc><lastmod>${notebookDate}</lastmod>`));
   const planted = lab.replace(`Updated ${expected}`, 'Updated October 25, 2026');
   assert.ok(stampProblems(planted, 'lab-updated').length > 0, 'planted wrong date was not caught');
 });

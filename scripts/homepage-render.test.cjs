@@ -3,6 +3,8 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const campaign = require('../js/campaign-home.js');
+const { formatContentDate } = require('./lab-updated.cjs');
+const { loadEntries, newestIso } = require('./notebook.cjs');
 const root = path.join(__dirname, '..');
 // Day 29 only. Boundaries keep October 290 and ranges such as October 19–25 out.
 const OCTOBER_29_BAN = /\bOct(ober)?\.? 29\b/i;
@@ -44,7 +46,8 @@ test('hobby archive renders on lab.html and the homepage remains the public comp
   assert.doesNotMatch(home, /Review: Sunday, October 25/);
   assert.match(home, /<b>Review outcome not verified<\/b>/);
   assert.match(home, /href="#campaign">Ended week<\/a>/);
-  assert.match(home, /id="notebook-updated"[^>]*>Updated October 30, 2026</);
+  const homeStamp = formatContentDate(newestIso(loadEntries().map((entry) => entry.date)));
+  assert.match(home, new RegExp(`id="notebook-updated"[^>]*>Updated ${homeStamp}<`));
   // Notebook homepage publish: 86931fb, 2026-10-24 ("feat: publish the DTRT company notebook homepage", #88).
   const campaignSection = home.match(/<section\b[^>]*id="campaign"[^>]*>[\s\S]*?<\/section>/)?.[0] || '';
   assert.match(campaignSection, /<b>Homepage was released October 24 · other work in preparation<\/b>/);

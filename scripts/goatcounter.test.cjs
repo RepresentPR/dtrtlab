@@ -59,7 +59,7 @@ test('indexed sitemap HTML pages carry GoatCounter once; noindex pages and 404 d
   }
   // Adding or removing an indexed sitemap page must update this count on purpose.
   console.log(`indexed sitemap pages checked: ${counted.length}`);
-  assert.equal(counted.length, 35, `indexed sitemap pages checked: ${counted.length} (expected 35)`);
+  assert.equal(counted.length, 36, `indexed sitemap pages checked: ${counted.length} (expected 36)`);
   assert.deepEqual(counted.filter((rel) => /^(live|hq)\//.test(rel)), ['live/showcase.html']);
   assert.ok(counted.every((rel) => !isNoindex(byRel.get(rel))), 'noindex pages are not counted');
   assert.equal(byRel.get('404.html').includes('goatcounter'), false, '404.html must not load GoatCounter');
