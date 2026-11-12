@@ -6,32 +6,48 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const {
-  ROOT, LOG, PAGE, HOME, SITEMAP, POSTED,
+  ROOT, LOG, PAGE, HOME, SITEMAP, HOUR,
   parseLog, loadEntries, newestIso, orderedEntries, renderPage, patchHome, patchSitemap,
-  readHomeIso, entryDates, freshness,
+  readHomeIso, entryDates, freshness, etMidnightMs,
 } = require('./notebook.cjs');
 
 const read = (name) => fs.readFileSync(path.join(ROOT, name), 'utf8');
 
-test('a notebook line needs a real date and at least one card title', () => {
-  assert.throws(() => parseLog('2026-11-12\n'), /card title/);
-  assert.throws(() => parseLog('2026-02-31 | Missing day\n'), /YYYY-MM-DD/);
-  assert.deepEqual(
-    parseLog('2026-11-12 | Find the need | Reply in the form\n').map((entry) => entry.title),
-    ['Find the need', 'Reply in the form'],
+const noonEt = (iso) => new Date(`${iso}T12:00:00-05:00`);
+
+test('a notebook line needs a real date, a title, and its own note', () => {
+  const today = noonEt('2026-11-12');
+  assert.throws(() => parseLog('2026-11-12 | Find the need\n', today), /one-line note/);
+  assert.throws(() => parseLog('2026-02-31 | Missing day | A note.\n', today), /YYYY-MM-DD/);
+  assert.deepEqual(parseLog("2026-11-12 | Find the need | Today's card: start with what people actually need.\n", today), [
+    { date: '2026-11-12', title: 'Find the need', note: "Today's card: start with what people actually need." },
+  ]);
+  assert.match(
+    renderPage([{ date: '2026-11-12', title: 'A & B', note: 'A <note>.' }]),
+    /<h3>A &amp; B<\/h3>\n<p>A &lt;note&gt;.<\/p>/,
   );
-  assert.match(renderPage([{ date: '2026-11-12', title: 'A & B' }]), /<h3>A &amp; B<\/h3>/);
+});
+
+test('a 2026-11-20 entry fails when today is 2026-11-12 in America/New_York', () => {
+  const today = noonEt('2026-11-12');
+  assert.throws(() => parseLog('2026-11-20 | Later | A note for later.\n', today), /2026-11-20 is after today in America\/New_York \(2026-11-12\)/);
+  assert.throws(() => parseLog('2026-11-13 | Tomorrow | A note.\n', today), /after today in America\/New_York/);
+  const stillNov12 = new Date('2026-11-13T03:30:00Z');
+  assert.equal(parseLog('2026-11-12 | Find the need | A note for today.\n', stillNov12)[0].date, '2026-11-12');
+  assert.throws(() => parseLog('2026-11-13 | Tomorrow | A note.\n', stillNov12), /after today/);
+  const gate = freshness({ homeIso: '2026-11-20', newestIso: '2026-11-20', dates: ['2026-11-20'], now: today });
+  assert.match(gate.fail.join('\n'), /2026-11-20 is after today in America\/New_York \(2026-11-12\)/);
 });
 
 test('newer dates render first and the same day keeps file order', () => {
   const html = renderPage([
-    { date: '2026-11-10', title: 'Older card' },
-    { date: '2026-11-12', title: 'Find the need' },
-    { date: '2026-11-12', title: 'Reply in the form' },
+    { date: '2026-11-10', title: 'Older line', note: 'An earlier note.' },
+    { date: '2026-11-12', title: 'Find the need', note: 'First line today.' },
+    { date: '2026-11-12', title: 'Reply where they asked', note: 'Second line today.' },
   ]);
   const need = html.indexOf('Find the need');
-  const reply = html.indexOf('Reply in the form');
-  const older = html.indexOf('Older card');
+  const reply = html.indexOf('Reply where they asked');
+  const older = html.indexOf('Older line');
   assert.ok(need !== -1 && need < reply && reply < older);
   assert.deepEqual(entryDates(html), ['2026-11-12', '2026-11-12', '2026-11-10']);
 });
@@ -48,18 +64,31 @@ test('published notebook, homepage stamp, and sitemap match the log', () => {
   assert.equal(newestIso(entryDates(page)), newest);
 });
 
-test('2026-11-12 lists the two daily cards and each entry is only the posted line', () => {
+test('2026-11-12 keeps the two notes and does not claim a platform post', () => {
   const entries = loadEntries();
   const day = entries.filter((entry) => entry.date === '2026-11-12');
-  assert.deepEqual(day.map((entry) => entry.title), ['Find the need', 'Reply in the form']);
+  assert.deepEqual(day, [
+    { date: '2026-11-12', title: 'Find the need', note: "Today's card: start with what people actually need." },
+    { date: '2026-11-12', title: 'Reply where they asked', note: "Today's card: answer people in the place they reached out." },
+  ]);
   const page = read(PAGE);
   const blocks = [...page.matchAll(/<article\b[\s\S]*?<\/article>/g)].map((match) => match[0]);
-  assert.equal(blocks.length, entries.length);
-  for (const block of blocks) {
-    assert.match(block, /\bdata-content-date="\d{4}-\d{2}-\d{2}"/);
-    assert.match(block, new RegExp(`<p>${POSTED.replace(/\./g, '\\.')}</p>`));
-    assert.equal((block.match(/<p>/g) || []).length, 1);
+  const shown = orderedEntries(entries);
+  assert.equal(blocks.length, shown.length);
+  shown.forEach((entry, index) => {
+    assert.match(blocks[index], new RegExp(`data-content-date="${entry.date}"`));
+    assert.match(blocks[index], new RegExp(`<h3>${entry.title}</h3>`));
+    assert.match(blocks[index], new RegExp(`<p>${entry.note.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}</p>`));
+    assert.equal((blocks[index].match(/<p>/g) || []).length, 1);
+  });
+  const contributing = read('CONTRIBUTING.md');
+  for (const text of [page, read(LOG), contributing]) {
+    assert.doesNotMatch(text, /Daily card posted/);
+    assert.doesNotMatch(text, /Instagram/);
   }
+  assert.match(contributing, /posted on <platform>/);
+  assert.match(contributing, /logged out/);
+  assert.doesNotMatch(page, /daily public cards/i);
   assert.doesNotMatch(page, /\bIan\b/);
   assert.doesNotMatch(page, /\/private\b/);
   assert.doesNotMatch(page, /\b\d[\d,]*\s*(views|likes|followers|comments)\b/i);
@@ -92,18 +121,26 @@ test('exactly 48 hours does not fail, and more than 48 hours does', () => {
   assert.ok(freshness({ homeIso: null, newestIso: '2026-11-12', now }).fail.length > 0);
 });
 
-test('an entry more than 72 hours old warns and does not fail the gate', () => {
-  const fresh = freshness({
+test('an entry more than 72 hours after ET midnight warns and does not fail the gate', () => {
+  const start = etMidnightMs('2026-11-12');
+  assert.equal(start, Date.parse('2026-11-12T05:00:00.000Z'), 'November 12 2026 midnight ET is 05:00 UTC');
+  const exact = freshness({
+    homeIso: '2026-11-12',
+    newestIso: '2026-11-12',
+    now: new Date(start + 72 * HOUR),
+  });
+  assert.deepEqual(exact.fail, []);
+  assert.equal(exact.warn, null, 'exactly 72 hours after ET midnight is not more than 72 hours');
+  const utcMidnight = freshness({
     homeIso: '2026-11-12',
     newestIso: '2026-11-12',
     now: new Date(Date.UTC(2026, 10, 15, 0, 0, 0, 0)),
   });
-  assert.deepEqual(fresh.fail, []);
-  assert.equal(fresh.warn, null, 'exactly 72 hours is not more than 72 hours');
+  assert.equal(utcMidnight.warn, null, '72 hours after UTC midnight is still inside 72 hours from ET midnight');
   const old = freshness({
     homeIso: '2026-11-12',
     newestIso: '2026-11-12',
-    now: new Date(Date.UTC(2026, 10, 15, 0, 0, 0, 1)),
+    now: new Date(start + 72 * HOUR + 1),
   });
   assert.deepEqual(old.fail, []);
   assert.match(old.warn, /more than 72 hours old/);
@@ -111,8 +148,9 @@ test('an entry more than 72 hours old warns and does not fail the gate', () => {
 
 test('site-gate: homepage content date is within 48 hours of the newest notebook entry', () => {
   const homeIso = readHomeIso(read(HOME));
-  const newest = newestIso(entryDates(read(PAGE)));
-  const result = freshness({ homeIso, newestIso: newest, now: new Date() });
+  const dates = entryDates(read(PAGE));
+  const newest = newestIso(dates);
+  const result = freshness({ homeIso, newestIso: newest, dates, now: new Date() });
   if (result.warn) console.warn(`::warning::${result.warn}`);
   assert.deepEqual(result.fail, []);
 });

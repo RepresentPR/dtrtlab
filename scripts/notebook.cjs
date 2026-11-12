@@ -1,6 +1,7 @@
-// Public notebook: one line in content/notebook.txt is one day.
+// Public notebook: one line in content/notebook.txt is one entry.
+// The note on that line is the only sentence the page prints under the title.
 // The build writes notebook/index.html and the homepage Updated stamp
-// from the newest date in that file.
+// from the newest date in that file. Dates are America/New_York calendar days.
 'use strict';
 const fs = require('node:fs');
 const path = require('node:path');
@@ -8,8 +9,8 @@ const { ROOT, HOME, SITEMAP, formatContentDate } = require('./lab-updated.cjs');
 
 const LOG = 'content/notebook.txt';
 const PAGE = 'notebook/index.html';
-const POSTED = 'Daily card posted on X and Instagram.';
 const CSS_V = '20261112-notebook1';
+const ET = 'America/New_York';
 const HOUR = 3600 * 1000;
 const HOME_STALE_MS = 48 * HOUR;
 const ENTRY_OLD_MS = 72 * HOUR;
@@ -25,21 +26,58 @@ function validDay(iso) {
   return back.getUTCFullYear() === year && back.getUTCMonth() === month - 1 && back.getUTCDate() === day;
 }
 
-function dayMs(iso) {
-  return validDay(iso) ? Date.parse(`${iso}T00:00:00.000Z`) : null;
+function etParts(utcMs) {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: ET,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hourCycle: 'h23',
+  }).formatToParts(new Date(utcMs));
+  const get = (type) => Number(parts.find((part) => part.type === type).value);
+  return { year: get('year'), month: get('month'), day: get('day'), hour: get('hour'), minute: get('minute'), second: get('second') };
 }
 
-function parseLog(text) {
+function etDateIso(now) {
+  const part = etParts(now.getTime());
+  const month = String(part.month).padStart(2, '0');
+  const day = String(part.day).padStart(2, '0');
+  return `${part.year}-${month}-${day}`;
+}
+
+function etMidnightMs(iso) {
+  if (!validDay(iso)) return null;
+  const [year, month, day] = iso.split('-').map(Number);
+  let utc = Date.UTC(year, month - 1, day);
+  const offsetAt = (ms) => {
+    const part = etParts(ms);
+    return Date.UTC(part.year, part.month - 1, part.day, part.hour, part.minute, part.second) - ms;
+  };
+  const first = offsetAt(utc);
+  utc -= first;
+  const second = offsetAt(utc);
+  if (second !== first) utc -= second - first;
+  return utc;
+}
+
+function parseLog(text, now = new Date()) {
+  const today = etDateIso(now);
   const entries = [];
   String(text).split(/\r?\n/).forEach((line, index) => {
     if (!line.trim()) return;
     const parts = line.split('|').map((part) => part.trim());
-    const date = parts.shift();
-    const titles = parts.filter((part) => part.length > 0);
+    const date = parts[0];
+    const title = parts[1] || '';
+    const note = parts.slice(2).join(' | ').trim();
     const where = `${LOG}:${index + 1}`;
     if (!validDay(date)) throw new Error(`${where}: date must be a real YYYY-MM-DD`);
-    if (!titles.length) throw new Error(`${where}: add at least one card title`);
-    for (const title of titles) entries.push({ date, title });
+    if (date > today) throw new Error(`${where}: ${date} is after today in America/New_York (${today})`);
+    if (!title) throw new Error(`${where}: add a title`);
+    if (!note) throw new Error(`${where}: add a one-line note`);
+    entries.push({ date, title, note });
   });
   if (!entries.length) throw new Error(`${LOG}: no entries`);
   return entries;
@@ -78,7 +116,7 @@ function renderPage(entries) {
     `<article data-content-date="${entry.date}">`,
     `<div class="entry-meta">${escapeHtml(formatContentDate(entry.date))}</div>`,
     `<h3>${escapeHtml(entry.title)}</h3>`,
-    `<p>${escapeHtml(POSTED)}</p>`,
+    `<p>${escapeHtml(entry.note)}</p>`,
     '</article>',
   ].join('\n')).join('\n');
   return `<!doctype html>
@@ -89,11 +127,11 @@ function renderPage(entries) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="no-referrer">
 <title>Notebook — DTRT Lab</title>
-<meta name="description" content="Dated log of DTRT Lab's daily public cards, newest first.">
+<meta name="description" content="Dated log from DTRT Lab, newest first.">
 <link rel="canonical" href="https://dtrtlab.com/notebook/">
 <meta property="og:site_name" content="DTRT Lab">
 <meta property="og:title" content="Notebook — DTRT Lab">
-<meta property="og:description" content="Dated log of daily public cards, newest first.">
+<meta property="og:description" content="Dated log from DTRT Lab, newest first.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://dtrtlab.com/notebook/">
 <meta property="og:image" content="https://dtrtlab.com/img/brand/avatar-a.png">
@@ -123,7 +161,7 @@ function renderPage(entries) {
 <main id="main">
 <section class="hero">
 <div class="hero-copy">
-<p class="eyebrow"><span class="square"></span> DAILY PUBLIC CARDS</p>
+<p class="eyebrow"><span class="square"></span> DATED LOG</p>
 <h1>The <em>notebook.</em></h1>
 <p class="hero-lead">Newest first.</p>
 </div>
@@ -170,16 +208,24 @@ function entryDates(html) {
   return [...String(html).matchAll(/<article\b[^>]*\bdata-content-date="(\d{4}-\d{2}-\d{2})"/g)].map((match) => match[1]);
 }
 
-function freshness({ homeIso, newestIso: newest, now }) {
+function freshness({ homeIso, newestIso: newest, dates, now }) {
   const fail = [];
   let warn = null;
-  const homeMs = dayMs(homeIso);
-  const newestMs = dayMs(newest);
+  const homeMs = etMidnightMs(homeIso);
+  const newestMs = etMidnightMs(newest);
+  const clockOk = now instanceof Date && !Number.isNaN(now.getTime());
+  const today = clockOk ? etDateIso(now) : null;
+  const dated = Array.isArray(dates) && dates.length ? dates : [newest];
+  if (today) {
+    for (const iso of dated) {
+      if (validDay(iso) && iso > today) fail.push(`notebook entry ${iso} is after today in America/New_York (${today})`);
+    }
+  }
   if (homeMs == null || newestMs == null) fail.push('homepage or notebook content date is missing');
   else if (newestMs - homeMs > HOME_STALE_MS) {
     fail.push(`homepage content date ${homeIso} is more than 48 hours older than the newest notebook entry ${newest}`);
   }
-  if (newestMs != null && now instanceof Date && !Number.isNaN(now.getTime())) {
+  if (newestMs != null && clockOk) {
     const age = now.getTime() - newestMs;
     if (age > ENTRY_OLD_MS) warn = `newest notebook entry ${newest} is more than 72 hours old (${(age / HOUR).toFixed(1)} h)`;
   }
@@ -196,11 +242,11 @@ function writeSite() {
   fs.writeFileSync(homePath, patchHome(fs.readFileSync(homePath, 'utf8'), iso));
   const sitemapPath = path.join(ROOT, SITEMAP);
   fs.writeFileSync(sitemapPath, patchSitemap(fs.readFileSync(sitemapPath, 'utf8'), iso));
-  return { iso, cards: entries.length };
+  return { iso, entries: entries.length };
 }
 
 module.exports = {
-  ROOT, LOG, PAGE, HOME, SITEMAP, POSTED, CSS_V, HOUR, HOME_STALE_MS, ENTRY_OLD_MS,
-  validDay, dayMs, parseLog, loadEntries, newestIso, orderedEntries, escapeHtml,
+  ROOT, LOG, PAGE, HOME, SITEMAP, CSS_V, ET, HOUR, HOME_STALE_MS, ENTRY_OLD_MS,
+  validDay, etDateIso, etMidnightMs, parseLog, loadEntries, newestIso, orderedEntries, escapeHtml,
   renderPage, patchHome, patchSitemap, readHomeIso, entryDates, freshness, writeSite,
 };

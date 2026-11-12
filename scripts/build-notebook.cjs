@@ -4,6 +4,6 @@
 const { writeSite } = require('./notebook.cjs');
 
 if (require.main === module) {
-  const { iso, cards } = writeSite();
-  process.stdout.write(`notebook ${iso} (${cards} cards)\n`);
+  const { iso, entries } = writeSite();
+  process.stdout.write(`notebook ${iso} (${entries} entries)\n`);
 }
