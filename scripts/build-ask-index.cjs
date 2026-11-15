@@ -4,6 +4,7 @@
 */
 const fs = require('node:fs');
 const path = require('node:path');
+const { isFiction } = require('./fix7/lib.cjs');
 
 const ROOT = path.join(__dirname, '..');
 const SKIP_DIR = new Set(['live', 'hq', 'scripts', 'docs', 'node_modules', '.git']);
@@ -74,7 +75,7 @@ function build() {
   const passages = [];
   for (const file of walk(ROOT).sort()) {
     const rel = path.relative(ROOT, file).split(path.sep).join('/');
-    if (rel.includes('private') || /live\/(extras|upnext)\.html$/.test(rel)) continue;
+    if (rel.includes('private') || /live\/(extras|upnext)\.html$/.test(rel) || isFiction(rel)) continue;
     const html = fs.readFileSync(file, 'utf8');
     if (/<meta\b[^>]*name="robots"[^>]*content="[^"]*noindex/i.test(html)) continue;
     if (/\bdata-draft=/.test(html)) continue;

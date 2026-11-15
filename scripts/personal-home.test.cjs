@@ -31,22 +31,28 @@ function pages() {
   return out;
 }
 
-test('home leads with Ian, posts, Ask, and Instagram as the main platform', () => {
+test('home leads with Ian, an empty posts page, and Ask', () => {
   const home = read('index.html');
   const main = home.match(/<main[\s\S]*?<\/main>/)[0];
+  const blog = read('blog/index.html');
   assert.match(main, /<h1[^>]*>I'm Ian\./);
+  assert.match(main, /Instagram and X are where I post most\./);
+  assert.match(main, /First post coming soon/);
+  assert.doesNotMatch(home + blog, /DRAFT EXAMPLE|a-placeholder|placeholder post/i);
+  assert.match(blog, /First post coming soon/);
+  assert.match(blog, /href="https:\/\/www\.instagram\.com\/officiallydtrt\/"/);
+  assert.match(blog, /href="https:\/\/x\.com\/DTRTLab"/);
   assert.match(main, /href="\/blog\/"/);
   assert.match(main, /href="\/ask\/"/);
   assert.match(main, /id="work-with-me"/);
-  assert.match(main, /Instagram is the main platform/);
   assert.match(home, /href="\/map\/"/);
   assert.match(home, /id="job-desk"/);
   assert.match(home, /id="videos"/);
-  assert.doesNotMatch(read('blog/a-placeholder/index.html'), /Ian Ferraro/);
-  assert.match(read('blog/a-placeholder/index.html'), /DRAFT EXAMPLE/);
-  assert.match(read('blog/a-placeholder/index.html'), /noindex/);
-  assert.match(read('blog/a-placeholder/index.html'), /data-draft="example"/);
+  assert.equal(fs.existsSync(path.join(root, 'blog/a-placeholder/index.html')), false);
   assert.equal(fs.existsSync(path.join(root, 'private')), false);
+  const visit = read('js/visit.js');
+  assert.doesNotMatch(visit, /pointerdown|keydown/);
+  assert.doesNotMatch(visit, /Waiting for a tap/);
 });
 
 test('every visitor page links the five profiles, with Instagram marked as main', () => {
@@ -73,7 +79,7 @@ test('Ask answers from public pages only, in the browser', () => {
   assert.ok(corpus.passages.length > 10);
   const urls = corpus.passages.map((passage) => passage.url);
   assert.ok(urls.includes('/map/'));
-  assert.ok(!urls.some((url) => /\/private|\/live\/|\/hq\/|a-placeholder/.test(url)));
+  assert.ok(!urls.some((url) => /\/private|\/live\/|\/hq\/|a-placeholder|afterlight|\/story\.html|\/worlds\.html|\/game\.html/.test(url)));
   assert.match(bundled, /window\.DTRT_ASK_CORPUS/);
   const matches = ask.search('free office map', corpus, 3);
   assert.ok(matches.length);

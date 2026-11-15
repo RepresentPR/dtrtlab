@@ -80,6 +80,7 @@ test('business homepage keeps approved service scope and hobby off the company f
   assert.match(main, /If it's not right, I fix it at no charge\./);
   assert.doesNotMatch(home, /free plan|PayPal|Stripe|\/cs2\.html|\/afterlight\.html|#080808|cfe35a/i);
   assert.doesNotMatch(main, /player\.twitch\.tv|clips\.twitch\.tv/i, 'stream embeds stay off the homepage');
+  assert.match(home, /<nav class="site-socials"[\s\S]*https:\/\/www\.twitch\.tv\/dtrtc/, 'Twitch profile is in the social row');
   assert.match(home, /https:\/\/www\.instagram\.com\/officiallydtrt\//, 'Instagram stays linked from the homepage');
   assert.doesNotMatch(main, /\/careers\.html/i);
   for (const file of ['find.html', 'contact.html']) {

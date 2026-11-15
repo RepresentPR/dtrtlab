@@ -1,6 +1,7 @@
-/* Dreamy visit layer: time-of-day mood and original in-browser music.
-   No audio files, no network, no accounts. A later page load starts the
-   piece again. Browsers may wait for a tap before sound is allowed. */
+/* Time-of-day line and optional original tones.
+   Music stays off until the visitor presses Play. No autoplay, and no
+   start from a key or a tap elsewhere on the page. The light dream layer
+   applies only when the page already has class "dream". */
 (function () {
   if (window.__dtrtVisit) return;
   window.__dtrtVisit = true;
@@ -9,22 +10,22 @@
 
   var body = document.body;
   if (!body) return;
-  body.classList.add("dream");
+  var dream = body.classList.contains("dream");
 
   var hour = new Date().getHours();
   var mood = hour < 5 || hour >= 21 ? "night" : hour < 12 ? "morning" : hour < 17 ? "afternoon" : "evening";
-  body.dataset.mood = mood;
+  if (dream) body.dataset.mood = mood;
 
   var lines = {
-    morning: "Good morning. The page is light, and the music stays soft.",
-    afternoon: "Good afternoon. Take the page at an easy pace.",
-    evening: "Good evening. The light is warmer, and the music stays low.",
-    night: "Good night. The page is quieter, and the music stays sparse."
+    morning: "Good morning.",
+    afternoon: "Good afternoon.",
+    evening: "Good evening.",
+    night: "Good night."
   };
   var line = document.getElementById("visit-line");
   if (line) line.textContent = lines[mood];
 
-  if (window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
+  if (dream && window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
     var a = document.createElement("div");
     var b = document.createElement("div");
     a.className = "dream-orb dream-orb-a";
@@ -56,7 +57,6 @@
     try { sessionStorage.setItem(key, value); } catch (err) {}
   }
 
-  var wantOn = read(prefKey) !== "off";
   var volume = Number(read(volKey));
   if (!isFinite(volume)) volume = 22;
 
@@ -140,9 +140,8 @@
 
   function stop() {
     playing = false;
-    write(prefKey, "off");
     level();
-    setStatus("Paused.", false);
+    setStatus("Off until you press Play.", false);
   }
 
   button.addEventListener("click", function () {
@@ -154,23 +153,5 @@
     level();
   });
   document.addEventListener("visibilitychange", level);
-
-  if (!wantOn) {
-    setStatus("Paused.", false);
-    return;
-  }
-
-  setStatus("Waiting for a tap to start the music.", false);
-  start().then(function () {
-    if (ctx && ctx.state === "running") setStatus("Playing.", true);
-  }).catch(function () {
-    setStatus("Waiting for a tap to start the music.", false);
-  });
-
-  function nudge() {
-    if (!wantOn || playing) return;
-    start().catch(function () {});
-  }
-  document.addEventListener("pointerdown", nudge);
-  document.addEventListener("keydown", nudge);
+  setStatus("Off until you press Play.", false);
 })();

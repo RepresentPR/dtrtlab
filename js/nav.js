@@ -187,9 +187,8 @@
         var svg = icon(item.id);
         if (kind === "nav" || kind === "menu") {
           var name = label + (handle ? ", " + handle : "");
-          if (item.id === "instagram") name += ", main platform";
           if (item.unverified) name += ", handle not confirmed";
-          var main = item.id === "instagram" ? ' class="social-main"' : "";
+          var main = item.id === "instagram" || item.id === "x" ? ' class="social-main"' : "";
           return external(item.url, svg, main + ' aria-label="' + name + '"');
         }
         if (kind === "hero") {
@@ -210,8 +209,8 @@
             ' class="find-card"'
           );
         }
-        var flag = item.id === "instagram" ? " (main)" : item.unverified ? " (unconfirmed)" : "";
-        var mainClass = item.id === "instagram" ? ' class="social-main"' : "";
+        var flag = item.unverified ? " (unconfirmed)" : "";
+        var mainClass = item.id === "instagram" || item.id === "x" ? ' class="social-main"' : "";
         return external(item.url, label + flag, mainClass);
       })
       .join("");
@@ -346,7 +345,7 @@
 
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register(root + "sw.js?v=20261115-dream5").catch(function () {});
+      navigator.serviceWorker.register(root + "sw.js?v=20261115-dream6").catch(function () {});
     });
   }
 })();
