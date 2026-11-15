@@ -54,9 +54,13 @@ test('home leads with Ian, an empty posts page, and Ask', () => {
   const visit = read('js/visit.js');
   assert.doesNotMatch(visit, /pointerdown|keydown/);
   assert.doesNotMatch(visit, /Waiting for a tap/);
-  assert.match(visit, /volume = 40/);
-  assert.match(read('docs/decisions/2026-11-15-social-row.md'), /ensure all my social media acc are easily link for anyone who goes on my website/);
-  assert.doesNotMatch(read('news.html'), /Atlantic/);
+  assert.match(visit, /saved == null \|\| saved === "" \|\| !isFinite\(volume\)\) volume = 40/);
+  const decision = read('docs/decisions/2026-11-15-social-row.md');
+  assert.match(decision, /ensure all my social media acc are easily link for anyone who goes on my website/);
+  assert.match(decision, /instagram and x are the main focus/);
+  assert.doesNotMatch(decision, /Later the same day he said Instagram and X are where he posts most/);
+  assert.doesNotMatch(read('news.html') + read('content/releases.json'), /Atlantic|UTC−4|UTC-4/);
+  assert.doesNotMatch(read('sitemap.xml'), /dtrtlab\.com\/blog\//);
 });
 
 test('every visitor page links the five profiles, with Instagram marked as main', () => {
@@ -80,7 +84,7 @@ test('every visitor page links the five profiles, with Instagram marked as main'
   assert.deepEqual(missing, []);
   for (const rel of ['legal/terms.html', 'legal/privacy.html', 'legal/cookies.html', 'legal/refunds.html', 'legal/dmca.html', 'legal/preorder-terms.html']) {
     const html = read(rel);
-    assert.match(html, /Added profile links; legal text unchanged/);
+    assert.match(html, /Last updated November 15, 2026 — added profile links; legal text unchanged/);
     assert.match(html, /Last updated November 15, 2026/);
     assert.doesNotMatch(html, /visit\.js/);
   }

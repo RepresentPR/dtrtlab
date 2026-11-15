@@ -57,8 +57,9 @@
     try { sessionStorage.setItem(key, value); } catch (err) {}
   }
 
-  var volume = Number(read(volKey));
-  if (!isFinite(volume)) volume = 40;
+  var saved = read(volKey);
+  var volume = Number(saved);
+  if (saved == null || saved === "" || !isFinite(volume)) volume = 40;
 
   var panel = document.createElement("section");
   panel.className = "ambience";

@@ -4,8 +4,8 @@
     "key": "20261115-ask1"
   },
   "ask/passages.js": {
-    "hash": "eac943a3744d834b36ddac8dd43e7db945335eada735e43792e2ec1d9404473a",
-    "key": "20261115-ask4"
+    "hash": "7e8118a1b9a1d4a10b9d444cfcf8a149b16e303275e794cb5fb2fc942b5c3bca",
+    "key": "20261115-ask5"
   },
   "ask/ui.js": {
     "hash": "339f665e18a670295b1fc263bacc90c13c7e08b78d6982bd9967ff5d3baf789a",
@@ -166,8 +166,8 @@
     ]
   },
   "css/socials.css": {
-    "hash": "6273058dc74bdd94c004d2f0bbe5db4a40afded6f0a361fca73b3f43df84102f",
-    "key": "20261115-socials2"
+    "hash": "9270542f7fad5bed402ab02205a10f58dad91709e971aabbadf4e63ed4fc3fb9",
+    "key": "20261115-socials3"
   },
   "css/stats.css": {
     "hash": "4facc3e227c5f63fbf01885ed17850312b983e89a1be7e024109fa88f62a10e8",
@@ -202,8 +202,8 @@
     "key": "20261010n"
   },
   "js/biz-lang.js": {
-    "hash": "cdd05098cf37562f86e5f665ba9618e8f11cbe97696bc05bc5c8355c433b1381",
-    "key": "20261115-legal2"
+    "hash": "72b71457be095735897c89298d59eae17e67bcdbbf4263119259eea2409644dc",
+    "key": "20261115-legal3"
   },
   "js/calm.js": {
     "hash": "0405c18592b384288ccddc73a9948b1517c5cb88224f3b6f2cac6b817302f03f",
@@ -328,8 +328,8 @@
     "key": "20261010n"
   },
   "js/nav.js": {
-    "hash": "cf1cee897f2a88c5c9ab716aca6e16dc17cf0eccceb71314100b668d1f6ad307",
-    "key": "20261115-social3"
+    "hash": "44cba21a432578e245b587d7642e8ca6a8d67170f56349cf445690da4fbfb7a1",
+    "key": "20261115-social4"
   },
   "js/plan-tool.js": {
     "hash": "687e9bc23bcb839927457b71cad5ac30e36edcd4593be1f5a8bdd79786e50cee",
@@ -344,12 +344,12 @@
     "key": null
   },
   "js/releases.js": {
-    "hash": "0db74bc73682120639ef0f67beecf7173b8d9f48909c3effbc7b64ccb45f7b0c",
-    "key": "20261010n"
+    "hash": "bf35bab04e4b1da2c06b653eae1789d19023702b93e4c45a0ce91cc7ce08ee72",
+    "key": "20261115-rel1"
   },
   "js/scene-nav.js": {
     "hash": "08c5071809c04a699ed064f3c27e3d7e7305a6d8cf61ab5ff191d91bc9230acc",
-    "key": null
+    "key": "20261025-freemap1"
   },
   "js/shop.js": {
     "hash": "1d629e1828cded14e2a3e055e89b5c3e2109271fa33192c201144889dc1f76c1",
@@ -372,8 +372,8 @@
     "key": null
   },
   "js/visit.js": {
-    "hash": "ad4df66bb5227178bf4eb743f1026ead93aaf5081e0d2ba887603e4936903374",
-    "key": "20261115-dream9"
+    "hash": "8511f1fcfab47960d7941bfeedf0c2f556c368b383f6b5c50b9fe6a5d7e05d92",
+    "key": "20261115-dream10"
   },
   "live/board/board.css": {
     "hash": "271c8299d305455798896d2ce641363b2207128b1c0f82d392c138629c4d3e04",
@@ -412,8 +412,8 @@
     "key": null
   },
   "sw.js": {
-    "hash": "370fd1404c11f6901cb6d92ed4d4ec7d4763ed38646ecf1315ac69877c8b5d3d",
-    "key": "20261115-dream6"
+    "hash": "19ef72fc4357106e1f8bad51ecca64fdcd23ad93b910bd8546bef4a37fcd91da",
+    "key": "20261115-rel1"
   },
   "watch/watch.css": {
     "hash": "0b8026e65ae3b40c91b7dfdf31a94e579c60b0222bd1d5ce8999b2ffc29870f1",

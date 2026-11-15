@@ -90,8 +90,11 @@ function build() {
     const page = visible(html);
     page.text = page.text
       .replace(/\s*\(Atlantic time\)/g, '')
+      .replace(/\s*\(Atlantic, UTC[−-]4\)/g, '')
       .replace(/Atlantic timestamps/g, 'timestamps');
-    page.title = page.title.replace(/Atlantic timestamps/g, 'timestamps');
+    page.title = page.title
+      .replace(/\s*\(Atlantic, UTC[−-]4\)/g, '')
+      .replace(/Atlantic timestamps/g, 'timestamps');
     passages.push(...passagesFor(rel, page.title, page.text));
   }
   return {

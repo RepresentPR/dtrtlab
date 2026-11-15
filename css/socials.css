@@ -37,10 +37,6 @@
   outline-offset: 3px;
 }
 
-body.hub.cs2 main {
-  padding-top: 150px;
-}
-
 #site-foot .socials {
   display: flex;
   flex-wrap: wrap;
