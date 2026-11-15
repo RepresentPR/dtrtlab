@@ -105,12 +105,19 @@ function build() {
   };
 }
 
-function write(corpus) {
+function jsSource(corpus) {
   const json = JSON.stringify(corpus).replace(/\//g, '\\u002f').replace(/</g, '\\u003c');
-  const js = 'window.DTRT_ASK_CORPUS = ' + json + ';\n';
+  return 'window.DTRT_ASK_CORPUS = ' + json + ';\n';
+}
+
+function jsonSource(corpus) {
+  return JSON.stringify(corpus, null, 2) + '\n';
+}
+
+function write(corpus) {
   fs.mkdirSync(path.join(ROOT, 'ask'), { recursive: true });
-  fs.writeFileSync(path.join(ROOT, 'ask', 'passages.js'), js);
-  fs.writeFileSync(path.join(ROOT, 'ask', 'passages.json'), JSON.stringify(corpus, null, 2) + '\n');
+  fs.writeFileSync(path.join(ROOT, 'ask', 'passages.js'), jsSource(corpus));
+  fs.writeFileSync(path.join(ROOT, 'ask', 'passages.json'), jsonSource(corpus));
   return corpus.passages.length;
 }
 
@@ -119,4 +126,4 @@ if (require.main === module) {
   process.stdout.write('ask passages: ' + count + '\n');
 }
 
-module.exports = { build, write, publicUrl, visible };
+module.exports = { build, write, publicUrl, visible, jsSource, jsonSource };
