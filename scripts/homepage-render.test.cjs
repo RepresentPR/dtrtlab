@@ -59,7 +59,9 @@ test('hobby archive renders on lab.html and the homepage remains the public comp
   assert.doesNotMatch(home, /plan_Vn0gQGFWQx9CA|id="free-rewrite"/, 'free first-line rewrite is retired');
   assert.doesNotMatch(home, /@gmail\.com|PayPal/);
   const main = home.match(/<main[\s\S]*?<\/main>/)?.[0] || '';
-  assert.doesNotMatch(main, /twitch\.tv|\/cs2\.html|\/afterlight\.html|\/clips\//i);
+  const social = [...home.matchAll(/<nav class="site-socials"[\s\S]*?<\/nav>/g)].map((m) => m[0]).join('\n');
+  assert.match(social, /https:\/\/www\.twitch\.tv\/dtrtc/, 'Twitch profile stays in the social row');
+  assert.doesNotMatch(main, /player\.twitch\.tv|clips\.twitch\.tv|\/cs2\.html|\/afterlight\.html|\/clips\//i);
   assert.doesNotMatch(fs.readFileSync(path.join(root, 'watch/index.html'), 'utf8').match(/<footer[\s\S]*?<\/footer>/)?.[0] || '', /Ian Ferraro/i);
 });
 

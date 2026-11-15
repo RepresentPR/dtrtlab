@@ -48,7 +48,8 @@ test('homepage notebook preserves scoped offers and routes visitors to inquiry',
   // The owner approved the notebook lead on October 24. Retired prices stay off this page.
   const hero = main.match(/<section\b[^>]*class="[^"]*\bhero\b[^"]*"[^>]*>[\s\S]*?<\/section>/)?.[0] || '';
   assert.ok(hero, 'homepage has a hero section');
-  assert.match(hero.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' '), /An open record\s+of what we\s+build/i);
+  assert.match(hero.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' '), /I'm Ian/);
+  assert.match(main.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' '), /An open record\s+of what we\s+build/i);
   assert.match(main, /href="\/map\/"/, 'existing map inquiry route remains available');
   assert.doesNotMatch(hero, /mailto:/, 'hero CTA is the on-site form, not a mailto link');
   assert.doesNotMatch(home, /Reply SYSTEM/, 'Reply SYSTEM stays off the website');

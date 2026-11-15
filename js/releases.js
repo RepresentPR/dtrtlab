@@ -17,8 +17,7 @@
     var time = d.toLocaleTimeString("en-US", {
       hour: "numeric",
       minute: "2-digit",
-      timeZone: "America/New_York",
-      timeZoneName: "short"
+      timeZone: "America/New_York"
     });
     return date + " · " + time;
   }

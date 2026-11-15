@@ -44,6 +44,18 @@
     "</div>" +
     "</div>";
 
+  if (!document.getElementById("scene-social-fit")) {
+    var fit = document.createElement("style");
+    fit.id = "scene-social-fit";
+    fit.textContent =
+      "body.hub .nav-row{min-width:0}" +
+      "body.hub .nav-end{min-width:0}" +
+      "body.hub .nav-socials{flex-wrap:nowrap;max-width:100%}" +
+      "body.hub footer .wrap,body.hub footer .socials{max-width:100%}" +
+      "@media(min-width:1101px){body.hub .nav-row{grid-template-columns:auto minmax(0,1fr) auto}body.hub nav.links{flex-wrap:nowrap;justify-content:center}}";
+    document.head.appendChild(fit);
+  }
+
   if (!document.querySelector('link[href*="css/adapt.css"]')) {
     var adapt = document.createElement("link");
     adapt.rel = "stylesheet";
@@ -138,7 +150,7 @@
     return (
       '<a href="' +
       escapeHtml(url) +
-      '" rel="noopener noreferrer" target="_blank"' +
+      '" rel="me noopener noreferrer" target="_blank"' +
       (extra || "") +
       ">" +
       inner +
@@ -146,9 +158,17 @@
     );
   }
 
+  var SHOW = ["instagram", "x", "tiktok", "youtube", "twitch"];
+
+  function shown() {
+    var byId = {};
+    networks().forEach(function (item) { byId[item.id] = item; });
+    return SHOW.map(function (id) { return byId[id]; }).filter(Boolean);
+  }
+
   function renderSlot(el) {
     var kind = el.getAttribute("data-social-slot") || "footer";
-    var items = networks().filter(function (item) { return item.id === "x" || item.id === "instagram"; });
+    var items = shown();
     var htmlOut = items
       .map(function (item) {
         var label = escapeHtml(item.label);
@@ -157,7 +177,8 @@
         if (kind === "nav" || kind === "menu") {
           var name = label + (handle ? ", " + handle : "");
           if (item.unverified) name += ", handle not confirmed";
-          return external(item.url, svg, ' aria-label="' + name + '"');
+          var main = item.id === "instagram" || item.id === "x" ? ' class="social-main"' : "";
+          return external(item.url, svg, main + ' aria-label="' + name + '"');
         }
         if (kind === "hero") {
           return external(item.url, svg + "<span>" + label + "</span>", ' class="hero-social"');
@@ -178,7 +199,8 @@
           );
         }
         var flag = item.unverified ? " (unconfirmed)" : "";
-        return external(item.url, label + flag);
+        var mainClass = item.id === "instagram" || item.id === "x" ? ' class="social-main"' : "";
+        return external(item.url, label + flag, mainClass);
       })
       .join("");
     el.innerHTML = htmlOut;
