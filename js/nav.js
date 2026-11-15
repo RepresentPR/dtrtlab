@@ -161,7 +161,7 @@
     return (
       '<a href="' +
       escapeHtml(url) +
-      '" rel="noopener noreferrer" target="_blank"' +
+      '" rel="me noopener noreferrer" target="_blank"' +
       (extra || "") +
       ">" +
       inner +
@@ -169,11 +169,17 @@
     );
   }
 
+  var SHOW = ["instagram", "x", "tiktok", "youtube", "twitch"];
+
+  function shown() {
+    var byId = {};
+    networks().forEach(function (item) { byId[item.id] = item; });
+    return SHOW.map(function (id) { return byId[id]; }).filter(Boolean);
+  }
+
   function renderSlot(el) {
     var kind = el.getAttribute("data-social-slot") || "footer";
-    var items = networks().filter(function (item) {
-      return item.id === "x" || item.id === "instagram";
-    });
+    var items = shown();
     var htmlOut = items
       .map(function (item) {
         var label = escapeHtml(item.label);
@@ -181,8 +187,10 @@
         var svg = icon(item.id);
         if (kind === "nav" || kind === "menu") {
           var name = label + (handle ? ", " + handle : "");
+          if (item.id === "instagram") name += ", main platform";
           if (item.unverified) name += ", handle not confirmed";
-          return external(item.url, svg, ' aria-label="' + name + '"');
+          var main = item.id === "instagram" ? ' class="social-main"' : "";
+          return external(item.url, svg, main + ' aria-label="' + name + '"');
         }
         if (kind === "hero") {
           return external(item.url, svg + "<span>" + label + "</span>", ' class="hero-social"');
@@ -202,8 +210,9 @@
             ' class="find-card"'
           );
         }
-        var flag = item.unverified ? " (unconfirmed)" : "";
-        return external(item.url, label + flag);
+        var flag = item.id === "instagram" ? " (main)" : item.unverified ? " (unconfirmed)" : "";
+        var mainClass = item.id === "instagram" ? ' class="social-main"' : "";
+        return external(item.url, label + flag, mainClass);
       })
       .join("");
     el.innerHTML = htmlOut;
@@ -337,7 +346,7 @@
 
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register(root + "sw.js?v=20261031-legal1").catch(function () {});
+      navigator.serviceWorker.register(root + "sw.js?v=20261115-dream1").catch(function () {});
     });
   }
 })();

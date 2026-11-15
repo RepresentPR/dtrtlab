@@ -154,6 +154,7 @@ function renderPage(entries) {
 <meta name="theme-color" content="#0B2545">
 <link rel="stylesheet" href="/css/knowledge-home.css?v=${CSS_V}">
 <script data-goatcounter="https://dtrtlab.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="stylesheet" href="/css/dream.css?v=20261115-dream3">
 </head>
 <body class="notebook">
 <a class="skip" href="#main">Skip to content</a>
@@ -177,7 +178,8 @@ ${articles}
 </div>
 </section>
 </main>
-<footer><a class="wordmark" href="/">DTRT <strong>LAB</strong></a><p>Do the right thing. Make useful things. Keep a truthful record.</p><nav aria-label="Footer"><a href="/notebook/" aria-current="page">Notebook</a><a href="/inside-the-lab/">Inside the Lab</a><a href="/contact.html">Contact</a><a href="/legal/privacy.html">Privacy</a><a href="/legal/terms.html">Terms</a><a href="/legal/refunds.html">Refunds</a></nav></footer>
+<footer><a class="wordmark" href="/">DTRT <strong>LAB</strong></a><p>Do the right thing. Make useful things. Keep a truthful record.</p><nav aria-label="Footer"><a href="/notebook/" aria-current="page">Notebook</a><a href="/inside-the-lab/">Inside the Lab</a><a href="/contact.html">Contact</a><a href="/legal/privacy.html">Privacy</a><a href="/legal/terms.html">Terms</a><a href="/legal/refunds.html">Refunds</a></nav><nav class="site-socials" aria-label="Social"><a class="social-main" href="https://www.instagram.com/officiallydtrt/" rel="me noopener noreferrer" target="_blank">@officiallydtrt<span class="visually-hidden"> main platform</span></a><a href="https://x.com/DTRTLab" rel="me noopener noreferrer" target="_blank">X<span class="visually-hidden"> @DTRTLab</span></a><a href="https://www.tiktok.com/@iananthonyfc" rel="me noopener noreferrer" target="_blank">TikTok<span class="visually-hidden"> @iananthonyfc</span></a><a href="https://www.youtube.com/@DTRTLabYT" rel="me noopener noreferrer" target="_blank">YouTube<span class="visually-hidden"> @DTRTLabYT</span></a><a href="https://www.twitch.tv/dtrtc" rel="me noopener noreferrer" target="_blank">Twitch<span class="visually-hidden"> dtrtc</span></a></nav></footer>
+<script defer src="/js/visit.js?v=20261115-dream3"></script>
 </body>
 </html>
 `;
