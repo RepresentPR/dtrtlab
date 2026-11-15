@@ -5,10 +5,12 @@ Env (repo secrets):
   LIVE_PASSWORD     required to decrypt/re-encrypt live/owner.enc.json (same password Ian types on /live)
   X_BEARER_TOKEN    X API v2 bearer -> @DTRTLab followers
   POSTIZ_API_KEY    Postiz public API key -> published post count
-Never invents a number. X is optional: a missing or rejected token is
-recorded as unavailable, the X count stays unknown (null, never zero), and
-Postiz still refreshes. A skipped or failed required source writes nothing:
-the stamp, numbers and history stay, and the log names the error type only.
+Never invents a number. Any X failure is optional: a blank or rejected
+token, HTTP error, timeout, connection error, or bad JSON is recorded as
+unavailable. The X count stays unknown (null, never zero), an older audience
+total is not left beside the new stamp, and Postiz still refreshes. A skipped
+or failed required source writes nothing: the stamp, numbers and history stay.
+The log names the error type only.
 TODO(fix-2): a public "auto-update paused" line needs Ian's approval of the
 exact wording. Do not add that sentence to a page.
 """
@@ -42,9 +44,9 @@ def get(url, headers):
 def x_followers():
     """Follower count, or None when the token is missing or rejected.
 
-    None means unavailable. It is not a measured zero. Auth failures return
-    None without reading or logging the response body or the token. Other
-    HTTP failures still raise so a live token is not treated as missing.
+    None means unavailable. It is not a measured zero. A 401 or 403 returns
+    None without reading the body. Every other failure raises. The caller
+    treats that raise like a blank token and logs only the exception type.
     """
     token = (os.environ.get("X_BEARER_TOKEN") or "").strip()
     if not token:
@@ -69,27 +71,30 @@ def postiz_published():
         raise ValueError("postiz reply has no posts list")
     return sum(1 for p in posts if str(p.get("state", p.get("status", ""))).upper() == "PUBLISHED")
 
-# X may be absent. A required source that skips or raises still blocks the write.
+# X may be absent or fail. A required source that skips or raises still blocks the write.
 OPTIONAL = {"x"}
 
 def refresh_owner(owner, now, sources):
     """Apply source callables.
 
-    None from an optional source records that source unavailable and leaves its
-    count unknown (null, never zero). Other sources still commit. None or an
-    exception from a required source changes only meta.errors: history, today
-    and the stamp stay. Exception text is not stored; the type name cannot
-    carry a token.
+    None or any exception from X records X unavailable and leaves its count
+    unknown (null, never zero). Postiz still commits. The stored detail is the
+    exception type name only. None or an exception from a required source
+    changes only meta.errors: history, today and the stamp stay.
     """
     history = list(owner.get("history") or [])
     today = dict(history[-1]) if history else {}
     if isinstance(today.get("followers"), dict):
         today["followers"] = dict(today["followers"])
-    errors, unavailable, values = [], [], {}
+    errors, unavailable, values, detail = [], [], {}, {}
     for name, fn in sources:
         try:
             value = fn()
         except Exception as exc:
+            if name in OPTIONAL:
+                unavailable.append(name)
+                detail[name] = type(exc).__name__
+                continue
             errors.append(f"{name}: {type(exc).__name__}")
             continue
         if value is None and name in OPTIONAL:
@@ -123,6 +128,8 @@ def refresh_owner(owner, now, sources):
         for name, _fn in sources
         if name in unavailable or name in values
     }
+    if detail:
+        meta["source_detail"] = detail
     meta["days_running"] = (now.date() - dt.date.fromisoformat(meta["start"])).days
     meta["updated_et"] = now.strftime("%Y-%m-%d %H:%M ET")
     return errors
@@ -163,7 +170,10 @@ def main():
     with open(PROOF, "w") as handle:
         json.dump(proof, handle, indent=1)
     status = owner["meta"].get("source_status") or {}
-    note = " x: unavailable" if status.get("x") == "unavailable" else ""
+    note = ""
+    if status.get("x") == "unavailable":
+        kind = (owner["meta"].get("source_detail") or {}).get("x")
+        note = " x: unavailable" + ((" " + kind) if kind else "")
     print("refreshed", stamp, "errors: none" + note)
 
 if __name__ == "__main__":
