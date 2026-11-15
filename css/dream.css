@@ -260,24 +260,6 @@ body.dream[data-mood="night"] .dream-orb-b { background: #8a6ea8; }
   overflow: hidden;
 }
 
-.dream-sky .hero-photo {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: linear-gradient(180deg, rgba(7, 11, 24, 0.15), rgba(7, 11, 24, 0.78));
-}
-
-.dream-sky .hero-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.42;
-}
-
-.dream-sky .hero-photo img[hidden] {
-  display: none;
-}
-
 .sky-orb {
   position: absolute;
   z-index: 0;
@@ -302,7 +284,8 @@ body.dream[data-mood="night"] .dream-orb-b { background: #8a6ea8; }
 .dream-sky .ask-form,
 .dream-sky .ask-chips,
 .dream-sky .ask-note,
-.dream-sky .ask-log {
+.dream-sky .ask-log,
+.dream-sky .hero-quiet {
   position: relative;
   z-index: 1;
   width: min(720px, 100%);
@@ -317,10 +300,16 @@ body.dream[data-mood="night"] .dream-orb-b { background: #8a6ea8; }
   color: #f7fafc;
 }
 
-.dream-sky .visit-line {
+.dream-sky .visit-line,
+.dream-sky .hero-quiet {
   margin: 0;
-  color: #d5deea;
-  font-size: 15px;
+  color: #f7fafc;
+  background: #070b18;
+  border-radius: 8px;
+  padding: 4px 8px;
+  width: fit-content;
+  max-width: 100%;
+  font-size: 16px;
 }
 
 .dream-sky .ask-form {
@@ -341,11 +330,11 @@ body.dream[data-mood="night"] .dream-orb-b { background: #8a6ea8; }
 }
 
 .dream-sky .ask-form button,
-.ask-chips button {
+.dream-sky .ask-chips button {
   min-height: 44px;
-  border: 1px solid rgba(244, 247, 251, 0.45);
+  border: 1px solid #c5d0e4;
   border-radius: 999px;
-  background: transparent;
+  background: #070b18;
   color: #f7fafc;
   padding: 0 14px;
 }
@@ -363,10 +352,23 @@ body.dream[data-mood="night"] .dream-orb-b { background: #8a6ea8; }
   gap: 8px;
 }
 
+.dream-sky .ask-bubble,
+.dream-sky .ask-bubble p,
+.dream-sky .ask-bubble a,
+.dream-sky .ask-you,
+.dream-sky .ask-hit p {
+  color: #102c46;
+}
+
 .ask-note {
   margin: 0;
-  font-size: 13px;
-  color: #d5deea;
+  font-size: 16px;
+  color: #f7fafc;
+  background: #070b18;
+  border-radius: 8px;
+  padding: 6px 10px;
+  width: fit-content;
+  max-width: 100%;
 }
 
 .ask-you {

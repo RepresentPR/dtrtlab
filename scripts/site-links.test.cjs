@@ -64,8 +64,6 @@ test('every same-site link, asset and anchor in public HTML resolves', () => {
       const target = resolveTarget(file, clean);
       const rel = path.relative(ROOT, file);
       if (!fs.existsSync(target)) {
-        // Ian will add img/ian/hero.jpg later. The homepage keeps a gradient until that file exists.
-        if (clean === '/img/ian/hero.jpg') continue;
         problems.push(`${rel}: missing ${raw}`);
         continue;
       }

@@ -3,20 +3,27 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const {
-  isPublicPath, newestPublicCommit, readStamp, requiredImprovementDate, loadImprovements, formatContentDate, dateOnlyCommit
+  isPublicPath, newestPublicCommit, readStamp, requiredImprovementDate, loadImprovements, formatContentDate, dateOnlyCommit,
+  countsAsPublicChange, isLiveRefreshAuthor
 } = require('./public-updated.cjs');
 
 const root = path.join(__dirname, '..');
 const read = (name) => fs.readFileSync(path.join(root, name), 'utf8');
 
-test('public paths ignore docs, scripts, tests, workflows, and proof.json', () => {
+test('public paths follow the Pages exclude list, plus owner data and proof.json', () => {
+  const yml = read('_config.yml');
+  assert.match(yml, /^exclude:/m);
   assert.equal(isPublicPath('index.html'), true);
   assert.equal(isPublicPath('content/improvements.json'), true);
   assert.equal(isPublicPath('docs/vision.md'), false);
   assert.equal(isPublicPath('scripts/notebook.cjs'), false);
   assert.equal(isPublicPath('scripts/notebook.test.cjs'), false);
   assert.equal(isPublicPath('.github/workflows/tests.yml'), false);
+  assert.equal(isPublicPath('brand-kit.md'), false);
+  assert.equal(isPublicPath('live/README.md'), false);
   assert.equal(isPublicPath('content/proof.json'), false);
+  assert.equal(isPublicPath('live/owner.enc.json'), false);
+  assert.equal(isPublicPath('hq/owner.enc.json'), false);
 });
 
 test('a proof-only commit does not set the homepage stamp', () => {
@@ -51,4 +58,24 @@ test('a public-content change adds an improvements entry for that day', () => {
   }
   const day = requiredImprovementDate();
   if (day) assert.ok(dates.includes(day), 'improvements entry for ' + day);
+});
+
+test('a stamp line plus a blank line does not count, and neither does whitespace', () => {
+  const stamp = [
+    '-id="notebook-updated" data-content-date="2026-11-12">Updated November 12, 2026</span>',
+    '+id="notebook-updated" data-content-date="2026-11-15">Updated November 15, 2026</span>',
+    '+',
+    '+   '
+  ].join('\n');
+  assert.equal(countsAsPublicChange(stamp), false);
+  assert.equal(countsAsPublicChange('-\n+\n+ \t'), false);
+  assert.equal(countsAsPublicChange('+    <lastmod>2026-11-15</lastmod>'), false);
+  assert.equal(countsAsPublicChange('+ <p>A real sentence for visitors.</p>'), true);
+  assert.equal(countsAsPublicChange(stamp + '\n+ <p>A real sentence for visitors.</p>'), true);
+});
+
+test('a live-refresh bot commit does not set the homepage stamp', () => {
+  assert.equal(isLiveRefreshAuthor({ name: 'dtrt-live-bot', email: 'live-bot@users.noreply.github.com' }), true);
+  assert.equal(isLiveRefreshAuthor({ name: 'Someone', email: 'live-bot@users.noreply.github.com' }), true);
+  assert.equal(isLiveRefreshAuthor({ name: 'DTRT', email: '155593871+RepresentPR@users.noreply.github.com' }), false);
 });

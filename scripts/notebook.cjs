@@ -154,7 +154,7 @@ function renderPage(entries) {
 <meta name="theme-color" content="#0B2545">
 <link rel="stylesheet" href="/css/knowledge-home.css?v=${CSS_V}">
 <script data-goatcounter="https://dtrtlab.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<link rel="stylesheet" href="/css/dream.css?v=20261115-dream11">
+<link rel="stylesheet" href="/css/dream.css?v=20261115-dream12">
 <link rel="stylesheet" href="/css/socials.css?v=20261115-socials3">
 </head>
 <body class="notebook">

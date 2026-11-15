@@ -81,7 +81,13 @@ test('every visitor page links the five profiles, with Instagram marked as main'
       missing.push(rel + ' missing the main Instagram link');
     }
     const rows = html.match(/class="site-socials"/g) || [];
-    if (rows.length !== 1) missing.push(rel + ' has ' + rows.length + ' social rows');
+    if (rel === 'index.html') {
+      const header = (html.match(/<header[\s\S]*?<\/header>/) || [''])[0];
+      const footer = (html.match(/<footer[\s\S]*?<\/footer>/) || [''])[0];
+      if (!header.includes('class="site-socials"') || !footer.includes('class="site-socials"')) {
+        missing.push(rel + ' needs the social row in the header and the footer');
+      }
+    } else if (rows.length !== 1) missing.push(rel + ' has ' + rows.length + ' social rows');
     if (html.includes('/js/visit.js') && !html.includes('dream.css')) missing.push(rel + ' loads music without dream.css');
     if (!html.includes('dream.css') && html.includes('/js/visit.js')) missing.push(rel + ' keeps the music control');
     if (html.includes('class="site-socials"') && !html.includes('socials.css')) missing.push(rel + ' social row has no stylesheet');

@@ -8,8 +8,8 @@
     "key": "20261115-asklog1"
   },
   "ask/passages.js": {
-    "hash": "fc4d88802a09c191744eb26428b4bb93a475c67f01a7025e58ced17ff13508cd",
-    "key": "20261115-ask8"
+    "hash": "c66b2b4a0fd05c24c8935b42fe938cf9dba980ddf86018cbc1573b8b7fef9caa",
+    "key": "20261115-ask9"
   },
   "ask/ui.js": {
     "hash": "c21697d18bf5461f18e4dd479cc77fe187ab0c25f0f59dd71961395fa4fd2a8b",
@@ -70,8 +70,8 @@
     ]
   },
   "css/dream.css": {
-    "hash": "a54fd99cf21693a941fef2171e5bc4e274e824c48292d4ba7194fe629d00a9be",
-    "key": "20261115-dream11"
+    "hash": "36f0ceae2d32e2a691e4990181938e2f32e415e4bd72af8be0410179003e939f",
+    "key": "20261115-dream12"
   },
   "css/dtrtc.css": {
     "hash": "496c69a4f7f2b676c41907f9b2b4efdf58fdb77231bf98abc4a31372e8b00afc",
@@ -282,10 +282,6 @@
   "js/growth-monitor.js": {
     "hash": "42e259322f7c16cb0270b200af93944c582893a0cf8a6bf4fae57ee619705b53",
     "key": null
-  },
-  "js/hero-photo.js": {
-    "hash": "24fc8427b75e0f30a675b054c3d92097a05650bfa83bd2fe840e9db4c404db4c",
-    "key": "20261115-hero2"
   },
   "js/homepage-video.mjs": {
     "hash": "a813b9fc86fb4533d3d45b640b2da7f8ab3dac7c57a76e00758e8fe05f7c84e0",

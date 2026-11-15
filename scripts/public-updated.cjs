@@ -1,13 +1,15 @@
-/* Homepage Updated stamp follows the newest commit that changed public
-   site content. docs/, scripts/, tests, .github/, and proof.json-only
-   refreshes do not move the date. A commit that only rewrites the stamp
-   does not count. Dates are America/New_York calendar days.
-   Usage: node scripts/public-updated.cjs --apply
+/* Homepage Updated stamp follows the newest commit that changed a file
+   GitHub Pages would publish. The exclude list is _config.yml. Encrypted
+   owner data, proof.json, and live-refresh bot commits do not count.
+   Whitespace-only edits and stamp-only edits, including a stamp line plus
+   a blank line, do not count. Dates are America/New_York calendar days.
+   Usage: node scripts/public-updated.cjs --apply-if-changed
 */
 'use strict';
 const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
+const { loadExclude, isExcluded } = require('./stage-site.cjs');
 
 const ROOT = path.resolve(__dirname, '..');
 const HOME = 'index.html';
@@ -24,11 +26,31 @@ function git(args, opts = {}) {
 
 function isPublicPath(rel) {
   const p = String(rel || '').split('\\').join('/');
-  if (!p || p.startsWith('docs/') || p.startsWith('scripts/') || p.startsWith('.github/') || p.startsWith('tools/')) return false;
-  if (p.endsWith('.md')) return false;
-  if (/\.test\.(cjs|mjs|js|py)$/.test(p) || /(^|\/)test_/.test(p)) return false;
-  if (p === 'content/proof.json') return false;
+  if (!p || p === '_config.yml') return false;
+  if (isExcluded(p, loadExclude())) return false;
+  if (p === 'live/owner.enc.json' || p === 'hq/owner.enc.json') return false;
+  if (p === 'content/proof.json' || p.endsWith('/proof.json')) return false;
   return true;
+}
+
+function isLiveRefreshAuthor(author) {
+  const name = String(author && author.name || '');
+  const email = String(author && author.email || '').toLowerCase();
+  return name === 'dtrt-live-bot' || email === 'live-bot@users.noreply.github.com';
+}
+
+function isStampLine(text) {
+  const line = String(text);
+  if (/notebook-updated/.test(line)) return true;
+  if (/<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/.test(line)) return true;
+  return false;
+}
+
+function countsAsPublicChange(diffText) {
+  const changed = String(diffText).split('\n').filter((line) => /^[+-]/.test(line) && !line.startsWith('+++') && !line.startsWith('---'));
+  const kept = changed.filter((line) => line.slice(1).trim() !== '');
+  if (!kept.length) return false;
+  return kept.some((line) => !isStampLine(line.slice(1)));
 }
 
 function etDate(iso) {
@@ -57,18 +79,28 @@ function commitFiles(hash) {
   return out ? out.split('\n').filter(Boolean) : [];
 }
 
+function commitAuthor(hash) {
+  const out = git(['log', '-1', '--format=%an%x09%ae', hash]);
+  const tab = out.indexOf('\t');
+  return { name: out.slice(0, tab), email: out.slice(tab + 1) };
+}
+
+function publicDiffText(hash) {
+  const files = commitFiles(hash).filter(isPublicPath);
+  if (!files.length) return '';
+  const args = ['diff', '-w', '--ignore-blank-lines', hash + '^', hash, '--', ...files];
+  try {
+    return git(args);
+  } catch (err) {
+    return git(['show', '-w', '--ignore-blank-lines', '--format=', hash, '--', ...files]);
+  }
+}
+
 function dateOnlyCommit(hash) {
+  if (isLiveRefreshAuthor(commitAuthor(hash))) return true;
   const pub = commitFiles(hash).filter(isPublicPath);
   if (!pub.length) return true;
-  if (pub.some((file) => file !== 'index.html' && file !== 'sitemap.xml')) return false;
-  let diff = '';
-  try {
-    diff = git(['show', '--format=', hash, '--', 'index.html', 'sitemap.xml']);
-  } catch (err) {
-    return false;
-  }
-  const changed = diff.split('\n').filter((line) => /^[+-]/.test(line) && !line.startsWith('+++') && !line.startsWith('---'));
-  return changed.every((line) => /notebook-updated|dtrtlab\.com\/<\/loc><lastmod>/.test(line));
+  return !countsAsPublicChange(publicDiffText(hash));
 }
 
 function newestPublicCommit() {
@@ -163,21 +195,31 @@ function loadImprovements() {
   return Array.isArray(data.entries) ? data.entries : [];
 }
 
-function applyHome() {
+function applyIfChanged() {
   const found = newestPublicCommit();
   if (!found) throw new Error('no public content commit');
   const homePath = path.join(ROOT, HOME);
   const html = fs.readFileSync(homePath, 'utf8');
+  const stamp = readStamp(html);
+  const text = formatContentDate(found.date);
+  if (stamp && stamp.iso === found.date && stamp.text === text) {
+    return Object.assign({ changed: false }, found);
+  }
   fs.writeFileSync(homePath, applyStamp(html, found.date));
-  return found;
+  return Object.assign({ changed: true }, found);
 }
 
-if (require.main === module && process.argv.includes('--apply')) {
-  const found = applyHome();
-  process.stdout.write('public stamp ' + found.date + ' from ' + found.hash.slice(0, 7) + '\n');
+if (require.main === module && (process.argv.includes('--apply') || process.argv.includes('--apply-if-changed'))) {
+  const found = applyIfChanged();
+  if (process.env.GITHUB_OUTPUT) {
+    fs.appendFileSync(process.env.GITHUB_OUTPUT, 'changed=' + (found.changed ? 'true' : 'false') + '\n');
+  }
+  process.stdout.write((found.changed ? 'updated ' : 'unchanged ') + found.date + ' from ' + found.hash.slice(0, 7) + '\n');
 }
 
 module.exports = {
-  isPublicPath, etDate, todayEt, formatContentDate, newestPublicCommit, readStamp,
-  applyStamp, baseRef, publicDiff, requiredImprovementDate, loadImprovements, dateOnlyCommit
+  isPublicPath, isLiveRefreshAuthor, isStampLine, countsAsPublicChange,
+  etDate, todayEt, formatContentDate, newestPublicCommit, readStamp,
+  applyStamp, applyIfChanged, baseRef, publicDiff, requiredImprovementDate,
+  loadImprovements, dateOnlyCommit
 };
