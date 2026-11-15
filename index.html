@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self' data: https://dtrtlab.goatcounter.com; media-src 'self'; manifest-src 'self'; connect-src https://dtrtlab.goatcounter.com; form-action 'none'; base-uri 'none'; object-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self' data: https://dtrtlab.goatcounter.com; media-src 'self'; manifest-src 'self'; connect-src 'self' https://dtrtlab.goatcounter.com https://docs.google.com; form-action 'none'; base-uri 'none'; object-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="no-referrer">
 <title>Ian — posts, videos, and the work</title>
@@ -58,6 +58,7 @@
 <input id="ask-q" name="q" type="text" autocomplete="off" maxlength="240" placeholder="What dream are you chasing?">
 <button class="primary" type="submit">Search public pages</button>
 </form>
+<p class="ask-note" id="ask-keep-wrap" hidden><label for="ask-keep"><input id="ask-keep" type="checkbox"> Let Ian keep my questions to improve this page. No name or email needed.</label></p>
 <div class="ask-chips">
 <button type="button" data-ask-chip>How do I start with $0?</button>
 <button type="button" data-ask-chip>How do I stay consistent?</button>
@@ -283,8 +284,9 @@ Your browser cannot play this video. Use a video link or read the transcript bel
 </section>
 </main>
 <footer><a class="wordmark" href="#main">DTRT <strong>LAB</strong></a><p>Do the right thing. Make useful things. Keep a truthful record.</p><nav aria-label="Footer"><a href="/notebook/">Notebook</a><a href="/blog/">Posts</a><a href="/ask/">Ask DTRT</a><a href="/improvements/">What got better</a><a href="/inside-the-lab/">Inside the Lab</a><a href="/contact.html">Contact</a><a href="/legal/privacy.html">Privacy</a><a href="/legal/terms.html">Terms</a><a href="/legal/refunds.html">Refunds</a></nav></footer>
-<script src="/ask/passages.js?v=20261115-ask6"></script>
+<script src="/ask/passages.js?v=20261115-ask8"></script>
 <script src="/ask/ask.js?v=20261115-ask1"></script>
-<script src="/ask/ui.js?v=20261115-ask2"></script>
+<script src="/ask/log.js?v=20261115-asklog1"></script>
+<script src="/ask/ui.js?v=20261115-ask3"></script>
 <script src="/js/hero-photo.js?v=20261115-hero2"></script>
 </body></html>

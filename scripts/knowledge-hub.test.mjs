@@ -34,7 +34,7 @@ test('public guide cannot submit a form and private source remains excluded',()=
   const js=fs.readFileSync(new URL('js/knowledge-guide.mjs',root),'utf8');
   assert.match(html,/How can I help you today\?/);
   assert.match(html,/Live AI is not connected/);
-  assert.match(html,/connect-src https:\/\/dtrtlab\.goatcounter\.com/);
+  assert.match(html,/connect-src 'self' https:\/\/dtrtlab\.goatcounter\.com https:\/\/docs\.google\.com/);
   assert.doesNotMatch(html,/connect-src[^;]*'none'/);
   assert.match(html,/form-action 'none'/);
   assert.doesNotMatch(html,/noindex|PRIVATE HOMEPAGE CONCEPT/);

@@ -28,6 +28,21 @@
     });
   });
 
+  function report(question, matches) {
+    if (!window.DTRTAskLog || !window.DTRTAskLog.note) return;
+    var urls = [];
+    (matches || []).forEach(function (item) {
+      var url = item && item.passage && item.passage.url;
+      if (url && urls.indexOf(url) < 0) urls.push(url);
+    });
+    window.DTRTAskLog.note({
+      question: question,
+      urls: urls,
+      count: (matches || []).length,
+      page: (location && location.pathname) || "/"
+    });
+  }
+
   form.addEventListener("submit", function (event) {
     event.preventDefault();
     var question = input.value.trim();
@@ -38,6 +53,7 @@
     add('<p class="ask-you"><strong>You.</strong> ' + escape(question) + "</p>");
     window.DTRTAsk.answer(question, corpus || { passages: [] }).then(function (result) {
       var matches = (result && result.matches) || [];
+      report(question, matches);
       if (!matches.length) {
         add("<p><strong>Ask DTRT.</strong> Nothing on the public pages matches that closely. Try words from the site, or open the <a href=\"/notebook/\">notebook</a> and the <a href=\"/map/\">office map</a>.</p>");
         return;
@@ -51,6 +67,7 @@
       }).join("");
       add("<p><strong>Ask DTRT.</strong> Answered from DTRT Lab's public pages. This search stays in the browser.</p>" + hits);
     }).catch(function () {
+      report(question, []);
       add("<p><strong>Ask DTRT.</strong> The search on this page did not finish. The public pages are still linked from the home page.</p>");
     });
     input.value = "";

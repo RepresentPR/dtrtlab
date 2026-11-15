@@ -3,13 +3,17 @@
     "hash": "c67f740f963fe0edf22424b45b6584246894bdf8986c54ac0e3f281e52003d4e",
     "key": "20261115-ask1"
   },
+  "ask/log.js": {
+    "hash": "f33f6fb2ea8c0b24d2ec3357957448ca323dc81b4ee49cd9572716b4629dc7b7",
+    "key": "20261115-asklog1"
+  },
   "ask/passages.js": {
-    "hash": "5d09ac31498dfec2d908bcd6519af9603e191909f7a61461e112bd846bd9ba15",
-    "key": "20261115-ask6"
+    "hash": "fc4d88802a09c191744eb26428b4bb93a475c67f01a7025e58ced17ff13508cd",
+    "key": "20261115-ask8"
   },
   "ask/ui.js": {
-    "hash": "c2486c628b17a757537a305faeaac180003152a09ecd36b2cd1f39ceb8c7fc59",
-    "key": "20261115-ask2"
+    "hash": "c21697d18bf5461f18e4dd479cc77fe187ab0c25f0f59dd71961395fa4fd2a8b",
+    "key": "20261115-ask3"
   },
   "content/clips.js": {
     "hash": "a5c0cfa45b00524fbc1d2de324ec0f19031af1fce1ff80c092c465e2e29cd1e4",
@@ -202,8 +206,8 @@
     "key": "20261010n"
   },
   "js/biz-lang.js": {
-    "hash": "72b71457be095735897c89298d59eae17e67bcdbbf4263119259eea2409644dc",
-    "key": "20261115-legal3"
+    "hash": "704a2b3dbe4a3237343d2086d3e4465f908dcc4e7d31ec6f6eaa38c6a1922fe1",
+    "key": "20261115-asklog1"
   },
   "js/calm.js": {
     "hash": "0405c18592b384288ccddc73a9948b1517c5cb88224f3b6f2cac6b817302f03f",
@@ -332,8 +336,8 @@
     "key": "20261010n"
   },
   "js/nav.js": {
-    "hash": "44cba21a432578e245b587d7642e8ca6a8d67170f56349cf445690da4fbfb7a1",
-    "key": "20261115-social4"
+    "hash": "547b1e41e7f6e27b2dfbab3aa0e585299b2e99843017d4e47e53fb5a18ab16bd",
+    "key": "20261115-asklog1"
   },
   "js/plan-tool.js": {
     "hash": "687e9bc23bcb839927457b71cad5ac30e36edcd4593be1f5a8bdd79786e50cee",
@@ -416,8 +420,8 @@
     "key": null
   },
   "sw.js": {
-    "hash": "19ef72fc4357106e1f8bad51ecca64fdcd23ad93b910bd8546bef4a37fcd91da",
-    "key": "20261115-rel1"
+    "hash": "b8ce54ede871b4b2298deeb328848361200def1f7278005b025c4f418c651c54",
+    "key": "20261115-asklog1"
   },
   "watch/watch.css": {
     "hash": "0b8026e65ae3b40c91b7dfdf31a94e579c60b0222bd1d5ce8999b2ffc29870f1",
