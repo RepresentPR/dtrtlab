@@ -61,6 +61,11 @@ test('home leads with Ian, an empty posts page, and Ask', () => {
   assert.doesNotMatch(decision, /Later the same day he said Instagram and X are where he posts most/);
   assert.doesNotMatch(read('news.html') + read('content/releases.json'), /Atlantic|UTC−4|UTC-4/);
   assert.doesNotMatch(read('sitemap.xml'), /dtrtlab\.com\/blog\//);
+  const scene = read('js/scene-nav.js');
+  assert.match(scene, /"instagram", "x", "tiktok", "youtube", "twitch"/);
+  assert.match(scene, /rel="me noopener noreferrer"/);
+  assert.match(read('cs2.html') + read('tab.html'), /scene-nav\.js\?v=20261115-social6/);
+  assert.doesNotMatch(read('cs2.html') + read('tab.html'), /js\/nav\.js/);
 });
 
 test('every visitor page links the five profiles, with Instagram marked as main', () => {
