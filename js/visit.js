@@ -70,9 +70,16 @@
     '<label>Volume <input id="ambience-volume" type="range" min="0" max="100" aria-label="Music volume"></label>' +
     "</div>" +
     '<p>Original tones made in this browser.</p>';
-  var header = document.querySelector("header");
-  if (header) header.insertAdjacentElement("afterend", panel);
+  var main = document.getElementById("main");
+  if (main) main.insertBefore(panel, main.firstChild);
   else body.append(panel);
+  var header = document.querySelector("header");
+  if (header) {
+    var headerStyle = getComputedStyle(header);
+    if (headerStyle.position === "fixed" || headerStyle.position === "sticky") {
+      panel.style.marginTop = Math.ceil(header.getBoundingClientRect().height + 16) + "px";
+    }
+  }
 
   var status = panel.querySelector("#ambience-status");
   var button = panel.querySelector("#ambience-toggle");
