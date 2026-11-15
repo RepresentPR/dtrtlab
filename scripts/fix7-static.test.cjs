@@ -360,6 +360,7 @@ test('fix7/7 planted: an edited legal page fails if "Last updated" is missing, u
   ];
   assert.deepEqual(missed(plants, ([b, h]) => L.legalStampProblems('legal/terms.html', b, h, now).length > 0), []);
   assert.deepEqual(L.legalStampProblems('legal/terms.html', page('October 14, 2026'), page('October 16, 2026'), now), []);
+  assert.deepEqual(L.legalStampProblems('legal/terms.html', page('October 16, 2026'), page('October 16, 2026', '<p>A new duty.</p>'), now), [], 'a stamp that already says today covers another edit that day');
   assert.deepEqual(L.legalStampProblems('legal/cookies.html', page('October 14, 2026', '<script src="/js/nav.js?v=old"></script>'), page('October 14, 2026', '<script src="/js/nav.js?v=new"></script>'), now), [], 'a cache key is not a legal edit');
   assert.deepEqual(L.legalStampProblems('legal/new.html', null, page('October 16, 2026'), now), [], 'new legal page with a stamp is fine');
   assert.equal(L.lastUpdated('Last updated October 3, 2026.'), '2026-10-03');

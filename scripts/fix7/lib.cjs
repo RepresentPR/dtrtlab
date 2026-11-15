@@ -469,8 +469,9 @@ function baseContent(file) {
 }
 
 // ---------------------------------------------------------------- legal "Last updated" (QA #72, checklist row 30)
-// Every legal page a PR edits must show a fresh "Last updated <Month D, YYYY>" date: later than the
-// base version's date and not in the future (ET).
+// Every legal page a PR edits must show a fresh "Last updated <Month D, YYYY>" date: not older
+// than the base version and not in the future (ET). A stamp that already says today covers
+// another wording edit on that same Eastern day.
 // Head <script> tags, and head <meta> tags a visitor never sees, are not legal wording.
 // Adding, removing, or rewriting only those does not require a new stamp.
 // A head <meta name="description">, <meta property="og:description">, or twitter:description
@@ -504,7 +505,7 @@ function legalStampProblems(file, baseHtml, headHtml, now = new Date()) {
   if (head > todayEt(now)) out.push(`${file}: "Last updated" ${head} is in the future (today ET ${todayEt(now)})`);
   const sameWording = baseHtml != null && legalWording(baseHtml) === legalWording(headHtml);
   if (base && head < base) out.push(`${file}: "Last updated" ${head} is older than ${base}`);
-  else if (base && head === base && !sameWording) out.push(`${file}: edited but "Last updated" is still ${head} (base ${base})`);
+  else if (base && head === base && !sameWording && head !== todayEt(now)) out.push(`${file}: edited but "Last updated" is still ${head} (base ${base})`);
   return out;
 }
 
