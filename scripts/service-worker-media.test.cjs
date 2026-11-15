@@ -37,7 +37,10 @@ function worker({ cached = new Map(), offline = false } = {}) {
       calls.cache.push(['put', key(request)]);
       cached.set(key(request), response);
     },
-    async addAll(urls) { calls.precache.push(...urls); }
+    async addAll(urls) {
+      calls.precache.push(...urls);
+      for (const url of urls) cached.set(new URL(url, origin).href, new Response('precache ' + url));
+    }
   };
   const context = vm.createContext({
     URL,
@@ -133,6 +136,40 @@ for (const url of ['/css/lab.css?v=1', '/assets/clips/poster.webp', '/js/demo.mp
     assert.equal(await instance.cached.get(request.url).text(), 'network: ' + new URL(request.url).pathname);
   });
 }
+
+function askAssets(html) {
+  const found = [];
+  for (const match of html.matchAll(/<link\b[^>]*rel="stylesheet"[^>]*>/g)) {
+    const href = match[0].match(/href="(\/(?!\/)[^"]+)"/);
+    if (href) found.push(href[1]);
+  }
+  for (const match of html.matchAll(/<script\b[^>]*\bsrc="(\/(?!\/)[^"]+)"/g)) found.push(match[1]);
+  for (const match of html.matchAll(/<img\b[^>]*\bsrc="(\/(?!\/)[^"]+)"/g)) found.push(match[1]);
+  const icon = html.match(/<link\b[^>]*rel="icon"[^>]*href="(\/(?!\/)[^"]+)"/);
+  if (icon) found.push(icon[1]);
+  return found;
+}
+
+test('install precaches the Ask page and the assets it requests', async () => {
+  const instance = worker({ offline: true });
+  await instance.install();
+  const page = fs.readFileSync(path.join(__dirname, '..', 'ask/index.html'), 'utf8');
+  const needed = new Set(['/ask/', '/ask/index.html', ...askAssets(page)]);
+  for (const href of [...needed].filter((url) => url.includes('.css'))) {
+    const file = href.split('?')[0].replace(/^\//, '');
+    const css = fs.readFileSync(path.join(__dirname, '..', file), 'utf8');
+    for (const match of css.matchAll(/url\((['"]?)(\/[^'")]+)\1\)/g)) needed.add(match[2]);
+  }
+  for (const url of needed) {
+    assert.ok(instance.calls.precache.includes(url), 'missing precache ' + url);
+  }
+  const document = await instance.dispatch(requestFor('/ask/', { mode: 'navigate' }));
+  assert.equal(await document.response.text(), 'precache /ask/');
+  const script = await instance.dispatch(requestFor('/ask/ask.js?v=20261115-ask1'));
+  assert.equal(await script.response.text(), 'precache /ask/ask.js?v=20261115-ask1');
+  const passage = await instance.dispatch(requestFor('/ask/passages.js?v=20261115-ask5'));
+  assert.equal(await passage.response.text(), 'precache /ask/passages.js?v=20261115-ask5');
+});
 
 test('install precaches the shell and posters without audio or video files', async () => {
   const instance = worker();

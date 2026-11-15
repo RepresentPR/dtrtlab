@@ -1,4 +1,29 @@
 (function () {
+  /* Ask log opt-in stays hidden until showAfter is a past date and an audit
+     routine (window.DTRTAskAudit) exists. Off by default. No question is sent. */
+  var ASK_LOG_OPT_IN = { showAfter: "" };
+
+  function askLogOptInOpen(flag, now, audit) {
+    var config = flag || ASK_LOG_OPT_IN;
+    if (!config.showAfter) return false;
+    var start = Date.parse(config.showAfter);
+    if (!isFinite(start) || now < start) return false;
+    return typeof audit === "function";
+  }
+
+  var keepWrap = document.getElementById("ask-keep-wrap");
+  var keepBox = document.getElementById("ask-keep");
+  if (keepWrap) {
+    var open = askLogOptInOpen(ASK_LOG_OPT_IN, Date.now(), window.DTRTAskAudit);
+    keepWrap.hidden = !open;
+    if (!open && keepBox) keepBox.checked = false;
+  }
+  window.DTRTAskLogOptIn = { showAfter: ASK_LOG_OPT_IN.showAfter, open: askLogOptInOpen };
+
+  if (navigator.serviceWorker && location.protocol !== "file:") {
+    navigator.serviceWorker.register("/sw.js?v=20261115-ask1").catch(function () {});
+  }
+
   var form = document.getElementById("ask-form");
   var input = document.getElementById("ask-q");
   var log = document.getElementById("ask-log");

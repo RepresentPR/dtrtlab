@@ -6,7 +6,7 @@
    are stale-while-revalidate. Media, byte ranges, JSON and third
    parties bypass this worker's cache.
 */
-var VERSION = "20261115-dream1";
+var VERSION = "20261115-ask1";
 var CACHE = "dtrtlab-" + VERSION;
 var PRECACHE = [
   "/",
@@ -42,7 +42,7 @@ var PRECACHE = [
   "/css/adapt.css?v=20261010n",
   "/css/hub.css?v=20261010n",
   "/css/afterlight.css?v=20261010n",
-  "/js/nav.js?v=20261115-social4",
+  "/js/nav.js?v=20261115-ask1",
   "/js/hub.js?v=20261010n",
   "/js/contact-topic.js?v=20261025-freemap1",
   "/js/live-extras.js?v=20261016-qa3",
@@ -60,6 +60,19 @@ var PRECACHE = [
   "/js/find-me.js?v=20261013-find1",
   "/css/find-me.css?v=20261013-find1",
   "/find.html",
+  "/ask/",
+  "/ask/index.html",
+  "/ask/passages.js?v=20261115-ask5",
+  "/ask/ask.js?v=20261115-ask1",
+  "/ask/ui.js?v=20261115-ask6",
+  "/css/knowledge-home.css?v=20261112-notebook1",
+  "/css/dream.css?v=20261115-dream4",
+  "/css/socials.css?v=20261115-socials3",
+  "/js/visit.js?v=20261115-dream10",
+  "/img/brand/mark.svg?v=la20261015",
+  "/favicon.ico",
+  "/assets/fonts/source-sans-3-latin.woff2",
+  "/assets/fonts/source-serif-4-latin.woff2",
   "/partners.html",
   "/css/about.css?v=20261011-hub2",
   "/css/growth-home.css?v=20261025-freemap1",

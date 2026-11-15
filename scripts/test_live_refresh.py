@@ -89,11 +89,10 @@ class RefreshStampTests(unittest.TestCase):
         def boom():
             raise urllib.error.URLError('down')
         cases = [
-            (('x', lambda: None), ('postiz', lambda: 170), ['x: skipped']),
             (('x', lambda: 9), ('postiz', lambda: None), ['postiz: skipped']),
             (('x', boom), ('postiz', lambda: 170), ['x: URLError']),
             (('x', lambda: 9), ('postiz', boom), ['postiz: URLError']),
-            (('x', lambda: None), ('postiz', lambda: None), ['x: skipped', 'postiz: skipped']),
+            (('x', lambda: None), ('postiz', lambda: None), ['postiz: skipped']),
             (('x', boom), ('postiz', boom), ['x: URLError', 'postiz: URLError']),
         ]
         for x_fn, post_fn, expect in cases:
@@ -125,7 +124,9 @@ class RefreshStampTests(unittest.TestCase):
                 ('postiz', refresh.postiz_published),
             ))
             refresh.refresh_proof(proof, owner, fresh=not errors)
-        self.assertEqual(errors, ['x: skipped', 'postiz: skipped'])
+        self.assertEqual(errors, ['postiz: skipped'])
+        self.assertEqual(owner['today']['followers']['x'], 4)
+        self.assertNotEqual(owner['today']['followers']['x'], 0)
         before_owner['meta']['errors'] = errors
         self.assertEqual(owner, before_owner)
         self.assertEqual(proof, before_proof)
@@ -212,8 +213,8 @@ class RefreshStampTests(unittest.TestCase):
              patch.object(refresh, 'PROOF', str(proof_path)), \
              patch.object(refresh, 'decrypt', return_value=self.owner()), \
              patch.object(refresh, 'encrypt') as encrypt, \
-             patch.object(refresh, 'x_followers', return_value=None), \
-             patch.object(refresh, 'postiz_published', return_value=170), \
+             patch.object(refresh, 'x_followers', return_value=9), \
+             patch.object(refresh, 'postiz_published', return_value=None), \
              redirect_stdout(log):
             refresh.main()
         encrypt.assert_not_called()
@@ -221,9 +222,85 @@ class RefreshStampTests(unittest.TestCase):
         self.assertEqual(proof_path.read_bytes(), proof_before)
         self.assertIn('::warning::', log.getvalue())
         self.assertIn('unchanged', log.getvalue())
-        self.assertIn('x: skipped', log.getvalue())
+        self.assertIn('postiz: skipped', log.getvalue())
         self.assertNotIn('secret', log.getvalue())
         self.assertNotIn(STAMP, log.getvalue())
+
+    def test_missing_x_token_lets_postiz_refresh_without_inventing_followers(self):
+        owner, proof = self.owner(), self.proof()
+        with patch.dict(os.environ, {'X_BEARER_TOKEN': '', 'POSTIZ_API_KEY': 'k'}):
+            with patch.object(refresh, 'get', return_value={'posts': [{'state': 'PUBLISHED'}]}):
+                errors = refresh.refresh_owner(owner, self.now(), (
+                    ('x', refresh.x_followers),
+                    ('postiz', refresh.postiz_published),
+                ))
+                refresh.refresh_proof(proof, owner, fresh=not errors)
+        self.assertEqual(errors, [])
+        self.assertIsNone(owner['today']['followers']['x'])
+        self.assertNotEqual(owner['today']['followers']['x'], 0)
+        self.assertIsNone(owner['today']['followers_total_known'])
+        self.assertEqual(owner['today']['posts_published'], 1)
+        self.assertEqual(owner['history'][0]['followers']['x'], 4)
+        self.assertEqual(owner['history'][0]['posts_published'], 163)
+        self.assertEqual(owner['meta']['source_status']['x'], 'unavailable')
+        self.assertEqual(owner['meta']['source_status']['postiz'], 'ok')
+        self.assertEqual(owner['meta']['updated_et'], STAMP)
+        self.assertIsNone(proof['audience_total'])
+        self.assertEqual(proof['posts_published'], 1)
+        self.assertEqual(proof['updated_et'], STAMP)
+        self.assertNotIn('followers', proof)
+        self.assertNotIn('unavailable', json.dumps(proof))
+
+    def test_rejected_x_token_is_unavailable_and_is_not_logged(self):
+        token = 'super-secret-token'
+        denied = urllib.error.HTTPError(
+            'https://api.x.com/2/users/by/username/DTRTLab', 401, 'Unauthorized', None, None)
+        owner, proof = self.owner(), self.proof()
+        log = io.StringIO()
+        with patch.dict(os.environ, {'X_BEARER_TOKEN': token, 'POSTIZ_API_KEY': 'k'}):
+            with patch.object(refresh, 'get', side_effect=[denied, {'posts': [{'state': 'PUBLISHED'}]}]):
+                with redirect_stdout(log):
+                    errors = refresh.refresh_owner(owner, self.now(), (
+                        ('x', refresh.x_followers),
+                        ('postiz', refresh.postiz_published),
+                    ))
+                    refresh.refresh_proof(proof, owner, fresh=not errors)
+        self.assertEqual(errors, [])
+        self.assertIsNone(owner['today']['followers']['x'])
+        self.assertNotEqual(owner['today']['followers']['x'], 0)
+        self.assertEqual(owner['today']['posts_published'], 1)
+        self.assertEqual(owner['meta']['source_status']['x'], 'unavailable')
+        self.assertIsNone(proof['audience_total'])
+        text = log.getvalue() + json.dumps(owner) + json.dumps(proof)
+        self.assertNotIn(token, text)
+        self.assertNotIn('Unauthorized', text)
+        down = urllib.error.HTTPError(
+            'https://api.x.com/2/users/by/username/DTRTLab', 500, 'unavailable', None, None)
+        with patch.dict(os.environ, {'X_BEARER_TOKEN': token}):
+            with patch.object(refresh, 'get', side_effect=down):
+                with self.assertRaises(urllib.error.HTTPError):
+                    refresh.x_followers()
+
+    def test_main_x_unavailable_still_writes_other_sources(self):
+        token = 'super-secret-token'
+        saved, proof, blob = None, None, None
+        log = io.StringIO()
+        with redirect_stdout(log):
+            saved, proof, blob = self._run_main(None, 170)
+        self.assertEqual(blob['v'], 1)
+        self.assertEqual(saved['owner']['meta']['updated_et'], STAMP)
+        self.assertEqual(saved['owner']['meta']['errors'], [])
+        self.assertEqual(saved['owner']['meta']['source_status']['x'], 'unavailable')
+        self.assertIsNone(saved['owner']['today']['followers']['x'])
+        self.assertNotEqual(saved['owner']['today']['followers']['x'], 0)
+        self.assertEqual(saved['owner']['history'][0]['followers']['x'], 4)
+        self.assertEqual(saved['owner']['today']['posts_published'], 170)
+        self.assertEqual(proof['updated_et'], STAMP)
+        self.assertEqual(proof['posts_published'], 170)
+        self.assertIsNone(proof['audience_total'])
+        self.assertIn('x: unavailable', log.getvalue())
+        self.assertNotIn(token, log.getvalue())
+        self.assertNotIn('secret', log.getvalue())
 
     def test_main_full_success_writes_the_new_stamp(self):
         saved, proof, blob = self._run_main(9, 170)
