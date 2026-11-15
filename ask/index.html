@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self' data: https://dtrtlab.goatcounter.com; connect-src 'self' https://dtrtlab.goatcounter.com; form-action 'none'; base-uri 'none'; object-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self' data: https://dtrtlab.goatcounter.com; connect-src 'self' https://dtrtlab.goatcounter.com https://docs.google.com; form-action 'none'; base-uri 'none'; object-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="no-referrer">
 <title>Ask DTRT — questions from the public pages</title>
@@ -19,7 +19,7 @@
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/img/brand/mark.svg?v=la20261015" type="image/svg+xml">
 <link rel="stylesheet" href="/css/knowledge-home.css?v=20261112-notebook1">
-<link rel="stylesheet" href="/css/dream.css?v=20261115-dream4">
+<link rel="stylesheet" href="/css/dream.css?v=20261115-dream13">
 <script data-goatcounter="https://dtrtlab.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <link rel="stylesheet" href="/css/socials.css?v=20261115-socials3">
 </head>
@@ -44,6 +44,7 @@
 <input id="ask-q" name="q" type="text" autocomplete="off" maxlength="240" placeholder="For example, office map">
 <button class="primary" type="submit">Search public pages</button>
 </form>
+<p class="ask-note" id="ask-keep-wrap" hidden><label for="ask-keep"><input id="ask-keep" type="checkbox"> Let Ian keep my questions to improve this page. No name or email needed.</label></p>
 <div id="ask-log" class="ask-log" aria-live="polite"></div>
 <noscript><p>JavaScript is required for the in-browser search. The <a href="/">home page</a> still links the public pages.</p></noscript>
 </section>
@@ -53,9 +54,10 @@
 <p>Do the right thing. Make useful things. Keep a truthful record.</p>
 <nav aria-label="Footer"><a href="/">Home</a><a href="/blog/">Posts</a><a href="/notebook/">Notebook</a><a href="/legal/privacy.html">Privacy</a><a href="/legal/terms.html">Terms</a></nav>
 </footer>
-<script src="/ask/passages.js?v=20261115-ask5"></script>
+<script src="/ask/passages.js?v=20261115-ask10"></script>
 <script src="/ask/ask.js?v=20261115-ask1"></script>
-<script src="/ask/ui.js?v=20261115-ask1"></script>
+<script src="/ask/log.js?v=20261115-asklog2"></script>
+<script src="/ask/ui.js?v=20261115-ask3"></script>
 <script defer src="/js/visit.js?v=20261115-dream10"></script>
 </body>
 </html>

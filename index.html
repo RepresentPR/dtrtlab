@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self' data: https://dtrtlab.goatcounter.com; media-src 'self'; manifest-src 'self'; connect-src https://dtrtlab.goatcounter.com; form-action 'none'; base-uri 'none'; object-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self' data: https://dtrtlab.goatcounter.com; media-src 'self'; manifest-src 'self'; connect-src 'self' https://dtrtlab.goatcounter.com https://docs.google.com; form-action 'none'; base-uri 'none'; object-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="no-referrer">
 <title>Ian — posts, videos, and the work</title>
@@ -28,7 +28,7 @@
 <link rel="manifest" href="/site.webmanifest?v=la20261015">
 <meta name="theme-color" content="#0B2545">
 <link rel="stylesheet" href="/css/knowledge-home.css?v=20261112-notebook1">
-<link rel="stylesheet" href="/css/dream.css?v=20261115-dream4">
+<link rel="stylesheet" href="/css/dream.css?v=20261115-dream13">
 <link rel="stylesheet" href="/css/story-stage.css?v=20261030-guide1">
 <script defer src="/js/visit.js?v=20261115-dream10"></script>
 <script type="module" src="/js/knowledge-guide.mjs?v=20261024-hub2"></script>
@@ -39,28 +39,60 @@
 </head>
 <body class="dream">
 <a class="skip" href="#main">Skip to content</a>
-<div class="preview-bar">THE DTRT LAB NOTEBOOK <span id="notebook-updated" data-content-date="2026-11-12">Updated November 12, 2026</span></div>
+<div class="preview-bar">THE DTRT LAB NOTEBOOK <a href="/improvements/"><span id="notebook-updated" data-content-date="2026-11-15">Updated November 15, 2026</span></a></div>
 <header class="header">
 <a class="wordmark" href="#main"><img class="brand-mark" src="/img/brand/mark.svg?v=la20261015" alt="" width="34" height="34">DTRT <strong>LAB</strong></a>
-<nav aria-label="Main navigation"><a href="/blog/">Posts</a><a href="#videos">Videos</a><a href="/ask/">Ask DTRT</a><a href="#work-with-me">Work with me</a><a href="/notebook/">Notebook</a></nav>
+<nav aria-label="Main navigation"><a href="/blog/">Posts</a><a href="#videos">Videos</a><a href="/ask/">Ask DTRT</a><a href="#work-with-me">Work with me</a><a href="/notebook/">Notebook</a><a href="/improvements/">What got better</a></nav>
 <nav class="site-socials" aria-label="Social"><a class="social-main" href="https://www.instagram.com/officiallydtrt/" rel="me noopener noreferrer" target="_blank" aria-label="Instagram, @officiallydtrt">Instagram</a><a class="social-main" href="https://x.com/DTRTLab" rel="me noopener noreferrer" target="_blank" aria-label="X, @DTRTLab">X</a><a href="https://www.tiktok.com/@iananthonyfc" rel="me noopener noreferrer" target="_blank" aria-label="TikTok, @iananthonyfc">TikTok</a><a href="https://www.youtube.com/@DTRTLabYT" rel="me noopener noreferrer" target="_blank" aria-label="YouTube, @DTRTLabYT">YouTube</a><a href="https://www.twitch.tv/dtrtc" rel="me noopener noreferrer" target="_blank" aria-label="Twitch, dtrtc">Twitch</a></nav>
 </header>
 <main id="main">
-<section class="hero personal-hero" aria-labelledby="home-title">
-<p class="eyebrow"><span class="square"></span> PERSONAL PAGE</p>
+<section class="hero personal-hero dream-sky" aria-labelledby="home-title">
+<span class="sky-orb sky-orb-a"></span>
+<span class="sky-orb sky-orb-b"></span>
+<div class="sky-copy">
 <h1 id="home-title">I'm Ian.</h1>
-<p class="hero-lead" id="visit-line">This page follows the time of day on your device.</p>
-<p class="hero-lead">Posts, videos, and a quiet place to ask a question. Instagram and X are where I post most. I work remotely.</p>
-<div class="hero-actions"><a class="primary social-main" href="https://www.instagram.com/officiallydtrt/" rel="me noopener noreferrer" target="_blank">Instagram <span>@officiallydtrt</span></a><a class="text-link" href="/blog/">Read posts</a><a class="text-link" href="/ask/">Ask DTRT</a><a class="text-link" href="#work-with-me">Work with me</a></div>
+<p class="hero-quiet">Posts, videos, and a quiet place to ask a question.</p>
+<p class="visit-line" id="visit-line">This page follows the time of day on your device.</p>
+</div>
+<form id="ask-form" class="ask-form" action="/ask/" method="get">
+<label class="visually-hidden" for="ask-q">Your question</label>
+<input id="ask-q" name="q" type="text" autocomplete="off" maxlength="240" placeholder="What dream are you chasing?">
+<button class="primary" type="submit">Search public pages</button>
+</form>
+<p class="ask-note" id="ask-keep-wrap" hidden><label for="ask-keep"><input id="ask-keep" type="checkbox"> Let Ian keep my questions to improve this page. No name or email needed.</label></p>
+<div class="ask-chips">
+<button type="button" data-ask-chip>Where is the free office map?</button>
+<button type="button" data-ask-chip>What does Job Desk do?</button>
+<button type="button" data-ask-chip>Where is the free AI visibility check?</button>
+<button type="button" data-ask-chip>Where is the fictional Job Desk demo?</button>
+</div>
+<p class="ask-note">No paid model is connected.</p>
+<div id="ask-log" class="ask-log" aria-live="polite"></div>
 </section>
-<section class="section" id="ask-home">
-<div class="section-head"><div><p class="eyebrow">ASK DTRT</p><h2>Questions from the published pages.</h2></div></div>
-<p>Ask in your browser. The answer is a short list of matching passages and the pages they come from. No paid model is connected.</p>
-<p><a class="primary" href="/ask/">Open Ask DTRT</a></p>
+<section class="section feed" aria-label="Latest">
+<article class="feed-card">
+<p class="eyebrow">NOVEMBER 15, 2026</p>
+<h2>What got better</h2>
+<p>The Updated line follows the latest public change, and this page lists what got better.</p>
+<p><a href="/improvements/">What got better</a></p>
+</article>
+<article class="feed-card">
+<h2>Posts</h2>
+<p>Posts live here.</p>
+<p><a href="/blog/">Read posts</a> · <a href="/notebook/">Notebook</a></p>
+</article>
+<article class="feed-card">
+<h2>Videos</h2>
+<p>A 15 second introduction is on this page.</p>
+<p><a href="#videos">Watch the introduction</a></p>
+</article>
 </section>
-<section class="section" id="work-with-me">
-<div class="section-head"><div><p class="eyebrow">BUSINESS</p><h2>Work with me.</h2></div><p>Services, proof, and the company pages stay open.</p></div>
-<p><a href="/map/">Free office map</a> · <a href="/map/?want=check">Free AI check</a> · <a href="#job-desk">Job Desk</a> · <a href="#prices">Prices</a> · <a href="/demo/">Fictional demo</a> · <a href="/proof/">Proof</a> · <a href="/partners.html">Partners</a> · <a href="/legal/terms.html">Terms</a> · <a href="/contact.html">Contact</a> · <a href="#campaign">Ended week</a></p>
+<section class="section work-band" id="work-with-me">
+<h2>Work with me.</h2>
+<p>Instagram and X are where I post most. I work remotely.</p>
+<p>Services, proof, and the company pages stay open.</p>
+<p><a href="/ask/">Ask DTRT</a> · <a href="/map/">Free office map</a> · <a href="/map/?want=check">Free AI check</a> · <a href="#job-desk">Job Desk</a> · <a href="#prices">Prices</a> · <a href="/demo/">Fictional demo</a> · <a href="/proof/">Proof</a> · <a href="/partners.html">Partners</a> · <a href="/legal/terms.html">Terms</a> · <a href="/contact.html">Contact</a> · <a href="#campaign">Ended week</a></p>
+<nav class="site-socials" aria-label="Social"><a class="social-main" href="https://www.instagram.com/officiallydtrt/" rel="me noopener noreferrer" target="_blank" aria-label="Instagram, @officiallydtrt">Instagram</a><a class="social-main" href="https://x.com/DTRTLab" rel="me noopener noreferrer" target="_blank" aria-label="X, @DTRTLab">X</a><a href="https://www.tiktok.com/@iananthonyfc" rel="me noopener noreferrer" target="_blank" aria-label="TikTok, @iananthonyfc">TikTok</a><a href="https://www.youtube.com/@DTRTLabYT" rel="me noopener noreferrer" target="_blank" aria-label="YouTube, @DTRTLabYT">YouTube</a><a href="https://www.twitch.tv/dtrtc" rel="me noopener noreferrer" target="_blank" aria-label="Twitch, dtrtc">Twitch</a></nav>
 </section>
 <section class="hero">
 <div class="story-stage" role="region" aria-labelledby="story-kicker">
@@ -251,5 +283,9 @@ Your browser cannot play this video. Use a video link or read the transcript bel
 </form>
 </section>
 </main>
-<footer><a class="wordmark" href="#main">DTRT <strong>LAB</strong></a><p>Do the right thing. Make useful things. Keep a truthful record.</p><nav aria-label="Footer"><a href="/notebook/">Notebook</a><a href="/blog/">Posts</a><a href="/ask/">Ask DTRT</a><a href="/inside-the-lab/">Inside the Lab</a><a href="/contact.html">Contact</a><a href="/legal/privacy.html">Privacy</a><a href="/legal/terms.html">Terms</a><a href="/legal/refunds.html">Refunds</a></nav></footer>
+<footer><a class="wordmark" href="#main">DTRT <strong>LAB</strong></a><p>Do the right thing. Make useful things. Keep a truthful record.</p><nav aria-label="Footer"><a href="/notebook/">Notebook</a><a href="/blog/">Posts</a><a href="/ask/">Ask DTRT</a><a href="/improvements/">What got better</a><a href="/inside-the-lab/">Inside the Lab</a><a href="/contact.html">Contact</a><a href="/legal/privacy.html">Privacy</a><a href="/legal/terms.html">Terms</a><a href="/legal/refunds.html">Refunds</a></nav><nav class="site-socials" aria-label="Social"><a class="social-main" href="https://www.instagram.com/officiallydtrt/" rel="me noopener noreferrer" target="_blank" aria-label="Instagram, @officiallydtrt">Instagram</a><a class="social-main" href="https://x.com/DTRTLab" rel="me noopener noreferrer" target="_blank" aria-label="X, @DTRTLab">X</a><a href="https://www.tiktok.com/@iananthonyfc" rel="me noopener noreferrer" target="_blank" aria-label="TikTok, @iananthonyfc">TikTok</a><a href="https://www.youtube.com/@DTRTLabYT" rel="me noopener noreferrer" target="_blank" aria-label="YouTube, @DTRTLabYT">YouTube</a><a href="https://www.twitch.tv/dtrtc" rel="me noopener noreferrer" target="_blank" aria-label="Twitch, dtrtc">Twitch</a></nav></footer>
+<script src="/ask/passages.js?v=20261115-ask10"></script>
+<script src="/ask/ask.js?v=20261115-ask1"></script>
+<script src="/ask/log.js?v=20261115-asklog2"></script>
+<script src="/ask/ui.js?v=20261115-ask3"></script>
 </body></html>

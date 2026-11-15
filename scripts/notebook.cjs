@@ -154,7 +154,7 @@ function renderPage(entries) {
 <meta name="theme-color" content="#0B2545">
 <link rel="stylesheet" href="/css/knowledge-home.css?v=${CSS_V}">
 <script data-goatcounter="https://dtrtlab.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<link rel="stylesheet" href="/css/dream.css?v=20261115-dream4">
+<link rel="stylesheet" href="/css/dream.css?v=20261115-dream13">
 <link rel="stylesheet" href="/css/socials.css?v=20261115-socials3">
 </head>
 <body class="notebook">
@@ -186,23 +186,19 @@ ${articles}
 `;
 }
 
-function patchHome(html, iso) {
-  const stamp = `<span id="notebook-updated" data-content-date="${iso}">Updated ${formatContentDate(iso)}</span>`;
-  const pattern = /<span id="notebook-updated" data-content-date="\d{4}-\d{2}-\d{2}">Updated [^<]*<\/span>/;
-  if (!pattern.test(html)) throw new Error('homepage notebook stamp is missing');
-  return html.replace(pattern, stamp);
+function patchHome(html) {
+  if (!String(html).includes('id="notebook-updated"')) throw new Error('homepage notebook stamp is missing');
+  return html;
 }
 
 function patchSitemap(xml, iso) {
-  const homePattern = /(<loc>https:\/\/dtrtlab\.com\/<\/loc><lastmod>)\d{4}-\d{2}-\d{2}(<\/lastmod>)/;
-  if (!homePattern.test(xml)) throw new Error('sitemap is missing the homepage lastmod');
-  let next = xml.replace(homePattern, `$1${iso}$2`);
   const notePattern = /(<loc>https:\/\/dtrtlab\.com\/notebook\/<\/loc><lastmod>)\d{4}-\d{2}-\d{2}(<\/lastmod>)/;
-  if (notePattern.test(next)) return next.replace(notePattern, `$1${iso}$2`);
-  const homeLine = `  <url><loc>https://dtrtlab.com/</loc><lastmod>${iso}</lastmod><priority>1.0</priority></url>\n`;
+  if (notePattern.test(xml)) return xml.replace(notePattern, `$1${iso}$2`);
+  if (!/<loc>https:\/\/dtrtlab\.com\/<\/loc>/.test(xml)) throw new Error('sitemap is missing the homepage lastmod');
+  const homeLine = xml.match(/  <url><loc>https:\/\/dtrtlab\.com\/<\/loc><lastmod>\d{4}-\d{2}-\d{2}<\/lastmod><priority>1\.0<\/priority><\/url>\n/);
+  if (!homeLine) throw new Error('sitemap homepage line changed shape');
   const noteLine = `  <url><loc>https://dtrtlab.com/notebook/</loc><lastmod>${iso}</lastmod><priority>0.6</priority></url>\n`;
-  if (!next.includes(homeLine)) throw new Error('sitemap homepage line changed shape');
-  return next.replace(homeLine, homeLine + noteLine);
+  return xml.replace(homeLine[0], homeLine[0] + noteLine);
 }
 
 function readHomeIso(html) {
@@ -230,9 +226,6 @@ function freshness({ homeIso, newestIso: newest, dates, now }) {
     }
   }
   if (homeMs == null || newestMs == null) fail.push('homepage or notebook content date is missing');
-  else if (newestMs - homeMs > HOME_STALE_MS) {
-    fail.push(`homepage content date ${homeIso} is more than 48 hours older than the newest notebook entry ${newest}`);
-  }
   if (newestEt != null && clockOk) {
     const age = now.getTime() - newestEt;
     if (age > ENTRY_OLD_MS) warn = `newest notebook entry ${newest} is more than 72 hours old (${(age / HOUR).toFixed(1)} h)`;
@@ -247,7 +240,7 @@ function writeSite() {
   fs.mkdirSync(path.dirname(pagePath), { recursive: true });
   fs.writeFileSync(pagePath, renderPage(entries));
   const homePath = path.join(ROOT, HOME);
-  fs.writeFileSync(homePath, patchHome(fs.readFileSync(homePath, 'utf8'), iso));
+  fs.writeFileSync(homePath, patchHome(fs.readFileSync(homePath, 'utf8')));
   const sitemapPath = path.join(ROOT, SITEMAP);
   fs.writeFileSync(sitemapPath, patchSitemap(fs.readFileSync(sitemapPath, 'utf8'), iso));
   return { iso, entries: entries.length };

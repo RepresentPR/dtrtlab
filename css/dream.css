@@ -236,6 +236,192 @@ body.dream[data-mood="night"] .dream-orb-b { background: #8a6ea8; }
   }
 }
 
+.preview-bar a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.dream-sky {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-content: start;
+  gap: 18px;
+  min-height: 100svh;
+  width: 100%;
+  max-width: 100%;
+  padding: 28px 20px 40px;
+  color: #f4f7fb;
+  background:
+    radial-gradient(42% 36% at 15% 0%, rgba(120, 150, 230, 0.35), transparent 70%),
+    radial-gradient(36% 40% at 90% 80%, rgba(110, 60, 160, 0.4), transparent 72%),
+    linear-gradient(180deg, #070b18 0%, #121a30 58%, #0b2545 100%);
+  overflow: hidden;
+}
+
+.sky-orb {
+  position: absolute;
+  z-index: 0;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  filter: blur(28px);
+  opacity: 0.55;
+  pointer-events: none;
+  background: #6d86d6;
+}
+
+.sky-orb-a { left: -40px; top: 18%; }
+.sky-orb-b { right: -30px; bottom: 8%; width: 180px; height: 180px; background: #8a6ea8; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .sky-orb-a { animation: dream-drift 28s ease-in-out infinite; }
+  .sky-orb-b { animation: dream-drift 36s ease-in-out infinite reverse; }
+}
+
+.dream-sky .sky-copy,
+.dream-sky .ask-form,
+.dream-sky .ask-chips,
+.dream-sky .ask-note,
+.dream-sky .ask-log,
+.dream-sky .hero-quiet {
+  position: relative;
+  z-index: 1;
+  width: min(720px, 100%);
+  margin-inline: auto;
+}
+
+.dream-sky h1 {
+  margin: 0;
+  font-size: clamp(52px, 12vw, 92px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: #f7fafc;
+}
+
+.dream-sky .visit-line,
+.dream-sky .hero-quiet {
+  margin: 0;
+  color: #f7fafc;
+  background: #070b18;
+  border-radius: 8px;
+  padding: 4px 8px;
+  width: fit-content;
+  max-width: 100%;
+  font-size: 16px;
+}
+
+.dream-sky .ask-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+}
+
+.dream-sky .ask-form input {
+  min-height: 56px;
+  width: 100%;
+  border: 0;
+  border-radius: 16px;
+  padding: 12px 16px;
+  font-size: 18px;
+  background: #f7fafc;
+  color: #102c46;
+}
+
+.dream-sky .ask-form button,
+.dream-sky .ask-chips button {
+  min-height: 44px;
+  border: 1px solid #c5d0e4;
+  border-radius: 999px;
+  background: #070b18;
+  color: #f7fafc;
+  padding: 0 14px;
+}
+
+.dream-sky .ask-form button {
+  background: #9ee6c5;
+  color: #07111c;
+  border: 0;
+  font-weight: 700;
+}
+
+.ask-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ask-bubble,
+.ask-bubble p,
+.ask-bubble a,
+.ask-hit p,
+.ask-you,
+.dream-sky .ask-bubble,
+.dream-sky .ask-bubble p,
+.dream-sky .ask-bubble a,
+.dream-sky .ask-you,
+.dream-sky .ask-hit p {
+  color: #102c46;
+}
+
+#ask-keep-wrap,
+#ask-keep-wrap label {
+  color: #102c46;
+  background: #ffffff;
+}
+
+.ask-note {
+  margin: 0;
+  font-size: 16px;
+  color: #f7fafc;
+  background: #070b18;
+  border-radius: 8px;
+  padding: 6px 10px;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.ask-you {
+  margin: 0;
+}
+
+.feed {
+  display: grid;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.feed-card {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid #d5e0d8;
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.feed-card h2,
+.work-band h2 {
+  margin: 6px 0;
+}
+
+.work-band {
+  margin-top: 22px;
+  padding: 16px 0;
+  border-top: 1px solid #d5e0d8;
+}
+
+@media (max-width: 640px) {
+  .dream-sky {
+    padding: 16px 16px 28px;
+    min-height: 0;
+  }
+
+  .dream-sky .ask-form {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .dream-orb { animation: none; }
+  .dream-orb,
+  .sky-orb { animation: none; }
 }

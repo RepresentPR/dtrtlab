@@ -1,0 +1,11 @@
+# Studio approval for a homepage photo
+
+The homepage shows the night gradient until Ian approves a real photo at img/ian/hero.jpg.
+When that file is added, it must decode as a JPEG and match the sha256, width, and height below.
+
+{
+  "path": "img/ian/hero.jpg",
+  "sha256": "",
+  "width": 0,
+  "height": 0
+}

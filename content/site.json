@@ -43,5 +43,16 @@
     "https://github.com/RepresentPR"
   ],
   "releaseWindow": "When Windows export and playtest pass — no date claimed.",
-  "googleSiteVerification": ""
+  "googleSiteVerification": "",
+  "ask_log": {
+    "endpoint": "",
+    "fields": {
+      "question": "",
+      "urls": "",
+      "count": "",
+      "page": "",
+      "timestamp": "",
+      "session": ""
+    }
+  }
 }

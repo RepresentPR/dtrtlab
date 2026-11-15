@@ -1,5 +1,6 @@
 /* Build the public-page passage index used by /ask/.
-   Skips drafts, noindex pages, /private, /live, and /hq.
+   Skips the homepage, legal pages, drafts, noindex pages, /private, /live, and /hq.
+   The homepage repeats the map, Job Desk, and demo pages, so chips use those pages.
    Usage: node scripts/build-ask-index.cjs
 */
 const fs = require('node:fs');
@@ -79,12 +80,26 @@ function passagesFor(rel, title, text) {
   return chunks;
 }
 
+function forIndex(rel, html) {
+  if (rel !== 'index.html') return html;
+  return String(html).replace(/<section\b[^>]*\bdream-sky\b[^>]*>[\s\S]*?<\/section>/i, ' ');
+}
+
+function jsSource(corpus) {
+  const json = JSON.stringify(corpus).replace(/\//g, '\\u002f').replace(/</g, '\\u003c');
+  return 'window.DTRT_ASK_CORPUS = ' + json + ';\n';
+}
+
+function jsonSource(corpus) {
+  return JSON.stringify(corpus, null, 2) + '\n';
+}
+
 function build() {
   const passages = [];
   for (const file of walk(ROOT).sort()) {
     const rel = path.relative(ROOT, file).split(path.sep).join('/');
-    if (rel.includes('private') || /live\/(extras|upnext)\.html$/.test(rel) || isFiction(rel) || GAME_STATUS.has(rel)) continue;
-    const html = fs.readFileSync(file, 'utf8');
+    if (rel === 'index.html' || rel.includes('private') || rel.startsWith('legal/') || /live\/(extras|upnext)\.html$/.test(rel) || isFiction(rel) || GAME_STATUS.has(rel)) continue;
+    const html = forIndex(rel, fs.readFileSync(file, 'utf8'));
     if (/<meta\b[^>]*name="robots"[^>]*content="[^"]*noindex/i.test(html)) continue;
     if (/\bdata-draft=/.test(html)) continue;
     const page = visible(html);
@@ -106,11 +121,9 @@ function build() {
 }
 
 function write(corpus) {
-  const json = JSON.stringify(corpus).replace(/\//g, '\\u002f').replace(/</g, '\\u003c');
-  const js = 'window.DTRT_ASK_CORPUS = ' + json + ';\n';
   fs.mkdirSync(path.join(ROOT, 'ask'), { recursive: true });
-  fs.writeFileSync(path.join(ROOT, 'ask', 'passages.js'), js);
-  fs.writeFileSync(path.join(ROOT, 'ask', 'passages.json'), JSON.stringify(corpus, null, 2) + '\n');
+  fs.writeFileSync(path.join(ROOT, 'ask', 'passages.js'), jsSource(corpus));
+  fs.writeFileSync(path.join(ROOT, 'ask', 'passages.json'), jsonSource(corpus));
   return corpus.passages.length;
 }
 
@@ -119,4 +132,4 @@ if (require.main === module) {
   process.stdout.write('ask passages: ' + count + '\n');
 }
 
-module.exports = { build, write, publicUrl, visible };
+module.exports = { build, write, publicUrl, visible, jsSource, jsonSource, forIndex };

@@ -3,13 +3,17 @@
     "hash": "c67f740f963fe0edf22424b45b6584246894bdf8986c54ac0e3f281e52003d4e",
     "key": "20261115-ask1"
   },
+  "ask/log.js": {
+    "hash": "14c51840868810365cd023be1fc9a2b0b5312051805c51ca762f501f735b8e45",
+    "key": "20261115-asklog2"
+  },
   "ask/passages.js": {
-    "hash": "7e8118a1b9a1d4a10b9d444cfcf8a149b16e303275e794cb5fb2fc942b5c3bca",
-    "key": "20261115-ask5"
+    "hash": "a2a5b92273c83891e287175f405d9ef8159e48511d97a5dfa7305e99aad3733f",
+    "key": "20261115-ask10"
   },
   "ask/ui.js": {
-    "hash": "339f665e18a670295b1fc263bacc90c13c7e08b78d6982bd9967ff5d3baf789a",
-    "key": "20261115-ask1"
+    "hash": "c21697d18bf5461f18e4dd479cc77fe187ab0c25f0f59dd71961395fa4fd2a8b",
+    "key": "20261115-ask3"
   },
   "content/clips.js": {
     "hash": "a5c0cfa45b00524fbc1d2de324ec0f19031af1fce1ff80c092c465e2e29cd1e4",
@@ -66,8 +70,8 @@
     ]
   },
   "css/dream.css": {
-    "hash": "834047a0e5b35f16b4ebfbcd80f76c6dde956157ab16f209d3c48e01e89d96a7",
-    "key": "20261115-dream4"
+    "hash": "7484fb2002a657d6d065c962cbcc2cada8822efba6f26ad86ad373154fc8772c",
+    "key": "20261115-dream13"
   },
   "css/dtrtc.css": {
     "hash": "496c69a4f7f2b676c41907f9b2b4efdf58fdb77231bf98abc4a31372e8b00afc",
@@ -202,8 +206,8 @@
     "key": "20261010n"
   },
   "js/biz-lang.js": {
-    "hash": "72b71457be095735897c89298d59eae17e67bcdbbf4263119259eea2409644dc",
-    "key": "20261115-legal3"
+    "hash": "3d17ba6752b91be7a8f936c50bbbd6196d84a39c42576089a794763e8652dff7",
+    "key": "20261115-asklog2"
   },
   "js/calm.js": {
     "hash": "0405c18592b384288ccddc73a9948b1517c5cb88224f3b6f2cac6b817302f03f",
@@ -328,8 +332,8 @@
     "key": "20261010n"
   },
   "js/nav.js": {
-    "hash": "44cba21a432578e245b587d7642e8ca6a8d67170f56349cf445690da4fbfb7a1",
-    "key": "20261115-social4"
+    "hash": "b106347381f2bc2d94049f376d9e86a6683648ddcbc94cab73cc0c3316d829c8",
+    "key": "20261115-asklog2"
   },
   "js/plan-tool.js": {
     "hash": "687e9bc23bcb839927457b71cad5ac30e36edcd4593be1f5a8bdd79786e50cee",
@@ -412,8 +416,8 @@
     "key": null
   },
   "sw.js": {
-    "hash": "19ef72fc4357106e1f8bad51ecca64fdcd23ad93b910bd8546bef4a37fcd91da",
-    "key": "20261115-rel1"
+    "hash": "0a9be4f3078f1915f3b870dc7c6098a725de3c45493ac18ef1a380a1bfd7c030",
+    "key": "20261115-asklog2"
   },
   "watch/watch.css": {
     "hash": "0b8026e65ae3b40c91b7dfdf31a94e579c60b0222bd1d5ce8999b2ffc29870f1",
