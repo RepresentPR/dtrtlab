@@ -198,8 +198,8 @@
     "key": "20261010n"
   },
   "js/biz-lang.js": {
-    "hash": "4b649b00d6d7ff5c1beac89edaceda673c1b2ae7d07d94a5fb42846571f3cd49",
-    "key": "20261031-legal1"
+    "hash": "cdd05098cf37562f86e5f665ba9618e8f11cbe97696bc05bc5c8355c433b1381",
+    "key": "20261115-legal2"
   },
   "js/calm.js": {
     "hash": "0405c18592b384288ccddc73a9948b1517c5cb88224f3b6f2cac6b817302f03f",
@@ -324,8 +324,8 @@
     "key": "20261010n"
   },
   "js/nav.js": {
-    "hash": "61168346aadb1ff223f1f333e4dbb54c2ef5b3eb9b3c35fe5cc7801f17d833ac",
-    "key": "20261115-social1"
+    "hash": "37b4a151174ee3af87fc48dc05f407760092cb2da904515e9f48fc3305b7d74a",
+    "key": "20261115-social2"
   },
   "js/plan-tool.js": {
     "hash": "687e9bc23bcb839927457b71cad5ac30e36edcd4593be1f5a8bdd79786e50cee",
@@ -408,8 +408,8 @@
     "key": null
   },
   "sw.js": {
-    "hash": "f7a7b4fcc9174b036a2246ef268a2be81e831f9499ce8bc4c7561a393311a2d7",
-    "key": "20261115-dream1"
+    "hash": "34cfc87d72362c1f3dca54214dee6d597690c28becaf7367c532a6c3cf02fb8b",
+    "key": "20261115-dream5"
   },
   "watch/watch.css": {
     "hash": "0b8026e65ae3b40c91b7dfdf31a94e579c60b0222bd1d5ce8999b2ffc29870f1",

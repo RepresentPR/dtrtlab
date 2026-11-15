@@ -90,7 +90,7 @@
 
   if (!document.querySelector('script[src*="js/biz-lang.js"]')) {
     var bizLang = document.createElement("script");
-    bizLang.src = root + "js/biz-lang.js?v=20261031-legal1";
+    bizLang.src = root + "js/biz-lang.js?v=20261115-legal2";
     bizLang.defer = true;
     document.head.appendChild(bizLang);
   }
@@ -346,7 +346,7 @@
 
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register(root + "sw.js?v=20261115-dream1").catch(function () {});
+      navigator.serviceWorker.register(root + "sw.js?v=20261115-dream5").catch(function () {});
     });
   }
 })();
