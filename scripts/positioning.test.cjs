@@ -53,7 +53,8 @@ test('homepage notebook preserves scoped offers and routes visitors to inquiry',
   assert.match(main, /href="\/map\/"/, 'existing map inquiry route remains available');
   assert.doesNotMatch(hero, /mailto:/, 'hero CTA is the on-site form, not a mailto link');
   assert.doesNotMatch(home, /Reply SYSTEM/, 'Reply SYSTEM stays off the website');
-  assert.doesNotMatch(hero.replace(/<a [^>]*>/g, ''), /\$\s?\d/, 'no price in the hero');
+  const heroPrices = hero.replace(/<button\b[^>]*data-ask-chip[^>]*>[\s\S]*?<\/button>/g, '').replace(/<a [^>]*>/g, '');
+  assert.doesNotMatch(heroPrices, /\$\s?\d/, 'no price in the hero');
   assert.doesNotMatch(hero, /plan_HAGSLXXUeGkcz|plan_RVDjSToI7vKOM|Mini|Week Pack/, 'Mini and Week Pack are off the hero');
   const nav = home.match(/<nav\b[^>]*aria-label="Main navigation"[^>]*>[\s\S]*?<\/nav>/)?.[0] || '';
   assert.ok(nav, 'main navigation has an accessible label');

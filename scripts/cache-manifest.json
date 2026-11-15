@@ -4,12 +4,12 @@
     "key": "20261115-ask1"
   },
   "ask/passages.js": {
-    "hash": "7e8118a1b9a1d4a10b9d444cfcf8a149b16e303275e794cb5fb2fc942b5c3bca",
-    "key": "20261115-ask5"
+    "hash": "5d09ac31498dfec2d908bcd6519af9603e191909f7a61461e112bd846bd9ba15",
+    "key": "20261115-ask6"
   },
   "ask/ui.js": {
-    "hash": "339f665e18a670295b1fc263bacc90c13c7e08b78d6982bd9967ff5d3baf789a",
-    "key": "20261115-ask1"
+    "hash": "c2486c628b17a757537a305faeaac180003152a09ecd36b2cd1f39ceb8c7fc59",
+    "key": "20261115-ask2"
   },
   "content/clips.js": {
     "hash": "a5c0cfa45b00524fbc1d2de324ec0f19031af1fce1ff80c092c465e2e29cd1e4",
@@ -66,8 +66,8 @@
     ]
   },
   "css/dream.css": {
-    "hash": "834047a0e5b35f16b4ebfbcd80f76c6dde956157ab16f209d3c48e01e89d96a7",
-    "key": "20261115-dream4"
+    "hash": "a54fd99cf21693a941fef2171e5bc4e274e824c48292d4ba7194fe629d00a9be",
+    "key": "20261115-dream11"
   },
   "css/dtrtc.css": {
     "hash": "496c69a4f7f2b676c41907f9b2b4efdf58fdb77231bf98abc4a31372e8b00afc",
@@ -278,6 +278,10 @@
   "js/growth-monitor.js": {
     "hash": "42e259322f7c16cb0270b200af93944c582893a0cf8a6bf4fae57ee619705b53",
     "key": null
+  },
+  "js/hero-photo.js": {
+    "hash": "766220b46d25f3989f52b04dc8b506328dc666bd4d67471953fbbf00f30f0857",
+    "key": "20261115-hero1"
   },
   "js/homepage-video.mjs": {
     "hash": "a813b9fc86fb4533d3d45b640b2da7f8ab3dac7c57a76e00758e8fe05f7c84e0",

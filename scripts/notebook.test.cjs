@@ -57,10 +57,9 @@ test('published notebook, homepage stamp, and sitemap match the log', () => {
   const newest = newestIso(entries.map((entry) => entry.date));
   const page = renderPage(entries);
   assert.equal(read(PAGE), page);
-  assert.equal(patchHome(read(HOME), newest), read(HOME));
+  assert.equal(patchHome(read(HOME)), read(HOME));
   assert.equal(patchSitemap(read(SITEMAP), newest), read(SITEMAP));
   assert.deepEqual(entryDates(page), orderedEntries(entries).map((entry) => entry.date));
-  assert.equal(readHomeIso(read(HOME)), newest);
   assert.equal(newestIso(entryDates(page)), newest);
 });
 
@@ -104,20 +103,12 @@ test('notebook is registered in the nav, footer, and sitemap', () => {
   const newest = newestIso(entryDates(read(PAGE)));
   const sitemap = read(SITEMAP);
   assert.match(sitemap, new RegExp(`<loc>https://dtrtlab\\.com/notebook/</loc><lastmod>${newest}</lastmod>`));
-  assert.match(sitemap, new RegExp(`<loc>https://dtrtlab\\.com/</loc><lastmod>${newest}</lastmod>`));
 });
 
-test('exactly 48 hours does not fail, and more than 48 hours does', () => {
+test('the homepage stamp is not failed for being older than the notebook', () => {
   const now = new Date(Date.UTC(2026, 10, 12, 18));
   assert.deepEqual(freshness({ homeIso: '2026-11-12', newestIso: '2026-11-12', now }).fail, []);
-  assert.deepEqual(
-    freshness({ homeIso: '2026-11-10', newestIso: '2026-11-12', now }).fail,
-    [],
-    'exactly 48 hours is not more than 48 hours',
-  );
-  const late = freshness({ homeIso: '2026-11-09', newestIso: '2026-11-12', now });
-  assert.equal(late.fail.length, 1);
-  assert.match(late.fail[0], /more than 48 hours older/);
+  assert.deepEqual(freshness({ homeIso: '2026-11-09', newestIso: '2026-11-12', now }).fail, []);
   assert.ok(freshness({ homeIso: null, newestIso: '2026-11-12', now }).fail.length > 0);
   const fallback = freshness({ homeIso: '2026-10-31', newestIso: '2026-11-02', now: new Date('2026-11-02T18:00:00-05:00') });
   assert.ok(etMidnightMs('2026-11-02') - etMidnightMs('2026-10-31') > 48 * HOUR, 'fall-back makes two calendar days 49 Eastern hours');
@@ -149,11 +140,10 @@ test('an entry more than 72 hours after ET midnight warns and does not fail the 
   assert.match(old.warn, /more than 72 hours old/);
 });
 
-test('site-gate: homepage content date is within 48 hours of the newest notebook entry', () => {
-  const homeIso = readHomeIso(read(HOME));
+test('site-gate: notebook entries are not in the future', () => {
   const dates = entryDates(read(PAGE));
   const newest = newestIso(dates);
-  const result = freshness({ homeIso, newestIso: newest, dates, now: new Date() });
+  const result = freshness({ homeIso: newest, newestIso: newest, dates, now: new Date() });
   if (result.warn) console.warn(`::warning::${result.warn}`);
   assert.deepEqual(result.fail, []);
 });

@@ -21,6 +21,13 @@
     item.scrollIntoView({ block: "nearest" });
   }
 
+  document.querySelectorAll("[data-ask-chip]").forEach(function (chip) {
+    chip.addEventListener("click", function () {
+      input.value = chip.textContent.trim();
+      form.requestSubmit();
+    });
+  });
+
   form.addEventListener("submit", function (event) {
     event.preventDefault();
     var question = input.value.trim();
@@ -28,7 +35,7 @@
       input.focus();
       return;
     }
-    add("<p><strong>You.</strong> " + escape(question) + "</p>");
+    add('<p class="ask-you"><strong>You.</strong> ' + escape(question) + "</p>");
     window.DTRTAsk.answer(question, corpus || { passages: [] }).then(function (result) {
       var matches = (result && result.matches) || [];
       if (!matches.length) {
