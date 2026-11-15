@@ -117,11 +117,10 @@ body.dream[data-mood="night"] .dream-orb-b { background: #8a6ea8; }
 }
 
 .ambience {
-  position: fixed;
-  right: 16px;
-  bottom: 16px;
-  z-index: 50;
-  width: min(320px, calc(100vw - 24px));
+  position: static;
+  z-index: 1;
+  width: min(320px, calc(100% - 32px));
+  margin: 12px 16px 0;
   padding: 12px 14px;
   border-radius: 18px;
   background: rgba(11, 37, 69, 0.94);
@@ -232,15 +231,6 @@ body.dream[data-mood="night"] .dream-orb-b { background: #8a6ea8; }
 }
 
 @media (max-width: 760px) {
-  .ambience {
-    position: static;
-    left: auto;
-    right: auto;
-    bottom: auto;
-    width: auto;
-    margin: 12px 16px 0;
-  }
-
   .header {
     flex-wrap: wrap;
   }
