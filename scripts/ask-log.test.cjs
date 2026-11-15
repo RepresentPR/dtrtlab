@@ -55,6 +55,9 @@ test('scrub removes an email, a phone, a card, and a long number, then caps at 5
   const clean = log.scrub(dirty);
   assert.equal(clean, 'Write [removed] or [removed] card [removed] code [removed]');
   assert.equal(log.scrub('The year 2026 and the day 2026-11-15 stay.'), 'The year 2026 and the day 2026-11-15 stay.');
+  assert.equal(log.scrub('SSN 123-45-6789 and local 555-1234'), 'SSN [removed] and local [removed]');
+  assert.equal(log.scrub('Write name at gmail dot com or name [at] domain [dot] com'), 'Write [removed] or [removed]');
+  assert.equal(log.scrub('Meet at the office map.'), 'Meet at the office map.');
   assert.equal(log.scrub('x'.repeat(600)).length, 500);
 });
 
@@ -165,7 +168,32 @@ test('an empty endpoint keeps the checkbox hidden and sends nothing', async () =
   await log.note({ question: 'How do I stay consistent?', urls: [], count: 0, page: '/' });
   assert.equal(wrap.hidden, true);
   assert.equal(box.checked, false);
+  assert.equal(win.sessionStorage.data.has(log.SESSION_KEY), false);
   assert.deepEqual(calls.map((call) => call.url), ['/content/site.json']);
+});
+
+test('dtrt-ask-session is created only after opt-in', async () => {
+  const calls = [];
+  const box = { checked: false, addEventListener() {} };
+  const wrap = { hidden: true };
+  const doc = { getElementById(id) { return id === 'ask-keep' ? box : id === 'ask-keep-wrap' ? wrap : null; } };
+  const session = memory();
+  const win = {
+    localStorage: memory(),
+    sessionStorage: session,
+    fetch() {
+      calls.push('fetch');
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(config(FORM, FIELDS)) });
+    }
+  };
+  await log.mount(doc, win);
+  await log.note({ question: 'Where is the free office map?', urls: ['/map/'], count: 1, page: '/ask/' });
+  assert.equal(session.data.has(log.SESSION_KEY), false);
+  assert.equal(calls.filter((item) => item !== 'fetch').length, 0);
+  box.checked = true;
+  await log.note({ question: 'Where is the free office map?', urls: ['/map/'], count: 1, page: '/ask/' });
+  assert.equal(typeof session.data.get(log.SESSION_KEY), 'string');
+  assert.ok(calls.length > 1);
 });
 
 test('privacy states the opt-in Ask log in English and Spanish', () => {
@@ -178,7 +206,11 @@ test('privacy states the opt-in Ask log in English and Spanish', () => {
     'Ian keeps that log for weekly audits, fixes, and updates.',
     'No name or email is asked.',
     'Before a question is sent, this browser replaces text that looks like an email, a phone number, or a long number with [removed], and it keeps at most 500 characters.',
-    'The sent fields do not include your IP address or browser name, and this page does not build a fingerprint.',
+    'The log is a Google Form owned by Ian.',
+    'Google receives the request, including your IP address and browser information, under Google\'s privacy policy.',
+    'This site does not add your IP address or browser name to the log, and this page does not build a fingerprint.',
+    'Questions are kept for up to 12 months, then deleted.',
+    'To ask for a question to be deleted, use the contact page and include the date and the text of the question.',
     'Uncheck the box to stop.',
     'The choice stays on this device.',
     'Until a log address is set for the site, the checkbox stays hidden and nothing is sent.'
@@ -191,13 +223,25 @@ test('privacy states the opt-in Ask log in English and Spanish', () => {
     'Ian guarda ese registro para auditorías, correcciones y actualizaciones semanales.',
     'No se pide nombre ni correo.',
     'Antes de enviar una pregunta, este navegador sustituye el texto que parece un correo, un teléfono o un número de muchos dígitos por [removed], y deja como máximo 500 caracteres.',
-    'Los campos enviados no incluyen tu dirección IP ni el nombre del navegador, y esta página no arma una huella.',
+    'El registro es un formulario de Google que pertenece a Ian.',
+    'Google recibe la solicitud, incluida tu dirección IP y la información del navegador, según la política de privacidad de Google.',
+    'Este sitio no añade tu dirección IP ni el nombre del navegador al registro, y esta página no arma una huella.',
+    'Las preguntas se guardan hasta 12 meses y después se borran.',
+    'Para pedir que se borre una pregunta, usa la página de contacto e incluye la fecha y el texto de la pregunta.',
     'Quita la marca para parar.',
     'La elección se queda en este dispositivo.',
     'Hasta que el sitio tenga una dirección de registro, la casilla permanece oculta y no se envía nada.'
   ];
-  for (const line of en) assert.ok(privacy.includes(line), line);
-  for (const line of es) assert.ok(privacy.includes(line), line);
+  const visible = privacy.replace(/<[^>]+>/g, '');
+  for (const line of en) assert.ok(visible.includes(line), line);
+  for (const line of es) assert.ok(visible.includes(line), line);
   assert.match(read('js/biz-lang.js'), /se añadió un registro opcional de preguntas/);
-  assert.doesNotMatch(read('js/biz-lang.js'), /privacy\.html[\s\S]{0,240}el texto legal no cambió/);
+  assert.match(read('js/biz-lang.js'), /formulario de contacto/);
+  assert.match(read('js/biz-lang.js'), /Contacto de seguridad/);
+  assert.doesNotMatch(read('js/biz-lang.js'), /Cómo DTRT Lab trata los mensajes/);
+  const cookies = read('legal/cookies.html');
+  assert.match(cookies, /dtrt-ask-keep/);
+  assert.match(cookies, /dtrt-ask-session/);
+  assert.match(cookies, /lang="es"/);
+  assert.match(privacy, /href="https:\/\/policies\.google\.com\/privacy"/);
 });

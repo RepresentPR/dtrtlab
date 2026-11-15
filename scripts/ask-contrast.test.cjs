@@ -28,7 +28,8 @@ test('new hero text is at least 4.5:1 on its background', () => {
     ['#f7fafc', '#070b18', '.ask-note'],
     ['#f7fafc', '#070b18', '.ask-chips button'],
     ['#102c46', '#ffffff', '.ask-bubble'],
-    ['#07111c', '#9ee6c5', '.ask-form button']
+    ['#07111c', '#9ee6c5', '.ask-form button'],
+    ['#102c46', '#ffffff', '#ask-keep-wrap']
   ];
   for (const [fg, bg, needle] of pairs) {
     assert.ok(css.includes(fg), needle + ' ' + fg);

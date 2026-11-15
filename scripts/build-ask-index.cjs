@@ -1,5 +1,6 @@
 /* Build the public-page passage index used by /ask/.
-   Skips drafts, noindex pages, /private, /live, and /hq.
+   Skips the homepage, legal pages, drafts, noindex pages, /private, /live, and /hq.
+   The homepage repeats the map, Job Desk, and demo pages, so chips use those pages.
    Usage: node scripts/build-ask-index.cjs
 */
 const fs = require('node:fs');
@@ -97,7 +98,7 @@ function build() {
   const passages = [];
   for (const file of walk(ROOT).sort()) {
     const rel = path.relative(ROOT, file).split(path.sep).join('/');
-    if (rel.includes('private') || /live\/(extras|upnext)\.html$/.test(rel) || isFiction(rel) || GAME_STATUS.has(rel)) continue;
+    if (rel === 'index.html' || rel.includes('private') || rel.startsWith('legal/') || /live\/(extras|upnext)\.html$/.test(rel) || isFiction(rel) || GAME_STATUS.has(rel)) continue;
     const html = forIndex(rel, fs.readFileSync(file, 'utf8'));
     if (/<meta\b[^>]*name="robots"[^>]*content="[^"]*noindex/i.test(html)) continue;
     if (/\bdata-draft=/.test(html)) continue;

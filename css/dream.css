@@ -352,12 +352,23 @@ body.dream[data-mood="night"] .dream-orb-b { background: #8a6ea8; }
   gap: 8px;
 }
 
+.ask-bubble,
+.ask-bubble p,
+.ask-bubble a,
+.ask-hit p,
+.ask-you,
 .dream-sky .ask-bubble,
 .dream-sky .ask-bubble p,
 .dream-sky .ask-bubble a,
 .dream-sky .ask-you,
 .dream-sky .ask-hit p {
   color: #102c46;
+}
+
+#ask-keep-wrap,
+#ask-keep-wrap label {
+  color: #102c46;
+  background: #ffffff;
 }
 
 .ask-note {

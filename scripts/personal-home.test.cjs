@@ -95,9 +95,11 @@ test('every visitor page links the five profiles, with Instagram marked as main'
   assert.deepEqual(missing, []);
   for (const rel of ['legal/terms.html', 'legal/privacy.html', 'legal/cookies.html', 'legal/refunds.html', 'legal/dmca.html', 'legal/preorder-terms.html']) {
     const html = read(rel);
-    assert.match(html, rel === 'legal/privacy.html'
-      ? /Last updated November 15, 2026 — added an optional Ask log\./
-      : /Last updated November 15, 2026 — added profile links; legal text unchanged/);
+    const stamp = {
+      'legal/privacy.html': /Last updated November 15, 2026 — added an optional Ask log\./,
+      'legal/cookies.html': /Last updated November 15, 2026 — added the optional Ask storage keys\./
+    };
+    assert.match(html, stamp[rel] || /Last updated November 15, 2026 — added profile links; legal text unchanged/);
     assert.match(html, /Last updated November 15, 2026/);
     assert.doesNotMatch(html, /visit\.js/);
   }

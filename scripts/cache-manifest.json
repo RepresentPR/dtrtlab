@@ -4,12 +4,12 @@
     "key": "20261115-ask1"
   },
   "ask/log.js": {
-    "hash": "f33f6fb2ea8c0b24d2ec3357957448ca323dc81b4ee49cd9572716b4629dc7b7",
-    "key": "20261115-asklog1"
+    "hash": "14c51840868810365cd023be1fc9a2b0b5312051805c51ca762f501f735b8e45",
+    "key": "20261115-asklog2"
   },
   "ask/passages.js": {
-    "hash": "c66b2b4a0fd05c24c8935b42fe938cf9dba980ddf86018cbc1573b8b7fef9caa",
-    "key": "20261115-ask9"
+    "hash": "a2a5b92273c83891e287175f405d9ef8159e48511d97a5dfa7305e99aad3733f",
+    "key": "20261115-ask10"
   },
   "ask/ui.js": {
     "hash": "c21697d18bf5461f18e4dd479cc77fe187ab0c25f0f59dd71961395fa4fd2a8b",
@@ -70,8 +70,8 @@
     ]
   },
   "css/dream.css": {
-    "hash": "36f0ceae2d32e2a691e4990181938e2f32e415e4bd72af8be0410179003e939f",
-    "key": "20261115-dream12"
+    "hash": "7484fb2002a657d6d065c962cbcc2cada8822efba6f26ad86ad373154fc8772c",
+    "key": "20261115-dream13"
   },
   "css/dtrtc.css": {
     "hash": "496c69a4f7f2b676c41907f9b2b4efdf58fdb77231bf98abc4a31372e8b00afc",
@@ -206,8 +206,8 @@
     "key": "20261010n"
   },
   "js/biz-lang.js": {
-    "hash": "704a2b3dbe4a3237343d2086d3e4465f908dcc4e7d31ec6f6eaa38c6a1922fe1",
-    "key": "20261115-asklog1"
+    "hash": "3d17ba6752b91be7a8f936c50bbbd6196d84a39c42576089a794763e8652dff7",
+    "key": "20261115-asklog2"
   },
   "js/calm.js": {
     "hash": "0405c18592b384288ccddc73a9948b1517c5cb88224f3b6f2cac6b817302f03f",
@@ -332,8 +332,8 @@
     "key": "20261010n"
   },
   "js/nav.js": {
-    "hash": "547b1e41e7f6e27b2dfbab3aa0e585299b2e99843017d4e47e53fb5a18ab16bd",
-    "key": "20261115-asklog1"
+    "hash": "b106347381f2bc2d94049f376d9e86a6683648ddcbc94cab73cc0c3316d829c8",
+    "key": "20261115-asklog2"
   },
   "js/plan-tool.js": {
     "hash": "687e9bc23bcb839927457b71cad5ac30e36edcd4593be1f5a8bdd79786e50cee",
@@ -416,8 +416,8 @@
     "key": null
   },
   "sw.js": {
-    "hash": "b8ce54ede871b4b2298deeb328848361200def1f7278005b025c4f418c651c54",
-    "key": "20261115-asklog1"
+    "hash": "0a9be4f3078f1915f3b870dc7c6098a725de3c45493ac18ef1a380a1bfd7c030",
+    "key": "20261115-asklog2"
   },
   "watch/watch.css": {
     "hash": "0b8026e65ae3b40c91b7dfdf31a94e579c60b0222bd1d5ce8999b2ffc29870f1",

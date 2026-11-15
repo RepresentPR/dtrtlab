@@ -17,8 +17,11 @@
   function scrub(text) {
     var value = String(text == null ? "" : text);
     value = value.replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi, "[removed]");
+    value = value.replace(/\b[A-Z0-9._%+-]+\s*(?:\[at\]|\(at\)|\bat\b)\s*[A-Z0-9.-]+\s*(?:\[dot\]|\(dot\)|\bdot\b)\s*[A-Z]{2,}\b/gi, "[removed]");
+    value = value.replace(/\b\d{3}-\d{2}-\d{4}\b/g, "[removed]");
     value = value.replace(/\+\d{1,3}(?:[\s.-]?\d){7,14}\b/g, "[removed]");
     value = value.replace(/(?:\+\d{1,3}[\s.-])?(?:\(\d{3}\)|\d{3})[\s.-]\d{3}[\s.-]\d{4}\b/g, "[removed]");
+    value = value.replace(/\b\d{3}[\s.-]\d{4}\b/g, "[removed]");
     value = value.replace(/\b\d(?:[ -]?\d){12,18}\b/g, "[removed]");
     value = value.replace(/\b\d{8,}\b/g, "[removed]");
     if (value.length > LIMIT) value = value.slice(0, LIMIT);
@@ -173,14 +176,15 @@
 
   function note(record) {
     var box = state.box;
+    var keep = Boolean(state.wrap && !state.wrap.hidden && box && box.checked);
     return deliver({
-      keep: Boolean(state.wrap && !state.wrap.hidden && box && box.checked),
+      keep: keep,
       config: state.config,
       question: record && record.question,
       urls: record && record.urls,
       count: record && record.count,
       page: record && record.page,
-      sessionId: state.sessionStorage ? sessionId(state.sessionStorage) : "",
+      sessionId: keep && state.sessionStorage ? sessionId(state.sessionStorage) : "",
       fetch: state.fetch
     });
   }
