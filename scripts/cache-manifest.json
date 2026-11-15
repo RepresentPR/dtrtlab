@@ -4,8 +4,8 @@
     "key": "20261115-ask1"
   },
   "ask/passages.js": {
-    "hash": "6cd37bb0526b56cb1c6971b5339fbee3337fb46d8308bdffc300b7619ee0c4ba",
-    "key": "20261115-ask3"
+    "hash": "eac943a3744d834b36ddac8dd43e7db945335eada735e43792e2ec1d9404473a",
+    "key": "20261115-ask4"
   },
   "ask/ui.js": {
     "hash": "339f665e18a670295b1fc263bacc90c13c7e08b78d6982bd9967ff5d3baf789a",
@@ -164,6 +164,10 @@
       "20261011a",
       "20261011b"
     ]
+  },
+  "css/socials.css": {
+    "hash": "6273058dc74bdd94c004d2f0bbe5db4a40afded6f0a361fca73b3f43df84102f",
+    "key": "20261115-socials2"
   },
   "css/stats.css": {
     "hash": "4facc3e227c5f63fbf01885ed17850312b983e89a1be7e024109fa88f62a10e8",
@@ -368,8 +372,8 @@
     "key": null
   },
   "js/visit.js": {
-    "hash": "beaf44b781df97923b834fc48a050549a6533e59ea8b5a74bd2166f107ca0b62",
-    "key": "20261115-dream8"
+    "hash": "ad4df66bb5227178bf4eb743f1026ead93aaf5081e0d2ba887603e4936903374",
+    "key": "20261115-dream9"
   },
   "live/board/board.css": {
     "hash": "271c8299d305455798896d2ce641363b2207128b1c0f82d392c138629c4d3e04",

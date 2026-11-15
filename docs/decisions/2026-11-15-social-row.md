@@ -1,9 +1,11 @@
 # Social row includes Twitch
 
 **Date:** 2026-11-15  
-**Decided by:** Ian Ferraro, in the site request for this branch
+**Decided by:** Ian Ferraro
 
-Ian asked that every social profile already in the repo be easy to find from the site: X, Instagram, TikTok, YouTube, and Twitch. On the same day he said Instagram and X are where he posts most.
+Source: Ian's message in his Grok Bot chat on 2026-11-15 at 12:44 AM ET, relayed by DTRT Co-Founder: "ensure all my social media acc are easily link for anyone who goes on my website".
+
+That request is why every public page links the profiles already in the repo: X, Instagram, TikTok, YouTube, and Twitch. Later the same day he said Instagram and X are where he posts most.
 
 The homepage social row may link `https://www.twitch.tv/dtrtc`. That link is a profile, not the stream player, the results dashboard, or AFTERLIGHT. Those stay off the company face under the Stage 1 freeze.
 

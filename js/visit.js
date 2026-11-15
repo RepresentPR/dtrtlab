@@ -58,7 +58,7 @@
   }
 
   var volume = Number(read(volKey));
-  if (!isFinite(volume)) volume = 22;
+  if (!isFinite(volume)) volume = 40;
 
   var panel = document.createElement("section");
   panel.className = "ambience";

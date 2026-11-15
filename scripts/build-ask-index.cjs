@@ -8,6 +8,14 @@ const { isFiction } = require('./fix7/lib.cjs');
 
 const ROOT = path.join(__dirname, '..');
 const SKIP_DIR = new Set(['live', 'hq', 'scripts', 'docs', 'node_modules', '.git']);
+const GAME_STATUS = new Set([
+  'media.html',
+  'news.html',
+  'training.html',
+  'catalog.html',
+  'radio.html',
+  'preorder.html'
+]);
 
 function walk(dir, out = []) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -75,17 +83,21 @@ function build() {
   const passages = [];
   for (const file of walk(ROOT).sort()) {
     const rel = path.relative(ROOT, file).split(path.sep).join('/');
-    if (rel.includes('private') || /live\/(extras|upnext)\.html$/.test(rel) || isFiction(rel)) continue;
+    if (rel.includes('private') || /live\/(extras|upnext)\.html$/.test(rel) || isFiction(rel) || GAME_STATUS.has(rel)) continue;
     const html = fs.readFileSync(file, 'utf8');
     if (/<meta\b[^>]*name="robots"[^>]*content="[^"]*noindex/i.test(html)) continue;
     if (/\bdata-draft=/.test(html)) continue;
     const page = visible(html);
+    page.text = page.text
+      .replace(/\s*\(Atlantic time\)/g, '')
+      .replace(/Atlantic timestamps/g, 'timestamps');
+    page.title = page.title.replace(/Atlantic timestamps/g, 'timestamps');
     passages.push(...passagesFor(rel, page.title, page.text));
   }
   return {
     generated: '2026-11-15',
     provider: 'local-bm25',
-    note: 'Public HTML only. Drafts, noindex pages, /private, /live, and /hq are omitted.',
+    note: 'Public HTML only. Drafts, noindex pages, /private, /live, /hq, and AFTERLIGHT game pages are omitted.',
     passages
   };
 }
