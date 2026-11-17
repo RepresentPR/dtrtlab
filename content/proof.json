@@ -1,6 +1,6 @@
 {
- "updated_et": "2026-11-16 23:24 ET",
- "days_running": 80,
+ "updated_et": "2026-11-17 01:32 ET",
+ "days_running": 81,
  "companies_studied": 9,
  "sources_collected": 745,
  "knowledge_notes": 348,
@@ -23,6 +23,13 @@
   },
   {
    "date": "2026-11-16",
+   "notes": 348,
+   "sources": 745,
+   "companies": 9,
+   "posts": 222
+  },
+  {
+   "date": "2026-11-17",
    "notes": 348,
    "sources": 745,
    "companies": 9,
