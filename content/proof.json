@@ -1,10 +1,10 @@
 {
- "updated_et": "2026-11-19 21:25 ET",
+ "updated_et": "2026-11-19 23:24 ET",
  "days_running": 83,
  "companies_studied": 9,
  "sources_collected": 745,
  "knowledge_notes": 348,
- "posts_published": 225,
+ "posts_published": 231,
  "audience_total": null,
  "history": [
   {
@@ -47,7 +47,7 @@
    "notes": 348,
    "sources": 745,
    "companies": 9,
-   "posts": 225
+   "posts": 231
   }
  ]
 }
