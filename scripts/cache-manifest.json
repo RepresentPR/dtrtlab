@@ -4,12 +4,12 @@
     "key": "20261115-ask1"
   },
   "ask/passages.js": {
-    "hash": "32926285284fefcfd5252f7192f1f37b96e0b6261fa3fc79e3202a2723cbb5db",
-    "key": "20261121-ig1"
+    "hash": "d2be1043cae520d576e6ae1ea10bb775b1493ce3947ca96463732f01c0b58d72",
+    "key": "20261121-ig2"
   },
   "ask/ui.js": {
-    "hash": "0ea1cdc302622ba26a4003ade2799c539775bff78195479347c0d2fedaaeb442",
-    "key": "20261121-ig1"
+    "hash": "ed61ecf751fe6302b921c35b429229425a82832b6d3e6ffdf7d7ae8fb580c3b7",
+    "key": "20261121-ig2"
   },
   "content/clips.js": {
     "hash": "a5c0cfa45b00524fbc1d2de324ec0f19031af1fce1ff80c092c465e2e29cd1e4",
@@ -201,8 +201,8 @@
     "key": "20261010n"
   },
   "js/biz-lang.js": {
-    "hash": "72b71457be095735897c89298d59eae17e67bcdbbf4263119259eea2409644dc",
-    "key": "20261115-legal3"
+    "hash": "e058210638281f3c09bd3498ad62b295f94bca6ab7c46008b4944a10511a5e31",
+    "key": "20261121-ig2"
   },
   "js/calm.js": {
     "hash": "0405c18592b384288ccddc73a9948b1517c5cb88224f3b6f2cac6b817302f03f",
@@ -327,8 +327,8 @@
     "key": "20261010n"
   },
   "js/nav.js": {
-    "hash": "b647617a30b2ffcbb62db23643d301060f8f1dfefe2f54b462de6b59f9f95e39",
-    "key": "20261121-ig1"
+    "hash": "2f914cd1b613b567710530cdb5246540cd9488adf4f0c67da6e9d97001c48ad0",
+    "key": "20261121-ig2"
   },
   "js/plan-tool.js": {
     "hash": "687e9bc23bcb839927457b71cad5ac30e36edcd4593be1f5a8bdd79786e50cee",
@@ -355,7 +355,7 @@
     "key": null
   },
   "js/stats.js": {
-    "hash": "f02abd1939268a7d0517cc16079c9b2ba9d1b3b885be17bb457971b27466764b",
+    "hash": "913f29555bfff7afa916f40388eb8c4e4ed777780f1a2a93fd4287c7e9d457cc",
     "key": null
   },
   "js/story-guide.mjs": {
@@ -411,8 +411,8 @@
     "key": null
   },
   "sw.js": {
-    "hash": "915cda4516b8a379e5460464f8cb64b539b267a593ae7bea154454f8e9856251",
-    "key": "20261121-ig1"
+    "hash": "cf8dbfcd0b328456a57bec44b5f5c7d7c28f20a8264b229120ce16a8de8be642",
+    "key": "20261121-ig2"
   },
   "watch/watch.css": {
     "hash": "0b8026e65ae3b40c91b7dfdf31a94e579c60b0222bd1d5ce8999b2ffc29870f1",
