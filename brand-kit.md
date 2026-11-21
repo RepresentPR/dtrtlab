@@ -74,8 +74,8 @@ Use these exact blocks so the profiles match the site. Link the business home, n
 
 ### Instagram
 
-- Handle: @officiallydtrt
-- Profile URL: https://www.instagram.com/officiallydtrt/
+- Handle: @dtrt.xyng
+- Profile URL: https://www.instagram.com/dtrt.xyng/
 - Bio: Ian | DTRT Lab · works remotely / The AI office manager for small service businesses. / Jobs tracked, customers updated, quotes followed up. / Answer 3 short questions and we'll follow up by email. 👇
 - Link: https://dtrtlab.com/
 - Link label: DTRT Lab
