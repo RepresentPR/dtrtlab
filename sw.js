@@ -6,7 +6,7 @@
    are stale-while-revalidate. Media, byte ranges, JSON and third
    parties bypass this worker's cache.
 */
-var VERSION = "20261115-ask1";
+var VERSION = "20261121-ig1";
 var CACHE = "dtrtlab-" + VERSION;
 var PRECACHE = [
   "/",
@@ -42,7 +42,7 @@ var PRECACHE = [
   "/css/adapt.css?v=20261010n",
   "/css/hub.css?v=20261010n",
   "/css/afterlight.css?v=20261010n",
-  "/js/nav.js?v=20261121-ig2",
+  "/js/nav.js?v=20261121-ig3",
   "/js/hub.js?v=20261010n",
   "/js/contact-topic.js?v=20261025-freemap1",
   "/js/live-extras.js?v=20261016-qa3",
@@ -64,7 +64,7 @@ var PRECACHE = [
   "/ask/index.html",
   "/ask/passages.js?v=20261121-ig2",
   "/ask/ask.js?v=20261115-ask1",
-  "/ask/ui.js?v=20261121-ig2",
+  "/ask/ui.js?v=20261121-ig3",
   "/css/knowledge-home.css?v=20261112-notebook1",
   "/css/dream.css?v=20261115-dream4",
   "/css/socials.css?v=20261115-socials3",
