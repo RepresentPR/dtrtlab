@@ -233,7 +233,7 @@
       "window": "Cumulative lifetime counters of the listed posts",
       "definition": "Sum of individually observed post counters; cohort fixed to exact IDs in this dataset.",
       "include_in_snapshot": true,
-      "source_url": "https://www.instagram.com/officiallydtrt/reels/",
+      "source_url": "https://www.instagram.com/dtrt.xyng/reels/",
       "points": [
         {
           "captured_at": "2026-10-09T21:49:00-04:00",
