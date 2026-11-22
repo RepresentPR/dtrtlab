@@ -1,4 +1,4 @@
-import { replyFor, CRISIS_REPLY, ONLY_LINE } from "./safety.mjs?v=20261122-safe8";
+import { replyFor, CRISIS_REPLY, REDIRECT, RESOURCE_NOTE, SUGGESTIONS } from "./safety.mjs?v=20261122-ask10";
 
 const STORE = "dtrt.chat.v1";
 const NOTICE = "dtrt.early-notice";
@@ -88,9 +88,24 @@ async function reveal(node, text) {
 function viewOf(message) {
   if (message.kind === "crisis" || message.kind === "closed") return message.kind;
   const text = message.text || "";
-  if (text.indexOf(ONLY_LINE) !== -1 && text.indexOf("call or text 988") !== -1) return "closed";
+  if (text.indexOf(REDIRECT) === 0 && text.indexOf("call or text 988") !== -1) return "closed";
   if (text === CRISIS_REPLY) return "crisis";
   return "text";
+}
+
+function appendChips(item, labels) {
+  const row = el("div", "help-chips");
+  labels.forEach((label) => {
+    const button = el("button", "chip", label);
+    button.type = "button";
+    button.addEventListener("click", () => {
+      composer.value = label;
+      if (form.requestSubmit) form.requestSubmit();
+      else form.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
+    });
+    row.append(button);
+  });
+  item.append(row);
 }
 
 function appendAnswer(item, message) {
@@ -99,11 +114,17 @@ function appendAnswer(item, message) {
     item.append(el("p", "", message.text));
     return;
   }
+  if (view === "closed") {
+    item.append(el("p", "help-redirect", message.line || REDIRECT));
+    const block = el("div", "help-compact");
+    block.append(el("p", "", message.sheet || RESOURCE_NOTE));
+    item.append(block);
+    appendChips(item, message.suggestions && message.suggestions.length ? message.suggestions : SUGGESTIONS);
+    return;
+  }
   const card = el("div", "help-card");
-  const sheet = view === "closed" ? (message.sheet || CRISIS_REPLY) : message.text;
-  card.append(el("p", "", sheet));
+  card.append(el("p", "", message.text));
   item.append(card);
-  if (view === "closed") item.append(el("p", "help-note", message.line || ONLY_LINE));
 }
 
 function renderThread() {

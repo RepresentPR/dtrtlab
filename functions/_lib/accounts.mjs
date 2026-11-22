@@ -200,10 +200,10 @@ export async function handleSignup(context) {
       return json({ ok: false, error: "Too many tries. Wait a few minutes and try again." }, 429);
     }
     const existing = await db.prepare("SELECT id FROM users WHERE email = ?").bind(email).first();
+    const salt = new Uint8Array(16);
+    crypto.getRandomValues(salt);
+    const hash = await hashPassword(password, salt, ITERATIONS);
     if (!existing) {
-      const salt = new Uint8Array(16);
-      crypto.getRandomValues(salt);
-      const hash = await hashPassword(password, salt, ITERATIONS);
       const id = crypto.randomUUID();
       await db.prepare(
         "INSERT INTO users (id, email, salt, hash, iterations, created_at) VALUES (?, ?, ?, ?, ?, ?)"

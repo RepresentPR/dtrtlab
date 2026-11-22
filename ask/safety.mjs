@@ -10,7 +10,13 @@ export const HARM_REPLY = "I cannot help with hurting people, weapons, or drugs.
 
 export const IDENTITY_REPLY = "I am software on DTRT Lab, a very early AI test. I am not a person and I am not a doctor.";
 
-export const ONLY_LINE = "This test AI can only talk about DTRT Lab.";
+export const REDIRECT = "I'm an early test AI that only knows DTRT Lab. Try asking about the site, the lab, or Ian's public work.";
+
+export const SUGGESTIONS = ["What is on the site?", "What does the lab do?", "Who is Ian?"];
+
+export const RESOURCE_NOTE = "If you might hurt yourself, get help now. In the US, call or text 988. You can chat at https://988lifeline.org. If you are in immediate danger, call 911. Outside the US, visit https://findahelpline.com.";
+
+export const ONLY_LINE = REDIRECT;
 
 export const HELP_LINE = "If you're struggling, call or text 988 (US) or visit findahelpline.com.";
 
@@ -57,7 +63,7 @@ const PLAN_PHRASES = ["good plan", "should i", "how much", "is it enough"];
 const FIRST = new Set(["i", "im", "ive", "id", "myself", "me", "my", "mine"]);
 
 const SITE_WORDS = new Set(
-  "office map job desk price prices notebook contact privacy terms demo partner partners ian dtrt refund refunds cookie cookies brand proof donate support career careers find writing service services".split(" ")
+  "office map job desk price prices notebook contact privacy terms demo partner partners ian dtrt refund refunds cookie cookies brand proof donate support career careers find writing service services site lab".split(" ")
 );
 
 const HARM_PHRASES = [
@@ -186,6 +192,22 @@ export function acceptableRephrase(draft, matches) {
   return words.every((word) => allowed.has(word) || TEMPLATE_WORDS.has(word));
 }
 
+export function isMetaQuestion(question) {
+  const text = fold(question);
+  if (!text || text.length > 160) return false;
+  if (/^(hi|hello|hey|hola|thanks|thank you|good morning|good afternoon|good evening)\b/.test(text)) return true;
+  return [
+    "what is this", "whats this", "who made this", "who made you", "who built this",
+    "site looks great", "propose a tab", "summarize the public pages",
+    "summarize the site", "public pages"
+  ].some((needle) => text.includes(needle));
+}
+
+function fallbackPassage(corpus) {
+  const passages = (corpus && corpus.passages) || [];
+  return passages.find((passage) => passage && (passage.url === "/ask/" || passage.url === "/")) || passages[0] || null;
+}
+
 export function confidentMatch(question, matches) {
   if (!matches || !matches.length) return false;
   const words = tokensOf(question).filter((word) => SITE_WORDS.has(word));
@@ -201,9 +223,10 @@ export function confidentMatch(question, matches) {
 function closedReply() {
   return {
     action: "closed",
-    text: CRISIS_REPLY + "\n\n" + ONLY_LINE,
-    sheet: CRISIS_REPLY,
-    line: ONLY_LINE,
+    text: REDIRECT + "\n\n" + RESOURCE_NOTE,
+    sheet: RESOURCE_NOTE,
+    line: REDIRECT,
+    suggestions: SUGGESTIONS.slice(),
     modelCalled: false,
     sources: []
   };
@@ -221,7 +244,13 @@ export async function replyFor(question, corpus, options) {
   } catch (err) {
     matches = [];
   }
-  if (!confidentMatch(question, matches)) return closedReply();
+  const meta = isMetaQuestion(question);
+  if (!matches.length && meta) {
+    const passage = fallbackPassage(corpus);
+    if (passage) matches = [{ passage, score: 2 }];
+  }
+  if (!confidentMatch(question, matches) && !meta) return closedReply();
+  if (!matches.length) return closedReply();
   const sources = matches.slice(0, 3);
   const template = templateFrom(sources);
   if (typeof opts.tryModel !== "function") {

@@ -351,10 +351,37 @@ dialog h2 { margin: 0 0 8px; font-size: 22px; font-weight: 500; letter-spacing: 
 
 .help-card p { margin: 0; }
 
-.help-note {
-  margin: 10px 0 0;
+.help-redirect {
+  margin: 0 0 10px;
+  max-width: 40rem;
+}
+
+.help-compact {
+  max-width: 40rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 8px 12px;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.help-compact p { margin: 0; }
+
+.help-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.chip {
+  min-height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  padding: 8px 14px;
 }
 
 .lab-ai .site-socials a:focus-visible,
