@@ -49,6 +49,15 @@ class MemD1 {
     for (const statement of statements) await statement.run();
   }
   first(sql, args) {
+    if (sql.includes('INSERT INTO login_attempts') && sql.includes('RETURNING')) {
+      const now = args[1];
+      const windowMs = args[3];
+      let row = this.attempts.get(args[0]);
+      if (!row || now - Number(row.window_start) > windowMs) row = { count: 1, window_start: now };
+      else row = { count: Number(row.count) + 1, window_start: row.window_start };
+      this.attempts.set(args[0], row);
+      return { count: row.count };
+    }
     if (sql.includes('FROM login_attempts')) return this.attempts.get(args[0]) || null;
     if (sql.includes('COUNT(*)')) return { n: this.chats.filter((chat) => chat.user_id === args[0]).length };
     if (sql.includes('FROM users WHERE email')) {
@@ -174,6 +183,13 @@ test('public pages are not behind a key and private routes stay private', () => 
   assert.match(ask, /Very early AI test: answers can be wrong/);
   assert.match(ask, /call or text 988/);
   assert.match(ask, /findahelpline\.com/);
+  assert.doesNotMatch(ask, /cdn\.jsdelivr\.net|wasm-unsafe-eval/);
+  assert.match(ask, /sandbox="allow-scripts"/);
+  assert.doesNotMatch(ask, /allow-same-origin/);
+  const frame = read('ask/model-frame.html');
+  assert.match(frame, /cdn\.jsdelivr\.net/);
+  assert.doesNotMatch(frame, /type="password"|<form/);
+  assert.match(frame, /noindex/);
 });
 
 test('crisis and harm replies happen before any model output', async () => {
@@ -294,4 +310,21 @@ test('passwords are hashed per user, sessions are cookies, and delete removes th
   assert.equal(wrong.status, 401);
   const wrongBody = await wrong.json();
   assert.equal(JSON.stringify(wrongBody).includes('not-the-password'), false);
+
+  const ip = '198.51.100.10';
+  const sameIp = (email) => new Request('https://dtrtlab.com/api/signup', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', 'cf-connecting-ip': ip },
+    body: JSON.stringify({ email, password })
+  });
+  const bucketA = await accounts.attemptBucket(sameIp('one@example.com'), 'signup');
+  const bucketB = await accounts.attemptBucket(sameIp('two@example.com'), 'signup');
+  assert.equal(bucketA, bucketB);
+  const limitedDb = new MemD1();
+  for (let i = 0; i < 8; i++) assert.equal(await accounts.rateLimited(limitedDb, bucketA, Date.now()), false);
+  const firstBlocked = await accounts.handleSignup({ env: { DB: limitedDb }, request: sameIp('one@example.com') });
+  const secondBlocked = await accounts.handleSignup({ env: { DB: limitedDb }, request: sameIp('two@example.com') });
+  assert.equal(firstBlocked.status, 429);
+  assert.equal(secondBlocked.status, 429);
+  assert.equal(limitedDb.users.length, 0);
 });

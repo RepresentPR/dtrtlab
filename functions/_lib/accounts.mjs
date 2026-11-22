@@ -128,23 +128,13 @@ function cleanName(value) {
 
 export async function rateLimited(db, bucket, now) {
   const row = await db.prepare(
-    "SELECT count, window_start FROM login_attempts WHERE bucket = ?"
-  ).bind(bucket).first();
-  if (!row || now - Number(row.window_start) > ATTEMPT_WINDOW_MS) {
-    await db.prepare(
-      "INSERT INTO login_attempts (bucket, count, window_start) VALUES (?, ?, ?) ON CONFLICT(bucket) DO UPDATE SET count = 1, window_start = excluded.window_start"
-    ).bind(bucket, 1, now).run();
-    return false;
-  }
-  if (Number(row.count) >= ATTEMPT_LIMIT) return true;
-  await db.prepare(
-    "UPDATE login_attempts SET count = ? WHERE bucket = ?"
-  ).bind(Number(row.count) + 1, bucket).run();
-  return false;
+    "INSERT INTO login_attempts (bucket, count, window_start) VALUES (?, 1, ?) ON CONFLICT(bucket) DO UPDATE SET count = CASE WHEN ? - login_attempts.window_start > ? THEN 1 ELSE login_attempts.count + 1 END, window_start = CASE WHEN ? - login_attempts.window_start > ? THEN ? ELSE login_attempts.window_start END RETURNING count"
+  ).bind(bucket, now, now, ATTEMPT_WINDOW_MS, now, ATTEMPT_WINDOW_MS, now).first();
+  return Number(row && row.count) > ATTEMPT_LIMIT;
 }
 
-async function attemptBucket(request, email, action) {
-  return sha256([action, clientIp(request).split(",")[0].trim(), email].join("\n"));
+export async function attemptBucket(request, action) {
+  return sha256([action, clientIp(request).split(",")[0].trim()].join("\n"));
 }
 
 async function issueSession(db, request, userId) {
@@ -191,7 +181,7 @@ export async function handleSignup(context) {
     return json({ ok: false, error: "Use a valid email and a password of at least 10 characters." }, 400);
   }
   try {
-    const bucket = await attemptBucket(context.request, email, "signup");
+    const bucket = await attemptBucket(context.request, "signup");
     if (await rateLimited(db, bucket, Date.now())) {
       return json({ ok: false, error: "Too many tries. Wait a few minutes and try again." }, 429);
     }
@@ -220,7 +210,7 @@ export async function handleLogin(context) {
   const password = String(parsed.value.password || "");
   if (!email || !password) return json({ ok: false, error: "Email or password is wrong." }, 401);
   try {
-    const bucket = await attemptBucket(context.request, email, "login");
+    const bucket = await attemptBucket(context.request, "login");
     if (await rateLimited(db, bucket, Date.now())) {
       return json({ ok: false, error: "Too many tries. Wait a few minutes and try again." }, 429);
     }

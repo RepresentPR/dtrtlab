@@ -13,6 +13,7 @@ exclude:
   - docs
   - scripts
   - tools
+  - functions
   - .github
   - .cursor
   - node_modules

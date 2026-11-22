@@ -69,7 +69,7 @@ test('home leads with Ian, an empty posts page, and Ask', () => {
 });
 
 test('every visitor page links the five profiles, with Instagram marked as main', () => {
-  const skip = new Set(['live/extras.html', 'live/upnext.html']);
+  const skip = new Set(['live/extras.html', 'live/upnext.html', 'ask/model-frame.html']);
   const missing = [];
   for (const rel of pages()) {
     if (skip.has(rel)) continue;

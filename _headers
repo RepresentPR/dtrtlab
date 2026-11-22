@@ -13,3 +13,6 @@
 
 /api/*
   Cache-Control: no-store
+
+/ask/model-frame.html
+  X-Frame-Options: SAMEORIGIN

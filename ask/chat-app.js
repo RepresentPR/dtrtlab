@@ -1,5 +1,39 @@
-import { replyFor } from "./safety.mjs?v=20261122-ai8";
-import { deviceCanRunModel, tryLocalModel } from "./model.js?v=20261122-ai1";
+import { replyFor } from "./safety.mjs?v=20261122-ai9";
+
+function deviceCanRunModel() {
+  if (typeof navigator === "undefined" || !navigator.gpu) return false;
+  const connection = navigator.connection;
+  if (connection && (connection.saveData || connection.effectiveType === "2g" || connection.effectiveType === "slow-2g")) return false;
+  return true;
+}
+
+function askModel(question, matches) {
+  const frame = document.getElementById("model-frame");
+  if (!frame || !frame.contentWindow) return Promise.reject(new Error("frame"));
+  const id = crypto.randomUUID ? crypto.randomUUID() : String(Date.now());
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => {
+      window.removeEventListener("message", onMessage);
+      reject(new Error("timeout"));
+    }, 25000);
+    function onMessage(event) {
+      if (event.source !== frame.contentWindow) return;
+      const data = event.data || {};
+      if (data.type !== "dtrt-model-result" || data.id !== id) return;
+      clearTimeout(timer);
+      window.removeEventListener("message", onMessage);
+      if (!data.text) reject(new Error(data.error || "empty"));
+      else resolve(data.text);
+    }
+    window.addEventListener("message", onMessage);
+    frame.contentWindow.postMessage({
+      type: "dtrt-model",
+      id,
+      question,
+      passages: (matches || []).slice(0, 2)
+    }, "*");
+  });
+}
 
 const STORE = "dtrt.chat.v1";
 const NOTICE = "dtrt.early-notice";
@@ -192,7 +226,7 @@ async function ask(question) {
   try {
     result = await replyFor(question, window.DTRT_ASK_CORPUS || { passages: [] }, {
       search: (q, corpus) => window.DTRTAsk ? window.DTRTAsk.search(q, corpus, 4) : [],
-      tryModel: canModel ? tryLocalModel : null
+      tryModel: canModel ? askModel : null
     });
   } catch (err) {
     result = { text: "The search on this page did not finish. The public pages are still linked from the home page.", sources: [] };

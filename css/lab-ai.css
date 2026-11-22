@@ -39,6 +39,15 @@ button, input, textarea { font: inherit; color: inherit; }
 
 .skip:focus { top: 12px; }
 
+.model-frame {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .glow, .grain {
   position: fixed;
   inset: 0;
