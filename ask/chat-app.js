@@ -1,4 +1,4 @@
-import { replyFor } from "./safety.mjs?v=20261122-safe5";
+import { replyFor, CRISIS_REPLY, ONLY_LINE } from "./safety.mjs?v=20261122-safe6";
 
 const STORE = "dtrt.chat.v1";
 const NOTICE = "dtrt.early-notice";
@@ -85,6 +85,27 @@ async function reveal(node, text) {
   }
 }
 
+function viewOf(message) {
+  if (message.kind === "crisis" || message.kind === "closed") return message.kind;
+  const text = message.text || "";
+  if (text.indexOf(ONLY_LINE) !== -1 && text.indexOf("call or text 988") !== -1) return "closed";
+  if (text === CRISIS_REPLY) return "crisis";
+  return "text";
+}
+
+function appendAnswer(item, message) {
+  const view = viewOf(message);
+  if (view === "text") {
+    item.append(el("p", "", message.text));
+    return;
+  }
+  const card = el("div", "help-card");
+  const sheet = view === "closed" ? (message.sheet || CRISIS_REPLY) : message.text;
+  card.append(el("p", "", sheet));
+  item.append(card);
+  if (view === "closed") item.append(el("p", "help-note", message.line || ONLY_LINE));
+}
+
 function renderThread() {
   thread.replaceChildren();
   const chat = activeChat();
@@ -92,7 +113,8 @@ function renderThread() {
   stage.hidden = messages.length > 0;
   messages.forEach((message) => {
     const item = el("article", "msg " + (message.role === "user" ? "user" : "bot"));
-    item.append(el("p", "", message.text));
+    if (message.role === "user") item.append(el("p", "", message.text));
+    else appendAnswer(item, message);
     thread.append(item);
   });
   thread.scrollTop = thread.scrollHeight;
@@ -190,8 +212,6 @@ async function ask(question) {
   send.setAttribute("aria-label", "Stop");
   setStatus("From DTRT Lab's public pages.");
   const item = el("article", "msg bot");
-  const paragraph = el("p", "");
-  item.append(paragraph);
   thread.append(item);
   let result;
   try {
@@ -204,17 +224,26 @@ async function ask(question) {
   }
   if (result.action === "pages") setStatus("From DTRT Lab's public pages. Very early AI test: answers can be wrong.");
   else setStatus("Very early AI test: answers can be wrong.");
-  await reveal(paragraph, result.text);
+  const saved = {
+    role: "assistant",
+    text: result.text,
+    kind: result.action || "",
+    sheet: result.sheet || "",
+    line: result.line || ""
+  };
+  if (viewOf(saved) === "text") {
+    const paragraph = el("p", "");
+    item.append(paragraph);
+    await reveal(paragraph, result.text);
+  } else appendAnswer(item, saved);
   addSources(result.sources);
-  chat.messages.push({ role: "assistant", text: result.text });
+  chat.messages.push(saved);
   chat.updatedAt = new Date().toISOString();
   state.sending = false;
   send.textContent = "Send";
   send.setAttribute("aria-label", "Send");
   await persist(chat);
   renderThread();
-  const saved = thread.querySelector(".msg.bot:last-of-type p");
-  if (saved) saved.textContent = result.text;
   addSources(result.sources);
 }
 

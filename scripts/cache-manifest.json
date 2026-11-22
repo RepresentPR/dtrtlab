@@ -4,20 +4,20 @@
     "key": "20261115-ask1"
   },
   "ask/chat-app.js": {
-    "hash": "ba9f7a321658b42ad1818356c2604f99c46eb78c873d25c5183d320f69143c2b",
-    "key": "20261122-safe5"
+    "hash": "b8f10395aebbf0ca9752dec2b3ca12c0896e93a6cd3e631703405a0df2210571",
+    "key": "20261122-safe7"
   },
   "ask/passages.js": {
     "hash": "f923c6a83982f45cfd13c2c01c56548f7cf7ebbb5c4a3438d5d9f987db96ba8a",
     "key": "20261122-safe5"
   },
   "ask/safety.mjs": {
-    "hash": "86a33b24f3302cb6bded1f92c667b93a763fde4b755351f94c70bae78c7b18e1",
-    "key": "20261122-safe5"
+    "hash": "b374014888c05d1c75e4c5b704bd29f17967d7afb39b9195d8d851e1d26792c8",
+    "key": "20261122-safe6"
   },
   "ask/ui.js": {
-    "hash": "0b23356a0b537c622747a8111e8274826cc5a043e8081d23deebe427b74f5876",
-    "key": "20261122-safe5"
+    "hash": "01e2ec9224eb3f06a5f75589d7574bb36433c38709157d19879acc7c264eb6ba",
+    "key": "20261122-safe7"
   },
   "content/clips.js": {
     "hash": "a5c0cfa45b00524fbc1d2de324ec0f19031af1fce1ff80c092c465e2e29cd1e4",
@@ -130,8 +130,8 @@
     "key": "20261112-notebook1"
   },
   "css/lab-ai.css": {
-    "hash": "e6c1bc2fcd690bcf0b5743a770faff530794a492c1c7d4d95f04a6af8c572126",
-    "key": "20261122-safe5"
+    "hash": "8b127a8812ae64137088006846a6fe7e7d05c7618f4528b1f565a62309def156",
+    "key": "20261122-safe6"
   },
   "css/lab-results.css": {
     "hash": "13da1bff3da419d00aa77359aceb2a6da1fd0cea3615f29570f7c4c198a7193a",
@@ -340,8 +340,8 @@
     "key": "20261010n"
   },
   "js/nav.js": {
-    "hash": "1aad9de456b2cd6e4a7e9b6f6c64056bfbacb531885d910c299c5cd4cd3908a2",
-    "key": "20261122-safe5"
+    "hash": "11855c3c1fc4461de80e05100837f077597f17577e97af82bde16ba6665650b9",
+    "key": "20261122-safe7"
   },
   "js/plan-tool.js": {
     "hash": "687e9bc23bcb839927457b71cad5ac30e36edcd4593be1f5a8bdd79786e50cee",
@@ -424,8 +424,8 @@
     "key": null
   },
   "sw.js": {
-    "hash": "6a26bf19d44552cca35afa095fcba6714d24d869a223c8fd5fe80d8868fa0652",
-    "key": "20261122-safe5"
+    "hash": "432382b2697067443e0dae66efa4af54ba92cc2a168c5c6a58185b681944ed7e",
+    "key": "20261122-safe7"
   },
   "watch/watch.css": {
     "hash": "0b8026e65ae3b40c91b7dfdf31a94e579c60b0222bd1d5ce8999b2ffc29870f1",

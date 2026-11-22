@@ -1,6 +1,8 @@
 // Public answers are quotes from DTRT Lab's pages.
 // A model may only rephrase those quotes. Anything else is discarded.
-// The crisis check is an extra layer over the recent user turns. If it errors, the reply is the fixed help line.
+// Crisis-first wording is a separate decision: a means or a self-harm term
+// together with first-person or plan-seeking language in the recent turns.
+// A message that is not a confident page match still shows the full help sheet.
 
 export const CRISIS_REPLY = "If you might hurt yourself, get help now. In the US, call or text 988. You can chat at https://988lifeline.org. If you are in immediate danger, call 911. You can also visit https://findahelpline.com. This is a very early AI test. It is not a person and not a doctor, and it will not keep chatting about this.";
 
@@ -8,36 +10,34 @@ export const HARM_REPLY = "I cannot help with hurting people, weapons, or drugs.
 
 export const IDENTITY_REPLY = "I am software on DTRT Lab, a very early AI test. I am not a person and I am not a doctor.";
 
-export const OFF_TOPIC = "I can only answer questions about DTRT Lab right now (very early test).";
+export const ONLY_LINE = "This test AI can only talk about DTRT Lab.";
 
 export const HELP_LINE = "If you're struggling, call or text 988 (US) or visit findahelpline.com.";
 
 const TURN_LIMIT = 6;
 
-const CRISIS_WORDS = new Set([
-  "suicide", "suicidal", "unalive", "kms", "selfharm", "overdose", "overdosing", "overdosed", "od",
-  "cutting", "cut",
-  "suicidarme", "suicidio", "autolesion", "cortarme",
-  "suicidio",
-  "suizid", "selbstmord", "selbstverletzung",
-  "suicidio",
-  "magpakamatay"
+const TERMS = new Set([
+  "suicide", "suicidal", "unalive", "kms", "selfharm",
+  "overdose", "overdosing", "overdosed", "od",
+  "rope", "pill", "pills", "gun", "blade", "bridge", "knife", "razor", "noose",
+  "suicidio", "selbstmord", "suizid", "samoubiystvo", "magpakamatay"
 ]);
 
-const CRISIS_PHRASES = [
+const COMPLETE = [
   "kill myself", "killing myself", "killed myself",
   "want to die", "wanna die", "end my life", "end it all", "ending it",
   "hurt myself", "hurting myself", "cut myself", "cutting myself",
-  "dont want to live", "do not want to live", "dont want to be here tomorrow", "do not want to be here tomorrow",
+  "dont want to live", "do not want to live",
+  "dont want to be here tomorrow", "do not want to be here tomorrow",
   "quiero morir", "me quiero matar", "hacerme dano", "me corto",
   "quero morrer", "quero me matar", "me matar", "me cortar",
-  "je veux mourir", "me suicider", "envie de mourir", "me couper",
+  "je veux mourir", "me suicider", "envie de mourir",
   "ich will sterben", "mich umbringen",
   "voglio morire", "suicidarmi", "farmi del male", "mi taglio",
-  "ya khochu umeret", "pokonchit s soboy", "samoubiystvo",
-  "хочу умереть", "покончить с собой", "самоубийство",
-  "marna chahta", "marna chahti", "aatmahatya",
-  "मरना चाहता", "मरना चाहती", "आत्महत्या",
+  "ya khochu umeret", "pokonchit s soboy",
+  "хочу умереть", "покончить с собой",
+  "marna chahta", "marna chahti",
+  "मरना चाहता", "मरना चाहती",
   "urid an amut", "aeudi nafsi",
   "أريد أن أموت", "أؤذي نفسي",
   "gusto kong mamatay", "ayoko nang mabuhay",
@@ -46,17 +46,19 @@ const CRISIS_PHRASES = [
   "मरायचे आहे"
 ];
 
-const CJK_CRISIS = [
-  "自杀", "自残", "不想活", "想死", "割腕",
-  "自殺", "死にたい", "自分を傷つけ",
-  "자살", "자해", "죽고 싶"
-];
+const CJK_COMPLETE = ["不想活", "想死", "死にたい", "죽고 싶", "割腕", "自分を傷つけ", "自殺し", "자살하고", "자해하고"];
 
-const MEANS = new Set(["pill", "pills", "rope", "gun", "blade", "bridge", "knife", "razor", "noose", "belt"]);
+const CJK_TERMS = ["自杀", "自残", "自殺", "死に", "自分を傷つけ", "자살", "자해", "죽고"];
 
-const INTENT_PHRASES = [
-  "should i use it", "should i do it", "should i use that", "should i do that"
-];
+const CJK_PERSON = ["我", "私", "나", "저"];
+
+const PLAN_PHRASES = ["good plan", "should i", "how much", "is it enough"];
+
+const FIRST = new Set(["i", "im", "ive", "id", "myself", "me", "my", "mine"]);
+
+const SITE_WORDS = new Set(
+  "office map job desk price prices notebook contact privacy terms demo partner partners ian dtrt refund refunds cookie cookies brand proof donate support career careers find writing service services".split(" ")
+);
 
 const HARM_PHRASES = [
   "build a bomb", "make a bomb", "make explosives", "how to make a weapon",
@@ -103,24 +105,18 @@ function hasAnyPhrase(tokens, phrases) {
   return phrases.some((phrase) => hasTokenPhrase(tokens, phrase));
 }
 
-function cjkCrisis(text) {
+function includesAny(text, phrases) {
   const folded = fold(text);
-  return CJK_CRISIS.some((phrase) => folded.includes(fold(phrase)));
+  return phrases.some((phrase) => folded.includes(fold(phrase)));
 }
 
-function directCrisis(text) {
+function signals(text) {
   const tokens = tokensOf(text);
-  if (tokens.some((token) => CRISIS_WORDS.has(token))) return true;
-  if (hasAnyPhrase(tokens, CRISIS_PHRASES)) return true;
-  return cjkCrisis(text);
-}
-
-function mentionsMeans(tokens) {
-  return tokens.some((token) => MEANS.has(token));
-}
-
-function mentionsIntent(tokens) {
-  return hasAnyPhrase(tokens, INTENT_PHRASES);
+  const complete = hasAnyPhrase(tokens, COMPLETE) || includesAny(text, CJK_COMPLETE);
+  const term = complete || tokens.some((token) => TERMS.has(token)) || includesAny(text, CJK_TERMS);
+  const person = complete || tokens.some((token) => FIRST.has(token)) || hasAnyPhrase(tokens, ["gusto kong"]) || CJK_PERSON.some((mark) => String(text || "").includes(mark));
+  const plan = tokens.includes("tonight") || hasAnyPhrase(tokens, PLAN_PHRASES);
+  return { term, person, plan };
 }
 
 function userTurns(question, history) {
@@ -133,15 +129,18 @@ export function screen(question, history) {
   try {
     const turns = userTurns(question, history);
     if (!turns.length) return { action: "ok" };
-    let seenMeans = false;
+    let term = false;
+    let person = false;
+    let plan = false;
     for (const turn of turns) {
       const tokens = tokensOf(turn);
-      if (directCrisis(turn)) return { action: "crisis", text: CRISIS_REPLY };
-      if (mentionsMeans(tokens) && mentionsIntent(tokens)) return { action: "crisis", text: CRISIS_REPLY };
-      if (seenMeans && mentionsIntent(tokens)) return { action: "crisis", text: CRISIS_REPLY };
-      if (mentionsMeans(tokens)) seenMeans = true;
       if (hasAnyPhrase(tokens, HARM_PHRASES)) return { action: "harm", text: HARM_REPLY };
+      const found = signals(turn);
+      term = term || found.term;
+      person = person || found.person;
+      plan = plan || found.plan;
     }
+    if (term && (person || plan)) return { action: "crisis", text: CRISIS_REPLY };
     const latest = fold(turns[turns.length - 1]);
     if (/\b(are you (a |an )?(human|real person|doctor|physician|therapist)|are you human)\b/i.test(latest)) {
       return { action: "identity", text: IDENTITY_REPLY };
@@ -177,12 +176,35 @@ function sourceWords(matches) {
 export function acceptableRephrase(draft, matches) {
   const text = fold(draft);
   if (!text || text.length > 500) return false;
-  if (directCrisis(text) || hasAnyPhrase(tokensOf(text), HARM_PHRASES)) return false;
+  if (signals(text).term || hasAnyPhrase(tokensOf(text), HARM_PHRASES)) return false;
   if (/\b(you should|i recommend|your plan|great plan|good plan|dose|weapon|bomb)\b/i.test(text)) return false;
   const allowed = sourceWords(matches);
   const words = text.split(/[^\p{L}\p{N}]+/u).filter((word) => word.length > 3);
   if (!words.length) return false;
   return words.every((word) => allowed.has(word) || TEMPLATE_WORDS.has(word));
+}
+
+export function confidentMatch(question, matches) {
+  if (!matches || !matches.length) return false;
+  const words = tokensOf(question).filter((word) => SITE_WORDS.has(word));
+  if (!words.length) return false;
+  return matches.some((item) => {
+    if (typeof item.score === "number" && item.score < 1.4) return false;
+    const passage = item.passage || item;
+    const where = fold((passage.title || "") + " " + (passage.url || "") + " " + (passage.text || ""));
+    return words.some((word) => where.includes(word));
+  });
+}
+
+function closedReply() {
+  return {
+    action: "closed",
+    text: CRISIS_REPLY + "\n\n" + ONLY_LINE,
+    sheet: CRISIS_REPLY,
+    line: ONLY_LINE,
+    modelCalled: false,
+    sources: []
+  };
 }
 
 export async function replyFor(question, corpus, options) {
@@ -197,7 +219,7 @@ export async function replyFor(question, corpus, options) {
   } catch (err) {
     matches = [];
   }
-  if (!matches.length) return { action: "offtopic", text: OFF_TOPIC, modelCalled: false, sources: [] };
+  if (!confidentMatch(question, matches)) return closedReply();
   const sources = matches.slice(0, 3);
   const template = templateFrom(sources);
   if (typeof opts.tryModel !== "function") {
