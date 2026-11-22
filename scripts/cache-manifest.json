@@ -4,20 +4,20 @@
     "key": "20261115-ask1"
   },
   "ask/chat-app.js": {
-    "hash": "dcdc7e71bbcd2d513ea98ebd291c1fbcfdbe7c5797b0776361ae5427f1178db3",
-    "key": "20261122-safe3"
+    "hash": "6af86edc3c7a04c20c0eedd22f03b4c341288383ea078d98bc6f237d85e31d16",
+    "key": "20261122-safe4"
   },
   "ask/passages.js": {
     "hash": "f923c6a83982f45cfd13c2c01c56548f7cf7ebbb5c4a3438d5d9f987db96ba8a",
-    "key": "20261122-safe3"
+    "key": "20261122-safe4"
   },
   "ask/safety.mjs": {
-    "hash": "d1534549df4a354c091c166006ca4869d4cb1949e0b53f8625645c01df420cc2",
-    "key": "20261122-safe3"
+    "hash": "535dd3af443021ec61942567120109d0a037a451f04e83570ee2a342673ae622",
+    "key": "20261122-safe4"
   },
   "ask/ui.js": {
-    "hash": "ab109805e1b1457d804a34fad753bb90871bbab0b213a2bf6fd650a3577e2ffe",
-    "key": "20261122-safe3"
+    "hash": "27271f2ad635151444ade88002e85d91572d815eb85238ff31dc00bb1448fe4b",
+    "key": "20261122-safe4"
   },
   "content/clips.js": {
     "hash": "a5c0cfa45b00524fbc1d2de324ec0f19031af1fce1ff80c092c465e2e29cd1e4",
@@ -131,7 +131,7 @@
   },
   "css/lab-ai.css": {
     "hash": "e6c1bc2fcd690bcf0b5743a770faff530794a492c1c7d4d95f04a6af8c572126",
-    "key": "20261122-safe3"
+    "key": "20261122-safe4"
   },
   "css/lab-results.css": {
     "hash": "13da1bff3da419d00aa77359aceb2a6da1fd0cea3615f29570f7c4c198a7193a",
@@ -340,8 +340,8 @@
     "key": "20261010n"
   },
   "js/nav.js": {
-    "hash": "40ccbeac3bad6b2f8a44fdcfecba166273cabb1997db29f512a0d8076b808ec6",
-    "key": "20261122-safe3"
+    "hash": "dcc80624b2b3cbe6a245af63f6970bfd4256143e00bbd09dfde6612f684c0f8f",
+    "key": "20261122-safe4"
   },
   "js/plan-tool.js": {
     "hash": "687e9bc23bcb839927457b71cad5ac30e36edcd4593be1f5a8bdd79786e50cee",
@@ -424,8 +424,8 @@
     "key": null
   },
   "sw.js": {
-    "hash": "54c9baf5ff8941a7023a6806934c7a6d9a6c5a603e1f21bb7c6a4fb2e2488f92",
-    "key": "20261122-safe3"
+    "hash": "c93b3523cbf566880f9824acf00b1f715866719c9de2e3461395f072a3ee77d1",
+    "key": "20261122-safe4"
   },
   "watch/watch.css": {
     "hash": "0b8026e65ae3b40c91b7dfdf31a94e579c60b0222bd1d5ce8999b2ffc29870f1",

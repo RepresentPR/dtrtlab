@@ -1,4 +1,4 @@
-import { replyFor } from "./safety.mjs?v=20261122-safe3";
+import { replyFor } from "./safety.mjs?v=20261122-safe4";
 
 const STORE = "dtrt.chat.v1";
 const NOTICE = "dtrt.early-notice";
