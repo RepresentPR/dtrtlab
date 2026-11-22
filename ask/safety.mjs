@@ -1,8 +1,8 @@
 // Public answers are quotes from DTRT Lab's pages.
 // A model may only rephrase those quotes. Anything else is discarded.
-// Crisis-first wording is a separate decision: a means or a self-harm term
-// together with first-person or plan-seeking language in the recent turns.
-// A message that is not a confident page match still shows the full help sheet.
+// The crisis screen runs first. Any other message that is not a confident
+// page match gets the full 988 sheet. A compact redirect is only for a
+// message that is positively everyday, with no distress or plan in the recent turns.
 
 export const CRISIS_REPLY = "If you might hurt yourself, get help now. In the US, call or text 988. You can chat at https://988lifeline.org. If you are in immediate danger, call 911. You can also visit https://findahelpline.com. This is a very early AI test. It is not a person and not a doctor, and it will not keep chatting about this.";
 
@@ -59,6 +59,29 @@ const CJK_TERMS = ["自杀", "自残", "自殺", "死に", "自分を傷つけ",
 const CJK_PERSON = ["我", "私", "나", "저"];
 
 const PLAN_PHRASES = ["good plan", "should i", "how much", "is it enough"];
+
+const COMPACT_BLOCKS = ["good plan", "should i", "how much", "is it enough", "how to", "tonight"];
+
+const DISTRESS_PHRASES = [
+  "i cant", "i cannot", "im done", "i am done", "no point", "nobody cares", "tired of everything"
+];
+
+const MEANS = new Set(["pill", "pills", "rope", "gun", "blade", "bridge", "knife", "razor", "noose"]);
+
+const IDIOMS = [
+  "cut the trailer", "killer deal", "dead battery", "dying to see",
+  "overdose on coffee", "overdose of coffee", "battery is dead",
+  "shoot a video", "cutting-edge", "haircut"
+];
+
+const GREETINGS = new Set([
+  "hi", "hello", "hey", "yo", "sup", "thanks", "thank you", "thanks a lot",
+  "how are you", "hows it going", "whats up", "good morning", "good afternoon", "good evening",
+  "hi there", "hello there", "hey there",
+  "hola", "gracias", "merci", "bonjour", "salut", "obrigado", "obrigada", "danke", "grazie", "ciao",
+  "salamat", "arigato", "arigatou",
+  "你好", "您好", "こんにちは", "ありがとう", "안녕", "감사합니다", "مرحبا", "شكرا", "नमस्ते", "धन्यवाद"
+]);
 
 const FIRST = new Set(["i", "im", "ive", "id", "myself", "me", "my", "mine"]);
 
@@ -195,12 +218,70 @@ export function acceptableRephrase(draft, matches) {
 export function isMetaQuestion(question) {
   const text = fold(question);
   if (!text || text.length > 160) return false;
-  if (/^(hi|hello|hey|hola|thanks|thank you|good morning|good afternoon|good evening)\b/.test(text)) return true;
   return [
     "what is this", "whats this", "who made this", "who made you", "who built this",
     "site looks great", "propose a tab", "summarize the public pages",
     "summarize the site", "public pages"
   ].some((needle) => text.includes(needle));
+}
+
+function plain(text) {
+  return fold(text).replace(/[!?.。]+/g, "").trim();
+}
+
+function hasNonLatin(text) {
+  return /[^\p{Script=Latin}\p{N}\p{P}\p{Z}']/u.test(String(text || ""));
+}
+
+function isGreeting(text) {
+  const stripped = plain(text);
+  return stripped.length > 0 && stripped.length <= 32 && GREETINGS.has(stripped);
+}
+
+function isIdiom(text) {
+  const folded = fold(text);
+  return IDIOMS.some((idiom) => folded.includes(idiom));
+}
+
+function idiomRemainder(text) {
+  let rest = fold(text);
+  IDIOMS.forEach((idiom) => {
+    rest = rest.split(idiom).join(" ");
+  });
+  return rest;
+}
+
+function isEverydayTopic(text) {
+  const folded = fold(text);
+  if (!folded || folded.length > 120) return false;
+  if (/\b(weather|forecast)\b/.test(folded)) return true;
+  if (/\b(sports?|nba|nfl|soccer|football|scoreboard)\b/.test(folded)) return true;
+  if (/\b(news today|in the news|headline)\b/.test(folded)) return true;
+  if (/\b(python|javascript|typescript|regex|algorithm|github|function)\b/.test(folded)) return true;
+  if (/\b(recipe|recipes|bake|baking|ingredients)\b/.test(folded)) return true;
+  if (/\b(font|typography|palette)\b/.test(folded)) return true;
+  if (/\b(wifi|wi-fi|iphone|android|laptop)\b/.test(folded)) return true;
+  return false;
+}
+
+function dangerIn(text) {
+  if (isGreeting(text)) return false;
+  const scan = isIdiom(text) ? idiomRemainder(text) : text;
+  const tokens = tokensOf(scan);
+  if (tokens.some((token) => MEANS.has(token) || TERMS.has(token))) return true;
+  if (hasAnyPhrase(tokens, DISTRESS_PHRASES) || hasAnyPhrase(tokens, COMPACT_BLOCKS)) return true;
+  if (hasAnyPhrase(tokens, COMPLETE) || includesAny(scan, CJK_COMPLETE) || includesAny(scan, CJK_TERMS)) return true;
+  if (/\b(hurt|die|dying|died|death|kill|killed|killing)\b/.test(fold(scan))) return true;
+  return false;
+}
+
+export function clearlyClean(question, history) {
+  const turns = userTurns(question, history);
+  if (!turns.length) return false;
+  if (turns.some((turn) => dangerIn(turn))) return false;
+  const latest = turns[turns.length - 1];
+  if (hasNonLatin(latest) && !isGreeting(latest)) return false;
+  return isGreeting(latest) || isEverydayTopic(latest) || isIdiom(latest);
 }
 
 function fallbackPassage(corpus) {
@@ -220,7 +301,11 @@ export function confidentMatch(question, matches) {
   });
 }
 
-function closedReply() {
+function fullSheet() {
+  return { action: "sheet", text: CRISIS_REPLY, modelCalled: false, sources: [] };
+}
+
+function compactReply() {
   return {
     action: "closed",
     text: REDIRECT + "\n\n" + RESOURCE_NOTE,
@@ -249,8 +334,10 @@ export async function replyFor(question, corpus, options) {
     const passage = fallbackPassage(corpus);
     if (passage) matches = [{ passage, score: 2 }];
   }
-  if (!confidentMatch(question, matches) && !meta) return closedReply();
-  if (!matches.length) return closedReply();
+  if (!confidentMatch(question, matches) && !meta) {
+    return clearlyClean(question, opts.history) ? compactReply() : fullSheet();
+  }
+  if (!matches.length) return clearlyClean(question, opts.history) ? compactReply() : fullSheet();
   const sources = matches.slice(0, 3);
   const template = templateFrom(sources);
   if (typeof opts.tryModel !== "function") {

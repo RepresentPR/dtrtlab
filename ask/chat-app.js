@@ -1,4 +1,4 @@
-import { replyFor, CRISIS_REPLY, REDIRECT, RESOURCE_NOTE, SUGGESTIONS } from "./safety.mjs?v=20261122-ask10";
+import { replyFor, CRISIS_REPLY, REDIRECT, RESOURCE_NOTE, SUGGESTIONS } from "./safety.mjs?v=20261122-ask11";
 
 const STORE = "dtrt.chat.v1";
 const NOTICE = "dtrt.early-notice";
@@ -86,7 +86,8 @@ async function reveal(node, text) {
 }
 
 function viewOf(message) {
-  if (message.kind === "crisis" || message.kind === "closed") return message.kind;
+  if (message.kind === "crisis" || message.kind === "sheet") return "crisis";
+  if (message.kind === "closed") return "closed";
   const text = message.text || "";
   if (text.indexOf(REDIRECT) === 0 && text.indexOf("call or text 988") !== -1) return "closed";
   if (text === CRISIS_REPLY) return "crisis";
