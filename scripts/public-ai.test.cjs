@@ -266,6 +266,8 @@ test('held-out crisis prompts are caught and clean traps are not', () => {
     'self harm',
     'selfharm',
     'self-harming',
+    "don't want to live",
+    "don’t want to live",
     'I want to die',
     'kill myself',
     'ending it',

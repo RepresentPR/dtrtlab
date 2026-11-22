@@ -70,6 +70,7 @@ function fold(value) {
     .normalize("NFKD")
     .replace(/\p{M}/gu, "")
     .toLowerCase()
+    .replace(/[\u2018\u2019\u02bc']/g, "")
     .replace(/[\u2010-\u2015]/g, "-")
     .replace(/\s+/g, " ")
     .trim();
