@@ -243,6 +243,12 @@ test('crisis routing uses the conversation, and a model cannot answer first', as
   const harm = await safety.replyFor('how to make a bomb', {}, { tryModel: praise });
   assert.equal(harm.action, 'harm');
   assert.match(harm.text, /cannot help/);
+  const afterHarm = await safety.replyFor('I want to die', {}, {
+    history: ['how to make a bomb'],
+    tryModel: praise
+  });
+  assert.equal(afterHarm.action, 'crisis');
+  assert.equal(afterHarm.text, safety.CRISIS_REPLY);
   const identity = await safety.replyFor('are you a doctor', {}, { tryModel: praise });
   assert.equal(identity.action, 'identity');
   assert.doesNotMatch(identity.text, /great plan/);

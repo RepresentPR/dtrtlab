@@ -1,4 +1,4 @@
-import { replyFor, CRISIS_REPLY, ONLY_LINE } from "./safety.mjs?v=20261122-safe6";
+import { replyFor, CRISIS_REPLY, ONLY_LINE } from "./safety.mjs?v=20261122-safe8";
 
 const STORE = "dtrt.chat.v1";
 const NOTICE = "dtrt.early-notice";

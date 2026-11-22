@@ -132,15 +132,17 @@ export function screen(question, history) {
     let term = false;
     let person = false;
     let plan = false;
+    let harm = false;
     for (const turn of turns) {
       const tokens = tokensOf(turn);
-      if (hasAnyPhrase(tokens, HARM_PHRASES)) return { action: "harm", text: HARM_REPLY };
+      if (hasAnyPhrase(tokens, HARM_PHRASES)) harm = true;
       const found = signals(turn);
       term = term || found.term;
       person = person || found.person;
       plan = plan || found.plan;
     }
     if (term && (person || plan)) return { action: "crisis", text: CRISIS_REPLY };
+    if (harm) return { action: "harm", text: HARM_REPLY };
     const latest = fold(turns[turns.length - 1]);
     if (/\b(are you (a |an )?(human|real person|doctor|physician|therapist)|are you human)\b/i.test(latest)) {
       return { action: "identity", text: IDENTITY_REPLY };
