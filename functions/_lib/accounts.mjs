@@ -3,10 +3,17 @@
 // Session cookies hold a random token. Only the token hash is stored.
 // Nothing in this file writes a password to a log.
 
-export const ITERATIONS = 210000;
+// 600,000 PBKDF2-SHA-256 iterations. A Worker that stops the request
+// before the hash finishes is an error the page can retry. It is not a
+// reason to disable signup.
+export const ITERATIONS = 600000;
 export const SESSION_MS = 30 * 24 * 60 * 60 * 1000;
-export const ATTEMPT_LIMIT = 8;
+export const IP_LIMIT = 8;
+export const EMAIL_LIMIT = 8;
+export const GLOBAL_LIMIT = 40;
 export const ATTEMPT_WINDOW_MS = 15 * 60 * 1000;
+export const CHAT_WARN_AT = 40;
+export const CHAT_MAX = 200;
 const COOKIE = "dtrt_session";
 
 function json(data, status, headers) {
@@ -126,15 +133,23 @@ function cleanName(value) {
   return String(value || "").replace(/[<>]/g, "").replace(/\s+/g, " ").trim().slice(0, 40);
 }
 
-export async function rateLimited(db, bucket, now) {
+export async function rateLimited(db, bucket, now, limit) {
   const row = await db.prepare(
     "INSERT INTO login_attempts (bucket, count, window_start) VALUES (?, 1, ?) ON CONFLICT(bucket) DO UPDATE SET count = CASE WHEN ? - login_attempts.window_start > ? THEN 1 ELSE login_attempts.count + 1 END, window_start = CASE WHEN ? - login_attempts.window_start > ? THEN ? ELSE login_attempts.window_start END RETURNING count"
   ).bind(bucket, now, now, ATTEMPT_WINDOW_MS, now, ATTEMPT_WINDOW_MS, now).first();
-  return Number(row && row.count) > ATTEMPT_LIMIT;
+  return Number(row && row.count) > (limit || IP_LIMIT);
 }
 
-export async function attemptBucket(request, action) {
-  return sha256([action, clientIp(request).split(",")[0].trim()].join("\n"));
+export async function tooManyAttempts(db, request, email, action) {
+  const now = Date.now();
+  const ip = clientIp(request).split(",")[0].trim();
+  const ipBucket = await sha256(["ip", action, ip].join("\n"));
+  const emailBucket = await sha256(["email", action, String(email || "")].join("\n"));
+  const globalBucket = await sha256(["global", action].join("\n"));
+  if (await rateLimited(db, ipBucket, now, IP_LIMIT)) return true;
+  if (await rateLimited(db, emailBucket, now, EMAIL_LIMIT)) return true;
+  if (await rateLimited(db, globalBucket, now, GLOBAL_LIMIT)) return true;
+  return false;
 }
 
 async function issueSession(db, request, userId) {
@@ -181,21 +196,20 @@ export async function handleSignup(context) {
     return json({ ok: false, error: "Use a valid email and a password of at least 10 characters." }, 400);
   }
   try {
-    const bucket = await attemptBucket(context.request, "signup");
-    if (await rateLimited(db, bucket, Date.now())) {
+    if (await tooManyAttempts(db, context.request, email, "signup")) {
       return json({ ok: false, error: "Too many tries. Wait a few minutes and try again." }, 429);
     }
     const existing = await db.prepare("SELECT id FROM users WHERE email = ?").bind(email).first();
-    if (existing) return json({ ok: false, error: "That email already has an account. Log in instead." }, 409);
-    const salt = new Uint8Array(16);
-    crypto.getRandomValues(salt);
-    const hash = await hashPassword(password, salt, ITERATIONS);
-    const id = crypto.randomUUID();
-    await db.prepare(
-      "INSERT INTO users (id, email, salt, hash, iterations, created_at) VALUES (?, ?, ?, ?, ?, ?)"
-    ).bind(id, email, bytesToB64(salt), hash, ITERATIONS, new Date().toISOString()).run();
-    const session = await issueSession(db, context.request, id);
-    return json({ ok: true, email }, 201, withSession(context.request, session.token));
+    if (!existing) {
+      const salt = new Uint8Array(16);
+      crypto.getRandomValues(salt);
+      const hash = await hashPassword(password, salt, ITERATIONS);
+      const id = crypto.randomUUID();
+      await db.prepare(
+        "INSERT INTO users (id, email, salt, hash, iterations, created_at) VALUES (?, ?, ?, ?, ?, ?)"
+      ).bind(id, email, bytesToB64(salt), hash, ITERATIONS, new Date().toISOString()).run();
+    }
+    return json({ ok: true, message: "If that email was free, the account is ready. Log in." }, 200);
   } catch (err) {
     return accountsOffline();
   }
@@ -210,8 +224,7 @@ export async function handleLogin(context) {
   const password = String(parsed.value.password || "");
   if (!email || !password) return json({ ok: false, error: "Email or password is wrong." }, 401);
   try {
-    const bucket = await attemptBucket(context.request, "login");
-    if (await rateLimited(db, bucket, Date.now())) {
+    if (await tooManyAttempts(db, context.request, email, "login")) {
       return json({ ok: false, error: "Too many tries. Wait a few minutes and try again." }, 429);
     }
     const user = await db.prepare(
@@ -280,15 +293,22 @@ export async function handleDeleteAccount(context) {
 }
 
 function cleanMessages(list) {
-  if (!Array.isArray(list) || list.length > 40) return null;
+  if (!Array.isArray(list)) return { error: "That chat could not be saved." };
   const messages = [];
   for (const item of list) {
-    if (!item || (item.role !== "user" && item.role !== "assistant")) return null;
+    if (!item || (item.role !== "user" && item.role !== "assistant")) return { error: "That chat could not be saved." };
     const text = String(item.text || "").slice(0, 4000);
-    if (!text) return null;
+    if (!text) return { error: "That chat could not be saved." };
     messages.push({ role: item.role, text });
   }
-  return messages;
+  if (!messages.length) return { error: "That chat could not be saved." };
+  if (messages.length > CHAT_MAX) {
+    return { error: "This chat is longer than " + CHAT_MAX + " messages. Start a new chat to keep saving." };
+  }
+  const warn = messages.length > CHAT_WARN_AT
+    ? "This chat is longer than " + CHAT_WARN_AT + " messages. All of them are still saved to the account."
+    : "";
+  return { messages, warn };
 }
 
 export async function handleChats(context) {
@@ -320,8 +340,9 @@ export async function handleChats(context) {
     if (parsed.error) return json({ ok: false, error: "That chat could not be saved." }, 400);
     const id = String(parsed.value.id || "");
     if (!/^[0-9a-zA-Z-]{8,80}$/.test(id)) return json({ ok: false, error: "That chat could not be saved." }, 400);
-    const messages = cleanMessages(parsed.value.messages);
-    if (!messages || !messages.length) return json({ ok: false, error: "That chat could not be saved." }, 400);
+    const cleaned = cleanMessages(parsed.value.messages);
+    if (cleaned.error) return json({ ok: false, error: cleaned.error }, 400);
+    const messages = cleaned.messages;
     const count = await db.prepare("SELECT COUNT(*) AS n FROM chats WHERE user_id = ?").bind(user.id).first();
     const owned = await db.prepare("SELECT id FROM chats WHERE id = ? AND user_id = ?").bind(id, user.id).first();
     if (!owned && count && Number(count.n) >= 30) {
@@ -334,7 +355,7 @@ export async function handleChats(context) {
     await db.prepare(
       "INSERT INTO chats (id, user_id, title, messages, updated_at) VALUES (?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET title = excluded.title, messages = excluded.messages, updated_at = excluded.updated_at WHERE chats.user_id = excluded.user_id"
     ).bind(id, user.id, title, JSON.stringify(messages), updated).run();
-    return json({ ok: true, id, title, updatedAt: updated }, 200);
+    return json({ ok: true, id, title, updatedAt: updated, warn: cleaned.warn || "" }, 200);
   } catch (err) {
     return accountsOffline();
   }

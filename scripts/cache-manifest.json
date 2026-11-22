@@ -4,28 +4,20 @@
     "key": "20261115-ask1"
   },
   "ask/chat-app.js": {
-    "hash": "c05a0dc2c10e815714bcea09560784c5569d830523368fd8aea498c62a352a50",
-    "key": "20261122-ai9"
-  },
-  "ask/model-frame.js": {
-    "hash": "75e0580579ce182b7443d7e645b05bf0b9f57692937787122b62779856ea011e",
-    "key": "20261122-ai9"
-  },
-  "ask/model.js": {
-    "hash": "fee060934d8e636bb933ae793018aff70d1c272eaa62b7e05d4c73a42c1e8da8",
-    "key": "20261122-ai1"
+    "hash": "7c6e1ca71531bdd24ba28fcd4df2f8c690e2ee1eb1218b66c5e8d053a00ee05a",
+    "key": "20261122-safe2"
   },
   "ask/passages.js": {
-    "hash": "c0c6135a0184eb817e0454e381aa81a2117ac3322d167229023ba6882fca055f",
-    "key": "20261122-ai9"
+    "hash": "f923c6a83982f45cfd13c2c01c56548f7cf7ebbb5c4a3438d5d9f987db96ba8a",
+    "key": "20261122-safe2"
   },
   "ask/safety.mjs": {
-    "hash": "831dc1e1dde66fabf6e794b395975bed5bf4b354e4b2bcabdec1e6caf85abbde",
-    "key": "20261122-ai9"
+    "hash": "d1534549df4a354c091c166006ca4869d4cb1949e0b53f8625645c01df420cc2",
+    "key": "20261122-safe2"
   },
   "ask/ui.js": {
-    "hash": "bedf551f2c01e28d9125f7931a41e9e91f00023a03da7862bd07abc0da8be774",
-    "key": "20261122-ai9"
+    "hash": "c6a4faa4223bc8db8513f6a85107c1595c75dcb5a017ce90620f1a5ac12a31f3",
+    "key": "20261122-safe2"
   },
   "content/clips.js": {
     "hash": "a5c0cfa45b00524fbc1d2de324ec0f19031af1fce1ff80c092c465e2e29cd1e4",
@@ -138,8 +130,8 @@
     "key": "20261112-notebook1"
   },
   "css/lab-ai.css": {
-    "hash": "374af05a7ac402e78e22e924bb9491a98647e79eaae3fd2281f37cf4165f3534",
-    "key": "20261122-ai9"
+    "hash": "e6c1bc2fcd690bcf0b5743a770faff530794a492c1c7d4d95f04a6af8c572126",
+    "key": "20261122-safe2"
   },
   "css/lab-results.css": {
     "hash": "13da1bff3da419d00aa77359aceb2a6da1fd0cea3615f29570f7c4c198a7193a",
@@ -348,8 +340,8 @@
     "key": "20261010n"
   },
   "js/nav.js": {
-    "hash": "a4b9f84e528da11356702bb2cea388112cb13e3c620bbcb006a03c9b9082c536",
-    "key": "20261122-ai9"
+    "hash": "b8966ed17e04a3291d1511f82bb8159ad070da9e487069d05a6c05ea4745cc6d",
+    "key": "20261122-safe2"
   },
   "js/plan-tool.js": {
     "hash": "687e9bc23bcb839927457b71cad5ac30e36edcd4593be1f5a8bdd79786e50cee",
@@ -432,8 +424,8 @@
     "key": null
   },
   "sw.js": {
-    "hash": "c820851a680f03b456c1e6a6ec5ee6cd9fc330a6782599e371920e3c1c1de741",
-    "key": "20261122-ai9"
+    "hash": "5b38e5cabb3f861f2be4797d30f28e0938bae73d776c1c18b80a4fbdbb58f439",
+    "key": "20261122-safe2"
   },
   "watch/watch.css": {
     "hash": "0b8026e65ae3b40c91b7dfdf31a94e579c60b0222bd1d5ce8999b2ffc29870f1",

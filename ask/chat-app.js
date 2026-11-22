@@ -1,39 +1,4 @@
-import { replyFor } from "./safety.mjs?v=20261122-ai9";
-
-function deviceCanRunModel() {
-  if (typeof navigator === "undefined" || !navigator.gpu) return false;
-  const connection = navigator.connection;
-  if (connection && (connection.saveData || connection.effectiveType === "2g" || connection.effectiveType === "slow-2g")) return false;
-  return true;
-}
-
-function askModel(question, matches) {
-  const frame = document.getElementById("model-frame");
-  if (!frame || !frame.contentWindow) return Promise.reject(new Error("frame"));
-  const id = crypto.randomUUID ? crypto.randomUUID() : String(Date.now());
-  return new Promise((resolve, reject) => {
-    const timer = setTimeout(() => {
-      window.removeEventListener("message", onMessage);
-      reject(new Error("timeout"));
-    }, 25000);
-    function onMessage(event) {
-      if (event.source !== frame.contentWindow) return;
-      const data = event.data || {};
-      if (data.type !== "dtrt-model-result" || data.id !== id) return;
-      clearTimeout(timer);
-      window.removeEventListener("message", onMessage);
-      if (!data.text) reject(new Error(data.error || "empty"));
-      else resolve(data.text);
-    }
-    window.addEventListener("message", onMessage);
-    frame.contentWindow.postMessage({
-      type: "dtrt-model",
-      id,
-      question,
-      passages: (matches || []).slice(0, 2)
-    }, "*");
-  });
-}
+import { replyFor } from "./safety.mjs?v=20261122-safe2";
 
 const STORE = "dtrt.chat.v1";
 const NOTICE = "dtrt.early-notice";
@@ -181,7 +146,13 @@ async function persist(chat) {
     credentials: "same-origin",
     body: JSON.stringify({ id: chat.id, title: chat.title, messages: chat.messages })
   });
-  if (!response.ok) setStatus("Could not save to your account. A copy is in this browser.");
+  if (!response.ok) {
+    const body = await readJson(response);
+    setStatus(body.error || "Could not save to your account. A copy is in this browser.");
+    return;
+  }
+  const body = await readJson(response);
+  if (body.warn) setStatus(body.warn);
 }
 
 async function deleteChat(id) {
@@ -210,14 +181,14 @@ function addSources(sources) {
 
 async function ask(question) {
   const chat = ensureChat(question);
+  const history = chat.messages.filter((message) => message.role === "user").map((message) => message.text);
   chat.messages.push({ role: "user", text: question });
   renderThread();
   state.sending = true;
   state.stop = false;
   send.textContent = "Stop";
   send.setAttribute("aria-label", "Stop");
-  const canModel = deviceCanRunModel();
-  setStatus(canModel ? "Running a small open model in this browser." : "This device is using the public pages. No paid model is connected.");
+  setStatus("From DTRT Lab's public pages.");
   const item = el("article", "msg bot");
   const paragraph = el("p", "");
   item.append(paragraph);
@@ -225,21 +196,14 @@ async function ask(question) {
   let result;
   try {
     result = await replyFor(question, window.DTRT_ASK_CORPUS || { passages: [] }, {
-      search: (q, corpus) => window.DTRTAsk ? window.DTRTAsk.search(q, corpus, 4) : [],
-      tryModel: canModel ? askModel : null
+      history,
+      search: (q, corpus) => window.DTRTAsk ? window.DTRTAsk.search(q, corpus, 4) : []
     });
   } catch (err) {
     result = { text: "The search on this page did not finish. The public pages are still linked from the home page.", sources: [] };
   }
-  if (result.action === "pages" && result.modelCalled) {
-    setStatus("A small open model did not finish. This answer is from the public pages.");
-  } else if (result.action === "pages") {
-    setStatus("From the public pages. A small open model did not run. No paid model is connected.");
-  } else if (result.action === "model") {
-    setStatus("Ran in this browser. Very early AI test: answers can be wrong.");
-  } else {
-    setStatus("Very early AI test: answers can be wrong.");
-  }
+  if (result.action === "pages") setStatus("From DTRT Lab's public pages. Very early AI test: answers can be wrong.");
+  else setStatus("Very early AI test: answers can be wrong.");
   await reveal(paragraph, result.text);
   addSources(result.sources);
   chat.messages.push({ role: "assistant", text: result.text });
@@ -290,25 +254,18 @@ async function refreshSession() {
   try {
     response = await fetch("/api/session", { credentials: "same-origin" });
   } catch (err) {
-    state.accounts = "guest";
-    setStatus("Accounts are not connected on this host yet. This chat stays in this browser.");
+    setStatus("Could not reach accounts. Try again. The chat still works in this browser.");
     return;
   }
-  if (response.status === 503) {
-    state.accounts = "guest";
-    const data = await readJson(response);
-    if (data.guest) setStatus(data.error);
-    return;
-  }
-  state.accounts = "ready";
   const data = await readJson(response);
+  if (response.status === 503 && data.guest) {
+    setStatus(data.error || "Accounts are not connected on this host yet. The chat still works in this browser.");
+    return;
+  }
   if (!response.ok || !data.ok) {
     state.user = null;
     accountOpen.textContent = "Sign up";
     renderList();
-    if (response.status === 404 || data.guest) {
-      state.accounts = "guest";
-    }
     return;
   }
   state.user = { email: data.email, displayName: data.displayName || "" };
@@ -386,26 +343,43 @@ accountOpen.addEventListener("click", () => {
 document.getElementById("show-login").addEventListener("click", () => showAccount("login"));
 document.getElementById("show-signup").addEventListener("click", () => showAccount("signup"));
 
+function clearLocalChats() {
+  state.chats = [];
+  state.activeId = "";
+  state.user = null;
+  try { localStorage.removeItem(STORE); }
+  catch (err) { /* already empty */ }
+  accountOpen.textContent = "Sign up";
+  renderList();
+  renderThread();
+}
+
 async function submitAuth(url, email, password) {
   authStatus.textContent = "";
-  if (state.accounts === "guest") {
-    authStatus.textContent = "Accounts are not connected on this host yet. The chat still works in this browser.";
+  let response;
+  try {
+    response = await fetch(url, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      credentials: "same-origin",
+      body: JSON.stringify({ email, password })
+    });
+  } catch (err) {
+    authStatus.textContent = "Could not reach accounts. Try again. The chat still works in this browser.";
     return;
   }
-  const response = await fetch(url, {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    credentials: "same-origin",
-    body: JSON.stringify({ email, password })
-  });
   const data = await readJson(response);
   if (response.status === 503 && data.guest) {
-    state.accounts = "guest";
-    authMessage(data, "Accounts are not connected on this host yet.");
+    authMessage(data, "Accounts are not connected on this host yet. Try again later.");
     return;
   }
   if (!response.ok) {
     authMessage(data, "That did not work.");
+    return;
+  }
+  if (data.message && !data.email) {
+    authStatus.textContent = data.message;
+    showAccount("login");
     return;
   }
   accountDialog.close();
@@ -430,11 +404,10 @@ loginForm.addEventListener("submit", (event) => {
 });
 
 document.getElementById("logout").addEventListener("click", async () => {
-  await fetch("/api/logout", { method: "POST", credentials: "same-origin" });
-  state.user = null;
-  accountOpen.textContent = "Sign up";
+  try { await fetch("/api/logout", { method: "POST", credentials: "same-origin" }); }
+  catch (err) { /* still clear this browser */ }
+  clearLocalChats();
   accountDialog.close();
-  renderList();
 });
 
 document.getElementById("save-name").addEventListener("click", async () => {

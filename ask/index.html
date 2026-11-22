@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self' data: https://dtrtlab.goatcounter.com; connect-src 'self' https://dtrtlab.goatcounter.com; frame-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self' data: https://dtrtlab.goatcounter.com; connect-src 'self' https://dtrtlab.goatcounter.com; frame-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="referrer" content="no-referrer">
 <meta name="color-scheme" content="dark">
@@ -20,12 +20,11 @@
 <meta name="twitter:site" content="@DTRTLab">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/img/brand/mark.svg?v=la20261015" type="image/svg+xml">
-<link rel="stylesheet" href="/css/lab-ai.css?v=20261122-ai9">
+<link rel="stylesheet" href="/css/lab-ai.css?v=20261122-safe2">
 <link rel="stylesheet" href="/css/socials.css?v=20261115-socials3">
 <script data-goatcounter="https://dtrtlab.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body class="lab-ai">
-<iframe id="model-frame" class="model-frame" title="On-device model" src="/ask/model-frame.html" sandbox="allow-scripts"></iframe>
 <a class="skip" href="#composer">Skip to the question box</a>
 <div class="glow" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
@@ -40,7 +39,7 @@
 <div class="side-foot">
 <p class="early">Very early AI test: answers can be wrong</p>
 <button class="text-button" type="button" id="account-open">Sign up</button>
-<nav class="site-socials" aria-label="Social"><a class="social-main" href="https://www.instagram.com/officiallydtrt/" rel="me noopener noreferrer" target="_blank" aria-label="Instagram, @officiallydtrt">Instagram</a><a class="social-main" href="https://x.com/DTRTLab" rel="me noopener noreferrer" target="_blank" aria-label="X, @DTRTLab">X</a><a href="https://www.tiktok.com/@iananthonyfc" rel="me noopener noreferrer" target="_blank" aria-label="TikTok, @iananthonyfc">TikTok</a><a href="https://www.youtube.com/@DTRTLabYT" rel="me noopener noreferrer" target="_blank" aria-label="YouTube, @DTRTLabYT">YouTube</a><a href="https://www.twitch.tv/dtrtc" rel="me noopener noreferrer" target="_blank" aria-label="Twitch, dtrtc">Twitch</a></nav>
+<nav class="site-socials" aria-label="Social"><a class="social-main" href="https://www.instagram.com/dtrt.xyng/" rel="me noopener noreferrer" target="_blank" aria-label="Instagram, @dtrt.xyng">Instagram @dtrt.xyng</a><a class="social-main" href="https://x.com/DTRTLab" rel="me noopener noreferrer" target="_blank" aria-label="X, @DTRTLab">X</a><a href="https://www.tiktok.com/@iananthonyfc" rel="me noopener noreferrer" target="_blank" aria-label="TikTok, @iananthonyfc">TikTok</a><a href="https://www.youtube.com/@DTRTLabYT" rel="me noopener noreferrer" target="_blank" aria-label="YouTube, @DTRTLabYT">YouTube</a><a href="https://www.twitch.tv/dtrtc" rel="me noopener noreferrer" target="_blank" aria-label="Twitch, dtrtc">Twitch</a></nav>
 </div>
 </aside>
 <div class="main-col">
@@ -52,7 +51,7 @@
 <div id="thread" class="thread" aria-live="polite"></div>
 <div class="stage" id="stage">
 <h1>Ask DTRT Lab</h1>
-<p>A very early AI test. Answers can be wrong. It is not a person and not a doctor. When this browser can run a small open model, it does. Otherwise the answer comes from the public pages.</p>
+<p>A very early AI test. Answers can be wrong. It is not a person and not a doctor. Answers come from DTRT Lab's public pages.</p>
 <div class="notice" id="early-notice">
 <p>Very early AI test: answers can be wrong. This is not a person and not a doctor. If you are in crisis in the US, call or text 988, or visit findahelpline.com.</p>
 <button class="pill" type="button" id="close-notice">Continue</button>
@@ -65,6 +64,7 @@
 <button class="send" id="send" type="submit" aria-label="Send">Send</button>
 </form>
 <p class="fine" id="chat-status" role="status"></p>
+<p class="fine" id="help-line">If you're struggling, call or text 988 (US) or visit findahelpline.com.</p>
 <p class="fine">Guests: history stays in this browser. An account stores your email, a password hash, chats, and a display name until you delete them. <a href="/legal/privacy.html">Privacy</a></p>
 </div>
 </div>
@@ -102,9 +102,9 @@
 </dialog>
 <p id="ask-keep-wrap" hidden><label for="ask-keep"><input id="ask-keep" type="checkbox"></label></p>
 <noscript><p>JavaScript is required for the chat. The <a href="/">home page</a> still links the public pages.</p></noscript>
-<script src="/ask/passages.js?v=20261122-ai9"></script>
+<script src="/ask/passages.js?v=20261122-safe2"></script>
 <script src="/ask/ask.js?v=20261115-ask1"></script>
-<script src="/ask/ui.js?v=20261122-ai9"></script>
-<script type="module" src="/ask/chat-app.js?v=20261122-ai9"></script>
+<script src="/ask/ui.js?v=20261122-safe2"></script>
+<script type="module" src="/ask/chat-app.js?v=20261122-safe2"></script>
 </body>
 </html>
