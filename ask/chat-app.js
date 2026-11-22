@@ -1,4 +1,4 @@
-import { replyFor } from "./safety.mjs?v=20261122-safe2";
+import { replyFor } from "./safety.mjs?v=20261122-safe3";
 
 const STORE = "dtrt.chat.v1";
 const NOTICE = "dtrt.early-notice";
@@ -273,18 +273,32 @@ async function refreshSession() {
   const chats = await fetch("/api/chats", { credentials: "same-origin" });
   if (chats.ok) {
     const body = await readJson(chats);
-    if (Array.isArray(body.chats) && body.chats.length) {
-      state.chats = body.chats.map((chat) => ({
+    const remote = Array.isArray(body.chats) ? body.chats : [];
+    const localById = new Map(state.chats.map((chat) => [chat.id, chat]));
+    const seen = new Set();
+    const merged = [];
+    for (const chat of remote) {
+      seen.add(chat.id);
+      const local = localById.get(chat.id);
+      const serverMessages = chat.messages || [];
+      const localMessages = local && local.messages ? local.messages : [];
+      const messages = localMessages.length > serverMessages.length ? localMessages : serverMessages;
+      const next = {
         id: chat.id,
-        title: chat.title,
-        messages: chat.messages || [],
+        title: chat.title || (local && local.title) || "Chat",
+        messages: messages,
         updatedAt: chat.updatedAt
-      }));
-      if (!state.chats.some((chat) => chat.id === state.activeId)) state.activeId = state.chats[0].id;
-    } else if (state.chats.length) {
-      for (const chat of state.chats) {
-        if (chat.messages && chat.messages.length) await persist(chat);
-      }
+      };
+      merged.push(next);
+      if (messages.length > serverMessages.length) await persist(next);
+    }
+    for (const local of state.chats) {
+      if (!seen.has(local.id)) merged.push(local);
+    }
+    state.chats = merged;
+    if (!state.chats.some((chat) => chat.id === state.activeId)) state.activeId = state.chats[0] ? state.chats[0].id : "";
+    for (const local of state.chats) {
+      if (!seen.has(local.id) && local.messages && local.messages.length) await persist(local);
     }
   }
   saveLocal();

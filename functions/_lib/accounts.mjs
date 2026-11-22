@@ -211,7 +211,7 @@ export async function handleSignup(context) {
     }
     return json({ ok: true, message: "If that email was free, the account is ready. Log in." }, 200);
   } catch (err) {
-    return accountsOffline();
+    return json({ ok: false, error: "That did not work. Try again." }, 500);
   }
 }
 
@@ -238,7 +238,7 @@ export async function handleLogin(context) {
     const session = await issueSession(db, context.request, user.id);
     return json({ ok: true, email: user.email }, 200, withSession(context.request, session.token));
   } catch (err) {
-    return accountsOffline();
+    return json({ ok: false, error: "That did not work. Try again." }, 500);
   }
 }
 
@@ -251,7 +251,7 @@ export async function handleLogout(context) {
     }
     return json({ ok: true }, 200, cleared(context.request));
   } catch (err) {
-    return accountsOffline();
+    return json({ ok: false, error: "That did not work. Try again." }, 500);
   }
 }
 
@@ -270,7 +270,7 @@ export async function handleSession(context) {
     }
     return json({ ok: true, email: user.email, displayName }, 200);
   } catch (err) {
-    return accountsOffline();
+    return json({ ok: false, error: "That did not work. Try again." }, 500);
   }
 }
 
@@ -288,7 +288,7 @@ export async function handleDeleteAccount(context) {
     ]);
     return json({ ok: true }, 200, cleared(context.request));
   } catch (err) {
-    return accountsOffline();
+    return json({ ok: false, error: "That did not work. Try again." }, 500);
   }
 }
 
@@ -357,7 +357,7 @@ export async function handleChats(context) {
     ).bind(id, user.id, title, JSON.stringify(messages), updated).run();
     return json({ ok: true, id, title, updatedAt: updated, warn: cleaned.warn || "" }, 200);
   } catch (err) {
-    return accountsOffline();
+    return json({ ok: false, error: "That did not work. Try again." }, 500);
   }
 }
 
@@ -384,6 +384,6 @@ export async function handleSettings(context) {
     ).bind(user.id, JSON.stringify({ displayName })).run();
     return json({ ok: true, displayName }, 200);
   } catch (err) {
-    return accountsOffline();
+    return json({ ok: false, error: "That did not work. Try again." }, 500);
   }
 }
