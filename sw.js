@@ -6,7 +6,7 @@
    are stale-while-revalidate. Media, byte ranges, JSON and third
    parties bypass this worker's cache.
 */
-var VERSION = "20261115-ask1";
+var VERSION = "20261122-ai8";
 var CACHE = "dtrtlab-" + VERSION;
 var PRECACHE = [
   "/",
@@ -42,7 +42,7 @@ var PRECACHE = [
   "/css/adapt.css?v=20261010n",
   "/css/hub.css?v=20261010n",
   "/css/afterlight.css?v=20261010n",
-  "/js/nav.js?v=20261115-ask1",
+  "/js/nav.js?v=20261122-ai8",
   "/js/hub.js?v=20261010n",
   "/js/contact-topic.js?v=20261025-freemap1",
   "/js/live-extras.js?v=20261016-qa3",
@@ -62,9 +62,13 @@ var PRECACHE = [
   "/find.html",
   "/ask/",
   "/ask/index.html",
-  "/ask/passages.js?v=20261115-ask5",
+  "/ask/passages.js?v=20261122-ai8",
   "/ask/ask.js?v=20261115-ask1",
-  "/ask/ui.js?v=20261115-ask6",
+  "/ask/ui.js?v=20261122-ai8",
+  "/ask/safety.mjs?v=20261122-ai8",
+  "/ask/model.js?v=20261122-ai1",
+  "/ask/chat-app.js?v=20261122-ai8",
+  "/css/lab-ai.css?v=20261122-ai8",
   "/css/knowledge-home.css?v=20261112-notebook1",
   "/css/dream.css?v=20261115-dream4",
   "/css/socials.css?v=20261115-socials3",
@@ -192,6 +196,7 @@ self.addEventListener("fetch", function (event) {
       request.headers.has("range") ||
       /\.(mp4|webm|ogv|mov|m4v|avi|mpeg|mpg|3gp|3g2|mp3|m4a|aac|wav|ogg|oga|opus|flac)$/i.test(url.pathname)) return;
   if (url.pathname.indexOf("/content/") === 0 && /\.json$/i.test(url.pathname)) return;
+  if (url.pathname.indexOf("/api/") === 0) return;
   if (isDocument(request, url)) {
     event.respondWith(networkFirst(request));
     return;

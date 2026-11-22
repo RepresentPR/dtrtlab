@@ -4,3 +4,12 @@
   X-Frame-Options: DENY
   Permissions-Policy: interest-cohort=(), browsing-topics=()
   Cross-Origin-Opener-Policy: same-origin-allow-popups
+
+/live/*
+  X-Robots-Tag: noindex, nofollow
+
+/hq/*
+  X-Robots-Tag: noindex, nofollow
+
+/api/*
+  Cache-Control: no-store

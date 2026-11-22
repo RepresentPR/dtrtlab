@@ -510,7 +510,7 @@ function legalStampProblems(file, baseHtml, headHtml, now = new Date()) {
 
 // JS/CSS that exist for Node tests or tooling, not for pages. Reason required.
 const UNREFERENCED_ALLOW = [
-  // none yet: [/^js\/example\.js$/, 'why it is not loaded by a page'],
+  [/^functions\/.+\.m?js$/, 'Pages Functions answer /api/* on the server. Pages do not load them as scripts.'],
 ];
 
 module.exports = {

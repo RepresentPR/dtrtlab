@@ -1,0 +1,10 @@
+# Cloudflare Pages + D1. database_id is a placeholder until the database exists.
+# Create it with the one-time steps in the pull request. Do not put secrets here.
+name = "dtrtlab"
+compatibility_date = "2026-11-22"
+pages_build_output_dir = "."
+
+[[d1_databases]]
+binding = "DB"
+database_name = "dtrt-accounts"
+database_id = "00000000-0000-0000-0000-000000000000"

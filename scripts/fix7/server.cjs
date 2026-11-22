@@ -25,6 +25,11 @@ function resolve(urlPath) {
 function start() {
   const server = http.createServer((req, res) => {
     const u = new URL(req.url, 'http://x');
+    if (u.pathname === '/api' || u.pathname.startsWith('/api/')) {
+      res.writeHead(200, { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' });
+      if (req.method === 'HEAD') return res.end();
+      return res.end('{"ok":false,"guest":true}');
+    }
     if (REDIRECTS[u.pathname]) { res.writeHead(302, { location: REDIRECTS[u.pathname] }); return res.end(); }
     let file = resolve(u.pathname);
     // "/dir" without slash -> redirect like Netlify so relative links resolve

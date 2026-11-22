@@ -21,7 +21,12 @@
   window.DTRTAskLogOptIn = { showAfter: ASK_LOG_OPT_IN.showAfter, open: askLogOptInOpen };
 
   if (navigator.serviceWorker && location.protocol !== "file:") {
-    navigator.serviceWorker.register("/sw.js?v=20261115-ask1").catch(function () {});
+    var swUrl = "/sw.js?v=20261122-ai8";
+    var registerSw = function () {
+      navigator.serviceWorker.register(swUrl).catch(function () {});
+    };
+    if (typeof window !== "undefined" && window.addEventListener) window.addEventListener("load", registerSw);
+    else registerSw();
   }
 
   var form = document.getElementById("ask-form");

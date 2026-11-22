@@ -2,15 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self' data: https://dtrtlab.goatcounter.com; connect-src 'self' https://dtrtlab.goatcounter.com; form-action 'none'; base-uri 'none'; object-src 'none'; upgrade-insecure-requests">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://gc.zgo.at https://cdn.jsdelivr.net 'wasm-unsafe-eval'; style-src 'self'; font-src 'self'; img-src 'self' data: https://dtrtlab.goatcounter.com; connect-src 'self' https://dtrtlab.goatcounter.com https://cdn.jsdelivr.net https://huggingface.co https://cdn-lfs.huggingface.co https://cas-bridge.xethub.hf.co; worker-src 'self' blob:; form-action 'none'; base-uri 'none'; object-src 'none'; upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="referrer" content="no-referrer">
-<title>Ask DTRT — questions from the public pages</title>
-<meta name="description" content="Ask a question and read the closest passages from DTRT Lab's public pages. The search runs in your browser.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#070708">
+<title>Ask DTRT Lab — very early AI test</title>
+<meta name="description" content="A free, very early AI test from DTRT Lab. Answers can be wrong. A small open model runs in your browser when the device can run it. Otherwise it searches the public pages. No paid model is connected.">
 <link rel="canonical" href="https://dtrtlab.com/ask/">
 <meta property="og:site_name" content="DTRT Lab">
-<meta property="og:title" content="Ask DTRT">
-<meta property="og:description" content="Questions are answered from DTRT Lab's public pages, in the browser.">
+<meta property="og:title" content="Ask DTRT Lab — very early AI test">
+<meta property="og:description" content="A free, very early AI test. Answers can be wrong. It is not a person and not a doctor.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://dtrtlab.com/ask/">
 <meta property="og:image" content="https://dtrtlab.com/img/brand/avatar-a.png">
@@ -18,45 +20,90 @@
 <meta name="twitter:site" content="@DTRTLab">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/img/brand/mark.svg?v=la20261015" type="image/svg+xml">
-<link rel="stylesheet" href="/css/knowledge-home.css?v=20261112-notebook1">
-<link rel="stylesheet" href="/css/dream.css?v=20261115-dream4">
-<script data-goatcounter="https://dtrtlab.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="stylesheet" href="/css/lab-ai.css?v=20261122-ai8">
 <link rel="stylesheet" href="/css/socials.css?v=20261115-socials3">
+<script data-goatcounter="https://dtrtlab.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
-<body class="dream">
-<a class="skip" href="#main">Skip to content</a>
-<header class="header">
-<a class="wordmark" href="/"><img class="brand-mark" src="/img/brand/mark.svg?v=la20261015" alt="" width="34" height="34">DTRT <strong>LAB</strong></a>
-<nav aria-label="Main navigation"><a href="/">Home</a><a href="/blog/">Posts</a><a href="/ask/" aria-current="page">Ask DTRT</a><a href="/#work-with-me">Work with me</a></nav>
+<body class="lab-ai">
+<a class="skip" href="#composer">Skip to the question box</a>
+<div class="glow" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="app">
+<aside class="side" id="side">
+<div class="side-top">
+<a class="brand" href="/">DTRT Lab</a>
+<button class="pill" type="button" id="new-chat">New chat</button>
+</div>
+<p class="side-label" id="side-label">On this device</p>
+<nav id="chat-list" aria-label="Saved chats"></nav>
+<div class="side-foot">
+<p class="early">Very early AI test: answers can be wrong</p>
+<button class="text-button" type="button" id="account-open">Sign up</button>
 <nav class="site-socials" aria-label="Social"><a class="social-main" href="https://www.instagram.com/officiallydtrt/" rel="me noopener noreferrer" target="_blank" aria-label="Instagram, @officiallydtrt">Instagram</a><a class="social-main" href="https://x.com/DTRTLab" rel="me noopener noreferrer" target="_blank" aria-label="X, @DTRTLab">X</a><a href="https://www.tiktok.com/@iananthonyfc" rel="me noopener noreferrer" target="_blank" aria-label="TikTok, @iananthonyfc">TikTok</a><a href="https://www.youtube.com/@DTRTLabYT" rel="me noopener noreferrer" target="_blank" aria-label="YouTube, @DTRTLabYT">YouTube</a><a href="https://www.twitch.tv/dtrtc" rel="me noopener noreferrer" target="_blank" aria-label="Twitch, dtrtc">Twitch</a></nav>
+</div>
+</aside>
+<div class="main-col">
+<header class="topbar">
+<button class="icon-button" type="button" id="side-toggle" aria-expanded="false" aria-controls="side">Chats</button>
+<p class="early-inline">Very early AI test: answers can be wrong</p>
+<a class="site-link" href="/">Site</a>
 </header>
-<main id="main">
-<section class="hero personal-hero">
-<p class="eyebrow"><span class="square"></span> PUBLIC PAGES ONLY</p>
-<h1>Ask DTRT.</h1>
-<p class="hero-lead" id="visit-line">This page follows the time of day on your device.</p>
-<p class="hero-lead">Answers come from DTRT Lab's public pages. The search runs in this browser. A paid model is not connected.</p>
-</section>
-<section class="section" aria-labelledby="ask-heading">
-<h2 id="ask-heading">Ask from what is already published.</h2>
-<form id="ask-form" class="ask-form" action="/ask/" method="get">
-<label for="ask-q">Your question</label>
-<input id="ask-q" name="q" type="text" autocomplete="off" maxlength="240" placeholder="For example, office map">
-<button class="primary" type="submit">Search public pages</button>
+<div id="thread" class="thread" aria-live="polite"></div>
+<div class="stage" id="stage">
+<h1>Ask DTRT Lab</h1>
+<p>A very early AI test. Answers can be wrong. It is not a person and not a doctor. When this browser can run a small open model, it does. Otherwise the answer comes from the public pages.</p>
+<div class="notice" id="early-notice">
+<p>Very early AI test: answers can be wrong. This is not a person and not a doctor. If you are in crisis in the US, call or text 988, or visit findahelpline.com.</p>
+<button class="pill" type="button" id="close-notice">Continue</button>
+</div>
+</div>
+<div class="composer-wrap">
+<form id="composer-form" class="composer" action="/ask/" method="get">
+<label class="sr" for="composer">Your question</label>
+<textarea id="composer" name="q" rows="1" maxlength="2000" placeholder="Ask a question"></textarea>
+<button class="send" id="send" type="submit" aria-label="Send">Send</button>
 </form>
+<p class="fine" id="chat-status" role="status"></p>
+<p class="fine">Guests: history stays in this browser. An account stores your email, a password hash, chats, and a display name until you delete them. <a href="/legal/privacy.html">Privacy</a></p>
+</div>
+</div>
+</div>
+<dialog id="account-dialog" aria-labelledby="account-title">
+<h2 id="account-title">Your account</h2>
+<p>What is stored: your email, a password hash with its own salt, your chats, and a display name. Deleting the account removes them. The password itself is not stored.</p>
+<p id="auth-status" role="status"></p>
+<div id="account-mode">
+<form id="signup-form" class="stack" action="/ask/" method="get">
+<label>Email <input id="signup-email" name="email" type="email" autocomplete="username" required maxlength="254"></label>
+<label>Password <input id="signup-password" name="password" type="password" autocomplete="new-password" required minlength="10" maxlength="200"></label>
+<label>Repeat password <input id="signup-again" type="password" autocomplete="new-password" required minlength="10" maxlength="200"></label>
+<button class="pill" type="submit">Create account</button>
+<button class="text-button" type="button" id="show-login">Log in</button>
+</form>
+<form id="login-form" class="stack" action="/ask/" method="get" hidden>
+<label>Email <input id="login-email" name="email" type="email" autocomplete="username" required maxlength="254"></label>
+<label>Password <input id="login-password" name="password" type="password" autocomplete="current-password" required minlength="10" maxlength="200"></label>
+<button class="pill" type="submit">Log in</button>
+<button class="text-button" type="button" id="show-signup">Sign up</button>
+</form>
+</div>
+<div id="session-box" hidden>
+<p id="session-email"></p>
+<label>Display name <input id="display-name" type="text" maxlength="40" autocomplete="nickname"></label>
+<div class="row">
+<button class="pill" type="button" id="save-name">Save name</button>
+<button class="text-button" type="button" id="logout">Log out</button>
+</div>
+<label class="check"><input id="delete-confirm" type="checkbox"> Delete this account and its saved chats</label>
+<button class="text-button" type="button" id="delete-account">Delete account and history</button>
+</div>
+<button class="text-button" type="button" id="close-account">Close</button>
+</dialog>
 <p id="ask-keep-wrap" hidden><label for="ask-keep"><input id="ask-keep" type="checkbox"></label></p>
-<div id="ask-log" class="ask-log" aria-live="polite"></div>
-<noscript><p>JavaScript is required for the in-browser search. The <a href="/">home page</a> still links the public pages.</p></noscript>
-</section>
-</main>
-<footer>
-
-<p>Do the right thing. Make useful things. Keep a truthful record.</p>
-<nav aria-label="Footer"><a href="/">Home</a><a href="/blog/">Posts</a><a href="/notebook/">Notebook</a><a href="/legal/privacy.html">Privacy</a><a href="/legal/terms.html">Terms</a></nav>
-</footer>
-<script src="/ask/passages.js?v=20261115-ask5"></script>
+<noscript><p>JavaScript is required for the chat. The <a href="/">home page</a> still links the public pages.</p></noscript>
+<script src="/ask/passages.js?v=20261122-ai8"></script>
 <script src="/ask/ask.js?v=20261115-ask1"></script>
-<script src="/ask/ui.js?v=20261115-ask6"></script>
-<script defer src="/js/visit.js?v=20261115-dream10"></script>
+<script src="/ask/ui.js?v=20261122-ai8"></script>
+<script type="module" src="/ask/chat-app.js?v=20261122-ai8"></script>
 </body>
 </html>
