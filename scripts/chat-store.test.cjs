@@ -24,25 +24,52 @@ test('login does not upload another account\'s local threads', () => {
   assert.match(store.quarantineStatus(split.held), /another account/);
   assert.equal(store.quarantineStatus([{ id: 'g', owner: '' }]), '');
   const app = fs.readFileSync(path.join(__dirname, '../ask/chat-app.js'), 'utf8');
-  assert.match(app, /splitForAccount/);
-  assert.match(app, /chatsToUpload/);
-  assert.match(app, /retryDeletes/);
+  assert.match(app, /syncOnLogin\(/);
+  assert.match(app, /applyDelete\(/);
+  assert.match(app, /keepAfterExpiredSession\(/);
+  assert.doesNotMatch(app, /if \(!seen\.has\(local\.id\) && local\.messages/);
 });
 
-test('a failed delete stays hidden and says so after repeated failures', () => {
-  const chats = [
-    { id: 'keep', owner: 'ada@example.com', messages: [{ role: 'user', text: 'stay' }] },
-    { id: 'gone', owner: 'ada@example.com', messages: [{ role: 'user', text: 'remove' }] }
-  ];
-  let tombs = store.noteDelete([], 'gone');
-  assert.deepEqual(store.hideDeleted(chats, tombs).map((chat) => chat.id), ['keep']);
-  tombs = store.recordDeleteResult(tombs, 'gone', false);
-  tombs = store.recordDeleteResult(tombs, 'gone', false);
-  assert.match(store.deleteStatus(tombs), /tried again/);
-  tombs = store.recordDeleteResult(tombs, 'gone', false);
-  assert.match(store.deleteStatus(tombs), /could not be deleted/);
-  assert.deepEqual(store.hideDeleted(chats, tombs).map((chat) => chat.id), ['keep']);
-  tombs = store.recordDeleteResult(tombs, 'gone', true);
-  assert.equal(store.deleteStatus(tombs), '');
-  assert.equal(tombs.length, 0);
+test('a 401 leftover thread is not shown or uploaded for the next account', () => {
+  assert.equal(store.STORE_KEY, 'dtrt.chat.v1');
+  const raw = JSON.stringify({
+    chats: [{ id: 'left', title: 'From A', messages: [{ role: 'user', text: 'secret' }] }],
+    activeId: 'left'
+  });
+  const loaded = store.readStore(raw);
+  const expired = store.keepAfterExpiredSession(loaded);
+  assert.equal(expired.user, null);
+  assert.equal(expired.chats[0].id, 'left');
+  const login = store.syncOnLogin(expired, 'b@example.com', []);
+  assert.equal(login.visible.some((chat) => chat.id === 'left'), false);
+  assert.equal(login.puts.some((chat) => chat.id === 'left'), false);
+  const owned = store.readStore(JSON.stringify({
+    owner: 'a@example.com',
+    chats: [{ id: 'left', owner: 'a@example.com', title: 'From A', messages: [{ role: 'user', text: 'secret' }] }],
+    activeId: 'left'
+  }));
+  const again = store.syncOnLogin(store.keepAfterExpiredSession(owned), 'b@example.com', []);
+  assert.equal(again.visible.some((chat) => chat.id === 'left'), false);
+  assert.equal(again.puts.some((chat) => chat.id === 'left'), false);
+});
+
+test('a 500 delete stays hidden when the session refresh returns the thread', () => {
+  const open = store.syncOnLogin(store.readStore(JSON.stringify({
+    owner: 'b@example.com',
+    chats: [{ id: 't', owner: 'b@example.com', title: 'T', messages: [{ role: 'user', text: 'hi' }] }],
+    activeId: 't'
+  })), 'b@example.com', [{ id: 't', title: 'T', messages: [{ role: 'user', text: 'hi' }] }]);
+  assert.equal(open.visible.some((chat) => chat.id === 't'), true);
+  const failed = store.applyDelete({
+    chats: open.visible,
+    held: open.held,
+    tombstones: open.tombstones,
+    activeId: 't',
+    owner: 'b@example.com'
+  }, 't', 500);
+  assert.equal(failed.visible.some((chat) => chat.id === 't'), false);
+  assert.match(failed.error, /could not be deleted/);
+  const refreshed = store.syncOnLogin(failed.store, 'b@example.com', [{ id: 't', title: 'T', messages: [{ role: 'user', text: 'hi' }] }]);
+  assert.equal(refreshed.visible.some((chat) => chat.id === 't'), false);
+  assert.equal(refreshed.puts.some((chat) => chat.id === 't'), false);
 });

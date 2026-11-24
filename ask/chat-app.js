@@ -1,7 +1,7 @@
 import { replyFor, CRISIS_REPLY, REDIRECT, RESOURCE_NOTE, SUGGESTIONS } from "./safety.mjs?v=20261122-ask12";
-import { normalizeEmail, ownedChat, splitForAccount, chatsToUpload, hideDeleted, noteDelete, recordDeleteResult, deleteStatus, quarantineStatus } from "./chat-store.mjs?v=20261122-ask13";
+import { normalizeEmail, ownedChat, syncOnLogin, applyDelete, keepAfterExpiredSession, deleteStatus, recordDeleteResult, readStore, STORE_KEY } from "./chat-store.mjs?v=20261122-ask14";
 
-const STORE = "dtrt.chat.v1";
+const STORE = STORE_KEY;
 const NOTICE = "dtrt.early-notice";
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -32,22 +32,33 @@ const state = {
   sending: false,
   stop: false,
   held: [],
-  tombstones: []
+  tombstones: [],
+  accountOwner: ""
 };
+
+function snapshot() {
+  return {
+    chats: state.chats,
+    held: state.held,
+    tombstones: state.tombstones,
+    activeId: state.activeId,
+    owner: state.accountOwner
+  };
+}
+
+function applySnapshot(next) {
+  state.chats = next.chats || [];
+  state.held = next.held || [];
+  state.tombstones = next.tombstones || [];
+  if (next.activeId != null) state.activeId = next.activeId;
+  if (next.owner != null) state.accountOwner = next.owner;
+}
 
 function loadLocal() {
   try {
-    const data = JSON.parse(localStorage.getItem(STORE) || "null");
-    if (!data || !Array.isArray(data.chats)) return;
-    const storedOwner = normalizeEmail(data.owner);
-    state.chats = data.chats.map((chat) => {
-      if (chat && !chat.owner && storedOwner) return ownedChat(chat, storedOwner);
-      return chat;
-    });
-    state.held = Array.isArray(data.held) ? data.held : [];
-    state.tombstones = Array.isArray(data.tombstones) ? data.tombstones : [];
-    state.chats = hideDeleted(state.chats, state.tombstones);
-    state.activeId = data.activeId || "";
+    const data = readStore(localStorage.getItem(STORE));
+    if (!data.chats.length && !data.held.length && !data.tombstones.length) return;
+    applySnapshot(data);
   } catch (err) { /* ignore a broken local copy */ }
 }
 
@@ -57,7 +68,7 @@ function saveLocal() {
     held: state.held,
     tombstones: state.tombstones,
     activeId: state.activeId,
-    owner: state.user ? normalizeEmail(state.user.email) : ""
+    owner: state.user ? normalizeEmail(state.user.email) : state.accountOwner
   });
   try { localStorage.setItem(STORE, data); }
   catch (err) { /* private mode can refuse storage */ }
@@ -241,15 +252,25 @@ async function retryDeletes() {
 }
 
 async function deleteChat(id) {
-  state.chats = state.chats.filter((chat) => chat.id !== id);
-  state.held = (state.held || []).filter((chat) => chat.id !== id);
-  if (state.activeId === id) state.activeId = state.chats[0] ? state.chats[0].id : "";
-  if (state.user) state.tombstones = noteDelete(state.tombstones, id);
+  const hidden = applyDelete(snapshot(), id, null);
+  applySnapshot(hidden.store);
   saveLocal();
   renderList();
   renderThread();
   if (!state.user) return;
-  await retryDeletes();
+  let statusCode = 0;
+  try {
+    const response = await fetch("/api/chats?id=" + encodeURIComponent(id), { method: "DELETE", credentials: "same-origin" });
+    statusCode = response.status;
+  } catch (err) {
+    statusCode = 0;
+  }
+  const result = applyDelete(snapshot(), id, statusCode);
+  applySnapshot(result.store);
+  saveLocal();
+  renderList();
+  renderThread();
+  if (result.error) setStatus(result.error);
 }
 
 function addSources(sources) {
@@ -357,47 +378,34 @@ async function refreshSession() {
     return;
   }
   if (!response.ok || !data.ok) {
+    if (state.user) {
+      const email = normalizeEmail(state.user.email);
+      state.accountOwner = email;
+      state.chats = state.chats.map((chat) => chat && chat.owner ? chat : ownedChat(chat, email));
+    }
+    const kept = keepAfterExpiredSession(snapshot());
     state.user = null;
+    applySnapshot(kept);
+    saveLocal();
     accountOpen.textContent = "Sign up";
     renderList();
+    renderThread();
     return;
   }
   state.user = { email: data.email, displayName: data.displayName || "" };
+  state.accountOwner = normalizeEmail(data.email);
   accountOpen.textContent = state.user.displayName || state.user.email;
   const chats = await fetch("/api/chats", { credentials: "same-origin" });
   if (chats.ok) {
     const body = await readJson(chats);
-    const remote = hideDeleted(Array.isArray(body.chats) ? body.chats : [], state.tombstones);
-    const split = splitForAccount(state.chats.concat(state.held || []), data.email);
-    state.held = split.held;
-    const localById = new Map(split.mine.map((chat) => [chat.id, chat]));
-    const seen = new Set();
-    const merged = [];
-    for (const chat of remote) {
-      seen.add(chat.id);
-      const local = localById.get(chat.id);
-      const serverMessages = chat.messages || [];
-      const localMessages = local && local.messages ? local.messages : [];
-      const messages = localMessages.length > serverMessages.length ? localMessages : serverMessages;
-      const next = ownedChat({
-        id: chat.id,
-        title: chat.title || (local && local.title) || "Chat",
-        messages: messages,
-        updatedAt: chat.updatedAt
-      }, data.email);
-      merged.push(next);
-      if (messages.length > serverMessages.length) await persist(next);
-    }
-    split.mine.forEach((local) => {
-      if (!seen.has(local.id)) merged.push(ownedChat(local, data.email));
-    });
-    state.chats = hideDeleted(merged, state.tombstones);
+    const synced = syncOnLogin(snapshot(), data.email, Array.isArray(body.chats) ? body.chats : []);
+    state.chats = synced.visible;
+    state.held = synced.held;
+    state.tombstones = synced.tombstones;
     if (!state.chats.some((chat) => chat.id === state.activeId)) state.activeId = state.chats[0] ? state.chats[0].id : "";
-    const remoteIds = new Set(remote.map((chat) => chat.id));
-    for (const local of chatsToUpload(state.chats, remoteIds)) await persist(local);
+    for (const local of synced.puts) await persist(local);
     await retryDeletes();
-    const parked = quarantineStatus(state.held);
-    if (parked && !deleteStatus(state.tombstones)) setStatus(parked);
+    if (synced.status && !deleteStatus(state.tombstones)) setStatus(synced.status);
   }
   saveLocal();
   renderList();
