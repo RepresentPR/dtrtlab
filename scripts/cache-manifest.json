@@ -4,12 +4,12 @@
     "key": "20261115-ask1"
   },
   "ask/passages.js": {
-    "hash": "a661f7c3f79870a7ccf607c90051570c8cf4e2ad160b400444c1ba7bf8f904e8",
-    "key": "20261122-ask5"
+    "hash": "ba2db42a823bff0fec42eaad2dc114cb5f61aebc53dbb175fae57cf25f4e3d05",
+    "key": "20261123-links1"
   },
   "ask/ui.js": {
-    "hash": "02c3ffd47d5efe25f22beea09cc4f91993bb4e857b55d9276c1523cb77130820",
-    "key": "20261122-ask6"
+    "hash": "87163f5d6cff7eef6648ef82dde4c6b612cc44593ea376e426e6e1ee40bd2efb",
+    "key": "20261123-links1"
   },
   "content/clips.js": {
     "hash": "a5c0cfa45b00524fbc1d2de324ec0f19031af1fce1ff80c092c465e2e29cd1e4",
@@ -328,8 +328,8 @@
     "key": "20261010n"
   },
   "js/nav.js": {
-    "hash": "e5c352f4e1b21aa065d0c4b401eb548083816d41c19490db4e00aa4383dbcf34",
-    "key": "20261122-ask1"
+    "hash": "437208f8f6ceaa79b7b3fd21f5ed34e1718f80cd38e4e6163b06d5abf6ec847d",
+    "key": "20261123-links1"
   },
   "js/plan-tool.js": {
     "hash": "687e9bc23bcb839927457b71cad5ac30e36edcd4593be1f5a8bdd79786e50cee",
@@ -375,6 +375,14 @@
     "hash": "8511f1fcfab47960d7941bfeedf0c2f556c368b383f6b5c50b9fe6a5d7e05d92",
     "key": "20261115-dream10"
   },
+  "links/lang.js": {
+    "hash": "e25d3727c8a0e5c57f9187fb9c8aa74f479d07cfe4607cf6744c66571550b95a",
+    "key": "20261123-links1"
+  },
+  "links/links.css": {
+    "hash": "5f70b1494575e618ea37a10d7f8f9a7cb501d5e0c535992c618e81995ba7e2a4",
+    "key": "20261123-links1"
+  },
   "live/board/board.css": {
     "hash": "271c8299d305455798896d2ce641363b2207128b1c0f82d392c138629c4d3e04",
     "key": "2"
@@ -412,8 +420,8 @@
     "key": null
   },
   "sw.js": {
-    "hash": "7925f02edc126d80a6396b5b0bd3e7560d5b75b4fbb6bd11b9c9dd1ff5b1bdce",
-    "key": "20261122-ask1"
+    "hash": "265226d7f57059ede053072beb13aabbaee12ce670342c22832679d0c3c58a0e",
+    "key": "20261123-links1"
   },
   "watch/watch.css": {
     "hash": "0b8026e65ae3b40c91b7dfdf31a94e579c60b0222bd1d5ce8999b2ffc29870f1",
