@@ -9,7 +9,7 @@ const { build } = require('./build-ask-index.cjs');
 const root = path.join(__dirname, '..');
 const read = (name) => fs.readFileSync(path.join(root, name), 'utf8');
 const PROFILES = [
-  'https://www.instagram.com/officiallydtrt/',
+  'https://www.instagram.com/dtrt.xyng/',
   'https://x.com/DTRTLab',
   'https://www.tiktok.com/@iananthonyfc',
   'https://www.youtube.com/@DTRTLabYT',
@@ -41,7 +41,7 @@ test('home leads with Ian, an empty posts page, and Ask', () => {
   assert.doesNotMatch(home + blog, /DRAFT EXAMPLE|a-placeholder|placeholder post/i);
   assert.match(blog, /Posts live here\./);
   assert.doesNotMatch(blog, /coming soon/i);
-  assert.match(blog, /href="https:\/\/www\.instagram\.com\/officiallydtrt\/"/);
+  assert.match(blog, /href="https:\/\/www\.instagram\.com\/dtrt\.xyng\/"/);
   assert.match(blog, /href="https:\/\/x\.com\/DTRTLab"/);
   assert.match(main, /href="\/blog\/"/);
   assert.match(main, /href="\/ask\/"/);
@@ -64,7 +64,7 @@ test('home leads with Ian, an empty posts page, and Ask', () => {
   const scene = read('js/scene-nav.js');
   assert.match(scene, /"instagram", "x", "tiktok", "youtube", "twitch"/);
   assert.match(scene, /rel="me noopener noreferrer"/);
-  assert.match(read('cs2.html') + read('tab.html'), /scene-nav\.js\?v=20261115-social6/);
+  assert.match(read('cs2.html') + read('tab.html'), /scene-nav\.js\?v=20261123-links2/);
   assert.doesNotMatch(read('cs2.html') + read('tab.html'), /js\/nav\.js/);
 });
 
@@ -75,9 +75,7 @@ test('every visitor page links the five profiles, with Instagram marked as main'
     if (skip.has(rel)) continue;
     const html = read(rel);
     for (const url of PROFILES) {
-      // Instagram was renamed to @dtrt.xyng on 2026-11-21; accept the new handle while the sitewide rename lands.
-      const ok = html.includes(url) || (url.includes('instagram.com/officiallydtrt/') && html.includes('https://www.instagram.com/dtrt.xyng/'));
-      if (!ok) missing.push(rel + ' missing ' + url);
+      if (!html.includes(url)) missing.push(rel + ' missing ' + url);
     }
     if (!html.includes('class="social-main"') || !html.includes('rel="me noopener noreferrer"')) {
       missing.push(rel + ' missing the main Instagram link');
