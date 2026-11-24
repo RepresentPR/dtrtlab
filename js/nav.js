@@ -1,5 +1,5 @@
 (function () {
-  var ASSET_V = "20261014-business1";
+  var ASSET_V = "20261123-links2";
   var here = (location.pathname || "").toLowerCase();
   var parts = here.replace(/\\/g, "/").split("/").filter(Boolean);
   if (parts.length && /\.[a-z0-9]+$/i.test(parts[parts.length - 1])) parts.pop();
@@ -345,7 +345,7 @@
 
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register(root + "sw.js?v=20261123-links1").catch(function () {});
+      navigator.serviceWorker.register(root + "sw.js?v=20261123-links2").catch(function () {});
     });
   }
 })();
