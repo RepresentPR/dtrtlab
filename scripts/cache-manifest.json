@@ -1,27 +1,27 @@
 {
   "ask/ask.js": {
     "hash": "c67f740f963fe0edf22424b45b6584246894bdf8986c54ac0e3f281e52003d4e",
-    "key": "20261122-ask12"
+    "key": "20261122-ask16"
   },
   "ask/chat-app.js": {
-    "hash": "d0b944ccd7720a3480b90cb67b21eb492b9878b2e668f2c46f9fc477c03d67b9",
-    "key": "20261122-ask15"
+    "hash": "200272d670a4b21eeac18ee7085cc7b3dbb2655d3ed3e94c8b3adb1fe910bb9c",
+    "key": "20261122-ask16"
   },
   "ask/chat-store.mjs": {
     "hash": "8266229ecbc384e1e0944eed5871a1e270bc0109708b878e9225dff23badb1e2",
-    "key": "20261122-ask15"
+    "key": "20261122-ask16"
   },
   "ask/passages.js": {
     "hash": "2c6952c6aebd38bba713546487bed69c7c821f6d5fa0c3ba75d3e824e93a0031",
-    "key": "20261122-ask12"
+    "key": "20261122-ask16"
   },
   "ask/safety.mjs": {
     "hash": "1e28b3c598ecf0b8341c76d27bb9b9b8e4e9cd9b19d165bcd1fcbf7715079292",
-    "key": "20261122-ask12"
+    "key": "20261122-ask16"
   },
   "ask/ui.js": {
-    "hash": "344cebcea3a00ab221ed354272256a0d214b992f67fdd7b34d24f1d06aba76f1",
-    "key": "20261122-ask15"
+    "hash": "8e8ee0c69c95b88877281bec4a84072afb5e3636ba3e02a6be084f22d872c7d8",
+    "key": "20261122-ask16"
   },
   "content/clips.js": {
     "hash": "a5c0cfa45b00524fbc1d2de324ec0f19031af1fce1ff80c092c465e2e29cd1e4",
@@ -135,7 +135,7 @@
   },
   "css/lab-ai.css": {
     "hash": "3d231b150044bc1b1c48e5aa90ffb3a518ab381ee7e313e329b08b0ace6c4309",
-    "key": "20261122-ask12"
+    "key": "20261122-ask16"
   },
   "css/lab-results.css": {
     "hash": "13da1bff3da419d00aa77359aceb2a6da1fd0cea3615f29570f7c4c198a7193a",
@@ -344,8 +344,8 @@
     "key": "20261010n"
   },
   "js/nav.js": {
-    "hash": "bb73a3b2bc5e8fb75bbbe96ba713e3b571a8a830de45f89f4c6e88ea87e1e946",
-    "key": "20261122-ask15"
+    "hash": "8bcdc836541fe400a636b853057ef0fc5f11418b0c60e009004028a0b1415297",
+    "key": "20261122-ask16"
   },
   "js/plan-tool.js": {
     "hash": "687e9bc23bcb839927457b71cad5ac30e36edcd4593be1f5a8bdd79786e50cee",
@@ -428,8 +428,8 @@
     "key": null
   },
   "sw.js": {
-    "hash": "0275323e671fd793d402ab1016dd16fff3bae303e78d00b7e10e8b8918a80fa6",
-    "key": "20261122-ask15"
+    "hash": "2100d8abb0772b3e1efc62d938aedc63e1a3426e721939bd0ced74d48dd62e44",
+    "key": "20261122-ask16"
   },
   "watch/watch.css": {
     "hash": "0b8026e65ae3b40c91b7dfdf31a94e579c60b0222bd1d5ce8999b2ffc29870f1",
