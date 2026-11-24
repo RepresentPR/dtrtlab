@@ -1,5 +1,5 @@
 import { replyFor, CRISIS_REPLY, REDIRECT, RESOURCE_NOTE, SUGGESTIONS } from "./safety.mjs?v=20261122-ask12";
-import { normalizeEmail, ownedChat, syncOnLogin, applyDelete, keepAfterExpiredSession, deleteStatus, recordDeleteResult, readStore, STORE_KEY } from "./chat-store.mjs?v=20261122-ask14";
+import { normalizeEmail, ownedChat, syncOnLogin, applyDelete, keepAfterExpiredSession, deleteStatus, recordDeleteResult, readStore, logoutStore, STORE_KEY } from "./chat-store.mjs?v=20261122-ask15";
 
 const STORE = STORE_KEY;
 const NOTICE = "dtrt.early-notice";
@@ -68,7 +68,7 @@ function saveLocal() {
     held: state.held,
     tombstones: state.tombstones,
     activeId: state.activeId,
-    owner: state.user ? normalizeEmail(state.user.email) : state.accountOwner
+    owner: state.user ? normalizeEmail(state.user.email) : ""
   });
   try { localStorage.setItem(STORE, data); }
   catch (err) { /* private mode can refuse storage */ }
@@ -199,6 +199,8 @@ function newId() {
 
 function ensureChat(question) {
   let chat = activeChat();
+  const me = state.user ? normalizeEmail(state.user.email) : "";
+  if (chat && normalizeEmail(chat.owner) !== me) chat = null;
   if (!chat) {
     chat = ownedChat({
       id: newId(),
@@ -392,21 +394,32 @@ async function refreshSession() {
     renderThread();
     return;
   }
+  let remote = [];
+  let chatsOk = false;
+  try {
+    const chats = await fetch("/api/chats", { credentials: "same-origin" });
+    chatsOk = chats.ok;
+    if (chats.ok) {
+      const body = await readJson(chats);
+      remote = Array.isArray(body.chats) ? body.chats : [];
+    }
+  } catch (err) {
+    chatsOk = false;
+  }
+  const synced = syncOnLogin(snapshot(), data.email, remote);
   state.user = { email: data.email, displayName: data.displayName || "" };
   state.accountOwner = normalizeEmail(data.email);
   accountOpen.textContent = state.user.displayName || state.user.email;
-  const chats = await fetch("/api/chats", { credentials: "same-origin" });
-  if (chats.ok) {
-    const body = await readJson(chats);
-    const synced = syncOnLogin(snapshot(), data.email, Array.isArray(body.chats) ? body.chats : []);
-    state.chats = synced.visible;
-    state.held = synced.held;
-    state.tombstones = synced.tombstones;
-    if (!state.chats.some((chat) => chat.id === state.activeId)) state.activeId = state.chats[0] ? state.chats[0].id : "";
+  state.chats = synced.visible;
+  state.held = synced.held;
+  state.tombstones = synced.tombstones;
+  if (!state.chats.some((chat) => chat.id === state.activeId)) state.activeId = state.chats[0] ? state.chats[0].id : "";
+  if (chatsOk) {
     for (const local of synced.puts) await persist(local);
     await retryDeletes();
-    if (synced.status && !deleteStatus(state.tombstones)) setStatus(synced.status);
   }
+  if (!chatsOk) setStatus("Could not load saved chats. Threads already on this browser were not added to this login.");
+  else if (synced.status && !deleteStatus(state.tombstones)) setStatus(synced.status);
   saveLocal();
   renderList();
   renderThread();
@@ -464,13 +477,10 @@ document.getElementById("show-login").addEventListener("click", () => showAccoun
 document.getElementById("show-signup").addEventListener("click", () => showAccount("signup"));
 
 function clearLocalChats() {
-  const guest = (state.held || []).filter((chat) => !normalizeEmail(chat.owner));
-  const others = (state.held || []).filter((chat) => normalizeEmail(chat.owner));
-  state.chats = guest;
-  state.held = others;
-  state.tombstones = [];
-  state.activeId = guest[0] ? guest[0].id : "";
+  const loggedOut = logoutStore(snapshot());
   state.user = null;
+  state.accountOwner = "";
+  applySnapshot(loggedOut);
   saveLocal();
   accountOpen.textContent = "Sign up";
   renderList();

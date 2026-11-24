@@ -71,18 +71,25 @@ export function readStore(raw) {
   if (!data || !Array.isArray(data.chats)) {
     return { chats: [], held: [], tombstones: [], activeId: "", owner: "" };
   }
-  const storedOwner = normalizeEmail(data.owner);
   const tombstones = Array.isArray(data.tombstones) ? data.tombstones : [];
-  const chats = data.chats.map((chat) => {
-    if (chat && !chat.owner && storedOwner) return ownedChat(chat, storedOwner);
-    return chat;
-  });
   return {
-    chats: hideDeleted(chats, tombstones),
+    chats: hideDeleted(data.chats, tombstones),
     held: Array.isArray(data.held) ? data.held : [],
     tombstones: tombstones,
     activeId: data.activeId || "",
-    owner: storedOwner
+    owner: ""
+  };
+}
+
+export function logoutStore(store) {
+  const guest = (store.held || []).filter((chat) => !normalizeEmail(chat && chat.owner));
+  const others = (store.held || []).filter((chat) => normalizeEmail(chat && chat.owner));
+  return {
+    chats: guest,
+    held: others,
+    tombstones: [],
+    activeId: guest[0] ? guest[0].id : "",
+    owner: ""
   };
 }
 

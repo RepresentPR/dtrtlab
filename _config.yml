@@ -21,6 +21,7 @@ exclude:
   - outputs
   - _site
   - AGENTS.md
+  - PROGRESS.md
   - brand-kit.md
   - CONTRIBUTING.md
   - README.md

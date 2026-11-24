@@ -53,6 +53,41 @@ test('a 401 leftover thread is not shown or uploaded for the next account', () =
   assert.equal(again.puts.some((chat) => chat.id === 'left'), false);
 });
 
+test('logout does not stamp guest threads with the previous account', () => {
+  const loggedOut = store.logoutStore({
+    chats: [],
+    held: [
+      { id: 'g', owner: '', messages: [{ role: 'user', text: 'guest' }] },
+      { id: 'a', owner: 'a@example.com', messages: [{ role: 'user', text: 'ada' }] }
+    ],
+    tombstones: [],
+    activeId: '',
+    owner: 'a@example.com'
+  });
+  assert.equal(loggedOut.owner, '');
+  assert.equal(loggedOut.chats[0].owner, '');
+  const loaded = store.readStore(JSON.stringify(loggedOut));
+  assert.equal(loaded.chats[0].owner || '', '');
+  const login = store.syncOnLogin(loaded, 'a@example.com', []);
+  assert.equal(login.visible.some((chat) => chat.id === 'g'), false);
+  assert.equal(login.puts.some((chat) => chat.id === 'g'), false);
+});
+
+test('a failed chat fetch still hides the previous account', () => {
+  const synced = store.syncOnLogin({
+    chats: [{ id: 'a', owner: 'a@example.com', messages: [{ role: 'user', text: 'secret' }] }],
+    held: [],
+    tombstones: [],
+    activeId: 'a',
+    owner: 'a@example.com'
+  }, 'b@example.com', []);
+  assert.equal(synced.visible.some((chat) => chat.id === 'a'), false);
+  assert.equal(synced.puts.length, 0);
+  const app = fs.readFileSync(path.join(__dirname, '../ask/chat-app.js'), 'utf8');
+  assert.match(app, /syncOnLogin\(snapshot\(\), data\.email, remote\)/);
+  assert.match(app, /logoutStore\(snapshot\(\)\)/);
+});
+
 test('a 500 delete stays hidden when the session refresh returns the thread', () => {
   const open = store.syncOnLogin(store.readStore(JSON.stringify({
     owner: 'b@example.com',

@@ -4,12 +4,12 @@
     "key": "20261122-ask12"
   },
   "ask/chat-app.js": {
-    "hash": "4bc08069b28cfb30cbceddeedcfe613c7428e586c8accbdb2314cd7ebdde970c",
-    "key": "20261122-ask14"
+    "hash": "d0b944ccd7720a3480b90cb67b21eb492b9878b2e668f2c46f9fc477c03d67b9",
+    "key": "20261122-ask15"
   },
   "ask/chat-store.mjs": {
-    "hash": "3798184c8b8474c8a02a4fffae18ea7b9e6f7660e0c3bf6439d9d95cfb7e11c6",
-    "key": "20261122-ask14"
+    "hash": "8266229ecbc384e1e0944eed5871a1e270bc0109708b878e9225dff23badb1e2",
+    "key": "20261122-ask15"
   },
   "ask/passages.js": {
     "hash": "2c6952c6aebd38bba713546487bed69c7c821f6d5fa0c3ba75d3e824e93a0031",
@@ -20,8 +20,8 @@
     "key": "20261122-ask12"
   },
   "ask/ui.js": {
-    "hash": "6e2e679c462f6d80545dba98b2f677954aa0283a445b9f65bfa5d60eda3e7fb6",
-    "key": "20261122-ask14"
+    "hash": "344cebcea3a00ab221ed354272256a0d214b992f67fdd7b34d24f1d06aba76f1",
+    "key": "20261122-ask15"
   },
   "content/clips.js": {
     "hash": "a5c0cfa45b00524fbc1d2de324ec0f19031af1fce1ff80c092c465e2e29cd1e4",
@@ -344,8 +344,8 @@
     "key": "20261010n"
   },
   "js/nav.js": {
-    "hash": "7d31caaf16f9885678f0c56a685b10ae55dc9272f93deb4c2cf5492d2c35dd88",
-    "key": "20261122-ask14"
+    "hash": "bb73a3b2bc5e8fb75bbbe96ba713e3b571a8a830de45f89f4c6e88ea87e1e946",
+    "key": "20261122-ask15"
   },
   "js/plan-tool.js": {
     "hash": "687e9bc23bcb839927457b71cad5ac30e36edcd4593be1f5a8bdd79786e50cee",
@@ -428,8 +428,8 @@
     "key": null
   },
   "sw.js": {
-    "hash": "f6b0882a300b7b37d5985a6f51eccda40746c94391335c2abfaae759a78917d0",
-    "key": "20261122-ask14"
+    "hash": "0275323e671fd793d402ab1016dd16fff3bae303e78d00b7e10e8b8918a80fa6",
+    "key": "20261122-ask15"
   },
   "watch/watch.css": {
     "hash": "0b8026e65ae3b40c91b7dfdf31a94e579c60b0222bd1d5ce8999b2ffc29870f1",
