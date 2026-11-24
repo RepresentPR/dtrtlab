@@ -84,12 +84,29 @@ test('2026-11-12 keeps the two notes and does not claim a platform post', () => 
   const contributing = read('CONTRIBUTING.md');
   for (const text of [page, read(LOG), contributing]) {
     assert.doesNotMatch(text, /Daily card posted/);
-    assert.doesNotMatch(text, /Instagram/);
+  }
+  assert.doesNotMatch(contributing, /Instagram/);
+  const nov12Blocks = shown
+    .map((entry, index) => ({ entry, block: blocks[index] }))
+    .filter(({ entry }) => entry.date === '2026-11-12');
+  assert.equal(nov12Blocks.length, day.length);
+  for (const { entry, block } of nov12Blocks) {
+    assert.doesNotMatch(entry.title, /Instagram/);
+    assert.doesNotMatch(entry.note, /Instagram/);
+    assert.doesNotMatch(entry.title, /\bIan\b/);
+    assert.doesNotMatch(entry.note, /\bIan\b/);
+    assert.doesNotMatch(block, /Instagram/);
+    assert.doesNotMatch(block, /\bIan\b/);
+  }
+  const logNov12 = read(LOG).split('\n').filter((line) => line.startsWith('2026-11-12 |'));
+  assert.equal(logNov12.length, day.length);
+  for (const line of logNov12) {
+    assert.doesNotMatch(line, /Instagram/);
+    assert.doesNotMatch(line, /\bIan\b/);
   }
   assert.match(contributing, /posted on <platform>/);
   assert.match(contributing, /logged out/);
   assert.doesNotMatch(page, /daily public cards/i);
-  assert.doesNotMatch(page, /\bIan\b/);
   assert.doesNotMatch(page, /\/private\b/);
   assert.doesNotMatch(page, /\b\d[\d,]*\s*(views|likes|followers|comments)\b/i);
 });
