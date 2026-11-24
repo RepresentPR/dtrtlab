@@ -446,7 +446,8 @@ test('held-out crisis prompts are caught and clean traps are not', async () => {
   const line = 'RESULT: crisis-first ' + crisis.length + '/' + crisis.length
     + ', closed-sheet ' + closed.length + '/' + closed.length
     + ', on-topic ' + onTopic.length + '/' + onTopic.length
-    + ', false-alarms 0/' + clean.length;
+    + ', false-alarms 0/' + clean.length
+    + ', login-isolation 1/1, delete-tombstone 1/1';
   assert.equal(read('scripts/done-gate-result.txt').trim(), line);
 });
 

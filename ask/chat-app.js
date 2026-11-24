@@ -1,4 +1,5 @@
 import { replyFor, CRISIS_REPLY, REDIRECT, RESOURCE_NOTE, SUGGESTIONS } from "./safety.mjs?v=20261122-ask12";
+import { normalizeEmail, ownedChat, splitForAccount, chatsToUpload, hideDeleted, noteDelete, recordDeleteResult, deleteStatus, quarantineStatus } from "./chat-store.mjs?v=20261122-ask13";
 
 const STORE = "dtrt.chat.v1";
 const NOTICE = "dtrt.early-notice";
@@ -29,20 +30,35 @@ const state = {
   user: null,
   accounts: "unknown",
   sending: false,
-  stop: false
+  stop: false,
+  held: [],
+  tombstones: []
 };
 
 function loadLocal() {
   try {
     const data = JSON.parse(localStorage.getItem(STORE) || "null");
     if (!data || !Array.isArray(data.chats)) return;
-    state.chats = data.chats;
+    const storedOwner = normalizeEmail(data.owner);
+    state.chats = data.chats.map((chat) => {
+      if (chat && !chat.owner && storedOwner) return ownedChat(chat, storedOwner);
+      return chat;
+    });
+    state.held = Array.isArray(data.held) ? data.held : [];
+    state.tombstones = Array.isArray(data.tombstones) ? data.tombstones : [];
+    state.chats = hideDeleted(state.chats, state.tombstones);
     state.activeId = data.activeId || "";
   } catch (err) { /* ignore a broken local copy */ }
 }
 
 function saveLocal() {
-  const data = JSON.stringify({ chats: state.chats, activeId: state.activeId });
+  const data = JSON.stringify({
+    chats: state.chats,
+    held: state.held,
+    tombstones: state.tombstones,
+    activeId: state.activeId,
+    owner: state.user ? normalizeEmail(state.user.email) : ""
+  });
   try { localStorage.setItem(STORE, data); }
   catch (err) { /* private mode can refuse storage */ }
 }
@@ -173,7 +189,12 @@ function newId() {
 function ensureChat(question) {
   let chat = activeChat();
   if (!chat) {
-    chat = { id: newId(), title: question.replace(/\s+/g, " ").trim().slice(0, 80), messages: [], updatedAt: new Date().toISOString() };
+    chat = ownedChat({
+      id: newId(),
+      title: question.replace(/\s+/g, " ").trim().slice(0, 80),
+      messages: [],
+      updatedAt: new Date().toISOString()
+    }, state.user ? state.user.email : "");
     state.chats.unshift(chat);
     state.activeId = chat.id;
   }
@@ -184,6 +205,7 @@ async function persist(chat) {
   saveLocal();
   renderList();
   if (!state.user) return;
+  if (normalizeEmail(chat.owner) !== normalizeEmail(state.user.email)) return;
   const response = await fetch("/api/chats", {
     method: "PUT",
     headers: { "content-type": "application/json" },
@@ -199,14 +221,35 @@ async function persist(chat) {
   if (body.warn) setStatus(body.warn);
 }
 
+async function retryDeletes() {
+  const pending = (state.tombstones || []).slice();
+  let tombstones = state.tombstones || [];
+  for (const item of pending) {
+    let ok = false;
+    try {
+      const response = await fetch("/api/chats?id=" + encodeURIComponent(item.id), { method: "DELETE", credentials: "same-origin" });
+      ok = response.ok || response.status === 404;
+    } catch (err) {
+      ok = false;
+    }
+    tombstones = recordDeleteResult(tombstones, item.id, ok);
+  }
+  state.tombstones = tombstones;
+  saveLocal();
+  const message = deleteStatus(state.tombstones);
+  if (message) setStatus(message);
+}
+
 async function deleteChat(id) {
   state.chats = state.chats.filter((chat) => chat.id !== id);
+  state.held = (state.held || []).filter((chat) => chat.id !== id);
   if (state.activeId === id) state.activeId = state.chats[0] ? state.chats[0].id : "";
+  if (state.user) state.tombstones = noteDelete(state.tombstones, id);
   saveLocal();
   renderList();
   renderThread();
   if (!state.user) return;
-  await fetch("/api/chats?id=" + encodeURIComponent(id), { method: "DELETE", credentials: "same-origin" });
+  await retryDeletes();
 }
 
 function addSources(sources) {
@@ -324,8 +367,10 @@ async function refreshSession() {
   const chats = await fetch("/api/chats", { credentials: "same-origin" });
   if (chats.ok) {
     const body = await readJson(chats);
-    const remote = Array.isArray(body.chats) ? body.chats : [];
-    const localById = new Map(state.chats.map((chat) => [chat.id, chat]));
+    const remote = hideDeleted(Array.isArray(body.chats) ? body.chats : [], state.tombstones);
+    const split = splitForAccount(state.chats.concat(state.held || []), data.email);
+    state.held = split.held;
+    const localById = new Map(split.mine.map((chat) => [chat.id, chat]));
     const seen = new Set();
     const merged = [];
     for (const chat of remote) {
@@ -334,23 +379,25 @@ async function refreshSession() {
       const serverMessages = chat.messages || [];
       const localMessages = local && local.messages ? local.messages : [];
       const messages = localMessages.length > serverMessages.length ? localMessages : serverMessages;
-      const next = {
+      const next = ownedChat({
         id: chat.id,
         title: chat.title || (local && local.title) || "Chat",
         messages: messages,
         updatedAt: chat.updatedAt
-      };
+      }, data.email);
       merged.push(next);
       if (messages.length > serverMessages.length) await persist(next);
     }
-    for (const local of state.chats) {
-      if (!seen.has(local.id)) merged.push(local);
-    }
-    state.chats = merged;
+    split.mine.forEach((local) => {
+      if (!seen.has(local.id)) merged.push(ownedChat(local, data.email));
+    });
+    state.chats = hideDeleted(merged, state.tombstones);
     if (!state.chats.some((chat) => chat.id === state.activeId)) state.activeId = state.chats[0] ? state.chats[0].id : "";
-    for (const local of state.chats) {
-      if (!seen.has(local.id) && local.messages && local.messages.length) await persist(local);
-    }
+    const remoteIds = new Set(remote.map((chat) => chat.id));
+    for (const local of chatsToUpload(state.chats, remoteIds)) await persist(local);
+    await retryDeletes();
+    const parked = quarantineStatus(state.held);
+    if (parked && !deleteStatus(state.tombstones)) setStatus(parked);
   }
   saveLocal();
   renderList();
@@ -409,11 +456,14 @@ document.getElementById("show-login").addEventListener("click", () => showAccoun
 document.getElementById("show-signup").addEventListener("click", () => showAccount("signup"));
 
 function clearLocalChats() {
-  state.chats = [];
-  state.activeId = "";
+  const guest = (state.held || []).filter((chat) => !normalizeEmail(chat.owner));
+  const others = (state.held || []).filter((chat) => normalizeEmail(chat.owner));
+  state.chats = guest;
+  state.held = others;
+  state.tombstones = [];
+  state.activeId = guest[0] ? guest[0].id : "";
   state.user = null;
-  try { localStorage.removeItem(STORE); }
-  catch (err) { /* already empty */ }
+  saveLocal();
   accountOpen.textContent = "Sign up";
   renderList();
   renderThread();
@@ -500,6 +550,7 @@ document.getElementById("delete-account").addEventListener("click", async () => 
   if (response.ok) {
     state.user = null;
     state.chats = [];
+    state.tombstones = [];
     state.activeId = "";
     saveLocal();
     accountOpen.textContent = "Sign up";
