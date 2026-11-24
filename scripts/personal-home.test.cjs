@@ -75,7 +75,9 @@ test('every visitor page links the five profiles, with Instagram marked as main'
     if (skip.has(rel)) continue;
     const html = read(rel);
     for (const url of PROFILES) {
-      if (!html.includes(url)) missing.push(rel + ' missing ' + url);
+      // Instagram was renamed to @dtrt.xyng on 2026-11-21; accept the new handle while the sitewide rename lands.
+      const ok = html.includes(url) || (url.includes('instagram.com/officiallydtrt/') && html.includes('https://www.instagram.com/dtrt.xyng/'));
+      if (!ok) missing.push(rel + ' missing ' + url);
     }
     if (!html.includes('class="social-main"') || !html.includes('rel="me noopener noreferrer"')) {
       missing.push(rel + ' missing the main Instagram link');

@@ -48,5 +48,5 @@ test('Ask log opt-in stays hidden until a date flag and an audit routine', () =>
   assert.equal(open({ showAfter: '2099-01-01' }, Date.parse('2026-11-15'), function () {}), false);
   assert.equal(open({ showAfter: '2000-01-01' }, Date.parse('2026-11-15'), undefined), false);
   assert.equal(open({ showAfter: '2000-01-01' }, Date.parse('2026-11-15'), function () {}), true);
-  assert.deepEqual(registered, ['/sw.js?v=20261122-ask1']);
+  assert.deepEqual(registered, ['/sw.js?v=20261123-links1']);
 });
