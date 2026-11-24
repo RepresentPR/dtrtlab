@@ -26,7 +26,7 @@ test('brand kit has the public paste text and a short bio', () => {
     assert.match(kit, new RegExp('### ' + name));
   }
   assert.match(kit, /https:\/\/x\.com\/DTRTLab/);
-  assert.match(kit, /https:\/\/www\.instagram\.com\/officiallydtrt\//);
+  assert.match(kit, /https:\/\/www\.instagram\.com\/dtrt\.xyng\//);
   // Mini Social Pack and Week Pack retired 2026-10-15 (Co-Founder): no links to their Whop plans.
   assert.doesNotMatch(kit, /plan_HAGSLXXUeGkcz|plan_RVDjSToI7vKOM/);
   assert.doesNotMatch(kit, /plan_kZqq0jgr6VrGG|DM SYSTEM/);
@@ -81,7 +81,7 @@ test('business homepage keeps approved service scope and hobby off the company f
   assert.doesNotMatch(home, /free plan|PayPal|Stripe|\/cs2\.html|\/afterlight\.html|#080808|cfe35a/i);
   assert.doesNotMatch(main, /player\.twitch\.tv|clips\.twitch\.tv/i, 'stream embeds stay off the homepage');
   assert.match(home, /<nav class="site-socials"[\s\S]*https:\/\/www\.twitch\.tv\/dtrtc/, 'Twitch profile is in the social row');
-  assert.match(home, /https:\/\/www\.instagram\.com\/officiallydtrt\//, 'Instagram stays linked from the homepage');
+  assert.match(home, /https:\/\/www\.instagram\.com\/dtrt\.xyng\//, 'Instagram stays linked from the homepage');
   assert.doesNotMatch(main, /\/careers\.html/i);
   for (const file of ['find.html', 'contact.html']) {
     const html = read(file);
