@@ -13,7 +13,7 @@ The blocks below match the brand kit so an older bookmark still pastes the busin
 DTRT Lab writes for local businesses. Do the right thing. Free plan: dtrtlab.com
 ```
 
-## Lab — Instagram (@officiallydtrt)
+## Lab — Instagram (@dtrt.xyng)
 
 ```
 Writing for local businesses. Do the right thing. Free plan at dtrtlab.com
