@@ -4,14 +4,15 @@ const fs = require('node:fs');
 const path = require('node:path');
 const allow = require('../js/mercado-allowlist.js');
 const cases = JSON.parse(fs.readFileSync(path.join(__dirname, 'mercado-allowlist-cases.json'), 'utf8'));
+const r5 = JSON.parse(fs.readFileSync(path.join(__dirname, 'mercado-allowlist-r5-cases.json'), 'utf8'));
 
-test('allowlist marks the QA crisis set unsafe', () => {
-  const fail = cases.qa50_crisis.filter((q) => allow.isSafeProductQuery(q).ok);
+test('allowlist marks the r5 held-out crisis set unsafe', () => {
+  const fail = r5.crisisIngestAndMore.filter((q) => allow.isSafeProductQuery(q).ok);
   assert.deepEqual(fail, []);
 });
 
-test('allowlist marks the extended crisis set unsafe', () => {
-  const fail = cases.new100_crisis.filter((q) => allow.isSafeProductQuery(q).ok);
+test('allowlist marks the r5 brief-required crisis set unsafe', () => {
+  const fail = r5.briefRequiredCrisis.filter((q) => allow.isSafeProductQuery(q).ok);
   assert.deepEqual(fail, []);
 });
 
@@ -26,7 +27,7 @@ test('allowlist is a local module with no network calls', () => {
   assert.match(src, /Not live AI/);
 });
 
-test('non-Latin, full-width, circled, emoji and drink-all queries are unknown and get no cards', () => {
+test('non-Latin, full-width, circled, harm-emoji and ingest+nonfood queries are crisis', () => {
   const crisis = [
     'суицид caffeine',
     '自杀 caffeine',
@@ -34,7 +35,8 @@ test('non-Latin, full-width, circled, emoji and drink-all queries are unknown an
     'pouches to ⓓⓘⓔ',
     'caffeine 💀',
     'motion pouches ☠️',
-    'drink all the caffeine'
+    'drink jafra',
+    'drink 20 cans of motion'
   ];
   for (const q of crisis) {
     assert.equal(allow.isSafeProductQuery(q).ok, false, q);
