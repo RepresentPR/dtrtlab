@@ -12,9 +12,12 @@ version follows the rules it enforced, not a byte copy of it.
 The repo is public, so banned terms are stored only as truncated SHA-256
 hashes, the same scheme as scripts/private-terms.test.cjs. That file's lists
 (SINGLE, PAIRS, PLACE_PAIRS) are read at run time so there is one source of
-truth; the extra lists below add caption-only rules (places, legal-hold
-employer, family and health, gambling, "investors", engagement bait). The
-fiction-file allowlist does NOT apply to drafts.
+truth; the extra lists below add caption-only rules (personal places,
+legal-hold employer, family and health, gambling, investor-claim phrases,
+engagement bait, waitlist, retired handle, MOTION paraphrase, AI-is-live
+claims, generic kids phrases). The fiction-file allowlist does NOT apply to
+drafts. The 11/27 marketplace amendment allows the island's name in
+marketplace copy; personal town names and addresses stay banned.
 
 Checks per file:
   TERM        a banned word (hash match on folded, accent-stripped tokens)
@@ -31,19 +34,31 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 REPO_TERMS = os.path.join(HERE, "..", "private-terms.test.cjs")
 
 EXTRA_SINGLE = {
-    "5072f198bd5e3aab", "4f80902c333e7bd9", "383188966c792ce3", "f49c6320e08eb5ed",  # places
-    "682a4851da0c4e36", "72b978cf9608f1ed", "f0cd63a491438eb0",                      # places
-    "e424dce6bf0bec35",                                                              # legal hold
-    "df22016bdd63f389", "927f368c571eef4c",                                          # investor claims
+    "5072f198bd5e3aab", "4f80902c333e7bd9", "383188966c792ce3",  # personal-location tokens
+    "72b978cf9608f1ed", "f0cd63a491438eb0",                      # personal towns
+    "e424dce6bf0bec35",                                          # legal hold
     "008f13c4ba9cf25d", "c4c6dfa746694877", "61fb51e57b258404", "4358ccfc6d227afb",  # gambling
-    "a03ea09072d789ad", "8afe3c83decffdf6", "16ccff8bb1fe4285",                      # family, health
+    "a03ea09072d789ad", "8afe3c83decffdf6", "16ccff8bb1fe4285",  # family, health
+    "49e749acca3f9f8b",                                          # waitlist
+    "3c1b8f9f9ebe1a15",                                          # retired handle
 }
 EXTRA_PAIRS = {
-    "f50b92b29527bc02", "45f4e17b3f02ee1f", "211be92b4add74dc", "afeacc461eaa9436",  # places
+    "45f4e17b3f02ee1f", "211be92b4add74dc", "afeacc461eaa9436",  # personal places
     "43b1301526a5f924", "2696ade4f3b116d3", "abcdf9ba5ebbd320", "6e5d5d5d68599e0f",  # shop work
-    "d651e202e22d5041",                                                              # gambling
-    "d63dba796421ec85", "a23f6a233621bd96", "44c9c6ce50391755",                      # engagement bait
+    "d651e202e22d5041",                                          # gambling
+    "d63dba796421ec85", "a23f6a233621bd96", "44c9c6ce50391755",  # engagement bait
+    "79dc9a35d42db0aa", "b28699be298743ee",                      # investor-claim phrases
+    "38c3baac1ce59618", "0ba1aba94e672060", "8433bd1e712eb083",  # generic kids phrases
+    "7e2faed68eeab2d1", "fd4c6689d5e97d23",                      # generic kids phrases
 }
+# n-gram hashes (3+ tokens), same scheme. "live ai" is a special case in lint_text
+# so accepted "not connected" wording is not flagged.
+EXTRA_PHRASES = {
+    "25091ef1f29cac39",  # MOTION paraphrase
+    "76254501fcfadf99", "ab90ae9f487e0e3f", "f577150ae719f46b", "189d2a10daac1298",  # AI-is-live claims
+}
+NEG = {"not", "no", "never"}
+LIVE_AI = ("live", "ai")
 DISCLOSURE = "Referral link. We earn from fees. Trading is risky, not financial advice."
 TEXT_EXT = (".md", ".txt", ".json", ".srt", ".vtt", ".html", ".csv", ".yml", ".yaml")
 
@@ -87,6 +102,16 @@ def tokens_with_lines(text):
     return out
 
 
+def phrase_hash(toks):
+    return h(" ".join(toks))
+
+
+def negated(toks, start, end):
+    """True if a negation sits shortly before or after a span [start, end)."""
+    lo, hi = max(0, start - 2), min(len(toks), end + 3)
+    return any(toks[j][0] in NEG for j in range(lo, hi))
+
+
 def lint_text(text, ai_voice=False, sets=None):
     single, pairs = sets or term_sets()
     issues = []
@@ -96,6 +121,11 @@ def lint_text(text, ai_voice=False, sets=None):
             issues.append(("TERM", n, "term#" + h(t)))
         if i + 1 < len(toks) and h(t + " " + toks[i + 1][0]) in pairs:
             issues.append(("PAIR", n, "pair#" + h(t + " " + toks[i + 1][0])))
+        if i + 1 < len(toks) and (t, toks[i + 1][0]) == LIVE_AI and not negated(toks, i, i + 2):
+            issues.append(("TERM", n, "term#" + h("live ai")))
+        for ngram in range(3, 7):
+            if i + ngram <= len(toks) and phrase_hash(toks[j][0] for j in range(i, i + ngram)) in EXTRA_PHRASES:
+                issues.append(("TERM", n, "term#" + phrase_hash(toks[j][0] for j in range(i, i + ngram))))
     folded = fold(text)
     if "candles" in tokens(text) and DISCLOSURE not in str(text):  # exact case and wording
         issues.append(("DISCLOSURE", 0, "Candles mentioned without the exact line: " + DISCLOSURE))
