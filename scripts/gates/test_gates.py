@@ -193,6 +193,13 @@ class CopyLintTests(unittest.TestCase):
         self.assertTrue(copy_lint.lint_text("Try our " + LIVE_AI + ", not up for debate."))
         self.assertEqual(copy_lint.lint_text("The " + LIVE_AI + " is not live yet."), [])
         self.assertEqual(copy_lint.lint_text("This " + LIVE_AI + " isn't live."), [])
+        self.assertTrue(copy_lint.lint_text("Try our " + LIVE_AI + ". Not connected yet."))
+        self.assertTrue(copy_lint.lint_text(LIVE_AI[0].upper() + LIVE_AI[1:] + " now! Not a gimmick."))
+        self.assertTrue(copy_lint.lint_text("Our " + AI_IS_LIVE + ". Not kidding."))
+        self.assertEqual(copy_lint.lint_text("The AI is not live yet."), [])
+        self.assertEqual(copy_lint.lint_text("Not live yet."), [])
+        self.assertEqual(copy_lint.lint_text("It isn't connected yet, so it's not live."), [])
+        self.assertEqual(copy_lint.lint_text("The AI has never been live."), [])
 
     def test_live_ai_bigram_does_not_match_across_breaks(self):
         self.assertEqual(copy_lint.lint_text("Go live. AI stays a very early test, not live yet."), [])

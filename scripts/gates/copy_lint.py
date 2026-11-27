@@ -398,36 +398,38 @@ def after_neg(words, j):
     return j + 1
 
 
-def liveness_denied(words, start, end):
-    """True only when a negation denies the liveness claim itself (not live, isn't live, not connected, …).
+def liveness_denied(toks, start, end, text):
+    """True only when a negation in the same sentence denies the liveness claim itself.
 
     A nearby no/not/never that talks about something else (never goes offline, not a gimmick,
-    not a rumor) does not exempt the claim.
+    not a rumor) does not exempt the claim, and a denial in the next sentence does not either.
     """
+    words = [t[0] for t in toks]
+    lo, hi = _same_sentence_range(toks, start, end, text)
     live_i = start
     for k in range(start, end):
         if words[k] == "live":
             live_i = k
             break
     j = live_i - 1
-    while j >= 0 and words[j] in FILLER:
+    while j >= lo and words[j] in FILLER:
         j -= 1
-    if is_neg_at(words, j):
+    if j >= lo and is_neg_at(words, j):
         return True
-    if j >= 0 and words[j] in DENY_VERBS:
+    if j >= lo and words[j] in DENY_VERBS:
         j -= 1
-        while j >= 0 and words[j] in FILLER:
+        while j >= lo and words[j] in FILLER:
             j -= 1
-        if is_neg_at(words, j):
+        if j >= lo and is_neg_at(words, j):
             return True
     j = end
-    while j < len(words) and words[j] in FILLER:
+    while j < hi and words[j] in FILLER:
         j += 1
-    if is_neg_at(words, j):
+    if j < hi and is_neg_at(words, j):
         k = after_neg(words, j)
-        while k < len(words) and words[k] in FILLER:
+        while k < hi and words[k] in FILLER:
             k += 1
-        if k < len(words) and words[k] in DENY_PREDICATES:
+        if k < hi and words[k] in DENY_PREDICATES:
             return True
     return False
 
@@ -559,7 +561,7 @@ def lint_text(text, ai_voice=False, sets=None, path=None):
                     issues.append(("PAIR", n, "pair#" + pair))
             if t == "live":
                 j = live_ai_partner(toks, i, raw)
-                if j is not None and not hard_break_between(raw, toks[i][3], toks[j][2]) and not liveness_denied(words, i, j + 1):
+                if j is not None and not hard_break_between(raw, toks[i][3], toks[j][2]) and not liveness_denied(toks, i, j + 1, raw):
                     issues.append(("TERM", n, "term#" + h("live ai")))
         for ngram in range(3, 7):
             if i + ngram > len(toks):
@@ -570,7 +572,7 @@ def lint_text(text, ai_voice=False, sets=None, path=None):
             if ph in AI_LIVE_PHRASES:
                 if hard_break_between(raw, toks[i][3], toks[i + ngram - 1][2]):
                     continue
-                if liveness_denied(words, i, i + ngram):
+                if liveness_denied(toks, i, i + ngram, raw):
                     continue
             if ph in ES_LIVE_PHRASES:
                 if hard_break_between(raw, toks[i][3], toks[i + ngram - 1][2]):
