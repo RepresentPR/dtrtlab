@@ -40,24 +40,40 @@ body.mk .mk-top { padding: 22px 0 8px; }
 body.mk .mk-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
 body.mk .mk-top h1 { font-size: clamp(1.4rem, 4vw, 2rem); margin: 0; color: var(--ink); }
 body.mk .mk-lang { display: inline-flex; min-height: 44px; align-items: center; color: var(--turquoise-deep); font-weight: 600; }
-body.mk .mk-search { display: grid; gap: 6px; margin-top: 14px; }
-body.mk .mk-helper-label { font-size: 0.92rem; font-weight: 700; color: var(--palm); }
-body.mk .mk-search input {
-  width: 100%; min-height: 48px; padding: 0 14px; font: inherit; font-size: 16px;
-  border: 1px solid var(--line); border-radius: 10px; background: var(--sand-card); color: var(--ink);
-}
-body.mk .mk-hint { margin: 0; font-size: 0.88rem; color: var(--muted); }
+body.mk .mk-lede { margin: 12px 0 0; color: var(--muted); font-size: 1.02rem; max-width: 40ch; }
 body.mk .mk-tiles {
-  display: flex; gap: 10px; overflow-x: auto; padding: 14px 4px 8px;
-  scrollbar-width: thin; -webkit-overflow-scrolling: touch;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 18px 0 10px;
+}
+@media (min-width: 720px) {
+  body.mk .mk-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 body.mk .mk-tiles button {
-  flex: 0 0 auto; min-height: 44px; padding: 0 16px; border-radius: 999px;
+  min-height: 96px; padding: 16px 16px; border-radius: 16px;
   border: 1px solid var(--line); background: var(--sand-card); color: var(--ink);
-  font: inherit; cursor: pointer;
+  font: inherit; font-size: 1.08rem; font-weight: 700; cursor: pointer;
+  display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 4px;
+  text-align: left; width: 100%;
+}
+body.mk .mk-tiles button small {
+  font-weight: 500; font-size: 0.86rem; color: var(--muted);
 }
 body.mk .mk-tiles button[aria-pressed="true"] {
   background: var(--palm); color: #fff; border-color: var(--palm);
+}
+body.mk .mk-tiles button[aria-pressed="true"] small { color: rgba(255,255,255,0.86); }
+body.mk .mk-chips {
+  display: flex; flex-wrap: wrap; gap: 8px; padding: 4px 0 8px;
+}
+body.mk .mk-chips button {
+  flex: 0 0 auto; min-height: 44px; padding: 0 14px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--sand-card); color: var(--ink);
+  font: inherit; cursor: pointer;
+}
+body.mk .mk-chips button[aria-pressed="true"] {
+  background: var(--turquoise); color: #fff; border-color: var(--turquoise);
 }
 body.mk .mk-grid {
   display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -91,19 +107,10 @@ body.mk .mk-foot nav a { min-height: 44px; display: inline-flex; align-items: ce
 
 body.mk .mk-card[hidden], body.mk .mk-empty[hidden] { display: none !important; }
 
-body.mk .mk-crisis { background:#1c2a28; color:#fff; border-radius:12px; padding:16px 18px; margin:8px 0 24px; }
-body.mk .mk-crisis a { color:#7de1c8; }
-body.mk .mk-crisis[hidden], body.mk .mk-grid[hidden] { display:none !important; }
 body.mk .site-crisis { font-size:0.92rem; color:var(--ink); max-width:70ch; }
 body.mk .site-crisis a { color:var(--turquoise-deep); }
 
-body.mk .mk-try { margin: 12px 0 8px; font-weight: 600; }
-body.mk .mk-chips { display:flex; flex-wrap:wrap; gap:8px; }
-body.mk .mk-chips button { min-height:44px; padding:8px 14px; border-radius:999px; border:1px solid #7de1c8; background:transparent; color:#fff; font:inherit; cursor:pointer; }
-body.mk .mk-chips button:hover, body.mk .mk-chips button:focus { background:#0d6e6d; }
-
-
-.mk-988-always{margin:12px 0 8px;font-size:14px;line-height:1.45;color:#1a3a28;}
+body.mk .mk-988-footer{margin:0 0 16px;font-size:1rem;line-height:1.5;color:var(--ink);max-width:70ch;}
 
 /* Candles disclosure stays in-card, directly under the CTA, and may wrap at 390. */
 #candles { overflow: visible; min-width: 0; }
