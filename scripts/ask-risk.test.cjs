@@ -125,25 +125,15 @@ test('the risk flag reaches a new tab for 24h', async () => {
   assert.equal(cases, 3);
 });
 
-test('the unmatched sheet path sets the risk flag', async () => {
-  const prompts = ['I have lost the will to carry on', 'please remember the blue mug'];
-  assert.equal(prompts.length, 2);
-  for (const question of prompts) {
-    const local = memory();
-    const session = memory();
-    const storage = { local: local, session: session };
-    const result = await safety.replyFor(question, { passages: [] }, {
-      storage: storage,
-      search: async () => pageFor('notebook')
-    });
-    assert.equal(result.action, 'sheet', question);
-    assert.ok(result.text.startsWith(safety.CRISIS_REPLY), question);
-    assert.equal(safety.readRiskFlag(storage), true, question);
-    const later = await safety.replyFor('where is the contact page', { passages: [] }, {
-      storage: { local: local, session: memory() },
-      search: async () => pageFor('contact')
-    });
-    assert.equal(later.action, 'crisis', question);
-    assert.equal(later.text, safety.CRISIS_REPLY, question);
-  }
+test('an ordinary unmatched question does not set the risk flag', async () => {
+  const storage = { local: memory(), session: memory() };
+  const result = await safety.replyFor('I have lost the will to carry on', { passages: [] }, {
+    storage: storage,
+    search: async () => pageFor('notebook')
+  });
+  assert.equal(result.action, 'unsure');
+  assert.match(result.text, /not sure/);
+  assert.ok(result.text.includes(safety.HELP_LINE));
+  assert.equal(result.text.startsWith(safety.CRISIS_REPLY), false);
+  assert.equal(safety.readRiskFlag(storage), false);
 });

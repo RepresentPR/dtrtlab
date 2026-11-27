@@ -4,11 +4,12 @@
 // message, earlier turns, and a flag kept for 24 hours. The flag is
 // written to localStorage so a new tab still sees it, and to
 // sessionStorage when local storage is blocked. New chat does not
-// clear it. Any path that shows the 988 sheet sets the flag.
+// clear it. The flag is set only when this screen detects risk, and its
+// timestamp stays at that first detection. A stored legacy "1" is expired.
 // A detected risk returns the full sheet and no page quote. A page
-// answer and an error reply carry a short 988 footer. A message with
-// no confident page match gets the full sheet, then the closest pages
-// or contact. A compact note is only for a greeting or everyday idiom with no risk.
+// answer and an error reply carry a short 988 footer. An ordinary
+// unmatched question gets a not-sure reply plus that footer and does not
+// set the flag. A compact note is only for a greeting or everyday idiom with no risk.
 
 export const CRISIS_REPLY = "If you might hurt yourself, get help now. In the US, call or text 988. You can chat at https://988lifeline.org. If you are in immediate danger, call 911. You can also visit https://findahelpline.com. This is a very early AI test. It is not a person and not a doctor, and it will not keep chatting about this.";
 
@@ -29,6 +30,8 @@ export const RESOURCE_NOTE = "If you might hurt yourself, get help now. In the U
 export const ONLY_LINE = REDIRECT;
 
 export const HELP_LINE = "If you're struggling, call or text 988 (US) or visit findahelpline.com.";
+
+export const UNSURE_REPLY = "I'm not sure about that yet.";
 
 export const ERROR_REPLY = "The search on this page did not finish. The public pages are still linked from the home page.\n\n" + HELP_LINE;
 
@@ -118,8 +121,33 @@ const MEANS = new Set(["pill", "pills", "rope", "gun", "blade", "bridge", "knife
 const IDIOMS = [
   "cut the trailer", "killer deal", "dead battery", "dying to see",
   "overdose on coffee", "overdose of coffee", "battery is dead",
-  "shoot a video", "cutting-edge", "haircut"
+  "shoot a video", "cutting-edge", "haircut", "hang on", "hanging out"
 ];
+
+const STEM_HITS = new Set([
+  "dead", "die", "dies", "died", "dying", "death", "deaths",
+  "hang", "hangs", "hanged", "hanging",
+  "kill", "kills", "killed", "killing",
+  "suicide", "suicidal", "suicidio", "suicida",
+  "overdose", "overdoses", "overdosed", "overdosing",
+  "muerto", "muerta", "muertos", "muertas", "morir", "muero", "muere", "mueren", "muriendo", "muerte",
+  "colgar", "colgarme", "colgarse", "colgandome", "ahorcar", "ahorcarme", "ahorcarse",
+  "sobredosis"
+]);
+
+const PHRASE_WORDS = new Set("goodbye forever message final words word palabras siempre adios ultimas mensaje farewell parting last rather".split(" "));
+
+const FAREWELL_PHRASES = [
+  "final message", "final word", "final words", "last words", "last word",
+  "goodbye forever", "goodbye note", "goodbye letter",
+  "rather be dead", "end it",
+  "mensaje final", "ultimas palabras", "adios para siempre",
+  "farewell letter", "farewell note", "parting note", "parting words"
+];
+
+const TYPO_TARGETS = [...STEM_HITS, ...PHRASE_WORDS].filter((word) => word.length >= 5);
+
+const SCRIPT_TERMS = ["आत्महत्या", "самоубийство"];
 
 const GREETINGS = new Set([
   "hi", "hello", "hey", "yo", "sup", "thanks", "thank you", "thanks a lot",
@@ -312,6 +340,46 @@ function isEverydayTopic(text) {
   return false;
 }
 
+function editDistance(left, right) {
+  if (Math.abs(left.length - right.length) > 1) return 2;
+  const row = new Array(right.length + 1);
+  for (let j = 0; j <= right.length; j++) row[j] = j;
+  for (let i = 1; i <= left.length; i++) {
+    let previous = i - 1;
+    row[0] = i;
+    for (let j = 1; j <= right.length; j++) {
+      const current = row[j];
+      const cost = left[i - 1] === right[j - 1] ? 0 : 1;
+      row[j] = Math.min(row[j] + 1, row[j - 1] + 1, previous + cost);
+      previous = current;
+    }
+  }
+  return row[right.length];
+}
+
+function correctToken(token) {
+  if (STEM_HITS.has(token) || PHRASE_WORDS.has(token)) return token;
+  const variants = [token];
+  for (let i = 0; i < token.length - 1; i++) {
+    if (token[i] === token[i + 1]) variants.push(token.slice(0, i) + token.slice(i + 1));
+  }
+  for (const variant of variants) {
+    if (STEM_HITS.has(variant) || PHRASE_WORDS.has(variant)) return variant;
+    if (variant.length < 4) continue;
+    for (const word of TYPO_TARGETS) {
+      if (Math.abs(word.length - variant.length) > 1) continue;
+      if (editDistance(variant, word) <= 1) return word;
+    }
+  }
+  return token;
+}
+
+function screenWords(tokens) {
+  const corrected = tokens.map(correctToken);
+  if (corrected.some((token) => STEM_HITS.has(token))) return true;
+  return hasAnyPhrase(corrected, FAREWELL_PHRASES);
+}
+
 function asksForHarmPage(text, tokens) {
   const folded = fold(text);
   const wantsPage = tokens.some((token) => PAGE_WORDS.has(token)) || /\b(show me|find the)\b/.test(folded);
@@ -323,6 +391,8 @@ function dangerIn(text) {
   if (isGreeting(text)) return false;
   const scan = isIdiom(text) ? idiomRemainder(text) : text;
   const tokens = tokensOf(scan);
+  if (screenWords(tokens)) return true;
+  if (includesAny(scan, SCRIPT_TERMS)) return true;
   if (tokens.some((token) => MEANS.has(token) || TERMS.has(token) || RISK_TOKENS.has(token))) return true;
   if (hasAnyPhrase(tokens, DISTRESS_PHRASES) || hasAnyPhrase(tokens, COMPACT_BLOCKS) || hasAnyPhrase(tokens, RISK_PHRASES)) return true;
   if (hasAnyPhrase(tokens, COMPLETE) || includesAny(scan, CJK_COMPLETE) || includesAny(scan, CJK_TERMS)) return true;
@@ -342,8 +412,7 @@ function asStores(storage) {
 }
 
 function flagFresh(raw, now) {
-  if (!raw) return false;
-  if (raw === "1") return true;
+  if (!raw || raw === "1") return false;
   try {
     const data = JSON.parse(raw);
     if (!data || typeof data.at !== "number") return false;
@@ -354,9 +423,21 @@ function flagFresh(raw, now) {
   }
 }
 
+function expireLegacy(store) {
+  try {
+    if (!store || store.getItem(RISK_FLAG_KEY) !== "1") return;
+    if (store.removeItem) store.removeItem(RISK_FLAG_KEY);
+    else if (store.setItem) store.setItem(RISK_FLAG_KEY, "");
+  } catch (err) {
+    /* A blocked store is simply not flagged. */
+  }
+}
+
 function readStoreFlag(store, now) {
   try {
-    return !!(store && flagFresh(store.getItem(RISK_FLAG_KEY), now));
+    if (!store) return false;
+    expireLegacy(store);
+    return flagFresh(store.getItem(RISK_FLAG_KEY), now);
   } catch (err) {
     return false;
   }
@@ -369,20 +450,19 @@ export function readRiskFlag(storage, now) {
   return readStoreFlag(stores.session, clock);
 }
 
+function writeStoreFlag(store, clock) {
+  if (!store || !store.setItem) return;
+  let existing = null;
+  try { existing = store.getItem(RISK_FLAG_KEY); } catch (err) { return; }
+  if (flagFresh(existing, clock)) return;
+  try { store.setItem(RISK_FLAG_KEY, JSON.stringify({ at: clock })); } catch (err) {}
+}
+
 export function writeRiskFlag(storage, now) {
   const clock = typeof now === "number" ? now : Date.now();
-  const payload = JSON.stringify({ at: clock });
   const stores = asStores(storage);
-  try {
-    if (stores.local && stores.local.setItem) stores.local.setItem(RISK_FLAG_KEY, payload);
-  } catch (err) {
-    /* Local storage can be blocked. The session flag is the fallback. */
-  }
-  try {
-    if (stores.session && stores.session.setItem) stores.session.setItem(RISK_FLAG_KEY, payload);
-  } catch (err) {
-    /* A blocked store still returns the sheet for this turn. */
-  }
+  writeStoreFlag(stores.local, clock);
+  writeStoreFlag(stores.session, clock);
 }
 
 export function hasRisk(question, history) {
@@ -419,20 +499,12 @@ function fullSheet() {
   return { action: "sheet", text: CRISIS_REPLY, modelCalled: false, sources: [] };
 }
 
-function sheetWithHelp(matches, storage, now) {
-  writeRiskFlag(storage, now);
-  const bits = (matches || []).slice(0, 3).map((item) => {
-    const passage = item.passage || item;
-    const title = passage.title || "A public page";
-    const url = passage.url || "";
-    return url ? title + " " + url : title;
-  }).filter(Boolean);
-  const extra = bits.length ? "Closest pages: " + bits.join("; ") + ". " + CONTACT_LINE : CONTACT_LINE;
+function unsureReply() {
   return {
-    action: "sheet",
-    text: CRISIS_REPLY + "\n\n" + extra,
-    sources: (matches || []).slice(0, 3),
-    modelCalled: false
+    action: "unsure",
+    text: UNSURE_REPLY + "\n\n" + HELP_LINE,
+    modelCalled: false,
+    sources: []
   };
 }
 
@@ -467,7 +539,8 @@ export async function replyFor(question, corpus, options) {
   const opts = options || {};
   const now = typeof opts.now === "number" ? opts.now : Date.now();
   try {
-    if (readRiskFlag(opts.storage, now) || hasRisk(question, opts.history)) return crisisReply(opts.storage, now);
+    if (readRiskFlag(opts.storage, now)) return { action: "crisis", text: CRISIS_REPLY, modelCalled: false, sources: [] };
+    if (hasRisk(question, opts.history)) return crisisReply(opts.storage, now);
     const screened = screen(question, opts.history);
     if (screened.action === "crisis") return crisisReply(opts.storage, now);
     if (screened.action === "harm") return { action: "harm", text: HARM_REPLY, modelCalled: false, sources: [] };
@@ -486,7 +559,7 @@ export async function replyFor(question, corpus, options) {
     const unmatched = (!confidentMatch(question, matches) && !meta) || !matches.length;
     if (unmatched) {
       if (clearlyClean(question, opts.history)) return compactReply();
-      return sheetWithHelp(matches, opts.storage, now);
+      return unsureReply();
     }
     const sources = matches.slice(0, 3);
     const template = templateFrom(sources);
