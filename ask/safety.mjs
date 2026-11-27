@@ -19,8 +19,6 @@ export const SUGGESTIONS = ["What is on the site?", "What does the lab do?", "Wh
 
 export const RESOURCE_NOTE = "If you might hurt yourself, get help now. In the US, call or text 988. You can chat at https://988lifeline.org. If you are in immediate danger, call 911. Outside the US, visit https://findahelpline.com.";
 
-export const ONLY_LINE = REDIRECT;
-
 export const HELP_LINE = "If you're struggling, call or text 988 (US) or visit findahelpline.com.";
 
 export const OTHER_HELP_LINE = "If this is about someone else: stay with them, call or text 988, or 911 if they're in immediate danger.\nSi se trata de otra persona: quédate con ella, llama o escribe al 988, o al 911 si está en peligro inmediato.";
@@ -79,11 +77,6 @@ function hasTokenPhrase(tokens, phrase) {
 
 function hasAnyPhrase(tokens, phrases) {
   return phrases.some((phrase) => hasTokenPhrase(tokens, phrase));
-}
-
-function includesAny(text, phrases) {
-  const folded = fold(text);
-  return phrases.some((phrase) => folded.includes(fold(phrase)));
 }
 
 function signals(text) {
@@ -165,8 +158,19 @@ export function isMetaQuestion(question) {
 }
 
 
+const HARM_EMOJI = { "🔪": " knife ", "🩸": " blood ", "💀": " death ", "⚰️": " coffin ", "💊": " pill ", "🪢": " noose ", "🔫": " gun " };
+
+function normalizeSurface(text) {
+  let next = String(text || "");
+  for (const [mark, word] of Object.entries(HARM_EMOJI)) next = next.split(mark).join(word);
+  next = fold(next).replace(/!/g, "i");
+  next = next.replace(/\b(?:[a-z]\s+){2,}[a-z]\b/g, (chunk) => chunk.replace(/\s+/g, ""));
+  next = next.replace(/([a-z])\1{2,}/g, "$1");
+  return next;
+}
+
 function leet(text) {
-  return fold(text).replace(/!/g, "i").replace(/[a-z0-9@$]+/g, (token) => {
+  return normalizeSurface(text).replace(/[a-z0-9@$]+/g, (token) => {
     if (!/[a-z]/.test(token)) return token;
     return token
       .replace(/0/g, "o")
@@ -210,7 +214,7 @@ const DRUG_WORDS = ["pill", "pills", "tablet", "tablets", "capsule", "capsules",
 const MEANS_WORDS = ["plan", "arrangement", "cliff", "bridge", "rope", "gun", "pills", "pill", "roof", "despedida"];
 const TIME_WORDS = ["tonight", "sunday", "manana", "tomorrow", "midnight", "dawn", "noche"];
 const FAMILY_WORDS = [...new Set([].concat(DEATH_WORDS, HARM_WORDS, INGEST_WORDS, AMOUNT_WORDS, DRUG_WORDS, MEANS_WORDS, TIME_WORDS))].filter((word) => word.length >= 4);
-const BENIGN_TOKENS = new Set("deal lead tired light lights swing fishing trailer coffee battery phone link plant plane play planet plank page pages price prices hour hours contact map desk photo photos minute minutes cake recipe weather video feature office notebook privacy refund brand candle candles shipping email password checkout donate browser form kit band catalog shop list public free note notes class classes people day days picture pictures site lab dtrt ian job jobs term terms data bug bugs answer answers human humans question questions time date today early company companies real wide shown optional stuck come comes sell sells use uses used stay stays turned turn turns two person share shares maintain maintains send sends sent find finds clear clears report reports happen happens get gets ask asks fix fixes wrong need needs apply applies update updates see sees seen save saves device devices change changes delete deletes remove removes close closes cancel cancels make makes made look looks great tab tabs built build read reads reading much many new old same other another any some such the and for with from about into over after before out off not yes please just then than there here too very also still only own when while have has had onto per via let lets what whats where who how can will would should may might am are was were been being do does did doing this that these those live love like line life last long give fire fine file home hope open door city want wish were told said anymore doesnt dont proof roofing night your our you eight".split(" "));
+const BENIGN_TOKENS = new Set("deal lead tired light lights swing fishing trailer coffee battery phone link plant plane play planet plank page pages price prices hour hours contact map desk photo photos minute minutes cake recipe weather video feature office notebook privacy refund brand candle candles shipping email password checkout donate browser form kit band catalog shop list public free note notes class classes people day days picture pictures site lab dtrt ian job jobs term terms data bug bugs answer answers human humans question questions time date today early company companies real wide shown optional stuck come comes sell sells use uses used stay stays turned turn turns two person share shares maintain maintains send sends sent find finds clear clears report reports happen happens get gets ask asks fix fixes wrong need needs apply applies update updates see sees seen save saves device devices change changes delete deletes remove removes close closes cancel cancels make makes made look looks great tab tabs built build read reads reading much many new old same other another any some such the and for with from about into over after before out off not yes please just then than there here too very also still only own when while have has had onto per via let lets what whats where who how can will would should may might am are was were been being do does did doing this that these those live love like line life last long give fire fine file home hope open door city want wish were told said anymore doesnt dont proof roofing night your our you eight wake".split(" "));
 const SUBJECT_WORDS = new Set("i im ive id me my myself mine yo mi mis quiero quiere he she they him his her their them himself herself themselves yourself yourselves ella ellas ellos friend friends brother brothers mom mother dad father husband wife son daughter amigo amiga esposo esposa hermano hermana coworker neighbor roommate classmate teammate patient vecino vecina companero companera prima primo uncle aunt niece nephew".split(" "));
 const BENIGN_OBJECTS = new Set("photo photos picture pictures minute minutes hour hours page pages dollar dollars step steps note notes class classes people day days coffee cake recipe video map desk price prices list form kit band candle candles".split(" "));
 
@@ -239,7 +243,13 @@ const IDIOM_GUARDS = [
   /\bhaircut\b/g,
   /\bshoot a video\b/g,
   /\bgone fishing\b/g,
-  /\bknife set\b/g
+  /\bknife set\b/g,
+  /\b(my )?phone is dead\b/g,
+  /\bdead phone\b/g,
+  /\bhang (a|the) poster\b/g,
+  /\bhang (a|the) picture\b/g,
+  /\bme muero de hambre\b/g,
+  /\bmuero de hambre\b/g
 ];
 
 function stripIdioms(text) {
@@ -276,7 +286,7 @@ function prepareCrisis(text) {
   const subject = reflexive || tokens.some((token) => SUBJECT_WORDS.has(token))
     || /\b(told me|dijo que|dice que|quiere quitarse)\b/.test(joined)
     || /él/i.test(raw);
-  const deathPhrase = /\b(not wake|no despertar|not be here|rather not be here|cant be here|cannot be here|not live anymore|dont want to live|doesnt want to live|do not want to live|does not want to live|do not want to exist|dont want to exist|no longer want to exist|no longer wants to exist|no longer wants to live|stop existing|dejar de existir|disappear forever|disappear para siempre|desaparecer para siempre|no quiero vivir|no quiere vivir|ya no quiero vivir|quiero morir|quiero morirme|want to die|wants to die|end it|ending it|end everything|end my life|ending my life|end his life|end her life|end your life|own life|acabar con|terminar con|mensaje final|ultimas palabras|dosis letales|quitarse|quitarme|quitar\w* la vida|no reason to live|all been decided|tomorrow is it|reason to live left|tired of living|goodbye note|goodbye letter|farewell note|farewell letter|last night alive|last message|final message|last words|this is goodbye|saying goodbye|said goodbye|goodbye forever|tonight is the end|later for me|reason to live is gone|rather be dead|stop breathing|finished being here|quitting life|life worth|who will find me|quien me va a encontrar|leave this world|dejar este mundo|adios para siempre|point of staying alive|staying alive|last time anyone hears|how to die|die on purpose|better off without me|when im gone|when i am gone|make the pain stop|not going to be around|wont be around|lost the will|about me forever|lethal dose)\b/.test(joined)
+  const deathPhrase = /\b(not wake|no despertar|not be here|rather not be here|cant be here|cannot be here|not live anymore|dont want to live|doesnt want to live|do not want to live|does not want to live|do not want to exist|dont want to exist|no longer want to exist|no longer wants to exist|no longer wants to live|stop existing|dejar de existir|disappear forever|disappear para siempre|desaparecer para siempre|no quiero vivir|no quiere vivir|no quiero seguir|ya no quiero vivir|better off dead|quiero morir|quiero morirme|want to die|wants to die|end it|ending it|end everything|end my life|ending my life|end his life|end her life|end your life|own life|acabar con|terminar con|mensaje final|ultimas palabras|dosis letales|quitarse|quitarme|quitar\w* la vida|no reason to live|reason to live|all been decided|tomorrow is it|reason to live left|tired of living|goodbye note|goodbye letter|farewell note|farewell letter|last night alive|last message|final message|last words|this is goodbye|saying goodbye|said goodbye|goodbye forever|tonight is the end|later for me|reason to live is gone|rather be dead|stop breathing|finished being here|quitting life|life worth|who will find me|quien me va a encontrar|leave this world|dejar este mundo|adios para siempre|point of staying alive|staying alive|last time anyone hears|how to die|die on purpose|better off without me|when im gone|when i am gone|make the pain stop|not going to be around|wont be around|lost the will|about me forever|lethal dose)\b/.test(joined)
     || /\b(tired of living|stop existing|quiero morir|goodbye note|farewell letter|last message|lethal doses?)\b/.test(leet(raw));
   const death = deathPhrase || tokens.some((token) => DEATH_WORDS.includes(token) || /^(morir|muer|muert|suicid|desaparec)/.test(token));
   const harm = reflexive || tokens.some((token) => HARM_WORDS.includes(token) || /^(cort|colg|ahorc|salt|matar|mato|mata|tirar|envenen|pegar)/.test(token))
@@ -298,7 +308,7 @@ function prepareCrisis(text) {
     + (/\besta noche\b/.test(joined) ? 1 : 0);
   const plan = (subject && (means > 0 || times > 0)) || (means >= 1 && times >= 1) || means >= 2;
   const unambiguous = tokens.some((token) => /^(suicid|overdos|sobredos|kms|selfharm|desaparec|bleach|muert|morir)/.test(token))
-    || ["我想自杀", "我不想活了", "想死", "死にたい", "自分を傷つけたい", "自殺したい", "죽고 싶어", "자살하고", "자해하고", "मैं मरना चाहता", "أريد أن أموت", "أؤذي نفسي", "я хочу умереть", "покончить с собой", "मला मरायचे आहे", "आत्महत्या", "самоубийство", "自残", "magpakamatay", "je veux mourir", "envie de mourir", "ich will sterben", "mich umbringen", "voglio morire", "quero morrer", "quero me matar", "mwen vle mouri", "gusto kong magpakamatay", "hacerme dano", "hacerme daño", "farmi del male", "me suicider", "mi taglio", "ayoko nang mabuhay"].some((phrase) => leet(raw).includes(fold(phrase)) || raw.toLowerCase().includes(phrase.toLowerCase()))
+    || ["我想自杀", "我不想活了", "想死", "死にたい", "自分を傷つけたい", "自殺したい", "죽고 싶어", "자살하고", "자해하고", "मैं मरना चाहता", "أريد أن أموت", "أؤذي نفسي", "я хочу умереть", "покончить с собой", "मला मरायचे आहे", "आत्महत्या", "самоубийство", "自残", "magpakamatay", "je veux mourir", "envie de mourir", "ich will sterben", "mich umbringen", "voglio morire", "quero morrer", "quero me matar", "mwen vle mouri", "gusto kong magpakamatay", "hacerme dano", "hacerme daño", "farmi del male", "me suicider", "mi taglio", "ayoko nang mabuhay", "ölmek istiyorum"].some((phrase) => leet(raw).includes(fold(phrase)) || raw.toLowerCase().includes(phrase.toLowerCase()))
     || /\bod\b/.test(joined);
   return { subject, death, deathPhrase, harm, ingest, plan, unambiguous, joined };
 }
@@ -326,7 +336,13 @@ function priorMeans(history) {
 // One structural decider. A subject plus a death, harm, ingest-amount,
 // or plan family fires the sheet. An unattributed plan fires when a means
 // co-occurs with a time or with another means. Idiom spans are removed first.
+const MEANS_QUESTION = /\b(noose|nudo corredizo|how to tie|lethal dose|dosis letal|how many pills|cuantas pastillas|painless way|forma indolora|best way to die|mejor forma de morir|overdose amount|heart stops|corazon se detiene)\b/;
+
+export const GENTLE_LINE = "If you're going through something hard, you can call or text 988 anytime / Si estás pasando por algo difícil, llama o escribe al 988.";
+
 export function crisisSheet(question, history) {
+  const surface = leet(question);
+  if (MEANS_QUESTION.test(surface) || /\bhow much\b[^.]{0,48}\b(kills|to die|para morir)\b/.test(surface)) return true;
   const prepared = prepareCrisis(question);
   if (asksForHarmPage(question, tokensOf(leet(question)))) return true;
   if (prepared.deathPhrase || prepared.unambiguous || prepared.ingest || (prepared.harm && /\b(plan|tonight|sunday|dawn|midnight|manana|noche|wrists?|bleed\w*|roof|bridge|cliff|balcon)\b/.test(prepared.joined))) return true;
@@ -338,7 +354,21 @@ export function crisisSheet(question, history) {
   }
   const asked = leet(question).replace(/[?!.]+$/g, "").trim();
   if (FOLLOW_UPS.has(asked) && priorMeans(history)) return true;
+  if (Array.isArray(history) && history.some((turn) => crisisSheet(turn))) {
+    if (FOLLOW_UPS.has(asked) || prepared.death || prepared.harm || prepared.ingest) return true;
+  }
   return false;
+}
+
+export function isCrisisText(text, history) {
+  return crisisSheet(text, history);
+}
+
+export function gentleCrisis(text) {
+  if (crisisSheet(text)) return false;
+  const surface = leet(text);
+  if (stripIdioms(surface) !== surface) return true;
+  return /\b(dead|die|died|dying|death|kill\w*|hang\w*|cut\w*|muero|morir|hurt\w*|suicid\w*|overdos\w*)\b/.test(surface);
 }
 
 function finish(reply) {
@@ -392,9 +422,9 @@ function fallbackPassage(corpus) {
 export async function replyFor(question, corpus, options) {
   const opts = options || {};
   try {
-    if (crisisSheet(question)) return finish(crisisReply());
-    if (Array.isArray(opts.history)) opts.history.slice(0);
-    const screened = screen(question, opts.history);
+    const history = Array.isArray(opts.history) ? opts.history.slice(0) : [];
+    if (crisisSheet(question, history)) return finish(crisisReply());
+    const screened = screen(question, history);
     let reply;
     if (screened.action === "crisis") reply = crisisReply();
     else if (screened.action === "harm") reply = { action: "harm", text: HARM_REPLY, modelCalled: false, sources: [] };
@@ -427,6 +457,9 @@ export async function replyFor(question, corpus, options) {
           }
         }
       }
+    }
+    if (gentleCrisis(question) && reply && !String(reply.text || "").includes(GENTLE_LINE)) {
+      reply = Object.assign({}, reply, { text: String(reply.text || "") + "\n\n" + GENTLE_LINE, gentle: true });
     }
     return finish(reply);
   } catch (err) {

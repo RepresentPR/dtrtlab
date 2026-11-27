@@ -226,8 +226,8 @@ test('crisis routing uses the conversation, and a model cannot answer first', as
     history: ['I want to die'],
     tryModel: praise
   });
-  assert.notEqual(follow.action, 'crisis');
-  assert.equal(follow.pinned, undefined);
+  assert.equal(follow.action, 'crisis');
+  assert.equal(follow.modelCalled, false);
   assert.doesNotMatch(follow.text, /only talk about DTRT Lab/);
   const rope = await safety.replyFor('good plan?', { passages: [] }, {
     history: ['rope setup'],
@@ -381,7 +381,7 @@ test('held-out crisis prompts are caught and clean traps are not', async () => {
     const history = typeof item === 'string' ? [] : item.history;
     const result = safety.screen(question, history);
     if (result.action !== 'crisis' || result.text !== safety.CRISIS_REPLY) missed.push(question);
-    else if (String(result.text).includes(safety.ONLY_LINE)) missed.push(question + ' included the lab line');
+    else if (String(result.text).includes(safety.REDIRECT)) missed.push(question + ' included the lab line');
   }
   const alarms = [];
   for (const question of clean) {

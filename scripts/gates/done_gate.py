@@ -9,7 +9,7 @@ FIXED / LIVE / VERIFIED must cite at least one artifact path (.png .json .log .t
   SELF-GRADED  a READY/handoff line whose latest score in the file is marked
                CONTAMINATED/POST (builder re-scored its own fixes on the same set)
   NO-NOT-CHECKED  file claims READY but never lists what was NOT checked
-Read-only. Exit 1 if any NO-PROOF or SELF-GRADED. Not wired into anything.
+Read-only. Exit 1 if any NO-PROOF or SELF-GRADED, or if the file has 0 claim lines. Artifact paths may be /home/, /workspace/, or /tmp/ absolute paths. Not wired into anything.
 
 Restored 2026-11-27 from a captured copy of /workspace/checks/gates/done_gate.py
 (Slop to Gold 11/17 draft) after the 11/26 box refresh. Behavior is unchanged.
@@ -26,7 +26,7 @@ READY = re.compile(r"\bREADY\b|ready for QA|hand(ed)? (off|to QA)|final build|DO
 SCORE = re.compile(r"\b\d+/\d+\b")
 CONTAM = re.compile(r"CONTAMINATED|POST-held-out|\(POST|post-fix rerun", re.I)
 NOTCHK = re.compile(r"not checked|NOT checked|never run|not verified", re.I)
-PATH = re.compile(r"(?:/workspace/|/tmp/|[\w.-]+/)[\w./*{},@+-]*[\w*}]|[\w.-]+\.(?:png|json|jsonl|log|txt|md|html|srt|mp4|tgz|py|go)\b")
+PATH = re.compile(r"(?:/home/|/workspace/|/tmp/|[\w.-]+/)[\w./*{},@+-]*[\w*}]|[\w.-]+\.(?:png|json|jsonl|log|txt|md|html|srt|mp4|tgz|py|go)\b")
 
 def exists(tok, base):
     tok = tok.rstrip(".,;:)")
@@ -64,14 +64,18 @@ def main():
     for f in sys.argv[1:]:
         iss, claims = check(f)
         h = sum(1 for k, _, _ in iss if k in ("NO-PROOF", "SELF-GRADED"))
+        if claims == 0:
+            iss.append(("ZERO-CLAIMS", 0, "0 claim lines — fail"))
+            h += 1
         hard += h
         print(f"{'FAIL' if h else 'PASS'} {f}: {claims} claim lines, "
               f"{sum(k=='NO-PROOF' for k,_,_ in iss)} without proof, "
               f"{sum(k=='SELF-GRADED' for k,_,_ in iss)} self-graded, "
-              f"{sum(k=='NO-NOT-CHECKED' for k,_,_ in iss)} no-not-checked")
-        for k, i, t in iss[:6]:
+              f"{sum(k=='NO-NOT-CHECKED' for k,_,_ in iss)} no-not-checked, "
+              f"{sum(k=='ZERO-CLAIMS' for k,_,_ in iss)} zero-claims")
+        for k, i, t in iss[:8]:
             print(f"   {k:14} L{i}: {t}")
-        if len(iss) > 6: print(f"   ... {len(iss)-6} more")
+        if len(iss) > 8: print(f"   ... {len(iss)-8} more")
     sys.exit(1 if hard else 0)
 
 if __name__ == "__main__":
