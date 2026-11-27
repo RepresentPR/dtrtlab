@@ -427,35 +427,49 @@ def liveness_denied(toks, start, end, text):
 
 EN_COPULA = {"is", "are", "was", "were", "be", "been", "being", "s"}
 EN_SUBJECT = {"it"}
-EN_POST_SKIP = FILLER | EN_SUBJECT | {"now"}
+EN_AUX = {
+    "has", "have", "had",
+    "will", "does", "do", "did",
+    "can", "could", "would", "should",
+    "may", "might", "must",
+}
+# "is going to" / "not going to be": going is part of the auxiliary chain, not a predicate.
+EN_AUX_CHAIN = {"going"}
+EN_POST_SKIP = FILLER | EN_SUBJECT | EN_AUX | EN_AUX_CHAIN | {"now"}
+EN_POST_NEG_SKIP = FILLER | EN_AUX_CHAIN | {"now"}
 
 
 def _en_post_claim_denied(words, end, hi):
     """True when a same-clause negation after the claim has AI or 'it' as its subject.
 
-    'The live AI is not available' and '..., it is not ready' count. A trailing
-    'not available in red' / 'not ready for merch' / 'not online shopping' does
-    not, because that complement is not a clause with AI or 'it' as the subject.
-    Contractions (isn't, aren't) count as a copula plus a negation.
+    'The live AI is not available' and '..., it is not ready' count. Auxiliaries
+    (has/have/had, will, does, can/could/would/should, is going to) plus
+    not/never plus optional be/been plus a liveness predicate also count
+    ('has never been live', 'will not be available', 'won't be live',
+    'is not going to be available'). A trailing 'not available in red' /
+    'not ready for merch' / 'not online shopping' does not, and an auxiliary
+    denial of a non-liveness predicate ('will not be slow', 'will not disappoint')
+    does not either. Contractions (isn't, aren't, won't) count as a copula or
+    auxiliary plus a negation.
     """
     saw_it = False
-    saw_copula = False
+    saw_finite = False
     j = end
     while j < hi and words[j] in EN_POST_SKIP:
         if words[j] in EN_SUBJECT:
             saw_it = True
-        if words[j] in EN_COPULA:
-            saw_copula = True
+        if words[j] in EN_COPULA or words[j] in EN_AUX:
+            saw_finite = True
         j += 1
     if j >= hi or not is_neg_at(words, j):
         return False
-    # isn't / aren't / wasn't / ain't are copula+negation in one contraction.
+    # isn't / aren't / wasn't / ain't / won't / can't are finite+negation.
     if words[j] in NEG_HEADS or (words[j] == "t" and j > 0 and words[j - 1] in NEG_HEADS):
-        saw_copula = True
-    if not (saw_it or saw_copula):
+        saw_finite = True
+    if not (saw_it or saw_finite):
         return False
     k = after_neg(words, j)
-    while k < hi and words[k] in (FILLER | {"now"}):
+    while k < hi and words[k] in EN_POST_NEG_SKIP:
         k += 1
     return k < hi and words[k] in DENY_PREDICATES
 
@@ -487,6 +501,14 @@ ES_DENY_PREDICATES = {
     "operativa", "operativo", "online", "funcionando",
     "lanzada", "lanzado",
 }
+# Auxiliaries that can carry a liveness denial: ha/han/había, va a, puede, podrá.
+ES_AUX = {
+    "ha", "han", "habia", "habian", "he", "hemos", "haya",
+    "va", "van", "voy", "vamos",
+    "puede", "pueden", "pueda", "puedan",
+    "podra", "podran", "podria", "podrian",
+}
+ES_AFTER_SKIP = ES_FILLER | ES_AUX
 
 
 def _same_sentence_range(toks, start, end, text):
@@ -605,19 +627,19 @@ def es_liveness_denied(toks, start, end, text):
             return True
 
     j = end
-    while j < hi and words[j] in ES_FILLER and words[j] not in ES_NEG and words[j] not in ES_YET:
+    while j < hi and words[j] in ES_AFTER_SKIP and words[j] not in ES_NEG and words[j] not in ES_YET:
         j += 1
     if j >= hi:
         return False
     if words[j] in ES_YET:
         k = j + 1
-        while k < hi and words[k] in ES_FILLER and words[k] not in ES_NEG:
+        while k < hi and words[k] in ES_AFTER_SKIP and words[k] not in ES_NEG:
             k += 1
         return k < hi and words[k] in ES_NEG
     if words[j] in ES_NEG:
         k = j + 1
         found_yet = False
-        while k < hi and words[k] in ES_FILLER:
+        while k < hi and words[k] in ES_AFTER_SKIP:
             if words[k] in ES_YET:
                 found_yet = True
             k += 1

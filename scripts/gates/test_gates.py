@@ -248,6 +248,23 @@ class CopyLintTests(unittest.TestCase):
         self.assertEqual(copy_lint.lint_text(LIVE_AI[0].upper() + LIVE_AI[1:] + " is not available."), [])
         self.assertEqual(copy_lint.lint_text("Try our " + LIVE_AI + ", it is not available."), [])
 
+    def test_auxiliary_liveness_denials_pass_unrelated_predicates_fail(self):
+        todavia = "todav" + chr(237) + "a"
+        esta = "est" + chr(225)
+        # Aux + negation + (been/be) + liveness predicate, AI or "it" as subject.
+        self.assertEqual(copy_lint.lint_text("The " + LIVE_AI + " has never been live."), [])
+        self.assertEqual(copy_lint.lint_text("The " + LIVE_AI + " has not been live."), [])
+        self.assertEqual(copy_lint.lint_text("Our " + LIVE_AI + " will not be available."), [])
+        self.assertEqual(copy_lint.lint_text("The AI won't be live until it passes review."), [])
+        self.assertEqual(copy_lint.lint_text("La IA no ha estado en vivo."), [])
+        self.assertEqual(copy_lint.lint_text("La IA no va a estar disponible " + todavia + "."), [])
+        self.assertEqual(copy_lint.lint_text("The " + LIVE_AI + " is not going to be available."), [])
+        self.assertEqual(copy_lint.lint_text("Nuestra " + IA_EN_VIVO + " no va a estar disponible " + todavia + "."), [])
+        # Aux denial of a non-liveness predicate does not exempt the claim.
+        self.assertTrue(copy_lint.lint_text("Our " + AI_IS_LIVE + " and will not be slow."))
+        self.assertTrue(copy_lint.lint_text("Try our " + LIVE_AI + ", it will not disappoint."))
+        self.assertTrue(copy_lint.lint_text("La IA " + esta + " en vivo y no va a fallar."))
+
     def test_live_ai_bigram_does_not_match_across_breaks(self):
         self.assertEqual(copy_lint.lint_text("Go live. AI stays a very early test, not live yet."), [])
         self.assertEqual(copy_lint.lint_text("The site is live. AI notes are drafts only."), [])
