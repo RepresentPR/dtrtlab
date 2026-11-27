@@ -4,11 +4,11 @@
     map: {
       where: 'Free map',
       title: 'Get your free office map',
-      sub: "Answer 3 short questions and we'll follow up by email."
+      sub: "This page has moved to the shop."
     },
     check: {
-      where: 'Free AI check',
-      title: 'Get your free AI check',
+      where: 'Contact',
+      title: 'Get in touch',
       sub: 'Business name, website, and the city or service area you cover.'
     },
     partner: {
