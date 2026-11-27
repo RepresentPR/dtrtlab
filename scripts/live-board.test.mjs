@@ -22,9 +22,9 @@ test('board is hand-updated, unindexed, and the down candle clears 4.5:1', () =>
   assert.match(page, /<meta name="robots" content="noindex, nofollow">/);
   assert.doesNotMatch(page, /rel="canonical"/);
   assert.match(page, /<title>DTRT Lab · Growth board<\/title>/);
-  assert.match(page, /<h1>Growth board<\/h1>/);
-  assert.match(page, /<h2>Score candles<\/h2>/);
-  assert.match(page, /Updated by hand<span id="asof">/);
+  assert.match(page, /<span class="l-en">Growth board<\/span>/);
+  assert.match(page, /<span class="l-en">Score candles<\/span>/);
+  assert.match(page, /Updated by hand<\/span><span class="l-es">Actualizado a mano<\/span><span id="asof">/);
   assert.match(js, /The first candle appears after the next hand update\./);
   assert.equal(seed.story.find((s) => s.date === '2026-10-23').title, 'Daily 1% improvement loop and this board begins');
   assert.doesNotMatch(page + css, /class="pill"|pill:before/);

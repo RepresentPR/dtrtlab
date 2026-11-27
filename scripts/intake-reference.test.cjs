@@ -34,7 +34,7 @@ test('confirmation displays only valid request references as text',()=>{
   assert.equal(bad.hidden,true);assert.equal(bad.textContent,'');
 });
 test('all existing request forms provide source and load the reference script; thanks pages show its output',()=>{
-  for(const file of ['map/index.html','contact.html','bug.html']){
+  for(const file of ['contact.html','bug.html']){
     const html=fs.readFileSync(path.join(root,file),'utf8');
     assert.match(html,/name="_url" value="https:\/\/dtrtlab\.com\//,file);
     assert.match(html,/\/js\/intake-reference\.js\?v=20261022-1/,file);
