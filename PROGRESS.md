@@ -2,7 +2,7 @@
 
 Public AI chat branch `cursor/public-ai-launch-8a16`.
 
-Head: `pending`
+Head: `857b3aedf52099153a56778daac0f1a07c70d82c`
 
 The calm "no good answer yet" reply is only for a message that matches the site-topic allowlist and has no risk signal in the recent turns. Everything else with no page match keeps the 988 sheet. Question-form and follow-up probes from the e0dc6cc report are covered by tests.
 
