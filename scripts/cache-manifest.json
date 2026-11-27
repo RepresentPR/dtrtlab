@@ -145,6 +145,10 @@
     "hash": "6c95bbbdf3f26e5ec5ba53382c48dbe4cf1f84547824f027a57d6a4be6cb6d97",
     "key": null
   },
+  "css/neural-glow.css": {
+    "hash": "6454b5595b85d376d4f4866bd53521186a3d1f222ba6ee4b89fb8b583caaac7b",
+    "key": "20261127-glow2"
+  },
   "css/scene-base.css": {
     "hash": "14d8a1d586d432a1ac71c76ed4b15a860001737fed9a27f5f22f8e0ccdbe87e9",
     "key": null
@@ -278,6 +282,10 @@
   "js/growth-monitor.js": {
     "hash": "42e259322f7c16cb0270b200af93944c582893a0cf8a6bf4fae57ee619705b53",
     "key": null
+  },
+  "js/home-lang.js": {
+    "hash": "565f71ddbe8e864e63735b0b50ebfa54013ff735b5ec6a8efb9eda0e40f1f98c",
+    "key": "20261127-glow1"
   },
   "js/homepage-video.mjs": {
     "hash": "a813b9fc86fb4533d3d45b640b2da7f8ab3dac7c57a76e00758e8fe05f7c84e0",
