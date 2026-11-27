@@ -1,31 +1,21 @@
 # Progress
 
-Branch `design/neural-glow`, PR #116 "Homepage redesign: neural glow (dream theme)". Base is main `29009944` (after #112).
+Branch `design/neural-glow`, PR #116. Head will be the latest push after this note.
 
-This file is excluded from the published site (`_config.yml` exclude).
+## 11/27 afternoon — money-first, SpaceX/Amazon phone layout
 
-## What changed (storefront)
+Visible homepage and `/mercado/` now show only five offers: Jafra, DTRT Lab AI for business (contact), MOTION, Candles, and Ask DTRT Lab (Pronto, no link until #111). No Vende tile. Blog, notebook, lab, stories, clips, news, and music are off the nav and home; they sit under a footer **More** disclosure. Card buttons go to the buying pages (Jafra consultant, MOTION affiliate, Candles referral, `/contact.html` for the business product). Disclosures stay as small text under the button.
 
-The homepage is now a simple storefront. The earlier dark neural-glow look is a quiet aurora accent. The same patterns are on `/mercado/` (that page is still being built; it is marked `data-draft` so it stays out of the Ask index).
+Copy rulings kept: MOTION wording from motionpouches.com/shop (checked November 27, 2026) word for word, with a faithful ES translation; Ask card is "Prueba de IA muy temprana, todavía no está en vivo" + Pronto; "Things we build or link to. Some links earn us a commission." / "Cosas que construimos o enlazamos. Algunos enlaces nos pagan comisión."; share image `/img/brand/og-mercado.png`; tagline stays "Local, real, de aquí" until the copy_lint list PR merges; shopping helper uses the shared `js/mercado-allowlist.js` gate (products only when every token is known; anything else shows the 988 box and 0 cards). 988 also stays in the footer.
 
-- Spanish first. Default language is Spanish unless `?lang=en` is in the URL or `dtrt-lang` is already saved. The switcher is persistent text only: "Español" and "English". No flags, no geo redirect.
-- Always-visible shopping helper (beta) with typo-tolerant, accent-folding match against the catalog only. No network calls. A submit button (`type="button"`, because CSP `form-action 'none'`) stays visible on mobile. Label: "Shopping helper (beta) — matches our catalog" / "Asistente de compras (beta) — coincide con nuestro catálogo". It is not called live AI.
-- Tap targets are at least 44px. No auto-rotating carousel. One primary button per card.
-- Button words: "Ver tienda" / "Visit shop" on shop cards; "Vende con nosotros" on the sell tile, header link, and category tile. The sell tile sits on the first screen with the mixed catalog (Jafra, MOTION, Ask DTRT, Candles).
-- Shop cards carry "Vendido y enviado por [brand]" / "Sold and shipped by [brand]" and the trust line "Pagas en la tienda oficial de la marca" / "You pay on the brand's own site".
-- No ratings, review counts, or prices. No cart or checkout claims. Payments are not taken on this site. The AI card says it is a very early test, not live, and is not a shop.
-- White Lotus is gone from this branch. Jafra is the beauty card and points at `/links/#jafra` (that hash lands when #114 is updated).
-- Tagline on the storefront: "Local, real, de aquí" / "Local, real, from here". The longer line that named the island was not kept: the two-word place name is hashed reloc term `term#f50b92b29527bc02` and fails fix7/3. Palette (sunset coral, turquoise, palm green, warm sand), a small palm mark, a footer wave, and a tiny coquí stay. Town names stay off the page.
-- Old long homepage sections are not deleted. They sit in `.home-legacy` (CSS-hidden) so story-guide and homepage-render tests still see them. New storefront chrome is in `<!--ask-skip-->`. The original header, personal hero, and footer nav remain in the file so Ask passages stay unchanged.
-- `js/shop-helper.js`, `js/home-lang.js`, `css/neural-glow.css`, `scripts/shop-helper.test.cjs`, `/mercado/` added to the sitemap. GoatCounter expected indexed-page count is 38.
+Phone homepage height in Chrome 390 shots: 1318px (EN) and 1403px (ES), under two 844px screens.
 
 ## Tests
 
-`FIX7_BASE_REF=origin/main node --test scripts/*.test.cjs scripts/*.test.mjs`: 362 tests, 359 pass, 2 fail, 1 skipped (Jekyll not installed locally).
+`FIX7_BASE_REF=origin/main node --test scripts/*.test.cjs scripts/*.test.mjs`: 367 tests, 364 pass, 2 fail, 1 skipped (Jekyll). The 2 failures are the known `/links/` 404s (`site-links`, `fix7/2`) until #114 merges.
 
-The 2 failures are the known `/links/` checks (`site-links`, `fix7/2`): `/links/`, `#jafra`, `#motion`, `#ai`, `#candles` are not on main. PR #114 adds `/links/` and still uses `#tea` instead of `#jafra`. This PR must merge after #114, and #114 needs the Jafra change listed below.
+ask-index, cache-keys, shop-helper, allowlist (50+100 crisis + 40 normal), personal-home, story-guide, and homepage-render pass.
 
-ask-index, cache-keys, fix7/3, goatcounter, shop-helper, personal-home, story-guide, and homepage-render pass.
 
 ## #114 `/links/` tea article — required changes (do not edit #114 in this PR)
 
