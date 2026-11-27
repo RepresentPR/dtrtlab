@@ -4,12 +4,12 @@
     "key": "20261115-ask1"
   },
   "ask/passages.js": {
-    "hash": "e32ee3c9efde6027b15ce9375379d82e4c6517e08a4980dc7ad15a30110ec225",
-    "key": "20261127-links6"
+    "hash": "e639ab40d7cf5ad1e1264722d476b02fa182a684683fddff5bd1a579c589985b",
+    "key": "20261127-store11"
   },
   "ask/ui.js": {
-    "hash": "58e17b0b5963c731b1037f6d148c30d6c9d5dacca2e36d5fd3ca18476516ab4f",
-    "key": "20261127-links7"
+    "hash": "42bff97cc2b10bde79ac9f66e0db326ecefb749c46cc5f04d4db463fa7be1db5",
+    "key": "20261127-store11"
   },
   "content/clips.js": {
     "hash": "a5c0cfa45b00524fbc1d2de324ec0f19031af1fce1ff80c092c465e2e29cd1e4",
@@ -142,8 +142,8 @@
     "key": null
   },
   "css/neural-glow.css": {
-    "hash": "9e625686e52330e33dddfea6dc8eacdee4cf64442a265422b82ca42458903942",
-    "key": "20261127-store6"
+    "hash": "6f746a134b2daeb5dbb2dcfd21693291c3b9e20d88e6f73669564744e582be98",
+    "key": "20261127-store13"
   },
   "css/scene-base.css": {
     "hash": "14d8a1d586d432a1ac71c76ed4b15a860001737fed9a27f5f22f8e0ccdbe87e9",
@@ -332,12 +332,16 @@
     "key": "20261010n"
   },
   "js/mercado-allowlist.js": {
-    "hash": "9987984a4d174971f203a246dcfd1adf1a06368ebf64cd9f7ef46e171fe3ea11",
-    "key": "20261127-store9"
+    "hash": "b84321508de98e810a0b251089b86faac68378cec8a21aa0fc4655beb41d0d6b",
+    "key": "20261127-store13"
+  },
+  "js/mercado-helper.js": {
+    "hash": "291ca57bfa9eed26dab3d387d65bae6af9809899e8fd82e590d83aff4146d50f",
+    "key": "20261127-store13"
   },
   "js/nav.js": {
-    "hash": "f091500e896ddff594702f6d5498194a5ecd92e12e787799b8ee3eceec61a5c7",
-    "key": "20261127-links7"
+    "hash": "ca880373aa98110ea88075166213ae21c39cfe8111c7c92918edde7f9eefb032",
+    "key": "20261127-store11"
   },
   "js/plan-tool.js": {
     "hash": "687e9bc23bcb839927457b71cad5ac30e36edcd4593be1f5a8bdd79786e50cee",
@@ -361,7 +365,7 @@
   },
   "js/shop-helper.js": {
     "hash": "ff822c3d246fd8a173d5fc1ba6a7f973a5a00dbc3be2e330b86af9be12520a2c",
-    "key": "20261127-store7"
+    "key": null
   },
   "js/shop.js": {
     "hash": "1d629e1828cded14e2a3e055e89b5c3e2109271fa33192c201144889dc1f76c1",
@@ -432,8 +436,8 @@
     "key": null
   },
   "sw.js": {
-    "hash": "9f5008b4c5a1224a6cc6c6efe9b4d10eb54b21b19bf6ef009676242bead2e844",
-    "key": "20261127-links7"
+    "hash": "b4fd8621a58c3df4f502b03841c59d86489ed2e4da4eea340dddeb69c7767439",
+    "key": "20261127-store11"
   },
   "watch/watch.css": {
     "hash": "0b8026e65ae3b40c91b7dfdf31a94e579c60b0222bd1d5ce8999b2ffc29870f1",
