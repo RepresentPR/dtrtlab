@@ -1,15 +1,13 @@
 // Public answers are quotes from DTRT Lab's pages.
 // A model may only rephrase those quotes. Anything else is discarded.
 // Risk is checked before any page answer or model call, on this
-// message, earlier turns, and a flag kept for 24 hours. The flag is
-// written to localStorage so a new tab still sees it, and to
-// sessionStorage when local storage is blocked. New chat does not
-// clear it. The flag is set only when this screen detects risk, and its
-// timestamp stays at that first detection. A stored legacy "1" is expired.
-// A detected risk returns the full sheet and no page quote. A page
-// answer and an error reply carry a short 988 footer. An ordinary
-// unmatched question gets a not-sure reply plus that footer and does not
-// set the flag. A compact note is only for a greeting or everyday idiom with no risk.
+// message and earlier turns in the same call. A positive crisis match
+// returns the full sheet and no page quote. Later replies in that same
+// in-memory history keep the 988 box pinned. Nothing is written to
+// storage and nothing lasts 24 hours. A page answer and an error reply
+// carry a short 988 footer. An ordinary unmatched question gets a
+// not-sure reply plus that footer. A compact note is only for a greeting
+// or everyday idiom with no risk.
 
 export const CRISIS_REPLY = "If you might hurt yourself, get help now. In the US, call or text 988. You can chat at https://988lifeline.org. If you are in immediate danger, call 911. You can also visit https://findahelpline.com. This is a very early AI test. It is not a person and not a doctor, and it will not keep chatting about this.";
 
@@ -38,10 +36,6 @@ export const OTHER_HELP_LINE = "If you are helping someone else, you can still c
 export const UNSURE_REPLY = "I'm not sure about that yet.";
 
 export const ERROR_REPLY = "The search on this page did not finish. The public pages are still linked from the home page.\n\n" + HELP_LINE;
-
-export const RISK_FLAG_KEY = "dtrt.risk.v1";
-
-export const RISK_TTL_MS = 24 * 60 * 60 * 1000;
 
 const RISK_TOKENS = new Set([
   "die", "dying", "died", "death", "deaths",
@@ -414,68 +408,6 @@ function dangerIn(text) {
   return false;
 }
 
-function asStores(storage) {
-  if (!storage) return { local: null, session: null };
-  if (Object.prototype.hasOwnProperty.call(storage, "local") || Object.prototype.hasOwnProperty.call(storage, "session")) {
-    return { local: storage.local || null, session: storage.session || null };
-  }
-  return { local: null, session: storage };
-}
-
-function flagFresh(raw, now) {
-  if (!raw || raw === "1") return false;
-  try {
-    const data = JSON.parse(raw);
-    if (!data || typeof data.at !== "number") return false;
-    const age = now - data.at;
-    return age >= 0 && age < RISK_TTL_MS;
-  } catch (err) {
-    return false;
-  }
-}
-
-function expireLegacy(store) {
-  try {
-    if (!store || store.getItem(RISK_FLAG_KEY) !== "1") return;
-    if (store.removeItem) store.removeItem(RISK_FLAG_KEY);
-    else if (store.setItem) store.setItem(RISK_FLAG_KEY, "");
-  } catch (err) {
-    /* A blocked store is simply not flagged. */
-  }
-}
-
-function readStoreFlag(store, now) {
-  try {
-    if (!store) return false;
-    expireLegacy(store);
-    return flagFresh(store.getItem(RISK_FLAG_KEY), now);
-  } catch (err) {
-    return false;
-  }
-}
-
-export function readRiskFlag(storage, now) {
-  const clock = typeof now === "number" ? now : Date.now();
-  const stores = asStores(storage);
-  if (readStoreFlag(stores.local, clock)) return true;
-  return readStoreFlag(stores.session, clock);
-}
-
-function writeStoreFlag(store, clock) {
-  if (!store || !store.setItem) return;
-  let existing = null;
-  try { existing = store.getItem(RISK_FLAG_KEY); } catch (err) { return; }
-  if (flagFresh(existing, clock)) return;
-  try { store.setItem(RISK_FLAG_KEY, JSON.stringify({ at: clock })); } catch (err) {}
-}
-
-export function writeRiskFlag(storage, now) {
-  const clock = typeof now === "number" ? now : Date.now();
-  const stores = asStores(storage);
-  writeStoreFlag(stores.local, clock);
-  writeStoreFlag(stores.session, clock);
-}
-
 export function hasRisk(question, history) {
   return userTurns(question, history).some((turn) => dangerIn(turn));
 }
@@ -616,54 +548,6 @@ function spell(text) {
   return tokensOf(deleet(text)).map((token) => TYPO_DICT[token] || token).join(" ");
 }
 
-const IDIOM_FAMILIES = [
-  /overdose of coffee/,
-  /overdose on coffee/,
-  /die laughing/,
-  /died laughing/,
-  /dying laughing/,
-  /dying of laughter/,
-  /die of embarrassment/,
-  /died of embarrassment/,
-  /dying of embarrassment/,
-  /dying of shame/,
-  /me muero de risa/,
-  /muero de risa/,
-  /me muero de verguenza/,
-  /muero de verguenza/,
-  /me muero de hambre/,
-  /muero de hambre/,
-  /killing it/,
-  /kill for a /,
-  /kill for the /,
-  /kill for some /,
-  /dead tired/,
-  /killing me/,
-  /phone is dead/,
-  /battery is dead/,
-  /link is dead/,
-  /dead phone/,
-  /dead battery/,
-  /dead link/,
-  /dying for/,
-  /dying to/,
-  /hang on/,
-  /hang the office map/,
-  /hang a poster/,
-  /hang the poster/,
-  /hang a map/,
-  /hang the map/,
-  /killer deal/,
-  /killer feature/,
-  /kill a long answer/,
-  /kill the answer/,
-  /make a living/,
-  /life story/,
-  /cut the trailer/,
-  /my last message/,
-  /last message/
-];
-
 function crisisMatch(text) {
   const spelled = spell(text);
   if (actPhrase(text) || actPhrase(spelled)) return true;
@@ -673,73 +557,6 @@ function crisisMatch(text) {
   if (actPhrase(corrected)) return true;
   if (dangerIn(corrected) && !figurative(corrected)) return true;
   return false;
-}
-
-const SITE_NOT_FLAG = [
-  /pill-shaped/,
-  /pill shaped/,
-  /rope lights?/,
-  /bleeding edge/,
-  /demo pills?/,
-  /kill switch/,
-  /killer deals?/,
-  /killer features?/,
-  /wrist bands?/,
-  /jump to/
-];
-
-function withoutPhrases(text, patterns) {
-  let stripped = fold(deleet(text));
-  for (let i = 0; i < patterns.length; i++) stripped = stripped.replace(patterns[i], " ");
-  return stripped;
-}
-
-function siteOnly(text) {
-  const raw = fold(deleet(text));
-  if (!SITE_NOT_FLAG.some((pattern) => pattern.test(raw))) return false;
-  return !crisisMatch(withoutPhrases(text, SITE_NOT_FLAG));
-}
-
-const COMPACT_ONLY = [/\bhow much\b/, /\bis it enough\b/, /\bgood plan\b/, /\bshould i\b/, /\btonight\b/];
-
-function compactOnly(text) {
-  if (actPhrase(text) || actPhrase(spell(text))) return false;
-  const raw = fold(deleet(text));
-  if (!COMPACT_ONLY.some((pattern) => pattern.test(raw))) return false;
-  return !crisisMatch(withoutPhrases(text, COMPACT_ONLY));
-}
-
-function idiomOnly(text) {
-  const original = spell(text);
-  let stripped = original;
-  for (let i = 0; i < IDIOM_FAMILIES.length; i++) stripped = stripped.replace(IDIOM_FAMILIES[i], " ");
-  if (stripped === original) return false;
-  if (crisisMatch(stripped)) return false;
-  const filler = new Set("laughing laughter embarrassment shame coffee risa verguenza hambre ganas poster deal feature trailer camera show nap honestly packing photos caption chiste counter quiet hour today again break second shorter studio logo typo week invoices metaphor more nearly every con ese shop candle week".split(" "));
-  const tokens = stripped.split(/[^\p{L}\p{N}\-]+/u).filter(Boolean);
-  return tokens.every((token) => STOPWORDS.has(token) || BENIGN_CONTENT.has(token) || filler.has(token));
-}
-
-function singleIdiom(text) {
-  const raw = fold(deleet(text));
-  if (/[,:;]|\b(and|so|but|then|because|tonight|while|after)\b/.test(raw)) return false;
-  const t = raw.replace(/[.!?]+$/g, "").trim();
-  return [
-    /^(i am |im )?dead tired$/,
-    /^(this |the |my )?(job|work|commute|boss|monday|traffic|shift|feet) is killing me$/,
-    /^(my |the )?(phone|battery|link) is dead$/,
-    /^(my |the )?feet are killing me$/,
-    /^(i am |im )?dying (for|to)( a| the| some)?( \w+){0,3}$/,
-    /^(please |i will |i am going to )?hang (the |a )?(office )?map( \w+){0,4}$/,
-    /^(please )?hang (a |the )?poster( \w+){0,4}$/,
-    /^(please |we should )?kill a long answer( \w+){0,5}$/,
-    /^(how do i |can i |please |i need to )?(delete|close|cancel|remove) my account( \w+){0,4}$/,
-    /^(the |this )?(commute|traffic|work|monday|job) is killing me$/
-  ].some((pattern) => pattern.test(t));
-}
-
-function pureFigurative(text) {
-  return figurative(text);
 }
 
 function figurative(text) {
@@ -758,15 +575,6 @@ function figurative(text) {
   return false;
 }
 
-function aboutSomeoneElse(text) {
-  const t = prepared(text);
-  if (actPhrase(text) && /\b(i|im|ive|id|myself)\b/.test(t)) return false;
-  if (/\b(news|homework|headline|article|essay|wikipedia|assignment|reported)\b/.test(t)) return true;
-  if (/\bmy friend\b/.test(t) || /\b(he|she|they) said\b/.test(t)) return true;
-  if (/\b(friend|classmate|coworker|mom|mother|dad|father|brother|sister) (said|told|wants|wanted)\b/.test(t)) return true;
-  return false;
-}
-
 function distressPhrase(text) {
   const t = fold(text);
   if (/\bwho will find me\b/.test(t)) return true;
@@ -780,111 +588,25 @@ function wantsSheet(text) {
   return true;
 }
 
-function firstPersonAnywhere(text) {
-  const t = fold(deleet(text));
-  if (/\b(i|im|ive|id|yo)\b/.test(t)) return true;
-  if (/\b(my life|mi vida)\b/.test(t) || /\ba mi\b/.test(t)) return true;
-  if (/\bme\b/.test(t) && !/\b(show|tell|ask|asked|told) me\b/.test(t)) return true;
-  return false;
-}
-
 function thirdPersonFrame(text) {
   const raw = String(text || "");
   const t = fold(deleet(text));
   const verb = "says|said|wants|wanted|is going to|threatens|threatened|told|posted|dice|quiere|quieren|va a|amenaza";
-  const span = "[^,.!?]{0,24}";
+  const span = "[^,.!?]{0,8}";
   if (new RegExp("\\b(he|she|they)\\b" + span + "\\b(" + verb + ")\\b").test(t)) return true;
-  if (new RegExp("\\b(my|our|a|an)\\s+[a-z]{2,}\\b" + span + "\\b(" + verb + ")\\b").test(t)) return true;
-  if (new RegExp("\\b(mi|mis|un|una|su|sus|nuestro|nuestra|nuestros|nuestras)\\s+[a-z]{2,}\\b" + span + "\\b(" + verb + ")\\b").test(t)) return true;
+  if (new RegExp("\\b(my|our|a|an)(?:\\s+[a-z]{2,}){1,3}" + span + "\\b(" + verb + ")\\b").test(t)) return true;
+  if (new RegExp("\\b(mi|mis|un|una|su|sus|nuestro|nuestra|nuestros|nuestras)(?:\\s+[a-z]{2,}){1,3}" + span + "\\b(" + verb + ")\\b").test(t)) return true;
   if (/\b(himself|herself|themselves)\b/.test(t) && /\b(he|she|they|his|her|their)\b/.test(t)) return true;
   if (/\bse\s+(quiere|quieren|va|van|mata|mato|ahorca|tira|corta|pega|envenena)\w*/.test(t)) return true;
   if (/\b[A-Z][a-z]{2,}\b[^.!?]{0,50}\b(says|said|wants|is going to|threatens|posted)\b/.test(raw)) return true;
   return false;
 }
 
-function newsFrame(text) {
-  const t = fold(deleet(text));
-  if (/\bin the (show|song|movie|book|film|news|article)\b/.test(t)) return true;
-  if (/\b(the|a|an) (article|news|movie|song|book|show|film|novel|poem|headline|essay|homework|assignment|obituary|character)\b/.test(t)) return true;
-  return /\b(reported|noticia|pelicula|cancion|personaje|wikipedia|article|headline|essay|homework|assignment|obituary|character)\b/.test(t);
-}
-
-function firstPersonHarm(text) {
-  if (!firstPersonAnywhere(text)) return false;
-  let t = fold(deleet(text));
-  t = t.replace(/\b(pill-shaped|pill shaped|rope lights?|bleeding edge|kill switch|killer deals?|knife set|wrist bands?|demo pills?)\b/g, " ");
-  if (/\babout me forever\b/.test(t)) return true;
-  return /\b(die|dying|died|death|kill|killing|killed|cut|cutting|shoot|shot|hang|hanging|jump|jumping|swallow|swallowed|slit|overdose|suicide|goodbye|farewell|last night|last message|morir|matar|tirar|cortar|ahorcar|pegar|envenen|pills|pill|gun|knife|wrist|wrists|bleach|rope|bottle|tablets|tablet)\b/.test(t);
-}
-
-function siteShopping(text) {
-  const t = fold(deleet(text));
-  if (/\b(pill-shaped|pill shaped|rope lights?|bleeding edge|kill switch|killer deals?|killer features?|knife set|sold out|wrist bands?|demo pills?|jump to)\b/.test(t) && !firstPersonHarm(text)) return true;
-  if (/\b(goodbye|farewell|last message|last night)\b/.test(t)) return false;
-  if (firstPersonHarm(text)) return false;
-  if (/\b(die|dying|died|kill|killing|hang|jump|shoot|slit|swallow|overdose|suicide|goodbye|farewell|morir|matar|tirar|cortar|ahorcar|pills|pill|bleach|rope|gun|knife|wrists)\w*/.test(t)) return false;
-  return /\b(price|prices|shipping|hours|kit|kits|order|orders|candle|candles|band|bands|link|links|bill|refund|checkout|shop|store|page|pages|cart|password|login|account|map|desk|email|browser|phone|chat|site|lab|brand|donate|career|form|proof|contact|privacy|terms|cookie|notebook|catalog|photo|motion|jafra|ai|product|checkbox)\b/.test(t) || /\blog out\b/.test(t);
-}
-
-function loneIdiom(text) {
-  const t = fold(deleet(text));
-  if (/\b(goodbye|farewell|hears from me|last night alive|last message)\b/.test(t)) return false;
-  const families = [
-    /\bdying (to|of|for)\b/,
-    /\b(die|died|dying) (laughing|of embarrassment|of shame|of laughter)\b/,
-    /\bkilling (it|me|time)\b/,
-    /\bdead (tired|serious|on|phone|battery|link)\b/,
-    /\b(phone|battery|link|feet|shop phone) (is|are|was|were) dead\b/,
-    /\b(is|are|was|were) dead\b/,
-    /\bkill(?:ing|ed|s)? the\b/,
-    /\bkill for\b/,
-    /\bme muero (de|por)\b/,
-    /\bmuero (de|por)\b/,
-    /\bme mata\b/,
-    /\boverdose of coffee\b/,
-    /\boverdose on coffee\b/,
-    /\bmake a living\b/,
-    /\bhang on\b/,
-    /\bkiller (deal|feature)\b/,
-    /\blife story\b/,
-    /\bcut the trailer\b/
-  ];
-  if (/\b(is|are|was|were) dead\b/.test(t) && !firstPersonHarm(text) && !/\b(pills?|rope|gun|knife|wrists?|bleach|barrel)\b/.test(t)) return true;
-  if (!families.some((pattern) => pattern.test(t))) return false;
-  let rest = t;
-  for (let i = 0; i < families.length; i++) rest = rest.replace(families[i], " ");
-  const harm = /\b(kill|die|cut|shoot|hang|jump|swallow|slit|overdose|morir|matar|tirar|cortar|ahorcar|pegar|envenen)\w*/;
-  const method = /\b(pills?|rope|gun|knife|wrists?|bottle|bridge|bleach|barrel|mouth|venas?|tiro|tablets?|myself|yourself)\b/;
-  const time = /\b(tonight|sunday|midnight|manana|sabado|saturday|dawn|tomorrow|friday)\b/;
-  if (harm.test(rest) && (method.test(rest) || time.test(rest))) return false;
-  const glue = new Set("really just very so too also still already again today now here there leave risa nap laughter embarrassment shame coffee cafe verguenza hambre see catalog week shorter joke arrival shelf honestly de por un una second she he they".split(" "));
-  const tokens = rest.split(/[^\p{L}\p{N}]+/u).filter(Boolean);
-  return tokens.every((token) => STOPWORDS.has(token) || BENIGN_CONTENT.has(token) || glue.has(token));
-}
-
-function excluded(text) {
-  if (thirdPersonFrame(text) && !firstPersonAnywhere(text)) return true;
-  if (newsFrame(text)) return true;
-  if (loneIdiom(text)) return true;
-  if (siteShopping(text)) return true;
-  return false;
-}
-
-function clearlyThirdPerson(text) {
-  return thirdPersonFrame(text) && !firstPersonAnywhere(text);
-}
-
-export function shouldFlag(text) {
-  const sheetMatched = wantsSheet(text);
-  const speakerOk = !clearlyThirdPerson(text);
-  return sheetMatched && speakerOk && !excluded(text);
-}
-
 function finish(reply, question) {
   if (!reply || reply.action !== "crisis") return reply;
   const text = String(reply.text || "");
   if (!text.startsWith(CRISIS_REPLY)) return reply;
-  if (thirdPersonFrame(question) && !firstPersonAnywhere(question) && !text.includes("helping someone else")) {
+  if (thirdPersonFrame(question) && !text.includes("helping someone else")) {
     return Object.assign({}, reply, { text: CRISIS_REPLY + "\n\n" + OTHER_HELP_LINE });
   }
   return reply;
@@ -892,10 +614,6 @@ function finish(reply, question) {
 
 function sheetOnly() {
   return { action: "crisis", text: CRISIS_REPLY, modelCalled: false, sources: [] };
-}
-
-function otherSheet() {
-  return { action: "crisis", text: CRISIS_REPLY + "\n\n" + OTHER_HELP_LINE, modelCalled: false, sources: [] };
 }
 
 function unsureReply() {
@@ -925,8 +643,7 @@ function withFooter(text) {
   return body ? body + "\n\n" + HELP_LINE : HELP_LINE;
 }
 
-function crisisReply(storage, now) {
-  writeRiskFlag(storage, now);
+function crisisReply() {
   return { action: "crisis", text: CRISIS_REPLY, modelCalled: false, sources: [] };
 }
 
@@ -940,19 +657,15 @@ function pin(reply) {
 
 export async function replyFor(question, corpus, options) {
   const opts = options || {};
-  const now = typeof opts.now === "number" ? opts.now : Date.now();
   try {
-    const turns = userTurns(question, opts.history);
-    const sessionFlag = turns.some((turn) => shouldFlag(turn));
-    if (sessionFlag) writeRiskFlag(opts.storage, now);
     const screened = screen(question, opts.history);
     let reply;
-    if (asksForHarmPage(question, tokensOf(deleet(question)))) reply = crisisReply(opts.storage, now);
+    if (asksForHarmPage(question, tokensOf(deleet(question)))) reply = crisisReply();
     else if (screened.action === "harm" && !actPhrase(question)) reply = { action: "harm", text: HARM_REPLY, modelCalled: false, sources: [] };
     else if (screened.action === "identity" && !crisisMatch(question)) reply = { action: "identity", text: IDENTITY_REPLY, modelCalled: false, sources: [] };
-    else if (crisisMatch(question)) reply = shouldFlag(question) ? crisisReply(opts.storage, now) : sheetOnly();
-    else if (screened.action === "crisis" && !clearlyBenign(question) && !figurative(question)) reply = shouldFlag(question) ? crisisReply(opts.storage, now) : sheetOnly();
-    else if (wantsSheet(question)) reply = shouldFlag(question) ? crisisReply(opts.storage, now) : sheetOnly();
+    else if (crisisMatch(question)) reply = sheetOnly();
+    else if (screened.action === "crisis" && !clearlyBenign(question) && !figurative(question)) reply = sheetOnly();
+    else if (wantsSheet(question)) reply = sheetOnly();
     else {
       let matches = [];
       try {
@@ -983,7 +696,8 @@ export async function replyFor(question, corpus, options) {
       }
     }
     reply = finish(reply, question);
-    if (reply.action !== "crisis" && (sessionFlag || readRiskFlag(opts.storage, now))) return pin(reply);
+    const earlier = Array.isArray(opts.history) && opts.history.some((turn) => crisisMatch(turn));
+    if (reply.action !== "crisis" && earlier) return pin(reply);
     return reply;
   } catch (err) {
     return { action: "error", text: ERROR_REPLY, modelCalled: false, sources: [] };

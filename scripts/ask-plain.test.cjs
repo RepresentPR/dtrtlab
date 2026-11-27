@@ -61,7 +61,7 @@ test('30 plain questions set no flag', async () => {
     assert.match(result.text, /not sure/, question);
     assert.ok(result.text.includes(safety.HELP_LINE), question);
     assert.equal(result.text.startsWith(safety.CRISIS_REPLY), false, question);
-    assert.equal(safety.readRiskFlag(storage), false, question);
+    assert.equal(result.pinned, undefined, question);
     seen += 1;
   }
   assert.equal(seen, 30);
@@ -77,7 +77,7 @@ test('a two-question normal visit stays unflagged', async () => {
     assert.equal(result.action, 'unsure', question);
     assert.match(result.text, /not sure/, question);
     assert.ok(result.text.includes(safety.HELP_LINE), question);
-    assert.equal(safety.readRiskFlag(storage), false, question);
+    assert.equal(result.pinned, undefined, question);
     seen += 1;
   }
   assert.equal(seen, 2);

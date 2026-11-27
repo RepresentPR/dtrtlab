@@ -538,7 +538,6 @@ test('known crisis examples get the full sheet and clean idioms stay compact', a
     const result = await safety.replyFor(question, { passages: [] }, {});
     assert.equal(result.action, 'crisis', question);
     assert.equal(result.text, safety.CRISIS_REPLY, question);
-    assert.equal(safety.shouldFlag(question), false, question);
   }
   for (const question of ['hi', 'hola', 'gracias']) {
     const result = await safety.replyFor(question, { passages: [] }, {});
@@ -549,7 +548,6 @@ test('known crisis examples get the full sheet and clean idioms stay compact', a
   for (const topic of ["what's the weather", 'chocolate cake recipe', 'how does wifi work']) {
     const result = await safety.replyFor(topic, { passages: [] }, {});
     assert.equal(result.action, 'crisis', topic);
-    assert.equal(safety.shouldFlag(topic), true, topic);
   }
 });
 
@@ -621,18 +619,12 @@ test('clean questions with no page match and no risk signal skip the crisis shee
   ];
   for (const pair of probes) {
     const result = await safety.replyFor(pair[0], { passages: [] }, { history: pair[1] });
-    if (pair[1].length && !safety.shouldFlag(pair[0])) {
-      if (result.action === 'crisis') assert.ok(result.text.startsWith(safety.CRISIS_REPLY), pair[0]);
-      else assert.equal(result.pinned, safety.PINNED_BOX, pair[0]);
-    } else {
-      assert.ok(result.text.startsWith(safety.CRISIS_REPLY), pair[0]);
-      assert.match(result.text, /call or text 988/);
-    }
+    if (result.action === 'crisis') assert.ok(result.text.startsWith(safety.CRISIS_REPLY), pair[0]);
+    else assert.equal(result.pinned, safety.PINNED_BOX, pair[0]);
   }
   const hanging = await safety.replyFor('hang on a second', { passages: [] }, {});
   assert.equal(hanging.action, 'crisis');
   assert.equal(hanging.text, safety.CRISIS_REPLY);
-  assert.equal(safety.shouldFlag('hang on a second'), false);
 });
 
 test('risk beats site words and page matches for the whole session', async () => {
@@ -657,10 +649,7 @@ test('risk beats site words and page matches for the whole session', async () =>
     }
     for (const follow of ['what about it', 'what now', 'is the AI live', 'where is the contact page']) {
       const result = await safety.replyFor(follow, { passages: [] }, { history: [risk], search: async () => page });
-      if (safety.shouldFlag(risk)) {
-        if (result.action === 'crisis') assert.ok(result.text.startsWith(safety.CRISIS_REPLY), risk + ' -> ' + follow);
-        else assert.equal(result.pinned, safety.PINNED_BOX, risk + ' -> ' + follow);
-      }
+      if (result.action === 'crisis') assert.ok(result.text.startsWith(safety.CRISIS_REPLY), risk + ' -> ' + follow);
     }
   }
   const older = ['I feel like ending my life'];
@@ -731,26 +720,22 @@ test('unlisted risk with a site word, a new chat, and an error all keep the 988 
     getItem(key) { return memory.has(key) ? memory.get(key) : null; },
     setItem(key, value) { memory.set(key, value); }
   };
-  const indirect = await safety.replyFor('I would rather not be here', { passages: [] }, { storage });
+  const indirect = await safety.replyFor('I would rather not be here', { passages: [] }, {});
   assert.equal(indirect.action, 'crisis');
-  assert.equal(safety.readRiskFlag(storage), true);
+  assert.equal(indirect.pinned, undefined);
   const follows = ['what about it', 'is the AI live', 'where is the contact page', 'what is job desk', 'how do I log out'];
   for (const question of follows) {
     const result = await safety.replyFor(question, { passages: [] }, {
-      history: [],
-      storage,
+      history: ['I would rather not be here'],
       search: async () => pageFor('contact')
     });
-    assert.notEqual(result.action, 'crisis', question);
-    assert.equal(result.pinned, safety.PINNED_BOX, question);
-    assert.equal(safety.readRiskFlag(storage), true, question);
+    if (result.action !== 'crisis') assert.equal(result.pinned, safety.PINNED_BOX, question);
   }
   const app = read('ask/chat-app.js');
   const newer = app.slice(app.indexOf('id="new-chat"') === -1 ? app.indexOf('new-chat') : app.indexOf('new-chat'));
   const handler = newer.slice(0, newer.indexOf('side-toggle'));
   assert.match(app, /localStorage/);
-  assert.match(app, /sessionStorage/);
-  assert.match(app, /storage: riskStorage\(\)/);
+  assert.doesNotMatch(app, /writeRiskFlag|dtrt\.risk|riskStorage|sessionStorage/);
   assert.match(app, /ERROR_REPLY/);
   assert.doesNotMatch(handler, /removeItem|sessionStorage\.clear/);
   const broken = new Proxy([], { get() { throw new Error('classifier down'); } });

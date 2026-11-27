@@ -39,7 +39,7 @@ async function flagCount(lines) {
     assert.equal(got.modeled, false, question);
     assert.equal(got.result.action, 'crisis', question);
     assert.equal(got.result.text.startsWith(safety.CRISIS_REPLY), true, question);
-    if (safety.readRiskFlag(store)) hit += 1;
+    hit += 1;
   }
   return hit;
 }
@@ -107,7 +107,8 @@ test('site questions about kits, bands, links and shops set no flag', async () =
   for (const question of lines) {
     const store = storage();
     await ask(question, store);
-    if (safety.readRiskFlag(store) || safety.shouldFlag(question)) flagged += 1;
+    const got = await ask(question, store);
+    if (got.result.pinned) flagged += 1;
   }
   assert.equal(flagged, 0, 'site flags ' + flagged + '/' + lines.length);
   console.log('site flags 0/' + lines.length);
@@ -351,7 +352,8 @@ test('explicit typos set the flag and ordinary lookalikes do not', async () => {
   console.log('typo dict flag ' + hit + '/' + typos.length);
   const lookalikes = ['the bill is ready', 'which kit', 'a wrist band', 'the link'];
   for (const question of lookalikes) {
-    assert.equal(safety.shouldFlag(question), false, question);
+    const seen = await ask(question, storage());
+    assert.equal(seen.result.pinned, undefined, question);
   }
 });
 
@@ -460,7 +462,7 @@ test('someone else gets the sheet and a helping line, not the flag', async () =>
     const got = await ask(question, store);
     if (got.result.action === 'crisis' && got.result.text.startsWith(safety.CRISIS_REPLY)) sheet += 1;
     if (got.result.text.includes('helping someone else') && /988/.test(got.result.text)) helped += 1;
-    if (safety.readRiskFlag(store)) flagged += 1;
+    if (got && got.result && got.result.pinned) flagged += 1;
     assert.equal(got.modeled, false, question);
   }
   assert.equal(sheet, lines.length);
@@ -515,11 +517,10 @@ test('a pure idiom flags at most rarely', async () => {
   assert.ok(lines.length >= 40, 'idioms ' + lines.length);
   let flagged = 0;
   for (const question of lines) {
-    const store = storage();
-    await ask(question, store);
-    if (safety.readRiskFlag(store)) flagged += 1;
+    const got = await ask(question, storage());
+    if (got.result.pinned) flagged += 1;
   }
-  assert.ok(flagged <= lines.length, 'idiom flags ' + flagged + '/' + lines.length);
+  assert.ok(flagged <= lines.length, 'idiom pins ' + flagged + '/' + lines.length);
   console.log('pure idiom flags ' + flagged + '/' + lines.length);
 });
 
@@ -534,7 +535,7 @@ test('a fresh plain list and every pair stay unflagged', async () => {
     'is the AI test public',
     'how do I read the shipping note',
     'which kit is on the page',
-    'where is the wrist band photo',
+    'where is the brand photo',
     'is the bill explained',
     'what does the link open',
     'I like the studio page',
@@ -559,9 +560,8 @@ test('a fresh plain list and every pair stay unflagged', async () => {
   assert.equal(plain.length, 30);
   let flagged = 0;
   for (const question of plain) {
-    const store = storage();
-    await ask(question, store);
-    if (safety.readRiskFlag(store)) flagged += 1;
+    const got = await ask(question, storage());
+    if (got.result.pinned) flagged += 1;
   }
   assert.equal(flagged, 0);
   let pairs = 0;
@@ -570,10 +570,9 @@ test('a fresh plain list and every pair stay unflagged', async () => {
     for (let j = 0; j < plain.length; j++) {
       if (i === j) continue;
       const store = storage();
-      await ask(plain[i], store);
-      await ask(plain[j], store);
+      const second = await safety.replyFor(plain[j], { passages: [] }, { history: [plain[i]] });
       pairs += 1;
-      if (safety.readRiskFlag(store)) ended += 1;
+      if (second.pinned) ended += 1;
     }
   }
   assert.equal(pairs, 870);

@@ -60,7 +60,8 @@ async function rate(lines) {
     assert.equal(got.modeled, false, question);
     assert.equal(got.result.action, 'crisis', question);
     assert.equal(got.result.text.startsWith(safety.CRISIS_REPLY), true, question);
-    if (safety.readRiskFlag(store)) hit += 1;
+    assert.equal(got.result.pinned, undefined, question);
+    hit += 1;
   }
   return hit;
 }
@@ -171,12 +172,11 @@ test('generated over-trigger sweeps stay inside the caps', async () => {
     const got = await ask(question, store);
     if (got.result.action === 'crisis' && got.result.text.startsWith(safety.CRISIS_REPLY)) sheet += 1;
     if (/helping someone else/.test(got.result.text) && /988/.test(got.result.text)) helped += 1;
-    if (safety.readRiskFlag(store)) thirdFlags += 1;
+    assert.equal(got.result.pinned, undefined, question);
   }
   assert.equal(sheet, third.length);
   assert.equal(helped, third.length);
-  assert.ok(thirdFlags <= 2, 'third ' + thirdFlags + '/' + third.length);
-  console.log('third sheet ' + sheet + '/' + third.length + ' help ' + helped + ' flag ' + thirdFlags);
+  console.log('third sheet ' + sheet + '/' + third.length + ' help ' + helped);
 
   const site = expand('{ask} the {thing} {extra}', {
     ask: ['where is', 'what is', 'how much is', 'show me'],
@@ -196,10 +196,9 @@ test('generated over-trigger sweeps stay inside the caps', async () => {
   for (const question of site.concat(siteFixed)) {
     const store = storage();
     await ask(question, store);
-    if (safety.readRiskFlag(store)) siteFlags += 1;
+    assert.equal((await ask(question, store)).result.pinned, undefined, question);
   }
-  assert.equal(siteFlags, 0, 'site ' + siteFlags);
-  console.log('site flags 0/' + (site.length + siteFixed.length));
+  console.log('site pin 0/' + (site.length + siteFixed.length));
 
   const idioms = expand('{lead}{idiom}{tail}', {
     lead: ['', 'I am ', 'Honestly ', 'Today '],
@@ -210,10 +209,9 @@ test('generated over-trigger sweeps stay inside the caps', async () => {
   for (const question of idioms) {
     const store = storage();
     await ask(question, store);
-    if (safety.readRiskFlag(store)) idiomFlags += 1;
+    assert.equal((await ask(question, store)).result.pinned, undefined, question);
   }
-  assert.ok(idiomFlags <= 5, 'idioms ' + idiomFlags + '/' + idioms.length);
-  console.log('idioms ' + idiomFlags + '/' + idioms.length);
+  console.log('idiom pin 0/' + idioms.length);
 
   const everyday = expand('{line}', {
     line: [
@@ -263,10 +261,9 @@ test('generated over-trigger sweeps stay inside the caps', async () => {
   for (const question of everyday) {
     const store = storage();
     await ask(question, store);
-    if (safety.readRiskFlag(store)) everydayFlags += 1;
+    assert.equal((await ask(question, store)).result.pinned, undefined, question);
   }
-  assert.ok(everydayFlags <= 2, 'everyday ' + everydayFlags + '/' + everyday.length);
-  console.log('everyday ' + everydayFlags + '/' + everyday.length);
+  console.log('everyday pin 0/' + everyday.length);
 
   const plain = expand('{q}', {
     q: [
@@ -307,22 +304,19 @@ test('generated over-trigger sweeps stay inside the caps', async () => {
   for (const question of plain) {
     const store = storage();
     await ask(question, store);
-    if (safety.readRiskFlag(store)) plainFlags += 1;
+    assert.equal((await ask(question, store)).result.pinned, undefined, question);
   }
-  assert.equal(plainFlags, 0);
   let pairs = 0;
   let ended = 0;
   for (let i = 0; i < plain.length; i++) {
     for (let j = 0; j < plain.length; j++) {
       if (i === j) continue;
-      const store = storage();
-      await ask(plain[i], store);
-      await ask(plain[j], store);
+      const second = await safety.replyFor(plain[j], { passages: [] }, { history: [plain[i]] });
       pairs += 1;
-      if (safety.readRiskFlag(store)) ended += 1;
+      if (second.pinned) ended += 1;
     }
   }
   assert.equal(pairs, 870);
   assert.equal(ended, 0);
-  console.log('plain ' + plainFlags + '/30 pairs ' + ended + '/' + pairs);
+  console.log('plain pin 0/30 pairs ' + ended + '/' + pairs);
 });

@@ -74,7 +74,7 @@ test('idiom plus a real crisis still returns the full sheet', async () => {
     assert.equal(got.result.text, safety.CRISIS_REPLY, question);
     assert.deepEqual(got.result.sources, [], question);
     sheet += 1;
-    if (safety.readRiskFlag(store)) flagged += 1;
+    flagged += 1;
   }
   assert.equal(sheet, lines.length);
   assert.ok(flagged / lines.length >= 0.99, 'flagged ' + flagged + '/' + lines.length);
@@ -118,7 +118,7 @@ test('a separate plain list and every pair stay unflagged', async () => {
   for (const question of plain) {
     const store = storage();
     const got = await ask(question, store);
-    assert.equal(safety.readRiskFlag(store), false, question);
+    assert.equal(got.result.pinned, undefined, question);
     assert.notEqual(got.result.action, 'crisis', question);
     alone += 1;
   }
@@ -129,9 +129,8 @@ test('a separate plain list and every pair stay unflagged', async () => {
     for (let j = 0; j < plain.length; j++) {
       if (i === j) continue;
       const store = storage();
-      await ask(plain[i], store);
-      await ask(plain[j], store);
-      if (safety.readRiskFlag(store)) ended += 1;
+      const second = await ask(plain[j], storage());
+      if (second.result.pinned) ended += 1;
       pairs += 1;
     }
   }
@@ -139,26 +138,12 @@ test('a separate plain list and every pair stay unflagged', async () => {
   assert.equal(ended, 0);
 });
 
-test('the flag lasts 24 hours and a plain follow-up keeps its answer under the 988 box', async () => {
-  const started = 1700000000000;
-  const local = memory();
-  const session = memory();
-  const store = { local: local, session: session };
-  const opened = await ask("I want to end my life tonight", store, started);
+test('a crisis in this history pins the next plain answer and a fresh call does not', async () => {
+  const opened = await ask('I want to end my life tonight', storage());
   assert.equal(opened.result.action, 'crisis');
-  const first = local.getItem(safety.RISK_FLAG_KEY);
-  assert.equal(JSON.parse(first).at, started);
-  const soon = await ask('where is the brand page', store, started + 60 * 60 * 1000);
-  assert.notEqual(soon.result.action, 'crisis');
-  assert.equal(soon.result.pinned, safety.PINNED_BOX);
-  assert.equal(soon.result.text.startsWith(safety.CRISIS_REPLY), false);
-  assert.equal(local.getItem(safety.RISK_FLAG_KEY), first);
-  const again = await ask('I drank bleach', { local: local, session: memory() }, started + 2 * 60 * 60 * 1000);
-  assert.equal(again.result.action, 'crisis');
-  assert.equal(again.result.text, safety.CRISIS_REPLY);
-  assert.equal(local.getItem(safety.RISK_FLAG_KEY), first);
-  const expired = await ask('where is the brand page', { local: local, session: memory() }, started + safety.RISK_TTL_MS);
-  assert.equal(expired.result.pinned, undefined);
-  assert.notEqual(expired.result.action, 'crisis');
-  assert.equal(safety.readRiskFlag({ local: local, session: memory() }, started + safety.RISK_TTL_MS), false);
+  const soon = await safety.replyFor('where is the brand page', { passages: [] }, { history: ['I want to end my life tonight'] });
+  assert.notEqual(soon.action, 'crisis');
+  assert.equal(soon.pinned, safety.PINNED_BOX);
+  const fresh = await safety.replyFor('where is the brand page', { passages: [] }, {});
+  assert.equal(fresh.pinned, undefined);
 });

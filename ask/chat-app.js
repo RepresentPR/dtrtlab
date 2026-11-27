@@ -1,5 +1,5 @@
-import { replyFor, CRISIS_REPLY, REDIRECT, RESOURCE_NOTE, SUGGESTIONS, ERROR_REPLY } from "./safety.mjs?v=20261127-ask30";
-import { normalizeEmail, ownedChat, syncOnLogin, applyDelete, keepAfterExpiredSession, deleteStatus, recordDeleteResult, readStore, logoutStore, STORE_KEY } from "./chat-store.mjs?v=20261127-ask30";
+import { replyFor, CRISIS_REPLY, REDIRECT, RESOURCE_NOTE, SUGGESTIONS, ERROR_REPLY } from "./safety.mjs?v=20261127-ask31";
+import { normalizeEmail, ownedChat, syncOnLogin, applyDelete, keepAfterExpiredSession, deleteStatus, recordDeleteResult, readStore, logoutStore, STORE_KEY } from "./chat-store.mjs?v=20261127-ask31";
 
 const STORE = STORE_KEY;
 const NOTICE = "dtrt.early-notice";
@@ -313,7 +313,6 @@ async function ask(question) {
   try {
     result = await replyFor(question, window.DTRT_ASK_CORPUS || { passages: [] }, {
       history,
-      storage: riskStorage(),
       search: (q, corpus) => window.DTRTAsk ? window.DTRTAsk.search(q, corpus, 4) : []
     });
   } catch (err) {
@@ -463,14 +462,6 @@ composer.addEventListener("input", () => {
   composer.style.height = "auto";
   composer.style.height = Math.min(composer.scrollHeight, 140) + "px";
 });
-
-function riskStorage() {
-  let local = null;
-  let session = null;
-  try { local = window.localStorage; } catch (err) { local = null; }
-  try { session = window.sessionStorage; } catch (err) { session = null; }
-  return { local: local, session: session };
-}
 
 document.getElementById("new-chat").addEventListener("click", () => {
   state.activeId = "";

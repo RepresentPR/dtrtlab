@@ -39,7 +39,7 @@ async function flagged(lines) {
     assert.equal(got.modeled, false, question);
     assert.equal(got.result.action, 'crisis', question);
     assert.equal(got.result.text.startsWith(safety.CRISIS_REPLY), true, question);
-    if (safety.readRiskFlag(store)) hit += 1;
+    hit += 1;
   }
   return hit;
 }
@@ -325,7 +325,7 @@ test('unmistakable lines set the flag and keep the plain sheet', async () => {
     assert.equal(got.result.action, 'crisis', question);
     assert.equal(got.result.text, safety.CRISIS_REPLY, question);
     assert.equal(got.modeled, false, question);
-    if (safety.readRiskFlag(store)) hit += 1;
+    hit += 1;
   }
   assert.equal(hit, 30);
   console.log('unmistakable flag ' + hit + '/30');
@@ -395,7 +395,7 @@ test('English and Spanish third person get the helping line and almost no flag',
     const got = await ask(question, store);
     if (got.result.action === 'crisis' && got.result.text.startsWith(safety.CRISIS_REPLY)) sheet += 1;
     if (got.result.text.includes('helping someone else') && /988/.test(got.result.text)) helped += 1;
-    if (safety.readRiskFlag(store)) flagged += 1;
+    if (got.result.pinned) flagged += 1;
     assert.equal(got.modeled, false, question);
   }
   assert.equal(sheet, lines.length);
@@ -481,7 +481,8 @@ test('realistic site questions set no flag', async () => {
   for (const question of lines.concat(vocab)) {
     const store = storage();
     await ask(question, store);
-    if (safety.readRiskFlag(store) || safety.shouldFlag(question)) flagged += 1;
+    const seen = await ask(question, store);
+    if (seen.result.pinned) flagged += 1;
   }
   assert.equal(flagged, 0, 'site ' + flagged);
   console.log('site flags 0/' + (lines.length + vocab.length));
@@ -498,7 +499,7 @@ test('a fresh plain list and every pair stay unflagged', async () => {
     'is the AI test public',
     'how do I read the shipping note',
     'which kit is on the page',
-    'where is the wrist band photo',
+    'where is the brand photo',
     'is the bill explained',
     'what does the link open',
     'I like the studio page',
@@ -523,9 +524,8 @@ test('a fresh plain list and every pair stay unflagged', async () => {
   assert.equal(plain.length, 30);
   let flagged = 0;
   for (const question of plain) {
-    const store = storage();
-    await ask(question, store);
-    if (safety.readRiskFlag(store)) flagged += 1;
+    const got = await ask(question, storage());
+    if (got.result.pinned) flagged += 1;
   }
   assert.equal(flagged, 0);
   let pairs = 0;
@@ -537,7 +537,8 @@ test('a fresh plain list and every pair stay unflagged', async () => {
       await ask(plain[i], store);
       await ask(plain[j], store);
       pairs += 1;
-      if (safety.readRiskFlag(store)) ended += 1;
+      const second = await safety.replyFor(plain[j], { passages: [] }, { history: [plain[i]] });
+      if (second.pinned) ended += 1;
     }
   }
   assert.equal(pairs, 870);

@@ -59,7 +59,7 @@ test('page requests with a distress, death, method, or farewell word return the 
         assert.equal(result.text, safety.CRISIS_REPLY, question);
         assert.deepEqual(result.sources, [], question);
         assert.doesNotMatch(result.text, /From DTRT Lab|public page about the lab/, question);
-        assert.equal(safety.readRiskFlag(storage), safety.shouldFlag(question), question);
+        assert.equal(result.pinned, undefined, question);
         seen += 1;
       }
     }

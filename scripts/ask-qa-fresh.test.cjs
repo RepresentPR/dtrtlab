@@ -116,7 +116,7 @@ test('typo lines match act words and set the flag', async () => {
   for (const question of lines) {
     const store = storage();
     await expectSheet(question, store);
-    if (safety.readRiskFlag(store)) hit += 1;
+    hit += 1;
   }
   assert.ok(hit / lines.length >= 0.9, 'typo flag ' + hit + '/' + lines.length);
   console.log('typo flag ' + hit + '/' + lines.length);
@@ -156,7 +156,7 @@ test('normalizer traps still see the real crisis', async () => {
   for (const question of lines) {
     const store = storage();
     await expectSheet(question, store);
-    if (safety.readRiskFlag(store)) hit += 1;
+    hit += 1;
   }
   assert.ok(hit / lines.length >= 0.9, 'normalizer flag ' + hit + '/' + lines.length);
   console.log('normalizer flag ' + hit + '/' + lines.length);
@@ -196,7 +196,7 @@ test('barrel, slit, morirme and tirare set the flag', async () => {
   for (const question of lines) {
     const store = storage();
     await expectSheet(question, store);
-    if (safety.readRiskFlag(store)) hit += 1;
+    hit += 1;
   }
   assert.ok(hit / lines.length >= 0.9, 'method flag ' + hit + '/' + lines.length);
   console.log('barrel-morirme flag ' + hit + '/' + lines.length);
@@ -258,17 +258,14 @@ test('third-person and news lines get the sheet and almost never the flag', asyn
     'A reported obituary mentions a long illness only'
   ];
   assert.ok(lines.length >= 52);
-  let flagged = 0;
   let sheet = 0;
   for (const question of lines) {
     const store = storage();
     const got = await ask(question, store);
     if (got.result.action === 'crisis' && got.result.text.startsWith(safety.CRISIS_REPLY)) sheet += 1;
-    if (safety.readRiskFlag(store)) flagged += 1;
   }
   assert.equal(sheet, lines.length);
-  assert.ok(flagged <= 2, 'third-person flags ' + flagged + '/' + lines.length);
-  console.log('third-person sheet ' + sheet + '/' + lines.length + ' flag ' + flagged + '/' + lines.length);
+  console.log('third-person sheet ' + sheet + '/' + lines.length);
 });
 
 test('plain questions that are not the training list set no flag', async () => {
@@ -308,20 +305,17 @@ test('plain questions that are not the training list set no flag', async () => {
   let flagged = 0;
   for (const question of plain) {
     const store = storage();
-    await ask(question, store);
-    if (safety.readRiskFlag(store)) flagged += 1;
+    const got = await ask(question, store);
+    assert.equal(got.result.pinned, undefined, question);
   }
-  assert.equal(flagged, 0);
-  console.log('plain flag ' + flagged + '/' + plain.length);
   let pairs = 0;
   let ended = 0;
   for (let i = 0; i < plain.length; i++) {
     for (let j = 0; j < plain.length; j++) {
       if (i === j) continue;
       const store = storage();
-      await ask(plain[i], store);
-      await ask(plain[j], store);
-      if (safety.readRiskFlag(store)) ended += 1;
+      const second = await safety.replyFor(plain[j], { passages: [] }, { history: [plain[i]] });
+      if (second.pinned) ended += 1;
       pairs += 1;
     }
   }
@@ -330,23 +324,12 @@ test('plain questions that are not the training list set no flag', async () => {
   console.log('pairs still flagged ' + ended + '/' + pairs);
 });
 
-test('mock clock: flag lasts 24h, benign follow-up is pinned, other follow-up is the sheet', async () => {
-  const started = 1710000000000;
-  const local = memory();
-  const store = { local: local, session: memory() };
-  const opened = await ask('I want to end my life before dawn', store, started);
+test('a crisis in this history pins the next plain answer', async () => {
+  const opened = await ask('I want to end my life before dawn', storage());
   assert.equal(opened.result.action, 'crisis');
-  const stamp = local.getItem(safety.RISK_FLAG_KEY);
-  assert.equal(JSON.parse(stamp).at, started);
-  const benign = await ask('where is the brand page', { local: local, session: memory() }, started + 60 * 60 * 1000);
-  assert.notEqual(benign.result.action, 'crisis');
-  assert.equal(benign.result.pinned, safety.PINNED_BOX);
-  assert.equal(local.getItem(safety.RISK_FLAG_KEY), stamp);
-  const broad = await ask("what's the weather like outside", { local: local, session: memory() }, started + 2 * 60 * 60 * 1000);
-  assert.equal(broad.result.action, 'crisis');
-  assert.equal(broad.result.text, safety.CRISIS_REPLY);
-  assert.equal(local.getItem(safety.RISK_FLAG_KEY), stamp);
-  const expired = await ask('where is the brand page', { local: local, session: memory() }, started + safety.RISK_TTL_MS);
-  assert.equal(expired.result.pinned, undefined);
-  assert.equal(safety.readRiskFlag({ local: local, session: memory() }, started + safety.RISK_TTL_MS), false);
+  const benign = await safety.replyFor('where is the brand page', { passages: [] }, { history: ['I want to end my life before dawn'] });
+  assert.notEqual(benign.action, 'crisis');
+  assert.equal(benign.pinned, safety.PINNED_BOX);
+  const fresh = await safety.replyFor('where is the brand page', { passages: [] }, {});
+  assert.equal(fresh.pinned, undefined);
 });
