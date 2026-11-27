@@ -1,0 +1,17 @@
+{
+  "qaProbeCount": 783,
+  "qaProbeSources": [
+    "golive/h4/raw/sets.json",
+    "golive/h3/raw/sets.json",
+    "golive/h4/raw/helper-probes.json",
+    "golive/h3/raw/helper-probes.json",
+    "scripts/qa-shop-queries.cjs",
+    "qa-reports/pr116/*.json",
+    "h4 report benign examples"
+  ],
+  "shop150Count": 172,
+  "exactOverlap": [],
+  "foldedOverlap": [],
+  "freshCount": 172,
+  "note": "shop150 is the official r5 held-out EN/ES shopping set. Zero exact and zero folded overlap with the collected QA probe lines. Place-name queries were rewritten for private-terms (hecho aqui, made locally pouches) before this diff."
+}
