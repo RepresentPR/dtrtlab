@@ -44,7 +44,6 @@ exclude:
   - vendor/cache
   - vendor/gems
   - vendor/ruby
-  - PROGRESS.md
 include:
   - .well-known
   - _headers
