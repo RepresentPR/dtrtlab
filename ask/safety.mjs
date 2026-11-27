@@ -4,7 +4,7 @@
 // answer or model call. finish() adds the helping line to every
 // crisis sheet. Nothing is pinned and nothing is stored.
 
-import { classifyCrisis, GENTLE_LINE } from "../js/safety-core.mjs?v=20261127-ask40";
+import { classifyCrisis, GENTLE_LINE } from "../js/safety-core.mjs?v=20261127-ask41";
 
 export { classifyCrisis, GENTLE_LINE };
 

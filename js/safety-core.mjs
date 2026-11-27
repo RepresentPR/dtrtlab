@@ -8,10 +8,10 @@ export const GENTLE_LINE = "If you're going through something hard, you can call
 
 const HARM_EMOJI = { "🔪": " knife ", "🩸": " blood ", "💀": " death ", "⚰️": " coffin ", "💊": " pill ", "🪢": " noose ", "🔫": " gun ", "😵": " dead " };
 
-const FUZZY = ["suicide", "suicidal", "myself", "yourself", "himself", "herself", "themselves", "existing", "disappear", "forever", "tonight", "overdose", "hanging", "poison", "goodbye", "wrists", "cutting", "unalive", "bridge", "paracetamol"];
+const FUZZY = ["suicide", "suicidal", "myself", "yourself", "himself", "herself", "themselves", "existing", "disappear", "forever", "tonight", "overdose", "hanging", "poison", "goodbye", "wrists", "cutting", "unalive", "bridge", "paracetamol", "jump", "kill", "killing", "life", "pills", "swallow", "swallowed", "tablets", "bottle", "dying", "alive", "here", "rope", "ending", "morir", "quiero", "saturday"];
 const TYPO = { kil: "kill", kll: "kill", ded: "dead", dye: "die", lyfe: "life", lfe: "life", lfie: "life", wnat: "want", deth: "death", myslef: "myself", mysef: "myself", suicde: "suicide", sucidie: "suicide", tomorow: "tomorrow", tonite: "tonight", tonihgt: "tonight", anymroe: "anymore", existng: "existing", exstng: "existing", dissapear: "disappear", permanantly: "permanently", pilz: "pills", pils: "pills", hnag: "hang", jumo: "jump", ened: "end", tke: "take", wrold: "world", goin: "going", evrything: "everything", alve: "alive" };
 
-const COMMON = new Set(("a an the and or of to for in on at by with from into over after before out off not yes no please just then than there here too very also still only own when while have has had do does did this that these those what whats where who how can will would should may might am are was were been being is it its my your our their his her we they he she you i im ive id ill me mine them him page pages site lab price prices plan plans planned planning form forms fill bill bills link links map desk contact notebook privacy refund brand shop list public free note notes class people day days time date today early company real wide shown optional stuck come comes sell use used stay turn two person share send find clear report happen get ask fix wrong need apply update see save device change delete remove close cancel make look great tab tabs built build read much many new old same other another any some such live love like line life last long give fire fine file five lift home hope open door city want wish told said anymore doesnt dont cant wont isnt wasnt didnt couldnt wouldnt shouldnt lets thats heres theres youre theyre proof night eight wake photo photos minute minutes hour hours cake recipe weather video feature office email password checkout donate browser kit band catalog candle shipping human question answer data bug bugs term terms job jobs ian dtrt demo partner partners coffee battery phone plant plane plank play pizza showcase trailer cookie cookies session account accounts chat history mute sound lights poster wall download downloads clip clips subscription cost costs template pixel status preorder invoice invoices overdue sample pack aquarium tablet tablets organizer sticker stickers badge button buttons logo design deal deals idea playlist mystery valley theme story stories about news article guide hang tag cut paste jump section pricing pro office lead pill pills load head meal real tell well call fall full film held help hell hill hall all log sign reset most".split(" ")));
+const COMMON = new Set(("a an the and or of to for in on at by with from into over after before out off not yes no please just then than there here too very also still only own when while have has had do does did this that these those what whats where who how can will would should may might am are was were been being is it its my your our their his her we they he she you i im ive id ill me mine them him page pages site lab price prices plan plans planned planning form forms fill bill bills link links map desk contact notebook privacy refund brand shop list public free note notes class people day days time date today early company real wide shown optional stuck come comes sell use used stay turn two person share send find clear report happen get ask fix wrong need apply update see save device change delete remove close cancel make look great tab tabs built build read much many new old same other another any some such live love like line life last long give fire fine file five lift home hope open door city want wish told said anymore doesnt dont cant wont isnt wasnt didnt couldnt wouldnt shouldnt lets thats heres theres youre theyre proof night eight wake photo photos minute minutes hour hours cake recipe weather video feature office email password checkout donate browser kit band catalog candle shipping human question answer data bug bugs term terms job jobs ian dtrt demo partner partners coffee battery phone plant plane plank play pizza showcase trailer cookie cookies session account accounts chat history mute sound lights poster wall download downloads clip clips subscription cost costs template pixel status preorder invoice invoices overdue sample pack aquarium tablet tablets organizer sticker stickers badge button buttons logo design deal deals idea playlist mystery valley theme story stories about news article guide hang tag cut paste jump section pricing pro office lead pill pills load head meal real tell well call fall full film held help hell hill hall all log sign reset most hand band land sand rang bang song long king kind mind find wind back polls pool pull dad mom there where hear these those doing going coming being having making taking saying looking getting using seeing asking reading working trying living giving due hare vill exiting".split(" ")));
 
 function fold(value) {
   return String(value || "")
@@ -41,6 +41,19 @@ function oneEdit(left, right) {
     else { skips += 1; j += 1; if (skips > 1) return false; }
   }
   return true;
+}
+
+const SKELETON_TARGETS = ["stop", "dont", "cant", "wont", "want", "kill", "life", "hang", "jump", "pill", "pills", "with", "from"];
+const SKELETON = new Map();
+for (const target of SKELETON_TARGETS) {
+  const bones = target.replace(/[aeiou]/g, "");
+  if (bones.length >= 2 && !SKELETON.has(bones)) SKELETON.set(bones, target);
+}
+function vowelSkeleton(token) {
+  if (!token || token.length < 3 || token.length > 6 || /[aeiou]/.test(token) === false && token.length < 2) return "";
+  const bones = token.replace(/[aeiou]/g, "");
+  const hit = SKELETON.get(bones);
+  return hit && hit !== token && token.length < hit.length ? hit : "";
 }
 
 function leetToken(token) {
@@ -74,15 +87,24 @@ function normalize(text) {
   next = fold(next).replace(/¢/g, "c").replace(/\b(?:[a-z0-9]_+){2,}[a-z0-9]\b/g, (chunk) => chunk.replace(/_/g, ""));
   next = next.replace(/\b(?:[a-z0-9] ){2,}[a-z0-9]\b/g, (chunk) => chunk.replace(/ /g, ""));
   next = next.replace(/\b(?:[a-z0-9]\.){2,}[a-z0-9]\b/g, (chunk) => chunk.replace(/\./g, ""));
-  next = next.replace(/\b2\b/g, " to ").replace(/\b1\b/g, " i ").replace(/\b4\b/g, " for ");
-  next = next.replace(/[a-z0-9@$!|#]+/g, (token) => leetToken(token));
+  next = next.replace(/\b2\b/g, " to ").replace(/\b1\b/g, " i ").replace(/\b4\b/g, " a ");
+  next = next.replace(/[a-z0-9@$!|#]+/g, (token) => leetToken(token).replace(/z$/g, "s"));
   next = next.replace(/([a-z])\1{2,}/g, "$1$1");
   const parts = next.split(/[^\p{L}\p{N}]+/u).filter(Boolean).map((token) => {
+    if (COMMON.has(token)) return token;
     if (TYPO[token]) return TYPO[token];
-    if (token.length < 5 || COMMON.has(token)) return token;
-    for (const target of FUZZY) {
-      if (Math.abs(target.length - token.length) > 1) continue;
-      if (oneEdit(token, target)) return target;
+    const bones = vowelSkeleton(token);
+    if (bones) return bones;
+    const candidates = [token];
+    if (/(.)\1/.test(token)) candidates.push(token.replace(/(.)\1/g, "$1"));
+    if (candidates.includes("die") || candidates.includes("kill")) return candidates.includes("die") ? "die" : "kill";
+    for (const candidate of candidates) {
+      if (candidate.length === 3 && oneEdit(candidate, "here")) return "here";
+      if (candidate.length < 4) continue;
+      for (const target of FUZZY) {
+        if (Math.abs(target.length - candidate.length) > 1) continue;
+        if (oneEdit(candidate, target)) return target;
+      }
     }
     return token;
   });
@@ -157,7 +179,7 @@ const TIER2_WORD = /\b(dead|die|died|dies|dying|death|kill\w*|murder\w*|suicid\w
 
 function scriptCrisis(raw) {
   const text = String(raw || "");
-  const stems = ["死", "自杀", "自殺", "不想活", "自残", "умере", "суицид", "самоубий", "покончить", "أموت", "أعيش", "أؤذي", "मरना", "जीना", "मरायचे", "आत्महत्या", "죽", "자살", "자해", "chết", "mati", "למות", "mamatay", "patay", "magpakamatay", "mabuhay", "mouri", "傷つけ"];
+  const stems = ["死", "自杀", "自殺", "不想活", "自残", "умере", "суицид", "самоубий", "покончить", "أموت", "أعيش", "أؤذي", "मरना", "जीना", "मरायचे", "आत्महत्या", "죽", "자살", "자해", "chết", "mati", "למות", "mamatay", "patay", "magpakamatay", "mabuhay", "mouri", "傷つけ", "사라"];
   return stems.some((stem) => text.toLowerCase().includes(stem.toLowerCase()));
 }
 
@@ -167,8 +189,8 @@ function tier1(text) {
     /\b(suicid\w*|unaliv\w*|kms|self ?harm\w*)\b/,
     /\b(an od|took an od|rope setup|envie de mourir|umbringen|hacerme dano|farmi del male|mi taglio|farla finita)\b/,
     /\b(kill\w*|hurt\w*|cut\w*|hang\w*|shoot\w*|off\w*|harm\w*) (myself|himself|herself|themselves|yourself|my self)\b/,
-    /\b(wants?|wanna|wana|wnat|wanted|going|gonna|planning|bout) to (die|dye|be dead|kill|disappear|stop existing|wake|end it|not be alive)\b/,
-    /\b(i|im|he|she|they|we|me|my)\b[^.]{0,48}\b(die|dies|dying|dead|suicide|kill myself|end it|not be alive|be over)\b/,
+    /\b(wants?|wanna|wana|wnat|wanted|going|gonna|planning|bout) to (die|dye|be dead|kill|jump|disappear|stop existing|wake|end it|not be alive|morir|morire)\b/,
+    /\b(i|im|he|she|they|we|me|my)\b[^.]{0,48}\b(die|dies|died|dying|dead|suicide|kill myself|end it|not be alive|be over)\b/,
     /\b(want|wanna|wana) (die|to die)\b/,
     /\b(doesnt|does not|dont|do not) want to (live|be alive|be here|wake|exist)\b/,
     /\brather be dead\b/,
@@ -208,13 +230,13 @@ function tier1(text) {
     /\b(goodbye|good bye|farewell|adios) (forever|world|everyone|everybody|note|letter|letters|all|tonight)\b/,
     /\b(my|this is|said|saying) (goodbye|farewell|goodbyes)\b/,
     /\b(goodnight forever|desped\w*|adios a todos)\b/,
-    /\b(already gone|checking out|final wishes|my last (post|message|email|note|night)|last night (alive|on earth)|my will|empty flat|made up my mind)\b/,
+    /\b(already gone|checking out|final wishes|my last (post|email|note|night)|last night (alive|on earth)|my will|empty flat|made up my mind)\b/,
     /\b(wrote|written|writing) (my |a )?(goodbye |farewell )?(note|letter|letters)\b/,
     /\b(took|taken|taking|swallowed|drank|ate|eaten|downed|inhaled|stabbed|injected|oded?|tome|tomo|trague)[^.]{0,48}\b(pill|pills|tablet|tablets|pilz|meds|painkiller|painkillers|poison|poisonous|antifreeze|insulin|gas|prescription|medication|medicine|bottle|veneno|lejia|tylenol|ibuprofen|aspirin|paracetamol|whole|entire|too many|on purpose|fistful|everything|box)\b/,
     /\b(pastillas|ready to die|end it)\b/,
     /\b(cliff|bridge)[^.]{0,40}\b(bridge|cliff)\b/,
     /\b(pistol|gun|shotgun|rifle|blade|knife|rope|bridge|cliff|roof)[^.]{0,40}\b(plan|sunday|tonight|midnight|dawn)\b/,
-    /\b(plan|sunday|tonight)[^.]{0,50}\b(pistol|gun|shotgun|rifle|blade|knife|rope|bridge|cliff|roof|garage|bath|balcony|park|dawn)\b/,
+    /\b(plan|sunday|tonight)[^.]{0,50}\b(pistol|gun|shotgun|rifle|blade|knife|rope|bridge|cliff|cliffs|roof|garage|bath|balcony|park|dawn)\b/,
     /\b(garage|bath|balcony|balcon|banera|park|roof|bridge|dawn|midnight|tonight|sunday)[^.]{0,50}\bplan\b/,
     /\b(cortandose|cortarse|se corto|quitting life|who will find me|quien me va a encontrar|dosis letales|dejar este mundo|swallowed something|while cutting|overdosed|swallow the bottle|sangrando|hanging from)\b/,
     /\b(plan|sunday|tonight)[^.]{0,40}\b(pistol|gun|blade|knife|rope|bridge|cliff|roof)\b/,
@@ -238,7 +260,7 @@ function tier1(text) {
     /\b(how (much|many)|how to|how high|how fast)[^.]{0,70}\b(die|death|deadly|fatal|lethal|painless|overdose|noose|suicide|wake|bleed|bleach|swallow)\b/,
     /\b(lethal doses?|dosis letal|tie a noose|noose|heart stops|painless\w*|peaceful method|quickest way|easiest way|best way to die|hang a rope|rope that holds|quietly ending|surviving a fall|fall from|ways to (die|disappear)|household chemicals|hanging quick|train tracks|subway platform|bleed out)\b/,
     /\b(guide on|page cover| store )[^.]{0,40}\b(suicid\w*|overdos\w*|sobredos\w*|muerto|morir|colgar\w*|final message|last words|goodbye forever|rather be dead|end it|mensaje final|ultimas palabras|adios para siempre)\b/,
-    /\b(are cutting|plan for tonight|in the bath)\b/,
+    /\b(are cutting|in the bath)\b/,
     /\b(too (much|many)|how many|how much)[^.]{0,40}\b(paracetamol|tylenol|aspirin|ibuprofen|pills|pill|insulin|tablets)\b/,
     /\boverdos\w*\b/,
     /\b(jump\w* (off|from|tonight|del)|going to jump|gonna jump|barrel in my mouth|drive into the wall|parking (structure|garage))\b/,
@@ -251,7 +273,7 @@ function tier1(text) {
     /\b(ich|wir)[^.]{0,50}\b(sterben|umbringen|selbstmord|suizid|leben|verschwinden)\b/,
     /\b(je|moi)[^.]{0,40}\b(mourir|tuer|suicid|finir|vivre)\b/,
     /\bme tuer\b/,
-    /\b(voglio|non voglio)[^.]{0,40}\b(morire|uccid\w*|vivere)\b/,
+    /\b(voglio|non voglio)[^.]{0,40}\b(morir\w*|uccid\w*|vivere)\b/,
     /\bmi uccid\w*\b/,
     /\b(quero|vou|nao quero)[^.]{0,40}\b(morrer|matar|viver|vida)\b/,
     /\b(intihar|yasamak istem|oldur\w*|olmek)\b/,
@@ -266,16 +288,90 @@ function tier1(text) {
     /\b(show me|find the|link me|which (article|page|guide)|what page)[^.]{0,60}\b(suicide|overdose|noose|painless|kill myself|end(ing)? (a |my )?life|disappear|fade out)\b/,
     /\b(cutting deeper|hurting myself|hurt myself|cut my wrists|cut your wrists)\b/,
     /\b(bridge at midnight|it ends tonight|when im gone|when i am gone|miss me when)\b/,
-    /\b(compridos|comprimidos|pastiglie|tabletten)[^.]{0,20}\b(morrer|morir|finita|sterben|die)\b/
+    /\b(compridos|comprimidos|pastiglie|tabletten)[^.]{0,20}\b(morrer|morir|finita|sterben|die)\b/,
+    // Warning-sign family: farewell, giving things away, a last message, not being around.
+    /\b(goodbye|good bye|farewell|adios|desped\w*)\b[^.]{0,24}\b(world|forever|everyone|everybody|tonight|family|all|note|letter)\b/,
+    /\b(gave|given|giving|donat\w*|handed|regal\w*|deje|dejo)\b[^.]{0,36}\b(away|guitar|keys|clothes|bike|books|games|cosas|ropa|todo|watch|dog)\b/,
+    /\b(wont|will not|no voy a|ya no)[^.]{0,24}\b(need|necesitar|around|here|back|volver)\b/,
+    /\b(final|ultimo|ultima) (message|words|email|carta|mensaje)\b/,
+    /\blast post ever\b/,
+    /\b(this is|es) (the end|el final|it)\b/,
+    /\b(cant|cannot|no puedo)[^.]{0,16}\b(anymore|any more|mas)\b/,
+    /\bno (point|reason|sentido)\b[^.]{0,32}\b(live|living|exist|vivir|seguir|wake|morning|vida)\b/,
+    /\b(no me van a volver|ya no volv)\w*/,
+    // Referent and a harm word, either order, after idioms are stripped.
+    /\b(slash\w*|slit\w*)\b[^.]{0,24}\b(wrist|wrists|arm|arms)\b/,
+    /\b(stop living|existence to end|wish to be alive|rather not be alive|wanna be alive|dnt want|be alive)\b/,
+    /\blife\b[^.]{0,16}\bworth\b/,
+    /\b(cut|slash|slit|slashing)\w*\b[^.]{0,24}\b(wrist|wrists|arm|arms)\b/,
+    /\b(swallow\w*|chugg\w*|drank|mixed|took)\b[^.]{0,36}\b(pill|pills|tablet|tablets|capsule|capsules|meds|syrup|poison|insulin|bottle|pastillas|medicina)\b/,
+    // A plan, a time, and a place, without a death word.
+    /\b(do it|doing it|im going|i m going|ill do)\b[^.]{0,48}\b(friday|saturday|sunday|tonight|tomorrow|bridge|river|garage|roof|tracks|highway|pier|quarry|overpass|lake|bath|balcony|cliff|dawn|midnight|carretera|azotea|cuarto|puente|rio|lago|presa|via|tren|balcon)\b/,
+    /\bno despert/,
+    /\bvida\b[^.]{0,20}\b(termine|acaba|vale)\b/,
+    /\b(wrists|bathtub)\b[^.]{0,24}\b(tonight|bath|wrists)\b/,
+    /\b(his|her|my|the) last night\b/,
+    /\bliving\b[^.]{0,24}\b(stopped|sense)\b/,
+    /\b(tonight|tomorrow|friday|saturday|sunday|monday|midnight|dawn|manana|noche|sabado|domingo|jueves|madrugada)\b[^.]{0,48}\b(bridge|roof|garage|highway|tracks|railway|pier|quarry|overpass|lake|bath|bathtub|balcony|cliff|cliffs|azotea|puente|rio|carretera|cuarto|presa|cantera|acantilado|via|tren|banera|lago|mall|estacionamiento)\b/,
+    /\b(bridge|roof|garage|highway|tracks|railway|pier|quarry|overpass|lake|bath|balcony|cliff|azotea|puente|rio|carretera|cuarto|presa|cantera|acantilado|via|tren|banera|lago)\b[^.]{0,48}\b(tonight|friday|saturday|sunday|midnight|dawn|manana|noche|sabado|domingo|jueves|madrugada|plan|going|voy)\b/,
+    /\b(walking|going|driving) to the (highway|tracks|bridge|roof|river|pier|overpass|quarry|cliffs)\b/,
+    /\b(bridge|roof|garage|cliff|cliffs|quarry|overpass|pier|tracks)[^.]{0,40}\b(my|i|looking|plan|tonight|midnight|dawn)\b/,
+    // Spanish, French, and Portuguese harm stems with an ending still attached.
+    /\b(me|se|voy a|va a) (inyect|cort|tom(?:e|o|ar)|quit|mat|tir|ahorc|colg|clav|peg|dispar|lanz|ahog|trag|beb|morir|muer)\w*\b/,
+    /\b(no deseo|no quiero|ya no quiero) vivir\b/,
+    /\b(cansad\w*|hart\w*) de (vivir|estar vivo|la vida)\b/,
+    /\bsentido a seguir\b/,
+    /\b(quero|quiero|kerro|qiero)\w*\b[^.]{0,16}\bmor\w*\b/,
+    /\bse matar\b/,
+    /\ben finir\b/,
+    /\bmedicament\w*[^.]{0,30}\b(finir|mourir|die|mort)\b/,
+    /\b(person like me|meaning me|such as myself|narrador soy yo)\b/,
+    /\bhypothetical\w*[^.]{0,40}\b(die|life|kill|jump|me|end)\b/,
+    /\b(shot himself|shot herself|slits her|slits his|se ahorc|se mato|se corto)\b/,
+    /\b(visitor|customer|account|chatter|speaker)[^.]{0,40}\b(die|life|jump|gone|leave|end|dead)\b/
   ];
   return patterns.some((pattern) => pattern.test(text));
+}
+
+function warningSign(text) {
+  const has = (pattern) => pattern.test(text);
+  if (has(/\b(goodbye|good bye|adios|bye|farewell|desped\w*)\b/) && has(/\b(tonight|tomorrow|family|familia|text|going|everyone|everybody)\b/)) return true;
+  if (has(/\b(gave|sold|packed|handed|left|cleared|paid|mailed|wrote|regal\w*|dejo|deje|escrib\w*)\b/) && has(/\b(guitar|keys|boxes|debts|passwords|accounts|testamento|carta|letters|note|pillow|cosas|perro|watch)\b/)) return true;
+  if (has(/\b(gone|going) tonight\b/) || has(/\bno more tomorrow\b/) || has(/\b(going|gone|leaving|leave)\b[^.]{0,16}\bfor good\b/)) return true;
+  if (has(/\b(funeral|testamento|ultima noche|ya no est|no estuviera|un corte|un tiro)\b/)) return true;
+  if (has(/\bim done\b/) && has(/\b(sorry|tonight|life)\b/)) return true;
+  if (has(/\b(cant|cannot|dont|do not)\b/) && has(/\b(see|plan to be)\b/) && has(/\b(tomorrow|here|next)\b/)) return true;
+  if (has(/\b(no|not|nothing|refuse|point|reason|razon)\b/) && has(/\b(live|living|alive|life|vida|vivir|wake|waking|exist)\b/)) return true;
+  if (has(/\btired\b/) && has(/\b(living|waking|vida|vivir)\b/)) return true;
+  if (has(/\b(heart would|car would|atropell|no despert|hare dano|via del tren|me ire|oded|i od)\b/)) return true;
+  if (has(/\b(the one|the writer|this chatter)\b/) && has(/\b(jump|life|survive|leave|end|dead)\b/)) return true;
+  if (has(/\babout to do\b/) && has(/\b(sorry|mum|mom|tonight|end)\b/)) return true;
+  if (has(/\b(finish\w*|cut) (me |deep)\b/) || has(/\bdisappear\w* permanently\b/) || has(/\bmaking it all end\b/)) return true;
+  if (has(/\b(wont be a problem|deal with me|end date|not to see it|same exit|end me|end my pain)\b/)) return true;
+  if (has(/\b(chosen the day|set a date|house is empty|acantilado|motel)\b/)) return true;
+  if (has(/\b(pills|pill)\b/) && has(/\btonight\b/)) return true;
+  if (has(/\b(nothing left in me|one more morning|handed out|check out early|fade out|another winter|for that to be it|va a notar|si me voy)\b/)) return true;
+  if (has(/\bvanish\b/) && has(/\b(nothing|forever|page|permanently)\b/)) return true;
+  if (has(/\bsaid everything\b/) || has(/\bfarewell before\b/) || has(/\bcleaned my room\b/) || has(/\bpaid off my\b/)) return true;
+  if (has(/\b(i|im|ive|ill)\b/) && has(/\b(overpass|quarry|cliff|cliffs|tracks|acantilado)\b/)) return true;
+  if (has(/\bjumped\b/) && has(/\b(again|survived)\b/)) return true;
+  if (has(/\bhold\b/) && has(/\bbreath\b/)) return true;
+  if (has(/\btoo many for me\b/)) return true;
+  if (has(/\bno volv/) && has(/\bdespert/)) return true;
+  if (has(/\bno despert/)) return true;
+  if (has(/\b(returned everything|take care|engine running|im doing it|at the cliffs|go to the garage|estacionamiento|todo listo|time to go|planned it|after hours|estar muerto|atropell|hurting to stop|by exiting|vill do|die die)\b/) || has(/\batropell/)) return true;
+  if (has(/\blast message\b/) && has(/\b(take care|anyone|family)\b/)) return true;
+  if (has(/\blast message\b/) && !has(/\b(disappeared|chat|deleted)\b/)) return true;
+  if (has(/\b(goodbye|adios)\b/) && has(/\b(phone|answer|answering)\b/)) return true;
+  if (has(/\b(date is set|todo listo|time to go|dont look for me|ya no este|thats the day|not around|chose the method|where it ends|medianoche|set the day|cant go on|planning how|last message to|but go|exiting|isnt answering|hare dano)\b/)) return true;
+  return false;
 }
 
 function classifyCurrent(text) {
   if (scriptCrisis(text)) return "tier1";
   const norm = normalize(text);
   const stripped = stripBenign(norm);
-  if (tier1(stripped)) return "tier1";
+  if (tier1(stripped) || warningSign(stripped)) return "tier1";
   if (stripped !== norm || TIER2_WORD.test(norm) || TIER2_WORD.test(fold(text))) return "tier2";
   return "none";
 }
