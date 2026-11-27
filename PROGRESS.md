@@ -2,7 +2,7 @@
 
 Public AI chat branch `cursor/public-ai-launch-8a16`.
 
-Head: `6fb8967841073a873fd7c1960ed16ec64eadf728`
+Head: `4befa7fff63d182247a91c6c91b8f0a1238cd83b`
 
 FIXED: the chat page calls classifyCrisis before any page search, scripts/ask-classifier-call.test.cjs
 FIXED: the co-founder shape examples stay a hard sheet with no search and no model call, 35/35 scripts/ask-heldout-frozen.test.cjs
