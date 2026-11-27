@@ -66,7 +66,7 @@
   }
 
   function stripHtml(items, root) {
-    var hub = (window.DTRT_SOCIALS && window.DTRT_SOCIALS.hub) || "/find.html";
+    var hub = (window.DTRT_SOCIALS && window.DTRT_SOCIALS.hub) || "/links/";
     if (hub.charAt(0) === "/") hub = root.replace(/\/$/, "") + hub;
     return (
       '<aside class="find-me" data-find-me-strip aria-label="Find Ian across socials">' +
