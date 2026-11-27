@@ -30,9 +30,9 @@ test('public support paths do not send visitors to the paused Ko-fi checkout', a
   assert.doesNotMatch(read('donate.html'), /donate-qr\.svg/, 'retired checkout QR must not render');
 });
 
-test('a partnership note is the map form, not a prepared mailto', async () => {
+test('a partnership page is retired to the shop, not a prepared mailto', async () => {
   const ui = await page({ consent: 'yes' });
-  assert.match(read('partners.html'), /href="\/map\/\?want=partner"/);
+  assert.match(read('partners.html'), /href="\/mercado\/"/);
   assert.equal(fs.existsSync(path.join(root, 'js/partners.js')), false);
   assert.equal(ui.location.href, '');
   assert.deepEqual(ui.plausibleEvents(), []);
@@ -55,7 +55,7 @@ test('privacy opt-out blocks support and brief events even with a pre-existing c
   assert.deepEqual(ui.gaEvents(), []);
   assert.equal(ui.scripts.length, 0);
   assert.equal(ui.location.href, '');
-  assert.match(read('partners.html'), /href="\/map\/\?want=partner"/, 'privacy choice must not remove the enquiry');
+  assert.match(read('partners.html'), /href="\/mercado\/"/, 'privacy choice must not remove the shop path');
 });
 
 test('missing or failed analytics never blocks the partnership page', async () => {
@@ -63,6 +63,6 @@ test('missing or failed analytics never blocks the partnership page', async () =
     const ui = await page();
     ui.window.dtrtTrackEvent = analytics;
     assert.equal(ui.location.href, '');
-    assert.match(read('partners.html'), /href="\/map\/\?want=partner"/);
+    assert.match(read('partners.html'), /href="\/mercado\/"/);
   }
 });
