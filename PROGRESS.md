@@ -10,7 +10,7 @@ READY for QA: the /links/ page in links/index.html, plus links/lang.js and links
 - "Very early AI test, not live yet." and "todavía no está en vivo." are unchanged (Co-Founder call).
 - PROGRESS.md is in the repo root and listed in _config.yml exclude (with RESULT-done_gate*.txt) so Pages will not publish it.
 - done_gate.py restored to /home/box/dtrt-checks/gates/done_gate.py and copied to scripts/gates/done_gate.py. It is a restore of the 11/17 source. Gap: it prints NO-NOT-CHECKED but exits 0 on that flag alone (same as the recovered script).
-- copy_lint.py rebuilt at /home/box/dtrt-checks/gates/copy_lint.py only. It is not committed under scripts/gates/: the recovered term lists are plaintext, and scripts/ is scanned by the site term tests, so committing those lists would fail the tests and publish the terms. See scripts/gates/GATES.md. The reconstruction is not a byte copy of the wiped original; leftover LOCATION, OLD-JOB, BRAND, and KIDS lists were not recovered and were not invented.
+- copy_lint.py now comes from main (merged in from #117/#118, scripts/gates/copy_lint.py; same file as /home/box/dtrt-checks/gates/copy_lint.py). Run with --terms scripts/private-terms.test.cjs. GATES.md is main's version; this branch's placeholder was dropped in the merge.
 - Legal pages: "Last updated" is now November 27, 2026, because the footer Instagram handle changed to @dtrt.xyng; legal text is unchanged. Recorded in legal/cookies.html, legal/dmca.html, legal/preorder-terms.html, legal/privacy.html, legal/refunds.html, legal/terms.html. Spanish leads in js/biz-lang.js match that date. Cache keys for js/biz-lang.js, js/nav.js, sw.js, and ask/ui.js were bumped so the new strings load.
 - js/stats.js handle edit from this PR was reverted. That file is not loaded by any served page, so the edit was invisible and failed fix7/5. It still says @officiallydtrt in that dead file only.
 
@@ -30,5 +30,4 @@ READY for QA: the /links/ page in links/index.html, plus links/lang.js and links
 - Source for "It's free", "No paid model is connected," and "we use" Candles.
 - Screen-reader or keyboard pass; Lighthouse; og:image render.
 - Whether a later CI run of `gate` is green; this was not re-run on GitHub before the handoff (local Node tests are in /tmp/pr114-subset.log; a fuller local run is in /tmp/pr114-tests.log after the commit).
-- The rest of the original copy_lint.py term lists (OLD-JOB, BRAND, KIDS, leftover LOCATION). That reconstruction is incomplete; see scripts/gates/GATES.md and the header of /home/box/dtrt-checks/gates/copy_lint.py.
 - js/stats.js cleanup (dead file still has the old Instagram handle).
