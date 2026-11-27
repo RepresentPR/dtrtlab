@@ -103,9 +103,20 @@
     return /(\/(cs2|afterlight|game|story|worlds|training|catalog|radio|media|news|tab|stats|proof)(\.|$|\/)|\/clips\/|\/watch\/|\/live\/|\/stories\/|\/versions\/|\/blog\/|\/hq\/|\/bug(\.|\/|$))/.test(p);
   }
   var mainEl = document.getElementById("main") || document.querySelector("main");
-  if (lang === "es" && isEnglishOnlyHobbyPath(here) && mainEl) {
-    mainEl.setAttribute("lang", "en");
-    if (!document.querySelector(".en-only-notice")) {
+  if (lang === "es" && isEnglishOnlyHobbyPath(here)) {
+    if (!mainEl && document.body) {
+      document.body.setAttribute("lang", "en");
+      ["HEADER", "FOOTER", "NAV"].forEach(function (tag) {
+        var nodes = document.getElementsByTagName(tag);
+        for (var i = 0; i < nodes.length; i++) {
+          if (!nodes[i].getAttribute("lang")) nodes[i].setAttribute("lang", "es");
+        }
+      });
+      mainEl = document.body;
+    } else if (mainEl) {
+      mainEl.setAttribute("lang", "en");
+    }
+    if (mainEl && !document.querySelector(".en-only-notice")) {
       var notice = document.createElement("p");
       notice.className = "en-only-notice";
       notice.setAttribute("role", "status");
