@@ -5,7 +5,7 @@
   var STYLE_ID = "dtrt-crisis-css";
   var FIELD_CLASS = "dtrt-crisis-field";
   var HTML = 'If you\'re thinking about suicide or in crisis: <a href="tel:988">call</a> or <a href="sms:988">text 988</a> (US) · Si estás en crisis: llama o textea al <a href="tel:988">988</a> · <a href="https://findahelpline.com" rel="noopener" target="_blank">findahelpline.com</a> (outside US)';
-  var CSS_HREF = "/css/crisis-line.css?v=20261127h2";
+  var CSS_HREF = "/css/crisis-line.css?v=20261127r8d";
 
   var applying = false;
 
