@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-15T18:58:29Z",
+  "capturedAt": "2026-11-27T12:58:21Z",
   "campaign": {
     "name": "Growth measured in public.",
     "startAt": "2026-10-11T06:28:12Z",
@@ -10,12 +10,12 @@
   },
   "results": {
     "views": {
-      "value": 13666,
+      "value": 13674,
       "status": "verified",
-      "observedAt": "2026-11-15T18:58:29Z",
-      "note": "Headline 13,666 = stale opening matched deltas (YouTube +459, Instagram +141, both last measured Oct 11, 2026) plus campaign-created cumulatives. YouTube and TikTok campaign posts refreshed Nov 15, 2026. Instagram campaign posts in this verified headline remain the Oct 11, 2026 counters. A signed-in Reels-grid read on Nov 15, 2026 is not included (see results.signedInInstagramGrid). Not Instagram Insights period views. Not unique people. X is excluded.",
+      "observedAt": "2026-11-27T12:58:21Z",
+      "note": "Headline 13,674 = stale opening matched deltas (YouTube +459, Instagram +141, both last measured Oct 11, 2026) plus campaign-created cumulatives. YouTube and TikTok campaign posts refreshed Nov 27, 2026. Instagram campaign posts in this verified headline remain the Oct 11, 2026 counters. A signed-in Reels-grid read on Nov 15, 2026 is not included (see results.signedInInstagramGrid). Not Instagram Insights period views. Not unique people. X is excluded.",
       "metric": "opening_matched_deltas_plus_campaign_created_post_cumulatives",
-      "coverage": "Opening matched deltas are unchanged since 2026-10-11 (no rematched baseline). YouTube and TikTok campaign-created post cumulatives refreshed Nov 15, 2026. Instagram campaign posts in this verified headline remain the Oct 11, 2026 counters. A signed-in officiallydtrt Reels grid read on Nov 15, 2026 is recorded under results.signedInInstagramGrid (status partial) and is not included here. Two YouTube campaign videos (From Ideas, free office map ES) are now unlisted; their URL counters are included and flagged. Instagram Professional Insights period totals stay under results.platformPeriodInsights and are not added into this headline. X public metrics were fetched separately and stay excluded from the headline.",
+      "coverage": "Opening matched deltas are unchanged since 2026-10-11 (no rematched baseline). YouTube and TikTok campaign-created post cumulatives refreshed Nov 27, 2026. Instagram campaign posts in this verified headline remain the Oct 11, 2026 counters. A signed-in officiallydtrt Reels grid read on Nov 15, 2026 is recorded under results.signedInInstagramGrid (status partial) and is not included here. Two YouTube campaign videos (From Ideas, free office map ES) remain unlisted; their URL counters are included and flagged. Instagram Professional Insights period totals stay under results.platformPeriodInsights and are not added into this headline. X public metrics were fetched separately and stay excluded from the headline.",
       "components": [
         {
           "platform": "YouTube",
@@ -37,8 +37,8 @@
         {
           "platform": "TikTok",
           "value": 291,
-          "basis": "Native TikTok playCount from the public page via yt-dlp 2026-11-15T18:58:29Z. Replaces prior saved 286.",
-          "observedAt": "2026-11-15T18:58:29Z",
+          "basis": "Native TikTok playCount from the public page via yt-dlp 2026-11-27T12:58:21Z. Replaces prior saved 291.",
+          "observedAt": "2026-11-27T12:58:21Z",
           "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695303665602612493",
           "status": "refreshed",
           "availability": "public"
@@ -46,26 +46,26 @@
         {
           "platform": "TikTok Anubis",
           "value": 324,
-          "basis": "Native TikTok playCount from the public page via yt-dlp 2026-11-15T18:58:29Z. Replaces prior saved 311.",
-          "observedAt": "2026-11-15T18:58:29Z",
+          "basis": "Native TikTok playCount from the public page via yt-dlp 2026-11-27T12:58:21Z. Replaces prior saved 324.",
+          "observedAt": "2026-11-27T12:58:21Z",
           "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695441861422451982",
           "status": "refreshed",
           "availability": "public"
         },
         {
           "platform": "YouTube Anubis",
-          "value": 649,
-          "basis": "Native YouTube public watch-page view counter via yt-dlp 2026-11-15T18:58:29Z. Replaces prior saved 550.",
-          "observedAt": "2026-11-15T18:58:29Z",
+          "value": 650,
+          "basis": "Native YouTube public watch-page view counter via yt-dlp 2026-11-27T12:58:21Z. Replaces prior saved 649.",
+          "observedAt": "2026-11-27T12:58:21Z",
           "postUrl": "https://www.youtube.com/shorts/iR3orq__Hn8",
           "status": "refreshed",
           "availability": "public"
         },
         {
           "platform": "YouTube episode",
-          "value": 167,
-          "basis": "Native YouTube public watch-page view counter via yt-dlp 2026-11-15T18:58:29Z. Replaces prior saved 33.",
-          "observedAt": "2026-11-15T18:58:29Z",
+          "value": 168,
+          "basis": "Native YouTube public watch-page view counter via yt-dlp 2026-11-27T12:58:21Z. Replaces prior saved 167.",
+          "observedAt": "2026-11-27T12:58:21Z",
           "postUrl": "https://www.youtube.com/watch?v=rPJmQj1Pbpo",
           "status": "refreshed",
           "availability": "public"
@@ -81,55 +81,55 @@
         },
         {
           "platform": "YouTube Knife",
-          "basis": "Native YouTube public watch-page view counter via yt-dlp 2026-11-15T18:58:29Z. Replaces prior saved 1474.",
+          "basis": "Native YouTube public watch-page view counter via yt-dlp 2026-11-27T12:58:21Z. Replaces prior saved 1640.",
           "postUrl": "https://www.youtube.com/shorts/oUfVtc-hd0k",
           "value": 1640,
-          "observedAt": "2026-11-15T18:58:29Z",
+          "observedAt": "2026-11-27T12:58:21Z",
           "status": "refreshed",
           "availability": "public"
         },
         {
           "platform": "TikTok Knife",
-          "basis": "Native TikTok playCount from the public page via yt-dlp 2026-11-15T18:58:29Z. Replaces prior saved 294.",
+          "basis": "Native TikTok playCount from the public page via yt-dlp 2026-11-27T12:58:21Z. Replaces prior saved 2288.",
           "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695502513348414734",
           "value": 2288,
-          "observedAt": "2026-11-15T18:58:29Z",
+          "observedAt": "2026-11-27T12:58:21Z",
           "status": "refreshed",
           "availability": "public"
         },
         {
           "platform": "YouTube Door",
-          "basis": "Native YouTube public watch-page view counter via yt-dlp 2026-11-15T18:58:29Z. Replaces prior saved 1356.",
+          "basis": "Native YouTube public watch-page view counter via yt-dlp 2026-11-27T12:58:21Z. Replaces prior saved 1553.",
           "postUrl": "https://www.youtube.com/shorts/qizD1CIUrhQ",
-          "value": 1553,
-          "observedAt": "2026-11-15T18:58:29Z",
+          "value": 1557,
+          "observedAt": "2026-11-27T12:58:21Z",
           "status": "refreshed",
           "availability": "public"
         },
         {
           "platform": "YouTube preview teaser",
-          "basis": "Native YouTube public watch-page view counter via yt-dlp 2026-11-15T18:58:29Z. Replaces prior saved 410.",
+          "basis": "Native YouTube public watch-page view counter via yt-dlp 2026-11-27T12:58:21Z. Replaces prior saved 490.",
           "postUrl": "https://www.youtube.com/shorts/ROFmkh0tZEc",
-          "value": 490,
-          "observedAt": "2026-11-15T18:58:29Z",
+          "value": 492,
+          "observedAt": "2026-11-27T12:58:21Z",
           "status": "refreshed",
           "availability": "public"
         },
         {
           "platform": "TikTok Door",
-          "basis": "Native TikTok playCount from the public page via yt-dlp 2026-11-15T18:58:29Z. Replaces prior saved 324.",
+          "basis": "Native TikTok playCount from the public page via yt-dlp 2026-11-27T12:58:21Z. Replaces prior saved 332.",
           "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695533442817133838",
           "value": 332,
-          "observedAt": "2026-11-15T18:58:29Z",
+          "observedAt": "2026-11-27T12:58:21Z",
           "status": "refreshed",
           "availability": "public"
         },
         {
           "platform": "TikTok preview teaser",
-          "basis": "Native TikTok playCount from the public page via yt-dlp 2026-11-15T18:58:29Z. Replaces prior saved 142.",
+          "basis": "Native TikTok playCount from the public page via yt-dlp 2026-11-27T12:58:21Z. Replaces prior saved 211.",
           "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695514908397440269",
           "value": 211,
-          "observedAt": "2026-11-15T18:58:29Z",
+          "observedAt": "2026-11-27T12:58:21Z",
           "status": "refreshed",
           "availability": "public"
         },
@@ -163,8 +163,8 @@
         {
           "platform": "YouTube Make your work clear",
           "value": 49,
-          "basis": "Native YouTube public watch-page view counter via yt-dlp 2026-11-15T18:58:29Z. Replaces prior saved 41.",
-          "observedAt": "2026-11-15T18:58:29Z",
+          "basis": "Native YouTube public watch-page view counter via yt-dlp 2026-11-27T12:58:21Z. Replaces prior saved 49.",
+          "observedAt": "2026-11-27T12:58:21Z",
           "postUrl": "https://www.youtube.com/shorts/eEBIsuAuCkg",
           "status": "refreshed",
           "availability": "public"
@@ -172,8 +172,8 @@
         {
           "platform": "YouTube From Ideas episode",
           "value": 4,
-          "basis": "YouTube watch-page view counter via yt-dlp 2026-11-15T18:58:29Z. Video is now unlisted (was treated as public in the Oct 12 record). Replaces prior saved 4. Count read from the known URL, not a public listing.",
-          "observedAt": "2026-11-15T18:58:29Z",
+          "basis": "Native YouTube public watch-page view counter via yt-dlp 2026-11-27T12:58:21Z (video remains unlisted). Replaces prior saved 4.",
+          "observedAt": "2026-11-27T12:58:21Z",
           "postUrl": "https://www.youtube.com/watch?v=8uQyfvJnofI",
           "status": "refreshed",
           "availability": "unlisted"
@@ -181,8 +181,8 @@
         {
           "platform": "YouTube free office map ES",
           "value": 15,
-          "basis": "YouTube watch-page view counter via yt-dlp 2026-11-15T18:58:29Z. Video is now unlisted (was treated as public in the Oct 12 record). Replaces prior saved 12. Count read from the known URL, not a public listing.",
-          "observedAt": "2026-11-15T18:58:29Z",
+          "basis": "Native YouTube public watch-page view counter via yt-dlp 2026-11-27T12:58:21Z (video remains unlisted). Replaces prior saved 15.",
+          "observedAt": "2026-11-27T12:58:21Z",
           "postUrl": "https://www.youtube.com/watch?v=PhYr_7bvvhA",
           "status": "refreshed",
           "availability": "unlisted"
@@ -190,8 +190,8 @@
         {
           "platform": "TikTok Make your work clear",
           "value": 55,
-          "basis": "Native TikTok playCount from the public page via yt-dlp 2026-11-15T18:58:29Z. Replaces prior saved 33.",
-          "observedAt": "2026-11-15T18:58:29Z",
+          "basis": "Native TikTok playCount from the public page via yt-dlp 2026-11-27T12:58:21Z. Replaces prior saved 55.",
+          "observedAt": "2026-11-27T12:58:21Z",
           "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695578463264132365",
           "status": "refreshed",
           "availability": "public"
@@ -199,8 +199,8 @@
         {
           "platform": "TikTok free office map",
           "value": 16,
-          "basis": "Native TikTok playCount from the public page via yt-dlp 2026-11-15T18:58:29Z. Replaces prior saved 4.",
-          "observedAt": "2026-11-15T18:58:29Z",
+          "basis": "Native TikTok playCount from the public page via yt-dlp 2026-11-27T12:58:21Z. Replaces prior saved 16.",
+          "observedAt": "2026-11-27T12:58:21Z",
           "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695586470303747341",
           "status": "refreshed",
           "availability": "public"
@@ -210,265 +210,265 @@
       "fullCampaignStartTotal": null
     },
     "lifetimeViews": {
-      "value": 159236,
+      "value": 159261,
       "status": "verified",
       "observedAt": "2026-10-11T19:48:51.709Z",
       "coverage": "partial",
       "components": [
         {
           "platform": "YouTube Shorts",
-          "value": 20726,
+          "value": 20740,
           "posts": 37,
-          "scope": "34 public Shorts measured 2026-11-15T18:58:29Z; 1 previously public Short now unlisted (wu3M-Te360E) with a URL counter; two private/unlisted records remain in the stale 8-view aggregate from 2026-10-11T19:49:21.287Z. Each post counted once.",
+          "scope": "34 public Shorts measured 2026-11-27T12:58:21Z; 1 previously public Short now unlisted (wu3M-Te360E) with a URL counter; two private/unlisted records remain in the stale 8-view aggregate from 2026-10-11T19:49:21.287Z. Each post counted once.",
           "observedAt": "2026-10-11T19:49:21.287Z",
           "fullInventoryObservedAt": "2026-10-11T19:49:21.287Z",
-          "observedThrough": "2026-11-15T18:58:29Z",
-          "observationType": "Public and known-URL Shorts refreshed 2026-11-15; stale private aggregate retained",
+          "observedThrough": "2026-11-27T12:58:21Z",
+          "observationType": "Public and known-URL Shorts refreshed 2026-11-27; stale private aggregate retained",
           "focusedUpdates": [
             {
-              "postId": "bu6ra-pDYt0",
-              "value": 2698,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 635,
-              "availability": "public"
-            },
-            {
-              "postId": "LcDUdmS0EPw",
-              "value": 2039,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 245,
+              "postId": "lZ-COdVdNgk",
+              "value": 14,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 4,
               "availability": "public"
             },
             {
               "postId": "qizD1CIUrhQ",
-              "value": 1553,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 197,
-              "availability": "public"
-            },
-            {
-              "postId": "oUfVtc-hd0k",
-              "value": 1640,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 166,
-              "availability": "public"
-            },
-            {
-              "postId": "iR3orq__Hn8",
-              "value": 649,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 99,
+              "value": 1557,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 4,
               "availability": "public"
             },
             {
               "postId": "ROFmkh0tZEc",
-              "value": 490,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 80,
+              "value": 492,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 2,
+              "availability": "public"
+            },
+            {
+              "postId": "7owx3ck3vRY",
+              "value": 318,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 1,
+              "availability": "public"
+            },
+            {
+              "postId": "JNrT4BKjRGg",
+              "value": 1182,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 1,
+              "availability": "public"
+            },
+            {
+              "postId": "Q05amc0VF5c",
+              "value": 7,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 1,
+              "availability": "public"
+            },
+            {
+              "postId": "iR3orq__Hn8",
+              "value": 650,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 1,
               "availability": "public"
             },
             {
               "postId": "197ccicfV5M",
               "value": 1348,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 59,
-              "availability": "public"
-            },
-            {
-              "postId": "NRlRvR-zZtE",
-              "value": 21,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 8,
-              "availability": "public"
-            },
-            {
-              "postId": "eEBIsuAuCkg",
-              "value": 49,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 8,
-              "availability": "public"
-            },
-            {
-              "postId": "YTNFlHeYbBc",
-              "value": 14,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 6,
-              "availability": "public"
-            },
-            {
-              "postId": "wu3M-Te360E",
-              "value": 8,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 6,
-              "availability": "unlisted"
-            },
-            {
-              "postId": "JNrT4BKjRGg",
-              "value": 1181,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 5,
-              "availability": "public"
-            },
-            {
-              "postId": "7owx3ck3vRY",
-              "value": 317,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 4,
-              "availability": "public"
-            },
-            {
-              "postId": "OL--lV0YW9Q",
-              "value": 9,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 4,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
               "availability": "public"
             },
             {
               "postId": "5B3w5FwWTno",
               "value": 6,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 3,
-              "availability": "public"
-            },
-            {
-              "postId": "QRAHYY1UT7Q",
-              "value": 675,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 3,
-              "availability": "public"
-            },
-            {
-              "postId": "i8eLyEjHbsQ",
-              "value": 459,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 3,
-              "availability": "public"
-            },
-            {
-              "postId": "QVrRYGpO_VI",
-              "value": 9,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 2,
-              "availability": "public"
-            },
-            {
-              "postId": "sU9MiiJXcak",
-              "value": 1133,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": -2,
-              "availability": "public"
-            },
-            {
-              "postId": "wqZKnR4LbmE",
-              "value": 596,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 2,
-              "availability": "public"
-            },
-            {
-              "postId": "Z00dqeOOdBc",
-              "value": 1037,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 1,
-              "availability": "public"
-            },
-            {
-              "postId": "nst_spyTD9c",
-              "value": 1129,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 1,
-              "availability": "public"
-            },
-            {
-              "postId": "ol3FCKxb514",
-              "value": 986,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 1,
-              "availability": "public"
-            },
-            {
-              "postId": "nsLLaY8GUrQ",
-              "value": 425,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 1,
-              "availability": "public"
-            },
-            {
-              "postId": "8BDDTkjN9aM",
-              "value": 4,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 0,
-              "availability": "public"
-            },
-            {
-              "postId": "Q05amc0VF5c",
-              "value": 6,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 0,
-              "availability": "public"
-            },
-            {
-              "postId": "7pszGtoVSY0",
-              "value": 3,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 0,
-              "availability": "public"
-            },
-            {
-              "postId": "EO8yEJptWDQ",
-              "value": 2,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 0,
-              "availability": "public"
-            },
-            {
-              "postId": "eTuX5W8UuzU",
-              "value": 3,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 0,
-              "availability": "public"
-            },
-            {
-              "postId": "AuFwZJH7-jw",
-              "value": 1,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 0,
-              "availability": "public"
-            },
-            {
-              "postId": "gRUCO9WJt7M",
-              "value": 1,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 0,
-              "availability": "public"
-            },
-            {
-              "postId": "lZ-COdVdNgk",
-              "value": 10,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 0,
-              "availability": "public"
-            },
-            {
-              "postId": "eUrto6-GD5Q",
-              "value": 1142,
-              "observedAt": "2026-11-15T18:58:29Z",
+              "observedAt": "2026-11-27T12:58:21Z",
               "deltaFromPreviousSaved": 0,
               "availability": "public"
             },
             {
               "postId": "6MHdhASOxMo",
               "value": 360,
-              "observedAt": "2026-11-15T18:58:29Z",
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7pszGtoVSY0",
+              "value": 3,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "8BDDTkjN9aM",
+              "value": 4,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "AuFwZJH7-jw",
+              "value": 1,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "EO8yEJptWDQ",
+              "value": 2,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "LcDUdmS0EPw",
+              "value": 2039,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "NRlRvR-zZtE",
+              "value": 21,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "OL--lV0YW9Q",
+              "value": 9,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "QRAHYY1UT7Q",
+              "value": 675,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "QVrRYGpO_VI",
+              "value": 9,
+              "observedAt": "2026-11-27T12:58:21Z",
               "deltaFromPreviousSaved": 0,
               "availability": "public"
             },
             {
               "postId": "SySyK0pNnqA",
               "value": 715,
-              "observedAt": "2026-11-15T18:58:29Z",
+              "observedAt": "2026-11-27T12:58:21Z",
               "deltaFromPreviousSaved": 0,
               "availability": "public"
+            },
+            {
+              "postId": "YTNFlHeYbBc",
+              "value": 14,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "Z00dqeOOdBc",
+              "value": 1037,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "bu6ra-pDYt0",
+              "value": 2698,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "eEBIsuAuCkg",
+              "value": 49,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "eTuX5W8UuzU",
+              "value": 3,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "eUrto6-GD5Q",
+              "value": 1142,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "gRUCO9WJt7M",
+              "value": 1,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "i8eLyEjHbsQ",
+              "value": 459,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "nsLLaY8GUrQ",
+              "value": 425,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "nst_spyTD9c",
+              "value": 1129,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "oUfVtc-hd0k",
+              "value": 1640,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "ol3FCKxb514",
+              "value": 986,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "sU9MiiJXcak",
+              "value": 1133,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "wqZKnR4LbmE",
+              "value": 596,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "wu3M-Te360E",
+              "value": 8,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "unlisted"
             }
           ]
         },
@@ -515,236 +515,235 @@
         },
         {
           "platform": "TikTok videos",
-          "value": 5421,
+          "value": 5426,
           "posts": 23,
-          "scope": "23 public TikTok posts measured via playCount 2026-11-15T18:58:29Z. Each post counted once.",
-          "observedAt": "2026-11-15T18:58:29Z",
-          "fullInventoryObservedAt": "2026-11-15T18:58:29Z",
-          "observedThrough": "2026-11-15T18:58:29Z",
-          "observationType": "Full public TikTok inventory refreshed 2026-11-15",
+          "scope": "23 public TikTok posts measured via playCount 2026-11-27T12:58:21Z. Each post counted once.",
+          "observedAt": "2026-11-27T12:58:21Z",
+          "fullInventoryObservedAt": "2026-11-27T12:58:21Z",
+          "observedThrough": "2026-11-27T12:58:21Z",
+          "observationType": "Full public TikTok inventory refreshed 2026-11-27",
           "focusedUpdates": [
             {
-              "postId": "7695502513348414734",
-              "value": 2288,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 1994,
+              "postId": "7694543150303481102",
+              "value": 10,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 2,
               "availability": "public"
             },
             {
-              "postId": "7695514908397440269",
-              "value": 211,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 69,
+              "postId": "7694474266703662349",
+              "value": 281,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 1,
               "availability": "public"
             },
             {
-              "postId": "7695578463264132365",
-              "value": 55,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 22,
+              "postId": "7694538040634576142",
+              "value": 95,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 1,
+              "availability": "public"
+            },
+            {
+              "postId": "7694548238900169998",
+              "value": 15,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 1,
               "availability": "public"
             },
             {
               "postId": "7694396907698933006",
               "value": 189,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 19,
-              "availability": "public"
-            },
-            {
-              "postId": "7694458787666660622",
-              "value": 302,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 14,
-              "availability": "public"
-            },
-            {
-              "postId": "7694512614205836557",
-              "value": 17,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 13,
-              "availability": "public"
-            },
-            {
-              "postId": "7695441861422451982",
-              "value": 324,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 13,
-              "availability": "public"
-            },
-            {
-              "postId": "7695586470303747341",
-              "value": 16,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 12,
-              "availability": "public"
-            },
-            {
-              "postId": "7694793803584048398",
-              "value": 15,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 8,
-              "availability": "public"
-            },
-            {
-              "postId": "7694538040634576142",
-              "value": 94,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 8,
-              "availability": "public"
-            },
-            {
-              "postId": "7695533442817133838",
-              "value": 332,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 8,
-              "availability": "public"
-            },
-            {
-              "postId": "7694548238900169998",
-              "value": 14,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 7,
-              "availability": "public"
-            },
-            {
-              "postId": "7694678392779689229",
-              "value": 17,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 6,
-              "availability": "public"
-            },
-            {
-              "postId": "7695303665602612493",
-              "value": 291,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 5,
-              "availability": "public"
-            },
-            {
-              "postId": "7694543150303481102",
-              "value": 8,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 5,
-              "availability": "public"
-            },
-            {
-              "postId": "7694527753877589261",
-              "value": 9,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 5,
-              "availability": "public"
-            },
-            {
-              "postId": "7694517453845531918",
-              "value": 8,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 5,
-              "availability": "public"
-            },
-            {
-              "postId": "7694407208775208205",
-              "value": 305,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 5,
-              "availability": "public"
-            },
-            {
-              "postId": "7694532940843207949",
-              "value": 10,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 4,
-              "availability": "public"
-            },
-            {
-              "postId": "7694474266703662349",
-              "value": 280,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 4,
-              "availability": "public"
-            },
-            {
-              "postId": "7694443385016306958",
-              "value": 297,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 4,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
               "availability": "public"
             },
             {
               "postId": "7694402085751688461",
               "value": 335,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 4,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7694407208775208205",
+              "value": 305,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7694443385016306958",
+              "value": 297,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7694458787666660622",
+              "value": 302,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7694512614205836557",
+              "value": 17,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7694517453845531918",
+              "value": 8,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
               "availability": "public"
             },
             {
               "postId": "7694522613841890574",
               "value": 4,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 2,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7694527753877589261",
+              "value": 9,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7694532940843207949",
+              "value": 10,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7694678392779689229",
+              "value": 17,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7694793803584048398",
+              "value": 15,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7695303665602612493",
+              "value": 291,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7695441861422451982",
+              "value": 324,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7695502513348414734",
+              "value": 2288,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7695514908397440269",
+              "value": 211,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7695533442817133838",
+              "value": 332,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7695578463264132365",
+              "value": 55,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7695586470303747341",
+              "value": 16,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
               "availability": "public"
             }
           ]
         },
         {
           "platform": "YouTube other videos",
-          "value": 114629,
+          "value": 114635,
           "posts": 11,
-          "scope": "Three still-public long-form videos measured 2026-11-15T18:58:29Z; two campaign videos now unlisted (8uQyfvJnofI, PhYr_7bvvhA) with URL counters; one previously public video unavailable (0XxDrMvsCgE) kept at last value 28 from 2026-10-11T19:48:51.709Z; five private archives remain in the stale 2215-view aggregate from 2026-10-11T19:48:51.709Z, identities omitted.",
+          "scope": "Four still-public long-form videos measured 2026-11-27T12:58:21Z (including 0XxDrMvsCgE, previously unavailable on Nov 15 and public again at 28); two campaign videos remain unlisted (8uQyfvJnofI, PhYr_7bvvhA) with URL counters; five private archives remain in the stale 2215-view aggregate from 2026-10-11T19:48:51.709Z, identities omitted.",
           "observedAt": "2026-10-11T19:48:51.709Z",
           "fullInventoryObservedAt": "2026-10-11T19:48:51.709Z",
-          "observedThrough": "2026-11-15T18:58:29Z",
-          "observationType": "Public and known-URL long-form refreshed 2026-11-15; unavailable and private aggregates retained",
+          "observedThrough": "2026-11-27T12:58:21Z",
+          "observationType": "Public and known-URL long-form refreshed 2026-11-27; private aggregates retained",
           "focusedUpdates": [
             {
-              "postId": "rPJmQj1Pbpo",
-              "value": 167,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 134,
+              "postId": "ttDzqUVf5xs",
+              "value": 112162,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 3,
               "availability": "public"
             },
             {
               "postId": "lsExh8z7fVI",
-              "value": 41,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 12,
+              "value": 43,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 2,
               "availability": "public"
             },
             {
-              "postId": "ttDzqUVf5xs",
-              "value": 112159,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 6,
+              "postId": "rPJmQj1Pbpo",
+              "value": 168,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 1,
               "availability": "public"
+            },
+            {
+              "postId": "0XxDrMvsCgE",
+              "value": 28,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public",
+              "note": "Public again on 2026-11-27; was unavailable on 2026-11-15. Count is unchanged at 28."
             },
             {
               "postId": "8uQyfvJnofI",
               "value": 4,
-              "observedAt": "2026-11-15T18:58:29Z",
+              "observedAt": "2026-11-27T12:58:21Z",
               "deltaFromPreviousSaved": 0,
               "availability": "unlisted"
             },
             {
               "postId": "PhYr_7bvvhA",
               "value": 15,
-              "observedAt": "2026-11-15T18:58:29Z",
-              "deltaFromPreviousSaved": 3,
-              "availability": "unlisted"
-            },
-            {
-              "postId": "0XxDrMvsCgE",
-              "value": 28,
-              "observedAt": "2026-10-11T19:48:51.709Z",
+              "observedAt": "2026-11-27T12:58:21Z",
               "deltaFromPreviousSaved": 0,
-              "availability": "unavailable",
-              "status": "stale",
-              "note": "YouTube: This video is not available (2026-11-15). Last value retained."
+              "availability": "unlisted"
             }
           ]
         }
       ],
-      "note": "Lifetime refreshed for public YouTube and TikTok inventory on Nov 15, 2026. The verified Instagram Reel lifetime sum remains the Oct 11, 2026 inventory of 18,460. A signed-in Reels-grid read on Nov 15, 2026 counted 20,188 (36 Reels read; DeSg3HmiZT0 was not read and stays at its Oct 11, 2026 value) and is not included here (see results.signedInInstagramGrid). Not Insights period views. Not unique people.",
-      "observedThrough": "2026-11-15T18:58:29Z"
+      "note": "Lifetime refreshed for public YouTube and TikTok inventory on Nov 27, 2026. The verified Instagram Reel lifetime sum remains the Oct 11, 2026 inventory of 18,460. A signed-in Reels-grid read on Nov 15, 2026 counted 20,188 (36 Reels read; DeSg3HmiZT0 was not read and stays at its Oct 11, 2026 value) and is not included here (see results.signedInInstagramGrid). Not Insights period views. Not unique people.",
+      "observedThrough": "2026-11-27T12:58:21Z"
     },
     "platformPeriodInsights": {
       "status": "verified",
@@ -925,7 +924,7 @@
       "campaignCompositeIfIncluded": 14903,
       "lifetimeIfIncluded": 160964,
       "notIncludedInVerifiedTotals": true,
-      "note": "Signed-in officiallydtrt Reels grid read on Nov 15, 2026. 36 of 37 inventory Reels were read as whole-number play counts. DeSg3HmiZT0 was not read in this refresh and stays at its Oct 11, 2026 value in this sum, marked stale. Instagram Oct 11 business Reels were not measured in this refresh and still await a first public counter. These figures are not included in the verified campaign composite (13,666) or the verified lifetime total (159,236). Not independently re-fetchable from a logged-out public page. Not Instagram Insights period views."
+      "note": "Signed-in officiallydtrt Reels grid read on Nov 15, 2026 (stale Oct 11, 2026 Instagram inventory of 18,460 remains the verified figure). 36 of 37 inventory Reels were read as whole-number play counts. DeSg3HmiZT0 was not read in that Nov 15 refresh and stays at its Oct 11, 2026 value in this sum, marked stale. Instagram Oct 11 business Reels were not measured in the Nov 15 read and still await a first public counter. These signed-in figures were not included in the Nov 15 verified campaign composite (13,666) or the Nov 15 verified lifetime total (159,236). The if-included figures below (14,903 / 160,964) are frozen as of that Nov 15 read and were not recomputed against today's verified totals. Not independently re-fetchable from a logged-out public page. Not Instagram Insights period views."
     }
   },
   "operations": {
@@ -992,8 +991,9 @@
   ],
   "queue": [],
   "evidenceNotes": [
-    "Signed-in officiallydtrt Reels grid read on Nov 15, 2026. 36 of 37 inventory Reels were read as whole-number play counts (none abbreviated). DeSg3HmiZT0 was not read in this refresh and stays at its Oct 11, 2026 value of 237, marked stale. These signed-in counts are not included in the verified campaign composite (13,666) or the verified lifetime total (159,236), which still use the Oct 11, 2026 Instagram inventory of 18,460. If included, the signed-in figures would take the campaign composite to 14,903 and the lifetime total to 160,964, with an Instagram Reels subtotal of 20,188. Opening deltas unchanged. Instagram Oct 11 business Reels were not measured in this refresh and still await a first public counter. X still excluded from headline totals.",
-    "YouTube + TikTok public inventory refreshed Nov 15, 2026. Campaign composite now 13,666 (was 10,856). Lifetime known total now 159,236 (was 155,308). Largest campaign-created moves: TikTok Knife 294\u21922,288; YouTube episode 33\u2192167; YouTube Knife 1,474\u21921,640; YouTube Door 1,356\u21921,553; YouTube Anubis 550\u2192649. Instagram campaign and lifetime Reel counters unchanged (login wall). Opening deltas unchanged (YouTube +459, Instagram +141). YouTube 0XxDrMvsCgE is not available (last value 28 retained). YouTube 8uQyfvJnofI and PhYr_7bvvhA, and Short wu3M-Te360E, are now unlisted; URL counters included and flagged. X public impression counts fetched for 6 of 7 campaign posts; 2109455613294260309 not found. X still excluded from headline totals. Spot-check on Nov 15, 2026 confirmed YouTube player.viewCount and TikTok playCount for sampled posts, including TikTok Knife 2,288.",
+    "YouTube + TikTok public inventory refreshed Nov 27, 2026. Campaign composite now 13,674 (was 13,666). Lifetime known total now 159,261 (was 159,236). Instagram remains the stale Oct 11, 2026 inventory (18,460). X stays out of the totals. 0XxDrMvsCgE is public again at 28 (it was unavailable on Nov 15).",
+    "Signed-in officiallydtrt Reels grid read on Nov 15, 2026. 36 of 37 inventory Reels were read as whole-number play counts (none abbreviated). DeSg3HmiZT0 was not read in that Nov 15 refresh and stays at its Oct 11, 2026 value of 237, marked stale. Those signed-in counts were not included in the Nov 15 verified campaign composite (13,666) or the Nov 15 verified lifetime total (159,236), which used the stale Oct 11, 2026 Instagram inventory of 18,460. If included as of that Nov 15 read, the signed-in figures would have taken the campaign composite to 14,903 and the lifetime total to 160,964, with an Instagram Reels subtotal of 20,188. Today's verified totals still use that same stale Oct 11 Instagram inventory and still exclude these signed-in figures. Opening deltas unchanged. Instagram Oct 11 business Reels were not measured in the Nov 15 read and still await a first public counter. X still excluded from headline totals.",
+    "YouTube + TikTok public inventory refreshed Nov 15, 2026. On that date the campaign composite was 13,666 (was 10,856) and the lifetime known total was 159,236 (was 155,308). Largest campaign-created moves that day: TikTok Knife 294\u21922,288; YouTube episode 33\u2192167; YouTube Knife 1,474\u21921,640; YouTube Door 1,356\u21921,553; YouTube Anubis 550\u2192649. Instagram campaign and lifetime Reel counters were unchanged (login wall) and remain the stale Oct 11, 2026 inventory. Opening deltas unchanged (YouTube +459, Instagram +141). YouTube 8uQyfvJnofI and PhYr_7bvvhA, and Short wu3M-Te360E, were unlisted as of Nov 15; URL counters included and flagged. X public impression counts fetched for 6 of 7 campaign posts; 2109455613294260309 not found. X still excluded from headline totals. Spot-check on Nov 15, 2026 confirmed YouTube player.viewCount and TikTok playCount for sampled posts, including TikTok Knife 2,288.",
     "YouTube campaign counters refreshed Oct 12, 3:05 PM EDT: Door 1356, Anubis 550, Knife 1474, preview 410, episode 33, Make your work clear 41, From Ideas 4, free office map ES 12. Campaign composite now 10,794; lifetime 155,246. Instagram/TikTok Oct 12 business posts still pending owner counters.",
     "Numbers re-audit 2026-10-12: Instagram Professional Insights Sep 12\u2013Oct 11 = 20.0K views, 0 new followers, 58 content shared. /live Instagram inventory remains a 37-Reel lifetime sum (18,460), a different metric. Instagram Door inventory corrected from 979 to 1,544. Campaign-added headline is now 8,945; do not compare it to Insights 20.0K.",
     "Lifetime goal: 250,000 overall reported video views by December 31 Eastern. Known total 153,397 after Door Instagram correction; historical coverage is not campaign growth.",
