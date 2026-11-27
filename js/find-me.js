@@ -1,6 +1,6 @@
 /* Quiet Find-me strip on every page. Reads content/socials.js. Non-intrusive. */
 (function () {
-  var ASSET_V = "20261013-find1";
+  var ASSET_V = "20261123-links2";
   var LAB_IDS = { x: 1, instagram: 1, youtube: 1, tiktok: 1 };
   var STREAM_IDS = { twitch: 1, kick: 1 };
   var CAREER_IDS = { linkedin: 1, github: 1 };
