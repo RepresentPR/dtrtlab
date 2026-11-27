@@ -2,14 +2,13 @@
 
 Public AI chat branch `cursor/public-ai-launch-8a16`.
 
-Head: `bbb9c59754c5bd0cdf90f0400c8be117d8680333`
+Head: `6fb8967841073a873fd7c1960ed16ec64eadf728`
 
-FIXED: frozen held-out tier 1 sheets with no page search and no model call, 35/35 scripts/ask-heldout-frozen.test.cjs
-FIXED: frozen held-out tier 2 keeps the answer and adds the gentle line, 14/14 scripts/ask-heldout-frozen.test.cjs
-FIXED: frozen held-out benign lines are not a hard sheet, 0/25 scripts/ask-heldout-frozen.test.cjs
-FIXED: plain pairs are not a hard sheet, 0/870 scripts/ask-no-flag.test.cjs
+FIXED: the chat page calls classifyCrisis before any page search, scripts/ask-classifier-call.test.cjs
+FIXED: the co-founder shape examples stay a hard sheet with no search and no model call, 35/35 scripts/ask-heldout-frozen.test.cjs
+FIXED: those same examples that should stay gentle keep the answer and add the gentle line, 14/14 scripts/ask-heldout-frozen.test.cjs
 
-The frozen lines live in scripts/fixtures/ask-heldout-frozen.json. Tier 1 is the hard sheet. Tier 2 is the gentle 988 line on an ordinary answer. QA's private 559, 111, 116, unseen 84, emoji 6, and multilingual 20 were not re-run here.
+QA's known sets were scored on this machine and were not copied into the repo. They are not at 0 none and 100 percent tier 1. Set 19 stays private. The proof stamp was not refreshed.
 
 # copy_lint: QA must-fixes for PR #121 — handoff to QA (2026-11-27)
 
