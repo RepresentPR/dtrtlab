@@ -1,3 +1,4 @@
+import { isCrisisText } from '/js/safety-core.mjs?v=20261127h7';
 /* Reactive 988 message on the contact form when crisis words are typed. Never submits. */
 (function () {
   "use strict";
@@ -19,13 +20,11 @@
     return box;
   }
   function check() {
-    var detect = window.DtrtMercado && window.DtrtMercado.isCrisisText;
-    if (!detect) return;
     var hit = false;
     var ids = ["name", "email", "message"];
     for (var i = 0; i < ids.length; i++) {
       var el = document.getElementById(ids[i]);
-      if (el && detect(el.value || "")) { hit = true; break; }
+      if (el && isCrisisText(el.value || "")) { hit = true; break; }
     }
     var box = ensureBox();
     box.textContent = isEs ? ES : EN;

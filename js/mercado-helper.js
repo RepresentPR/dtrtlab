@@ -1,9 +1,7 @@
+import { isCrisisText, fold } from '/js/safety-core.mjs?v=20261127h7';
 /* Ayudante de compras (beta) — allowlist helper only. Not live AI. */
 (function () {
   "use strict";
-  var fold = window.DtrtMercado.fold;
-  var isCrisisText = window.DtrtMercado.isCrisisText;
-
   var KEYS = {
     ia: ["ai", "ia", "negocio", "negocios", "business", "chatbot", "oficina", "office", "inteligencia", "artificial", "dtrt", "lab", "puerto", "rico", "store", "stores", "shop", "shops", "app", "shipping", "envio", "discount", "descuento", "deal", "deals", "oferta", "price", "precio", "local", "listing"],
     jafra: ["belleza", "beauty", "perfume", "piel", "skin", "skincare", "maquillaje", "makeup", "jafra", "cosmetica", "cosmetic", "cosmetics", "cosmeticos", "mama", "mom", "consultora", "tienda", "gift", "gifts", "regalo", "regalos", "present", "cream", "crema", "lotion", "locion", "serum", "soap", "jabon", "cologne", "care", "cheap", "barato", "barata", "price", "precio", "deal", "deals", "oferta", "ofertas", "best", "seller", "store", "stores", "shop", "shops", "link", "links", "enlace", "enlaces", "coupon", "cupon", "code", "codigo", "discount", "descuento", "shipping", "envio", "new", "nuevo", "nueva"],
@@ -68,13 +66,21 @@
     var ids = {};
     Object.keys(KEYS).forEach(function (id) {
       KEYS[id].forEach(function (w) {
-        toks.forEach(function (t) {
-          if (w.length <= 3) { if (t === w) ids[id] = true; return; }
-          if (t === w || t.indexOf(w) !== -1 || (t.length >= 4 && w.indexOf(t) !== -1)) ids[id] = true;
-        });
+        var re = new RegExp("\\b" + w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b");
+        if (re.test(term)) ids[id] = true;
       });
     });
     return ids;
+  }
+
+  function setCrisisChrome(on) {
+    var see = document.getElementById("mk-see-all-wrap");
+    if (see) see.hidden = !!on;
+    var chips = document.querySelectorAll("#mk-chips [data-cat], .mk-tiles [data-cat], .mk-crisis [data-cat]");
+    for (var i = 0; i < chips.length; i++) {
+      var cat = chips[i].getAttribute("data-cat") || "";
+      if (cat === "af" || cat === "vende") chips[i].hidden = !!on;
+    }
   }
 
   function showCrisis() {
@@ -82,13 +88,15 @@
     if (empty) empty.hidden = true;
     if (grid) grid.hidden = true;
     if (crisisEl) crisisEl.hidden = false;
+    setCrisisChrome(true);
   }
 
   function apply() {
     var t = (q && q.value || "").trim();
     if (!t) {
       if (grid) grid.hidden = false;
-      if (crisisEl) crisisEl.hidden = true;
+      if (crisisEl) crisisEl.hidden = true; setCrisisChrome(false);
+      setCrisisChrome(false);
       var see0 = document.getElementById("mk-see-all-wrap"); if (see0) see0.hidden = true;
       var n0 = 0;
       for (var i = 0; i < cards.length; i++) {
@@ -104,7 +112,7 @@
       return;
     }
     if (grid) grid.hidden = false;
-    if (crisisEl) crisisEl.hidden = true;
+    if (crisisEl) crisisEl.hidden = true; setCrisisChrome(false);
 
     var mapped = idsFor(t);
     var n = 0;
@@ -121,7 +129,7 @@
       if (empty) empty.hidden = false;
       var seeWrap = document.getElementById("mk-see-all-wrap");
       if (seeWrap) seeWrap.hidden = false;
-      if (crisisEl) crisisEl.hidden = true;
+      if (crisisEl) crisisEl.hidden = true; setCrisisChrome(false);
       if (grid) grid.hidden = false;
       return;
     }
