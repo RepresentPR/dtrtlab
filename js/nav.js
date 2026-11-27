@@ -92,18 +92,38 @@
 
   if (!document.querySelector('script[src*="js/biz-lang.js"]')) {
     var bizLang = document.createElement("script");
-    bizLang.src = root + "js/biz-lang.js?v=20261127r8c";
+    bizLang.src = root + "js/biz-lang.js?v=20261127r8d";
     bizLang.defer = true;
     document.head.appendChild(bizLang);
   }
-  var hobbyPath = /(\/(cs2|afterlight|game|story|worlds|training|catalog|radio|media|news|tab|stats)(\.|$)|\/clips\/|\/watch\/|\/live\/|\/stories\/|\/versions\/)/.test(here);
-  if (hobbyPath && document.getElementById("main") && !document.querySelector(".hobby-banner")) {
+  function isEnglishOnlyHobbyPath(p) {
+    p = String(p || "").toLowerCase();
+    if (p === "/lab.html" || p === "/" || p === "/index.html") return false;
+    if (/^\/(mercado|links|contact|legal|ask)(\/|$)/.test(p)) return false;
+    return /(\/(cs2|afterlight|game|story|worlds|training|catalog|radio|media|news|tab|stats|proof)(\.|$|\/)|\/clips\/|\/watch\/|\/live\/|\/stories\/|\/versions\/|\/blog\/|\/hq\/|\/bug(\.|\/|$))/.test(p);
+  }
+  var mainEl = document.getElementById("main") || document.querySelector("main");
+  if (lang === "es" && isEnglishOnlyHobbyPath(here) && mainEl) {
+    mainEl.setAttribute("lang", "en");
+    if (!document.querySelector(".en-only-notice")) {
+      var notice = document.createElement("p");
+      notice.className = "en-only-notice";
+      notice.setAttribute("role", "status");
+      notice.lang = "es";
+      notice.textContent = "Esta página está disponible solo en inglés por ahora.";
+      mainEl.insertBefore(notice, mainEl.firstChild);
+    }
+  }
+  var hobbyPath = /(\/(cs2|afterlight|game|story|worlds|training|catalog|radio|media|news|tab|stats|proof)(\.|$)|\/clips\/|\/watch\/|\/live\/|\/stories\/|\/versions\/|\/blog\/|\/hq\/|\/bug(\.|$|\/))/.test(here);
+  if (hobbyPath && mainEl && !document.querySelector(".hobby-banner")) {
     var banner = document.createElement("p");
     banner.className = "hobby-banner wrap";
     banner.innerHTML = lang === "es"
-      ? 'Esto es Lab / Pasatiempo, no la tienda. <a href="' + root + 'lab.html">Lab / Pasatiempo</a> · <a href="' + root + 'mercado/">Tienda</a>' + root + 'lab.html">Lab / Pasatiempo</a> · <a href="' + root + 'index.html">Inicio</a>'
+      ? 'Esto es Lab / Pasatiempo, no la tienda. <a href="' + root + 'lab.html">Lab / Pasatiempo</a> · <a href="' + root + 'mercado/">Tienda</a>'
       : 'This is Lab / Hobby, not the shop. <a href="' + root + 'lab.html">Lab / Hobby</a> · <a href="' + root + 'mercado/">Shop</a>';
-    document.getElementById("main").insertBefore(banner, document.getElementById("main").firstChild);
+    var afterNotice = mainEl.querySelector(":scope > .en-only-notice");
+    if (afterNotice) mainEl.insertBefore(banner, afterNotice.nextSibling);
+    else mainEl.insertBefore(banner, mainEl.firstChild);
   }
 
   var ICONS = {
@@ -347,7 +367,7 @@
 
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register(root + "sw.js?v=20261127r8c").catch(function () {});
+      navigator.serviceWorker.register(root + "sw.js?v=20261127r8d").catch(function () {});
     });
   }
 })();

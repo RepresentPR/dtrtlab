@@ -85,13 +85,27 @@
     identity.href = root + "css/identity.css?v=20261014-business1";
     document.head.appendChild(identity);
   }
-  if (document.getElementById("main") && !document.querySelector(".hobby-banner")) {
+  var mainEl = document.getElementById("main") || document.querySelector("main");
+  if (sceneLang === "es" && mainEl) {
+    mainEl.setAttribute("lang", "en");
+    if (!document.querySelector(".en-only-notice")) {
+      var notice = document.createElement("p");
+      notice.className = "en-only-notice";
+      notice.setAttribute("role", "status");
+      notice.lang = "es";
+      notice.textContent = "Esta página está disponible solo en inglés por ahora.";
+      mainEl.insertBefore(notice, mainEl.firstChild);
+    }
+  }
+  if (mainEl && !document.querySelector(".hobby-banner")) {
     var banner = document.createElement("p");
     banner.className = "hobby-banner wrap";
     banner.innerHTML = sceneLang === "es"
       ? 'Esto es Lab / Pasatiempo, no la tienda. <a href="' + root + 'lab.html">Lab / Pasatiempo</a> · <a href="' + root + 'mercado/">Tienda</a>'
       : 'This is Lab / Hobby, not the shop. <a href="' + root + 'lab.html">Lab / Hobby</a> · <a href="' + root + 'mercado/">Shop</a>';
-    document.getElementById("main").insertBefore(banner, document.getElementById("main").firstChild);
+    var afterNotice = mainEl.querySelector(":scope > .en-only-notice");
+    if (afterNotice) mainEl.insertBefore(banner, afterNotice.nextSibling);
+    else mainEl.insertBefore(banner, mainEl.firstChild);
   }
 
   var ICONS = {
