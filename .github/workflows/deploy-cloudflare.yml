@@ -1,0 +1,78 @@
+name: deploy-cloudflare
+# Deploys main to the Cloudflare Pages project "dtrtlab" (dtrtlab.com), replacing manual
+# direct uploads. It only deploys when every check passes, in this order:
+#   tests (node + python + Jekyll), site-gate (Fix 7 browser gate), gates (done_gate + copy_lint)
+#   -> deploy (stage, add worker + __gate files, refuse if /auction, /bid or /private-404 is missing)
+#   -> smoke test on the new deployment URL.
+# tests.yml and site-gate.yml run in full, including the required proof-freshness job
+# (scripts/proof_freshness_job.py forbids any way to skip it). So a stale /proof stamp also
+# blocks a deploy until live-refresh is fixed. That is deliberate: no deploy with stale numbers.
+# Off until the CF_DEPLOY_ENABLED repo variable is "true". Needs these Actions secrets:
+#   CLOUDFLARE_API_TOKEN  (account token, permission: Account > Cloudflare Pages > Edit, nothing else)
+#   CLOUDFLARE_ACCOUNT_ID
+on:
+  push:
+    branches: [main]
+  workflow_run:            # live-refresh commits with GITHUB_TOKEN, which does not fire "push"
+    workflows: [live-refresh]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch: {}
+permissions: {}
+concurrency: { group: deploy-cloudflare-production, cancel-in-progress: false }
+jobs:
+  tests:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    uses: ./.github/workflows/tests.yml
+    permissions:
+      contents: read
+  site-gate:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    uses: ./.github/workflows/site-gate.yml
+    permissions:
+      contents: read
+  gates:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    uses: ./.github/workflows/gates.yml
+    permissions:
+      contents: read
+  deploy:
+    needs: [tests, site-gate, gates]
+    if: ${{ vars.CF_DEPLOY_ENABLED == 'true' && github.repository == 'RepresentPR/dtrtlab' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    environment:
+      name: cloudflare-production
+      url: https://dtrtlab.com
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with: { node-version: "20" }
+      - name: Secrets present
+        env:
+          CF_TOKEN_SET: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+          CF_ACCOUNT_SET: ${{ secrets.CLOUDFLARE_ACCOUNT_ID != '' }}
+        run: |
+          if [ "$CF_TOKEN_SET" != "true" ] || [ "$CF_ACCOUNT_SET" != "true" ]; then
+            echo "::error title=deploy-cloudflare::CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID Actions secrets must both be set"; exit 1
+          fi
+      - name: Stage public site
+        run: node scripts/stage-site.cjs _site
+      - name: Add worker + auction files (refuses without /auction, /bid, /private 404)
+        run: node scripts/cf-pages-bundle.cjs _site
+      - name: Deploy to Cloudflare Pages (production branch main)
+        id: deploy
+        uses: cloudflare/wrangler-action@953926a2e2182532811c01a25e53647d93bf07c0 # v4.1.3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4.168.0"
+          command: pages deploy _site --project-name=dtrtlab --branch=main --commit-hash=${{ github.sha }} --commit-dirty=true
+      - name: Smoke test the new deployment
+        env:
+          DEPLOY_URL: ${{ steps.deploy.outputs.deployment-url }}
+        run: node scripts/site-probe.cjs smoke "$DEPLOY_URL"

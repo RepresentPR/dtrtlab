@@ -6,6 +6,7 @@ on:
   pull_request:
   push:
     branches: [main]
+  workflow_call: {}   # deploy-cloudflare.yml runs this before deploying
 permissions: {}
 jobs:
   test:
