@@ -2,7 +2,7 @@
 
 Public AI chat branch `cursor/public-ai-launch-8a16`.
 
-Head: `pending`
+Head: `60e650c9c5d79212f786aafd39b1cb3f853e1205`
 
 r6 head `58d31798` is no longer current. Ask cache keys are one version. A leftover thread after a 401 is not shown or uploaded for the next login. A failed delete stays hidden. Logout does not stamp guest chats with the previous account. A site-wide login cap no longer locks out every visitor. A clean question with no page match and no risk signal gets a calm "no good answer yet" line instead of the 988 sheet.
 
