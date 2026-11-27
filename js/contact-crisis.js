@@ -1,5 +1,5 @@
-import { classifyCrisis, GENTLE_LINE } from '/js/safety-core.mjs?v=20261127h8';
-/* Contact pop-up: PR #111 classifyCrisis as is.
+import { classifyCrisis, GENTLE_LINE } from '/js/safety-core.mjs?v=20261127r8b';
+/* Contact pop-up: PR #111 classifyCrisis as is (head 2e137a18 / classifier 878e0427).
    tier1: crisis card, do not send the form.
    tier2: send normally, show the gentle 988 line. */
 (function () {
