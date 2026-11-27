@@ -2,7 +2,7 @@
 
 Public AI chat branch `cursor/public-ai-launch-8a16`.
 
-Head: `pending`
+Head: `e7a4e3e269376f5cf39a01dfd3c926214d980be5`
 
 ## Claims
 
