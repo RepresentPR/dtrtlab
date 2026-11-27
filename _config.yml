@@ -44,6 +44,7 @@ exclude:
   - vendor/cache
   - vendor/gems
   - vendor/ruby
+  - RESULT-done_gate-copy-lint.txt
 include:
   - .well-known
   - _headers
