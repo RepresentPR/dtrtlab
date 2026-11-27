@@ -43,6 +43,7 @@ function visible(html) {
     .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ' ')
     .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, ' ')
     .replace(/<noscript\b[^>]*>[\s\S]*?<\/noscript>/gi, ' ')
+    .replace(/<!--ask-skip-->[\s\S]*?<!--\/ask-skip-->/g, ' ')
     .replace(/<!--[\s\S]*?-->/g, ' ')
     .replace(/<[^>]+>/g, ' '))
     .replace(/\s+/g, ' ')
