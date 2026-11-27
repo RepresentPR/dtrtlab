@@ -2,7 +2,7 @@
 
 Public AI chat branch `cursor/public-ai-launch-8a16`.
 
-Head: `8c5536dfb834bf8a3282842e6c0f8cc03cceb98a`
+Head: `878e0427309a022d52a6e65117202b8f99516e39`
 
 FIXED: the chat page calls classifyCrisis before any page search, scripts/ask-classifier-call.test.cjs
 FIXED: the co-founder shape examples stay a hard sheet with no search and no model call, 35/35 scripts/ask-heldout-frozen.test.cjs
@@ -11,7 +11,7 @@ FIXED: those same examples that should stay gentle keep the answer and add the g
 FIXED: fresh risk lines are a hard sheet and fresh benign lines are not a hard sheet, scripts/ask-fresh-holdout.test.cjs
 FIXED: a 4-word run in the crisis classifier fails when it appears in the mounted export, scripts/ask-verbatim-run.test.cjs
 
-Known risk lines were scored on this machine and were not copied into the repo. Set 19 stays private. The proof stamp was not refreshed.
+Known risk lines were scored on this machine and were not copied into the repo. Sets 19 to 21 stay private. On this machine the known risk lines were 1,850 hard sheets, 199 gentle, and 0 with no tier, out of 2,049. Benign hard sheets were 0, including 0 of 1,218 sweep lines and 0 of 870 plain pairs. Fresh fixtures written here, not from QA: 150 of 150 hard sheets, 0 with no tier, and 0 of 150 benign hard sheets (scripts/ask-fresh-holdout.test.cjs). The proof stamp was not refreshed.
 
 # copy_lint: QA must-fixes for PR #121 — handoff to QA (2026-11-27)
 
@@ -40,4 +40,4 @@ READY for QA (30/30 gate tests, 4/4 term-list tests): the copy_lint rules close 
 - proof-freshness, which stays red on main until the Postiz key rotation (ops, outside this PR).
 - Whether main will have moved by the time this handoff is published (update-branch is used only if it has).
 
-Local `node --test scripts/*.test.cjs`: 430 tests, 420 pass, 0 fail, 10 skip.
+Local `node --test scripts/*.test.cjs`: 433 tests, 423 pass, 0 fail, 10 skip.
