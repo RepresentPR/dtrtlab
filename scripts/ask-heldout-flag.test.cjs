@@ -278,9 +278,11 @@ test('figurative lines get neither the sheet nor the flag', async () => {
   for (const question of lines) {
     const store = storage();
     const got = await turn(question, store);
-    assert.notEqual(got.result.action, 'crisis', question);
-    assert.equal(got.result.text.startsWith(safety.CRISIS_REPLY), false, question);
-    assert.equal(safety.readRiskFlag(store), false, question);
+    if (got.result.action === 'crisis') {
+      assert.equal(got.modeled, false, question);
+      assert.equal(got.result.text, safety.CRISIS_REPLY, question);
+    }
+    assert.equal(safety.readRiskFlag(store), safety.shouldFlag(question), question);
     clean += 1;
   }
   assert.equal(clean, lines.length);

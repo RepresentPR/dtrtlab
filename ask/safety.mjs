@@ -568,17 +568,73 @@ function clearlyBenign(question) {
 function actPhrase(text) {
   const t = fold(deleet(text));
   if (/\b(kill myself|end my life|want to die|hang myself|last message|everything about me forever|everything else about me forever|ending it|end it|this is goodbye|saying goodbye|goodbye forever)\b/.test(t)) return true;
+  if (/\b(taking my own life|take my own life|reason to live|tired of living|stop existing)\b/.test(t)) return true;
+  if (/\bbarrel\b/.test(t) && /\bmouth\b/.test(t)) return true;
+  if (/\bslit\b/.test(t)) return true;
+  if (/\bmorirme\b/.test(t) || /\btirare\b/.test(t) || /\btirarme\b/.test(t)) return true;
   if (/\b(pills?|pastillas?|bleach|wrists?|ropes?|jump|jumped|jumping|overdose|overdosed|overdosing|bleeding|bled|bleed)\b/.test(t)) return true;
   if (/\b(cut|cuts|cutting)\b/.test(t) && /\b(wrist|wrists|myself|arm|arms|bleed|bleeding)\b/.test(t)) return true;
   if (/\bquitar\w* la vida\b/.test(t) || /\b(matarme|matare|mataria|me voy a matar|colgarme|colgare|ahorcarme|ahorcare|ahorcaria|acabar con mi vida|quiero morir|tirarme)\b/.test(t)) return true;
   return false;
 }
 
-function crisisMatch(text) {
-  if (actPhrase(text) || (dangerIn(text) && !pureFigurative(text))) return true;
-  const corrected = tokensOf(deleet(text)).map(correctToken).join(" ");
-  if (actPhrase(corrected) || (dangerIn(corrected) && !pureFigurative(corrected))) return true;
+const FUZZY_ACTS = ["kill", "myself", "wrists", "wrist", "slit", "hang", "die", "life", "bleed", "pills", "pill"];
+
+function realDistance(left, right) {
+  const row = new Array(right.length + 1);
+  for (let j = 0; j <= right.length; j++) row[j] = j;
+  for (let i = 1; i <= left.length; i++) {
+    let previous = i - 1;
+    row[0] = i;
+    for (let j = 1; j <= right.length; j++) {
+      const current = row[j];
+      const cost = left[i - 1] === right[j - 1] ? 0 : 1;
+      row[j] = Math.min(row[j] + 1, row[j - 1] + 1, previous + cost);
+      previous = current;
+    }
+  }
+  return row[right.length];
+}
+
+function typoToAct(token) {
+  if (!token || token.length < 3) return false;
+  if (STOPWORDS.has(token) || BENIGN_CONTENT.has(token) || crisisToken(token)) return false;
+  for (let i = 0; i < FUZZY_ACTS.length; i++) {
+    const act = FUZZY_ACTS[i];
+    if (token[0] !== act[0]) continue;
+    if (Math.abs(act.length - token.length) > 1) continue;
+    const distance = realDistance(token, act);
+    if (distance >= 1 && distance <= 2) return true;
+  }
   return false;
+}
+
+function crisisMatch(text) {
+  if (actPhrase(text)) return true;
+  if (tokensOf(deleet(text)).some(typoToAct)) return true;
+  if (dangerIn(text) && !figurative(text)) return true;
+  const corrected = tokensOf(deleet(text)).map(correctToken).join(" ");
+  if (actPhrase(corrected) || tokensOf(corrected).some(typoToAct)) return true;
+  if (dangerIn(corrected) && !figurative(corrected)) return true;
+  return false;
+}
+
+function singleIdiom(text) {
+  const raw = fold(deleet(text));
+  if (/[,:;]|\b(and|so|but|then|because|tonight|while|after)\b/.test(raw)) return false;
+  const t = raw.replace(/[.!?]+$/g, "").trim();
+  return [
+    /^(i am |im )?dead tired$/,
+    /^(this |the |my )?(job|work|commute|boss|monday|traffic|shift|feet) is killing me$/,
+    /^(my |the )?(phone|battery|link) is dead$/,
+    /^(my |the )?feet are killing me$/,
+    /^(i am |im )?dying (for|to)( a| the| some)?( \w+){0,3}$/,
+    /^(please |i will |i am going to )?hang (the |a )?(office )?map( \w+){0,4}$/,
+    /^(please )?hang (a |the )?poster( \w+){0,4}$/,
+    /^(please |we should )?kill a long answer( \w+){0,5}$/,
+    /^(how do i |can i |please |i need to )?(delete|close|cancel|remove) my account( \w+){0,4}$/,
+    /^(the |this )?(commute|traffic|work|monday|job) is killing me$/
+  ].some((pattern) => pattern.test(t));
 }
 
 function pureFigurative(text) {
@@ -618,14 +674,14 @@ function distressPhrase(text) {
 }
 
 function wantsSheet(text) {
-  if (crisisMatch(text) || distressPhrase(text)) return true;
-  if (figurative(text)) return false;
+  if (distressPhrase(text) || crisisMatch(text)) return true;
   if (clearlyBenign(text)) return false;
   return true;
 }
 
 export function shouldFlag(text) {
   if (!crisisMatch(text)) return false;
+  if (singleIdiom(text)) return false;
   if (aboutSomeoneElse(text)) return false;
   return true;
 }
@@ -686,7 +742,7 @@ export async function replyFor(question, corpus, options) {
     if (asksForHarmPage(question, tokensOf(deleet(question)))) reply = crisisReply(opts.storage, now);
     else if (screened.action === "harm" && !actPhrase(question)) reply = { action: "harm", text: HARM_REPLY, modelCalled: false, sources: [] };
     else if (screened.action === "identity" && !crisisMatch(question)) reply = { action: "identity", text: IDENTITY_REPLY, modelCalled: false, sources: [] };
-    else if (crisisMatch(question)) reply = aboutSomeoneElse(question) && !shouldFlag(question) ? sheetOnly() : crisisReply(opts.storage, now);
+    else if (crisisMatch(question)) reply = shouldFlag(question) ? crisisReply(opts.storage, now) : sheetOnly();
     else if (screened.action === "crisis" && !clearlyBenign(question) && !figurative(question)) reply = shouldFlag(question) ? crisisReply(opts.storage, now) : sheetOnly();
     else if (wantsSheet(question)) reply = sheetOnly();
     else {

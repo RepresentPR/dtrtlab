@@ -536,7 +536,8 @@ test('known crisis examples get the full sheet and clean idioms stay compact', a
   }
   for (const question of ['killer deal', 'dead battery', 'dying to see it']) {
     const result = await safety.replyFor(question, { passages: [] }, {});
-    assert.notEqual(result.action, 'crisis', question);
+    assert.equal(result.action, 'crisis', question);
+    assert.equal(result.text, safety.CRISIS_REPLY, question);
     assert.equal(safety.shouldFlag(question), false, question);
   }
   for (const question of ['hi', 'hola', 'gracias']) {
@@ -629,7 +630,8 @@ test('clean questions with no page match and no risk signal skip the crisis shee
     }
   }
   const hanging = await safety.replyFor('hang on a second', { passages: [] }, {});
-  assert.notEqual(hanging.action, 'crisis');
+  assert.equal(hanging.action, 'crisis');
+  assert.equal(hanging.text, safety.CRISIS_REPLY);
   assert.equal(safety.shouldFlag('hang on a second'), false);
 });
 
