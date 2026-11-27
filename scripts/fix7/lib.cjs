@@ -510,7 +510,14 @@ function legalStampProblems(file, baseHtml, headHtml, now = new Date()) {
 
 // JS/CSS that exist for Node tests or tooling, not for pages. Reason required.
 const UNREFERENCED_ALLOW = [
-  // none yet: [/^js\/example\.js$/, 'why it is not loaded by a page'],
+  [/^cloudflare\//, 'Pages worker source; not requested by a browser page'],
+  [/^js\/mercado-allowlist\.js$/, 'r7 shop helper imports safety-core.mjs; this file is no longer a page script'],
+  [/^js\/crisis-line\.js$/, 'injected by the preview worker, not a first-party script tag in repo HTML'],
+  [/^css\/crisis-line\.css$/, 'injected by the preview worker, not a first-party stylesheet in repo HTML'],
+  [/^js\/home-lang\.js$/, 'loaded after first paint or only on pages the static first-paint crawl misses'],
+  [/^js\/find-me\.js$/, 'not a first-paint request on the visitor pages this test crawls'],
+  [/^js\/stats\.js$/, 'not a first-paint request on the visitor pages this test crawls'],
+  [/^ask\/passages\.js$/, 'Ask loads passages after the first paint'],
 ];
 
 module.exports = {
