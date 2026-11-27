@@ -1,9 +1,11 @@
 // Public answers are quotes from DTRT Lab's pages.
 // A model may only rephrase those quotes. Anything else is discarded.
-// Risk is checked on the whole session before any page answer.
-// A message with no confident page match gets the 988 sheet, then the
-// closest pages or the contact link. A compact note is only for a
-// greeting or everyday idiom that has no risk signal at all.
+// Risk is checked before any page answer, on this message, earlier
+// turns, and a browser-session flag that New chat does not clear.
+// A detected risk returns the full 988 sheet. A page answer and an
+// error reply carry a short 988 footer. A message with no confident
+// page match gets the full sheet, then the closest pages or contact.
+// A compact note is only for a greeting or everyday idiom with no risk.
 
 export const CRISIS_REPLY = "If you might hurt yourself, get help now. In the US, call or text 988. You can chat at https://988lifeline.org. If you are in immediate danger, call 911. You can also visit https://findahelpline.com. This is a very early AI test. It is not a person and not a doctor, and it will not keep chatting about this.";
 
@@ -24,6 +26,38 @@ export const RESOURCE_NOTE = "If you might hurt yourself, get help now. In the U
 export const ONLY_LINE = REDIRECT;
 
 export const HELP_LINE = "If you're struggling, call or text 988 (US) or visit findahelpline.com.";
+
+export const ERROR_REPLY = "The search on this page did not finish. The public pages are still linked from the home page.\n\n" + HELP_LINE;
+
+export const RISK_FLAG_KEY = "dtrt.risk.v1";
+
+const RISK_TOKENS = new Set([
+  "die", "dying", "died", "death", "deaths",
+  "life", "lives", "living", "alive",
+  "lethal", "lethality",
+  "dose", "doses", "dosage", "overdose",
+  "gone", "disappear", "disappears", "disappeared", "disappearing",
+  "muerte", "morir", "muero", "muere", "mueres", "morimos", "mueren", "muriendo", "muerto", "muerta",
+  "vida", "vivir", "viviendo", "vivo", "viva",
+  "letal", "letales", "dosis", "sobredosis",
+  "desaparecer", "desaparezco", "desaparezca", "desaparecido", "desaparecida"
+]);
+
+const RISK_PHRASES = [
+  "end it", "end my life", "end your life", "end his life", "end her life", "end their life",
+  "ending my life", "ending your life", "staying alive", "stay alive",
+  "leave this world", "leaving this world", "left this world",
+  "quit life", "quitting life", "quit living", "quitting living",
+  "who will find me", "wholl find me", "who will find my",
+  "not be here", "not to be here", "rather not be here",
+  "dont want to be here", "do not want to be here",
+  "dejar este mundo", "dejar el mundo", "irme de este mundo",
+  "dejar la vida", "renunciar a la vida", "acabar con mi vida", "terminar con mi vida", "quitarme la vida",
+  "quien me encontrara", "quien me va a encontrar", "quien va a encontrarme",
+  "no estar aqui", "no quiero estar", "preferiria no estar"
+];
+
+const PAGE_WORDS = new Set(["page", "pages", "entry", "entries", "notebook", "article", "guide", "post"]);
 
 const TERMS = new Set([
   "suicide", "suicidal", "unalive", "kms", "selfharm",
@@ -271,17 +305,41 @@ function isEverydayTopic(text) {
   return false;
 }
 
+function asksForHarmPage(text, tokens) {
+  const folded = fold(text);
+  const wantsPage = tokens.some((token) => PAGE_WORDS.has(token)) || /\b(show me|find the)\b/.test(folded);
+  if (!wantsPage) return false;
+  return hasAnyPhrase(tokens, HARM_PHRASES);
+}
+
 function dangerIn(text) {
   if (isGreeting(text)) return false;
   const scan = isIdiom(text) ? idiomRemainder(text) : text;
   const tokens = tokensOf(scan);
-  if (tokens.some((token) => MEANS.has(token) || TERMS.has(token))) return true;
-  if (hasAnyPhrase(tokens, DISTRESS_PHRASES) || hasAnyPhrase(tokens, COMPACT_BLOCKS)) return true;
+  if (tokens.some((token) => MEANS.has(token) || TERMS.has(token) || RISK_TOKENS.has(token))) return true;
+  if (hasAnyPhrase(tokens, DISTRESS_PHRASES) || hasAnyPhrase(tokens, COMPACT_BLOCKS) || hasAnyPhrase(tokens, RISK_PHRASES)) return true;
   if (hasAnyPhrase(tokens, COMPLETE) || includesAny(scan, CJK_COMPLETE) || includesAny(scan, CJK_TERMS)) return true;
   if (/\b(hurt|die|dying|died|death|kill|killed|killing)\b/.test(fold(scan))) return true;
   const folded = fold(scan);
   if (folded.includes("worth it") && /\b(life|living|alive)\b/.test(folded)) return true;
+  if (asksForHarmPage(scan, tokens)) return true;
   return false;
+}
+
+export function readRiskFlag(storage) {
+  try {
+    return !!(storage && storage.getItem(RISK_FLAG_KEY) === "1");
+  } catch (err) {
+    return false;
+  }
+}
+
+export function writeRiskFlag(storage) {
+  try {
+    if (storage && storage.setItem) storage.setItem(RISK_FLAG_KEY, "1");
+  } catch (err) {
+    /* A blocked store still returns the sheet for this turn. */
+  }
 }
 
 export function hasRisk(question, history) {
@@ -346,41 +404,56 @@ function compactReply() {
   };
 }
 
+function withFooter(text) {
+  const body = String(text || "").trim();
+  if (body.includes(HELP_LINE)) return body;
+  return body ? body + "\n\n" + HELP_LINE : HELP_LINE;
+}
+
+function crisisReply(storage) {
+  writeRiskFlag(storage);
+  return { action: "crisis", text: CRISIS_REPLY, modelCalled: false, sources: [] };
+}
+
+function pageReply(text, sources, modelCalled) {
+  return { action: "pages", text: withFooter(text), modelCalled: modelCalled, sources: sources };
+}
+
 export async function replyFor(question, corpus, options) {
   const opts = options || {};
-  if (hasRisk(question, opts.history)) return { action: "crisis", text: CRISIS_REPLY, modelCalled: false, sources: [] };
-  const screened = screen(question, opts.history);
-  if (screened.action === "crisis") return { action: "crisis", text: CRISIS_REPLY, modelCalled: false, sources: [] };
-  if (screened.action === "harm") return { action: "harm", text: HARM_REPLY, modelCalled: false, sources: [] };
-  if (screened.action === "identity") return { action: "identity", text: IDENTITY_REPLY, modelCalled: false, sources: [] };
-  let matches = [];
   try {
-    matches = typeof opts.search === "function" ? (await opts.search(question, corpus)) || [] : [];
-  } catch (err) {
-    matches = [];
-  }
-  const meta = isMetaQuestion(question);
-  if (!matches.length && meta) {
-    const passage = fallbackPassage(corpus);
-    if (passage) matches = [{ passage, score: 2 }];
-  }
-  const unmatched = (!confidentMatch(question, matches) && !meta) || !matches.length;
-  if (unmatched) {
-    if (clearlyClean(question, opts.history)) return compactReply();
-    return sheetWithHelp(matches);
-  }
-  const sources = matches.slice(0, 3);
-  const template = templateFrom(sources);
-  if (typeof opts.tryModel !== "function") {
-    return { action: "pages", text: template, modelCalled: false, sources };
-  }
-  try {
-    const drafted = await opts.tryModel(question, sources);
-    if (acceptableRephrase(drafted, sources)) {
-      return { action: "pages", text: String(drafted).trim(), modelCalled: true, sources };
+    if (readRiskFlag(opts.storage) || hasRisk(question, opts.history)) return crisisReply(opts.storage);
+    const screened = screen(question, opts.history);
+    if (screened.action === "crisis") return crisisReply(opts.storage);
+    if (screened.action === "harm") return { action: "harm", text: HARM_REPLY, modelCalled: false, sources: [] };
+    if (screened.action === "identity") return { action: "identity", text: IDENTITY_REPLY, modelCalled: false, sources: [] };
+    let matches = [];
+    try {
+      matches = typeof opts.search === "function" ? (await opts.search(question, corpus)) || [] : [];
+    } catch (err) {
+      matches = [];
     }
+    const meta = isMetaQuestion(question);
+    if (!matches.length && meta) {
+      const passage = fallbackPassage(corpus);
+      if (passage) matches = [{ passage, score: 2 }];
+    }
+    const unmatched = (!confidentMatch(question, matches) && !meta) || !matches.length;
+    if (unmatched) {
+      if (clearlyClean(question, opts.history)) return compactReply();
+      return sheetWithHelp(matches);
+    }
+    const sources = matches.slice(0, 3);
+    const template = templateFrom(sources);
+    if (typeof opts.tryModel !== "function") return pageReply(template, sources, false);
+    try {
+      const drafted = await opts.tryModel(question, sources);
+      if (acceptableRephrase(drafted, sources)) return pageReply(String(drafted).trim(), sources, true);
+    } catch (err) {
+      /* Keep the page quote. */
+    }
+    return pageReply(template, sources, true);
   } catch (err) {
-    /* Keep the page quote. */
+    return { action: "error", text: ERROR_REPLY, modelCalled: false, sources: [] };
   }
-  return { action: "pages", text: template, modelCalled: true, sources };
 }

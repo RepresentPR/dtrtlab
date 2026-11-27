@@ -1,5 +1,5 @@
-import { replyFor, CRISIS_REPLY, REDIRECT, RESOURCE_NOTE, SUGGESTIONS } from "./safety.mjs?v=20261122-ask19";
-import { normalizeEmail, ownedChat, syncOnLogin, applyDelete, keepAfterExpiredSession, deleteStatus, recordDeleteResult, readStore, logoutStore, STORE_KEY } from "./chat-store.mjs?v=20261122-ask19";
+import { replyFor, CRISIS_REPLY, REDIRECT, RESOURCE_NOTE, SUGGESTIONS, ERROR_REPLY } from "./safety.mjs?v=20261122-ask20";
+import { normalizeEmail, ownedChat, syncOnLogin, applyDelete, keepAfterExpiredSession, deleteStatus, recordDeleteResult, readStore, logoutStore, STORE_KEY } from "./chat-store.mjs?v=20261122-ask20";
 
 const STORE = STORE_KEY;
 const NOTICE = "dtrt.early-notice";
@@ -305,10 +305,11 @@ async function ask(question) {
   try {
     result = await replyFor(question, window.DTRT_ASK_CORPUS || { passages: [] }, {
       history,
+      storage: riskStorage(),
       search: (q, corpus) => window.DTRTAsk ? window.DTRTAsk.search(q, corpus, 4) : []
     });
   } catch (err) {
-    result = { text: "The search on this page did not finish. The public pages are still linked from the home page.", sources: [] };
+    result = { action: "error", text: ERROR_REPLY, sources: [] };
   }
   if (result.action === "pages") setStatus("From DTRT Lab's public pages. Very early AI test: answers can be wrong.");
   else setStatus("Very early AI test: answers can be wrong.");
@@ -452,6 +453,11 @@ composer.addEventListener("input", () => {
   composer.style.height = "auto";
   composer.style.height = Math.min(composer.scrollHeight, 140) + "px";
 });
+
+function riskStorage() {
+  try { return window.sessionStorage; }
+  catch (err) { return null; }
+}
 
 document.getElementById("new-chat").addEventListener("click", () => {
   state.activeId = "";
