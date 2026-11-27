@@ -7,7 +7,7 @@
 set -euo pipefail
 python3 -m unittest scripts/gates/test_gates.py
 
-mapfile -t drafts < <(git ls-files | grep -E '(^|/)(DRAFTS|drafts|captions)/' | grep -Ei '\.(md|txt|json|srt|vtt|csv)$' || true)
+mapfile -t drafts < <(git ls-files | grep -E '(^|/)(DRAFTS|drafts|captions)/' | grep -Ei '\.(md|txt|json|srt|vtt|csv|html|yml|yaml)$' || true)
 if ((${#drafts[@]})); then
   python3 scripts/gates/copy_lint.py "${drafts[@]}"
 else

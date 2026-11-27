@@ -2,7 +2,7 @@
 
 Banned words are built from character codes so this public file never spells them.
 """
-import importlib.util, io, os, subprocess, sys, tempfile, unittest
+import contextlib, importlib.util, io, os, subprocess, sys, tempfile, unittest
 from contextlib import redirect_stdout
 from pathlib import Path
 
@@ -44,6 +44,18 @@ class CopyLintTests(unittest.TestCase):
     def test_output_never_prints_the_word(self):
         issues = copy_lint.lint_text(f"near {TOWN}")
         self.assertTrue(all(TOWN.lower() not in d.lower() for _k, _n, d in issues))
+
+    def test_phrase_wrapped_across_lines_fails(self):
+        first, second = ISLAND.split(" ")
+        self.assertTrue(any(k == "PAIR" for k, _n, _d in copy_lint.lint_text(f"filmed in {first}\n{second} today")))
+
+    def test_missing_repo_lists_refuses_instead_of_passing(self):
+        with tempfile.TemporaryDirectory() as d:
+            good = Path(d, "good.md")
+            good.write_text("Clean caption.\n", encoding="utf-8")
+            with redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()) as err:
+                self.assertEqual(copy_lint.main([str(good), "--terms", str(Path(d, "missing.cjs"))]), 2)
+            self.assertIn("--terms", err.getvalue())
 
     def test_engagement_bait_fails(self):
         self.assertTrue(copy_lint.lint_text("Tag a friend who needs this"))
@@ -108,12 +120,23 @@ class DoneGateTests(unittest.TestCase):
 
 
 class WiringTests(unittest.TestCase):
+    @staticmethod
+    def code_lines(path):
+        return [l for l in path.read_text(encoding="utf-8").splitlines() if l.strip() and not l.lstrip().startswith("#")]
+
     def test_ci_runs_the_gates(self):
-        wf = (HERE.parent.parent / ".github" / "workflows" / "gates.yml").read_text(encoding="utf-8")
-        self.assertIn("scripts/gates/test_gates.py", wf)
-        self.assertIn("scripts/gates/copy_lint.py", wf)
-        self.assertIn("scripts/gates/done_gate.py", wf)
-        self.assertNotIn("continue-on-error", wf)
+        wf = self.code_lines(HERE.parent.parent / ".github" / "workflows" / "gates.yml")
+        self.assertTrue(any("run: bash scripts/gates/run_ci.sh" in l for l in wf))
+        self.assertFalse(any("continue-on-error" in l for l in wf))
+        sh = self.code_lines(HERE / "run_ci.sh")
+        for needle in ("python3 -m unittest scripts/gates/test_gates.py", "python3 scripts/gates/copy_lint.py",
+                       "python3 scripts/gates/done_gate.py", "set -euo pipefail"):
+            self.assertTrue(any(needle in l for l in sh), needle)
+
+    def test_ci_draft_filter_covers_every_copy_lint_extension(self):
+        sh = (HERE / "run_ci.sh").read_text(encoding="utf-8")
+        for ext in copy_lint.TEXT_EXT:
+            self.assertIn(ext.lstrip("."), sh, ext)
 
 
 if __name__ == "__main__":

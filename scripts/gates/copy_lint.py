@@ -74,21 +74,28 @@ def repo_sets(path=REPO_TERMS):
     return out
 
 
-def term_sets():
-    r = repo_sets()
+def term_sets(path=REPO_TERMS):
+    r = repo_sets(path)
     return r["SINGLE"] | EXTRA_SINGLE, r["PAIRS"] | r["PLACE_PAIRS"] | EXTRA_PAIRS
+
+
+def tokens_with_lines(text):
+    """(token, line) pairs over the whole text, so a phrase wrapped across lines still matches."""
+    out = []
+    for n, line in enumerate(str(text).splitlines() or [""], 1):
+        out += [(t, n) for t in tokens(line)]
+    return out
 
 
 def lint_text(text, ai_voice=False, sets=None):
     single, pairs = sets or term_sets()
     issues = []
-    for n, line in enumerate(str(text).splitlines() or [""], 1):
-        toks = tokens(line)
-        for i, t in enumerate(toks):
-            if h(t) in single:
-                issues.append(("TERM", n, "term#" + h(t)))
-            if i + 1 < len(toks) and h(t + " " + toks[i + 1]) in pairs:
-                issues.append(("PAIR", n, "pair#" + h(t + " " + toks[i + 1])))
+    toks = tokens_with_lines(text)
+    for i, (t, n) in enumerate(toks):
+        if h(t) in single:
+            issues.append(("TERM", n, "term#" + h(t)))
+        if i + 1 < len(toks) and h(t + " " + toks[i + 1][0]) in pairs:
+            issues.append(("PAIR", n, "pair#" + h(t + " " + toks[i + 1][0])))
     folded = fold(text)
     if "candles" in tokens(text) and DISCLOSURE not in str(text):  # exact case and wording
         issues.append(("DISCLOSURE", 0, "Candles mentioned without the exact line: " + DISCLOSURE))
@@ -112,11 +119,15 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description="DTRTLab copy gate (rules.md 8.4)")
     ap.add_argument("paths", nargs="+", help="draft files or folders")
     ap.add_argument("--ai-voice", action="store_true", help="the clip uses an AI voice; require a disclosure")
+    ap.add_argument("--terms", default=REPO_TERMS,
+                    help="path to scripts/private-terms.test.cjs (needed when this file runs outside the repo)")
     args = ap.parse_args(argv)
-    sets = term_sets()
-    if not sets[0]:
-        print("FAIL: no term lists loaded", file=sys.stderr)
+    if not repo_sets(args.terms)["SINGLE"]:
+        # Without the repo lists only the extras would run, and drafts could pass on half the rules.
+        print(f"FAIL: could not load the repo term lists from {args.terms}. Run from a repo checkout "
+              "or pass --terms <repo>/scripts/private-terms.test.cjs", file=sys.stderr)
         return 2
+    sets = term_sets(args.terms)
     files = collect(args.paths)
     if not files:
         print("FAIL: no draft files found in " + " ".join(args.paths), file=sys.stderr)
