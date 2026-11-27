@@ -18,7 +18,7 @@
     "Message": "Mensaje",
     "Send": "Enviar",
     "We use your message only to reply.": "Usamos tu mensaje solo para responder.",
-    "Never send a password, login or code. I don't need one. Answer 3 short questions and we'll follow up by email.": "Nunca envíes una contraseña, un acceso o un código. No los necesito. Responde 3 preguntas cortas y te escribo por correo.",
+    "Never send a password, login or code. I don't need one.": "Nunca envíes una contraseña, un acceso o un código. No los necesito.",
     "Shop": "Mercado",
     "Ask (AI)": "Preguntar (IA)",
     "Links": "Enlaces",
