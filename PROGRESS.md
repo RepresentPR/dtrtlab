@@ -20,3 +20,5 @@ FIXED: wrangler.toml is absent so dashboard bindings stay, scripts/cf-deploy.tes
 Not checked: QA's private sets, a live D1 signup, and the proof stamp.
 
 Local `node --test scripts/*.test.cjs`: 372 tests, 362 pass, 0 fail, 10 skip.
+
+Main's PR #115 live-refresh handoff is merged in this branch. Its not-checked list remains the live Actions status code, the live secret, and proof-freshness.

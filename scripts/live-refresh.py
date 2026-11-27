@@ -10,11 +10,16 @@ token, HTTP error, timeout, connection error, or bad JSON is recorded as
 unavailable. The X count stays unknown (null, never zero), an older audience
 total is not left beside the new stamp, and Postiz still refreshes. A skipped
 or failed required source writes nothing: the stamp, numbers and history stay.
-The log names the error type only.
+The log names the error type only (plus, for a required source, the HTTP status code for HTTP
+errors, never the response body or any header).
+A required source (Postiz) that is missing, rejected, rate limited or broken
+fails the run with exit code 1 and a ::error:: line that says what to fix, so
+the Actions run turns red instead of passing with stale data (11/22 incident:
+every run logged "postiz: HTTPError" and still went green for 5 days).
 TODO(fix-2): a public "auto-update paused" line needs Ian's approval of the
 exact wording. Do not add that sentence to a page.
 """
-import base64, datetime as dt, json, os, secrets, urllib.error, urllib.request, urllib.parse
+import base64, datetime as dt, json, os, secrets, sys, urllib.error, urllib.request, urllib.parse
 from zoneinfo import ZoneInfo
 
 ET = ZoneInfo("America/New_York")
@@ -74,6 +79,32 @@ def postiz_published():
 # X may be absent or fail. A required source that skips or raises still blocks the write.
 OPTIONAL = {"x"}
 
+def describe(exc):
+    """Short, secret-free label for a failure: type name, plus status code for HTTP errors."""
+    if isinstance(exc, urllib.error.HTTPError):
+        return f"{type(exc).__name__} {exc.code}"
+    return type(exc).__name__
+
+# What to do about each failure, printed with the ::error:: line. No secret values.
+HINTS = {
+    "postiz: skipped": "POSTIZ_API_KEY is empty or missing. Copy the key from Postiz > Settings > Public API "
+                       "and set it at GitHub > RepresentPR/dtrtlab > Settings > Secrets and variables > Actions.",
+    "postiz: HTTPError 401": "Postiz rejected POSTIZ_API_KEY: the key was regenerated or revoked. "
+                             "Copy the current key from Postiz > Settings > Public API and update it at GitHub > RepresentPR/dtrtlab > Settings > Secrets and variables > Actions.",
+    "postiz: HTTPError 403": "Postiz refused POSTIZ_API_KEY (403). Check the Postiz plan/workspace, then update POSTIZ_API_KEY at GitHub > RepresentPR/dtrtlab > Settings > Secrets and variables > Actions.",
+    "postiz: HTTPError 429": "Postiz rate limit hit (30 requests/hour per key). Something else is sharing this key; "
+                             "the next scheduled run will retry.",
+}
+
+def hint(error):
+    if error in HINTS:
+        return HINTS[error]
+    if error.startswith("postiz: HTTPError 5"):
+        return "Postiz server error. The next scheduled run will retry; if it persists, check status.postiz.com."
+    if error.startswith("postiz: HTTPError 404"):
+        return "Postiz API path changed. Compare https://docs.postiz.com/public-api/posts/list with postiz_published()."
+    return "See scripts/live-refresh.py postiz_published()."
+
 def refresh_owner(owner, now, sources):
     """Apply source callables.
 
@@ -95,7 +126,7 @@ def refresh_owner(owner, now, sources):
                 unavailable.append(name)
                 detail[name] = type(exc).__name__
                 continue
-            errors.append(f"{name}: {type(exc).__name__}")
+            errors.append(f"{name}: {describe(exc)}")
             continue
         if value is None and name in OPTIONAL:
             unavailable.append(name)
@@ -156,10 +187,11 @@ def main():
     stamp = owner["meta"].get("updated_et")
     if errors:
         # Do not re-encrypt. A new salt would make a "refresh" commit with nothing refreshed.
-        # The warning is the visible signal; the stored files stay on the last complete refresh.
-        print("::warning::live refresh left the saved stamp unchanged (" + "; ".join(errors) + ")")
+        # Fail loudly: a red run is the signal. The stored files stay on the last complete refresh.
+        for e in errors:
+            print(f"::error title=live-refresh failed::{e}. {hint(e)} Saved stamp is still {stamp}.")
         print("unchanged", stamp, "errors:", errors)
-        return
+        sys.exit(1)
     with open(ENC, "w") as handle:
         json.dump(encrypt(owner, pw), handle)
     if not os.path.exists(PROOF):
