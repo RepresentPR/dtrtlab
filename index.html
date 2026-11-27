@@ -5,12 +5,12 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self' data: https://dtrtlab.goatcounter.com; media-src 'self'; manifest-src 'self'; connect-src https://dtrtlab.goatcounter.com; form-action 'none'; base-uri 'none'; object-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="no-referrer">
-<title>Ian — posts, videos, and the work</title>
-<meta name="description" content="Ian's page for posts, videos, and questions. Instagram and X are where I post most. Business pages stay linked.">
+<title>Ian — shop and product links</title>
+<meta name="description" content="Things we build or link to. Some links earn us a commission.">
 <link rel="canonical" href="https://dtrtlab.com/">
 <meta property="og:site_name" content="DTRT Lab">
-<meta property="og:title" content="Ian — posts, videos, and the work">
-<meta property="og:description" content="Ian's page for posts, videos, and questions. Instagram and X are where I post most. Business pages stay linked.">
+<meta property="og:title" content="Ian — shop and product links">
+<meta property="og:description" content="Things we build or link to. Some links earn us a commission.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://dtrtlab.com/">
 <meta property="og:image" content="https://dtrtlab.com/img/brand/avatar-a.png">
@@ -29,19 +29,19 @@
 <meta name="theme-color" content="#0B2545">
 <link rel="stylesheet" href="/css/knowledge-home.css?v=20261112-notebook1">
 <link rel="stylesheet" href="/css/dream.css?v=20261115-dream4">
-<link rel="stylesheet" href="/css/neural-glow.css?v=20261127-store6">
+<link rel="stylesheet" href="/css/neural-glow.css?v=20261127-store13">
 <link rel="stylesheet" href="/css/story-stage.css?v=20261030-guide1">
 <script defer src="/js/visit.js?v=20261115-dream10"></script>
 <script defer src="/js/home-lang.js?v=20261127-store1"></script>
-<script defer src="/js/mercado-allowlist.js?v=20261127-store9"></script>
-<script defer src="/js/shop-helper.js?v=20261127-store7"></script>
+<script defer src="/js/mercado-allowlist.js?v=20261127-store13"></script>
+<script defer src="/js/mercado-helper.js?v=20261127-store13"></script>
 <script type="module" src="/js/knowledge-guide.mjs?v=20261024-hub2"></script>
 <script type="module" src="/js/story-guide.mjs?v=20261030-fire4"></script>
 <script type="module" src="/js/homepage-video.mjs?v=20261024-media1"></script>
 <script data-goatcounter="https://dtrtlab.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <link rel="stylesheet" href="/css/socials.css?v=20261115-socials3">
 </head>
-<body class="dream storefront" data-es-title="Ian — publicaciones, videos y el trabajo">
+<body class="dream storefront" data-es-title="Ian — tienda y enlaces">
 <a class="skip" href="#main">Skip to content</a>
 <div class="preview-bar">THE DTRT LAB NOTEBOOK <span id="notebook-updated" data-content-date="2026-11-19">Updated November 19, 2026</span></div>
 <!--ask-skip-->
@@ -54,65 +54,58 @@
 <div class="store-helper">
 <p id="shop-label" class="visually-hidden"><span data-es="Asistente de compras (beta) — coincide con nuestro catálogo">Shopping helper (beta) — matches our catalog</span></p>
 <div class="store-search">
-<label class="visually-hidden" for="shop-q" data-es="Qué buscas">What are you looking for?</label>
-<input id="shop-q" type="search" name="q" maxlength="120" autocomplete="off" placeholder="What are you looking for?" data-es-placeholder="¿Qué buscas?" aria-describedby="shop-label">
+<label class="visually-hidden" for="mk-q" data-es="Qué buscas">What are you looking for?</label>
+<input id="mk-q" type="search" name="q" maxlength="120" autocomplete="off" placeholder="What are you looking for?" data-es-placeholder="¿Qué buscas?" aria-describedby="shop-label">
 <button type="button" id="shop-go" data-es="Buscar">Search</button>
 </div>
 </div>
 </header>
 <main id="main">
-<nav class="store-chips" aria-label="Categories">
+<nav class="store-chips" id="mk-chips" aria-label="Categories">
 <button type="button" class="chip is-on" data-cat="all" aria-pressed="true" data-es="Todo">All</button>
 <button type="button" class="chip" data-cat="jafra" aria-pressed="false" data-es="Belleza">Beauty</button>
-<button type="button" class="chip" data-cat="biz" aria-pressed="false" data-es="Negocios">Business</button>
+<button type="button" class="chip" data-cat="ia" aria-pressed="false" data-es="Negocios">Business</button>
 <button type="button" class="chip" data-cat="motion" aria-pressed="false" data-es="Energía">Energy</button>
 <button type="button" class="chip" data-cat="candles" aria-pressed="false">Trading</button>
-<button type="button" class="chip" data-cat="ai" aria-pressed="false">IA</button>
 </nav>
-<div id="shop-crisis" class="shop-crisis" hidden role="alert"><p>If you're thinking about suicide or in crisis: <a href="tel:988">call</a> or <a href="sms:988">text 988</a> (US) · Si estás en crisis: llama o textea al <a href="tel:988">988</a> · <a href="https://findahelpline.com" rel="noopener" target="_blank">findahelpline.com</a> (outside US)</p></div>
+<div id="mk-crisis" class="shop-crisis" hidden role="alert"><p>If you're thinking about suicide or in crisis: <a href="tel:988">call</a> or <a href="sms:988">text 988</a> (US) · Si estás en crisis: llama o textea al <a href="tel:988">988</a> · <a href="https://findahelpline.com" rel="noopener" target="_blank">findahelpline.com</a> (outside US)</p></div>
 <div id="shop-results" hidden></div>
-<ul class="store-grid">
-<li id="card-jafra" data-shop-id="jafra" data-cat="jafra" class="store-card">
+<p id="mk-empty" class="shop-empty" hidden data-es="Sin coincidencias, ver todos los productos">No match, see all products</p>
+<p id="mk-see-all-wrap" hidden><button type="button" id="mk-see-all" data-es="Ver todos los productos">See all products</button></p>
+<ul class="store-grid" id="mk-grid">
+<li id="card-jafra" data-id="jafra" data-shop-id="jafra" data-cat="jafra" class="store-card mk-card">
 <div class="icon" aria-hidden="true"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#3a1d24"/><path fill="#e8a0ae" d="M32 14c8 7 12 14 12 21s-5 15-12 15-12-8-12-15 4-14 12-21z"/></svg></div>
 <h3 data-es="La tienda Jafra de mi mamá">My mom's Jafra shop</h3>
 <p class="desc" data-es="Belleza de la tienda Jafra de mi mamá.">Beauty from my mom's Jafra shop.</p>
 <p class="go"><a href="https://www.jafra.com/es/?pws=sabrinacrespo" rel="sponsored noopener noreferrer" target="_blank" data-es="Ver">View</a></p>
 <p class="disc" data-es="Enlace de consultora Jafra de mi mamá. Ella gana de las ventas.">My mom's Jafra consultant link. She earns from sales.</p>
 </li>
-<li id="card-biz" data-shop-id="biz" data-cat="biz" class="store-card">
+<li id="card-ia" data-id="ia" data-shop-id="ia" data-cat="ia" class="store-card mk-card">
 <div class="icon" aria-hidden="true"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#10233a"/><g fill="none" stroke="#7de1c8" stroke-width="2.4"><rect x="16" y="18" width="32" height="28" rx="3"/><path d="M16 28h32M28 18v28"/></g></svg></div>
 <h3 data-es="IA de DTRT Lab para negocios">DTRT Lab AI for business</h3>
 <p class="desc" data-es="IA para tu negocio. Escríbenos para empezar.">AI for your business. Write to us to start.</p>
 <p class="go"><a href="/contact.html" data-es="Ver">View</a></p>
 <p class="disc" data-es="No tomamos pagos en esta página.">We do not take payments on this page.</p>
 </li>
-<li id="card-motion" data-shop-id="motion" data-cat="motion" class="store-card">
+<li id="card-motion" data-id="motion" data-shop-id="motion" data-cat="motion" class="store-card mk-card">
+<p class="disc" data-es="Enlace de afiliado. Ganamos una comisión.">Affiliate link. We earn a commission.</p>
 <div class="icon" aria-hidden="true"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#0d2a2c"/><path fill="#7de1c8" d="M16 40l12-22 8 14 4-8 8 16H16z"/></svg></div>
 <h3 data-es="Bolsitas de cafeína MOTION">MOTION caffeine pouches</h3>
 <p class="desc"><q data-es="Cero nicotina y cero tabaco, también.">Zero nicotine and zero tobacco, too.</q> <q data-es="40 mg de cafeína por bolsita. Adultos 18+.">40mg caffeine per pouch. Adults 18+.</q></p>
 <p class="go"><a href="https://www.motionpouches.com?bg_ref=VLwp0g3b5W" rel="sponsored noopener noreferrer" target="_blank" data-es="Ver">View</a></p>
-<p class="disc" data-es="Enlace de afiliado. Ganamos una comisión. Fuente: motionpouches.com/shop, 27 de noviembre de 2026.">Affiliate link. We earn a commission. Source: motionpouches.com/shop, November 27, 2026.</p>
 </li>
-<li id="card-candles" data-shop-id="candles" data-cat="candles" class="store-card">
+<li id="card-candles" data-id="candles" data-shop-id="candles" data-cat="candles" class="store-card mk-card">
 <div class="icon" aria-hidden="true"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#1a1408"/><path fill="#e8c98a" d="M18 44V26h6v18H18zm10 4V18h6v30h-6zm10-8v-10h6v10h-6z"/></svg></div>
 <h3>Candles</h3>
 <p class="desc" data-es="Una app de trading.">A trading app.</p>
-<p class="go"><a href="https://buycandles.xyz/invite?ref=dtrt" rel="sponsored noopener noreferrer" target="_blank" data-es="Ver">View</a></p>
-<p class="disc" data-es="Enlace de referido. Ganamos de las comisiones. Operar es riesgoso, no es asesoría financiera.">Referral link. We earn from fees. Trading is risky, not financial advice.</p>
-</li>
-<li id="card-ai" data-shop-id="ai" data-cat="ai" class="store-card">
-<div class="icon" aria-hidden="true"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#1a1430"/><g fill="none" stroke="#cbb6ff" stroke-width="2.2"><circle cx="32" cy="32" r="7"/><path d="M32 12v8M32 44v8M12 32h8M44 32h8M18 18l6 6M40 40l6 6M46 18l-6 6M24 40l-6 6"/></g></svg></div>
-<h3 data-es="Ask DTRT Lab, nuestra IA">Ask DTRT Lab, our AI</h3>
-<p class="desc" data-es="Prueba de IA muy temprana, todavía no está en vivo.">Very early AI test, not live yet.</p>
-<p class="go"><span class="soon" aria-disabled="true">Pronto</span></p>
-<p class="disc" data-es="Las respuestas pueden estar mal. No es una persona ni un médico.">Answers can be wrong. It is not a person and not a doctor.</p>
+<p class="go"><a href="https://buycandles.xyz/invite?ref=dtrt" rel="sponsored noopener noreferrer" target="_blank" data-es="Ver">View</a> <span class="disc" data-es="Enlace de referido. Ganamos de las comisiones. Operar es riesgoso, no es asesoría financiera.">Referral link. We earn from fees. Trading is risky, not financial advice.</span></p>
 </li>
 </ul>
 <!--/ask-skip-->
 
 <header class="header">
 <a class="wordmark" href="#main"><img class="brand-mark" src="/img/brand/mark.svg?v=la20261015" alt="" width="34" height="34">DTRT <strong>LAB</strong></a>
-<nav aria-label="Main navigation"><a href="/blog/">Posts</a><a href="#videos">Videos</a><a href="/ask/">Ask DTRT</a><a href="/links/">Products &amp; links</a><a href="#work-with-me">Work with me</a><a href="/notebook/">Notebook</a></nav>
+<nav aria-label="Main navigation"><a href="#videos">Videos</a><a href="/links/">Products &amp; links</a><a href="#work-with-me">Work with me</a></nav>
 <nav class="site-socials" aria-label="Social"><a class="social-main" href="https://www.instagram.com/dtrt.xyng/" rel="me noopener noreferrer" target="_blank" aria-label="Instagram, @dtrt.xyng">Instagram</a><a class="social-main" href="https://x.com/DTRTLab" rel="me noopener noreferrer" target="_blank" aria-label="X, @DTRTLab">X</a><a href="https://www.tiktok.com/@iananthonyfc" rel="me noopener noreferrer" target="_blank" aria-label="TikTok, @iananthonyfc">TikTok</a><a href="https://www.youtube.com/@DTRTLabYT" rel="me noopener noreferrer" target="_blank" aria-label="YouTube, @DTRTLabYT">YouTube</a><a href="https://www.twitch.tv/dtrtc" rel="me noopener noreferrer" target="_blank" aria-label="Twitch, dtrtc">Twitch</a></nav>
 </header>
 <section class="hero personal-hero" aria-labelledby="home-title">
@@ -120,18 +113,13 @@
 <h1 id="home-title" data-es-first="Soy Ian.">I'm Ian.<!--ask-skip--><br><em data-es="Construyendo en público.">Building in public.</em><!--/ask-skip--></h1>
 <p class="hero-lead" id="visit-line">This page follows the time of day on your device.</p>
 <p class="hero-lead">Posts, videos, and a quiet place to ask a question. Instagram and X are where I post most. I work remotely.</p>
-<div class="hero-actions"><a class="primary social-main" href="https://www.instagram.com/dtrt.xyng/" rel="me noopener noreferrer" target="_blank">Instagram <span>@dtrt.xyng</span></a><a class="text-link" href="/blog/">Read posts</a><a class="text-link" href="/ask/">Ask DTRT</a><a class="text-link" href="#work-with-me">Work with me</a></div>
+<div class="hero-actions"><a class="primary social-main" href="https://www.instagram.com/dtrt.xyng/" rel="me noopener noreferrer" target="_blank">Instagram <span>@dtrt.xyng</span></a><a class="text-link" href="#work-with-me">Work with me</a></div>
 </section>
 
 <div class="home-legacy">
-<section class="section" id="ask-home">
-<div class="section-head"><div><p class="eyebrow">ASK DTRT</p><h2>Questions from the published pages.</h2></div></div>
-<p>Ask in your browser. The answer is a short list of matching passages and the pages they come from. No paid model is connected.</p>
-<p><a class="primary" href="/ask/">Open Ask DTRT</a></p>
-</section>
 <section class="section" id="work-with-me">
 <div class="section-head"><div><p class="eyebrow">BUSINESS</p><h2>Work with me.</h2></div><p>Services, proof, and the company pages stay open.</p></div>
-<p><a href="/map/">Free office map</a> · <a href="/map/?want=check">Free AI check</a> · <a href="#job-desk">Job Desk</a> · <a href="#prices">Prices</a> · <a href="/demo/">Fictional demo</a> · <a href="/proof/">Proof</a> · <a href="/partners.html">Partners</a> · <a href="/legal/terms.html">Terms</a> · <a href="/contact.html">Contact</a> · <a href="#campaign">Ended week</a></p>
+<p><a href="/map/">Free office map</a> · <a href="/map/?want=check">Free AI check</a> · <a href="/demo/">Fictional demo</a> · <a href="/proof/">Proof</a> · <a href="/legal/terms.html">Terms</a> · <a href="/contact.html">Contact</a> · <a href="#campaign">Ended week</a></p>
 </section>
 <section class="hero">
 <div class="story-stage" role="region" aria-labelledby="story-kicker">
@@ -327,16 +315,11 @@ Your browser cannot play this video. Use a video link or read the transcript bel
 <!--ask-skip-->
 <p class="site-crisis" role="note">If you're thinking about suicide or in crisis: <a href="tel:988">call</a> or <a href="sms:988">text 988</a> (US) · Si estás en crisis: llama o textea al <a href="tel:988">988</a> · <a href="https://findahelpline.com" rel="noopener" target="_blank">findahelpline.com</a> (outside US)</p>
 <p class="fine" data-es="Cosas que construimos o enlazamos. Algunos enlaces nos pagan comisión.">Things we build or link to. Some links earn us a commission.</p>
-<p class="tagline" data-es="Local, real, de aquí">Local, real, from here</p>
 <img class="foot-avatar" src="/img/company/ian-headshot.svg" alt="" width="32" height="32">
 <details class="foot-more">
 <summary data-es="Más">More</summary>
 <nav aria-label="More">
-<a href="/blog/">Posts</a>
-<a href="/ask/">Ask DTRT</a>
-<a href="/notebook/">Notebook</a>
 <a href="#videos">Videos</a>
-<a href="#job-desk">Job Desk</a>
 <a href="/map/">Map</a>
 <a href="/inside-the-lab/">Inside the Lab</a>
 <a href="/mercado/">Mercado</a>
@@ -350,6 +333,6 @@ Your browser cannot play this video. Use a video link or read the transcript bel
 <!--/ask-skip-->
 <a class="wordmark" href="#main">DTRT <strong>LAB</strong></a>
 <p>Do the right thing. Make useful things. Keep a truthful record.</p>
-<nav aria-label="Footer" hidden><a href="/notebook/">Notebook</a><a href="/blog/">Posts</a><a href="/ask/">Ask DTRT</a><a href="/inside-the-lab/">Inside the Lab</a><a href="/contact.html">Contact</a><a href="/legal/privacy.html">Privacy</a><a href="/legal/terms.html">Terms</a><a href="/legal/refunds.html">Refunds</a></nav>
+<nav aria-label="Footer" hidden><a href="/inside-the-lab/">Inside the Lab</a><a href="/contact.html">Contact</a><a href="/legal/privacy.html">Privacy</a><a href="/legal/terms.html">Terms</a><a href="/legal/refunds.html">Refunds</a></nav>
 </footer>
 </body></html>
