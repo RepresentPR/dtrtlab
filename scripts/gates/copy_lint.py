@@ -34,7 +34,13 @@ Exit 0 = PASS, 1 = FAIL, 2 = usage error. Read-only.
 import argparse, hashlib, os, re, sys, unicodedata
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-REPO_TERMS = os.path.join(HERE, "..", "private-terms.test.cjs")
+# r7: private-terms.test.cjs was moved to scripts/archive/ (Ruling (b)).
+# Keep reading the archived file so copy_lint still has the term lists.
+_TERMS_CANDIDATES = [
+    os.path.join(HERE, "..", "archive", "private-terms.test.cjs"),
+    os.path.join(HERE, "..", "private-terms.test.cjs"),
+]
+REPO_TERMS = next((p for p in _TERMS_CANDIDATES if os.path.isfile(p) and os.path.getsize(p) > 500), _TERMS_CANDIDATES[0])
 
 EXTRA_SINGLE = {
     "5072f198bd5e3aab", "4f80902c333e7bd9", "383188966c792ce3",  # personal-location tokens
