@@ -422,16 +422,42 @@ def liveness_denied(toks, start, end, text):
             j -= 1
         if j >= lo and is_neg_at(words, j):
             return True
+    return _en_post_claim_denied(words, end, hi)
+
+
+EN_COPULA = {"is", "are", "was", "were", "be", "been", "being", "s"}
+EN_SUBJECT = {"it"}
+EN_POST_SKIP = FILLER | EN_SUBJECT | {"now"}
+
+
+def _en_post_claim_denied(words, end, hi):
+    """True when a same-clause negation after the claim has AI or 'it' as its subject.
+
+    'The live AI is not available' and '..., it is not ready' count. A trailing
+    'not available in red' / 'not ready for merch' / 'not online shopping' does
+    not, because that complement is not a clause with AI or 'it' as the subject.
+    Contractions (isn't, aren't) count as a copula plus a negation.
+    """
+    saw_it = False
+    saw_copula = False
     j = end
-    while j < hi and words[j] in FILLER:
+    while j < hi and words[j] in EN_POST_SKIP:
+        if words[j] in EN_SUBJECT:
+            saw_it = True
+        if words[j] in EN_COPULA:
+            saw_copula = True
         j += 1
-    if j < hi and is_neg_at(words, j):
-        k = after_neg(words, j)
-        while k < hi and words[k] in FILLER:
-            k += 1
-        if k < hi and words[k] in DENY_PREDICATES:
-            return True
-    return False
+    if j >= hi or not is_neg_at(words, j):
+        return False
+    # isn't / aren't / wasn't / ain't are copula+negation in one contraction.
+    if words[j] in NEG_HEADS or (words[j] == "t" and j > 0 and words[j - 1] in NEG_HEADS):
+        saw_copula = True
+    if not (saw_it or saw_copula):
+        return False
+    k = after_neg(words, j)
+    while k < hi and words[k] in (FILLER | {"now"}):
+        k += 1
+    return k < hi and words[k] in DENY_PREDICATES
 
 
 ES_NEG = {"no", "nunca"}
@@ -476,6 +502,84 @@ def _same_sentence_range(toks, start, end, text):
 
 def _es_is_deny_word(w):
     return w in ES_DENY_PREDICATES or w in ES_DENY_VERBS
+
+
+ES_AI_NOUNS = {"ia", "ias", "ai", "ais"}
+ES_TIME_WORDS = {"ya", "ahora"}
+ES_COPULA_WORDS = {
+    "esta", "estan", "estara", "estaran",
+    "es", "son", "sera", "seran",
+}
+ES_PRED_SINGLE = {
+    "disponible", "disponibles",
+    "activa", "activo", "activas", "activos",
+    "funcionando",
+    "lista", "listo", "listas", "listos",
+}
+ES_PRED_EN = {"vivo", "directo"}
+EN_AI_NOUNS = {"ai", "ais"}
+EN_TIME_WORDS = {"now"}
+EN_PRED_WORDS = {"live", "available", "active", "ready", "online"}
+EN_CLAIM_COPULA = {"is", "are", "was", "were", "s"}
+
+
+def _unbroken(toks, start, last, text):
+    return not hard_break_between(text, toks[start][3], toks[last][2])
+
+
+def es_copula_live_end(toks, i, text):
+    """End index of an ES copula live claim starting at IA / la IA / nuestra IA / AI.
+
+    Pattern: IA or AI (gender and number variants) + optional ya/ahora +
+    está/es/estará (and number/future variants) + optional ya/ahora +
+    en vivo / en directo / disponible / activa / funcionando / lista
+    (and gender/number variants).
+    """
+    words = [t[0] for t in toks]
+    n = len(toks)
+    if words[i] not in ES_AI_NOUNS:
+        return None
+    j = i + 1
+    if j < n and words[j] in ES_TIME_WORDS and _unbroken(toks, i, j, text):
+        j += 1
+    if j >= n or words[j] not in ES_COPULA_WORDS or not _unbroken(toks, i, j, text):
+        return None
+    j += 1
+    if j < n and words[j] in ES_TIME_WORDS and _unbroken(toks, i, j, text):
+        j += 1
+    if j >= n or not _unbroken(toks, i, j, text):
+        return None
+    if words[j] == "en" and j + 1 < n and words[j + 1] in ES_PRED_EN and _unbroken(toks, i, j + 1, text):
+        return j + 2
+    if words[j] in ES_PRED_SINGLE:
+        return j + 1
+    return None
+
+
+def en_copula_live_end(toks, i, text):
+    """End index of an EN copula live claim: AI + is/'s/now + live/available/active/ready/online."""
+    words = [t[0] for t in toks]
+    n = len(toks)
+    if words[i] not in EN_AI_NOUNS:
+        return None
+    j = i + 1
+    if j >= n or not _unbroken(toks, i, j, text):
+        return None
+    if words[j] in EN_TIME_WORDS:
+        j += 1
+        if j < n and words[j] in EN_CLAIM_COPULA and _unbroken(toks, i, j, text):
+            j += 1
+            if j < n and words[j] in EN_TIME_WORDS and _unbroken(toks, i, j, text):
+                j += 1
+    elif words[j] in EN_CLAIM_COPULA:
+        j += 1
+        if j < n and words[j] in EN_TIME_WORDS and _unbroken(toks, i, j, text):
+            j += 1
+    else:
+        return None
+    if j >= n or words[j] not in EN_PRED_WORDS or not _unbroken(toks, i, j, text):
+        return None
+    return j + 1
 
 
 def es_liveness_denied(toks, start, end, text):
@@ -563,6 +667,20 @@ def lint_text(text, ai_voice=False, sets=None, path=None):
                 j = live_ai_partner(toks, i, raw)
                 if j is not None and not hard_break_between(raw, toks[i][3], toks[j][2]) and not liveness_denied(toks, i, j + 1, raw):
                     issues.append(("TERM", n, "term#" + h("live ai")))
+        if t in ES_AI_NOUNS or t in EN_AI_NOUNS:
+            for ender, denier in (
+                (en_copula_live_end, liveness_denied),
+                (es_copula_live_end, es_liveness_denied),
+            ):
+                end = ender(toks, i, raw)
+                if end is None:
+                    continue
+                if hard_break_between(raw, toks[i][3], toks[end - 1][2]):
+                    continue
+                if denier(toks, i, end, raw):
+                    continue
+                issues.append(("TERM", n, "term#" + phrase_hash(toks[j][0] for j in range(i, end))))
+                break
         for ngram in range(3, 7):
             if i + ngram > len(toks):
                 continue

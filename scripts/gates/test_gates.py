@@ -201,6 +201,53 @@ class CopyLintTests(unittest.TestCase):
         self.assertEqual(copy_lint.lint_text("It isn't connected yet, so it's not live."), [])
         self.assertEqual(copy_lint.lint_text("The AI has never been live."), [])
 
+    def test_copula_ai_live_claims_fail_and_denials_pass(self):
+        esta = "est" + chr(225)
+        estan = "est" + chr(225) + "n"
+        estara = "estar" + chr(225)
+        todavia = "todav" + chr(237) + "a"
+        aun = "a" + chr(250) + "n"
+        # QA-required FAIL cases, plus QA copula probes and fresh variants.
+        self.assertTrue(copy_lint.lint_text("Nuestra IA " + esta + " en vivo ahora."))
+        self.assertTrue(copy_lint.lint_text("La IA " + esta + " en vivo"))
+        self.assertTrue(copy_lint.lint_text("IA ya " + esta + " en vivo"))
+        self.assertTrue(copy_lint.lint_text("La IA ya " + esta + " disponible"))
+        self.assertTrue(copy_lint.lint_text("Our AI is now available"))
+        self.assertTrue(copy_lint.lint_text("IA " + esta + " en vivo"))
+        self.assertTrue(copy_lint.lint_text("Nuestra IA ya " + esta + " disponible"))
+        self.assertTrue(copy_lint.lint_text("IA " + esta + " en directo"))
+        self.assertTrue(copy_lint.lint_text("el AI " + esta + " en vivo"))
+        self.assertTrue(copy_lint.lint_text("Las IAs " + estan + " en directo ya."))
+        self.assertTrue(copy_lint.lint_text("Nuestra IA " + estara + " lista."))
+        self.assertTrue(copy_lint.lint_text("La IA es activa ahora."))
+        self.assertTrue(copy_lint.lint_text("El AI " + esta + " funcionando."))
+        self.assertTrue(copy_lint.lint_text("The AI is ready."))
+        self.assertTrue(copy_lint.lint_text("Our AI's online."))
+        self.assertTrue(copy_lint.lint_text("This AI is now active."))
+        # Required same-sentence denials, plus tight variants, must stay clean.
+        self.assertEqual(copy_lint.lint_text("La IA " + todavia + " no " + esta + " en vivo"), [])
+        self.assertEqual(copy_lint.lint_text("La IA no " + esta + " disponible " + aun), [])
+        self.assertEqual(copy_lint.lint_text("Our AI is not live yet"), [])
+        self.assertEqual(copy_lint.lint_text("Our AI is not available yet."), [])
+        self.assertEqual(copy_lint.lint_text("The AI isn't ready yet."), [])
+        self.assertEqual(copy_lint.lint_text("La IA no " + esta + " funcionando " + todavia + "."), [])
+
+    def test_liveness_denial_requires_ai_or_it_subject(self):
+        # Unrelated complements after available/ready/online are not liveness denials.
+        self.assertTrue(copy_lint.lint_text("Try our " + LIVE_AI + ", not available in red."))
+        self.assertTrue(copy_lint.lint_text("Try our " + LIVE_AI + ", not ready for merch preorders."))
+        self.assertTrue(copy_lint.lint_text("Try our " + LIVE_AI + ", not online shopping."))
+        self.assertTrue(copy_lint.lint_text("Try our " + LIVE_AI + ", not available in blue."))
+        self.assertTrue(copy_lint.lint_text("Try our " + LIVE_AI + ", not ready for weekend pickup."))
+        self.assertTrue(copy_lint.lint_text(LIVE_AI[0].upper() + LIVE_AI[1:] + ", not online checkout."))
+        # Real denials of the AI claim itself, with AI or "it" as the subject, still pass.
+        self.assertEqual(copy_lint.lint_text("The " + LIVE_AI + " is not available."), [])
+        self.assertEqual(copy_lint.lint_text("This " + LIVE_AI + " is not ready."), [])
+        self.assertEqual(copy_lint.lint_text("The " + LIVE_AI + " is not online."), [])
+        self.assertEqual(copy_lint.lint_text("The " + LIVE_AI + " isn't available yet."), [])
+        self.assertEqual(copy_lint.lint_text(LIVE_AI[0].upper() + LIVE_AI[1:] + " is not available."), [])
+        self.assertEqual(copy_lint.lint_text("Try our " + LIVE_AI + ", it is not available."), [])
+
     def test_live_ai_bigram_does_not_match_across_breaks(self):
         self.assertEqual(copy_lint.lint_text("Go live. AI stays a very early test, not live yet."), [])
         self.assertEqual(copy_lint.lint_text("The site is live. AI notes are drafts only."), [])
