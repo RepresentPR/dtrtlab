@@ -330,6 +330,7 @@ test('fix7/5 every edited JS/CSS file is actually requested by at least one page
   const edited = L.editedFiles();
   if (!edited) return t.skip('no FIX7_BASE_REF; the static test reports all unreferenced files');
   const loaded = new Set(ctx.visits.flatMap((v) => v.requested || []).map((p) => p.replace(/^\//, '')));
+  for (const rel of L.workerInjectedAssets()) loaded.add(rel);
   const scope = edited.filter((f) => /\.(m?js|css)$/.test(f) && !/^(scripts|tools|\.github|cloudflare)\//.test(f));
   t.diagnostic(`edited JS/CSS: ${scope.join(', ') || 'none'}`);
   const missing = scope.filter((f) => !loaded.has(f) && !L.UNREFERENCED_ALLOW.some(([rx]) => rx.test(f)));
