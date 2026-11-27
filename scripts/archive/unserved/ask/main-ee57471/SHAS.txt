@@ -1,0 +1,17 @@
+# Byte-exact copies of origin/main ee57471dd3b17600b34160577143252d3063ac9c
+# ask/passages.js and ask/passages.json
+# Fetched from raw.githubusercontent.com and verified against Git blob SHAs from the GitHub API.
+
+ask/passages.js
+  bytes: 48340
+  sha256: e32ee3c9efde6027b15ce9375379d82e4c6517e08a4980dc7ad15a30110ec225
+  git blob: b698f5ae8ad49c70d0d679ae487b3496e35528a1
+
+ask/passages.json
+  bytes: 50570
+  sha256: da5df8ca0cf2a416753d1c29ce0665fed206627c6c14e11755e2129e7ec23c03
+  git blob: fcca7cec9b78662e30e1e51c712c888dae121f40
+
+Locations (identical bytes):
+  /home/box/dtrt-work/golive/r8/repo/scripts/archive/unserved/ask/main-ee57471/
+  /home/box/dtrt-work/golive/archive/unserved/ask/main-ee57471/
