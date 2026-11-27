@@ -376,6 +376,22 @@ class DoneGateTests(unittest.TestCase):
         code, out = self.run_gate("READY for QA see a.png\n", ["a.png"])
         self.assertIn("NO-NOT-CHECKED", out)
 
+    def test_zero_claim_lines_fails(self):
+        code, out = self.run_gate("No status words in this file.\nNot checked: Safari\n")
+        self.assertEqual(code, 1, out)
+        self.assertIn("ZERO-CLAIMS", out)
+
+    def test_home_absolute_proof_path_passes(self):
+        import tempfile, os
+        with tempfile.NamedTemporaryFile("w", suffix=".png", delete=False) as f:
+            f.write("x")
+            path = f.name
+        try:
+            code, out = self.run_gate("- VERIFIED contrast, see " + path + "\nNot checked: Safari\n")
+            self.assertEqual(code, 0, out)
+        finally:
+            os.unlink(path)
+
 
 class WiringTests(unittest.TestCase):
     @staticmethod
