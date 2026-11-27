@@ -2,7 +2,7 @@
 
 Public AI chat branch `cursor/public-ai-launch-8a16`.
 
-Head: `ab756716f881a2fff10a6c995a94e06ab7d0edc0`
+Head: `bbb9c59754c5bd0cdf90f0400c8be117d8680333`
 
 FIXED: frozen held-out tier 1 sheets with no page search and no model call, 35/35 scripts/ask-heldout-frozen.test.cjs
 FIXED: frozen held-out tier 2 keeps the answer and adds the gentle line, 14/14 scripts/ask-heldout-frozen.test.cjs
