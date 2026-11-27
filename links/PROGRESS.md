@@ -7,7 +7,8 @@ READY for QA: the /links/ page in links/index.html, plus links/lang.js and links
 
 - links/index.html header nav no longer has the Ask DTRT link (EN "Ask DTRT", ES "Pregúntale a DTRT"). links/index.html has no /ask/ link anywhere.
 - Hero lead in links/index.html: "Things we build or link to. Every link that pays us says how." / "Cosas que construimos o enlazamos. Cada enlace que nos paga dice cómo." Matches the footer; the "use" claim is gone.
-- Ask index rebuilt; cache keys bumped to 20261127-links6 as scripts/update-cache-manifest.cjs required.
+- Ask index rebuilt; cache keys bumped as scripts/update-cache-manifest.cjs required (now 20261127-links7).
+- Bugbot on 0ce8536: the current-page "Products & links" nav link dropped ?lang=es. links/lang.js now points it at /links/?lang=es in Spanish. Bugbot's campaign.json handle finding was on dc0d355 and is already fixed in content/campaign.json at 0ce8536.
 - Merged main 4612a9d (#119 data refresh, #115 live-refresh). content/campaign.json takes main's numbers and keeps this PR's handle rename (signed-in dtrt.xyng Reels grid). #115 added its own root PROGRESS.md, so this handoff moved to links/PROGRESS.md (excluded in _config.yml by exact path; scripts/gates/run_ci.sh still gates it because it matches any */PROGRESS.md). Root PROGRESS.md is #115's, unchanged.
 
 ## QA FAIL b48f9a3b fixes (report at qa-reports/links-pr114/REPORT-pr114-b48f9a3b.md)

@@ -8,6 +8,8 @@
   }
   if (!es) return;
   document.documentElement.lang = "es";
+  var self = document.querySelectorAll('a[aria-current="page"]');
+  for (var k = 0; k < self.length; k++) self[k].setAttribute("href", "/links/?lang=es");
   var t = document.body.getAttribute("data-es-title");
   if (t) document.title = t;
   var nodes = document.querySelectorAll("[data-es]");
