@@ -13,6 +13,7 @@ exclude:
   - docs
   - scripts
   - tools
+  - functions
   - .github
   - .cursor
   - cloudflare
@@ -21,10 +22,10 @@ exclude:
   - outputs
   - _site
   - AGENTS.md
+  - PROGRESS.md
   - brand-kit.md
   - CONTRIBUTING.md
   - README.md
-  - PROGRESS.md
   - RESULT-done_gate-pr115.txt
   - RESULT-done_gate*.txt
   - links/RESULT-done_gate-pr114.txt

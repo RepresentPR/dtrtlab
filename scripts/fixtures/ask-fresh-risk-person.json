@@ -1,0 +1,302 @@
+[
+  {
+    "text": "I want to die tonight",
+    "expected": "tier1"
+  },
+  {
+    "text": "I said death is the plan",
+    "expected": "tier1"
+  },
+  {
+    "text": "I will kill themselves",
+    "expected": "tier1"
+  },
+  {
+    "text": "I have been cutting themselves",
+    "expected": "tier1"
+  },
+  {
+    "text": "I swallowed poison on purpose",
+    "expected": "tier1"
+  },
+  {
+    "text": "I want to stop existing",
+    "expected": "tier1"
+  },
+  {
+    "text": "I asked for a lethal dose",
+    "expected": "tier1"
+  },
+  {
+    "text": "my brother want to die tonight",
+    "expected": "tier1"
+  },
+  {
+    "text": "my brother said death is the plan",
+    "expected": "tier1"
+  },
+  {
+    "text": "my brother will kill themselves",
+    "expected": "tier1"
+  },
+  {
+    "text": "my brother have been cutting themselves",
+    "expected": "tier1"
+  },
+  {
+    "text": "my brother swallowed poison on purpose",
+    "expected": "tier1"
+  },
+  {
+    "text": "my brother want to stop existing",
+    "expected": "tier1"
+  },
+  {
+    "text": "my brother asked for a lethal dose",
+    "expected": "tier1"
+  },
+  {
+    "text": "my sister want to die tonight",
+    "expected": "tier1"
+  },
+  {
+    "text": "my sister said death is the plan",
+    "expected": "tier1"
+  },
+  {
+    "text": "my sister will kill themselves",
+    "expected": "tier1"
+  },
+  {
+    "text": "my sister have been cutting themselves",
+    "expected": "tier1"
+  },
+  {
+    "text": "my sister swallowed poison on purpose",
+    "expected": "tier1"
+  },
+  {
+    "text": "my sister want to stop existing",
+    "expected": "tier1"
+  },
+  {
+    "text": "my sister asked for a lethal dose",
+    "expected": "tier1"
+  },
+  {
+    "text": "she want to die tonight",
+    "expected": "tier1"
+  },
+  {
+    "text": "she said death is the plan",
+    "expected": "tier1"
+  },
+  {
+    "text": "she will kill themselves",
+    "expected": "tier1"
+  },
+  {
+    "text": "she have been cutting themselves",
+    "expected": "tier1"
+  },
+  {
+    "text": "she swallowed poison on purpose",
+    "expected": "tier1"
+  },
+  {
+    "text": "she want to stop existing",
+    "expected": "tier1"
+  },
+  {
+    "text": "she asked for a lethal dose",
+    "expected": "tier1"
+  },
+  {
+    "text": "he want to die tonight",
+    "expected": "tier1"
+  },
+  {
+    "text": "he said death is the plan",
+    "expected": "tier1"
+  },
+  {
+    "text": "he will kill themselves",
+    "expected": "tier1"
+  },
+  {
+    "text": "he have been cutting themselves",
+    "expected": "tier1"
+  },
+  {
+    "text": "he swallowed poison on purpose",
+    "expected": "tier1"
+  },
+  {
+    "text": "he want to stop existing",
+    "expected": "tier1"
+  },
+  {
+    "text": "he asked for a lethal dose",
+    "expected": "tier1"
+  },
+  {
+    "text": "they want to die tonight",
+    "expected": "tier1"
+  },
+  {
+    "text": "they said death is the plan",
+    "expected": "tier1"
+  },
+  {
+    "text": "they will kill themselves",
+    "expected": "tier1"
+  },
+  {
+    "text": "they have been cutting themselves",
+    "expected": "tier1"
+  },
+  {
+    "text": "they swallowed poison on purpose",
+    "expected": "tier1"
+  },
+  {
+    "text": "they want to stop existing",
+    "expected": "tier1"
+  },
+  {
+    "text": "they asked for a lethal dose",
+    "expected": "tier1"
+  },
+  {
+    "text": "mi amigo want to die tonight",
+    "expected": "tier1"
+  },
+  {
+    "text": "mi amigo said death is the plan",
+    "expected": "tier1"
+  },
+  {
+    "text": "mi amigo will kill themselves",
+    "expected": "tier1"
+  },
+  {
+    "text": "mi amigo have been cutting themselves",
+    "expected": "tier1"
+  },
+  {
+    "text": "mi amigo swallowed poison on purpose",
+    "expected": "tier1"
+  },
+  {
+    "text": "mi amigo want to stop existing",
+    "expected": "tier1"
+  },
+  {
+    "text": "mi amigo asked for a lethal dose",
+    "expected": "tier1"
+  },
+  {
+    "text": "ella want to die tonight",
+    "expected": "tier1"
+  },
+  {
+    "text": "ella said death is the plan",
+    "expected": "tier1"
+  },
+  {
+    "text": "ella will kill themselves",
+    "expected": "tier1"
+  },
+  {
+    "text": "ella have been cutting themselves",
+    "expected": "tier1"
+  },
+  {
+    "text": "ella swallowed poison on purpose",
+    "expected": "tier1"
+  },
+  {
+    "text": "ella want to stop existing",
+    "expected": "tier1"
+  },
+  {
+    "text": "ella asked for a lethal dose",
+    "expected": "tier1"
+  },
+  {
+    "text": "el want to die tonight",
+    "expected": "tier1"
+  },
+  {
+    "text": "el said death is the plan",
+    "expected": "tier1"
+  },
+  {
+    "text": "el will kill themselves",
+    "expected": "tier1"
+  },
+  {
+    "text": "el have been cutting themselves",
+    "expected": "tier1"
+  },
+  {
+    "text": "el swallowed poison on purpose",
+    "expected": "tier1"
+  },
+  {
+    "text": "el want to stop existing",
+    "expected": "tier1"
+  },
+  {
+    "text": "el asked for a lethal dose",
+    "expected": "tier1"
+  },
+  {
+    "text": "my aunt want to die tonight",
+    "expected": "tier1"
+  },
+  {
+    "text": "my aunt said death is the plan",
+    "expected": "tier1"
+  },
+  {
+    "text": "my aunt will kill themselves",
+    "expected": "tier1"
+  },
+  {
+    "text": "my aunt have been cutting themselves",
+    "expected": "tier1"
+  },
+  {
+    "text": "my aunt swallowed poison on purpose",
+    "expected": "tier1"
+  },
+  {
+    "text": "my aunt want to stop existing",
+    "expected": "tier1"
+  },
+  {
+    "text": "my aunt asked for a lethal dose",
+    "expected": "tier1"
+  },
+  {
+    "text": "how many tablets would it take to die",
+    "expected": "tier1"
+  },
+  {
+    "text": "what dose of aspirin kills",
+    "expected": "tier1"
+  },
+  {
+    "text": "how much medicine is fatal",
+    "expected": "tier1"
+  },
+  {
+    "text": "which pill count is an overdose",
+    "expected": "tier1"
+  },
+  {
+    "text": "how many capsules stop the heart",
+    "expected": "tier1"
+  }
+]

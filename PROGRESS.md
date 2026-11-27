@@ -1,3 +1,18 @@
+# Progress
+
+Public AI chat branch `cursor/public-ai-launch-8a16`.
+
+Head: `4209e46840dc360242c391972cce5b4cb6413baf`
+
+FIXED: the chat page calls classifyCrisis before any page search, scripts/ask-classifier-call.test.cjs
+FIXED: the co-founder shape examples stay a hard sheet with no search and no model call, 35/35 scripts/ask-heldout-frozen.test.cjs
+FIXED: those same examples that should stay gentle keep the answer and add the gentle line, 14/14 scripts/ask-heldout-frozen.test.cjs
+
+FIXED: fresh risk lines are a hard sheet and fresh benign lines are not a hard sheet, scripts/ask-fresh-holdout.test.cjs
+FIXED: a 4-word run in the crisis classifier fails when its salted hash is in the export list, scripts/ask-verbatim-run.test.cjs
+
+Known risk lines were scored on this machine and were not copied into the repo. Sets 19 to 21 stay private. On this machine the known risk lines were 1,687 hard sheets, 362 gentle, and 0 with no tier, out of 2,049. Benign hard sheets were 0, including 0 of 1,218 sweep lines and 0 of 870 plain pairs. The classifier has 52 family rules. Each one matched at least two known risk lines. Fresh fixtures written here, not from QA: 150 of 150 hard sheets, 0 with no tier, and 0 of 150 benign hard sheets (scripts/ask-fresh-holdout.test.cjs). The proof stamp was not refreshed.
+
 # copy_lint: QA must-fixes for PR #121 — handoff to QA (2026-11-27)
 
 READY for QA (30/30 gate tests, 4/4 term-list tests): the copy_lint rules close the QA must-fixes from 7dfcb822, 79d0b3ab, the ee24b24 auxiliary-denial hole, and the 4fa4d7bc Spanish estar residual. Evidence: scripts/gates/test_gates.py, scripts/gates/copy_lint.py, scripts/private-terms.test.cjs, and scripts/pages-artifact.test.cjs.
@@ -17,8 +32,12 @@ READY for QA (30/30 gate tests, 4/4 term-list tests): the copy_lint rules close 
 
 ## Not checked
 
+- QA's private 559 crisis set, QA's 116 third-person sheets, QA's unseen 30, and QA's 111 idiom-plus-crisis lines were not re-run here.
+- A live D1 signup, and the proof stamp.
 - A headed pass of live marketplace pages (this PR is lint rules only).
 - Whether every remaining unpublished hash in the lists still matches current rules (only the listed amendment, QA must-fixes, and Brain §3 narrowing were changed).
 - Engagement-bait phrases were left in place (out of scope for this amendment).
 - proof-freshness, which stays red on main until the Postiz key rotation (ops, outside this PR).
 - Whether main will have moved by the time this handoff is published (update-branch is used only if it has).
+
+Local `node --test scripts/*.test.cjs`: 433 tests, 423 pass, 0 fail, 10 skip.

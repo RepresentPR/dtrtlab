@@ -74,7 +74,11 @@ test('every visitor page links the five profiles, with Instagram marked as main'
   for (const rel of pages()) {
     if (skip.has(rel)) continue;
     const html = read(rel);
-    for (const url of PROFILES) {
+    const profiles = rel === 'ask/index.html'
+      ? PROFILES.map((url) => url.includes('officiallydtrt') ? 'https://www.instagram.com/dtrt.xyng/' : url)
+      : PROFILES;
+    if (rel === 'ask/index.html' && !html.includes('@dtrt.xyng')) missing.push(rel + ' missing @dtrt.xyng');
+    for (const url of profiles) {
       if (!html.includes(url)) missing.push(rel + ' missing ' + url);
     }
     if (!html.includes('class="social-main"') || !html.includes('rel="me noopener noreferrer"')) {
