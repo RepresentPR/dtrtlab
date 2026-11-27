@@ -1,3 +1,5 @@
+if(/(?:\?|&)lang=es(?:&|$)/.test(location.search))document.documentElement.lang='es';
+const IS_ES=document.documentElement.lang==='es';
 (()=>{const $=s=>document.getElementById(s);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const NA='not measured yet';
@@ -16,6 +18,6 @@ fetch('/live/board/live.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.json()
 const stamp=new Date(d.updated).toLocaleString('en-US',{dateStyle:'medium',timeStyle:'short',timeZone:'America/New_York'});
 $('asof').textContent=' · '+stamp+' ET';
 const g=d.headline.growthPct7d,ge=$('g');if(g==null){ge.textContent=NA;ge.className='na'}else{ge.textContent=(g>=0?'+':'')+g.toFixed(1)+'%';ge.className=g>=0?'up':'down'}
-$('spark').innerHTML=spark(d.candles);const fs=$('fs');fs.textContent=d.headline.firstSale?'Yes':'Not yet';fs.className=d.headline.firstSale?'up':'na';
-$('nlog').textContent=d.log.length;$('chart').innerHTML=candles(d.candles);drawLog();$('sort').onchange=drawLog;
-$('story').innerHTML=[...d.story].reverse().map(s=>`<li><span class="d">${esc(s.date)}</span> · ${esc(s.title)}</li>`).join('')}).catch(()=>{$('asof').textContent=' · data unavailable'})})();
+$('spark').innerHTML=spark(d.candles);const fs=$('fs');fs.textContent=d.headline.firstSale?(IS_ES?'Sí':'Yes'):(IS_ES?'Todavía no':'Not yet');fs.className=d.headline.firstSale?'up':'na';
+$('nlog').textContent=d.log.length;$('chart').innerHTML=candles(d.candles);drawLog();if(IS_ES){const s=$('sort'); if(s){const o=s.querySelectorAll('option'); if(o[0])o[0].textContent='Más recientes'; if(o[1])o[1].textContent='Rango';}}$('sort').onchange=drawLog;
+$('story').innerHTML=[...d.story].reverse().map(s=>`<li><span class="d">${esc(s.date)}</span> · ${esc(s.title)}</li>`).join('')}).catch(()=>{$('asof').textContent=IS_ES?' · datos no disponibles':' · data unavailable'})})();
