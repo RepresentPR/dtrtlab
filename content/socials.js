@@ -17,8 +17,8 @@ window.DTRT_SOCIALS = {
     {
       id: "instagram",
       label: "Instagram",
-      handle: "@officiallydtrt",
-      url: "https://www.instagram.com/officiallydtrt/",
+      handle: "@dtrt.xyng",
+      url: "https://www.instagram.com/dtrt.xyng/",
       surface: "lab",
       enabled: true
     },

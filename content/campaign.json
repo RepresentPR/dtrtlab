@@ -15,7 +15,7 @@
       "observedAt": "2026-11-27T12:58:21Z",
       "note": "Headline 13,674 = stale opening matched deltas (YouTube +459, Instagram +141, both last measured Oct 11, 2026) plus campaign-created cumulatives. YouTube and TikTok campaign posts refreshed Nov 27, 2026. Instagram campaign posts in this verified headline remain the Oct 11, 2026 counters. A signed-in Reels-grid read on Nov 15, 2026 is not included (see results.signedInInstagramGrid). Not Instagram Insights period views. Not unique people. X is excluded.",
       "metric": "opening_matched_deltas_plus_campaign_created_post_cumulatives",
-      "coverage": "Opening matched deltas are unchanged since 2026-10-11 (no rematched baseline). YouTube and TikTok campaign-created post cumulatives refreshed Nov 27, 2026. Instagram campaign posts in this verified headline remain the Oct 11, 2026 counters. A signed-in officiallydtrt Reels grid read on Nov 15, 2026 is recorded under results.signedInInstagramGrid (status partial) and is not included here. Two YouTube campaign videos (From Ideas, free office map ES) remain unlisted; their URL counters are included and flagged. Instagram Professional Insights period totals stay under results.platformPeriodInsights and are not added into this headline. X public metrics were fetched separately and stay excluded from the headline.",
+      "coverage": "Opening matched deltas are unchanged since 2026-10-11 (no rematched baseline). YouTube and TikTok campaign-created post cumulatives refreshed Nov 27, 2026. Instagram campaign posts in this verified headline remain the Oct 11, 2026 counters. A signed-in dtrt.xyng Reels grid read on Nov 15, 2026 is recorded under results.signedInInstagramGrid (status partial) and is not included here. Two YouTube campaign videos (From Ideas, free office map ES) remain unlisted; their URL counters are included and flagged. Instagram Professional Insights period totals stay under results.platformPeriodInsights and are not added into this headline. X public metrics were fetched separately and stay excluded from the headline.",
       "components": [
         {
           "platform": "YouTube",
@@ -751,7 +751,7 @@
       "observations": [
         {
           "platform": "Instagram",
-          "handle": "@officiallydtrt",
+          "handle": "@dtrt.xyng",
           "windowLabel": "Sep 12 \u2013 Oct 11",
           "windowStart": "2026-09-12",
           "windowEnd": "2026-10-11",
@@ -777,7 +777,7 @@
     "pendingFirstMeasurement": {
       "status": "partial",
       "observedAt": "2026-11-15T19:20:22Z",
-      "note": "36 of 37 inventory Instagram Reels were read from the signed-in officiallydtrt Reels grid on Nov 15, 2026. DeSg3HmiZT0 was not read in this refresh and stays at its Oct 11, 2026 value, marked stale. Published Instagram Oct 11 business Reels (DeX_obuiij4, DeYDLYaD_iN) were not measured in this refresh and still await a first public counter. TikTok campaign posts were measured earlier via public playCount. X post 2109455613294260309 (Free office map for U.S. businesses) returned Not Found on Nov 15, 2026; no metric recorded.",
+      "note": "36 of 37 inventory Instagram Reels were read from the signed-in dtrt.xyng Reels grid on Nov 15, 2026. DeSg3HmiZT0 was not read in this refresh and stays at its Oct 11, 2026 value, marked stale. Published Instagram Oct 11 business Reels (DeX_obuiij4, DeYDLYaD_iN) were not measured in this refresh and still await a first public counter. TikTok campaign posts were measured earlier via public playCount. X post 2109455613294260309 (Free office map for U.S. businesses) returned Not Found on Nov 15, 2026; no metric recorded.",
       "posts": [
         {
           "platform": "Instagram",
@@ -914,7 +914,7 @@
       "observedAt": "2026-11-15T19:20:22Z",
       "observedAtPrecision": "no_later_than",
       "observedAtNoteInternal": "read from the signed-in grid on Nov 15, 2026, before 2:21 PM ET; timestamp is the ig-counts-2026-11-15.csv mtime 2026-11-15T19:20:22Z",
-      "source": "signed-in officiallydtrt Reels grid thumbnail play counts, saved in ig-counts-2026-11-15.csv",
+      "source": "signed-in dtrt.xyng Reels grid thumbnail play counts, saved in ig-counts-2026-11-15.csv",
       "instagramInventoryViews": 20188,
       "instagramInventoryPostsRead": 36,
       "instagramInventoryPostsNotRead": [
@@ -924,7 +924,7 @@
       "campaignCompositeIfIncluded": 14903,
       "lifetimeIfIncluded": 160964,
       "notIncludedInVerifiedTotals": true,
-      "note": "Signed-in officiallydtrt Reels grid read on Nov 15, 2026 (stale Oct 11, 2026 Instagram inventory of 18,460 remains the verified figure). 36 of 37 inventory Reels were read as whole-number play counts. DeSg3HmiZT0 was not read in that Nov 15 refresh and stays at its Oct 11, 2026 value in this sum, marked stale. Instagram Oct 11 business Reels were not measured in the Nov 15 read and still await a first public counter. These signed-in figures were not included in the Nov 15 verified campaign composite (13,666) or the Nov 15 verified lifetime total (159,236). The if-included figures below (14,903 / 160,964) are frozen as of that Nov 15 read and were not recomputed against today's verified totals. Not independently re-fetchable from a logged-out public page. Not Instagram Insights period views."
+      "note": "Signed-in dtrt.xyng Reels grid read on Nov 15, 2026 (stale Oct 11, 2026 Instagram inventory of 18,460 remains the verified figure). 36 of 37 inventory Reels were read as whole-number play counts. DeSg3HmiZT0 was not read in that Nov 15 refresh and stays at its Oct 11, 2026 value in this sum, marked stale. Instagram Oct 11 business Reels were not measured in the Nov 15 read and still await a first public counter. These signed-in figures were not included in the Nov 15 verified campaign composite (13,666) or the Nov 15 verified lifetime total (159,236). The if-included figures below (14,903 / 160,964) are frozen as of that Nov 15 read and were not recomputed against today's verified totals. Not independently re-fetchable from a logged-out public page. Not Instagram Insights period views."
     }
   },
   "operations": {
@@ -992,7 +992,7 @@
   "queue": [],
   "evidenceNotes": [
     "YouTube + TikTok public inventory refreshed Nov 27, 2026. Campaign composite now 13,674 (was 13,666). Lifetime known total now 159,261 (was 159,236). Instagram remains the stale Oct 11, 2026 inventory (18,460). X stays out of the totals. 0XxDrMvsCgE is public again at 28 (it was unavailable on Nov 15).",
-    "Signed-in officiallydtrt Reels grid read on Nov 15, 2026. 36 of 37 inventory Reels were read as whole-number play counts (none abbreviated). DeSg3HmiZT0 was not read in that Nov 15 refresh and stays at its Oct 11, 2026 value of 237, marked stale. Those signed-in counts were not included in the Nov 15 verified campaign composite (13,666) or the Nov 15 verified lifetime total (159,236), which used the stale Oct 11, 2026 Instagram inventory of 18,460. If included as of that Nov 15 read, the signed-in figures would have taken the campaign composite to 14,903 and the lifetime total to 160,964, with an Instagram Reels subtotal of 20,188. Today's verified totals still use that same stale Oct 11 Instagram inventory and still exclude these signed-in figures. Opening deltas unchanged. Instagram Oct 11 business Reels were not measured in the Nov 15 read and still await a first public counter. X still excluded from headline totals.",
+    "Signed-in dtrt.xyng Reels grid read on Nov 15, 2026. 36 of 37 inventory Reels were read as whole-number play counts (none abbreviated). DeSg3HmiZT0 was not read in that Nov 15 refresh and stays at its Oct 11, 2026 value of 237, marked stale. Those signed-in counts were not included in the Nov 15 verified campaign composite (13,666) or the Nov 15 verified lifetime total (159,236), which used the stale Oct 11, 2026 Instagram inventory of 18,460. If included as of that Nov 15 read, the signed-in figures would have taken the campaign composite to 14,903 and the lifetime total to 160,964, with an Instagram Reels subtotal of 20,188. Today's verified totals still use that same stale Oct 11 Instagram inventory and still exclude these signed-in figures. Opening deltas unchanged. Instagram Oct 11 business Reels were not measured in the Nov 15 read and still await a first public counter. X still excluded from headline totals.",
     "YouTube + TikTok public inventory refreshed Nov 15, 2026. On that date the campaign composite was 13,666 (was 10,856) and the lifetime known total was 159,236 (was 155,308). Largest campaign-created moves that day: TikTok Knife 294\u21922,288; YouTube episode 33\u2192167; YouTube Knife 1,474\u21921,640; YouTube Door 1,356\u21921,553; YouTube Anubis 550\u2192649. Instagram campaign and lifetime Reel counters were unchanged (login wall) and remain the stale Oct 11, 2026 inventory. Opening deltas unchanged (YouTube +459, Instagram +141). YouTube 8uQyfvJnofI and PhYr_7bvvhA, and Short wu3M-Te360E, were unlisted as of Nov 15; URL counters included and flagged. X public impression counts fetched for 6 of 7 campaign posts; 2109455613294260309 not found. X still excluded from headline totals. Spot-check on Nov 15, 2026 confirmed YouTube player.viewCount and TikTok playCount for sampled posts, including TikTok Knife 2,288.",
     "YouTube campaign counters refreshed Oct 12, 3:05 PM EDT: Door 1356, Anubis 550, Knife 1474, preview 410, episode 33, Make your work clear 41, From Ideas 4, free office map ES 12. Campaign composite now 10,794; lifetime 155,246. Instagram/TikTok Oct 12 business posts still pending owner counters.",
     "Numbers re-audit 2026-10-12: Instagram Professional Insights Sep 12\u2013Oct 11 = 20.0K views, 0 new followers, 58 content shared. /live Instagram inventory remains a 37-Reel lifetime sum (18,460), a different metric. Instagram Door inventory corrected from 979 to 1,544. Campaign-added headline is now 8,945; do not compare it to Insights 20.0K.",
