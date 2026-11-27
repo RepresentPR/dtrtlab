@@ -1,0 +1,22 @@
+/* Contact pop-up crisis card and gentle 988 line. */
+#contact-crisis-card,
+#contact-gentle-988 {
+  max-width: 70ch;
+  margin: 12px 0;
+  padding: 12px 14px;
+  border-radius: 8px;
+  line-height: 1.45;
+}
+#contact-crisis-card {
+  background: #1c2a28;
+  color: #fff;
+  border: 1px solid #1c2a28;
+}
+#contact-crisis-card a { color: #7de1c8; }
+#contact-gentle-988 {
+  background: #fff8e7;
+  color: #111;
+  border: 1px solid #c9b48a;
+}
+#contact-crisis-card[hidden],
+#contact-gentle-988[hidden] { display: none !important; }
