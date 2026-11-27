@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests; object-src 'none'; base-uri 'self'; script-src 'self'"><meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests; object-src 'none'; base-uri 'self'; script-src 'self' https://gc.zgo.at; style-src 'self'; img-src 'self' data: https://dtrtlab.goatcounter.com; connect-src 'self' https://dtrtlab.goatcounter.com https://gc.zgo.at; font-src 'self'; form-action 'self'; frame-ancestors 'none'"><meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" href="/img/brand/mark.svg?v=la20261015" type="image/svg+xml">
@@ -18,8 +18,9 @@
   <link rel="canonical" href="https://dtrtlab.com/mercado/">
   <link rel="alternate" hreflang="es" href="https://dtrtlab.com/mercado/">
   <link rel="alternate" hreflang="en" href="https://dtrtlab.com/mercado/?lang=en">
-  <link rel="stylesheet" href="/css/theme-a.css?v=20261127h6">
-  <link rel="stylesheet" href="/css/mercado.css?v=20261127h6">
+  <link rel="stylesheet" href="/css/theme-a.css?v=20261127h8">
+  <link rel="stylesheet" href="/css/mercado.css?v=20261127h8">
+<script data-goatcounter="https://dtrtlab.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body class="mk">
   <header class="top"><div class="wrap"><a class="brand" href="/" aria-label="Ian | DTRT Lab">Ian <b>|</b> DTRT Lab</a><nav aria-label="Main navigation"><a href="/" data-i18n="home">Inicio</a><a href="/contact.html?lang=es" data-i18n="contact" data-href-en="/contact.html">Contacto</a></nav></div></header>
@@ -29,66 +30,66 @@
         <h1 data-i18n="h1">Mercado Puerto Rico</h1>
         <a class="mk-lang" href="/mercado/?lang=en" data-i18n="switch" data-href-en="/mercado/" lang="en">English</a>
       </div>
-      <form class="mk-search" role="search" action="/mercado/" method="get">
-        <label class="mk-helper-label" for="mk-q" data-i18n="searchlabel">Ayudante de compras (beta)</label>
-        <input id="mk-q" type="search" name="q" placeholder="Buscar" data-i18n-ph="ph" autocomplete="off">
-        <p class="mk-hint" data-i18n="hint">Prueba: energía, belleza, negocio, trading, vender…</p>
-      </form>
+      <p class="mk-lede" data-i18n="lede">Elige una categoría. El catálogo es corto a propósito.</p>
       <div class="mk-tiles" role="group" aria-label="Categorías" data-i18n-aria="cats">
+        <button type="button" data-cat="all" aria-pressed="true"><span data-i18n="t0">Todo</span><small data-i18n="s0">Ver el catálogo</small></button>
+        <button type="button" data-cat="beauty" aria-pressed="false"><span data-i18n="t4">Belleza</span><small>Jafra</small></button>
+        <button type="button" data-cat="energy" aria-pressed="false"><span data-i18n="t5">Energía</span><small>MOTION</small></button>
+        <button type="button" data-cat="candles" aria-pressed="false"><span data-i18n="t6">Candles</span><small data-i18n="s6">Trading</small></button>
+        <button type="button" data-cat="ours" aria-pressed="false"><span data-i18n="t7">Nuestros productos</span><small>DTRT Lab</small></button>
+        <button type="button" data-cat="ai" aria-pressed="false"><span data-i18n="t1">Nuestra IA</span><small data-i18n="s1">Prueba temprana</small></button>
+      </div>
+      <div class="mk-chips" id="mk-chips" role="group" aria-label="Filtros" data-i18n-aria-chips="filters">
         <button type="button" data-cat="all" aria-pressed="true" data-i18n="t0">Todo</button>
-        <button type="button" data-cat="ia" aria-pressed="false" data-i18n="t1">IA para negocios</button>
-        <button type="button" data-cat="belleza" aria-pressed="false" data-i18n="t4">Belleza</button>
-        <button type="button" data-cat="af" aria-pressed="false" data-i18n="t2">Afiliados</button>
-        <button type="button" data-cat="vende" aria-pressed="false" data-i18n="t3">Vende con nosotros</button>
+        <button type="button" data-cat="beauty" aria-pressed="false" data-i18n="t4">Belleza</button>
+        <button type="button" data-cat="energy" aria-pressed="false" data-i18n="t5">Energía</button>
+        <button type="button" data-cat="candles" aria-pressed="false" data-i18n="t6">Candles</button>
+        <button type="button" data-cat="ours" aria-pressed="false" data-i18n="t7">Nuestros productos</button>
+        <button type="button" data-cat="ai" aria-pressed="false" data-i18n="t1">Nuestra IA</button>
       </div>
     </div>
-    <div class="mk-crisis" id="mk-crisis" hidden role="alert">
-        <p>If you're thinking about suicide or in crisis: <a href="tel:988">call</a> or <a href="sms:988">text 988</a> (US) · Si estás en crisis: llama o textea al <a href="tel:988">988</a> · <a href="https://findahelpline.com" rel="noopener" target="_blank">findahelpline.com</a> (outside US)</p>
-        <p class="mk-try" data-i18n="try">Prueba una categoría</p>
-        <div class="mk-chips" id="mk-chips">
-          <button type="button" data-cat="all" data-i18n="t0">Todo</button>
-          <button type="button" data-cat="ia" data-i18n="t1">IA para negocios</button>
-          <button type="button" data-cat="belleza" data-i18n="t4">Belleza</button>
-          <button type="button" data-cat="af" data-i18n="t2">Afiliados</button>
-          <button type="button" data-cat="vende" data-i18n="t3">Vende con nosotros</button>
-        </div>
-      </div>
-    <p class="mk-988-always" id="mk-988-always" data-i18n="always988">¿Necesitas hablar? Llama o envía un mensaje al 988 (24/7)</p>
       <div class="mk-grid" id="mk-grid">
-      <article class="mk-card" id="ia" data-cat="ia" data-id="ia">
-        <h2 data-i18n="c1t">DTRT Lab AI para negocios en Puerto Rico</h2>
-        <p data-i18n="c1d">Te ayudo a usar la IA en tu negocio, paso a paso.</p>
-        <p class="mk-note" data-i18n="c1n">Prueba de IA muy temprana: todavía no está en vivo.</p>
-        <a class="btn" href="/contact.html?lang=es" data-i18n="c1b" data-href-en="/contact.html">Escríbeme</a>
-      </article>
-      <article class="mk-card" id="jafra" data-cat="belleza" data-id="jafra">
+      <article class="mk-card" id="jafra" data-cat="beauty" data-id="jafra">
         <h2 data-i18n="c5t">La tienda Jafra de mi mamá</h2>
         <p data-i18n="c5a">Enlace de consultora Jafra de mi mamá. Ella gana de las ventas.</p>
         <a class="btn" href="https://www.jafra.com/es/?pws=sabrinacrespo" rel="sponsored noopener" target="_blank" data-i18n="c5l">Ver Jafra</a>
       </article>
-      <article class="mk-card" id="motion" data-cat="af" data-id="motion">
+      <article class="mk-card" id="motion" data-cat="energy" data-id="motion">
         <h2>MOTION pouches</h2>
         <p data-i18n="c3a">Enlace de afiliado. Ganamos una comisión.</p>
         <p data-i18n="c3b">Cero nicotina y cero tabaco, también.</p>
         <p class="mk-note" data-i18n="c3c">40mg de cafeína por bolsita. Solo adultos 18+.</p>
         <a class="btn" href="https://www.motionpouches.com?bg_ref=VLwp0g3b5W" rel="sponsored noopener" target="_blank" data-i18n="c3l">Ver MOTION</a>
       </article>
-      <article class="mk-card" id="candles" data-cat="af" data-id="candles">
+      <article class="mk-card" id="candles" data-cat="candles" data-id="candles">
         <h2>Candles</h2>
         <a class="btn" href="https://buycandles.xyz/invite?ref=dtrt" rel="sponsored noopener" target="_blank" data-i18n="c4l">Ver Candles</a>
         <p class="mk-disclose" data-i18n="c4a">Enlace de referido. Ganamos de las comisiones. Hacer trading conlleva riesgo; no es consejo financiero.</p>
       </article>
-      <article class="mk-card" id="vende" data-cat="vende" data-id="vende">
+      <article class="mk-card" id="ours" data-cat="ours" data-id="ours">
+        <h2 data-i18n="c6t">Nuestros productos</h2>
+        <p data-i18n="c6d">Lo que hacemos en DTRT Lab. Lo listamos aquí cuando está listo.</p>
+        <a class="btn" href="/contact.html?lang=es" data-i18n="c6b" data-href-en="/contact.html">Escríbeme</a>
+      </article>
+      <article class="mk-card" id="ia" data-cat="ai" data-id="ia">
+        <h2 data-i18n="c1t">DTRT Lab AI para negocios en Puerto Rico</h2>
+        <p data-i18n="c1d">Te ayudo a usar la IA en tu negocio, paso a paso.</p>
+        <p class="mk-note" data-i18n="c1n">Prueba de IA muy temprana: todavía no está en vivo.</p>
+        <a class="btn" href="/contact.html?lang=es" data-i18n="c1b" data-href-en="/contact.html">Escríbeme</a>
+      </article>
+      <article class="mk-card" id="vende" data-cat="all" data-id="vende">
         <h2 data-i18n="st">Vende con nosotros</h2>
         <p data-i18n="sd">¿Tienes un negocio local? Pide que te incluyamos aquí.</p>
         <a class="btn" href="/contact.html?lang=es" data-i18n="sb" data-href-en="/contact.html">Pedir que me incluyan</a>
       </article>
     </div>
-    <p class="mk-empty" id="mk-empty" hidden data-i18n="empty">No encontramos eso. Ver todos los productos.</p>
-    <p class="mk-empty-action" id="mk-see-all-wrap" hidden><button type="button" id="mk-see-all" data-i18n="seeall">Ver todos los productos</button></p>
   </div></main>
-  <footer class="mk-foot"><p class="site-crisis">If you're thinking about suicide or in crisis: <a href="tel:988">call</a> or <a href="sms:988">text 988</a> (US) · Si estás en crisis: llama o textea al <a href="tel:988">988</a> · <a href="https://findahelpline.com" rel="noopener" target="_blank">findahelpline.com</a> (outside US)</p><a class="wordmark" href="/">DTRT <strong>LAB</strong></a><nav aria-label="Footer"><a href="/contact.html" data-i18n="contact">Contacto</a><a href="/legal/privacy.html" data-i18n="privacy">Privacidad</a><a href="/legal/terms.html" data-i18n="terms">Términos</a></nav></footer>
-  <script type="module" src="/js/mercado-helper.js?v=20261127h7"></script>
-  <script src="/js/golive-uncache.js?v=20261127h7"></script>
+  <footer class="mk-foot">
+    <p class="site-crisis mk-988-footer" id="mk-988-always" data-i18n="always988">¿Necesitas hablar? Llama o envía un mensaje al 988 (24/7)</p>
+    <a class="wordmark" href="/">DTRT <strong>LAB</strong></a>
+    <nav aria-label="Footer"><a href="/contact.html" data-i18n="contact">Contacto</a><a href="/legal/privacy.html" data-i18n="privacy">Privacidad</a><a href="/legal/terms.html" data-i18n="terms">Términos</a></nav>
+  </footer>
+  <script type="module" src="/js/mercado-helper.js?v=20261127h8"></script>
+  <script src="/js/golive-uncache.js?v=20261127h8"></script>
 </body>
 </html>
