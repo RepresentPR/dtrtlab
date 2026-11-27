@@ -2,21 +2,17 @@
 
 Public AI chat branch `cursor/public-ai-launch-8a16`.
 
-Head: `b0d054fe344722433ae614aa061e9e5851f724c6`
+Head: `cb05b36c88ef7bec11f6e4bf2316069fc8e4cdf4`
 
-FIXED: builder everyday idioms are not sheets, 0/16 scripts/ask-precision.test.cjs
-FIXED: builder plain questions are not sheets, 0/30 scripts/ask-precision.test.cjs
-FIXED: builder site questions are not sheets, 0/32 scripts/ask-precision.test.cjs
-FIXED: builder broad question sweep is not a sheet, 0/100 scripts/ask-precision.test.cjs
-FIXED: builder crisis lines sheet with both helping lines, 6/6 scripts/ask-precision.test.cjs
-FIXED: builder third-person danger lines sheet with the helping line, 132/132 scripts/ask-third-person.test.cjs
-FIXED: builder idiom-plus-crisis lines sheet, 26/26 scripts/ask-qa-fresh.test.cjs
-FIXED: builder idiom-plus-crisis lines sheet, 26/26 scripts/ask-softlock.test.cjs
+FIXED: builder recall set sheets with both helping lines and no model call, 300/300 scripts/ask-structure.test.cjs
+FIXED: builder idiom and everyday lines are not sheets, 0/25 scripts/ask-structure.test.cjs
+FIXED: builder plain questions are not sheets, 0/75 scripts/ask-structure.test.cjs
+FIXED: builder broad sweep is not a sheet, 0/200 scripts/ask-structure.test.cjs
+FIXED: builder plain pairs are not sheets, 0/870 scripts/ask-no-flag.test.cjs
 FIXED: repo held-out screen set sheets, 56/56 scripts/public-ai.test.cjs
-FIXED: repo held-out clean set false alarms, 0/36 scripts/public-ai.test.cjs
-FIXED: ask and functions have one crisis decider and no pin, scripts/ask-precision.test.cjs
+FIXED: repo held-out clean set false alarms, 0/35 scripts/public-ai.test.cjs
 
-`crisisSheet()` is the only crisis decider. `finish()` adds the English and Spanish helping lines to every crisis sheet, and it runs once. There is no `pagePin`. Grep of `ask/` and `functions/` found no `crisisMatch`, `wantsSheet`, `hasRisk`, `clearlyClean`, `fullSheet`, `compactReply`, `pagePin`, or `dtrt.risk`.
+`crisisSheet()` is the only crisis decider. It runs before search or a model call. `finish()` adds both helping lines to every crisis sheet. There is no pin renderer. QA's private 559, 116, 111, and unseen 30 were not re-run here.
 
 # copy_lint: QA must-fixes for PR #121 — handoff to QA (2026-11-27)
 
@@ -45,4 +41,4 @@ READY for QA (30/30 gate tests, 4/4 term-list tests): the copy_lint rules close 
 - proof-freshness, which stays red on main until the Postiz key rotation (ops, outside this PR).
 - Whether main will have moved by the time this handoff is published (update-branch is used only if it has).
 
-Local `node --test scripts/*.test.cjs`: 427 tests, 417 pass, 0 fail, 10 skip.
+Local `node --test scripts/*.test.cjs`: 429 tests, 419 pass, 0 fail, 10 skip.
