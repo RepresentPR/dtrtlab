@@ -1,5 +1,5 @@
-import { replyFor, CRISIS_REPLY, REDIRECT, RESOURCE_NOTE, SUGGESTIONS, ERROR_REPLY } from "./safety.mjs?v=20261127-ask31";
-import { normalizeEmail, ownedChat, syncOnLogin, applyDelete, keepAfterExpiredSession, deleteStatus, recordDeleteResult, readStore, logoutStore, STORE_KEY } from "./chat-store.mjs?v=20261127-ask31";
+import { replyFor, crisisMatch, CRISIS_REPLY, REDIRECT, RESOURCE_NOTE, SUGGESTIONS, ERROR_REPLY } from "./safety.mjs?v=20261127-ask32";
+import { normalizeEmail, ownedChat, syncOnLogin, applyDelete, keepAfterExpiredSession, deleteStatus, recordDeleteResult, readStore, logoutStore, STORE_KEY } from "./chat-store.mjs?v=20261127-ask32";
 
 const STORE = STORE_KEY;
 const NOTICE = "dtrt.early-notice";
@@ -23,6 +23,8 @@ const signupForm = document.getElementById("signup-form");
 const loginForm = document.getElementById("login-form");
 const sessionBox = document.getElementById("session-box");
 const displayName = document.getElementById("display-name");
+
+let pagePin = false;
 
 const state = {
   chats: [],
@@ -313,8 +315,10 @@ async function ask(question) {
   try {
     result = await replyFor(question, window.DTRT_ASK_CORPUS || { passages: [] }, {
       history,
+      pagePin,
       search: (q, corpus) => window.DTRTAsk ? window.DTRTAsk.search(q, corpus, 4) : []
     });
+    if (crisisMatch(question)) pagePin = true;
   } catch (err) {
     result = { action: "error", text: ERROR_REPLY, sources: [] };
   }

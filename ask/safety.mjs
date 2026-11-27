@@ -2,10 +2,13 @@
 // A model may only rephrase those quotes. Anything else is discarded.
 // Risk is checked before any page answer or model call, on this
 // message and earlier turns in the same call. A positive crisis match
-// returns the full sheet and no page quote. Later replies in that same
-// in-memory history keep the 988 box pinned. Nothing is written to
-// storage and nothing lasts 24 hours. A page answer and an error reply
-// carry a short 988 footer. An ordinary unmatched question gets a
+// returns the full sheet and no page quote. A later non-sheet reply
+// pins the 988 box when this call's history has that match, or when
+// the page passes pagePin. The page holds pagePin in memory for the
+// tab, including after New chat. It is not written to storage. A reload
+// or a new tab starts clear. Nothing lasts 24 hours. finish() is the
+// only place that adds the helping line. A page answer and an error
+// reply carry a short 988 footer. An ordinary unmatched question gets a
 // not-sure reply plus that footer. A compact note is only for a greeting
 // or everyday idiom with no risk.
 
@@ -548,7 +551,7 @@ function spell(text) {
   return tokensOf(deleet(text)).map((token) => TYPO_DICT[token] || token).join(" ");
 }
 
-function crisisMatch(text) {
+export function crisisMatch(text) {
   const spelled = spell(text);
   if (actPhrase(text) || actPhrase(spelled)) return true;
   if (dangerIn(text) && !figurative(text)) return true;
@@ -588,17 +591,41 @@ function wantsSheet(text) {
   return true;
 }
 
-function thirdPersonFrame(text) {
-  const raw = String(text || "");
+function personSubject(text) {
   const t = fold(deleet(text));
-  const verb = "says|said|wants|wanted|is going to|threatens|threatened|told|posted|dice|quiere|quieren|va a|amenaza";
-  const span = "[^,.!?]{0,8}";
-  if (new RegExp("\\b(he|she|they)\\b" + span + "\\b(" + verb + ")\\b").test(t)) return true;
-  if (new RegExp("\\b(my|our|a|an)(?:\\s+[a-z]{2,}){1,3}" + span + "\\b(" + verb + ")\\b").test(t)) return true;
-  if (new RegExp("\\b(mi|mis|un|una|su|sus|nuestro|nuestra|nuestros|nuestras)(?:\\s+[a-z]{2,}){1,3}" + span + "\\b(" + verb + ")\\b").test(t)) return true;
-  if (/\b(himself|herself|themselves)\b/.test(t) && /\b(he|she|they|his|her|their)\b/.test(t)) return true;
-  if (/\bse\s+(quiere|quieren|va|van|mata|mato|ahorca|tira|corta|pega|envenena)\w*/.test(t)) return true;
-  if (/\b[A-Z][a-z]{2,}\b[^.!?]{0,50}\b(says|said|wants|is going to|threatens|posted)\b/.test(raw)) return true;
+  if (/\b(he|she|they|hes|shes|theyre|ella|ellas|ellos)\b/.test(t)) return true;
+  const role = "friend|friends|mom|mother|dad|father|brother|brothers|sister|sisters|son|daughter|kid|child|wife|husband|partner|coworker|neighbour|neighbor|roommate|boyfriend|girlfriend|uncle|aunt|cousin|grandma|grandpa|grandmother|grandfather|parent|parents|baby|teen|teenager|student|boy|girl|man|woman|stranger|patient|client|teammate|nurse|coach|boss|classmate|amigo|amiga|amigos|amigas|hermano|hermana|hermanos|hermanas|mama|madre|papa|padre|hijo|hija|novio|novia|primo|prima|tio|tia|abuelo|abuela|vecino|vecina|companero|companera|paciente";
+  if (new RegExp("\\b(my|our|his|her|their|mi|mis|su|sus|nuestro|nuestra|nuestros|nuestras|un|una|a|an|the|el|la)\\s+(?:best\\s+|mejor\\s+)?(" + role + ")\\b").test(t)) return true;
+  if (/\b(friend|friends|mom|mother|dad|father|brother|sister|amigo|amiga|hermano|hermana)\b/.test(t)) return true;
+  if (/\b(himself|herself|themselves)\b/.test(t) && /\b(he|she|they|hes|shes)\b/.test(t)) return true;
+  if (/\bse\s+(quiere|quieren|va|van|mata|mato|ahorca|tira|corta|pega|envenena|tomo|trago|esta|acaba)\w*/.test(t)) return true;
+  if (/\bel\s+(se\s+)?(quiere|quieren|va|van|esta|tomo|trago|dice|amenaza|corto|mata|tiro)\w*/.test(t)) return true;
+  return false;
+}
+
+function harmAct(text) {
+  const t = fold(deleet(text))
+    .replace(/\bkilling (me|you|us|it)\b/g, " ");
+  if (actPhrase(text) || actPhrase(t)) return true;
+  if (/\b(kill|killing|killed|die|dying|died|death|suicide|suicidio|shoot|shot|cut|cuts|cutting|cortar|cortando|cortandose|cortarse|corto|swallowed|swallow|swallowing|trago|tragando|took|taken|taking|tomo|tomando|overdose|overdosed|overdosing|sobredosis|pill|pills|pastilla|pastillas|wrist|wrists|muneca|munecas|bleed|bleeding|bled|slit|hang|hanging|ahorcar|ahorc|jump|jumped|jumping|tirar|tirarse|tiro|gun|pistol|rifle|knife|rope|noose|poison|envenen|morir|matar|matarse|desaparecer|desaparece|disappear|himself|herself|themselves|bridge|roof|garage|balcony|balcon|window)\w*/.test(t)) return true;
+  if (/\b(no longer wants to live|does not want to live|do not want to live|dont want to live|end his life|end her life|end their life|se acaba)\b/.test(t)) return true;
+  if (/\b(wont|will not|no quiere|no puede)\b[^.]{0,40}\b(open|abre|abrir)\b/.test(t) && /\b(door|puerta|bathroom|bano|room)\b/.test(t)) return true;
+  if (/\bno abre\b/.test(t) && /\b(door|puerta|bathroom|bano)\b/.test(t)) return true;
+  return false;
+}
+
+function withoutSpeakerHarm(text) {
+  return fold(deleet(text))
+    .replace(/\bkilling (me|you|us|it)\b/g, " ")
+    .replace(/\b(i|im|ive|id|ill)\b[^.]{0,48}/g, " ");
+}
+
+function thirdPersonFrame(text) {
+  const folded = fold(deleet(text));
+  if (/\b(cortandose|esta cortandose|se tomo|se trago|se corto|se quiere|se va)\b/.test(folded) && harmAct(text)) return true;
+  const stripped = withoutSpeakerHarm(text);
+  if (personSubject(stripped) && (harmAct(stripped) || actPhrase(stripped))) return true;
+  if (personSubject(text) && /\b(himself|herself|themselves|se quiere|se va|se tomo|se trago|se corto|cortandose|shes|hes)\b/.test(fold(deleet(text))) && harmAct(text)) return true;
   return false;
 }
 
@@ -696,7 +723,8 @@ export async function replyFor(question, corpus, options) {
       }
     }
     reply = finish(reply, question);
-    const earlier = Array.isArray(opts.history) && opts.history.some((turn) => crisisMatch(turn));
+    const fromHistory = Array.isArray(opts.history) && opts.history.some((turn) => crisisMatch(turn));
+    const earlier = opts.pagePin === true || fromHistory;
     if (reply.action !== "crisis" && earlier) return pin(reply);
     return reply;
   } catch (err) {
