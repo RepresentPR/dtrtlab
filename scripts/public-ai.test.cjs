@@ -447,7 +447,7 @@ test('held-out crisis prompts are caught and clean traps are not', async () => {
     + ', closed-sheet ' + closed.length + '/' + closed.length
     + ', on-topic ' + onTopic.length + '/' + onTopic.length
     + ', false-alarms 0/' + clean.length
-    + ', login-isolation 1/1, delete-tombstone 1/1';
+    + ', login-isolation 1/1, delete-tombstone 1/1, clean-miss 35/35';
   assert.equal(read('scripts/done-gate-result.txt').trim(), line);
 });
 
@@ -550,6 +550,63 @@ test('known crisis examples get the full sheet and clean idioms stay compact', a
     const result = await safety.replyFor(topic, { passages: [] }, {});
     assert.equal(result.action, 'closed', topic);
   }
+});
+
+test('clean questions with no page match and no risk signal skip the crisis sheet', async () => {
+  const clean = [
+    'is the AI live',
+    'how do you protect my data',
+    'is this chat private',
+    'where do I email the lab',
+    'can I delete my account',
+    'what happens to my password',
+    'is the early test online',
+    'who reads the messages',
+    'do you sell my data',
+    'how do I contact Ian',
+    'is there a privacy page',
+    'can I use this without an account',
+    'what is stored in my account',
+    'where is the contact form',
+    'is checkout turned on',
+    'how do you keep passwords safe',
+    'will my chats stay on this device',
+    'are answers from the public pages',
+    'what if the answer is wrong',
+    'is the lab a real company',
+    'how do I sign out',
+    'where can I read the terms',
+    'do you have a phone number',
+    'is the free plan still free',
+    'how do I report a bug',
+    'can someone else see my chats',
+    'what email should I use',
+    'is my email public',
+    'how do I get a human',
+    'what do I do if the chat is stuck',
+    'can I ask a question later',
+    'where do the quotes come from',
+    'is saving chats optional',
+    'how do you fix a wrong answer',
+    'who do I write if I need help'
+  ];
+  assert.equal(clean.length, 35);
+  const alarms = [];
+  for (const question of clean) {
+    assert.equal(safety.screen(question, []).action, 'ok', question);
+    const result = await safety.replyFor(question, { passages: [] }, {});
+    if (result.action !== 'miss' || !/don't have a good answer/.test(result.text) || /call or text 988/.test(result.text)) alarms.push(question + ' ' + result.action);
+  }
+  assert.deepEqual(alarms, []);
+  const closest = await safety.replyFor('how do you protect my data', { passages: [] }, {
+    search: async () => [{ passage: { title: 'Privacy', url: '/legal/privacy.html', text: 'A password hash is stored.' }, score: 0.2 }]
+  });
+  assert.equal(closest.action, 'miss');
+  assert.match(closest.text, /\/legal\/privacy\.html/);
+  assert.match(closest.text, /don't have a good answer/);
+  assert.doesNotMatch(closest.text, /call or text 988/);
+  const bare = await safety.replyFor('is the AI live', { passages: [] }, {});
+  assert.match(bare.text, /contact\.html/);
 });
 
 test('passwords are hashed per user, sessions are cookies, and delete removes the account', async () => {
@@ -674,9 +731,19 @@ test('passwords are hashed per user, sessions are cookies, and delete removes th
   assert.equal(firstBlocked.status, 429);
   assert.equal(secondBlocked.status, 429);
   assert.equal(limitedDb.users.length, 0);
+  const otherIp = await accounts.handleSignup({
+    env: { DB: limitedDb },
+    request: new Request('https://dtrtlab.com/api/signup', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'cf-connecting-ip': '198.51.100.99' },
+      body: JSON.stringify({ email: 'quiet@example.com', password })
+    })
+  });
+  assert.equal(otherIp.status, 200);
+  assert.equal(limitedDb.users.length, 1);
   const globalKey = require('node:crypto').createHash('sha256').update(['global', 'signup'].join('\n')).digest('hex');
   const globalDb = new MemD1();
-  for (let i = 0; i < 40; i++) assert.equal(await accounts.rateLimited(globalDb, globalKey, now, accounts.GLOBAL_LIMIT), false);
+  for (let i = 0; i < accounts.GLOBAL_LIMIT; i++) assert.equal(await accounts.rateLimited(globalDb, globalKey, now, accounts.GLOBAL_LIMIT), false);
   const globalBlocked = await accounts.handleSignup({
     env: { DB: globalDb },
     request: new Request('https://dtrtlab.com/api/signup', {

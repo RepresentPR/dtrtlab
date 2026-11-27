@@ -10,7 +10,10 @@ export const ITERATIONS = 600000;
 export const SESSION_MS = 30 * 24 * 60 * 60 * 1000;
 export const IP_LIMIT = 8;
 export const EMAIL_LIMIT = 8;
-export const GLOBAL_LIMIT = 40;
+// Abuse circuit breaker for the whole site. Per-IP and per-email
+// limits are the normal lockout. This is far above a few noisy
+// addresses, so they cannot lock out every visitor.
+export const GLOBAL_LIMIT = 400;
 export const ATTEMPT_WINDOW_MS = 15 * 60 * 1000;
 export const CHAT_WARN_AT = 40;
 export const CHAT_MAX = 200;

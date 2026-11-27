@@ -10,6 +10,10 @@ export const HARM_REPLY = "I cannot help with hurting people, weapons, or drugs.
 
 export const IDENTITY_REPLY = "I am software on DTRT Lab, a very early AI test. I am not a person and I am not a doctor.";
 
+export const MISS_REPLY = "I don't have a good answer for that yet.";
+
+export const CONTACT_LINE = "You can write hello@dtrtlab.com or use the contact page at /contact.html.";
+
 export const REDIRECT = "I'm an early test AI that only knows DTRT Lab. Try asking about the site, the lab, or Ian's public work.";
 
 export const SUGGESTIONS = ["What is on the site?", "What does the lab do?", "Who is Ian?"];
@@ -60,7 +64,7 @@ const CJK_PERSON = ["我", "私", "나", "저"];
 
 const PLAN_PHRASES = ["good plan", "should i", "how much", "is it enough"];
 
-const COMPACT_BLOCKS = ["good plan", "should i", "how much", "is it enough", "how to", "tonight"];
+const COMPACT_BLOCKS = ["good plan", "should i use it", "should i do it", "should i use that", "should i do that", "how much", "is it enough", "how to", "tonight"];
 
 const DISTRESS_PHRASES = [
   "i cant", "i cannot", "im done", "i am done", "no point", "nobody cares", "tired of everything"
@@ -275,6 +279,18 @@ function dangerIn(text) {
   return false;
 }
 
+export function hasRisk(question, history) {
+  return userTurns(question, history).some((turn) => dangerIn(turn));
+}
+
+export function ordinaryAsk(text) {
+  const folded = fold(text);
+  if (folded.length < 8 || folded.length > 180) return false;
+  if (hasNonLatin(text)) return false;
+  if (dangerIn(text)) return false;
+  return /^(is|are|how|what|where|who|when|can|do|does|why|will|could)\b/.test(folded);
+}
+
 export function clearlyClean(question, history) {
   const turns = userTurns(question, history);
   if (!turns.length) return false;
@@ -303,6 +319,22 @@ export function confidentMatch(question, matches) {
 
 function fullSheet() {
   return { action: "sheet", text: CRISIS_REPLY, modelCalled: false, sources: [] };
+}
+
+function missReply(matches) {
+  const bits = (matches || []).slice(0, 3).map((item) => {
+    const passage = item.passage || item;
+    const title = passage.title || "A public page";
+    const url = passage.url || "";
+    return url ? title + " " + url : title;
+  }).filter(Boolean);
+  const extra = bits.length ? "Closest pages: " + bits.join("; ") + "." : CONTACT_LINE;
+  return {
+    action: "miss",
+    text: MISS_REPLY + " " + extra,
+    sources: (matches || []).slice(0, 3),
+    modelCalled: false
+  };
 }
 
 function compactReply() {
@@ -334,10 +366,12 @@ export async function replyFor(question, corpus, options) {
     const passage = fallbackPassage(corpus);
     if (passage) matches = [{ passage, score: 2 }];
   }
-  if (!confidentMatch(question, matches) && !meta) {
-    return clearlyClean(question, opts.history) ? compactReply() : fullSheet();
+  const unmatched = (!confidentMatch(question, matches) && !meta) || !matches.length;
+  if (unmatched) {
+    if (clearlyClean(question, opts.history)) return compactReply();
+    if (!hasRisk(question, opts.history) && ordinaryAsk(question)) return missReply(matches);
+    return fullSheet();
   }
-  if (!matches.length) return clearlyClean(question, opts.history) ? compactReply() : fullSheet();
   const sources = matches.slice(0, 3);
   const template = templateFrom(sources);
   if (typeof opts.tryModel !== "function") {
