@@ -1,0 +1,250 @@
+/* Neural glow: the dark dream theme. Scoped to body.dream, loaded after dream.css.
+   Near-black field, one teal accent, one violet accent, a node network in SVG.
+   Colors reuse the site greens (#13C27A) and navy (#0B2545). No images, no inline styles. */
+body.dream {
+  --glow-bg: #04060a;
+  --glow-panel: #0a1214;
+  --glow-ink: #e8f4f0;
+  --glow-muted: #b4c9c3;
+  --glow-faint: #8fa7a0;
+  --glow-line: rgba(125, 225, 200, 0.22);
+  --glow-teal: #7de1c8;
+  --glow-violet: #b69cff;
+  --glow-green: #13c27a;
+  background-color: var(--glow-bg);
+  color: var(--glow-ink);
+  color-scheme: dark;
+}
+
+/* Background: replaces the pastel dream wash on every mood. Fixed, no pointer events. */
+body.dream::before,
+body.dream[data-mood="morning"]::before,
+body.dream[data-mood="evening"]::before,
+body.dream[data-mood="night"]::before {
+  background:
+    radial-gradient(50% 40% at 78% 8%, rgba(125, 225, 200, 0.16), transparent 70%),
+    radial-gradient(45% 40% at 6% 58%, rgba(140, 100, 255, 0.17), transparent 70%),
+    radial-gradient(40% 30% at 92% 96%, rgba(19, 194, 122, 0.12), transparent 70%);
+}
+body.dream .dream-orb { background: #3b2d78; opacity: 0.3; }
+body.dream .dream-orb-b,
+body.dream[data-mood="night"] .dream-orb-b { background: #1d6a5a; }
+body.dream[data-mood="night"] .dream-orb-a { background: #3b2d78; }
+
+/* Shared chrome: top bar, header, footer. */
+body.dream .skip { background: var(--glow-teal); color: #04201a; }
+body.dream .preview-bar { background: #070d0f; color: var(--glow-teal); border-bottom: 1px solid var(--glow-line); }
+body.dream .preview-bar span { color: var(--glow-muted); }
+body.dream .header { border-bottom: 1px solid var(--glow-line); background: rgba(4, 6, 10, 0.72); }
+body.dream .wordmark { color: #fff; }
+body.dream .header nav a { color: var(--glow-ink); }
+body.dream .header nav a:hover,
+body.dream .header nav a[aria-current="page"] { color: var(--glow-teal); }
+body.dream a:focus-visible,
+body.dream button:focus-visible,
+body.dream input:focus-visible,
+body.dream textarea:focus-visible,
+body.dream select:focus-visible,
+body.dream summary:focus-visible { outline-color: var(--glow-teal); }
+body.dream .site-socials a { color: var(--glow-ink); border-color: var(--glow-line); background: rgba(125, 225, 200, 0.05); }
+body.dream .site-socials a:hover { border-color: var(--glow-teal); color: #fff; }
+body.dream .site-socials .social-main { border-color: var(--glow-teal); color: var(--glow-teal); }
+body.dream footer { border-top: 1px solid var(--glow-line); color: var(--glow-muted); background: rgba(4, 6, 10, 0.72); position: relative; z-index: 2; }
+body.dream footer p { color: var(--glow-muted); }
+body.dream footer a { color: var(--glow-ink); }
+body.dream footer a:hover { color: var(--glow-teal); }
+body.dream .ambience { background: #0a1214; border: 1px solid var(--glow-line); box-shadow: 0 0 30px rgba(125, 225, 200, 0.12); }
+body.dream .ambience button { background: var(--glow-teal); color: #04201a; }
+
+/* Type. */
+body.dream main,
+body.dream .hero,
+body.dream .section { position: relative; z-index: 2; }
+body.dream h1, body.dream h2, body.dream h3 { color: #fff; }
+body.dream h1 em { color: var(--glow-teal); }
+body.dream .hero-lead,
+body.dream .muted,
+body.dream .service-detail > p,
+body.dream .service-columns p,
+body.dream .offer p,
+body.dream .section-head p:last-child,
+body.dream .film-details { color: var(--glow-muted); }
+body.dream .eyebrow,
+body.dream .section-head .eyebrow,
+body.dream .small-label { color: var(--glow-teal); }
+body.dream .square { background: var(--glow-teal); box-shadow: 0 0 10px var(--glow-teal); }
+body.dream a { color: inherit; }
+body.dream .text-link,
+body.dream .section a:not(.primary):not(.status) { color: var(--glow-teal); }
+body.dream .primary { background: var(--glow-teal); color: #04201a; border-radius: 999px; box-shadow: 0 0 28px rgba(125, 225, 200, 0.35); }
+body.dream .primary:hover { background: #fff; }
+body.dream .primary:disabled { background: #26332f; color: #7d918b; box-shadow: none; }
+
+/* Panels and cards. */
+body.dream .section,
+body.dream .knowledge-section { border-top: 1px solid var(--glow-line); }
+body.dream .work-card,
+body.dream .offer,
+body.dream .assistant,
+body.dream .blog-list article,
+body.dream .ask-bubble,
+body.dream form {
+  background: linear-gradient(160deg, rgba(125, 225, 200, 0.08), rgba(140, 100, 255, 0.07)), var(--glow-panel);
+  border: 1px solid var(--glow-line);
+  border-radius: 18px;
+  color: var(--glow-ink);
+  box-shadow: 0 0 30px rgba(125, 225, 200, 0.08);
+}
+body.dream .service,
+body.dream .products,
+body.dream .software { background-color: var(--glow-panel); }
+body.dream .work-card p,
+body.dream .offer p,
+body.dream .entries p,
+body.dream .steps p { color: var(--glow-muted); }
+body.dream .work-card a { border-top-color: var(--glow-line); }
+body.dream .work-card small,
+body.dream .assistant-note,
+body.dream form > small { color: var(--glow-faint); }
+body.dream .status { color: var(--glow-teal); border-color: var(--glow-line); border-radius: 999px; padding: 4px 9px; }
+body.dream .available { color: var(--glow-green); border-color: rgba(19, 194, 122, 0.5); }
+body.dream .assistant-top { background: rgba(125, 225, 200, 0.06); border-bottom-color: var(--glow-line); }
+body.dream .assistant-top p { color: var(--glow-muted); }
+body.dream .assistant-mark { background: rgba(125, 225, 200, 0.15); color: var(--glow-teal); }
+body.dream .pill { border-color: var(--glow-line); color: var(--glow-muted); }
+body.dream .assistant-body .eyebrow { color: var(--glow-teal); }
+body.dream .assistant-note { border-top-color: var(--glow-line); }
+body.dream .suggestions button { background: rgba(255, 255, 255, 0.04); border-color: var(--glow-line); color: var(--glow-ink); }
+body.dream .suggestions button span { color: var(--glow-teal); }
+body.dream .suggestions button:hover,
+body.dream .suggestions button.active { background: rgba(125, 225, 200, 0.12); border-color: var(--glow-teal); }
+body.dream .route { background: rgba(125, 225, 200, 0.08); border-left-color: var(--glow-teal); }
+body.dream .hero-foot { border-top-color: var(--glow-line); }
+body.dream .hero-foot p { color: var(--glow-faint); }
+
+/* Story stage (fire guide) and its white dialog keep their own colors; only the frame is tuned. */
+body.dream .story-stage { background: rgba(7, 13, 15, 0.82); border-bottom-color: var(--glow-teal); }
+body.dream .story-kicker { color: var(--glow-teal); }
+
+/* Sections that were light blocks. */
+body.dream .film-section,
+body.dream .campaign { background: rgba(10, 18, 20, 0.7); }
+body.dream .video-frame { background: #000; border-radius: 18px; border: 1px solid var(--glow-line); box-shadow: 0 0 40px rgba(125, 225, 200, 0.12); }
+body.dream .film-details summary { color: var(--glow-teal); }
+body.dream .deadline,
+body.dream .steps li { border-color: var(--glow-line); }
+body.dream .steps li > span { color: var(--glow-teal); }
+body.dream .steps b { color: var(--glow-violet); }
+body.dream .entries article { border-top-color: var(--glow-line); }
+body.dream .entry-meta { color: var(--glow-faint); }
+body.dream .filters button { color: var(--glow-muted); }
+body.dream .filters button.selected { background: rgba(125, 225, 200, 0.14); color: var(--glow-teal); }
+body.dream .faq details { border-top-color: var(--glow-line); }
+body.dream .offer .price { color: var(--glow-teal); }
+body.dream .switch-row button { background: rgba(125, 225, 200, 0.08); border-color: var(--glow-line); color: var(--glow-ink); }
+body.dream .switch-row button[aria-checked="true"] { background: var(--glow-teal); color: #04201a; }
+body.dream .switch-row span,
+body.dream .request-section p,
+body.dream .consent { color: var(--glow-muted); }
+body.dream select,
+body.dream textarea,
+body.dream .ask-form input { background: #070d0f; color: var(--glow-ink); border-color: var(--glow-line); }
+body.dream #request-preview { border-top-color: var(--glow-line); }
+body.dream #request-preview button { background: rgba(125, 225, 200, 0.08); border-color: var(--glow-line); color: var(--glow-ink); }
+body.dream .ask-hit { border-top-color: var(--glow-line); }
+
+/* Hero art: node network around Ian's photo. Inline SVG, no filters, a handful of nodes. */
+body.dream .personal-hero {
+  position: relative;
+  max-width: 1440px;
+  margin: 0 auto;
+  grid-template-columns: minmax(0, 1fr);
+  justify-content: stretch;
+  row-gap: 0;
+  align-content: center;
+  padding-top: clamp(24px, 5vw, 64px);
+  padding-bottom: clamp(32px, 6vw, 80px);
+  min-height: min(640px, 80svh);
+}
+body.dream .personal-hero > * { max-width: min(640px, 100%); }
+body.dream .personal-hero > .glow-art {
+  position: absolute;
+  right: 5vw;
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(46vw, 560px);
+  max-width: none;
+}
+body.dream .personal-hero h1 {
+  font-size: clamp(42px, 6.4vw, 86px);
+  letter-spacing: -0.03em;
+  text-shadow: 0 0 40px rgba(125, 225, 200, 0.28);
+}
+body.dream .personal-hero h1 em { display: block; background: linear-gradient(90deg, var(--glow-teal), var(--glow-violet)); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: none; }
+body.dream .personal-hero .hero-actions .text-link { color: var(--glow-teal); }
+.glow-art { position: relative; display: grid; place-items: center; min-height: 340px; }
+.glow-net { position: absolute; inset: 0; width: 100%; height: 100%; }
+.glow-net .link { stroke: #7de1c8; stroke-opacity: 0.45; stroke-width: 1.2; fill: none; }
+.glow-net .link-v { stroke: #b69cff; stroke-opacity: 0.5; }
+.glow-net .node { fill: #7de1c8; }
+.glow-net .halo { fill: #7de1c8; opacity: 0.1; }
+.glow-portrait {
+  position: relative;
+  display: block;
+  width: min(210px, 52vw);
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--glow-teal);
+  box-shadow: 0 0 0 8px rgba(125, 225, 200, 0.1), 0 0 60px rgba(125, 225, 200, 0.45), 0 0 110px rgba(140, 100, 255, 0.3);
+}
+.glow-lang { display: flex; gap: 6px; align-items: center; margin: 0 0 14px; font-size: 13px; }
+.glow-lang span { color: var(--glow-faint); letter-spacing: 0.12em; text-transform: uppercase; font-size: 11px; margin-right: 4px; }
+.glow-lang a { min-height: 44px; min-width: 44px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--glow-line); border-radius: 999px; padding: 0 12px; text-decoration: none; color: var(--glow-ink); }
+.glow-lang a[aria-current="true"] { border-color: var(--glow-teal); color: var(--glow-teal); }
+
+/* Product strip: short cards that point at /links/. */
+.glow-products .glow-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin: 0 0 24px; padding: 0; list-style: none; }
+body.dream .glow-chip {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  min-height: 44px;
+  padding: 20px;
+  border-radius: 18px;
+  border: 1px solid var(--glow-line);
+  background: linear-gradient(160deg, rgba(125, 225, 200, 0.08), rgba(140, 100, 255, 0.07)), var(--glow-panel);
+  color: var(--glow-ink);
+  text-decoration: none;
+  box-shadow: 0 0 24px rgba(125, 225, 200, 0.07);
+}
+body.dream .glow-chip:hover { border-color: var(--glow-teal); box-shadow: 0 0 30px rgba(125, 225, 200, 0.25); }
+body.dream .glow-chip .small-label { color: var(--glow-teal); letter-spacing: 0.16em; font-family: ui-monospace, Menlo, Consolas, monospace; text-transform: uppercase; }
+body.dream .glow-chip .status { align-self: flex-start; }
+body.dream .glow-chip h3 { font-size: 19px; margin: 0; }
+body.dream .glow-chip p { margin: 0; font-size: 14px; color: var(--glow-muted); }
+body.dream .glow-chip p.glow-disc { color: #d9c9ff; font-weight: 600; }
+
+@media (max-width: 1000px) {
+  .glow-products .glow-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  body.dream .personal-hero { grid-template-columns: 1fr; }
+  body.dream .personal-hero > .glow-art { position: relative; right: auto; top: auto; transform: none; width: 100%; min-height: 280px; order: 5; margin-top: 24px; }
+  .glow-products .glow-strip { grid-template-columns: 1fr; }
+  body.dream .header { background: rgba(4, 6, 10, 0.9); }
+}
+
+/* Motion is optional. */
+@media (prefers-reduced-motion: no-preference) {
+  .glow-net .pulse { animation: glow-pulse 5s ease-in-out infinite alternate; }
+  .glow-net .pulse-b { animation-delay: 1.6s; }
+  .glow-portrait { animation: glow-breathe 7s ease-in-out infinite alternate; }
+  @keyframes glow-pulse { from { opacity: 0.35; } to { opacity: 1; } }
+  @keyframes glow-breathe { from { box-shadow: 0 0 0 8px rgba(125, 225, 200, 0.08), 0 0 44px rgba(125, 225, 200, 0.35), 0 0 90px rgba(140, 100, 255, 0.22); } to { box-shadow: 0 0 0 10px rgba(125, 225, 200, 0.12), 0 0 70px rgba(125, 225, 200, 0.55), 0 0 120px rgba(140, 100, 255, 0.35); } }
+}
+@media (prefers-reduced-motion: reduce) {
+  .glow-net .pulse, .glow-portrait { animation: none; }
+}
