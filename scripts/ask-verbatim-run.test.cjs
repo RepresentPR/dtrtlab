@@ -22,10 +22,7 @@ function runs(words, size) {
 
 test('safety-core has no 4-word run from the exported sets', () => {
   const dir = EXPORTS.find((item) => fs.existsSync(item));
-  if (!dir) {
-    console.log('verbatim-run skipped, export not mounted');
-    return;
-  }
+  if (!dir) assert.fail('exported sets are not mounted');
   const hay = [];
   for (const name of fs.readdirSync(dir)) {
     if (!name.endsWith('.json') || name === 'manifest.json') continue;

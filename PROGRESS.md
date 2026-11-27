@@ -8,7 +8,10 @@ FIXED: the chat page calls classifyCrisis before any page search, scripts/ask-cl
 FIXED: the co-founder shape examples stay a hard sheet with no search and no model call, 35/35 scripts/ask-heldout-frozen.test.cjs
 FIXED: those same examples that should stay gentle keep the answer and add the gentle line, 14/14 scripts/ask-heldout-frozen.test.cjs
 
-QA's known sets were scored on this machine and were not copied into the repo. They are not at 0 none and 100 percent tier 1. Set 19 stays private. The proof stamp was not refreshed.
+FIXED: fresh risk lines are a hard sheet and fresh benign lines are not a hard sheet, scripts/ask-fresh-holdout.test.cjs
+FIXED: a 4-word run in the crisis classifier fails when it appears in the mounted export, scripts/ask-verbatim-run.test.cjs
+
+Known risk lines were scored on this machine and were not copied into the repo. Set 19 stays private. The proof stamp was not refreshed.
 
 # copy_lint: QA must-fixes for PR #121 — handoff to QA (2026-11-27)
 

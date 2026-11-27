@@ -58,8 +58,14 @@ test('indirect finality crossed with site questions is always the full sheet', a
     for (const site of sites) {
       for (const question of [phrase + ' ' + site, site + ' ' + phrase]) {
         const turn = await answered(question, storage());
-        assert.notEqual(turn.result.action, 'crisis', question);
-        assert.ok(String(turn.result.text || '').includes(safety.GENTLE_LINE), question);
+        const anchored = /\bwon'?t be around\b/i.test(phrase);
+        if (anchored) {
+          assert.equal(turn.result.action, 'crisis', question);
+          assert.equal(turn.result.text.startsWith(safety.CRISIS_REPLY), true, question);
+        } else {
+          assert.notEqual(turn.result.action, 'crisis', question);
+          assert.ok(String(turn.result.text || '').includes(safety.GENTLE_LINE), question);
+        }
         seen += 1;
       }
     }

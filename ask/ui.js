@@ -21,7 +21,7 @@
   window.DTRTAskLogOptIn = { showAfter: ASK_LOG_OPT_IN.showAfter, open: askLogOptInOpen };
 
   if (navigator.serviceWorker && location.protocol !== "file:") {
-    var swUrl = "/sw.js?v=20261127-ask45";
+    var swUrl = "/sw.js?v=20261127-ask46";
     var registerSw = function () {
       navigator.serviceWorker.register(swUrl).catch(function () {});
     };
