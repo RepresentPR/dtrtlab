@@ -389,6 +389,14 @@ test('fix7/7 description change without a Last updated bump fails', () => {
   assert.ok(problems.some((p) => p.includes('still 2026-10-15')), problems.join('; '));
   assert.deepEqual(L.legalStampProblems('legal/terms.html', page('Terms for the site.'), page('Terms for these pages.').replace('October 15, 2026', 'October 16, 2026'), now), []);
 });
+test('fix7/7 same-day wording edit is allowed when the stamp is already today ET', () => {
+  const now = new Date('2026-11-27T18:00:00Z'); // 1:00 PM EST / 2:00 PM AST Nov 27
+  const page = (body) => `<head><title>Refunds</title></head><p class="lead">Last updated November 27, 2026.</p>${body}`;
+  assert.deepEqual(L.legalStampProblems('legal/refunds.html', page('<p>Old policy.</p>'), page('<p>Partner refund policy.</p>'), now), []);
+  const stale = L.legalStampProblems('legal/refunds.html', page('<p>Old policy.</p>').replace('November 27, 2026', 'November 15, 2026'), page('<p>Partner refund policy.</p>').replace('November 27, 2026', 'November 15, 2026'), now);
+  assert.ok(stale.some((p) => p.includes('still 2026-11-15')), stale.join('; '));
+});
+
 test('fix7/7 og:description change without a Last updated bump fails', () => {
   const now = new Date('2026-10-16T14:00:00Z'); // 10:00 AM EDT Oct 16
   const page = (desc) => `<head><title>Terms</title><meta property="og:description" content="${desc}"></head><p class="lead">Last updated October 15, 2026.</p><p>Checkout is not live.</p>`;

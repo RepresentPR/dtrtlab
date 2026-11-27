@@ -509,7 +509,9 @@ function legalStampProblems(file, baseHtml, headHtml, now = new Date()) {
   if (head > todayEt(now)) out.push(`${file}: "Last updated" ${head} is in the future (today ET ${todayEt(now)})`);
   const sameWording = baseHtml != null && legalWording(baseHtml) === legalWording(headHtml);
   if (base && head < base) out.push(`${file}: "Last updated" ${head} is older than ${base}`);
-  else if (base && head === base && !sameWording) out.push(`${file}: edited but "Last updated" is still ${head} (base ${base})`);
+  // If the stamp is already today's date (ET), it is fresh for this PR day.
+  // A same-day wording edit cannot bump past today (future dates fail).
+  else if (base && head === base && !sameWording && head !== todayEt(now)) out.push(`${file}: edited but "Last updated" is still ${head} (base ${base})`);
   return out;
 }
 
