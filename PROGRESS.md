@@ -2,7 +2,7 @@
 
 Public AI chat branch `cursor/public-ai-launch-8a16`.
 
-Head: `pending`
+Head: `30ab3e94ec5f53da7127633baa17ed76825f0855`
 
 FIXED: indirect finality crossed with site questions returns the full sheet, 96/96 scripts/ask-varied.test.cjs
 FIXED: Spanish future and conditional lines set the flag, 8/8 scripts/ask-varied.test.cjs
