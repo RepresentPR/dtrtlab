@@ -1,5 +1,5 @@
 // Import a reviewed observation, never fetch credentials or platform sources.
-const fs=require('node:fs'),path=require('node:path'),g=require('../js/growth-model.js');
+const fs=require('node:fs'),path=require('node:path'),g=require('./archive/unserved/js/growth-model.js');
 const file=path.join(__dirname,'../content/growth-ledger.json');
 if(!process.argv[2])throw Error('Usage: node scripts/import-growth.cjs reviewed-observation.json');
 const incoming=JSON.parse(fs.readFileSync(process.argv[2],'utf8')),data=JSON.parse(fs.readFileSync(file,'utf8'));

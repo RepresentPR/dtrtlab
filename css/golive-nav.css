@@ -1,0 +1,32 @@
+/* Keep the Mercado (and every) header link visible at 390px. */
+.header {
+  overflow: visible;
+}
+.header nav[aria-label="Main navigation"],
+.header nav[aria-label="Navegación principal"] {
+  flex-wrap: wrap;
+}
+@media (max-width: 760px) {
+  .header {
+    overflow: visible;
+  }
+  .header nav[aria-label="Main navigation"],
+  .header nav[aria-label="Navegación principal"] {
+    width: 100%;
+    justify-content: flex-start !important;
+    flex-wrap: wrap !important;
+    gap: 4px 14px !important;
+    font-size: 13px !important;
+  }
+  .header nav[aria-label="Main navigation"] a,
+  .header nav[aria-label="Navegación principal"] a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 2px;
+    flex: 0 0 auto;
+  }
+}
+
+a.mk-lang, a[data-home-lang] { margin-left: 12px; min-height: 44px; display: inline-flex; align-items: center; }
+

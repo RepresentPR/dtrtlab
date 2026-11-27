@@ -33,7 +33,7 @@
     "https://www.linkedin.com/in/ian-ferraro-578784419/",
     "https://github.com/RepresentPR"
   ],
-  "findMe": "https://dtrtlab.com/find.html",
+  "findMe": "https://dtrtlab.com/links/",
   "products": [
     {
       "name": "Shop interest catalog",
@@ -57,34 +57,33 @@
     "Show the process with dated public evidence."
   ],
   "mission": "Make useful stuff for all ages and any size idea. Have fun doing it. Show the process with dated public evidence.",
-  "northStar": "We build the AI office manager for service businesses, a real person is accountable, and every build is made fresh for that business — not a vanity brand.",
+  "northStar": "DTRT Lab is the shop for Jafra, MOTION, Candles, and an early AI test. A real person is accountable.",
   "outOfVision": [
     "Cloning third-party software via reverse engineering as a growth strategy",
     "Fake scale, fake store, fake hiring, or fake fundraising",
     "Hype tools that trade trust for reach"
   ],
   "lastReviewed": "2026-10-13",
-  "serviceArea": "Small service businesses",
+  "serviceArea": "The shop is online.",
   "offers": [
     {
-      "name": "DTRT Job Desk",
-      "deliverables": "Free office map, then job tracking, customer updates, quote follow-up, and a nightly report card.",
-      "url": "https://dtrtlab.com/map/"
+      "name": "DTRT Lab shop",
+      "deliverables": "Product links for Jafra, MOTION, and Candles, plus an early AI test.",
+      "url": "https://dtrtlab.com/mercado/"
     },
     {
-      "name": "AI Visibility Fix",
-      "deliverables": "Free AI check, then listing and service corrections for you to apply.",
-      "url": "https://dtrtlab.com/map/?want=check"
+      "name": "Ask (early test)",
+      "deliverables": "An early AI test. It is not live yet.",
+      "url": "https://dtrtlab.com/mercado/"
     }
   ],
-  "guarantee": "If it's not right, I fix it at no charge.",
   "theme": {
     "name": "A · Local Pro",
     "lockedUntil": "2027-01-13",
     "navy": "#0B2545",
     "green": "#13C27A",
     "light": "#DCE6F2",
-    "headline": "I build the AI office manager for small service businesses.",
-    "sub": "Every job tracked, every customer updated, every quote followed up, and a report card on your phone each night. Get a free written office map at dtrtlab.com/map/."
+    "headline": "The site is the shop: Jafra, MOTION, Candles, and an early AI test.",
+    "sub": "Every job tracked, every customer updated, every quote followed up, and a report card on your phone each night. Open the shop at dtrtlab.com/mercado/."
   }
 }

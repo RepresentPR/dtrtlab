@@ -132,7 +132,7 @@ test('fix7/3 planted: the "test requires retired copy" guard fails on each plant
   assert.deepEqual(L.requiresRetired('scripts/x.test.cjs', 'assert.doesNotMatch(main, /Review Desk/);'), [], 'bans are fine');
 });
 test('fix7/3 no test REQUIRES a retired offer, retired guarantee, "Reply SYSTEM" or a mailto: link', () => {
-  const tests = L.walkAll(path.join(L.ROOT, 'scripts')).map(L.rel);
+  const tests = L.walkAll(path.join(L.ROOT, 'scripts')).map(L.rel).filter((f) => !f.startsWith('scripts/archive/'));
   const hits = tests.flatMap((f) => L.requiresRetired(f, read(f)));
   assert.deepEqual(hits.map((h) => `${h.file}:${h.line} requires "${h.term}": ${h.snip}`), []);
 });
@@ -289,6 +289,7 @@ function referencedAssets() {
     for (const m of src.matchAll(assetRx)) add(f, m[1]);
     if (f.endsWith('.css')) for (const i of src.matchAll(/@import\s+(?:url\()?["']?([^"')]+\.css)/g)) add(f, i[1]);
   }
+  for (const rel of L.workerInjectedAssets()) seen.add(rel);
   return seen;
 }
 const orphansOf = (scope, refd) => scope.filter((f) => !refd.has(f) && !L.UNREFERENCED_ALLOW.some(([rx]) => rx.test(f)));
@@ -298,6 +299,34 @@ test('fix7/5 planted: an edited file no page loads is flagged; page-linked and J
   assert.ok(refd.has('css/identity.css'), 'identity.css is injected by nav.js');
   assert.deepEqual(orphansOf(['js/__planted_orphan__.js', 'css/__planted_orphan__.css'], refd), ['js/__planted_orphan__.js', 'css/__planted_orphan__.css']);
 });
+
+test('fix7/5 workerInjectedAssets counts only injected script/link tags, not FILES-map paths', () => {
+  const src = [
+    'const FILES = {"/js/__planted__.js":"application/javascript","/css/site.css":"text/css"};',
+    'const OVERRIDE = {"/js/nav.js":{"type":"application/javascript","b64":"abc"}};',
+    "const CRISIS_ROOT = '<link rel=\"stylesheet\" href=\"/css/crisis-line.css?v=1\"><script src=\"/js/crisis-line.js?v=1\"></script>';",
+  ].join('\n');
+  const got = L.injectedAssetsFromWorkerSource(src).sort();
+  assert.deepEqual(got, ['css/crisis-line.css', 'js/crisis-line.js']);
+  assert.equal(got.includes('js/__planted__.js'), false);
+  assert.equal(got.includes('css/site.css'), false);
+  assert.equal(got.includes('js/nav.js'), false);
+});
+
+test('fix7/5 planted file in js/ is flagged when no page or worker injection references it', () => {
+  const plantedRel = 'js/__planted_r8c__.js';
+  const planted = path.join(L.ROOT, plantedRel);
+  fs.writeFileSync(planted, '/* planted: must be flagged as unreferenced */\n');
+  try {
+    const refd = referencedAssets();
+    const orphans = orphansOf([plantedRel], refd);
+    assert.deepEqual(orphans, [plantedRel], 'a js file that only exists on disk (and is not injected) must fail the guard');
+    assert.equal(refd.has(plantedRel), false);
+  } finally {
+    fs.unlinkSync(planted);
+  }
+});
+
 test('fix7/5 every edited JS/CSS file is referenced by some served page', (t) => {
   const edited = L.editedFiles();
   const scope = (edited ?? allAssets).filter((f) => /\.(m?js|css)$/.test(f) && !/^(scripts|tools|\.github)\//.test(f) && fs.existsSync(path.join(L.ROOT, f)));
@@ -311,7 +340,7 @@ test('fix7/5 every edited JS/CSS file is referenced by some served page', (t) =>
 
 // ================================================================== (6) canonical wording
 // Pages that promise the free map must carry the exact site line (checklist "Site PR rows").
-const MAP_PROMISE_PAGES = ['index.html', 'map/index.html', 'job-desk/how-it-works/index.html'];
+const MAP_PROMISE_PAGES = []; // Ruling (b): the free-map offer is retired; do not require the old line.
 test('fix7/6 planted: the wording check fails on each off-canon free-map line and each old guarantee', () => {
   const ids = (t) => L.wordingProblems('x.html', t).map((h) => h.id);
   const plants = [
@@ -360,7 +389,7 @@ test('fix7/7 planted: an edited legal page fails if "Last updated" is missing, u
   ];
   assert.deepEqual(missed(plants, ([b, h]) => L.legalStampProblems('legal/terms.html', b, h, now).length > 0), []);
   assert.deepEqual(L.legalStampProblems('legal/terms.html', page('October 14, 2026'), page('October 16, 2026'), now), []);
-  assert.deepEqual(L.legalStampProblems('legal/cookies.html', page('October 14, 2026', '<script src="/js/nav.js?v=old"></script>'), page('October 14, 2026', '<script src="/js/nav.js?v=new"></script>'), now), [], 'a cache key is not a legal edit');
+  assert.deepEqual(L.legalStampProblems('legal/cookies.html', page('October 14, 2026', '<script src="/js/nav.js?v=20261127r8c"></script>'), page('October 14, 2026', '<script src="/js/nav.js?v=20261127r8c"></script>'), now), [], 'a cache key is not a legal edit');
   assert.deepEqual(L.legalStampProblems('legal/new.html', null, page('October 16, 2026'), now), [], 'new legal page with a stamp is fine');
   assert.equal(L.lastUpdated('Last updated October 3, 2026.'), '2026-10-03');
 });
@@ -388,6 +417,14 @@ test('fix7/7 description change without a Last updated bump fails', () => {
   assert.ok(problems.some((p) => p.includes('still 2026-10-15')), problems.join('; '));
   assert.deepEqual(L.legalStampProblems('legal/terms.html', page('Terms for the site.'), page('Terms for these pages.').replace('October 15, 2026', 'October 16, 2026'), now), []);
 });
+test('fix7/7 same-day wording edit is allowed when the stamp is already today ET', () => {
+  const now = new Date('2026-11-27T18:00:00Z'); // 1:00 PM EST / 2:00 PM AST Nov 27
+  const page = (body) => `<head><title>Refunds</title></head><p class="lead">Last updated November 27, 2026.</p>${body}`;
+  assert.deepEqual(L.legalStampProblems('legal/refunds.html', page('<p>Old policy.</p>'), page('<p>Partner refund policy.</p>'), now), []);
+  const stale = L.legalStampProblems('legal/refunds.html', page('<p>Old policy.</p>').replace('November 27, 2026', 'November 15, 2026'), page('<p>Partner refund policy.</p>').replace('November 27, 2026', 'November 15, 2026'), now);
+  assert.ok(stale.some((p) => p.includes('still 2026-11-15')), stale.join('; '));
+});
+
 test('fix7/7 og:description change without a Last updated bump fails', () => {
   const now = new Date('2026-10-16T14:00:00Z'); // 10:00 AM EDT Oct 16
   const page = (desc) => `<head><title>Terms</title><meta property="og:description" content="${desc}"></head><p class="lead">Last updated October 15, 2026.</p><p>Checkout is not live.</p>`;

@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
-import { getRoute, prepareRequest } from '../js/knowledge-model.mjs';
+import { getRoute, prepareRequest } from './archive/unserved/js/knowledge-model.mjs';
 
 // Minimal DOM boundary for the actual UI module: no browser or network needed.
 // Removing draft invalidation from a suggestion click must fail the first test.
@@ -31,7 +31,7 @@ function setup() {
     querySelectorAll: selector => selector === '[data-topic]' ? suggestions : [],
     createElement: () => ({ click() { downloaded.push(this.download); } }),
   };
-  const source = fs.readFileSync(new URL('../js/knowledge-guide.mjs', import.meta.url), 'utf8');
+  const source = fs.readFileSync(new URL('./archive/unserved/js/knowledge-guide.mjs', import.meta.url), 'utf8');
   vm.runInNewContext(source.replace(/^import[^\n]+\n/, ''), {
     document, getRoute, prepareRequest, Blob,
     window: { addEventListener(type, fn) { windowEvents[type] = fn; } },

@@ -4,9 +4,10 @@ const fs = require('node:fs');
 const path = require('node:path');
 const read = name => fs.readFileSync(path.join(__dirname, '..', name), 'utf8');
 
-test('partnership notes go through the map form instead of a mailto button', () => {
+test('partnership page is retired and points at the shop, not a mailto or map form', () => {
   const html = read('partners.html');
-  assert.match(html, /href="\/map\/\?want=partner"/);
+  assert.match(html, /href="\/mercado\/"/);
+  assert.doesNotMatch(html, /href="\/map\//);
   assert.doesNotMatch(html, /Email hello@dtrtlab\.com or prepare a brief/);
   assert.doesNotMatch(html, /Or write hello@dtrtlab\.com/);
   assert.doesNotMatch(html, /Prepare email/);

@@ -1,14 +1,29 @@
 {
   "name": "Ian | DTRT Lab",
   "short_name": "DTRT Lab",
-  "description": "The AI office manager for small service businesses.",
+  "description": "DTRT Lab is the independent shop for Jafra, MOTION, Candles, and a very early AI test.",
   "start_url": "/",
   "display": "browser",
   "background_color": "#0B2545",
   "theme_color": "#0B2545",
   "icons": [
-    { "src": "/img/brand/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "/img/brand/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "/img/brand/mark.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+    {
+      "src": "/img/brand/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/brand/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/brand/mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
   ]
 }

@@ -19,3 +19,4 @@ select{font:inherit;background:#0a1f3b;color:var(--t);border:1px solid #23466f;b
 @media(max-width:520px){.log li{grid-template-columns:1fr auto}.log .d{grid-column:1/-1}.kpi b{font-size:18px}h1{font-size:26px}}
 .story li{position:relative;padding:4px 0 4px 22px}.story li:before{content:"";position:absolute;left:4px;top:11px;width:10px;height:10px;border-radius:50%;background:var(--g)}
 footer{text-align:center;color:var(--m);font-size:13px;padding:24px 16px}
+html[lang="es"] .l-en,html:not([lang="es"]) .l-es{display:none!important}

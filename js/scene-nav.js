@@ -6,8 +6,6 @@
   if (parts.length && /\.[a-z0-9]+$/i.test(parts[parts.length - 1])) parts.pop();
   var root = parts.length ? "../".repeat(parts.length) : "";
   var file = (location.pathname.split("/").pop() || "index.html").toLowerCase();
-  var aboutOn = file === "about.html";
-  var companyOn = file === "company.html";
   var contactOn = file === "contact.html";
   var partnerOn = file === "partners.html" || here.indexOf("/partner/") !== -1;
   var afterlightOn =
@@ -30,16 +28,14 @@
     '<div class="wrap nav-row">' +
     '<a class="brand" href="' + root + 'index.html">DTRT LAB</a>' +
     '<nav class="links" id="site-links" aria-label="Primary">' +
-    link("index.html#prices", "Prices", false) +
-    link("company.html", "Company", companyOn) +
-    link("about.html", "About", aboutOn) +
+    link("mercado/index.html", "Shop", false) +
     link("contact.html", "Contact", contactOn) +
     link("lab.html", "Lab / Hobby", file === "lab.html") +
     '<div class="nav-socials nav-socials-menu" data-social-slot="menu"></div>' +
     "</nav>" +
     '<div class="nav-end">' +
     '<div class="nav-socials nav-socials-desktop" data-social-slot="nav"></div>' +
-    '<a class="nav-cta" id="nav-start" href="' + root + 'contact.html?intent=free-map">Free office map</a>' +
+    '<a class="nav-cta" id="nav-start" href="' + root + 'mercado/">Shop</a>' +
     '<button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-links">Menu</button>' +
     "</div>" +
     "</div>";
@@ -71,8 +67,7 @@
     foot.innerHTML =
       '<div class="wrap">' +
       "<span>DTRT Lab · Do the right thing.</span>" +
-      '<a href="' + root + 'contact.html?intent=free-map">Free office map</a>' +
-      '<a href="' + root + 'index.html#prices">Prices</a>' +
+      '<a href="' + root + 'mercado/">Shop</a>' +
       '<a href="' + root + 'index.html">Home</a>' +
       '<a href="' + root + 'contact.html">Contact</a>' +
       '<a href="' + root + 'lab.html">Lab / Hobby</a>' +
@@ -90,13 +85,27 @@
     identity.href = root + "css/identity.css?v=20261014-business1";
     document.head.appendChild(identity);
   }
-  if (document.getElementById("main") && !document.querySelector(".hobby-banner")) {
+  var mainEl = document.getElementById("main") || document.querySelector("main");
+  if (sceneLang === "es" && mainEl) {
+    mainEl.setAttribute("lang", "en");
+    if (!document.querySelector(".en-only-notice")) {
+      var notice = document.createElement("p");
+      notice.className = "en-only-notice";
+      notice.setAttribute("role", "status");
+      notice.lang = "es";
+      notice.textContent = "Esta página está disponible solo en inglés por ahora.";
+      mainEl.insertBefore(notice, mainEl.firstChild);
+    }
+  }
+  if (mainEl && !document.querySelector(".hobby-banner")) {
     var banner = document.createElement("p");
     banner.className = "hobby-banner wrap";
     banner.innerHTML = sceneLang === "es"
-      ? 'Esto es Lab / Pasatiempo, no el negocio. <a href="' + root + 'lab.html">Lab / Pasatiempo</a> · <a href="' + root + 'index.html">Inicio</a>'
-      : 'This is Lab / Hobby, not the business. <a href="' + root + 'lab.html">Lab / Hobby</a> · <a href="' + root + 'index.html">Business home</a>';
-    document.getElementById("main").insertBefore(banner, document.getElementById("main").firstChild);
+      ? 'Esto es Lab / Pasatiempo, no la tienda. <a href="' + root + 'lab.html">Lab / Pasatiempo</a> · <a href="' + root + 'mercado/">Tienda</a>'
+      : 'This is Lab / Hobby, not the shop. <a href="' + root + 'lab.html">Lab / Hobby</a> · <a href="' + root + 'mercado/">Shop</a>';
+    var afterNotice = mainEl.querySelector(":scope > .en-only-notice");
+    if (afterNotice) mainEl.insertBefore(banner, afterNotice.nextSibling);
+    else mainEl.insertBefore(banner, mainEl.firstChild);
   }
 
   var ICONS = {
@@ -228,7 +237,7 @@
       return;
     }
     var script = document.createElement("script");
-    script.src = root + "content/socials.js?v=20261123-links2";
+    script.src = root + "content/socials.js?v=20261127r8c";
     script.onload = done;
     script.onerror = done;
     document.head.appendChild(script);

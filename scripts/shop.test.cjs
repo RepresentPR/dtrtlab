@@ -29,10 +29,12 @@ test('company facts expose Made for all audience and honest shop flags', () => {
 
 test('shop page never claims a live cart or checkout', () => {
   const html = read('shop.html');
-  assert.match(html, /http-equiv="refresh" content="0; url=\/#prices"/);
+  assert.match(html, /href="\/mercado\/"/);
+  assert.match(html, /Moved to the shop/);
+  assert.doesNotMatch(html, /#prices/);
   assert.doesNotMatch(html, /Add to cart|In stock/i);
-  assert.match(read('js/shop.js'), /checkoutLive/);
-  assert.doesNotMatch(read('js/shop.js'), /paypal|stripe|checkout\.session/i);
+  assert.match(read('scripts/archive/unserved/js/shop.js'), /checkoutLive/);
+  assert.doesNotMatch(read('scripts/archive/unserved/js/shop.js'), /paypal|stripe|checkout\.session/i);
 });
 
 test('preorder page points at shop interest catalog', () => {

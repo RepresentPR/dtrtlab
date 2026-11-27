@@ -42,7 +42,7 @@
   var NAMES = { twitch: "Twitch", kick: "Kick", youtube: "YouTube", shorts: "YouTube Shorts", tiktok: "TikTok", instagram: "Instagram", x: "X" };
   /* Every platform is always listed, in this order. Missing or unverified data is labelled, never hidden. */
   var ALL = [
-    { id: "instagram", handle: "@officiallydtrt", url: "https://www.instagram.com/officiallydtrt/" },
+    { id: "instagram", handle: "@dtrt.xyng", url: "https://www.instagram.com/dtrt.xyng/" },
     { id: "tiktok", handle: "@iananthonyfc", url: "https://www.tiktok.com/@iananthonyfc" },
     { id: "x", handle: "@DTRTLab", url: "https://x.com/DTRTLab" },
     { id: "youtube", handle: "@DTRTLabYT", url: "https://www.youtube.com/@DTRTLabYT" },

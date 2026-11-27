@@ -15,5 +15,9 @@
   window.addEventListener('pageshow', function (event) { if (event.persisted) forms.forEach(refresh); });
   var reference = document.getElementById('request-reference');
   var value = new URLSearchParams(location.search).get('reference');
-  if (reference && valid.test(value || '')) { reference.textContent = 'Your request reference: ' + value; reference.hidden = false; }
+  if (reference && valid.test(value || '')) {
+    var es = /(?:\?|&)lang=es(?:&|$)/.test(location.search) || document.documentElement.lang === 'es' || /index\.es\.html$/.test(location.pathname);
+    reference.textContent = (es ? 'Tu referencia de solicitud: ' : 'Your request reference: ') + value;
+    reference.hidden = false;
+  }
 }());

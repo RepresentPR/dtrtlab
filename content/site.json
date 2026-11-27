@@ -4,7 +4,7 @@
   "creator": "Ian Ferraro",
   "legalName": "DTRT Lab",
   "tagline": "DTRT AFTERLIGHT — the island remembers.",
-  "oneSentence": "Ian | DTRT Lab builds DTRT Job Desk, the AI office manager for small service businesses: every job tracked, every customer updated, every quote followed up, and a report card each night. Get a free written office map at dtrtlab.com/map/.",
+  "oneSentence": "Ian | DTRT Lab is the shop for Jafra, MOTION, Candles, and an early AI test. Live AI is not connected.",
   "preorderEnabled": false,
   "preorderPriceUsd": null,
   "preorderNote": "Price and checkout stay off until a PayPal sandbox app is configured and a price is set in .env. This is a release candidate, not 1.0.",
@@ -29,7 +29,7 @@
     "kick": "https://kick.com/movebro",
     "linkedin": "https://www.linkedin.com/in/ian-ferraro-578784419/",
     "github": "https://github.com/RepresentPR",
-    "findMe": "https://dtrtlab.com/find.html",
+    "findMe": "https://dtrtlab.com/links/",
     "kofi": ""
   },
   "sameAs": [

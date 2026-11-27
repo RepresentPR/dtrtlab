@@ -182,6 +182,10 @@ const ZIP = /(^|[^\w$#.\-/:%])(20[0-5]\d{2}|20[6-9]\d{2}|21\d{3}|2[23]\d{3}|24[0
 const TERM_ALLOW = [
   [/^legal\/(privacy|cookies|terms|refunds|dmca|preorder-terms)\.html$/, 'pending-state', /Maryland|Virginia/, 'governing-law / consumer-law wording, not a service-area claim'],
   [/^js\/live-pulse\.js$/, 'public-data', /Keyless public sources only/, 'developer code comment about API keys, never rendered to visitors'],
+  [/^mercado\//, 'reloc', /f50b92b29527bc02|cf6f0c3063e089ac|1d281b33068fbb45|682a4851da0c4e36/, 'Puerto Rico is the shop market name (go-live carve-out)'],
+  [/^js\/mercado-helper\.js$/, 'reloc', /f50b92b29527bc02|cf6f0c3063e089ac|1d281b33068fbb45|682a4851da0c4e36/, 'Puerto Rico is the shop market name (go-live carve-out)'],
+  [/^css\/mercado\.css$/, 'reloc', /f50b92b29527bc02|cf6f0c3063e089ac|1d281b33068fbb45|682a4851da0c4e36/, 'Puerto Rico is the shop market name (go-live carve-out)'],
+  [/^ask\/passages\.(js|json)$/, 'reloc', /f50b92b29527bc02|cf6f0c3063e089ac|1d281b33068fbb45|682a4851da0c4e36/, 'Ask corpus quotes Mercado Puerto Rico (same shop-market carve-out)'],
 ];
 function allowed(file, id, snippet) {
   return TERM_ALLOW.some(([p, t, s]) => p.test(file) && t === id && s.test(snippet));
@@ -260,7 +264,9 @@ function walkAll(dir, out = []) {
   return out;
 }
 function wordScanFiles(root = ROOT) {
-  return [...new Set(walkAll(root).map((p) => rel(p, root)))].sort();
+  return [...new Set(walkAll(root).map((p) => rel(p, root)))]
+    .filter((f) => !f.startsWith('scripts/archive/'))
+    .sort();
 }
 // Repo tooling: lines that BAN a term are fine here, lines that USE it are not.
 const REPO_CODE = /^(scripts|tools|\.github|\.cursor)\/|\.(py|sh|cjs|ya?ml|toml)$/;
@@ -504,19 +510,65 @@ function legalStampProblems(file, baseHtml, headHtml, now = new Date()) {
   if (head > todayEt(now)) out.push(`${file}: "Last updated" ${head} is in the future (today ET ${todayEt(now)})`);
   const sameWording = baseHtml != null && legalWording(baseHtml) === legalWording(headHtml);
   if (base && head < base) out.push(`${file}: "Last updated" ${head} is older than ${base}`);
-  else if (base && head === base && !sameWording) out.push(`${file}: edited but "Last updated" is still ${head} (base ${base})`);
+  // If the stamp is already today's date (ET), it is fresh for this PR day.
+  // A same-day wording edit cannot bump past today (future dates fail).
+  else if (base && head === base && !sameWording && head !== todayEt(now)) out.push(`${file}: edited but "Last updated" is still ${head} (base ${base})`);
   return out;
 }
 
+function stripWorkerMaps(src) {
+  let out = String(src || '');
+  for (const name of ['FILES', 'OVERRIDE', 'EMBED']) {
+    const re = new RegExp('\\bconst ' + name + '\\s*=\\s*\\{');
+    const m = re.exec(out);
+    if (!m) continue;
+    const start = m.index;
+    const brace = out.indexOf('{', start);
+    let depth = 0;
+    for (let i = brace; i < out.length; i++) {
+      const c = out[i];
+      if (c === '{') depth++;
+      else if (c === '}') {
+        depth--;
+        if (depth === 0) {
+          let end = i + 1;
+          if (out[end] === ';') end++;
+          out = out.slice(0, start) + out.slice(end);
+          break;
+        }
+      }
+    }
+  }
+  return out;
+}
+
+// Assets the worker actually injects into page HTML (script src / link href).
+// Paths that only appear in FILES / OVERRIDE / EMBED maps are not injected.
+function injectedAssetsFromWorkerSource(src) {
+  const stripped = stripWorkerMaps(src);
+  const out = new Set();
+  const re = /<(?:script\b[^>]*\bsrc|link\b[^>]*\bhref)\s*=\s*["'](\/(?:css|js)\/[^"'?#]+)/gi;
+  for (const m of stripped.matchAll(re)) out.add(m[1].replace(/^\//, ''));
+  return [...out];
+}
+
+function workerInjectedAssets() {
+  const p = path.join(ROOT, 'cloudflare/_worker.js');
+  if (!fs.existsSync(p)) return [];
+  return injectedAssetsFromWorkerSource(fs.readFileSync(p, 'utf8'));
+}
+
 // JS/CSS that exist for Node tests or tooling, not for pages. Reason required.
+// Nothing in this list may be a file the site actually serves.
 const UNREFERENCED_ALLOW = [
-  // none yet: [/^js\/example\.js$/, 'why it is not loaded by a page'],
+  [/^cloudflare\//, 'Pages worker source; not requested by a browser page'],
+  [/^ask\/passages\.js$/, 'worker returns 404; not a live page asset'],
 ];
 
 module.exports = {
   requiresRetired, silentSkipProblems, passwordSkipProblems, HASHED, GUARD_FILES, isGuardFile, NEGATIVE_LINE, walkAll, kindOf, stringsOf, jsonStrings,
   mailtoProblems, mailtoScan, MAILTO_ALLOW, EMAIL_MAP_LINE, isTextFile, baseContent, LEGAL_PAGE, lastUpdated, legalStampProblems, todayEt,
   ROOT, walk, rel, htmlPages, visibleText, codeOf, decode, isFiction, FICTION_PATHS, BANNED, scanText, scanFile, wordScanFiles,
-  pendingStates, TERM_ALLOW, FREE_MAP_LINE, GUARANTEE, wordingProblems, norm, parseEt, MAX_PROOF_AGE_H, editedFiles, UNREFERENCED_ALLOW,
+  pendingStates, TERM_ALLOW, FREE_MAP_LINE, GUARANTEE, wordingProblems, norm, parseEt, MAX_PROOF_AGE_H, editedFiles, UNREFERENCED_ALLOW, workerInjectedAssets, injectedAssetsFromWorkerSource, stripWorkerMaps,
   allMatches, context, hashedHits, sha, PLACE_CATS, AGENT_MAIL_HOSTS, agentHost,
 };

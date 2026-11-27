@@ -1,5 +1,5 @@
 (function () {
-  var ASSET_V = "20261123-links2";
+  var ASSET_V = "20261127h8";
   var here = (location.pathname || "").toLowerCase();
   var parts = here.replace(/\\/g, "/").split("/").filter(Boolean);
   if (parts.length && /\.[a-z0-9]+$/i.test(parts[parts.length - 1])) parts.pop();
@@ -8,7 +8,6 @@
   var aboutOn = file === "about.html";
   var companyOn = file === "company.html";
   var contactOn = file === "contact.html";
-  var partnerOn = file === "partners.html" || here.indexOf("/partner/") !== -1;
   var afterlightOn =
     file === "afterlight.html" ||
     file === "game.html" ||
@@ -28,8 +27,8 @@
   var lang = /(?:\?|&)lang=es(?:&|$)/.test(location.search) ? "es" : "en";
   document.documentElement.lang = lang;
   var ui = lang === "es"
-    ? { primary: "Principal", free: "Mapa de oficina gratis", packages: "Paquetes", company: "Empresa", contact: "Contacto", shop: "Tienda", hobby: "Lab / Pasatiempo", press: "Prensa", brand: "Marca", privacy: "Privacidad", terms: "Términos", cookies: "Cookies", refunds: "Reembolsos", home: "Inicio", menu: "Menú", close: "Cerrar", credit: "Ian | DTRT Lab · trabaja en remoto" }
-    : { primary: "Primary", free: "Get my free office map", packages: "Packages", company: "Company", contact: "Contact", shop: "Shop", hobby: "Lab / Hobby", press: "Press", brand: "Brand", privacy: "Privacy", terms: "Terms", cookies: "Cookies", refunds: "Refunds", home: "Home", menu: "Menu", close: "Close", credit: "Ian | DTRT Lab · works remotely" };
+    ? { primary: "Principal", free: "Abrir la tienda", packages: "Paquetes", company: "Empresa", contact: "Contacto", shop: "Tienda", hobby: "Lab / Pasatiempo", press: "Prensa", brand: "Marca", privacy: "Privacidad", terms: "Términos", cookies: "Cookies", refunds: "Reembolsos", home: "Inicio", menu: "Menú", close: "Cerrar", credit: "Ian | DTRT Lab · trabaja en remoto" }
+    : { primary: "Primary", free: "Open the shop", packages: "Packages", company: "Company", contact: "Contact", shop: "Shop", hobby: "Lab / Hobby", press: "Press", brand: "Brand", privacy: "Privacy", terms: "Terms", cookies: "Cookies", refunds: "Refunds", home: "Home", menu: "Menu", close: "Close", credit: "Ian | DTRT Lab · works remotely" };
   function langHref(code) {
     var q = new URLSearchParams(location.search);
     q.set("lang", code);
@@ -42,9 +41,12 @@
     root +
     'img/brand/mark.svg" alt="DTRT Lab" width="36" height="36"><span>Ian | DTRT Lab</span></a>' +
     '<nav class="links" id="site-links" aria-label="' + ui.primary + '">' +
-    link("index.html#prices", lang === "es" ? "Precios" : "Prices", false) +
-    link("index.html#job-desk", "Job Desk", false) +
-    link("index.html#about", lang === "es" ? "Sobre Ian" : "About Ian", aboutOn) +
+    link("mercado/", lang === "es" ? "Mercado" : "Shop", here.indexOf("/mercado") !== -1) +
+    link("mercado/#motion", "MOTION", false) +
+    link("mercado/#candles", "Candles", false) +
+    link("mercado/#jafra", "Jafra", false) +
+    link("ask/", lang === "es" ? "Preguntar (IA)" : "Ask (AI)", here.indexOf("/ask") !== -1) +
+    link("links/", lang === "es" ? "Enlaces" : "Links", here.indexOf("/links") !== -1) +
     link("contact.html", ui.contact, contactOn) +
     '<a href="' + langHref("en") + '" lang="en" hreflang="en"' + (lang === "en" ? ' aria-current="page"' : "") + '>EN</a>' +
     '<a href="' + langHref("es") + '" lang="es" hreflang="es"' + (lang === "es" ? ' aria-current="page"' : "") + '>ES</a>' +
@@ -52,7 +54,7 @@
     "</nav>" +
     '<div class="nav-end">' +
     '<div class="nav-socials nav-socials-desktop" data-social-slot="nav"></div>' +
-    '<a class="nav-cta" id="nav-start" href="' + root + 'map/">' + ui.free + '</a>' +
+    '<a class="nav-cta" id="nav-start" href="' + root + 'mercado/">' + (lang === "es" ? "Mercado" : "Shop") + '</a>' +
     '<button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-links">' + ui.menu + '</button>' +
     "</div>" +
     "</div>";
@@ -76,10 +78,10 @@
     foot.innerHTML =
       '<div class="wrap">' +
       "<span>" + ui.credit + "</span>" +
-      '<a href="' + root + 'index.html#prices">' + (lang === "es" ? "Precios" : "Prices") + '</a>' +
+      '<a href="' + root + 'mercado/">Mercado</a>' +
       '<a href="' + root + 'contact.html">' + ui.contact + '</a>' +
       '<a href="' + root + 'brand.html">' + ui.brand + '</a>' +
-      '<a href="' + root + 'find.html">X · Instagram</a>' +
+      '<a href="' + root + 'links/">X · Instagram</a>' +
       '<a href="' + root + 'legal/privacy.html">' + ui.privacy + '</a>' +
       '<a href="' + root + 'legal/terms.html">' + ui.terms + '</a>' +
       '<a href="' + root + 'legal/cookies.html">' + ui.cookies + '</a>' +
@@ -90,18 +92,49 @@
 
   if (!document.querySelector('script[src*="js/biz-lang.js"]')) {
     var bizLang = document.createElement("script");
-    bizLang.src = root + "js/biz-lang.js?v=20261127-legal4";
+    bizLang.src = root + "js/biz-lang.js?v=20261127r8d";
     bizLang.defer = true;
     document.head.appendChild(bizLang);
   }
-  var hobbyPath = /(\/(cs2|afterlight|game|story|worlds|training|catalog|radio|media|news|tab|stats)(\.|$)|\/clips\/|\/watch\/|\/live\/|\/stories\/|\/versions\/)/.test(here);
-  if (hobbyPath && document.getElementById("main") && !document.querySelector(".hobby-banner")) {
+  function isEnglishOnlyHobbyPath(p) {
+    p = String(p || "").toLowerCase();
+    if (p === "/lab.html" || p === "/" || p === "/index.html") return false;
+    if (/^\/(mercado|links|contact|legal|ask)(\/|$)/.test(p)) return false;
+    return /(\/(cs2|afterlight|game|story|worlds|training|catalog|radio|media|news|tab|stats|proof)(\.|$|\/)|\/clips\/|\/watch\/|\/live\/|\/stories\/|\/versions\/|\/blog\/|\/hq\/|\/bug(\.|\/|$))/.test(p);
+  }
+  var mainEl = document.getElementById("main") || document.querySelector("main");
+  if (lang === "es" && isEnglishOnlyHobbyPath(here)) {
+    if (!mainEl && document.body) {
+      document.body.setAttribute("lang", "en");
+      ["HEADER", "FOOTER", "NAV"].forEach(function (tag) {
+        var nodes = document.getElementsByTagName(tag);
+        for (var i = 0; i < nodes.length; i++) {
+          if (!nodes[i].getAttribute("lang")) nodes[i].setAttribute("lang", "es");
+        }
+      });
+      mainEl = document.body;
+    } else if (mainEl) {
+      mainEl.setAttribute("lang", "en");
+    }
+    if (mainEl && !document.querySelector(".en-only-notice")) {
+      var notice = document.createElement("p");
+      notice.className = "en-only-notice";
+      notice.setAttribute("role", "status");
+      notice.lang = "es";
+      notice.textContent = "Esta página está disponible solo en inglés por ahora.";
+      mainEl.insertBefore(notice, mainEl.firstChild);
+    }
+  }
+  var hobbyPath = /(\/(cs2|afterlight|game|story|worlds|training|catalog|radio|media|news|tab|stats|proof)(\.|$)|\/clips\/|\/watch\/|\/live\/|\/stories\/|\/versions\/|\/blog\/|\/hq\/|\/bug(\.|$|\/))/.test(here);
+  if (hobbyPath && mainEl && !document.querySelector(".hobby-banner")) {
     var banner = document.createElement("p");
     banner.className = "hobby-banner wrap";
     banner.innerHTML = lang === "es"
-      ? 'Esto es Lab / Pasatiempo, no el negocio. <a href="' + root + 'lab.html">Lab / Pasatiempo</a> · <a href="' + root + 'index.html">Inicio</a>'
-      : 'This is Lab / Hobby, not the business. <a href="' + root + 'lab.html">Lab / Hobby</a> · <a href="' + root + 'index.html">Business home</a>';
-    document.getElementById("main").insertBefore(banner, document.getElementById("main").firstChild);
+      ? 'Esto es Lab / Pasatiempo, no la tienda. <a href="' + root + 'lab.html">Lab / Pasatiempo</a> · <a href="' + root + 'mercado/">Tienda</a>'
+      : 'This is Lab / Hobby, not the shop. <a href="' + root + 'lab.html">Lab / Hobby</a> · <a href="' + root + 'mercado/">Shop</a>';
+    var afterNotice = mainEl.querySelector(":scope > .en-only-notice");
+    if (afterNotice) mainEl.insertBefore(banner, afterNotice.nextSibling);
+    else mainEl.insertBefore(banner, mainEl.firstChild);
   }
 
   var ICONS = {
@@ -345,7 +378,7 @@
 
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register(root + "sw.js?v=20261127-links7").catch(function () {});
+      navigator.serviceWorker.register(root + "sw.js?v=20261127r8d").catch(function () {});
     });
   }
 })();

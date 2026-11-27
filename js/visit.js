@@ -16,12 +16,10 @@
   var mood = hour < 5 || hour >= 21 ? "night" : hour < 12 ? "morning" : hour < 17 ? "afternoon" : "evening";
   if (dream) body.dataset.mood = mood;
 
-  var lines = {
-    morning: "Good morning.",
-    afternoon: "Good afternoon.",
-    evening: "Good evening.",
-    night: "Good night."
-  };
+  var isEs = /(?:\?|&)lang=es(?:&|$)/.test(location.search);
+  var lines = isEs
+    ? { morning: "Buenos días.", afternoon: "Buenas tardes.", evening: "Buenas tardes.", night: "Buenas noches." }
+    : { morning: "Good morning.", afternoon: "Good afternoon.", evening: "Good evening.", night: "Good night." };
   var line = document.getElementById("visit-line");
   if (line) line.textContent = lines[mood];
 
@@ -41,12 +39,9 @@
     evening: [196, 246.94, 293.66, 392],
     night: [146.83, 174.61, 220, 293.66]
   };
-  var names = {
-    morning: "Morning ambience",
-    afternoon: "Afternoon ambience",
-    evening: "Evening ambience",
-    night: "Night ambience"
-  };
+  var names = isEs
+    ? { morning: "Ambiente de mañana", afternoon: "Ambiente de tarde", evening: "Ambiente de atardecer", night: "Ambiente de noche" }
+    : { morning: "Morning ambience", afternoon: "Afternoon ambience", evening: "Evening ambience", night: "Night ambience" };
 
   var prefKey = "dtrt-ambience";
   var volKey = "dtrt-ambience-volume";
@@ -63,14 +58,14 @@
 
   var panel = document.createElement("section");
   panel.className = "ambience";
-  panel.setAttribute("aria-label", "Site music");
+  panel.setAttribute("aria-label", isEs ? "Música del sitio" : "Site music");
   panel.innerHTML =
     '<p id="ambience-status"></p>' +
     '<div class="ambience-row">' +
-    '<button type="button" id="ambience-toggle" aria-pressed="false">Play music</button>' +
-    '<label>Volume <input id="ambience-volume" type="range" min="0" max="100" aria-label="Music volume"></label>' +
+    '<button type="button" id="ambience-toggle" aria-pressed="false">' + (isEs ? 'Reproducir música' : 'Play music') + '</button>' +
+    '<label>' + (isEs ? 'Volumen' : 'Volume') + ' <input id="ambience-volume" type="range" min="0" max="100" aria-label="' + (isEs ? 'Volumen de la música' : 'Music volume') + '"></label>' +
     "</div>" +
-    '<p>Original tones made in this browser.</p>';
+    '<p>' + (isEs ? 'Tonos originales hechos en este navegador.' : 'Original tones made in this browser.') + '</p>';
   body.append(panel);
 
   var status = panel.querySelector("#ambience-status");
@@ -85,7 +80,7 @@
   function setStatus(text, on) {
     status.textContent = names[mood] + ". " + text;
     button.setAttribute("aria-pressed", on ? "true" : "false");
-    button.textContent = on ? "Pause music" : "Play music";
+    button.textContent = on ? (isEs ? "Pausar música" : "Pause music") : (isEs ? "Reproducir música" : "Play music");
   }
 
   function level() {
@@ -134,23 +129,23 @@
     playing = true;
     write(prefKey, "on");
     level();
-    setStatus("Playing.", true);
+    setStatus(isEs ? "Reproduciendo." : "Playing.", true);
   }
 
   function stop() {
     playing = false;
     level();
-    setStatus("Off until you press Play.", false);
+    setStatus(isEs ? "Apagado hasta que pulses Reproducir." : "Off until you press Play.", false);
   }
 
   button.addEventListener("click", function () {
     if (playing) stop();
-    else start().catch(function () { setStatus("Music is unavailable in this browser.", false); });
+    else start().catch(function () { setStatus(isEs ? "La música no está disponible en este navegador." : "Music is unavailable in this browser.", false); });
   });
   slider.addEventListener("input", function () {
     write(volKey, slider.value);
     level();
   });
   document.addEventListener("visibilitychange", level);
-  setStatus("Off until you press Play.", false);
+  setStatus(isEs ? "Apagado hasta que pulses Reproducir." : "Off until you press Play.", false);
 })();

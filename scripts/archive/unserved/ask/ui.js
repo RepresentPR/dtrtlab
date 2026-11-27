@@ -21,7 +21,7 @@
   window.DTRTAskLogOptIn = { showAfter: ASK_LOG_OPT_IN.showAfter, open: askLogOptInOpen };
 
   if (navigator.serviceWorker && location.protocol !== "file:") {
-    navigator.serviceWorker.register("/sw.js?v=20261127-links7").catch(function () {});
+    navigator.serviceWorker.register("/sw.js?v=20261127r8b2").catch(function () {});
   }
 
   var form = document.getElementById("ask-form");
@@ -57,7 +57,7 @@
     window.DTRTAsk.answer(question, corpus || { passages: [] }).then(function (result) {
       var matches = (result && result.matches) || [];
       if (!matches.length) {
-        add("<p><strong>Ask DTRT.</strong> Nothing on the public pages matches that closely. Try words from the site, or open the <a href=\"/notebook/\">notebook</a> and the <a href=\"/map/\">office map</a>.</p>");
+        add("<p><strong>Ask DTRT.</strong> Nothing on the public pages matches that closely. Try words from the site, or open the <a href=\"/contact.html\">contact form</a> or the <a href=\"/mercado/\">shop</a>.</p>");
         return;
       }
       var hits = matches.map(function (item) {

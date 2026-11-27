@@ -4,7 +4,7 @@
 */
 window.DTRT_SOCIALS = {
   updated: "2026-10-13",
-  hub: "/find.html",
+  hub: "/links/",
   networks: [
     {
       id: "x",

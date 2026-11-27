@@ -1,0 +1,1264 @@
+{
+  "capturedAt": "2026-11-27T12:58:21Z",
+  "campaign": {
+    "name": "Growth measured in public.",
+    "startAt": "2026-10-11T06:28:12Z",
+    "timezone": "America/New_York",
+    "viewsGoal": 250000,
+    "viewsDeadlineAt": "2027-01-01T05:00:00Z",
+    "viewsGoalBasis": "overall_lifetime_platform_video_views"
+  },
+  "results": {
+    "views": {
+      "value": 13674,
+      "status": "verified",
+      "observedAt": "2026-11-27T12:58:21Z",
+      "note": "Headline 13,674 = stale opening matched deltas (YouTube +459, Instagram +141, both last measured Oct 11, 2026) plus campaign-created cumulatives. YouTube and TikTok campaign posts refreshed Nov 27, 2026. Instagram campaign posts in this verified headline remain the Oct 11, 2026 counters. A signed-in Reels-grid read on Nov 15, 2026 is not included (see results.signedInInstagramGrid). Not Instagram Insights period views. Not unique people. X is excluded.",
+      "metric": "opening_matched_deltas_plus_campaign_created_post_cumulatives",
+      "coverage": "Opening matched deltas are unchanged since 2026-10-11 (no rematched baseline). YouTube and TikTok campaign-created post cumulatives refreshed Nov 27, 2026. Instagram campaign posts in this verified headline remain the Oct 11, 2026 counters. A signed-in dtrt.xyng Reels grid read on Nov 15, 2026 is recorded under results.signedInInstagramGrid (status partial) and is not included here. Two YouTube campaign videos (From Ideas, free office map ES) remain unlisted; their URL counters are included and flagged. Instagram Professional Insights period totals stay under results.platformPeriodInsights and are not added into this headline. X public metrics were fetched separately and stay excluded from the headline.",
+      "components": [
+        {
+          "platform": "YouTube",
+          "value": 459,
+          "basis": "Net matched opening-counter change across the same 31 Shorts public at baseline; one is now private and included only in aggregate",
+          "observedFrom": "2026-10-11T19:49:03.660Z",
+          "observedAt": "2026-10-11T19:49:21.287Z",
+          "status": "stale",
+          "refresh": "unchanged; no matched opening-baseline per-post inventory available on 2026-11-15"
+        },
+        {
+          "platform": "Instagram",
+          "value": 141,
+          "basis": "Net matched opening-counter change across the same 33 opening Reels",
+          "observedAt": "2026-10-11T19:52:01.262Z",
+          "status": "stale",
+          "refresh": "unchanged; no matched opening-baseline per-post inventory available on 2026-11-15"
+        },
+        {
+          "platform": "TikTok",
+          "value": 291,
+          "basis": "Native TikTok playCount from the public page via yt-dlp 2026-11-27T12:58:21Z. Replaces prior saved 291.",
+          "observedAt": "2026-11-27T12:58:21Z",
+          "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695303665602612493",
+          "status": "refreshed",
+          "availability": "public"
+        },
+        {
+          "platform": "TikTok Anubis",
+          "value": 324,
+          "basis": "Native TikTok playCount from the public page via yt-dlp 2026-11-27T12:58:21Z. Replaces prior saved 324.",
+          "observedAt": "2026-11-27T12:58:21Z",
+          "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695441861422451982",
+          "status": "refreshed",
+          "availability": "public"
+        },
+        {
+          "platform": "YouTube Anubis",
+          "value": 650,
+          "basis": "Native YouTube public watch-page view counter via yt-dlp 2026-11-27T12:58:21Z. Replaces prior saved 649.",
+          "observedAt": "2026-11-27T12:58:21Z",
+          "postUrl": "https://www.youtube.com/shorts/iR3orq__Hn8",
+          "status": "refreshed",
+          "availability": "public"
+        },
+        {
+          "platform": "YouTube episode",
+          "value": 168,
+          "basis": "Native YouTube public watch-page view counter via yt-dlp 2026-11-27T12:58:21Z. Replaces prior saved 167.",
+          "observedAt": "2026-11-27T12:58:21Z",
+          "postUrl": "https://www.youtube.com/watch?v=rPJmQj1Pbpo",
+          "status": "refreshed",
+          "availability": "public"
+        },
+        {
+          "platform": "Instagram Anubis",
+          "value": 1668,
+          "basis": "Displayed Reel-grid cumulative counter on campaign-created post",
+          "observedAt": "2026-10-12T00:08:03.314Z",
+          "postUrl": "https://www.instagram.com/reel/DeXC-ioD-Wc/",
+          "status": "stale",
+          "refresh": "unchanged in the verified composite; a later signed-in Reels-grid read is recorded under results.signedInInstagramGrid and is not included here"
+        },
+        {
+          "platform": "YouTube Knife",
+          "basis": "Native YouTube public watch-page view counter via yt-dlp 2026-11-27T12:58:21Z. Replaces prior saved 1640.",
+          "postUrl": "https://www.youtube.com/shorts/oUfVtc-hd0k",
+          "value": 1640,
+          "observedAt": "2026-11-27T12:58:21Z",
+          "status": "refreshed",
+          "availability": "public"
+        },
+        {
+          "platform": "TikTok Knife",
+          "basis": "Native TikTok playCount from the public page via yt-dlp 2026-11-27T12:58:21Z. Replaces prior saved 2288.",
+          "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695502513348414734",
+          "value": 2288,
+          "observedAt": "2026-11-27T12:58:21Z",
+          "status": "refreshed",
+          "availability": "public"
+        },
+        {
+          "platform": "YouTube Door",
+          "basis": "Native YouTube public watch-page view counter via yt-dlp 2026-11-27T12:58:21Z. Replaces prior saved 1553.",
+          "postUrl": "https://www.youtube.com/shorts/qizD1CIUrhQ",
+          "value": 1557,
+          "observedAt": "2026-11-27T12:58:21Z",
+          "status": "refreshed",
+          "availability": "public"
+        },
+        {
+          "platform": "YouTube preview teaser",
+          "basis": "Native YouTube public watch-page view counter via yt-dlp 2026-11-27T12:58:21Z. Replaces prior saved 490.",
+          "postUrl": "https://www.youtube.com/shorts/ROFmkh0tZEc",
+          "value": 492,
+          "observedAt": "2026-11-27T12:58:21Z",
+          "status": "refreshed",
+          "availability": "public"
+        },
+        {
+          "platform": "TikTok Door",
+          "basis": "Native TikTok playCount from the public page via yt-dlp 2026-11-27T12:58:21Z. Replaces prior saved 332.",
+          "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695533442817133838",
+          "value": 332,
+          "observedAt": "2026-11-27T12:58:21Z",
+          "status": "refreshed",
+          "availability": "public"
+        },
+        {
+          "platform": "TikTok preview teaser",
+          "basis": "Native TikTok playCount from the public page via yt-dlp 2026-11-27T12:58:21Z. Replaces prior saved 211.",
+          "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695514908397440269",
+          "value": 211,
+          "observedAt": "2026-11-27T12:58:21Z",
+          "status": "refreshed",
+          "availability": "public"
+        },
+        {
+          "platform": "Instagram Door",
+          "basis": "Native Instagram Reel counter from the dated Door four-hour review (learning-audits graph-format-20261012T0300Z). Replaces the earlier 00:08:03Z first-measured counter of 979. May include operator verification; not an Insights period total.",
+          "postUrl": "https://www.instagram.com/reel/DeXroJNijk3/",
+          "value": 1544,
+          "observedAt": "2026-10-12T03:13:21.457Z",
+          "status": "stale",
+          "refresh": "unchanged in the verified composite; a later signed-in Reels-grid read is recorded under results.signedInInstagramGrid and is not included here"
+        },
+        {
+          "platform": "Instagram preview teaser",
+          "basis": "Displayed native Reel-grid cumulative counter on campaign-created post; may include operator verification",
+          "postUrl": "https://www.instagram.com/reel/DeXjZI1mesV/",
+          "value": 193,
+          "observedAt": "2026-10-12T00:08:03.314Z",
+          "status": "stale",
+          "refresh": "unchanged in the verified composite; a later signed-in Reels-grid read is recorded under results.signedInInstagramGrid and is not included here"
+        },
+        {
+          "platform": "Instagram Knife",
+          "basis": "Displayed native Reel-grid cumulative counter on campaign-created post; may include operator verification",
+          "postUrl": "https://www.instagram.com/reel/DeXd40Ylgsc/",
+          "value": 1577,
+          "observedAt": "2026-10-12T00:08:03.314Z",
+          "status": "stale",
+          "refresh": "unchanged in the verified composite; a later signed-in Reels-grid read is recorded under results.signedInInstagramGrid and is not included here"
+        },
+        {
+          "platform": "YouTube Make your work clear",
+          "value": 49,
+          "basis": "Native YouTube public watch-page view counter via yt-dlp 2026-11-27T12:58:21Z. Replaces prior saved 49.",
+          "observedAt": "2026-11-27T12:58:21Z",
+          "postUrl": "https://www.youtube.com/shorts/eEBIsuAuCkg",
+          "status": "refreshed",
+          "availability": "public"
+        },
+        {
+          "platform": "YouTube From Ideas episode",
+          "value": 4,
+          "basis": "Native YouTube public watch-page view counter via yt-dlp 2026-11-27T12:58:21Z (video remains unlisted). Replaces prior saved 4.",
+          "observedAt": "2026-11-27T12:58:21Z",
+          "postUrl": "https://www.youtube.com/watch?v=8uQyfvJnofI",
+          "status": "refreshed",
+          "availability": "unlisted"
+        },
+        {
+          "platform": "YouTube free office map ES",
+          "value": 15,
+          "basis": "Native YouTube public watch-page view counter via yt-dlp 2026-11-27T12:58:21Z (video remains unlisted). Replaces prior saved 15.",
+          "observedAt": "2026-11-27T12:58:21Z",
+          "postUrl": "https://www.youtube.com/watch?v=PhYr_7bvvhA",
+          "status": "refreshed",
+          "availability": "unlisted"
+        },
+        {
+          "platform": "TikTok Make your work clear",
+          "value": 55,
+          "basis": "Native TikTok playCount from the public page via yt-dlp 2026-11-27T12:58:21Z. Replaces prior saved 55.",
+          "observedAt": "2026-11-27T12:58:21Z",
+          "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695578463264132365",
+          "status": "refreshed",
+          "availability": "public"
+        },
+        {
+          "platform": "TikTok free office map",
+          "value": 16,
+          "basis": "Native TikTok playCount from the public page via yt-dlp 2026-11-27T12:58:21Z. Replaces prior saved 16.",
+          "observedAt": "2026-11-27T12:58:21Z",
+          "postUrl": "https://www.tiktok.com/@iananthonyfc/video/7695586470303747341",
+          "status": "refreshed",
+          "availability": "public"
+        }
+      ],
+      "organicAttribution": "not_established",
+      "fullCampaignStartTotal": null
+    },
+    "lifetimeViews": {
+      "value": 159261,
+      "status": "verified",
+      "observedAt": "2026-10-11T19:48:51.709Z",
+      "coverage": "partial",
+      "components": [
+        {
+          "platform": "YouTube Shorts",
+          "value": 20740,
+          "posts": 37,
+          "scope": "34 public Shorts measured 2026-11-27T12:58:21Z; 1 previously public Short now unlisted (wu3M-Te360E) with a URL counter; two private/unlisted records remain in the stale 8-view aggregate from 2026-10-11T19:49:21.287Z. Each post counted once.",
+          "observedAt": "2026-10-11T19:49:21.287Z",
+          "fullInventoryObservedAt": "2026-10-11T19:49:21.287Z",
+          "observedThrough": "2026-11-27T12:58:21Z",
+          "observationType": "Public and known-URL Shorts refreshed 2026-11-27; stale private aggregate retained",
+          "focusedUpdates": [
+            {
+              "postId": "lZ-COdVdNgk",
+              "value": 14,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 4,
+              "availability": "public"
+            },
+            {
+              "postId": "qizD1CIUrhQ",
+              "value": 1557,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 4,
+              "availability": "public"
+            },
+            {
+              "postId": "ROFmkh0tZEc",
+              "value": 492,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 2,
+              "availability": "public"
+            },
+            {
+              "postId": "7owx3ck3vRY",
+              "value": 318,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 1,
+              "availability": "public"
+            },
+            {
+              "postId": "JNrT4BKjRGg",
+              "value": 1182,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 1,
+              "availability": "public"
+            },
+            {
+              "postId": "Q05amc0VF5c",
+              "value": 7,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 1,
+              "availability": "public"
+            },
+            {
+              "postId": "iR3orq__Hn8",
+              "value": 650,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 1,
+              "availability": "public"
+            },
+            {
+              "postId": "197ccicfV5M",
+              "value": 1348,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "5B3w5FwWTno",
+              "value": 6,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "6MHdhASOxMo",
+              "value": 360,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7pszGtoVSY0",
+              "value": 3,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "8BDDTkjN9aM",
+              "value": 4,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "AuFwZJH7-jw",
+              "value": 1,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "EO8yEJptWDQ",
+              "value": 2,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "LcDUdmS0EPw",
+              "value": 2039,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "NRlRvR-zZtE",
+              "value": 21,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "OL--lV0YW9Q",
+              "value": 9,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "QRAHYY1UT7Q",
+              "value": 675,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "QVrRYGpO_VI",
+              "value": 9,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "SySyK0pNnqA",
+              "value": 715,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "YTNFlHeYbBc",
+              "value": 14,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "Z00dqeOOdBc",
+              "value": 1037,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "bu6ra-pDYt0",
+              "value": 2698,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "eEBIsuAuCkg",
+              "value": 49,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "eTuX5W8UuzU",
+              "value": 3,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "eUrto6-GD5Q",
+              "value": 1142,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "gRUCO9WJt7M",
+              "value": 1,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "i8eLyEjHbsQ",
+              "value": 459,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "nsLLaY8GUrQ",
+              "value": 425,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "nst_spyTD9c",
+              "value": 1129,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "oUfVtc-hd0k",
+              "value": 1640,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "ol3FCKxb514",
+              "value": 986,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "sU9MiiJXcak",
+              "value": 1133,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "wqZKnR4LbmE",
+              "value": 596,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "wu3M-Te360E",
+              "value": 8,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "unlisted"
+            }
+          ]
+        },
+        {
+          "platform": "Instagram Reels",
+          "value": 18460,
+          "posts": 37,
+          "scope": "37 measured public Reel counters; dated full inventory plus focused Anubis, Knife, preview teaser and Door updates (Door corrected to 1544). Each post counted once. This sum is NOT Instagram Professional Insights period views (native Insights Sep 12\u2013Oct 11 showed 20.0K account views across 58 shared pieces of content).",
+          "observedAt": "2026-10-11T19:52:01.262Z",
+          "fullInventoryObservedAt": "2026-10-11T19:52:01.262Z",
+          "observedThrough": "2026-10-12T03:13:21.457Z",
+          "observationType": "Unchanged in the verified lifetime total; last inventory Oct 11, 2026, with focused updates already in that record. A later signed-in Reels-grid read is recorded under results.signedInInstagramGrid and is not included here.",
+          "focusedUpdates": [
+            {
+              "postId": "DeXC-ioD-Wc",
+              "value": 1668,
+              "observedAt": "2026-10-12T00:08:03.314Z",
+              "deltaFromPreviousSaved": 1038
+            },
+            {
+              "postId": "DeXroJNijk3",
+              "value": 1544,
+              "observedAt": "2026-10-12T03:13:21.457Z",
+              "deltaFromPreviousSaved": 565,
+              "firstMeasuredCounter": true,
+              "note": "Corrected from first-measured 979 using Door four-hour review counter"
+            },
+            {
+              "postId": "DeXjZI1mesV",
+              "value": 193,
+              "observedAt": "2026-10-12T00:08:03.314Z",
+              "deltaFromPreviousSaved": null,
+              "firstMeasuredCounter": true
+            },
+            {
+              "postId": "DeXd40Ylgsc",
+              "value": 1577,
+              "observedAt": "2026-10-12T00:08:03.314Z",
+              "deltaFromPreviousSaved": null,
+              "firstMeasuredCounter": true
+            }
+          ],
+          "status": "stale"
+        },
+        {
+          "platform": "TikTok videos",
+          "value": 5426,
+          "posts": 23,
+          "scope": "23 public TikTok posts measured via playCount 2026-11-27T12:58:21Z. Each post counted once.",
+          "observedAt": "2026-11-27T12:58:21Z",
+          "fullInventoryObservedAt": "2026-11-27T12:58:21Z",
+          "observedThrough": "2026-11-27T12:58:21Z",
+          "observationType": "Full public TikTok inventory refreshed 2026-11-27",
+          "focusedUpdates": [
+            {
+              "postId": "7694543150303481102",
+              "value": 10,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 2,
+              "availability": "public"
+            },
+            {
+              "postId": "7694474266703662349",
+              "value": 281,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 1,
+              "availability": "public"
+            },
+            {
+              "postId": "7694538040634576142",
+              "value": 95,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 1,
+              "availability": "public"
+            },
+            {
+              "postId": "7694548238900169998",
+              "value": 15,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 1,
+              "availability": "public"
+            },
+            {
+              "postId": "7694396907698933006",
+              "value": 189,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7694402085751688461",
+              "value": 335,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7694407208775208205",
+              "value": 305,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7694443385016306958",
+              "value": 297,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7694458787666660622",
+              "value": 302,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7694512614205836557",
+              "value": 17,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7694517453845531918",
+              "value": 8,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7694522613841890574",
+              "value": 4,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7694527753877589261",
+              "value": 9,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7694532940843207949",
+              "value": 10,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7694678392779689229",
+              "value": 17,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7694793803584048398",
+              "value": 15,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7695303665602612493",
+              "value": 291,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7695441861422451982",
+              "value": 324,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7695502513348414734",
+              "value": 2288,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7695514908397440269",
+              "value": 211,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7695533442817133838",
+              "value": 332,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7695578463264132365",
+              "value": 55,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            },
+            {
+              "postId": "7695586470303747341",
+              "value": 16,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public"
+            }
+          ]
+        },
+        {
+          "platform": "YouTube other videos",
+          "value": 114635,
+          "posts": 11,
+          "scope": "Four still-public long-form videos measured 2026-11-27T12:58:21Z (including 0XxDrMvsCgE, previously unavailable on Nov 15 and public again at 28); two campaign videos remain unlisted (8uQyfvJnofI, PhYr_7bvvhA) with URL counters; five private archives remain in the stale 2215-view aggregate from 2026-10-11T19:48:51.709Z, identities omitted.",
+          "observedAt": "2026-10-11T19:48:51.709Z",
+          "fullInventoryObservedAt": "2026-10-11T19:48:51.709Z",
+          "observedThrough": "2026-11-27T12:58:21Z",
+          "observationType": "Public and known-URL long-form refreshed 2026-11-27; private aggregates retained",
+          "focusedUpdates": [
+            {
+              "postId": "ttDzqUVf5xs",
+              "value": 112162,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 3,
+              "availability": "public"
+            },
+            {
+              "postId": "lsExh8z7fVI",
+              "value": 43,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 2,
+              "availability": "public"
+            },
+            {
+              "postId": "rPJmQj1Pbpo",
+              "value": 168,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 1,
+              "availability": "public"
+            },
+            {
+              "postId": "0XxDrMvsCgE",
+              "value": 28,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "public",
+              "note": "Public again on 2026-11-27; was unavailable on 2026-11-15. Count is unchanged at 28."
+            },
+            {
+              "postId": "8uQyfvJnofI",
+              "value": 4,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "unlisted"
+            },
+            {
+              "postId": "PhYr_7bvvhA",
+              "value": 15,
+              "observedAt": "2026-11-27T12:58:21Z",
+              "deltaFromPreviousSaved": 0,
+              "availability": "unlisted"
+            }
+          ]
+        }
+      ],
+      "note": "Lifetime refreshed for public YouTube and TikTok inventory on Nov 27, 2026. The verified Instagram Reel lifetime sum remains the Oct 11, 2026 inventory of 18,460. A signed-in Reels-grid read on Nov 15, 2026 counted 20,188 (36 Reels read; DeSg3HmiZT0 was not read and stays at its Oct 11, 2026 value) and is not included here (see results.signedInInstagramGrid). Not Insights period views. Not unique people.",
+      "observedThrough": "2026-11-27T12:58:21Z"
+    },
+    "platformPeriodInsights": {
+      "status": "verified",
+      "note": "Account-level Insights windows from native Professional Dashboard screenshots. These are a different metric from per-post lifetime counters on /live.",
+      "observations": [
+        {
+          "platform": "Instagram",
+          "handle": "@dtrt.xyng",
+          "windowLabel": "Sep 12 \u2013 Oct 11",
+          "windowStart": "2026-09-12",
+          "windowEnd": "2026-10-11",
+          "views": 20000,
+          "viewsDisplay": "20.0K",
+          "newFollowers": 0,
+          "contentShared": 58,
+          "source": "Instagram Professional Dashboard Insights screenshot from Ian",
+          "observedAt": "2026-10-12T18:16:00Z",
+          "highlight": {
+            "kind": "reel_plays_vs_last_5",
+            "text": "Your reel is getting played more. Congrats, this reel received 460% more plays than any of your last 5 reels.",
+            "titleHint": "FIRST DUEL"
+          },
+          "comparisonToInventory": {
+            "measuredPublicReels": 37,
+            "measuredReelLifetimeSum": 18460,
+            "whyDifferent": "18,460 is the Oct 11, 2026 inventory sum used in the verified lifetime total. A signed-in grid read on Nov 15, 2026 counted 20,188 (36 Reels read; DeSg3HmiZT0 was not read and stays at its Oct 11, 2026 value). That signed-in figure is not in the verified lifetime total. Insights counts account views inside a calendar window across content types. Inventory sums cumulative Reel-grid counters for 37 measured Reels only. 58 content shared includes non-Reel pieces not in the Reel inventory. Neither figure is unique viewers."
+          }
+        }
+      ]
+    },
+    "pendingFirstMeasurement": {
+      "status": "partial",
+      "observedAt": "2026-11-15T19:20:22Z",
+      "note": "36 of 37 inventory Instagram Reels were read from the signed-in dtrt.xyng Reels grid on Nov 15, 2026. DeSg3HmiZT0 was not read in this refresh and stays at its Oct 11, 2026 value, marked stale. Published Instagram Oct 11 business Reels (DeX_obuiij4, DeYDLYaD_iN) were not measured in this refresh and still await a first public counter. TikTok campaign posts were measured earlier via public playCount. X post 2109455613294260309 (Free office map for U.S. businesses) returned Not Found on Nov 15, 2026; no metric recorded.",
+      "posts": [
+        {
+          "platform": "Instagram",
+          "title": "Make your work clear",
+          "url": "https://www.instagram.com/reel/DeX_obuiij4/",
+          "publishedAt": "2026-10-12T00:55:44.000Z"
+        },
+        {
+          "platform": "Instagram",
+          "title": "Un plan gratis para tu negocio | DTRT Lab",
+          "url": "https://www.instagram.com/reel/DeYDLYaD_iN/",
+          "publishedAt": "2026-10-12T01:26:23.000000Z"
+        },
+        {
+          "platform": "X",
+          "title": "Free office map for U.S. businesses | DTRT Lab",
+          "url": "https://x.com/DTRTLab/status/2109455613294260309",
+          "publishedAt": "2026-10-12T01:26:24.000000Z",
+          "note": "X excluded from headline video-view totals by policy. get_posts_by_ids returned Not Found on 2026-11-15; no public metric recorded.",
+          "status": "not_found"
+        }
+      ],
+      "observedAtPrecision": "no_later_than"
+    },
+    "xPublicMetrics": {
+      "status": "verified",
+      "note": "Public X metrics from Grok Bot get_posts_by_ids on 2026-11-15. public_metrics included impression_count, like_count, repost_count, reply_count, quote_count and bookmark_count. No video view_count field was present. These figures are excluded from headline and lifetime video-view totals by policy.",
+      "observedAt": "2026-11-15T18:57:30Z",
+      "posts": [
+        {
+          "id": "2109179695862530284",
+          "url": "https://x.com/DTRTLab/status/2109179695862530284",
+          "title": "One bullet left",
+          "created_at": "2026-10-11T07:10:00.000Z",
+          "public_metrics": {
+            "bookmark_count": 0,
+            "impression_count": 20,
+            "like_count": 0,
+            "quote_count": 0,
+            "reply_count": 0,
+            "repost_count": 0
+          },
+          "video_view_count": null
+        },
+        {
+          "id": "2109314520057532826",
+          "url": "https://x.com/DTRTLab/status/2109314520057532826",
+          "title": "Last enemy. Smoke in the way.",
+          "created_at": "2026-10-11T16:05:45.000Z",
+          "public_metrics": {
+            "bookmark_count": 0,
+            "impression_count": 59,
+            "like_count": 0,
+            "quote_count": 0,
+            "reply_count": 0,
+            "repost_count": 0
+          },
+          "video_view_count": null
+        },
+        {
+          "id": "2109373786583920696",
+          "url": "https://x.com/DTRTLab/status/2109373786583920696",
+          "title": "Knife round got crowded",
+          "created_at": "2026-10-11T20:01:15.000Z",
+          "public_metrics": {
+            "bookmark_count": 0,
+            "impression_count": 23,
+            "like_count": 0,
+            "quote_count": 0,
+            "reply_count": 0,
+            "repost_count": 0
+          },
+          "video_view_count": null
+        },
+        {
+          "id": "2109384997727883469",
+          "url": "https://x.com/DTRTLab/status/2109384997727883469",
+          "title": "DTRT Lab stream announcement",
+          "created_at": "2026-10-11T20:45:48.000Z",
+          "public_metrics": {
+            "bookmark_count": 0,
+            "impression_count": 17,
+            "like_count": 1,
+            "quote_count": 0,
+            "reply_count": 0,
+            "repost_count": 0
+          },
+          "video_view_count": null,
+          "note": "text post, no video attachment"
+        },
+        {
+          "id": "2109403888755605815",
+          "url": "https://x.com/DTRTLab/status/2109403888755605815",
+          "title": "The door was already covered",
+          "created_at": "2026-10-11T22:00:52.000Z",
+          "public_metrics": {
+            "bookmark_count": 0,
+            "impression_count": 29,
+            "like_count": 1,
+            "quote_count": 0,
+            "reply_count": 0,
+            "repost_count": 0
+          },
+          "video_view_count": null
+        },
+        {
+          "id": "2109447768406155583",
+          "url": "https://x.com/DTRTLab/status/2109447768406155583",
+          "title": "Make your work clear",
+          "created_at": "2026-10-12T00:55:14.000Z",
+          "public_metrics": {
+            "bookmark_count": 0,
+            "impression_count": 19,
+            "like_count": 1,
+            "quote_count": 0,
+            "reply_count": 0,
+            "repost_count": 0
+          },
+          "video_view_count": null
+        }
+      ],
+      "notFound": [
+        {
+          "id": "2109455613294260309",
+          "url": "https://x.com/DTRTLab/status/2109455613294260309",
+          "title": "Free office map for U.S. businesses | DTRT Lab",
+          "error": "Not Found"
+        }
+      ]
+    },
+    "signedInInstagramGrid": {
+      "status": "partial",
+      "kind": "signed_in_reels_grid_read",
+      "observedAt": "2026-11-15T19:20:22Z",
+      "observedAtPrecision": "no_later_than",
+      "observedAtNoteInternal": "read from the signed-in grid on Nov 15, 2026, before 2:21 PM ET; timestamp is the ig-counts-2026-11-15.csv mtime 2026-11-15T19:20:22Z",
+      "source": "signed-in dtrt.xyng Reels grid thumbnail play counts, saved in ig-counts-2026-11-15.csv",
+      "instagramInventoryViews": 20188,
+      "instagramInventoryPostsRead": 36,
+      "instagramInventoryPostsNotRead": [
+        "DeSg3HmiZT0"
+      ],
+      "instagramCampaignCreatedCumulatives": 6219,
+      "campaignCompositeIfIncluded": 14903,
+      "lifetimeIfIncluded": 160964,
+      "notIncludedInVerifiedTotals": true,
+      "note": "Signed-in dtrt.xyng Reels grid read on Nov 15, 2026 (stale Oct 11, 2026 Instagram inventory of 18,460 remains the verified figure). 36 of 37 inventory Reels were read as whole-number play counts. DeSg3HmiZT0 was not read in that Nov 15 refresh and stays at its Oct 11, 2026 value in this sum, marked stale. Instagram Oct 11 business Reels were not measured in the Nov 15 read and still await a first public counter. These signed-in figures were not included in the Nov 15 verified campaign composite (13,666) or the Nov 15 verified lifetime total (159,236). The if-included figures below (14,903 / 160,964) are frozen as of that Nov 15 read and were not recomputed against today's verified totals. Not independently re-fetchable from a logged-out public page. Not Instagram Insights period views."
+    }
+  },
+  "operations": {
+    "activePosts": 17,
+    "scheduledPosts": 0,
+    "cap": 17,
+    "runwayDays": 0,
+    "queueVerifiedAt": "2026-10-12T01:27:27Z",
+    "planningHorizonHours": 24,
+    "targetSpacingHours": null,
+    "requiredPlatforms": [],
+    "optionalPlatforms": [],
+    "completeScheduledDrops": 0,
+    "reservedPosts": 0,
+    "confirmedFuturePosts": 0,
+    "pendingPublicationPosts": 0,
+    "capacityVerifiedAt": "2026-10-12T01:34:36.939286Z",
+    "cadence": "Reviewed releases as quality and capacity permit",
+    "distributionMode": "primary_placement",
+    "completeScheduledPrimaryPlacements": 0,
+    "refreshNote": "Roster figures were not re-counted on 2026-11-15. queueVerifiedAt and capacityVerifiedAt remain 2026-10-12."
+  },
+  "highlights": [
+    {
+      "title": "Last enemy. Smoke in the way.",
+      "url": "https://www.youtube.com/shorts/iR3orq__Hn8",
+      "platform": "Published on five platforms",
+      "reviewedAt": "2026-10-11T20:08:44.075530Z",
+      "status": "approved",
+      "reason": "Editorial selection. Four-hour review completed; evidence remains inconclusive. No performance-winner designation."
+    },
+    {
+      "title": "Lab File 003: Low ammo. No vision. No room.",
+      "url": "https://www.youtube.com/watch?v=rPJmQj1Pbpo",
+      "platform": "Published YouTube episode",
+      "reviewedAt": "2026-10-11T20:08:44.131086Z",
+      "status": "approved",
+      "reason": "Editorial selection. Four-hour review completed; evidence remains inconclusive. No performance-winner designation."
+    },
+    {
+      "title": "One bullet left",
+      "url": "https://dtrtlab.com/assets/campaign/01-one-bullet-left.mp4",
+      "platform": "Edited preview",
+      "reviewedAt": "2026-10-11T11:27:13.428658Z",
+      "status": "approved",
+      "reason": "Editorial selection. Four-hour review completed; one TikTok post is insufficient to establish a performance winner."
+    },
+    {
+      "title": "Knife round got crowded",
+      "url": "https://www.youtube.com/shorts/oUfVtc-hd0k",
+      "platform": "Published on four platforms",
+      "reviewedAt": "2026-10-11T06:59:38.755Z",
+      "status": "approved",
+      "reason": "Editorial selection. Native publication verified; four-hour review pending. No performance winner claim."
+    },
+    {
+      "title": "The next corner was not clear",
+      "url": "https://dtrtlab.com/assets/campaign/03-the-next-corner-was-not-clear.mp4",
+      "platform": "Edited preview",
+      "reviewedAt": "2026-10-11T06:59:38.755Z",
+      "status": "approved",
+      "reason": "Edit approved; publication remains a draft. No performance claim."
+    }
+  ],
+  "queue": [],
+  "evidenceNotes": [
+    "YouTube + TikTok public inventory refreshed Nov 27, 2026. Campaign composite now 13,674 (was 13,666). Lifetime known total now 159,261 (was 159,236). Instagram remains the stale Oct 11, 2026 inventory (18,460). X stays out of the totals. 0XxDrMvsCgE is public again at 28 (it was unavailable on Nov 15).",
+    "Signed-in dtrt.xyng Reels grid read on Nov 15, 2026. 36 of 37 inventory Reels were read as whole-number play counts (none abbreviated). DeSg3HmiZT0 was not read in that Nov 15 refresh and stays at its Oct 11, 2026 value of 237, marked stale. Those signed-in counts were not included in the Nov 15 verified campaign composite (13,666) or the Nov 15 verified lifetime total (159,236), which used the stale Oct 11, 2026 Instagram inventory of 18,460. If included as of that Nov 15 read, the signed-in figures would have taken the campaign composite to 14,903 and the lifetime total to 160,964, with an Instagram Reels subtotal of 20,188. Today's verified totals still use that same stale Oct 11 Instagram inventory and still exclude these signed-in figures. Opening deltas unchanged. Instagram Oct 11 business Reels were not measured in the Nov 15 read and still await a first public counter. X still excluded from headline totals.",
+    "YouTube + TikTok public inventory refreshed Nov 15, 2026. On that date the campaign composite was 13,666 (was 10,856) and the lifetime known total was 159,236 (was 155,308). Largest campaign-created moves that day: TikTok Knife 294\u21922,288; YouTube episode 33\u2192167; YouTube Knife 1,474\u21921,640; YouTube Door 1,356\u21921,553; YouTube Anubis 550\u2192649. Instagram campaign and lifetime Reel counters were unchanged (login wall) and remain the stale Oct 11, 2026 inventory. Opening deltas unchanged (YouTube +459, Instagram +141). YouTube 8uQyfvJnofI and PhYr_7bvvhA, and Short wu3M-Te360E, were unlisted as of Nov 15; URL counters included and flagged. X public impression counts fetched for 6 of 7 campaign posts; 2109455613294260309 not found. X still excluded from headline totals. Spot-check on Nov 15, 2026 confirmed YouTube player.viewCount and TikTok playCount for sampled posts, including TikTok Knife 2,288.",
+    "YouTube campaign counters refreshed Oct 12, 3:05 PM EDT: Door 1356, Anubis 550, Knife 1474, preview 410, episode 33, Make your work clear 41, From Ideas 4, free office map ES 12. Campaign composite now 10,794; lifetime 155,246. Instagram/TikTok Oct 12 business posts still pending owner counters.",
+    "Numbers re-audit 2026-10-12: Instagram Professional Insights Sep 12\u2013Oct 11 = 20.0K views, 0 new followers, 58 content shared. /live Instagram inventory remains a 37-Reel lifetime sum (18,460), a different metric. Instagram Door inventory corrected from 979 to 1,544. Campaign-added headline is now 8,945; do not compare it to Insights 20.0K.",
+    "Lifetime goal: 250,000 overall reported video views by December 31 Eastern. Known total 153,397 after Door Instagram correction; historical coverage is not campaign growth.",
+    "96 public measured records plus seven private/unlisted YouTube records in aggregate: 103 measured posts. Focused updates cover four YouTube Shorts, five TikTok posts and four Instagram Reels. X is excluded from headline totals. Other inventory dates remain unchanged.",
+    "Focused native observations at 00:07-00:08 UTC on October 12 updated thirteen public posts. Full inventory observations remain dated around 19:49-19:52 UTC on October 11; component times stay separate.",
+    "The saved partial campaign total rose by 4,427: 1,678 net counter change on previously measured posts plus 2,749 newly included cumulative views from three Instagram posts. Those initial counters cover time since publication, not only the interval since the previous update. Other counters retain their earlier dates; no full inventory refresh, unique-audience or distribution-attribution claim.",
+    "The fixed opening baseline is 14,895 YouTube Shorts views and 13,337 Instagram Reel views, measured at 2:51-2:53 AM Eastern. The 23-minute start-to-baseline gap remains unmeasured. Negative native corrections are retained.",
+    "Anubis is verified public on YouTube, Instagram, TikTok, X and Ko-fi. Lab File 003 is public on YouTube. The common planned release was 12:05 PM Eastern; native precision and processing vary. Ko-fi shows only a date, so its exact publication time is unknown.",
+    "Ko-fi Anubis remains a historical publication record; no additional Ko-fi posts are scheduled. Planned times are not actual publication times.",
+    "Owned Twitch, FACEIT and OBS source indexing remains incomplete. Editing approval used documented sampled visual and technical audio checks; unavailable listening or continuous playback is not claimed. Local operations require this PC online with Codex open.",
+    "All four launch teasers have native identities. X was published at 20:45:48 UTC; YouTube at 20:48:45 UTC. TikTok shows the 20:48 UTC creation minute with Everyone visibility; precise delivery time is unmeasured. Instagram exact publication time is unknown. YouTube, TikTok and Instagram teaser counters are included with their separate October 12 00:07-00:08 UTC observations; X is excluded.",
+    "Five Anubis and episode four-hour reviews and four Knife four-hour reviews are complete, all inconclusive. Their 24/72/168-hour checks remain. Knife reviews were observed October 12 at 00:07-00:08 UTC. Ko-fi exact publication time remains unavailable and has a separate observation review.",
+    "Instagram followers remain the dated 73 observation. Retention and engagement findings are shown in the review log with their own timestamps. Unknown counters are not zero; X views remain outside headline growth.",
+    "Door publication verified October 11: YouTube at 22:00:50 UTC, X at 22:00:52 UTC, Instagram at 22:01:04 UTC. TikTok shows the 22:00 UTC native creation minute with Everyone visibility; exact public-delivery instant is unmeasured. YouTube, TikTok and Instagram Door counters were observed at 00:07-00:08 UTC on October 12; X is excluded.",
+    "Current publishing allocation: 17 occupied + 0 reserved of 17, reconciled Oct 11, 2026. 0 confirmed future platform posts; 0 reservations await publication reconciliation. Reviewed releases run as quality and capacity permit; public archives remain visible.",
+    "Company publication links: native verified links are listed separately from measured records. Adding a public link does not add views; new counters remain unknown until observed. All prior metric observation dates and totals are retained."
+  ],
+  "baseline": {
+    "capturedFrom": "2026-10-11T06:51:23.161Z",
+    "capturedThrough": "2026-10-11T06:53:21.054Z",
+    "youtubePublicShorts": 31,
+    "youtubeLifetimeViews": 14895,
+    "instagramReels": 33,
+    "instagramLifetimeViews": 13337,
+    "countsAreCampaignGrowth": false,
+    "campaignStartToBaselineGapMinutesApprox": 23
+  },
+  "publications": [
+    {
+      "title": "One bullet left",
+      "platform": "X",
+      "url": "https://x.com/DTRTLab/status/2109179695862530284",
+      "publishedAt": "2026-10-11T07:10:00.000Z",
+      "verifiedAt": "2026-10-11T07:11:54.613Z"
+    },
+    {
+      "title": "One bullet left",
+      "platform": "TikTok",
+      "url": "https://www.tiktok.com/@iananthonyfc/video/7695303665602612493",
+      "publishedAt": "2026-10-11T07:09:00Z",
+      "verifiedAt": "2026-10-11T07:11:54.613Z"
+    },
+    {
+      "title": "Lab File 003: Low ammo. No vision. No room.",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/watch?v=rPJmQj1Pbpo",
+      "publishedAt": "2026-10-11T16:05:49Z",
+      "verifiedAt": "2026-10-11T16:17:52.574Z",
+      "timestampBasis": "Native public watch-page datePublished meta; owner Studio Public/Published verified"
+    },
+    {
+      "title": "Last enemy. Smoke in the way.",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/shorts/iR3orq__Hn8",
+      "publishedAt": "2026-10-11T16:05:32Z",
+      "verifiedAt": "2026-10-11T16:18:02.612Z",
+      "timestampBasis": "Native public watch-page datePublished metadata"
+    },
+    {
+      "title": "Last enemy. Smoke in the way.",
+      "platform": "X",
+      "url": "https://x.com/DTRTLab/status/2109314520057532826",
+      "publishedAt": "2026-10-11T16:05:45.000Z",
+      "verifiedAt": "2026-10-11T16:18:30.520Z",
+      "timestampBasis": "Native X timestamp link time datetime"
+    },
+    {
+      "title": "Last enemy. Smoke in the way.",
+      "platform": "Instagram",
+      "url": "https://www.instagram.com/reel/DeXC-ioD-Wc/",
+      "publishedAt": "2026-10-11T16:05:45Z",
+      "verifiedAt": "2026-10-11T16:18:43.282Z",
+      "timestampBasis": "Native Instagram reel time datetime"
+    },
+    {
+      "title": "Last enemy. Smoke in the way.",
+      "platform": "TikTok",
+      "url": "https://www.tiktok.com/@iananthonyfc/video/7695441861422451982",
+      "publishedAt": "2026-10-11T16:05:00Z",
+      "verifiedAt": "2026-10-11T16:20:33.145Z",
+      "timestampBasis": "TikTok Studio Posts Created on Oct11 12:05PM Eastern; minute precision; processing delay unmeasured"
+    },
+    {
+      "title": "Last enemy. Smoke in the way.",
+      "platform": "Ko-fi",
+      "url": "https://ko-fi.com/post/One-bullet-left-CS2-replay-C2B128LS18",
+      "publishedAt": null,
+      "verifiedAt": "2026-10-11T16:20:33.145Z",
+      "timestampBasis": "Native Published status and October11 date; exact publication time unavailable. Planned16:05 is not actual timestamp."
+    },
+    {
+      "title": "Knife round got crowded",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/shorts/oUfVtc-hd0k",
+      "publishedAt": "2026-10-11T20:00:54.000Z",
+      "verifiedAt": "2026-10-11T20:04:09.127Z",
+      "timestampBasis": "Native public watch-page datePublished/uploadDate metadata, matched owner Studio Public/Published row"
+    },
+    {
+      "title": "Knife round got crowded",
+      "platform": "Instagram",
+      "url": "https://www.instagram.com/reel/DeXd40Ylgsc/",
+      "publishedAt": "2026-10-11T20:00:58.000Z",
+      "verifiedAt": "2026-10-11T20:03:55.782Z",
+      "timestampBasis": "Native displayed time element datetime attribute; duplicate caption/detail times agree"
+    },
+    {
+      "title": "Knife round got crowded",
+      "platform": "TikTok",
+      "url": "https://www.tiktok.com/@iananthonyfc/video/7695502513348414734",
+      "publishedAt": "2026-10-11T20:00:00Z",
+      "verifiedAt": "2026-10-11T20:04:21.782Z",
+      "timestampBasis": "Native TikTok Studio Created on Oct11 4:00PM Eastern, Everyone; minute precision, actual processing time unmeasured"
+    },
+    {
+      "title": "Knife round got crowded",
+      "platform": "X",
+      "url": "https://x.com/DTRTLab/status/2109373786583920696",
+      "publishedAt": "2026-10-11T20:01:15.000Z",
+      "verifiedAt": "2026-10-11T20:04:44Z",
+      "timestampBasis": "time[datetime] inside the matching native X article on the DTRTLab profile"
+    },
+    {
+      "title": "DTRT Lab recorded CS2 preview",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/shorts/ROFmkh0tZEc",
+      "publishedAt": "2026-10-11T20:48:45Z",
+      "verifiedAt": "2026-10-11T21:22:10.908Z",
+      "timestampBasis": "Native YouTube watch-page datePublished and uploadDate agree; matching Studio Public/Published row"
+    },
+    {
+      "title": "DTRT Lab stream announcement",
+      "platform": "X",
+      "url": "https://x.com/DTRTLab/status/2109384997727883469",
+      "publishedAt": "2026-10-11T20:45:48Z",
+      "verifiedAt": "2026-10-11T21:22:00.384Z",
+      "timestampBasis": "Matching native X article time[datetime]; text teaser, excluded from video-view totals"
+    },
+    {
+      "title": "DTRT Lab recorded CS2 preview",
+      "platform": "TikTok",
+      "url": "https://www.tiktok.com/@iananthonyfc/video/7695514908397440269",
+      "publishedAt": "2026-10-11T20:48:00Z",
+      "verifiedAt": "2026-10-11T21:08:20.725Z",
+      "timestampBasis": "Native Studio Posts (Created on): Oct 11, 4:48 PM in America/New_York; displayed creation minute, not exact public delivery time. Provider planned time is not used as actual-time evidence.",
+      "timestampPrecision": "minute"
+    },
+    {
+      "title": "DTRT Lab recorded CS2 preview",
+      "platform": "Instagram",
+      "url": "https://www.instagram.com/reel/DeXjZI1mesV/",
+      "publishedAt": null,
+      "verifiedAt": "2026-10-11T21:07:51.194Z",
+      "timestampBasis": "Native matching profile and Reel confirmed; exact timestamp unavailable. Provider planned date is not actual."
+    },
+    {
+      "title": "The door was already covered",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/shorts/qizD1CIUrhQ",
+      "publishedAt": "2026-10-11T22:00:50Z",
+      "verifiedAt": "2026-10-11T22:08:41.074Z",
+      "timestampBasis": "Native YouTube watch datePublished/uploadDate agree; matching Studio Public/Published row."
+    },
+    {
+      "title": "The door was already covered",
+      "platform": "Instagram",
+      "url": "https://www.instagram.com/reel/DeXroJNijk3/",
+      "publishedAt": "2026-10-11T22:01:04Z",
+      "verifiedAt": "2026-10-11T22:06:46.506Z",
+      "timestampBasis": "Two native DOM time datetime attributes agree; displayed title Oct 11, 2026"
+    },
+    {
+      "title": "The door was already covered",
+      "platform": "TikTok",
+      "url": "https://www.tiktok.com/@iananthonyfc/video/7695533442817133838",
+      "publishedAt": "2026-10-11T22:00:00Z",
+      "verifiedAt": "2026-10-11T22:06:40.901Z",
+      "timestampBasis": "Native owner Studio Posts (Created on) row, America/New_York EDT UTC-04:00; not provider schedule; actual public delivery instant unmeasured.",
+      "timestampPrecision": "minute"
+    },
+    {
+      "title": "The door was already covered",
+      "platform": "X",
+      "url": "https://x.com/DTRTLab/status/2109403888755605815",
+      "publishedAt": "2026-10-11T22:00:52Z",
+      "verifiedAt": "2026-10-11T22:08:41.075Z",
+      "timestampBasis": "Matching native X article time[datetime]."
+    },
+    {
+      "title": "Make your work clear",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/shorts/eEBIsuAuCkg",
+      "publishedAt": "2026-10-12T00:55:30Z",
+      "verifiedAt": "2026-10-12T00:56:37.224Z",
+      "timestampBasis": "Native public watch-page datePublished metadata"
+    },
+    {
+      "title": "Make your work clear",
+      "platform": "Instagram",
+      "url": "https://www.instagram.com/reel/DeX_obuiij4/",
+      "publishedAt": "2026-10-12T00:55:44.000Z",
+      "verifiedAt": "2026-10-12T00:57:01.896Z",
+      "timestampBasis": "Native Reel time datetime attribute"
+    },
+    {
+      "title": "Make your work clear",
+      "platform": "TikTok",
+      "url": "https://www.tiktok.com/@iananthonyfc/video/7695578463264132365",
+      "publishedAt": "2026-10-12T00:55:00Z",
+      "verifiedAt": "2026-10-12T00:56:15.355Z",
+      "timestampBasis": "Native TikTok Studio Created on Oct11,8:55PM Eastern; Everyone",
+      "timestampPrecision": "minute"
+    },
+    {
+      "title": "Make your work clear",
+      "platform": "X",
+      "url": "https://x.com/DTRTLab/status/2109447768406155583",
+      "publishedAt": "2026-10-12T00:55:14.000Z",
+      "verifiedAt": "2026-10-12T00:55:43.499Z",
+      "timestampBasis": "Native X time datetime attribute"
+    },
+    {
+      "title": "DTRT Lab \u2014 From Ideas to Useful Public Work",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/watch?v=8uQyfvJnofI",
+      "publishedAt": "2026-10-12T01:01:40Z",
+      "verifiedAt": "2026-10-12T01:11:33.583Z",
+      "timestampBasis": "Native public watch datePublished metadata",
+      "timestampPrecision": "second"
+    },
+    {
+      "title": "Un plan gratis para tu negocio | DTRT Lab",
+      "platform": "Instagram",
+      "url": "https://www.instagram.com/reel/DeYDLYaD_iN/",
+      "publishedAt": "2026-10-12T01:26:23.000000Z",
+      "verifiedAt": "2026-10-12T01:27:57.935000Z",
+      "timestampBasis": "Exact native publication datetime observed on the saved platform page",
+      "timestampPrecision": "second"
+    },
+    {
+      "title": "A free office map for your business | DTRT Lab",
+      "platform": "TikTok",
+      "url": "https://www.tiktok.com/@iananthonyfc/video/7695586470303747341",
+      "publishedAt": "2026-10-12T01:26:00.000000Z",
+      "verifiedAt": "2026-10-12T01:32:15.105000Z",
+      "timestampBasis": "TikTok Studio Created on Oct 11, 9:26 PM America/New_York, minute precision",
+      "timestampPrecision": "minute"
+    },
+    {
+      "title": "Un plan gratis para tu negocio | DTRT Lab",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/watch?v=PhYr_7bvvhA",
+      "publishedAt": "2026-10-12T01:26:20.000000Z",
+      "verifiedAt": "2026-10-12T01:31:23.778000Z",
+      "timestampBasis": "Exact native publication datetime observed on the saved platform page",
+      "timestampPrecision": "second"
+    },
+    {
+      "title": "Free office map for U.S. businesses | DTRT Lab",
+      "platform": "X",
+      "url": "https://x.com/DTRTLab/status/2109455613294260309",
+      "publishedAt": "2026-10-12T01:26:24.000000Z",
+      "verifiedAt": "2026-10-12T01:27:06.988000Z",
+      "timestampBasis": "Exact native publication datetime observed on the saved platform page",
+      "timestampPrecision": "second"
+    }
+  ]
+}

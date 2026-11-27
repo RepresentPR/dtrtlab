@@ -1,0 +1,89 @@
+{
+  "legalName": "DTRT Lab",
+  "displayName": "Ian | DTRT Lab",
+  "founder": "Ian Ferraro",
+  "foundedYear": 2024,
+  "entityStatus": "independent_creator",
+  "entityNote": "Independent creator / studio project. Formal entity registration is a planned operating step, not claimed as complete on this site.",
+  "hqRegion": "Ian works remotely",
+  "hqCountry": "US",
+  "audience": {
+    "madeForAll": true,
+    "global": true,
+    "ageInclusive": true,
+    "note": "Small businesses of every kind. Writing only, no passwords. No contract."
+  },
+  "url": "https://dtrtlab.com/",
+  "logo": "https://dtrtlab.com/img/brand/icon-512.png",
+  "mark": "https://dtrtlab.com/img/brand/mark.svg",
+  "email": {
+    "public": "hello@dtrtlab.com",
+    "press": "hello@dtrtlab.com",
+    "support": "hello@dtrtlab.com",
+    "security": "hello@dtrtlab.com",
+    "founder": "ian@dtrtlab.com"
+  },
+  "sameAs": [
+    "https://x.com/DTRTLab",
+    "https://www.instagram.com/dtrt.xyng/",
+    "https://www.youtube.com/@DTRTLabYT",
+    "https://www.twitch.tv/dtrtc",
+    "https://www.tiktok.com/@iananthonyfc",
+    "https://kick.com/movebro",
+    "https://www.linkedin.com/in/ian-ferraro-578784419/",
+    "https://github.com/RepresentPR"
+  ],
+  "findMe": "https://dtrtlab.com/links/",
+  "products": [
+    {
+      "name": "Shop interest catalog",
+      "status": "interest_open",
+      "description": "Digital packs and print-on-demand merch interest list at /shop.html. Checkout is not live."
+    }
+  ],
+  "shop": {
+    "checkoutLive": false,
+    "interestOpen": true,
+    "catalog": "/content/shop.json",
+    "page": "/shop.html"
+  },
+  "hiring": false,
+  "fundraising": false,
+  "preorderLive": false,
+  "personalVision": [
+    "Do the right thing.",
+    "Make useful stuff.",
+    "Have fun doing it.",
+    "Show the process with dated public evidence."
+  ],
+  "mission": "Make useful stuff for all ages and any size idea. Have fun doing it. Show the process with dated public evidence.",
+  "northStar": "DTRT Lab is the shop for Jafra, MOTION, Candles, and an early AI test. A real person is accountable.",
+  "outOfVision": [
+    "Cloning third-party software via reverse engineering as a growth strategy",
+    "Fake scale, fake store, fake hiring, or fake fundraising",
+    "Hype tools that trade trust for reach"
+  ],
+  "lastReviewed": "2026-10-13",
+  "serviceArea": "Small service businesses",
+  "offers": [
+    {
+      "name": "DTRT Lab shop",
+      "deliverables": "Product links for Jafra, MOTION, and Candles, plus an early AI test.",
+      "url": "https://dtrtlab.com/mercado/"
+    },
+    {
+      "name": "Ask (early test)",
+      "deliverables": "An early AI test. It is not live yet.",
+      "url": "https://dtrtlab.com/mercado/"
+    }
+  ],
+  "theme": {
+    "name": "A · Local Pro",
+    "lockedUntil": "2027-01-13",
+    "navy": "#0B2545",
+    "green": "#13C27A",
+    "light": "#DCE6F2",
+    "headline": "The site is the shop: Jafra, MOTION, Candles, and an early AI test.",
+    "sub": "Every job tracked, every customer updated, every quote followed up, and a report card on your phone each night. Open the shop at dtrtlab.com/mercado/."
+  }
+}
