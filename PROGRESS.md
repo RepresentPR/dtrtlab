@@ -1,7 +1,14 @@
-# PR #114 /links/ — handoff to QA (2026-11-27, after QA FAIL b48f9a3b)
+# PR #114 /links/ — handoff to QA (2026-11-27, after QA FAIL 32231752)
 
 Round: pr114 (head will be the commit that includes this file).
 READY for QA: the /links/ page in links/index.html, plus links/lang.js and links/links.css.
+
+## QA FAIL 32231752 fixes (report at qa-reports/links-pr114/REPORT-pr114-32231752.md)
+
+- links/index.html header nav no longer has the Ask DTRT link (EN "Ask DTRT", ES "Pregúntale a DTRT"). links/index.html has no /ask/ link anywhere.
+- Hero lead in links/index.html: "Things we build or link to. Every link that pays us says how." / "Cosas que construimos o enlazamos. Cada enlace que nos paga dice cómo." Matches the footer; the "use" claim is gone.
+- Ask index rebuilt; cache keys bumped to 20261127-links6 as scripts/update-cache-manifest.cjs required.
+- Merged main 6e54b0d (#119 data refresh). Conflict in content/campaign.json resolved by taking main's numbers and keeping this PR's handle rename (signed-in dtrt.xyng Reels grid) in content/campaign.json.
 
 ## QA FAIL b48f9a3b fixes (report at qa-reports/links-pr114/REPORT-pr114-b48f9a3b.md)
 
