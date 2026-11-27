@@ -12,15 +12,21 @@ version follows the rules it enforced, not a byte copy of it.
 The repo is public, so banned terms are stored only as truncated SHA-256
 hashes, the same scheme as scripts/private-terms.test.cjs. That file's lists
 (SINGLE, PAIRS, PLACE_PAIRS) are read at run time so there is one source of
-truth; the extra lists below add caption-only rules (places, legal-hold
-employer, family and health, gambling, "investors", engagement bait). The
-fiction-file allowlist does NOT apply to drafts.
+truth; the extra lists below add caption-only rules (personal places,
+legal-hold employer, family and health, gambling, investor-claim phrases,
+engagement bait, waitlist, retired handle, MOTION paraphrase, AI-is-live
+claims, generic kids phrases). The fiction-file allowlist does NOT apply to
+drafts, except the island-name tokens, which follow Brain §3: allowed only on
+marketplace pages (mercado and store pages, the home store section, their ES
+versions) and on fiction pages. Personal town names and addresses stay banned.
 
 Checks per file:
   TERM        a banned word (hash match on folded, accent-stripped tokens)
   PAIR        a banned two-word phrase
   DISCLOSURE  mentions the Candles referral without the exact line
               "Referral link. We earn from fees. Trading is risky, not financial advice."
+              or mentions the MOTION official wording or affiliate link without
+              the exact opener "Affiliate link. We earn a commission."
   AI-VOICE    --ai-voice given but no "AI voice" disclosure in the copy
 Output names the hash and line number, never the matched word.
 Exit 0 = PASS, 1 = FAIL, 2 = usage error. Read-only.
@@ -31,20 +37,109 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 REPO_TERMS = os.path.join(HERE, "..", "private-terms.test.cjs")
 
 EXTRA_SINGLE = {
-    "5072f198bd5e3aab", "4f80902c333e7bd9", "383188966c792ce3", "f49c6320e08eb5ed",  # places
-    "682a4851da0c4e36", "72b978cf9608f1ed", "f0cd63a491438eb0",                      # places
-    "e424dce6bf0bec35",                                                              # legal hold
-    "df22016bdd63f389", "927f368c571eef4c",                                          # investor claims
+    "5072f198bd5e3aab", "4f80902c333e7bd9", "383188966c792ce3",  # personal-location tokens
+    "72b978cf9608f1ed", "f0cd63a491438eb0",                      # personal towns
+    "682a4851da0c4e36",                                          # island demonym (Brain §3 path-scoped)
+    "e424dce6bf0bec35",                                          # legal hold
     "008f13c4ba9cf25d", "c4c6dfa746694877", "61fb51e57b258404", "4358ccfc6d227afb",  # gambling
-    "a03ea09072d789ad", "8afe3c83decffdf6", "16ccff8bb1fe4285",                      # family, health
+    "a03ea09072d789ad", "8afe3c83decffdf6", "16ccff8bb1fe4285",  # family, health
+    "49e749acca3f9f8b", "eab43dbcec358b32", "8c838ec774566f41", "6924b10173731b06",  # waitlist (+ plural/forms)
+    "3c1b8f9f9ebe1a15",                                          # retired handle
+    "4ed28f82ca96c334",                                          # bare child-word
 }
 EXTRA_PAIRS = {
-    "f50b92b29527bc02", "45f4e17b3f02ee1f", "211be92b4add74dc", "afeacc461eaa9436",  # places
+    "45f4e17b3f02ee1f", "211be92b4add74dc", "afeacc461eaa9436",  # personal places
     "43b1301526a5f924", "2696ade4f3b116d3", "abcdf9ba5ebbd320", "6e5d5d5d68599e0f",  # shop work
-    "d651e202e22d5041",                                                              # gambling
-    "d63dba796421ec85", "a23f6a233621bd96", "44c9c6ce50391755",                      # engagement bait
+    "d651e202e22d5041",                                          # gambling
+    "d63dba796421ec85", "a23f6a233621bd96", "44c9c6ce50391755",  # engagement bait
+    "79dc9a35d42db0aa", "b28699be298743ee",                      # investor-claim phrases
+    "38c3baac1ce59618", "0ba1aba94e672060", "8433bd1e712eb083",  # generic kids phrases
+    "7e2faed68eeab2d1", "fd4c6689d5e97d23",                      # generic kids phrases
+    "04548b1dcbe9b7d0",                                          # generic "the kids"
+    "29f20e8e14d01617",                                          # hyphenated / split wait-list
 }
+# n-gram hashes (3+ tokens), same scheme. "live ai" is a special case in lint_text
+# so a negation only exempts the pair when it denies the liveness claim itself.
+EXTRA_PHRASES = {
+    "25091ef1f29cac39",  # MOTION paraphrase
+    "76254501fcfadf99", "ab90ae9f487e0e3f", "f577150ae719f46b", "189d2a10daac1298",  # AI-is-live claims
+}
+AI_LIVE_PHRASES = {
+    "76254501fcfadf99", "ab90ae9f487e0e3f", "f577150ae719f46b", "189d2a10daac1298",
+}
+# Island-name tokens restored for Brain §3 path-scoping (marketplace / home store / fiction only).
+ISLAND_SINGLE = {
+    "cf6f0c3063e089ac", "c45b25cebbfe88b1", "682a4851da0c4e36",
+}
+ISLAND_PAIRS = {
+    "f50b92b29527bc02", "76fe6138e7cacf54",
+}
+NEG = {"not", "no", "never", "nt"}
+NEG_HEADS = {"isn", "aren", "wasn", "weren", "don", "doesn", "didn", "won", "couldn", "wouldn", "can", "ain"}
+FILLER = {
+    "is", "are", "was", "were", "be", "been", "being",
+    "the", "a", "an", "our", "my", "their", "its", "this", "that", "any", "some",
+    "does", "do", "did", "can", "could", "will", "would", "has", "have", "had",
+    "just", "currently", "officially", "still", "yet", "even", "also", "to", "of", "for",
+}
+DENY_VERBS = {
+    "activate", "activates", "activated", "activating",
+    "enable", "enables", "enabled", "enabling",
+    "launch", "launches", "launched", "launching",
+    "offer", "offers", "offered", "offering",
+    "connect", "connects", "connected", "connecting",
+    "run", "runs", "running",
+    "start", "starts", "started", "starting",
+    "turn", "turns", "turned",
+    "use", "uses", "used", "using",
+    "show", "shows", "shown", "showing",
+    "present", "presents", "presented",
+}
+DENY_PREDICATES = {
+    "connected", "connect", "connects", "connecting",
+    "activated", "activate", "activates", "activating", "activation",
+    "active", "available", "online", "ready", "enabled", "enable", "enables",
+    "offered", "launched", "running", "live", "on", "up",
+}
+LIVE_AI = ("live", "ai")
 DISCLOSURE = "Referral link. We earn from fees. Trading is risky, not financial advice."
+MOTION_OPENER = "Affiliate link. We earn a commission."
+MOTION_OPENER_ES = "Enlace de afiliado. Ganamos una comisión."
+MOTION_OFFICIAL = "Zero nicotine and zero tobacco, too."
+MOTION_OFFICIAL_ES = "Cero nicotina y cero tabaco, también."
+MOTION_LINK = re.compile(r"motionpouches\.com", re.I)
+HARD_BREAK = re.compile(
+    r"[.!?\n\r|·•]"
+    r"|</?(?:li|ul|ol|tr|td|th|p|br|h[1-6]|div|section|article|blockquote)\b"
+    r"|(?:^|[\n\r])\s*(?:[-*+]|\d+\.)\s",
+    re.I,
+)
+MARKETPLACE_PATH = re.compile(
+    r"(?:^|/)(?:es|en)/(?:mercado|store|tienda)(?:/|$|\.)"
+    r"|(?:^|/)(?:mercado|store|tienda)(?:/|$|\.)",
+    re.I,
+)
+HOME_PATH = re.compile(r"^(?:es/|en/)?(?:index|home)(?:\.es)?\.html$", re.I)
+FICTION_PATHS = (
+    re.compile(r"^afterlight\.html$"),
+    re.compile(r"^story\.html$"),
+    re.compile(r"^game\.html$"),
+    re.compile(r"^worlds\.html$"),
+    re.compile(r"^stories/afterlight/"),
+    re.compile(r"^content/afterlight\.json$"),
+    re.compile(r"^content/product\.json$"),
+    re.compile(r"^media\.html$"),
+    re.compile(r"^tools/build_afterlight\.py$"),
+)
+DRAFT_PREFIX = re.compile(r"^(?:DRAFTS|drafts|captions)/")
+STORE_CLASS = re.compile(
+    r"\b(?:storefront|store-page|store-hero|store-grid|store-card|store-top|"
+    r"store-nav|store-cats|store-section|store-helper|shop-grid|mercado|tienda)\b",
+    re.I,
+)
+STORE_ID = re.compile(r"\b(?:store|shop|mercado|tienda|store-title)\b", re.I)
+BODY_TAG = re.compile(r"<body\b[^>]*>", re.I)
+OPEN_TAG = re.compile(r"<(section|div|main|article|ul|ol|nav|header|aside)(\s[^>]*)?>", re.I)
 TEXT_EXT = (".md", ".txt", ".json", ".srt", ".vtt", ".html", ".csv", ".yml", ".yaml")
 
 
@@ -64,7 +159,8 @@ def repo_sets(path=REPO_TERMS):
     """SINGLE / PAIRS / PLACE_PAIRS hash sets from private-terms.test.cjs (empty if missing)."""
     out = {"SINGLE": set(), "PAIRS": set(), "PLACE_PAIRS": set()}
     try:
-        src = open(path, encoding="utf-8").read()
+        with open(path, encoding="utf-8") as fh:
+            src = fh.read()
     except OSError:
         return out
     for name in out:
@@ -79,26 +175,240 @@ def term_sets(path=REPO_TERMS):
     return r["SINGLE"] | EXTRA_SINGLE, r["PAIRS"] | r["PLACE_PAIRS"] | EXTRA_PAIRS
 
 
-def tokens_with_lines(text):
-    """(token, line) pairs over the whole text, so a phrase wrapped across lines still matches."""
-    out = []
-    for n, line in enumerate(str(text).splitlines() or [""], 1):
-        out += [(t, n) for t in tokens(line)]
+def rel_path(path):
+    if not path:
+        return ""
+    rel = str(path).replace("\\", "/")
+    return rel.lstrip("./")
+
+
+def site_rel(path):
+    """Strip a leading drafts/ folder so marketplace and fiction path rules still apply."""
+    return DRAFT_PREFIX.sub("", rel_path(path))
+
+
+def is_marketplace_path(path):
+    return bool(path) and bool(MARKETPLACE_PATH.search(site_rel(path)))
+
+
+def is_fiction_path(path):
+    if not path:
+        return False
+    rel = site_rel(path)
+    return any(rx.search(rel) for rx in FICTION_PATHS)
+
+
+def is_home_path(path):
+    return bool(path) and bool(HOME_PATH.match(site_rel(path)))
+
+
+def _matching_end(text, start, tag):
+    """Return the index after the matching close tag, or len(text) if unclosed."""
+    open_rx = re.compile(r"<%s\b" % re.escape(tag), re.I)
+    close_rx = re.compile(r"</%s\s*>" % re.escape(tag), re.I)
+    i, depth = start, 0
+    while i < len(text):
+        m_open, m_close = open_rx.search(text, i), close_rx.search(text, i)
+        if m_close and (not m_open or m_close.start() < m_open.start()):
+            depth -= 1
+            i = m_close.end()
+            if depth == 0:
+                return i
+            continue
+        if not m_open:
+            return len(text)
+        if depth == 0 and m_open.start() == start:
+            depth = 1
+            gt = text.find(">", m_open.end() - 1)
+            i = gt + 1 if gt != -1 else m_open.end()
+            continue
+        depth += 1
+        gt = text.find(">", m_open.end() - 1)
+        i = gt + 1 if gt != -1 else m_open.end()
+    return len(text)
+
+
+def store_regions(text):
+    """Inclusive-start, exclusive-end ranges of the home store section (or the whole storefront page)."""
+    body = BODY_TAG.search(text or "")
+    if body:
+        cls = re.search(r'\bclass="([^"]*)"', body.group(0), re.I)
+        if cls and STORE_CLASS.search(cls.group(1)):
+            return [(0, len(text))]
+    regions = []
+    for m in OPEN_TAG.finditer(text or ""):
+        attrs = m.group(2) or ""
+        cls = re.search(r'\bclass="([^"]*)"', attrs, re.I)
+        iid = re.search(r'\bid="([^"]*)"', attrs, re.I)
+        if not ((cls and STORE_CLASS.search(cls.group(1))) or (iid and STORE_ID.search(iid.group(1)))):
+            continue
+        regions.append((m.start(), _matching_end(text, m.start(), m.group(1))))
+    merged = []
+    for lo, hi in sorted(regions):
+        if merged and lo <= merged[-1][1]:
+            merged[-1] = (merged[-1][0], max(merged[-1][1], hi))
+        else:
+            merged.append((lo, hi))
+    return merged
+
+
+def in_regions(pos, regions):
+    return any(lo <= pos < hi for lo, hi in regions)
+
+
+def island_ok_at(path, text, pos):
+    """Brain §3: island-name tokens are allowed only on marketplace, fiction, or the home store section."""
+    if is_marketplace_path(path) or is_fiction_path(path):
+        return True
+    if is_home_path(path) and in_regions(pos, store_regions(text)):
+        return True
+    return False
+
+
+def tokens_with_spans(text):
+    """(token, line, start, end) over the original text, so phrase breaks can be read back."""
+    out, line, i, n = [], 1, 0, len(text)
+    while i < n:
+        ch = text[i]
+        if ch == "\n":
+            line += 1
+            i += 1
+            continue
+        base = "".join(c for c in unicodedata.normalize("NFD", ch) if not unicodedata.combining(c)).lower()
+        if base and re.match(r"[a-z0-9]", base[0]):
+            start, tok, tok_line = i, base, line
+            i += 1
+            while i < n:
+                ch2 = text[i]
+                if ch2 == "\n":
+                    break
+                base2 = "".join(c for c in unicodedata.normalize("NFD", ch2) if not unicodedata.combining(c)).lower()
+                if base2 and re.match(r"[a-z0-9]", base2[0]):
+                    tok += base2
+                    i += 1
+                    continue
+                if base2:
+                    break
+                i += 1  # combining marks already stripped from this code point
+            out.append((tok, tok_line, start, i))
+            continue
+        i += 1
     return out
 
 
-def lint_text(text, ai_voice=False, sets=None):
+def tokens_with_lines(text):
+    """(token, line) pairs. Kept for callers; prefers the span tokenizer."""
+    return [(t, n) for t, n, _a, _b in tokens_with_spans(text)]
+
+
+def phrase_hash(toks):
+    return h(" ".join(toks))
+
+
+def hard_break_between(text, end_a, start_b):
+    """True if the live+AI bigram (or an AI-is-live n-gram) crosses a sentence, bullet, or list break."""
+    if start_b < end_a:
+        return True
+    return bool(HARD_BREAK.search(text[end_a:start_b]))
+
+
+def is_neg_at(words, j):
+    if j < 0 or j >= len(words):
+        return False
+    if words[j] in NEG:
+        return True
+    if words[j] == "t" and j > 0 and words[j - 1] in NEG_HEADS:
+        return True
+    if words[j] in NEG_HEADS and j + 1 < len(words) and words[j + 1] == "t":
+        return True
+    return False
+
+
+def after_neg(words, j):
+    """Index just after a negation token (or n't contraction) at j."""
+    if words[j] in NEG_HEADS and j + 1 < len(words) and words[j + 1] == "t":
+        return j + 2
+    return j + 1
+
+
+def liveness_denied(words, start, end):
+    """True only when a negation denies the liveness claim itself (not live, isn't live, not connected, …).
+
+    A nearby no/not/never that talks about something else (never goes offline, not a gimmick,
+    not a rumor) does not exempt the claim.
+    """
+    live_i = start
+    for k in range(start, end):
+        if words[k] == "live":
+            live_i = k
+            break
+    j = live_i - 1
+    while j >= 0 and words[j] in FILLER:
+        j -= 1
+    if is_neg_at(words, j):
+        return True
+    if j >= 0 and words[j] in DENY_VERBS:
+        j -= 1
+        while j >= 0 and words[j] in FILLER:
+            j -= 1
+        if is_neg_at(words, j):
+            return True
+    j = end
+    while j < len(words) and words[j] in FILLER:
+        j += 1
+    if is_neg_at(words, j):
+        k = after_neg(words, j)
+        while k < len(words) and words[k] in FILLER:
+            k += 1
+        if k < len(words) and words[k] in DENY_PREDICATES:
+            return True
+    return False
+
+
+def motion_needs_opener(text):
+    raw = str(text)
+    triggered = MOTION_OFFICIAL in raw or MOTION_OFFICIAL_ES in raw or bool(MOTION_LINK.search(raw))
+    if not triggered:
+        return False
+    return MOTION_OPENER not in raw and MOTION_OPENER_ES not in raw
+
+
+def lint_text(text, ai_voice=False, sets=None, path=None):
     single, pairs = sets or term_sets()
     issues = []
-    toks = tokens_with_lines(text)
-    for i, (t, n) in enumerate(toks):
-        if h(t) in single:
-            issues.append(("TERM", n, "term#" + h(t)))
-        if i + 1 < len(toks) and h(t + " " + toks[i + 1][0]) in pairs:
-            issues.append(("PAIR", n, "pair#" + h(t + " " + toks[i + 1][0])))
-    folded = fold(text)
-    if "candles" in tokens(text) and DISCLOSURE not in str(text):  # exact case and wording
+    raw = str(text)
+    toks = tokens_with_spans(raw)
+    words = [t for t, _n, _a, _b in toks]
+    for i, (t, n, start, _end) in enumerate(toks):
+        hid = h(t)
+        if hid in single:
+            if not (hid in ISLAND_SINGLE and island_ok_at(path, raw, start)):
+                issues.append(("TERM", n, "term#" + hid))
+        if i + 1 < len(toks):
+            pair = h(t + " " + toks[i + 1][0])
+            if pair in pairs:
+                if not (pair in ISLAND_PAIRS and island_ok_at(path, raw, start)):
+                    issues.append(("PAIR", n, "pair#" + pair))
+            if (t, toks[i + 1][0]) == LIVE_AI:
+                if not hard_break_between(raw, toks[i][3], toks[i + 1][2]) and not liveness_denied(words, i, i + 2):
+                    issues.append(("TERM", n, "term#" + h("live ai")))
+        for ngram in range(3, 7):
+            if i + ngram > len(toks):
+                continue
+            ph = phrase_hash(toks[j][0] for j in range(i, i + ngram))
+            if ph not in EXTRA_PHRASES:
+                continue
+            if ph in AI_LIVE_PHRASES:
+                if hard_break_between(raw, toks[i][3], toks[i + ngram - 1][2]):
+                    continue
+                if liveness_denied(words, i, i + ngram):
+                    continue
+            issues.append(("TERM", n, "term#" + ph))
+    if "candles" in tokens(text) and DISCLOSURE not in raw:  # exact case and wording
         issues.append(("DISCLOSURE", 0, "Candles mentioned without the exact line: " + DISCLOSURE))
+    if motion_needs_opener(raw):
+        issues.append(("DISCLOSURE", 0, "MOTION official wording or affiliate link without the exact opener: " + MOTION_OPENER))
+    folded = fold(text)
     if ai_voice and not re.search(r"\bai[- ]?(generated )?voice\b", folded):
         issues.append(("AI-VOICE", 0, "--ai-voice set but the copy has no 'AI voice' disclosure"))
     return issues
@@ -135,12 +445,13 @@ def main(argv=None):
     bad = 0
     for f in files:
         try:
-            text = open(f, encoding="utf-8", errors="replace").read()
+            with open(f, encoding="utf-8", errors="replace") as fh:
+                text = fh.read()
         except OSError as exc:
             print(f"FAIL {f}: unreadable ({type(exc).__name__})")
             bad += 1
             continue
-        issues = lint_text(text, args.ai_voice, sets)
+        issues = lint_text(text, args.ai_voice, sets, path=f)
         bad += bool(issues)
         print(f"{'FAIL' if issues else 'PASS'} {f}: {len(issues)} issue(s)")
         for kind, n, detail in issues[:12]:

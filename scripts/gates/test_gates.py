@@ -22,6 +22,31 @@ w = lambda *codes: "".join(map(chr, codes))
 ISLAND = w(80, 117, 101, 114, 116, 111) + " " + w(82, 105, 99, 111)
 EMPLOYER = w(67, 97, 108, 105, 98, 101, 114)
 TOWN = w(67, 108, 105, 110, 116, 111, 110)
+REGION_ABBR = w(83, 111, 77, 68)
+METRO_ABBR = w(68, 77, 86)
+STATE = w(109, 97, 114, 121, 108, 97, 110, 100)
+ISLAND_TOKEN = w(98, 111, 114, 105, 99, 117, 97)
+QUEUE_WORD = w(119, 97, 105, 116, 108, 105, 115, 116)
+OLD_HANDLE = w(111, 102, 102, 105, 99, 105, 97, 108, 108, 121, 100, 116, 114, 116)
+MOTION_BAD = w(67, 97, 102, 102, 101, 105, 110, 101, 32, 112, 111, 117, 99, 104, 101, 115, 32, 119, 105, 116, 104, 32, 110, 111, 32, 110, 105, 99, 111, 116, 105, 110, 101, 46)
+MOTION_GOOD = w(90, 101, 114, 111, 32, 110, 105, 99, 111, 116, 105, 110, 101, 32, 97, 110, 100, 32, 122, 101, 114, 111, 32, 116, 111, 98, 97, 99, 99, 111, 44, 32, 116, 111, 111, 46)
+BACKER_WORD = w(105, 110, 118, 101, 115, 116, 111, 114, 115)
+OUR_BACKERS = w(111, 117, 114, 32, 105, 110, 118, 101, 115, 116, 111, 114, 115)
+BACKERS_BACKED = w(105, 110, 118, 101, 115, 116, 111, 114, 115, 32, 98, 97, 99, 107, 101, 100)
+AI_IS_LIVE = w(65, 73, 32, 105, 115, 32, 108, 105, 118, 101)
+LIVE_AI = w(108, 105, 118, 101, 32, 65, 73)
+OUR_AI_NOW_LIVE = w(111, 117, 114, 32, 65, 73, 32, 105, 115, 32, 110, 111, 119, 32, 108, 105, 118, 101)
+MY_SON = w(109, 121, 32, 115, 111, 110)
+MY_DAUGHTER = w(109, 121, 32, 100, 97, 117, 103, 104, 116, 101, 114)
+MY_KIDS = w(109, 121, 32, 107, 105, 100, 115)
+MI_HIJA = w(109, 105, 32, 104, 105, 106, 97)
+MI_HIJO = w(109, 105, 32, 104, 105, 106, 111)
+THE_KIDS = w(116, 104, 101, 32, 107, 105, 100, 115)
+BARE_DAUGHTER = w(100, 97, 117, 103, 104, 116, 101, 114)
+QUEUE_PLURAL = w(87, 97, 105, 116, 108, 105, 115, 116, 115)
+QUEUE_HYPHEN = w(87, 97, 105, 116, 45, 76, 105, 115, 116)
+MOTION_OPENER = "Affiliate link. We earn a commission."
+MOTION_LINK = "https://www.motionpouches.com/shop"
 GOOD_LINE = "Referral link. We earn from fees. Trading is risky, not financial advice."
 
 
@@ -35,19 +60,50 @@ class CopyLintTests(unittest.TestCase):
     def test_clean_copy_passes(self):
         self.assertEqual(copy_lint.lint_text("Four quick fixes for a slow week. Free map at dtrtlab.com"), [])
 
-    def test_location_employer_and_town_fail_even_with_accents_and_case(self):
-        for text in (f"Filmed in {ISLAND}", f"{ISLAND.upper()} sunsets", f"my {EMPLOYER} days", f"near {TOWN}",
+    def test_personal_location_and_employer_fail_even_with_accents_and_case(self):
+        for text in (f"my {EMPLOYER} days", f"near {TOWN}", f"shot in {REGION_ABBR}", f"{METRO_ABBR} area shop",
                      "Rinc" + chr(243) + "n vibes"):
             with self.subTest(text=len(text)):
                 self.assertTrue(copy_lint.lint_text(text))
+
+    def test_marketplace_island_name_is_path_scoped(self):
+        samples = (f"Shop the {ISLAND} market at /mercado/", f"{ISLAND.upper()} small businesses",
+                   f"Go live with the {ISLAND} market.", f"{ISLAND_TOKEN} owned shops")
+        for text in samples:
+            with self.subTest(text=len(text), where="mercado"):
+                self.assertEqual(copy_lint.lint_text(text, path="mercado/index.html"), [])
+            with self.subTest(text=len(text), where="es-mercado"):
+                self.assertEqual(copy_lint.lint_text(text, path="es/mercado/index.html"), [])
+            with self.subTest(text=len(text), where="store"):
+                self.assertEqual(copy_lint.lint_text(text, path="store/index.html"), [])
+            with self.subTest(text=len(text), where="fiction"):
+                self.assertEqual(copy_lint.lint_text(text, path="afterlight.html"), [])
+            with self.subTest(text=len(text), where="elsewhere"):
+                self.assertTrue(copy_lint.lint_text(text, path="docs/vision.md"))
+            with self.subTest(text=len(text), where="no-path"):
+                self.assertTrue(copy_lint.lint_text(text))
+        store = f'<section class="store-grid"><p>Shop the {ISLAND} market.</p></section>'
+        other = f'<section class="about"><p>Shop the {ISLAND} market.</p></section>'
+        front = f'<body class="dream storefront"><p>Shop the {ISLAND} market.</p></body>'
+        self.assertEqual(copy_lint.lint_text(store, path="index.html"), [])
+        self.assertEqual(copy_lint.lint_text(store, path="es/index.html"), [])
+        self.assertEqual(copy_lint.lint_text(front, path="index.html"), [])
+        self.assertTrue(copy_lint.lint_text(other, path="index.html"))
+        self.assertTrue(copy_lint.lint_text(f"Shop the {ISLAND} market.", path="about.html"))
+
+    def test_bare_state_name_is_allowed_personal_location_terms_are_not(self):
+        self.assertEqual(copy_lint.lint_text(f"A {STATE} filing is not required."), [])
+        self.assertTrue(copy_lint.lint_text(f"near {TOWN}"))
+        self.assertTrue(copy_lint.lint_text(REGION_ABBR))
+        self.assertTrue(copy_lint.lint_text(METRO_ABBR))
 
     def test_output_never_prints_the_word(self):
         issues = copy_lint.lint_text(f"near {TOWN}")
         self.assertTrue(all(TOWN.lower() not in d.lower() for _k, _n, d in issues))
 
     def test_phrase_wrapped_across_lines_fails(self):
-        first, second = ISLAND.split(" ")
-        self.assertTrue(any(k == "PAIR" for k, _n, _d in copy_lint.lint_text(f"filmed in {first}\n{second} today")))
+        south = w(115, 111, 117, 116, 104, 101, 114, 110)
+        self.assertTrue(any(k == "PAIR" for k, _n, _d in copy_lint.lint_text(f"filmed in {south}\n{STATE} today")))
 
     def test_missing_repo_lists_refuses_instead_of_passing(self):
         with tempfile.TemporaryDirectory() as d:
@@ -74,7 +130,7 @@ class CopyLintTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             good, bad = Path(d, "good.md"), Path(d, "bad.md")
             good.write_text("Clean caption.\n", encoding="utf-8")
-            bad.write_text(f"Line one\nshot in {ISLAND}\n", encoding="utf-8")
+            bad.write_text(f"Line one\nshot in {TOWN}\n", encoding="utf-8")
             with redirect_stdout(io.StringIO()) as out:
                 self.assertEqual(copy_lint.main([str(good)]), 0)
                 self.assertEqual(copy_lint.main([str(bad)]), 1)
@@ -83,6 +139,56 @@ class CopyLintTests(unittest.TestCase):
             self.assertNotIn(ISLAND, out.getvalue())
             with redirect_stdout(io.StringIO()):
                 self.assertEqual(copy_lint.main([str(Path(d, "empty-dir-missing"))]), 1)
+
+    def test_backer_claims_fail_but_bare_word_passes(self):
+        self.assertEqual(copy_lint.lint_text(f"Notes for an {BACKER_WORD} briefing."), [])
+        self.assertTrue(copy_lint.lint_text(OUR_BACKERS + " agree."))
+        self.assertTrue(copy_lint.lint_text(BACKERS_BACKED + " the shop."))
+
+    def test_motion_paraphrase_fails_and_opener_is_required(self):
+        self.assertTrue(copy_lint.lint_text("MOTION: " + MOTION_BAD))
+        self.assertTrue(copy_lint.lint_text("MOTION: " + MOTION_BAD + " " + MOTION_OPENER),
+                        "paraphrase stays banned even with the opener")
+        self.assertTrue(copy_lint.lint_text("MOTION: " + MOTION_GOOD),
+                        "official wording without the opener must fail")
+        self.assertTrue(copy_lint.lint_text("Shop here: " + MOTION_LINK),
+                        "affiliate link without the opener must fail")
+        self.assertTrue(copy_lint.lint_text("We earn a commission. Affiliate link. MOTION: " + MOTION_GOOD),
+                        "reordered opener must fail")
+        self.assertEqual(copy_lint.lint_text("MOTION: " + MOTION_GOOD + " " + MOTION_OPENER), [])
+        self.assertEqual(copy_lint.lint_text(MOTION_OPENER + " " + MOTION_LINK), [])
+
+    def test_signup_queue_and_retired_handle_fail(self):
+        self.assertTrue(copy_lint.lint_text("Join the " + QUEUE_WORD + " today."))
+        self.assertTrue(copy_lint.lint_text("Join the " + QUEUE_PLURAL + " today."))
+        self.assertTrue(copy_lint.lint_text("Join the " + QUEUE_HYPHEN + " today."))
+        self.assertTrue(copy_lint.lint_text("Find us at @" + OLD_HANDLE))
+        self.assertEqual(copy_lint.lint_text("Find us at @dtrt.xyng"), [])
+
+    def test_ai_is_live_claims_fail_accepted_wording_passes(self):
+        self.assertTrue(copy_lint.lint_text(AI_IS_LIVE + ". Try it today."))
+        self.assertTrue(copy_lint.lint_text(LIVE_AI + " is ready."))
+        self.assertTrue(copy_lint.lint_text(OUR_AI_NOW_LIVE + ". Try it today."))
+        self.assertTrue(copy_lint.lint_text("This " + LIVE_AI + " never goes offline."))
+        self.assertTrue(copy_lint.lint_text("Try our " + LIVE_AI + ", not a gimmick."))
+        self.assertTrue(copy_lint.lint_text(LIVE_AI[0].upper() + LIVE_AI[1:] + " is not a rumor. It is live."))
+        self.assertEqual(copy_lint.lint_text("Very early AI test, not live yet."), [])
+        self.assertEqual(copy_lint.lint_text("The assistant shown is a scripted preview; " + LIVE_AI + " is not connected."), [])
+        self.assertEqual(copy_lint.lint_text("This switch does not activate " + LIVE_AI + " or paid work."), [])
+
+    def test_live_ai_bigram_does_not_match_across_breaks(self):
+        self.assertEqual(copy_lint.lint_text("Go live. AI stays a very early test, not live yet."), [])
+        self.assertEqual(copy_lint.lint_text("The site is live. AI notes are drafts only."), [])
+        self.assertEqual(copy_lint.lint_text("Find-me live · AI spend ops"), [])
+        self.assertEqual(copy_lint.lint_text("Go live! AI stays a very early test, not live yet."), [])
+        self.assertEqual(copy_lint.lint_text("Go live?\nAI stays a very early test, not live yet."), [])
+        self.assertEqual(copy_lint.lint_text("status: live\n- AI spend ops"), [])
+        self.assertTrue(copy_lint.lint_text("Try our " + LIVE_AI + " today."))
+
+    def test_generic_kids_phrases_fail(self):
+        for phrase in (MY_SON, MY_DAUGHTER, MY_KIDS, MI_HIJA, MI_HIJO, THE_KIDS, BARE_DAUGHTER):
+            with self.subTest(phrase=len(phrase)):
+                self.assertTrue(copy_lint.lint_text("Weekend with " + phrase + "."))
 
 
 class DoneGateTests(unittest.TestCase):
