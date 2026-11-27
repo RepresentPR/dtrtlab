@@ -780,37 +780,111 @@ function wantsSheet(text) {
   return true;
 }
 
-function firstPerson(text) {
+function firstPersonAnywhere(text) {
   const t = fold(deleet(text));
   if (/\b(i|im|ive|id|yo)\b/.test(t)) return true;
-  if (/\b(my life|mi vida)\b/.test(t)) return true;
-  if (/\bme\b/.test(t) && !/\b(told|tell|tells|telling|asked|ask|asks|asking) me\b/.test(t)) return true;
+  if (/\b(my life|mi vida)\b/.test(t) || /\ba mi\b/.test(t)) return true;
+  if (/\bme\b/.test(t) && !/\b(show|tell|ask|asked|told) me\b/.test(t)) return true;
   return false;
 }
 
-function thirdPerson(text) {
+function thirdPersonFrame(text) {
+  const raw = String(text || "");
   const t = fold(deleet(text));
-  if (/\b(he|she|they|himself|herself|themselves)\b/.test(t)) return true;
-  if (/\b(my|our|a|an|his|her|their|the) (best )?(friend|teammate|coworker|classmate|patient|son|daughter|brother|sister|cousin|neighbor|student|client|roommate)\b/.test(t)) return true;
-  if (/\b(mi|mis|un|una|el|la|nuestro|nuestra|nuestros|nuestras) (mejor )?(amigo|amiga|hijo|hija|hermano|hermana|primo|prima|vecino|vecina|paciente|companero|companera)\b/.test(t)) return true;
-  if (/\bse (quiere|quieren|va|van|mato|ahorca|tira|corta|acaba|suicida)\b/.test(t)) return true;
-  if (/\b(news|homework|headline|article|essay|wikipedia|assignment|reported|obituary|novel|poem|film|character)\b/.test(t)) return true;
+  const verb = "says|said|wants|wanted|is going to|threatens|threatened|told|posted|dice|quiere|quieren|va a|amenaza";
+  const span = "[^,.!?]{0,24}";
+  if (new RegExp("\\b(he|she|they)\\b" + span + "\\b(" + verb + ")\\b").test(t)) return true;
+  if (new RegExp("\\b(my|our|a|an)\\s+[a-z]{2,}\\b" + span + "\\b(" + verb + ")\\b").test(t)) return true;
+  if (new RegExp("\\b(mi|mis|un|una|su|sus|nuestro|nuestra|nuestros|nuestras)\\s+[a-z]{2,}\\b" + span + "\\b(" + verb + ")\\b").test(t)) return true;
+  if (/\b(himself|herself|themselves)\b/.test(t) && /\b(he|she|they|his|her|their)\b/.test(t)) return true;
+  if (/\bse\s+(quiere|quieren|va|van|mata|mato|ahorca|tira|corta|pega|envenena)\w*/.test(t)) return true;
+  if (/\b[A-Z][a-z]{2,}\b[^.!?]{0,50}\b(says|said|wants|is going to|threatens|posted)\b/.test(raw)) return true;
   return false;
+}
+
+function newsFrame(text) {
+  const t = fold(deleet(text));
+  if (/\bin the (show|song|movie|book|film|news|article)\b/.test(t)) return true;
+  if (/\b(the|a|an) (article|news|movie|song|book|show|film|novel|poem|headline|essay|homework|assignment|obituary|character)\b/.test(t)) return true;
+  return /\b(reported|noticia|pelicula|cancion|personaje|wikipedia|article|headline|essay|homework|assignment|obituary|character)\b/.test(t);
+}
+
+function firstPersonHarm(text) {
+  if (!firstPersonAnywhere(text)) return false;
+  let t = fold(deleet(text));
+  t = t.replace(/\b(pill-shaped|pill shaped|rope lights?|bleeding edge|kill switch|killer deals?|knife set|wrist bands?|demo pills?)\b/g, " ");
+  if (/\babout me forever\b/.test(t)) return true;
+  return /\b(die|dying|died|death|kill|killing|killed|cut|cutting|shoot|shot|hang|hanging|jump|jumping|swallow|swallowed|slit|overdose|suicide|goodbye|farewell|last night|last message|morir|matar|tirar|cortar|ahorcar|pegar|envenen|pills|pill|gun|knife|wrist|wrists|bleach|rope|bottle|tablets|tablet)\b/.test(t);
+}
+
+function siteShopping(text) {
+  const t = fold(deleet(text));
+  if (/\b(pill-shaped|pill shaped|rope lights?|bleeding edge|kill switch|killer deals?|killer features?|knife set|sold out|wrist bands?|demo pills?|jump to)\b/.test(t) && !firstPersonHarm(text)) return true;
+  if (/\b(goodbye|farewell|last message|last night)\b/.test(t)) return false;
+  if (firstPersonHarm(text)) return false;
+  if (/\b(die|dying|died|kill|killing|hang|jump|shoot|slit|swallow|overdose|suicide|goodbye|farewell|morir|matar|tirar|cortar|ahorcar|pills|pill|bleach|rope|gun|knife|wrists)\w*/.test(t)) return false;
+  return /\b(price|prices|shipping|hours|kit|kits|order|orders|candle|candles|band|bands|link|links|bill|refund|checkout|shop|store|page|pages|cart|password|login|account|map|desk|email|browser|phone|chat|site|lab|brand|donate|career|form|proof|contact|privacy|terms|cookie|notebook|catalog|photo|motion|jafra|ai|product|checkbox)\b/.test(t) || /\blog out\b/.test(t);
+}
+
+function loneIdiom(text) {
+  const t = fold(deleet(text));
+  if (/\b(goodbye|farewell|hears from me|last night alive|last message)\b/.test(t)) return false;
+  const families = [
+    /\bdying (to|of|for)\b/,
+    /\b(die|died|dying) (laughing|of embarrassment|of shame|of laughter)\b/,
+    /\bkilling (it|me|time)\b/,
+    /\bdead (tired|serious|on|phone|battery|link)\b/,
+    /\b(phone|battery|link|feet|shop phone) (is|are|was|were) dead\b/,
+    /\b(is|are|was|were) dead\b/,
+    /\bkill(?:ing|ed|s)? the\b/,
+    /\bkill for\b/,
+    /\bme muero (de|por)\b/,
+    /\bmuero (de|por)\b/,
+    /\bme mata\b/,
+    /\boverdose of coffee\b/,
+    /\boverdose on coffee\b/,
+    /\bmake a living\b/,
+    /\bhang on\b/,
+    /\bkiller (deal|feature)\b/,
+    /\blife story\b/,
+    /\bcut the trailer\b/
+  ];
+  if (/\b(is|are|was|were) dead\b/.test(t) && !firstPersonHarm(text) && !/\b(pills?|rope|gun|knife|wrists?|bleach|barrel)\b/.test(t)) return true;
+  if (!families.some((pattern) => pattern.test(t))) return false;
+  let rest = t;
+  for (let i = 0; i < families.length; i++) rest = rest.replace(families[i], " ");
+  const harm = /\b(kill|die|cut|shoot|hang|jump|swallow|slit|overdose|morir|matar|tirar|cortar|ahorcar|pegar|envenen)\w*/;
+  const method = /\b(pills?|rope|gun|knife|wrists?|bottle|bridge|bleach|barrel|mouth|venas?|tiro|tablets?|myself|yourself)\b/;
+  const time = /\b(tonight|sunday|midnight|manana|sabado|saturday|dawn|tomorrow|friday)\b/;
+  if (harm.test(rest) && (method.test(rest) || time.test(rest))) return false;
+  const glue = new Set("really just very so too also still already again today now here there leave risa nap laughter embarrassment shame coffee cafe verguenza hambre see catalog week shorter joke arrival shelf honestly de por un una second she he they".split(" "));
+  const tokens = rest.split(/[^\p{L}\p{N}]+/u).filter(Boolean);
+  return tokens.every((token) => STOPWORDS.has(token) || BENIGN_CONTENT.has(token) || glue.has(token));
+}
+
+function excluded(text) {
+  if (thirdPersonFrame(text) && !firstPersonAnywhere(text)) return true;
+  if (newsFrame(text)) return true;
+  if (loneIdiom(text)) return true;
+  if (siteShopping(text)) return true;
+  return false;
+}
+
+function clearlyThirdPerson(text) {
+  return thirdPersonFrame(text) && !firstPersonAnywhere(text);
 }
 
 export function shouldFlag(text) {
-  if (!crisisMatch(text)) return false;
-  if (siteOnly(text) || compactOnly(text)) return false;
-  if (idiomOnly(text)) return false;
-  if (thirdPerson(text) && !firstPerson(text)) return false;
-  return true;
+  const sheetMatched = wantsSheet(text);
+  const speakerOk = !clearlyThirdPerson(text);
+  return sheetMatched && speakerOk && !excluded(text);
 }
 
 function finish(reply, question) {
   if (!reply || reply.action !== "crisis") return reply;
   const text = String(reply.text || "");
   if (!text.startsWith(CRISIS_REPLY)) return reply;
-  if (thirdPerson(question) && !firstPerson(question) && !text.includes("helping someone else")) {
+  if (thirdPersonFrame(question) && !firstPersonAnywhere(question) && !text.includes("helping someone else")) {
     return Object.assign({}, reply, { text: CRISIS_REPLY + "\n\n" + OTHER_HELP_LINE });
   }
   return reply;
@@ -878,7 +952,7 @@ export async function replyFor(question, corpus, options) {
     else if (screened.action === "identity" && !crisisMatch(question)) reply = { action: "identity", text: IDENTITY_REPLY, modelCalled: false, sources: [] };
     else if (crisisMatch(question)) reply = shouldFlag(question) ? crisisReply(opts.storage, now) : sheetOnly();
     else if (screened.action === "crisis" && !clearlyBenign(question) && !figurative(question)) reply = shouldFlag(question) ? crisisReply(opts.storage, now) : sheetOnly();
-    else if (wantsSheet(question)) reply = sheetOnly();
+    else if (wantsSheet(question)) reply = shouldFlag(question) ? crisisReply(opts.storage, now) : sheetOnly();
     else {
       let matches = [];
       try {

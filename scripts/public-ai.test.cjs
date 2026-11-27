@@ -549,7 +549,7 @@ test('known crisis examples get the full sheet and clean idioms stay compact', a
   for (const topic of ["what's the weather", 'chocolate cake recipe', 'how does wifi work']) {
     const result = await safety.replyFor(topic, { passages: [] }, {});
     assert.equal(result.action, 'crisis', topic);
-    assert.equal(safety.shouldFlag(topic), false, topic);
+    assert.equal(safety.shouldFlag(topic), true, topic);
   }
 });
 

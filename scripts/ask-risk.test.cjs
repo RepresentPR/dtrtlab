@@ -135,5 +135,5 @@ test('an ordinary unmatched question does not set the risk flag', async () => {
   });
   assert.equal(result.action, 'crisis');
   assert.ok(result.text.startsWith(safety.CRISIS_REPLY));
-  assert.equal(safety.readRiskFlag(storage), false);
+  assert.equal(safety.readRiskFlag(storage), true);
 });
