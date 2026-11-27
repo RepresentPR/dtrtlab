@@ -27,7 +27,7 @@ exclude:
   - PROGRESS.md
   - RESULT-done_gate-pr115.txt
   - RESULT-done_gate*.txt
-  - RESULT-done_gate-pr114.txt
+  - links/RESULT-done_gate-pr114.txt
   - links/PROGRESS.md
   - .env.example
   - .gitignore
