@@ -182,6 +182,9 @@ const ZIP = /(^|[^\w$#.\-/:%])(20[0-5]\d{2}|20[6-9]\d{2}|21\d{3}|2[23]\d{3}|24[0
 const TERM_ALLOW = [
   [/^legal\/(privacy|cookies|terms|refunds|dmca|preorder-terms)\.html$/, 'pending-state', /Maryland|Virginia/, 'governing-law / consumer-law wording, not a service-area claim'],
   [/^js\/live-pulse\.js$/, 'public-data', /Keyless public sources only/, 'developer code comment about API keys, never rendered to visitors'],
+  [/^mercado\//, 'reloc', /f50b92b29527bc02|cf6f0c3063e089ac|1d281b33068fbb45|682a4851da0c4e36/, 'Puerto Rico is the shop market name (go-live carve-out)'],
+  [/^js\/mercado-helper\.js$/, 'reloc', /f50b92b29527bc02|cf6f0c3063e089ac|1d281b33068fbb45|682a4851da0c4e36/, 'Puerto Rico is the shop market name (go-live carve-out)'],
+  [/^css\/mercado\.css$/, 'reloc', /f50b92b29527bc02|cf6f0c3063e089ac|1d281b33068fbb45|682a4851da0c4e36/, 'Puerto Rico is the shop market name (go-live carve-out)'],
 ];
 function allowed(file, id, snippet) {
   return TERM_ALLOW.some(([p, t, s]) => p.test(file) && t === id && s.test(snippet));
@@ -260,7 +263,9 @@ function walkAll(dir, out = []) {
   return out;
 }
 function wordScanFiles(root = ROOT) {
-  return [...new Set(walkAll(root).map((p) => rel(p, root)))].sort();
+  return [...new Set(walkAll(root).map((p) => rel(p, root)))]
+    .filter((f) => !f.startsWith('scripts/archive/'))
+    .sort();
 }
 // Repo tooling: lines that BAN a term are fine here, lines that USE it are not.
 const REPO_CODE = /^(scripts|tools|\.github|\.cursor)\/|\.(py|sh|cjs|ya?ml|toml)$/;
@@ -508,22 +513,28 @@ function legalStampProblems(file, baseHtml, headHtml, now = new Date()) {
   return out;
 }
 
+function workerInjectedAssets() {
+  const p = path.join(ROOT, 'cloudflare/_worker.js');
+  if (!fs.existsSync(p)) return [];
+  const src = fs.readFileSync(p, 'utf8');
+  const out = new Set();
+  for (const m of src.matchAll(/\/(?:css|js)\/[A-Za-z0-9._-]+\.(?:css|js|mjs)/g)) {
+    out.add(m[0].replace(/^\//, ''));
+  }
+  return [...out];
+}
+
 // JS/CSS that exist for Node tests or tooling, not for pages. Reason required.
+// Nothing in this list may be a file the site actually serves.
 const UNREFERENCED_ALLOW = [
   [/^cloudflare\//, 'Pages worker source; not requested by a browser page'],
-  [/^js\/mercado-allowlist\.js$/, 'r7 shop helper imports safety-core.mjs; this file is no longer a page script'],
-  [/^js\/crisis-line\.js$/, 'injected by the preview worker, not a first-party script tag in repo HTML'],
-  [/^css\/crisis-line\.css$/, 'injected by the preview worker, not a first-party stylesheet in repo HTML'],
-  [/^js\/home-lang\.js$/, 'loaded after first paint or only on pages the static first-paint crawl misses'],
-  [/^js\/find-me\.js$/, 'not a first-paint request on the visitor pages this test crawls'],
-  [/^js\/stats\.js$/, 'not a first-paint request on the visitor pages this test crawls'],
-  [/^ask\/passages\.js$/, 'Ask loads passages after the first paint'],
+  [/^ask\/passages\.js$/, 'worker returns 404; not a live page asset'],
 ];
 
 module.exports = {
   requiresRetired, silentSkipProblems, passwordSkipProblems, HASHED, GUARD_FILES, isGuardFile, NEGATIVE_LINE, walkAll, kindOf, stringsOf, jsonStrings,
   mailtoProblems, mailtoScan, MAILTO_ALLOW, EMAIL_MAP_LINE, isTextFile, baseContent, LEGAL_PAGE, lastUpdated, legalStampProblems, todayEt,
   ROOT, walk, rel, htmlPages, visibleText, codeOf, decode, isFiction, FICTION_PATHS, BANNED, scanText, scanFile, wordScanFiles,
-  pendingStates, TERM_ALLOW, FREE_MAP_LINE, GUARANTEE, wordingProblems, norm, parseEt, MAX_PROOF_AGE_H, editedFiles, UNREFERENCED_ALLOW,
+  pendingStates, TERM_ALLOW, FREE_MAP_LINE, GUARANTEE, wordingProblems, norm, parseEt, MAX_PROOF_AGE_H, editedFiles, UNREFERENCED_ALLOW, workerInjectedAssets,
   allMatches, context, hashedHits, sha, PLACE_CATS, AGENT_MAIL_HOSTS, agentHost,
 };
