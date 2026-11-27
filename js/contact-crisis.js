@@ -1,75 +1,38 @@
-import { classifyCrisis, GENTLE_LINE } from '/js/safety-core.mjs?v=20261127r8b';
-/* Contact pop-up: PR #111 classifyCrisis as is (head 2e137a18 / classifier 878e0427).
-   tier1: crisis card, do not send the form.
-   tier2: send normally, show the gentle 988 line. */
+/* Contact: no classifier. The form always sends. The 988 / Crisis Text Line
+   block stays visible on load and after submit, in English and Spanish. */
 (function () {
   "use strict";
-  var isEs = /(?:\?|&)lang=es(?:&|$)/.test(location.search);
-  var TIER1_EN = "If you're thinking about suicide or in crisis: call or text 988 (US). Si estás en crisis: llama o textea al 988. findahelpline.com (outside US). This message was not sent.";
-  var TIER1_ES = "Si estás pensando en suicidio o en crisis: llama o textea al 988 (EE. UU.). findahelpline.com (fuera de EE. UU.). Este mensaje no se envió.";
-  var FIELD_IDS = { name: 1, email: 1, message: 1 };
+  var isEs = /(?:\?|&)lang=es(?:&|$)/.test(location.search) || (document.documentElement.lang || "").toLowerCase() === "es";
+  var HTML_EN = 'If you\'re thinking about suicide or in crisis: <a href="tel:988">call</a> or <a href="sms:988">text 988</a> (US). Crisis Text Line: text HOME to <a href="sms:741741">741741</a> (US). Si estás en crisis: llama o textea al <a href="tel:988">988</a>. <a href="https://findahelpline.com" rel="noopener" target="_blank">findahelpline.com</a> (outside US).';
+  var HTML_ES = 'Si estás pensando en suicidio o en crisis: <a href="tel:988">llama</a> o <a href="sms:988">textea al 988</a> (EE. UU.). Crisis Text Line: envía HOME al <a href="sms:741741">741741</a> (EE. UU.). <a href="https://findahelpline.com" rel="noopener" target="_blank">findahelpline.com</a> (fuera de EE. UU.).';
 
-  function fieldValues() {
-    var ids = ["name", "email", "message"];
-    var values = [];
-    for (var i = 0; i < ids.length; i++) {
-      var el = document.getElementById(ids[i]);
-      values.push(el ? (el.value || "") : "");
+  function ensure() {
+    var el = document.getElementById("contact-crisis-help") || document.querySelector("form .site-crisis, p.site-crisis");
+    if (!el) {
+      el = document.createElement("p");
+      el.id = "contact-crisis-help";
+      el.className = "site-crisis";
+      el.setAttribute("role", "note");
+      var form = document.querySelector("form");
+      if (form) form.insertAdjacentElement("afterbegin", el);
+      else (document.querySelector("main") || document.body).insertAdjacentElement("afterbegin", el);
     }
-    return values;
-  }
-
-  function rank() {
-    var values = fieldValues();
-    var worst = "none";
-    for (var i = 0; i < values.length; i++) {
-      var history = values.filter(function (_, j) { return j !== i; });
-      var t = classifyCrisis(values[i], history);
-      if (t === "tier1") return "tier1";
-      if (t === "tier2") worst = "tier2";
+    el.hidden = false;
+    el.removeAttribute("hidden");
+    if (el.style) el.style.removeProperty("display");
+    if (!/741741/.test(el.innerHTML) || !/988/.test(el.innerHTML)) {
+      el.innerHTML = isEs ? HTML_ES : HTML_EN;
     }
-    return worst;
-  }
-
-  function box(id, className) {
-    var el = document.getElementById(id);
-    if (el) return el;
-    el = document.createElement("p");
-    el.id = id;
-    el.hidden = true;
-    if (id === "contact-crisis-card") el.setAttribute("role", "alert");
-    else el.setAttribute("role", "note");
-    var form = document.querySelector("form");
-    if (form) form.insertAdjacentElement("afterbegin", el);
-    else (document.querySelector("main") || document.body).appendChild(el);
     return el;
   }
 
-  function paint() {
-    var t = rank();
-    var crisis = box("contact-crisis-card");
-    var gentle = box("contact-gentle-988");
-    crisis.textContent = isEs ? TIER1_ES : TIER1_EN;
-    gentle.textContent = GENTLE_LINE;
-    crisis.hidden = t !== "tier1";
-    gentle.hidden = t !== "tier2";
-    return t;
+  function start() {
+    ensure();
+    var form = document.querySelector("form");
+    if (form) form.addEventListener("submit", function () { ensure(); });
   }
 
-  function start() {
-    paint();
-    document.addEventListener("input", function (e) {
-      var t = e.target;
-      if (t && t.id && FIELD_IDS[t.id]) paint();
-    }, true);
-    var form = document.querySelector("form");
-    if (form) {
-      form.addEventListener("submit", function (ev) {
-        if (paint() === "tier1") ev.preventDefault();
-      });
-    }
-  }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
   else start();
-  window.addEventListener("load", paint);
+  window.addEventListener("load", ensure);
 })();
