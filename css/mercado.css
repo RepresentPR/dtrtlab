@@ -104,3 +104,15 @@ body.mk .mk-chips button:hover, body.mk .mk-chips button:focus { background:#0d6
 
 
 .mk-988-always{margin:12px 0 8px;font-size:14px;line-height:1.45;color:#1a3a28;}
+
+/* Candles disclosure stays in-card, directly under the CTA, and may wrap at 390. */
+#candles { overflow: visible; min-width: 0; }
+#candles .mk-disclose {
+  display: block;
+  margin: 8px 0 0;
+  line-height: 1.45;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+body.mk .mk-grid { align-items: start; overflow: visible; }
