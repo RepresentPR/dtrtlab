@@ -228,7 +228,7 @@
       return;
     }
     var script = document.createElement("script");
-    script.src = root + "content/socials.js?v=20261123-links2";
+    script.src = root + "content/socials.js?v=20261127h8";
     script.onload = done;
     script.onerror = done;
     document.head.appendChild(script);

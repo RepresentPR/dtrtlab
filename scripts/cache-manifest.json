@@ -4,20 +4,23 @@
     "key": "20261115-ask1"
   },
   "ask/passages.js": {
-    "hash": "e32ee3c9efde6027b15ce9375379d82e4c6517e08a4980dc7ad15a30110ec225",
+    "hash": "d78ff0ebe609da713b6edd237e5adc6e76cdcafa75e3c06649c3e1d1f1008613",
     "key": "20261127-links6"
   },
   "ask/ui.js": {
-    "hash": "58e17b0b5963c731b1037f6d148c30d6c9d5dacca2e36d5fd3ca18476516ab4f",
-    "key": "20261127-links7"
+    "hash": "da0e6abc34ae6e54d9c93a4dc2339fe8409743bf87c2b5df79237c2ec37f1612",
+    "key": "20261127h8r8b"
   },
   "content/clips.js": {
     "hash": "a5c0cfa45b00524fbc1d2de324ec0f19031af1fce1ff80c092c465e2e29cd1e4",
     "key": "20261010n"
   },
   "content/socials.js": {
-    "hash": "0fc0081527dd31a9763ed060d50a5c8dc4eb7c8b793fbae7cb640496e6e36747",
-    "key": "20261123-links2"
+    "hash": "7d371e769c8a4e0040d4fdcdaf58fb701a343de580192eaab4a7a5325d38adaa",
+    "key": [
+      "20261127h8",
+      null
+    ]
   },
   "css/about.css": {
     "hash": "bea4b704de9d17aef9b871c504e418a7012c99d4e050375f0d9a7d107f82b99e",
@@ -46,6 +49,10 @@
       "phase2"
     ]
   },
+  "css/contact-crisis.css": {
+    "hash": "f0f21c1c8ded17199d9a422b8cf2da63b0053677c943c84138925d4c7f1bf829",
+    "key": "20261127h8"
+  },
   "css/contact.css": {
     "hash": "34fe0cbcdff6a303c8c92f90c6e7f344a27a38ed9d5f77f7796bfea62980d114",
     "key": null
@@ -53,6 +60,10 @@
   "css/creator.css": {
     "hash": "d895878c4a00678d21bd367aef763c6563a6a18f13a0c97574b7151f303b0a2a",
     "key": null
+  },
+  "css/crisis-line.css": {
+    "hash": "7f5cd8e817d8d7370c2c633e517570d5f5d2bddb63b58d97a7602bf7608a78f2",
+    "key": "20261127h2"
   },
   "css/cs2.css": {
     "hash": "08da79ff8cde3e9198ff06a76c05ae26f584b36a9446e195e6e1c98c2c89f430",
@@ -79,11 +90,15 @@
   },
   "css/find-me.css": {
     "hash": "21ea3f2bd56fbf26492df07b0a0ac71af37468f00901fd0d228d7205712d8ee1",
-    "key": "20261123-links2"
+    "key": "20261013-find1"
   },
   "css/fonts.css": {
     "hash": "9a78715e7950525b64670a43ad23cf90523cdf1733f1690580fb60c2d2755821",
     "key": "20261010n"
+  },
+  "css/golive-nav.css": {
+    "hash": "3853824ae39ad46c075b64410d6a32737a0599521226fc1b6dfbe22a85d54952",
+    "key": "20261127h8"
   },
   "css/growth-home.css": {
     "hash": "07a89c62041f153cba9839ed0e4fc0af8b5b04b4529030378562bfebaf31ac65",
@@ -137,6 +152,10 @@
     "hash": "f3cae042576d52007c48b8beaeb8bf9bafb555b2fa322930af9a0c2f4e0bbc78",
     "key": null
   },
+  "css/mercado.css": {
+    "hash": "512a888735443a727e9e697743513e3945b017da33fb8b164eb36babf5994b4f",
+    "key": "20261127h8"
+  },
   "css/mobile-app.css": {
     "hash": "6c95bbbdf3f26e5ec5ba53382c48dbe4cf1f84547824f027a57d6a4be6cb6d97",
     "key": null
@@ -171,11 +190,14 @@
   },
   "css/story-stage.css": {
     "hash": "0d992541c60ed5b14bffe189c62a994c34e1310ba8999844437719188741eb06",
-    "key": "20261030-guide1"
+    "key": null
   },
   "css/theme-a.css": {
     "hash": "74aeefa24aedd7873444488b4109ebbde86a966755a74c54e97d2d8876567795",
-    "key": "20261025-region2"
+    "key": [
+      "20261025-region2",
+      "20261127h8"
+    ]
   },
   "css/then-now.css": {
     "hash": "7e4a491e9d1738bef5f99570d53542d497716c2121a5b44960b34156e1cbecb8",
@@ -186,8 +208,8 @@
     "key": "20261031-sendat"
   },
   "demo/demo.js": {
-    "hash": "e606f65d626159c18f6777f7efff2cbb0dbff5aae56b614834a9862acba4d30d",
-    "key": "20261025-region2"
+    "hash": "35ffc4e8b560a81a11b65c72ca5afb068e1f7e10f51f39b621786f27961e2e77",
+    "key": "20261127h8r8"
   },
   "job-desk/how-it-works/article.css": {
     "hash": "2f9b43d1c90a501c3b9e4cdea120195dbe9932edb70760a59cdb80d331fc0da6",
@@ -196,6 +218,10 @@
   "js/afterlight.js": {
     "hash": "ed742bb0cad9aa80be07d9c97fbf6c7ba2fe62fa827ef749ae08b29a7561b6f2",
     "key": "20261010n"
+  },
+  "js/ask-soon.js": {
+    "hash": "19869fa779fd960b8ca3a7bff9c8ce6fb5fe4dc2acc921fda41c5ac73ea1661a",
+    "key": "20261127h1"
   },
   "js/biz-lang.js": {
     "hash": "752f0aac19e47b077c37c48517d0c14ebe7a9ec8b48c4785606413ee5483364b",
@@ -216,6 +242,14 @@
     "hash": "70bb2a42e643cbf919eeb276edb83daaab984ea2e4b87e3b38df29b94e2076c5",
     "key": null
   },
+  "js/contact-crisis.js": {
+    "hash": "5f7940cf82d4335f4f4275193a5a05723f68fc83f9f9f52793867a162c1055d6",
+    "key": "20261127h8"
+  },
+  "js/contact-lang.js": {
+    "hash": "be626a9b75ce5a8c9265a7c4614611f5d14a34e4afd3ac8d4e4396c20a578c40",
+    "key": "20261127h7"
+  },
   "js/contact-topic.js": {
     "hash": "111ff71d85e616aec03e70d7ca9e5c833ffcaac3363e52d4d4f845e9a7b988d6",
     "key": "20261025-freemap1"
@@ -230,6 +264,10 @@
       "20261016-map",
       "20261016-qa2"
     ]
+  },
+  "js/crisis-line.js": {
+    "hash": "37791eda5c5fcabb555356cc79651f55d0434fd8be4f6f0bb5aa2785773f6496",
+    "key": null
   },
   "js/cs2-account.mjs": {
     "hash": "36203c8822ba7aeb92b6f8dc7ceafc846d6d477eaf7811d29fdf6e4b68009404",
@@ -255,10 +293,6 @@
     "hash": "81ac3c9eb59cfff4c024a1ae4f2c96d1030746d25e394899a95e3a98d0ede764",
     "key": "20261030-overlay1"
   },
-  "js/find-me.js": {
-    "hash": "738e338b2bbaa6f90c750ded777c7c8c12d56d536751d380ac951e5615f04671",
-    "key": "20261123-links2"
-  },
   "js/forms.js": {
     "hash": "bb9cb74f7a29201e95dabdba99296cb17ce019402a2351d354f7709a6fe61411",
     "key": "20261010n"
@@ -266,6 +300,14 @@
   "js/goals.js": {
     "hash": "82683b0c3808c0a9bdb88ea57c56b31068a2388cfb9dfe716dbddb0cc8a34d83",
     "key": null
+  },
+  "js/golive-uncache.js": {
+    "hash": "485bb3308bf71813207d4dcd2a8e4449d9965bf152a364ac234b4c5dc0b4ecf6",
+    "key": [
+      "20261127h1",
+      "20261127h6",
+      "20261127h8"
+    ]
   },
   "js/growth-model.js": {
     "hash": "81c8a0eb8d8de92d9b282ff29a5180d69548ae74b9c9e59621451923be8232c0",
@@ -277,7 +319,7 @@
   },
   "js/homepage-video.mjs": {
     "hash": "a813b9fc86fb4533d3d45b640b2da7f8ab3dac7c57a76e00758e8fe05f7c84e0",
-    "key": "20261024-media1"
+    "key": null
   },
   "js/hub.js": {
     "hash": "418e6994e8185e534afebcc88f2961ef23f2bdd5d7af126c29d2f8b45f56815f",
@@ -289,7 +331,7 @@
   },
   "js/knowledge-guide.mjs": {
     "hash": "128e5a40db913421d1db2a717f6c9adfcad9c7e1e8da863bae193ff000b7a8f0",
-    "key": "20261024-hub2"
+    "key": null
   },
   "js/knowledge-model.mjs": {
     "hash": "4a34868c73ab3fac54d11e680b7380e300047a202b0f80e8d10a53e6ea70acc6",
@@ -316,16 +358,20 @@
     "key": null
   },
   "js/map-want.js": {
-    "hash": "00fe062bcf8fb8591832e661eebf6856c160de6fad2ef71369886babbf16b49f",
-    "key": "20261025-region2"
+    "hash": "6e2e8b4c88afa1807a0a594a69c4fc8f976d0d8d96ee52b8ac07ef3bc4db825b",
+    "key": "20261127h8r8"
   },
   "js/media.js": {
     "hash": "cd208aa1427b91b3e57fb49a314a9dfd1320d043d4e0b0284c87a52d7fafc8ab",
     "key": "20261010n"
   },
+  "js/mercado-helper.js": {
+    "hash": "d282a3a67277c3ea01a79fd5b08dd817c15190a9d373007fc10f169cf705548f",
+    "key": "20261127h8"
+  },
   "js/nav.js": {
-    "hash": "f091500e896ddff594702f6d5498194a5ecd92e12e787799b8ee3eceec61a5c7",
-    "key": "20261127-links7"
+    "hash": "0b81db48061776cd89e83a17698f5becb3e141d1194597559f6cbfa971b30b14",
+    "key": "20261127h8r8b"
   },
   "js/plan-tool.js": {
     "hash": "687e9bc23bcb839927457b71cad5ac30e36edcd4593be1f5a8bdd79786e50cee",
@@ -343,21 +389,21 @@
     "hash": "bf35bab04e4b1da2c06b653eae1789d19023702b93e4c45a0ce91cc7ce08ee72",
     "key": "20261115-rel1"
   },
+  "js/safety-core.mjs": {
+    "hash": "dcd6683d32161e3331feeff6953459cfc2de04df3d9ffc0ad362a23f781b655b",
+    "key": "20261127h8"
+  },
   "js/scene-nav.js": {
-    "hash": "c7846770c72bb3d9b5f56a0bb53ca00c9b285618bc6698b674894da60a6136ae",
-    "key": "20261123-links2"
+    "hash": "e42099f807b0328e122696821568d9466a3484760aca1e19edaca47c9c6f16ab",
+    "key": "20261115-social6"
   },
   "js/shop.js": {
     "hash": "1d629e1828cded14e2a3e055e89b5c3e2109271fa33192c201144889dc1f76c1",
     "key": null
   },
-  "js/stats.js": {
-    "hash": "913f29555bfff7afa916f40388eb8c4e4ed777780f1a2a93fd4287c7e9d457cc",
-    "key": null
-  },
   "js/story-guide.mjs": {
     "hash": "697f5dd0f1a5b342f074d5f46c88af832adc5e9b953566eee363a3b1cf626314",
-    "key": "20261030-fire4"
+    "key": null
   },
   "js/stream-gain.js": {
     "hash": "142087a19f9f88f1d6842717498294b15e284c15de8987423ee676f44d57903d",
@@ -368,8 +414,8 @@
     "key": null
   },
   "js/visit.js": {
-    "hash": "8511f1fcfab47960d7941bfeedf0c2f556c368b383f6b5c50b9fe6a5d7e05d92",
-    "key": "20261115-dream10"
+    "hash": "10571d49090f6b21e443c0a1f1d728e8424392ea40b12baf3b9f23d48b59b94f",
+    "key": "20261127h8"
   },
   "links/lang.js": {
     "hash": "e88ed4604629377cb5c3beeb5272e3dee8efa7c7c1950e5c6c9e6ad688115665",
@@ -416,8 +462,8 @@
     "key": null
   },
   "sw.js": {
-    "hash": "9f5008b4c5a1224a6cc6c6efe9b4d10eb54b21b19bf6ef009676242bead2e844",
-    "key": "20261127-links7"
+    "hash": "a69a77b33555d437269c2df22d88f8e65ca1599da3f9404dabecbf89e99b70d3",
+    "key": "20261127h8r8b"
   },
   "watch/watch.css": {
     "hash": "0b8026e65ae3b40c91b7dfdf31a94e579c60b0222bd1d5ce8999b2ffc29870f1",
