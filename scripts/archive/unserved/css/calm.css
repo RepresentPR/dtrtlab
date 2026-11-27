@@ -1,0 +1,55 @@
+/* Calm + accessible layer for DTRTLab.com (home, /live). Brand colors and fonts kept.
+   Goals: 18px body text, AA contrast, big tap targets, visible focus, no flashing, quieter decoration. */
+:root { --calm-dim: #b3b6a8; }
+body.hub { font-size: 1.125rem; line-height: 1.65; --dim: #b3b6a8; --steel: #b3b6a8; }
+body.hub main section { padding: 88px 0; }
+body.hub .hud, body.hub .what {
+  font-size: 1.05rem; letter-spacing: 0; text-transform: none; color: var(--muted); font-weight: 400; max-width: 38rem; margin: 0 0 12px;
+}
+body.hub h2 { line-height: 1.02; }
+body.hub .lede, body.hub .prose, body.hub .fine, body.hub .fine a { font-size: 1.125rem; color: var(--muted); line-height: 1.65; }
+body.hub .section-head { gap: 16px 32px; margin-bottom: 28px; }
+/* quiet decoration */
+body.hub .grain, body.hub .scanlines, body.hub .hero-watermark, body.hub .rubber, body.hub .ruler, body.hub .term[aria-hidden="true"] { display: none !important; }
+body.hub .file-chips li { font-size: 1rem; }
+/* tap targets + focus */
+body.hub .cta, body.hub button.cta, body.hub .menu-btn, body.hub header.nav a, body.hub .find-grid a { min-height: 48px; }
+body.hub .cta, body.hub button.cta { font-size: 1.05rem; letter-spacing: 0.02em; text-transform: none; padding-top: 12px; padding-bottom: 12px; }
+body.hub .nav a, body.hub .nav button { font-size: 1.05rem; }
+:focus-visible, body.hub a:focus-visible, body.hub button:focus-visible, body.hub summary:focus-visible { outline: 3px solid #cfe35a; outline-offset: 3px; border-radius: 4px; }
+/* no flashing or pulsing */
+body.hub .live-dot, body.hub .stat-badge .dot, .lcf-pill i, .pill i, .gl-c *, .live i { animation: none !important; }
+/* clips feed (injected by js/latest-clips.js) */
+body .lcf .lcf-row { grid-auto-columns: minmax(200px, 230px); gap: 18px; }
+body .lcf .lcf-n { font-size: 1.1rem; line-height: 1.35; }
+body .lcf .lcf-d, body .lcf .lcf-up, body .lcf .lcf-nx, body .lcf .lcf-f { font-size: 1rem; color: #d5d0c2; letter-spacing: 0; }
+body .lcf .lcf-v { font-size: 1rem; }
+body .lcf .lcf-new { font-size: 0.85rem; letter-spacing: 0.04em; }
+body .lcf .lcf-pill { font-size: 0.95rem; letter-spacing: 0.02em; height: 32px; }
+body .lcf .lcf-l a { font-size: 0.95rem; letter-spacing: 0.02em; padding: 10px 12px; min-height: 44px; display: inline-flex; align-items: center; }
+body .lcf .lcf-c:hover { transform: none; }
+/* follower goals cards (js/goals.js) */
+body .gl-eb { font-size: 1rem !important; letter-spacing: 0 !important; text-transform: none !important; }
+body .gl-h p { font-size: 1.1rem !important; color: #d5d0c2 !important; }
+body .gl-top b { font-size: 1.15rem !important; }
+body .gl-top .gl-n { font-size: 1.7rem !important; }
+body .gl-nx { font-size: 1rem !important; letter-spacing: 0 !important; text-transform: none !important; color: #d5d0c2 !important; }
+body .gl-t li { font-size: 1.05rem !important; }
+body .gl-t .gl-rw span, body .gl-f { font-size: 1rem !important; color: #d5d0c2 !important; }
+body .gl-bar { height: 12px !important; }
+body .gl-more > summary { display: flex; align-items: center; min-height: 52px; cursor: pointer; font-size: 1.1rem; color: #eae4d3; list-style: none; border-top: 1px solid rgba(234,228,211,.18); }
+body .gl-more > summary::-webkit-details-marker { display: none; }
+body .gl-more > summary::after { content: "+"; margin-left: auto; font-size: 1.6rem; color: #cfe35a; }
+body .gl-more[open] > summary::after { content: "\2212"; }
+/* socials rail: bigger taps, readable tag */
+body .social-rail-tag { font-size: 0.9rem; letter-spacing: 0.04em; text-transform: none; }
+body .social-rail-links a { width: 44px; height: 44px; }
+body .social-rail-links svg { width: 22px; height: 22px; }
+@media (max-width: 720px) {
+  body.hub { font-size: 1.125rem; }
+  body.hub main section { padding: 60px 0; }
+  body.hub .lede, body.hub .prose, body.hub .fine { font-size: 1.125rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
