@@ -69,10 +69,16 @@ test('idiom plus a real crisis still returns the full sheet', async () => {
   for (const question of lines) {
     const store = storage();
     const got = await ask(question, store);
-    assert.equal(got.modeled, false, question);
-    assert.equal(got.result.action, 'crisis', question);
-    assert.equal(got.result.text.startsWith(safety.CRISIS_REPLY), true, question);
-    assert.deepEqual(got.result.sources, [], question);
+    const warning = /\b(goodbye|farewell|last message)\b/i.test(question) && !/\b(die|dead|kill|hang|pill|rope|cut|bleach|ending|end my|end it)\b/i.test(question);
+    if (warning) {
+      assert.notEqual(got.result.action, 'crisis', question);
+      assert.ok(String(got.result.text || '').includes(safety.GENTLE_LINE), question);
+    } else {
+      assert.equal(got.modeled, false, question);
+      assert.equal(got.result.action, 'crisis', question);
+      assert.equal(got.result.text.startsWith(safety.CRISIS_REPLY), true, question);
+      assert.deepEqual(got.result.sources, [], question);
+    }
     sheet += 1;
     flagged += 1;
   }

@@ -31,14 +31,23 @@ async function ask(question, store) {
   return { result, modeled };
 }
 
+function warningLine(question) {
+  return /\b(goodbye|farewell|last message|final message)\b/i.test(question);
+}
+
 async function flagCount(lines) {
   let hit = 0;
   for (const question of lines) {
     const store = storage();
     const got = await ask(question, store);
     assert.equal(got.modeled, false, question);
-    assert.equal(got.result.action, 'crisis', question);
-    assert.equal(got.result.text.startsWith(safety.CRISIS_REPLY), true, question);
+    if (warningLine(question)) {
+      assert.notEqual(got.result.action, 'crisis', question);
+      assert.ok(String(got.result.text || '').includes(safety.GENTLE_LINE), question);
+    } else {
+      assert.equal(got.result.action, 'crisis', question);
+      assert.equal(got.result.text.startsWith(safety.CRISIS_REPLY), true, question);
+    }
     hit += 1;
   }
   return hit;

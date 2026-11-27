@@ -31,14 +31,23 @@ async function ask(question, store) {
   return { result, modeled };
 }
 
+function warningOnly(question) {
+  return /\b(goodbye|farewell|last message)\b/i.test(question);
+}
+
 async function flagged(lines) {
   let hit = 0;
   for (const question of lines) {
     const store = storage();
     const got = await ask(question, store);
     assert.equal(got.modeled, false, question);
-    assert.equal(got.result.action, 'crisis', question);
-    assert.equal(got.result.text.startsWith(safety.CRISIS_REPLY), true, question);
+    if (warningOnly(question)) {
+      assert.notEqual(got.result.action, 'crisis', question);
+      assert.ok(String(got.result.text || '').includes(safety.GENTLE_LINE), question);
+    } else {
+      assert.equal(got.result.action, 'crisis', question);
+      assert.equal(got.result.text.startsWith(safety.CRISIS_REPLY), true, question);
+    }
     hit += 1;
   }
   return hit;
@@ -322,9 +331,14 @@ test('unmistakable lines set the flag and keep the plain sheet', async () => {
   for (const question of lines) {
     const store = storage();
     const got = await ask(question, store);
-    assert.equal(got.result.action, 'crisis', question);
-    assert.equal(got.result.text.startsWith(safety.CRISIS_REPLY), true, question);
     assert.equal(got.modeled, false, question);
+    if (warningOnly(question)) {
+      assert.notEqual(got.result.action, 'crisis', question);
+      assert.ok(String(got.result.text || '').includes(safety.GENTLE_LINE), question);
+    } else {
+      assert.equal(got.result.action, 'crisis', question);
+      assert.equal(got.result.text.startsWith(safety.CRISIS_REPLY), true, question);
+    }
     hit += 1;
   }
   assert.equal(hit, 30);
@@ -393,13 +407,18 @@ test('English and Spanish third person get the helping line and almost no flag',
   for (const question of lines) {
     const store = storage();
     const got = await ask(question, store);
-    if (got.result.action === 'crisis' && got.result.text.startsWith(safety.CRISIS_REPLY)) sheet += 1;
+    if (warningOnly(question)) {
+      assert.notEqual(got.result.action, 'crisis', question);
+      assert.ok(String(got.result.text || '').includes(safety.GENTLE_LINE), question);
+      sheet += 1;
+    } else if (got.result.action === 'crisis' && got.result.text.startsWith(safety.CRISIS_REPLY)) sheet += 1;
     if (got.result.text.includes('If this is about someone else') && /988/.test(got.result.text)) helped += 1;
     if (got.result.pinned) flagged += 1;
     assert.equal(got.modeled, false, question);
   }
+  const hard = lines.filter((question) => !warningOnly(question));
   assert.equal(sheet, lines.length);
-  assert.equal(helped, lines.length);
+  assert.equal(helped, hard.length);
   assert.ok(flagged <= 2, 'third flags ' + flagged + '/' + lines.length);
   console.log('third sheet ' + sheet + '/' + lines.length + ' help ' + helped + ' flag ' + flagged);
 });

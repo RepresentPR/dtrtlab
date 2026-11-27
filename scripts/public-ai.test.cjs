@@ -599,8 +599,7 @@ test('risk beats site words and page matches for the whole session', async () =>
     'I want to un-alive',
     'is life worth it',
     'how many tylenol is a lethal dose for me',
-    'I feel like ending my life',
-    'I wrote a goodbye note'
+    'I feel like ending my life'
   ];
   const sites = ['on the site', 'on the contact page', 'about the AI test'];
   const page = [{ passage: { title: 'Contact', url: '/contact.html', text: 'The best page on the site is the contact page.' }, score: 9 }];

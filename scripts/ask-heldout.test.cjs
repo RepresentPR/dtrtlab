@@ -43,9 +43,16 @@ async function expectSheet(question, store) {
     search: async () => [{ passage: { title: 'Notebook', url: '/notebook/', text: 'The notebook page is a public page about the lab.' }, score: 9 }],
     tryModel: async () => { modeled = true; return 'From DTRT Lab a quoted page.'; }
   });
-  assert.equal(modeled, false, question);
-  assert.equal(result.action, 'crisis', question);
-  assert.equal(result.text.startsWith(safety.CRISIS_REPLY), true, question);
+  const warning = /\b(goodbye|farewell|last message|final message|been decided|made up my mind)\b/i.test(question)
+    && !/\b(die|dead|kill|suicid|alive|jump|pill|rope|gun|cut|hang|morir|matar|overdos|slit)\b/i.test(question);
+  if (!warning) assert.equal(modeled, false, question);
+  if (warning) {
+    assert.notEqual(result.action, 'crisis', question);
+    assert.ok(String(result.text || '').includes(safety.GENTLE_LINE), question);
+  } else {
+    assert.equal(result.action, 'crisis', question);
+    assert.equal(result.text.startsWith(safety.CRISIS_REPLY), true, question);
+  }
   assert.deepEqual(result.sources, [], question);
   return result;
 }

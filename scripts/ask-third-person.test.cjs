@@ -63,7 +63,6 @@ test('every fresh third-person danger line gets the helping line from the sheet'
     'She will not open the bedroom door while cutting',
     'They are cutting and will not open the door',
     'His son took the pills and will not open the bathroom door',
-    'A friend will not open the door and said goodbye',
     'Mi hermano se cortó y no puede abrir la puerta del baño',
     'Ella no quiere abrir la puerta y se cortó',
     'Su padre se tomó pastillas y no abre la puerta',

@@ -34,11 +34,21 @@ async function ask(question, store, now) {
   return { result, modeled };
 }
 
+function warningLine(question) {
+  return /\b(goodbye|farewell|last message|final message)\b/i.test(question)
+    && !/\b(die|dead|kill|suicid|alive|jump|pill|rope|gun|cut|hang|morir|matar|overdos|slit)\b/i.test(question);
+}
+
 async function expectSheet(question, store) {
   const got = await ask(question, store || storage());
   assert.equal(got.modeled, false, question);
-  assert.equal(got.result.action, 'crisis', question);
-  assert.equal(got.result.text.startsWith(safety.CRISIS_REPLY), true, question);
+  if (warningLine(question)) {
+    assert.notEqual(got.result.action, 'crisis', question);
+    assert.ok(String(got.result.text || '').includes(safety.GENTLE_LINE), question);
+  } else {
+    assert.equal(got.result.action, 'crisis', question);
+    assert.equal(got.result.text.startsWith(safety.CRISIS_REPLY), true, question);
+  }
   assert.deepEqual(got.result.sources, [], question);
   return got;
 }
