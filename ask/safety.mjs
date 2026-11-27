@@ -67,7 +67,9 @@ const PLAN_PHRASES = ["good plan", "should i", "how much", "is it enough"];
 const COMPACT_BLOCKS = ["good plan", "should i use it", "should i do it", "should i use that", "should i do that", "how much", "is it enough", "how to", "tonight"];
 
 const DISTRESS_PHRASES = [
-  "i cant", "i cannot", "im done", "i am done", "no point", "nobody cares", "tired of everything"
+  "i cant", "i cannot", "im done", "i am done", "no point", "nobody cares", "tired of everything",
+  "ending my life", "lethal dose", "disappear forever", "worth living", "keep living", "stop living",
+  "least painful", "goodbye note"
 ];
 
 const MEANS = new Set(["pill", "pills", "rope", "gun", "blade", "bridge", "knife", "razor", "noose"]);
@@ -283,12 +285,12 @@ export function hasRisk(question, history) {
   return userTurns(question, history).some((turn) => dangerIn(turn));
 }
 
-export function ordinaryAsk(text) {
+const SITE_TOPIC = /\b(ai|chat|chats|account|password|passwords|privacy|data|contact|email|ian|lab|dtrt|terms|notebook|bug|checkout|plan|map|desk|quote|quotes|answer|answers|signup|sign|test|page|pages|message|messages|human|phone|ask|question|write)\b/;
+
+export function siteTopic(text) {
   const folded = fold(text);
-  if (folded.length < 8 || folded.length > 180) return false;
-  if (hasNonLatin(text)) return false;
-  if (dangerIn(text)) return false;
-  return /^(is|are|how|what|where|who|when|can|do|does|why|will|could)\b/.test(folded);
+  if (!folded || folded.length > 180 || hasNonLatin(text) || dangerIn(text)) return false;
+  return SITE_TOPIC.test(folded);
 }
 
 export function clearlyClean(question, history) {
@@ -368,8 +370,9 @@ export async function replyFor(question, corpus, options) {
   }
   const unmatched = (!confidentMatch(question, matches) && !meta) || !matches.length;
   if (unmatched) {
+    if (hasRisk(question, opts.history)) return fullSheet();
     if (clearlyClean(question, opts.history)) return compactReply();
-    if (!hasRisk(question, opts.history) && ordinaryAsk(question)) return missReply(matches);
+    if (siteTopic(question)) return missReply(matches);
     return fullSheet();
   }
   const sources = matches.slice(0, 3);

@@ -345,7 +345,7 @@
 
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register(root + "sw.js?v=20261122-ask17").catch(function () {});
+      navigator.serviceWorker.register(root + "sw.js?v=20261122-ask18").catch(function () {});
     });
   }
 })();

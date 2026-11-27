@@ -1,27 +1,27 @@
 {
   "ask/ask.js": {
     "hash": "c67f740f963fe0edf22424b45b6584246894bdf8986c54ac0e3f281e52003d4e",
-    "key": "20261122-ask17"
+    "key": "20261122-ask18"
   },
   "ask/chat-app.js": {
-    "hash": "ec3419a3f39b0caaaad3835deda020e96f1d122994d6c24bac63106c8721229a",
-    "key": "20261122-ask17"
+    "hash": "1dd4618ad8f796d8eef15dd74b83935b78d7663fc24af4b84ac6b0c2114b055d",
+    "key": "20261122-ask18"
   },
   "ask/chat-store.mjs": {
     "hash": "8266229ecbc384e1e0944eed5871a1e270bc0109708b878e9225dff23badb1e2",
-    "key": "20261122-ask17"
+    "key": "20261122-ask18"
   },
   "ask/passages.js": {
     "hash": "2c6952c6aebd38bba713546487bed69c7c821f6d5fa0c3ba75d3e824e93a0031",
-    "key": "20261122-ask17"
+    "key": "20261122-ask18"
   },
   "ask/safety.mjs": {
-    "hash": "b2d9c3da2b060a191feeaee99f6e4dc6d6134d250200f7807e13be5282560387",
-    "key": "20261122-ask17"
+    "hash": "fffe93fde16576d436a8bc19ae52e7970c19a291e454c90a090cbf7389bc7715",
+    "key": "20261122-ask18"
   },
   "ask/ui.js": {
-    "hash": "fa2a050f0758a126ea7ba793d5122284547f742ac294815c036008000fd94961",
-    "key": "20261122-ask17"
+    "hash": "f10f45eb9bbc51eda5f40dd77742efe27ff9027ab6c5d7b04276fedcc58e8eb4",
+    "key": "20261122-ask18"
   },
   "content/clips.js": {
     "hash": "a5c0cfa45b00524fbc1d2de324ec0f19031af1fce1ff80c092c465e2e29cd1e4",
@@ -135,7 +135,7 @@
   },
   "css/lab-ai.css": {
     "hash": "3d231b150044bc1b1c48e5aa90ffb3a518ab381ee7e313e329b08b0ace6c4309",
-    "key": "20261122-ask17"
+    "key": "20261122-ask18"
   },
   "css/lab-results.css": {
     "hash": "13da1bff3da419d00aa77359aceb2a6da1fd0cea3615f29570f7c4c198a7193a",
@@ -344,8 +344,8 @@
     "key": "20261010n"
   },
   "js/nav.js": {
-    "hash": "3548ff27100755098a2090e0eb33bbf94152b125c7f124ef90bf2b32bb36fe97",
-    "key": "20261122-ask17"
+    "hash": "a150df24cf68a981ec9a0c5dff972143708c308458eb4c68df724e630091a4f0",
+    "key": "20261122-ask18"
   },
   "js/plan-tool.js": {
     "hash": "687e9bc23bcb839927457b71cad5ac30e36edcd4593be1f5a8bdd79786e50cee",
@@ -428,8 +428,8 @@
     "key": null
   },
   "sw.js": {
-    "hash": "ea9628e73c7fa96753c12ec71e0c557e97aeddfb76319d6901d1e56b176e1e12",
-    "key": "20261122-ask17"
+    "hash": "f8aabc8b0b7c1557d8d0f6ea2f85e346239c89568581e86156cfae6340721613",
+    "key": "20261122-ask18"
   },
   "watch/watch.css": {
     "hash": "0b8026e65ae3b40c91b7dfdf31a94e579c60b0222bd1d5ce8999b2ffc29870f1",
