@@ -1,5 +1,5 @@
 /* Build the public-page passage index used by /ask/.
-   Skips drafts, noindex pages, /private, /live, and /hq.
+   Skips drafts, noindex pages, /private, /live, /hq, and old-service paths the worker 302s to /mercado/.
    Usage: node scripts/build-ask-index.cjs
 */
 const fs = require('node:fs');
@@ -8,6 +8,20 @@ const { isFiction } = require('./fix7/lib.cjs');
 
 const ROOT = path.join(__dirname, '..');
 const SKIP_DIR = new Set(['live', 'hq', 'scripts', 'docs', 'node_modules', '.git']);
+const SKIP_OLD_SERVICE = [
+  // Worker 302s these to /mercado/. Indexing them would surface retired Job Desk / map / partner copy in Ask.
+  'find.html',
+  'shop.html',
+  'partners.html'
+];
+const SKIP_OLD_SERVICE_PREFIX = [
+  'map/',
+  'job-desk/',
+  'demo/',
+  'notebook/',
+  'partner/',
+  'inside-the-lab/'
+];
 const GAME_STATUS = new Set([
   'media.html',
   'news.html',
@@ -84,6 +98,7 @@ function build() {
   for (const file of walk(ROOT).sort()) {
     const rel = path.relative(ROOT, file).split(path.sep).join('/');
     if (rel.includes('private') || /live\/(extras|upnext)\.html$/.test(rel) || isFiction(rel) || GAME_STATUS.has(rel)) continue;
+    if (SKIP_OLD_SERVICE.includes(rel) || SKIP_OLD_SERVICE_PREFIX.some((p) => rel === p.slice(0, -1) || rel.startsWith(p))) continue;
     const html = fs.readFileSync(file, 'utf8');
     if (/<meta\b[^>]*name="robots"[^>]*content="[^"]*noindex/i.test(html)) continue;
     if (/\bdata-draft=/.test(html)) continue;
@@ -98,7 +113,7 @@ function build() {
     passages.push(...passagesFor(rel, page.title, page.text));
   }
   return {
-    generated: '2026-11-15',
+    generated: '2026-11-27',
     provider: 'local-bm25',
     note: 'Public HTML only. Drafts, noindex pages, /private, /live, /hq, and AFTERLIGHT game pages are omitted.',
     passages

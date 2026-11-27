@@ -185,6 +185,7 @@ const TERM_ALLOW = [
   [/^mercado\//, 'reloc', /f50b92b29527bc02|cf6f0c3063e089ac|1d281b33068fbb45|682a4851da0c4e36/, 'Puerto Rico is the shop market name (go-live carve-out)'],
   [/^js\/mercado-helper\.js$/, 'reloc', /f50b92b29527bc02|cf6f0c3063e089ac|1d281b33068fbb45|682a4851da0c4e36/, 'Puerto Rico is the shop market name (go-live carve-out)'],
   [/^css\/mercado\.css$/, 'reloc', /f50b92b29527bc02|cf6f0c3063e089ac|1d281b33068fbb45|682a4851da0c4e36/, 'Puerto Rico is the shop market name (go-live carve-out)'],
+  [/^ask\/passages\.(js|json)$/, 'reloc', /f50b92b29527bc02|cf6f0c3063e089ac|1d281b33068fbb45|682a4851da0c4e36/, 'Ask corpus quotes Mercado Puerto Rico (same shop-market carve-out)'],
 ];
 function allowed(file, id, snippet) {
   return TERM_ALLOW.some(([p, t, s]) => p.test(file) && t === id && s.test(snippet));
