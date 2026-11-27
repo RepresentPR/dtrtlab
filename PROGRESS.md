@@ -1,9 +1,19 @@
-# PR #114 /links/ — handoff to QA (2026-11-27)
+# PR #114 /links/ — handoff to QA (2026-11-27, after QA FAIL b48f9a3b)
 
 Round: pr114 (head will be the commit that includes this file).
 READY for QA: the /links/ page in links/index.html, plus links/lang.js and links/links.css.
 
-## What changed in this round (after QA FAIL on dcf2be34, report at qa-reports/links-pr114/REPORT-pr114-dcf2be34.md)
+## QA FAIL b48f9a3b fixes (report at qa-reports/links-pr114/REPORT-pr114-b48f9a3b.md)
+
+- MOTION in links/index.html now quotes motionpouches.com/shop word for word, fetched 2026-11-27: "Zero nicotine and zero tobacco, too." and "40mg caffeine per pouch. Adults 18+." Spanish is a marked translation. Source link is https://www.motionpouches.com/shop, "(checked November 27, 2026)". Builder fetch copies with sha256 are outside the repo in the box evidence folder dtrt-work/evidence-pr114 (motion-shop-2026-11-27.html).
+- AI card: the /ask/ link is removed (Co-Founder ruling: no link until #111 passes). "It's free" removed (no source in the repo). "No paid model is connected" kept: ask/index.html says "A paid model is not connected."
+- Six legal pages (legal/cookies.html, legal/dmca.html, legal/preorder-terms.html, legal/privacy.html, legal/refunds.html, legal/terms.html) no longer use og-job-desk-2026-10-15.png. They use img/brand/avatar-a.png (512x512 mark, no text, same image /links uses), with width/height 512, alt "DTRT Lab logo.", twitter:card summary. og-mercado.png was NOT added: the GitHub connector this builder pushes through only writes text files, so a PNG would be corrupted. Other pages untouched.
+- Footer: "Things we build or link to. Some links earn us a commission." (ES: "Cosas que construimos o enlazamos. Algunos enlaces nos dan una comisión.")
+- _config.yml exclude lists RESULT-done_gate-pr114.txt by exact name (stage-site.cjs does not expand the glob).
+- Ask index rebuilt; cache keys bumped to 20261127-links5 where the manifest script required.
+- js/stats.js still has the old handle: editing it fails fix7/5 again (no page loads it). Not changed.
+
+## What changed in the previous round (after QA FAIL on dcf2be34, report at qa-reports/links-pr114/REPORT-pr114-dcf2be34.md)
 
 - Candles disclosure on links/index.html is exactly: Referral link. We earn from fees. Trading is risky, not financial advice. Same line as the Open Candles link, no parentheses. Spanish: Enlace de referido. Ganamos de las comisiones. Operar es riesgoso, no es asesoría financiera.
 - White Lotus tea card removed (Ian, 11/27). Card 01 is now #jafra in links/index.html: "My mom's Jafra shop" / "La tienda Jafra de mi mamá", link https://www.jafra.com/es/?pws=sabrinacrespo with rel="sponsored noopener", disclosure "My mom's Jafra consultant link. She earns from sales." / "Enlace de consultora Jafra de mi mamá. Ella gana de las ventas." Meta descriptions updated; links/links.css class renamed tea to jafra.
