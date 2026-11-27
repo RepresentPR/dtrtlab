@@ -46,9 +46,12 @@ test('deploy artifact contains no docs and no retired bot handle', () => {
 });
 
 test('internal notes and non-site files stay out of the artifact', () => {
-  for (const rel of ['AGENTS.md', 'README.md', '.env.example', '.gitignore', 'live/README.md', 'media/intake/README.md', '_config.yml', 'scripts/stage-site.cjs', 'brand-kit.md', 'brand-kit.html']) {
+  for (const rel of ['AGENTS.md', 'README.md', 'PROGRESS.md', 'RESULT-done_gate-pr115.txt', 'RESULT-done_gate-copy-lint.txt', '.env.example', '.gitignore', 'live/README.md', 'media/intake/README.md', '_config.yml', 'scripts/stage-site.cjs', 'brand-kit.md', 'brand-kit.html']) {
     assert.equal(rels.includes(rel), false, rel);
   }
+  assert.ok(loadExclude().includes('PROGRESS.md'), '_config.yml exclude lists PROGRESS.md by exact name');
+  assert.ok(loadExclude().includes('RESULT-done_gate-pr115.txt'), '_config.yml exclude lists the #115 done_gate RESULT by exact name');
+  assert.ok(loadExclude().includes('RESULT-done_gate-copy-lint.txt'), '_config.yml exclude lists the done_gate RESULT by exact name');
   const trackedMd = execFileSync('git', ['ls-files'], { cwd: ROOT, encoding: 'utf8' }).split('\n').filter((f) => f.endsWith('.md'));
   const leaked = trackedMd.filter((f) => rels.includes(f));
   assert.deepEqual(leaked, []);
