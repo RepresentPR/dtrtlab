@@ -6,7 +6,7 @@
    are stale-while-revalidate. Media, byte ranges, JSON and third
    parties bypass this worker's cache.
 */
-var VERSION = "20261127-ask27";
+var VERSION = "20261127-ask28";
 var CACHE = "dtrtlab-" + VERSION;
 var PRECACHE = [
   "/",
@@ -42,7 +42,7 @@ var PRECACHE = [
   "/css/adapt.css?v=20261010n",
   "/css/hub.css?v=20261010n",
   "/css/afterlight.css?v=20261010n",
-  "/js/nav.js?v=20261127-ask27",
+  "/js/nav.js?v=20261127-ask28",
   "/js/hub.js?v=20261010n",
   "/js/contact-topic.js?v=20261025-freemap1",
   "/js/live-extras.js?v=20261016-qa3",
@@ -66,13 +66,13 @@ var PRECACHE = [
   "/links/lang.js?v=20261127-links7",
   "/ask/",
   "/ask/index.html",
-  "/ask/passages.js?v=20261127-ask27",
-  "/ask/ask.js?v=20261127-ask27",
-  "/ask/ui.js?v=20261127-ask27",
-  "/ask/safety.mjs?v=20261127-ask27",
-  "/ask/chat-store.mjs?v=20261127-ask27",
-  "/ask/chat-app.js?v=20261127-ask27",
-  "/css/lab-ai.css?v=20261127-ask27",
+  "/ask/passages.js?v=20261127-ask28",
+  "/ask/ask.js?v=20261127-ask28",
+  "/ask/ui.js?v=20261127-ask28",
+  "/ask/safety.mjs?v=20261127-ask28",
+  "/ask/chat-store.mjs?v=20261127-ask28",
+  "/ask/chat-app.js?v=20261127-ask28",
+  "/css/lab-ai.css?v=20261127-ask28",
   "/css/knowledge-home.css?v=20261112-notebook1",
   "/css/dream.css?v=20261115-dream4",
   "/css/socials.css?v=20261115-socials3",

@@ -223,7 +223,8 @@ test('news and someone else get the sheet without the flag', async () => {
     const store = storage();
     const got = await turn(question, store);
     assert.equal(got.result.action, 'crisis', question);
-    assert.equal(got.result.text, safety.CRISIS_REPLY, question);
+    assert.equal(got.result.text.startsWith(safety.CRISIS_REPLY), true, question);
+    assert.equal(got.result.text.includes('helping someone else'), true, question);
     assert.equal(safety.readRiskFlag(store), false, question);
     sheet += 1;
   }

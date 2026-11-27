@@ -263,7 +263,7 @@ test('third-person and news lines get the sheet and almost never the flag', asyn
   for (const question of lines) {
     const store = storage();
     const got = await ask(question, store);
-    if (got.result.action === 'crisis' && got.result.text === safety.CRISIS_REPLY) sheet += 1;
+    if (got.result.action === 'crisis' && got.result.text.startsWith(safety.CRISIS_REPLY)) sheet += 1;
     if (safety.readRiskFlag(store)) flagged += 1;
   }
   assert.equal(sheet, lines.length);
