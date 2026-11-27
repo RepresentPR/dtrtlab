@@ -265,6 +265,39 @@ class CopyLintTests(unittest.TestCase):
         self.assertTrue(copy_lint.lint_text("Try our " + LIVE_AI + ", it will not disappoint."))
         self.assertTrue(copy_lint.lint_text("La IA " + esta + " en vivo y no va a fallar."))
 
+    def test_copula_denials_require_liveness_complement(self):
+        # A copula or auxiliary plus negation is not itself a liveness denial.
+        # The complement after estar/be (and past/future forms) must be a
+        # liveness predicate; a bare copula or an unrelated adjective does not exempt.
+        todavia = "todav" + chr(237) + "a"
+        estara = "estar" + chr(225)
+        sera = "ser" + chr(225)
+        podra = "podr" + chr(225)
+        self.assertTrue(copy_lint.lint_text("Nuestra " + IA_EN_VIVO + " no va a estar lenta."))
+        self.assertTrue(copy_lint.lint_text("Nuestra " + IA_EN_VIVO + " no va a estar rota."))
+        self.assertTrue(copy_lint.lint_text("Nuestra " + IA_EN_VIVO + " no va a estar."))
+        self.assertTrue(copy_lint.lint_text("Nuestra " + IA_EN_VIVO + " no estuvo lenta."))
+        self.assertTrue(copy_lint.lint_text("Nuestra " + IA_EN_VIVO + " no estuvo."))
+        self.assertTrue(copy_lint.lint_text("Nuestra " + IA_EN_VIVO + " no puede estar lenta."))
+        self.assertTrue(copy_lint.lint_text("Nuestra " + IA_EN_VIVO + " no " + podra + " estar rota."))
+        self.assertTrue(copy_lint.lint_text("Nuestra " + IA_EN_VIVO + " no " + estara + " lenta."))
+        self.assertTrue(copy_lint.lint_text("Nuestra " + IA_EN_VIVO + " no va a ser lenta."))
+        self.assertTrue(copy_lint.lint_text("The " + LIVE_AI + " will not be."))
+        self.assertTrue(copy_lint.lint_text("The " + LIVE_AI + " has never been."))
+        self.assertTrue(copy_lint.lint_text("The " + LIVE_AI + " is not going to be."))
+        self.assertTrue(copy_lint.lint_text("The " + LIVE_AI + " will not be slow."))
+        # Honest same-clause denials with a liveness complement stay clean.
+        self.assertEqual(copy_lint.lint_text("La IA no va a estar disponible " + todavia + "."), [])
+        self.assertEqual(copy_lint.lint_text("Nuestra " + IA_EN_VIVO + " no va a estar disponible " + todavia + "."), [])
+        self.assertEqual(copy_lint.lint_text("La IA no ha estado en vivo."), [])
+        self.assertEqual(copy_lint.lint_text("Nuestra " + IA_EN_VIVO + " no estuvo disponible."), [])
+        self.assertEqual(copy_lint.lint_text("Nuestra " + IA_EN_VIVO + " no " + estara + " disponible."), [])
+        self.assertEqual(copy_lint.lint_text("Nuestra " + IA_EN_VIVO + " no " + sera + " lista."), [])
+        self.assertEqual(copy_lint.lint_text("Nuestra " + IA_EN_VIVO + " no va a ser disponible."), [])
+        self.assertEqual(copy_lint.lint_text("Nuestra " + IA_EN_VIVO + " no puede estar disponible."), [])
+        self.assertEqual(copy_lint.lint_text("The " + LIVE_AI + " will not be available."), [])
+        self.assertEqual(copy_lint.lint_text("The " + LIVE_AI + " has never been live."), [])
+
     def test_live_ai_bigram_does_not_match_across_breaks(self):
         self.assertEqual(copy_lint.lint_text("Go live. AI stays a very early test, not live yet."), [])
         self.assertEqual(copy_lint.lint_text("The site is live. AI notes are drafts only."), [])

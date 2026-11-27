@@ -509,6 +509,16 @@ ES_AUX = {
     "podra", "podran", "podria", "podrian",
 }
 ES_AFTER_SKIP = ES_FILLER | ES_AUX
+# Copulas need a liveness complement, like English be/been. Skip them after a
+# negation and then require a predicate (en vivo, disponible, lista, ...).
+# Stand-alone liveness verbs (funciona, activa, hay, existe) are not included.
+ES_COPULA_SKIP = {
+    "estar", "esta", "estan", "estuvo", "estuvieron", "estado", "estando",
+    "estara", "estaran",
+    "ser", "es", "son", "era", "eran", "fue", "fueron", "sido", "siendo",
+    "sera", "seran", "sea", "sean",
+}
+ES_AFTER_NEG_SKIP = ES_AFTER_SKIP | ES_COPULA_SKIP
 
 
 def _same_sentence_range(toks, start, end, text):
@@ -609,7 +619,10 @@ def es_liveness_denied(toks, start, end, text):
 
     Bare nearby no/nunca (no un truco, no es un rumor, no voy in the next sentence)
     does not exempt. todavia/aún no, no está en vivo, no está activa, no funciona
-    todavía, and nunca ha estado en vivo do.
+    todavía, and nunca ha estado en vivo do. A copula after a negation
+    (estar/estado/está/estuvo/estará/ser) is not itself a denial: the
+    complement must be a liveness predicate. 'no va a estar lenta',
+    'no va a estar rota', and 'no va a estar.' do not exempt.
     """
     words = [t[0] for t in toks]
     lo, hi = _same_sentence_range(toks, start, end, text)
@@ -639,7 +652,7 @@ def es_liveness_denied(toks, start, end, text):
     if words[j] in ES_NEG:
         k = j + 1
         found_yet = False
-        while k < hi and words[k] in ES_AFTER_SKIP:
+        while k < hi and words[k] in ES_AFTER_NEG_SKIP:
             if words[k] in ES_YET:
                 found_yet = True
             k += 1
