@@ -1,5 +1,5 @@
-import { replyFor, CRISIS_REPLY, REDIRECT, RESOURCE_NOTE, SUGGESTIONS, ERROR_REPLY } from "./safety.mjs?v=20261122-ask20";
-import { normalizeEmail, ownedChat, syncOnLogin, applyDelete, keepAfterExpiredSession, deleteStatus, recordDeleteResult, readStore, logoutStore, STORE_KEY } from "./chat-store.mjs?v=20261122-ask20";
+import { replyFor, CRISIS_REPLY, REDIRECT, RESOURCE_NOTE, SUGGESTIONS, ERROR_REPLY } from "./safety.mjs?v=20261122-ask21";
+import { normalizeEmail, ownedChat, syncOnLogin, applyDelete, keepAfterExpiredSession, deleteStatus, recordDeleteResult, readStore, logoutStore, STORE_KEY } from "./chat-store.mjs?v=20261122-ask21";
 
 const STORE = STORE_KEY;
 const NOTICE = "dtrt.early-notice";
@@ -455,8 +455,11 @@ composer.addEventListener("input", () => {
 });
 
 function riskStorage() {
-  try { return window.sessionStorage; }
-  catch (err) { return null; }
+  let local = null;
+  let session = null;
+  try { local = window.localStorage; } catch (err) { local = null; }
+  try { session = window.sessionStorage; } catch (err) { session = null; }
+  return { local: local, session: session };
 }
 
 document.getElementById("new-chat").addEventListener("click", () => {

@@ -725,7 +725,7 @@ test('unlisted risk with a site word, a new chat, and an error all keep the 988 
   };
   const indirect = await safety.replyFor('I would rather not be here', { passages: [] }, { storage });
   assert.equal(indirect.action, 'crisis');
-  assert.equal(storage.getItem(safety.RISK_FLAG_KEY), '1');
+  assert.equal(safety.readRiskFlag(storage), true);
   const follows = ['what about it', 'is the AI live', 'where is the contact page', 'show me the notebook', 'what is job desk'];
   for (const question of follows) {
     const result = await safety.replyFor(question, { passages: [] }, {
@@ -739,6 +739,7 @@ test('unlisted risk with a site word, a new chat, and an error all keep the 988 
   const app = read('ask/chat-app.js');
   const newer = app.slice(app.indexOf('id="new-chat"') === -1 ? app.indexOf('new-chat') : app.indexOf('new-chat'));
   const handler = newer.slice(0, newer.indexOf('side-toggle'));
+  assert.match(app, /localStorage/);
   assert.match(app, /sessionStorage/);
   assert.match(app, /storage: riskStorage\(\)/);
   assert.match(app, /ERROR_REPLY/);

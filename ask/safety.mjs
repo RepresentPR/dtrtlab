@@ -1,11 +1,14 @@
 // Public answers are quotes from DTRT Lab's pages.
 // A model may only rephrase those quotes. Anything else is discarded.
-// Risk is checked before any page answer, on this message, earlier
-// turns, and a browser-session flag that New chat does not clear.
-// A detected risk returns the full 988 sheet. A page answer and an
-// error reply carry a short 988 footer. A message with no confident
-// page match gets the full sheet, then the closest pages or contact.
-// A compact note is only for a greeting or everyday idiom with no risk.
+// Risk is checked before any page answer or model call, on this
+// message, earlier turns, and a flag kept for 24 hours. The flag is
+// written to localStorage so a new tab still sees it, and to
+// sessionStorage when local storage is blocked. New chat does not
+// clear it. Any path that shows the 988 sheet sets the flag.
+// A detected risk returns the full sheet and no page quote. A page
+// answer and an error reply carry a short 988 footer. A message with
+// no confident page match gets the full sheet, then the closest pages
+// or contact. A compact note is only for a greeting or everyday idiom with no risk.
 
 export const CRISIS_REPLY = "If you might hurt yourself, get help now. In the US, call or text 988. You can chat at https://988lifeline.org. If you are in immediate danger, call 911. You can also visit https://findahelpline.com. This is a very early AI test. It is not a person and not a doctor, and it will not keep chatting about this.";
 
@@ -31,6 +34,8 @@ export const ERROR_REPLY = "The search on this page did not finish. The public p
 
 export const RISK_FLAG_KEY = "dtrt.risk.v1";
 
+export const RISK_TTL_MS = 24 * 60 * 60 * 1000;
+
 const RISK_TOKENS = new Set([
   "die", "dying", "died", "death", "deaths",
   "life", "lives", "living", "alive",
@@ -54,7 +59,9 @@ const RISK_PHRASES = [
   "dejar este mundo", "dejar el mundo", "irme de este mundo",
   "dejar la vida", "renunciar a la vida", "acabar con mi vida", "terminar con mi vida", "quitarme la vida",
   "quien me encontrara", "quien me va a encontrar", "quien va a encontrarme",
-  "no estar aqui", "no quiero estar", "preferiria no estar"
+  "no estar aqui", "no quiero estar", "preferiria no estar",
+  "last words", "last word", "final words", "final word", "parting words", "parting note",
+  "farewell letter", "farewell note", "farewell"
 ];
 
 const PAGE_WORDS = new Set(["page", "pages", "entry", "entries", "notebook", "article", "guide", "post"]);
@@ -326,17 +333,53 @@ function dangerIn(text) {
   return false;
 }
 
-export function readRiskFlag(storage) {
+function asStores(storage) {
+  if (!storage) return { local: null, session: null };
+  if (Object.prototype.hasOwnProperty.call(storage, "local") || Object.prototype.hasOwnProperty.call(storage, "session")) {
+    return { local: storage.local || null, session: storage.session || null };
+  }
+  return { local: null, session: storage };
+}
+
+function flagFresh(raw, now) {
+  if (!raw) return false;
+  if (raw === "1") return true;
   try {
-    return !!(storage && storage.getItem(RISK_FLAG_KEY) === "1");
+    const data = JSON.parse(raw);
+    if (!data || typeof data.at !== "number") return false;
+    const age = now - data.at;
+    return age >= 0 && age < RISK_TTL_MS;
   } catch (err) {
     return false;
   }
 }
 
-export function writeRiskFlag(storage) {
+function readStoreFlag(store, now) {
   try {
-    if (storage && storage.setItem) storage.setItem(RISK_FLAG_KEY, "1");
+    return !!(store && flagFresh(store.getItem(RISK_FLAG_KEY), now));
+  } catch (err) {
+    return false;
+  }
+}
+
+export function readRiskFlag(storage, now) {
+  const clock = typeof now === "number" ? now : Date.now();
+  const stores = asStores(storage);
+  if (readStoreFlag(stores.local, clock)) return true;
+  return readStoreFlag(stores.session, clock);
+}
+
+export function writeRiskFlag(storage, now) {
+  const clock = typeof now === "number" ? now : Date.now();
+  const payload = JSON.stringify({ at: clock });
+  const stores = asStores(storage);
+  try {
+    if (stores.local && stores.local.setItem) stores.local.setItem(RISK_FLAG_KEY, payload);
+  } catch (err) {
+    /* Local storage can be blocked. The session flag is the fallback. */
+  }
+  try {
+    if (stores.session && stores.session.setItem) stores.session.setItem(RISK_FLAG_KEY, payload);
   } catch (err) {
     /* A blocked store still returns the sheet for this turn. */
   }
@@ -376,7 +419,8 @@ function fullSheet() {
   return { action: "sheet", text: CRISIS_REPLY, modelCalled: false, sources: [] };
 }
 
-function sheetWithHelp(matches) {
+function sheetWithHelp(matches, storage, now) {
+  writeRiskFlag(storage, now);
   const bits = (matches || []).slice(0, 3).map((item) => {
     const passage = item.passage || item;
     const title = passage.title || "A public page";
@@ -410,8 +454,8 @@ function withFooter(text) {
   return body ? body + "\n\n" + HELP_LINE : HELP_LINE;
 }
 
-function crisisReply(storage) {
-  writeRiskFlag(storage);
+function crisisReply(storage, now) {
+  writeRiskFlag(storage, now);
   return { action: "crisis", text: CRISIS_REPLY, modelCalled: false, sources: [] };
 }
 
@@ -421,10 +465,11 @@ function pageReply(text, sources, modelCalled) {
 
 export async function replyFor(question, corpus, options) {
   const opts = options || {};
+  const now = typeof opts.now === "number" ? opts.now : Date.now();
   try {
-    if (readRiskFlag(opts.storage) || hasRisk(question, opts.history)) return crisisReply(opts.storage);
+    if (readRiskFlag(opts.storage, now) || hasRisk(question, opts.history)) return crisisReply(opts.storage, now);
     const screened = screen(question, opts.history);
-    if (screened.action === "crisis") return crisisReply(opts.storage);
+    if (screened.action === "crisis") return crisisReply(opts.storage, now);
     if (screened.action === "harm") return { action: "harm", text: HARM_REPLY, modelCalled: false, sources: [] };
     if (screened.action === "identity") return { action: "identity", text: IDENTITY_REPLY, modelCalled: false, sources: [] };
     let matches = [];
@@ -441,7 +486,7 @@ export async function replyFor(question, corpus, options) {
     const unmatched = (!confidentMatch(question, matches) && !meta) || !matches.length;
     if (unmatched) {
       if (clearlyClean(question, opts.history)) return compactReply();
-      return sheetWithHelp(matches);
+      return sheetWithHelp(matches, opts.storage, now);
     }
     const sources = matches.slice(0, 3);
     const template = templateFrom(sources);
