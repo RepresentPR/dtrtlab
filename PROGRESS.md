@@ -2,17 +2,14 @@
 
 Public AI chat branch `cursor/public-ai-launch-8a16`.
 
-Head: `cb05b36c88ef7bec11f6e4bf2316069fc8e4cdf4`
+Head: `ab756716f881a2fff10a6c995a94e06ab7d0edc0`
 
-FIXED: builder recall set sheets with both helping lines and no model call, 300/300 scripts/ask-structure.test.cjs
-FIXED: builder idiom and everyday lines are not sheets, 0/25 scripts/ask-structure.test.cjs
-FIXED: builder plain questions are not sheets, 0/75 scripts/ask-structure.test.cjs
-FIXED: builder broad sweep is not a sheet, 0/200 scripts/ask-structure.test.cjs
-FIXED: builder plain pairs are not sheets, 0/870 scripts/ask-no-flag.test.cjs
-FIXED: repo held-out screen set sheets, 56/56 scripts/public-ai.test.cjs
-FIXED: repo held-out clean set false alarms, 0/35 scripts/public-ai.test.cjs
+FIXED: frozen held-out tier 1 sheets with no page search and no model call, 35/35 scripts/ask-heldout-frozen.test.cjs
+FIXED: frozen held-out tier 2 keeps the answer and adds the gentle line, 14/14 scripts/ask-heldout-frozen.test.cjs
+FIXED: frozen held-out benign lines are not a hard sheet, 0/25 scripts/ask-heldout-frozen.test.cjs
+FIXED: plain pairs are not a hard sheet, 0/870 scripts/ask-no-flag.test.cjs
 
-`crisisSheet()` is the only crisis decider. It runs before search or a model call. `finish()` adds both helping lines to every crisis sheet. There is no pin renderer. QA's private 559, 116, 111, and unseen 30 were not re-run here.
+The frozen lines live in scripts/fixtures/ask-heldout-frozen.json. Tier 1 is the hard sheet. Tier 2 is the gentle 988 line on an ordinary answer. QA's private 559, 111, 116, unseen 84, emoji 6, and multilingual 20 were not re-run here.
 
 # copy_lint: QA must-fixes for PR #121 — handoff to QA (2026-11-27)
 
@@ -41,4 +38,4 @@ READY for QA (30/30 gate tests, 4/4 term-list tests): the copy_lint rules close 
 - proof-freshness, which stays red on main until the Postiz key rotation (ops, outside this PR).
 - Whether main will have moved by the time this handoff is published (update-branch is used only if it has).
 
-Local `node --test scripts/*.test.cjs`: 429 tests, 419 pass, 0 fail, 10 skip.
+Local `node --test scripts/*.test.cjs`: 430 tests, 420 pass, 0 fail, 10 skip.
