@@ -31,6 +31,8 @@ export const ONLY_LINE = REDIRECT;
 
 export const HELP_LINE = "If you're struggling, call or text 988 (US) or visit findahelpline.com.";
 
+export const PINNED_BOX = "If you might hurt yourself, call or text 988 (US) or visit https://findahelpline.com. Si podrías hacerte daño, llama o escribe al 988 (EE. UU.) o visita https://findahelpline.com.";
+
 export const UNSURE_REPLY = "I'm not sure about that yet.";
 
 export const ERROR_REPLY = "The search on this page did not finish. The public pages are still linked from the home page.\n\n" + HELP_LINE;
@@ -357,16 +359,23 @@ function editDistance(left, right) {
   return row[right.length];
 }
 
+function crisisToken(token) {
+  return STEM_HITS.has(token) || TERMS.has(token) || MEANS.has(token) || RISK_TOKENS.has(token);
+}
+
 function correctToken(token) {
-  if (STEM_HITS.has(token) || PHRASE_WORDS.has(token)) return token;
+  if (crisisToken(token) || PHRASE_WORDS.has(token)) return token;
   const variants = [token];
   for (let i = 0; i < token.length - 1; i++) {
     if (token[i] === token[i + 1]) variants.push(token.slice(0, i) + token.slice(i + 1));
   }
   for (const variant of variants) {
-    if (STEM_HITS.has(variant) || PHRASE_WORDS.has(variant)) return variant;
+    if (variant !== token && crisisToken(variant)) continue;
+    if (PHRASE_WORDS.has(variant)) return variant;
     if (variant.length < 4) continue;
     for (const word of TYPO_TARGETS) {
+      if (crisisToken(word) || PHRASE_WORDS.has(word) && crisisToken(word)) continue;
+      if (crisisToken(word)) continue;
       if (Math.abs(word.length - variant.length) > 1) continue;
       if (editDistance(variant, word) <= 1) return word;
     }
@@ -556,17 +565,28 @@ function clearlyBenign(question) {
   return content.length <= 12;
 }
 
-function explicitAct(text) {
-  const t = prepared(text);
-  if (/\b(pills?|bleach|wrists?|ropes?|jump|jumped|jumping|overdose|overdosed|overdosing|bleeding|bled|bleed)\b/.test(t)) return true;
-  if (/\b(ending it|end it|ended it)\b/.test(t)) return true;
-  if (/\bquitar\w* la vida\b/.test(t)) return true;
-  if (/\b(cut|cuts|cutting)\b/.test(t)) return true;
+function actPhrase(text) {
+  const t = fold(deleet(text));
+  if (/\b(kill myself|end my life|want to die|hang myself|last message|everything about me forever|everything else about me forever|ending it|end it|this is goodbye|saying goodbye|goodbye forever)\b/.test(t)) return true;
+  if (/\b(pills?|pastillas?|bleach|wrists?|ropes?|jump|jumped|jumping|overdose|overdosed|overdosing|bleeding|bled|bleed)\b/.test(t)) return true;
+  if (/\b(cut|cuts|cutting)\b/.test(t) && /\b(wrist|wrists|myself|arm|arms|bleed|bleeding)\b/.test(t)) return true;
+  if (/\bquitar\w* la vida\b/.test(t) || /\b(matarme|matare|mataria|me voy a matar|colgarme|colgare|ahorcarme|ahorcare|ahorcaria|acabar con mi vida|quiero morir|tirarme)\b/.test(t)) return true;
   return false;
 }
 
+function crisisMatch(text) {
+  if (actPhrase(text) || (dangerIn(text) && !pureFigurative(text))) return true;
+  const corrected = tokensOf(deleet(text)).map(correctToken).join(" ");
+  if (actPhrase(corrected) || (dangerIn(corrected) && !pureFigurative(corrected))) return true;
+  return false;
+}
+
+function pureFigurative(text) {
+  return figurative(text);
+}
+
 function figurative(text) {
-  if (explicitAct(text)) return false;
+  if (actPhrase(text)) return false;
   const t = prepared(text);
   if (/\bdead tired\b/.test(t) || /\bdying (for|to)\b/.test(t)) return true;
   if (/\bdead\b/.test(t) && /\b(phone|battery|link|tired)\b/.test(t)) return true;
@@ -583,7 +603,7 @@ function figurative(text) {
 
 function aboutSomeoneElse(text) {
   const t = prepared(text);
-  if (explicitAct(text) && /\b(i|im|ive|id|myself)\b/.test(t)) return false;
+  if (actPhrase(text) && /\b(i|im|ive|id|myself)\b/.test(t)) return false;
   if (/\b(news|homework|headline|article|essay|wikipedia|assignment|reported)\b/.test(t)) return true;
   if (/\bmy friend\b/.test(t) || /\b(he|she|they) said\b/.test(t)) return true;
   if (/\b(friend|classmate|coworker|mom|mother|dad|father|brother|sister) (said|told|wants|wanted)\b/.test(t)) return true;
@@ -598,15 +618,14 @@ function distressPhrase(text) {
 }
 
 function wantsSheet(text) {
-  if (explicitAct(text)) return true;
-  if (distressPhrase(text)) return true;
+  if (crisisMatch(text) || distressPhrase(text)) return true;
   if (figurative(text)) return false;
   if (clearlyBenign(text)) return false;
   return true;
 }
 
 export function shouldFlag(text) {
-  if (!wantsSheet(text)) return false;
+  if (!crisisMatch(text)) return false;
   if (aboutSomeoneElse(text)) return false;
   return true;
 }
@@ -651,45 +670,56 @@ function pageReply(text, sources, modelCalled) {
   return { action: "pages", text: withFooter(text), modelCalled: modelCalled, sources: sources };
 }
 
+function pin(reply) {
+  return Object.assign({}, reply, { pinned: PINNED_BOX });
+}
+
 export async function replyFor(question, corpus, options) {
   const opts = options || {};
   const now = typeof opts.now === "number" ? opts.now : Date.now();
   try {
-    if (readRiskFlag(opts.storage, now)) return sheetOnly();
     const turns = userTurns(question, opts.history);
-    const ordinary = figurative(question) && !explicitAct(question);
-    if (!ordinary) {
-      const screened = screen(question, opts.history);
-      if (asksForHarmPage(question, tokensOf(deleet(question)))) return crisisReply(opts.storage, now);
-      if (screened.action === "harm" && !explicitAct(question)) return { action: "harm", text: HARM_REPLY, modelCalled: false, sources: [] };
-      if (screened.action === "identity") return { action: "identity", text: IDENTITY_REPLY, modelCalled: false, sources: [] };
-      if (turns.some((turn) => shouldFlag(turn))) return crisisReply(opts.storage, now);
-      if (screened.action === "crisis") return shouldFlag(question) ? crisisReply(opts.storage, now) : sheetOnly();
-      if (wantsSheet(question)) return aboutSomeoneElse(question) ? sheetOnly() : crisisReply(opts.storage, now);
+    const sessionFlag = turns.some((turn) => shouldFlag(turn));
+    if (sessionFlag) writeRiskFlag(opts.storage, now);
+    const screened = screen(question, opts.history);
+    let reply;
+    if (asksForHarmPage(question, tokensOf(deleet(question)))) reply = crisisReply(opts.storage, now);
+    else if (screened.action === "harm" && !actPhrase(question)) reply = { action: "harm", text: HARM_REPLY, modelCalled: false, sources: [] };
+    else if (screened.action === "identity" && !crisisMatch(question)) reply = { action: "identity", text: IDENTITY_REPLY, modelCalled: false, sources: [] };
+    else if (crisisMatch(question)) reply = aboutSomeoneElse(question) && !shouldFlag(question) ? sheetOnly() : crisisReply(opts.storage, now);
+    else if (screened.action === "crisis" && !clearlyBenign(question) && !figurative(question)) reply = shouldFlag(question) ? crisisReply(opts.storage, now) : sheetOnly();
+    else if (wantsSheet(question)) reply = sheetOnly();
+    else {
+      let matches = [];
+      try {
+        matches = typeof opts.search === "function" ? (await opts.search(question, corpus)) || [] : [];
+      } catch (err) {
+        matches = [];
+      }
+      const meta = isMetaQuestion(question);
+      if (!matches.length && meta) {
+        const passage = fallbackPassage(corpus);
+        if (passage) matches = [{ passage, score: 2 }];
+      }
+      const unmatched = (!confidentMatch(question, matches) && !meta) || !matches.length;
+      if (unmatched) reply = unsureReply();
+      else {
+        const sources = matches.slice(0, 3);
+        const template = templateFrom(sources);
+        reply = pageReply(template, sources, false);
+        if (typeof opts.tryModel === "function") {
+          try {
+            const drafted = await opts.tryModel(question, sources);
+            if (acceptableRephrase(drafted, sources)) reply = pageReply(String(drafted).trim(), sources, true);
+            else reply = pageReply(template, sources, true);
+          } catch (err) {
+            reply = pageReply(template, sources, true);
+          }
+        }
+      }
     }
-    let matches = [];
-    try {
-      matches = typeof opts.search === "function" ? (await opts.search(question, corpus)) || [] : [];
-    } catch (err) {
-      matches = [];
-    }
-    const meta = isMetaQuestion(question);
-    if (!matches.length && meta) {
-      const passage = fallbackPassage(corpus);
-      if (passage) matches = [{ passage, score: 2 }];
-    }
-    const unmatched = (!confidentMatch(question, matches) && !meta) || !matches.length;
-    if (unmatched) return unsureReply();
-    const sources = matches.slice(0, 3);
-    const template = templateFrom(sources);
-    if (typeof opts.tryModel !== "function") return pageReply(template, sources, false);
-    try {
-      const drafted = await opts.tryModel(question, sources);
-      if (acceptableRephrase(drafted, sources)) return pageReply(String(drafted).trim(), sources, true);
-    } catch (err) {
-      /* Keep the page quote. */
-    }
-    return pageReply(template, sources, true);
+    if (reply.action !== "crisis" && (sessionFlag || readRiskFlag(opts.storage, now))) return pin(reply);
+    return reply;
   } catch (err) {
     return { action: "error", text: ERROR_REPLY, modelCalled: false, sources: [] };
   }

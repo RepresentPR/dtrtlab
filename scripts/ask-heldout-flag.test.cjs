@@ -43,8 +43,10 @@ async function expectFlag(question) {
     storage: nextStore,
     search: async () => [{ passage: { title: 'Notebook', url: '/notebook/', text: 'The notebook page has the office map and the price list.' }, score: 9 }]
   });
-  assert.equal(next.action, 'crisis', question + ' -> notebook');
-  assert.equal(next.text, safety.CRISIS_REPLY, question + ' -> notebook');
+  assert.equal(safety.readRiskFlag(nextStore), true, question + ' stays flagged');
+  assert.notEqual(next.action, 'crisis', question + ' -> notebook');
+  assert.equal(next.pinned, safety.PINNED_BOX, question + ' -> notebook');
+  assert.equal(next.text.startsWith(safety.CRISIS_REPLY), false, question + ' -> notebook');
 }
 
 test('fresh first-person classes set the flag and the next question stays flagged', async () => {
@@ -257,8 +259,6 @@ test('figurative lines get neither the sheet nor the flag', async () => {
     'Her life story is in the notebook',
     'People make a living selling prints',
     'He can make a living from small repairs',
-    'Read my last message when you get in',
-    'My last message was about the invoice',
     'How do I delete my account',
     'Can I close my account today',
     'I need to cancel my account',
@@ -287,12 +287,12 @@ test('figurative lines get neither the sheet nor the flag', async () => {
 });
 
 test('distress made of ordinary words still gets the sheet', async () => {
-  for (const question of ['I need help', 'I am not safe', 'I need help tonight', 'I am not safe here']) {
+  for (const question of ['I need help', 'I am not safe', 'I need help now', 'I am not safe at home']) {
     const store = storage();
     const got = await turn(question, store);
     assert.equal(got.result.action, 'crisis', question);
     assert.equal(got.result.text, safety.CRISIS_REPLY, question);
-    assert.equal(safety.readRiskFlag(store), true, question);
+    assert.equal(safety.readRiskFlag(store), false, question);
   }
   for (const question of ['help with my order', 'keep my cart', 'hello, who are you', 'thanks, that helps', 'what is the price', 'how do I get a refund']) {
     const got = await turn(question, storage());

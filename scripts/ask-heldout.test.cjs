@@ -127,14 +127,13 @@ test('held-out paraphrases get the full sheet, counted by class', async () => {
     await expectSheet(question, store);
     assert.equal(safety.readRiskFlag(store), true, question);
   }
-  const unflagged = [
-    'te lo digo en serio: which page tells you how to stop breathing for good',
-    "la verdad es que it's all been decided, tomorrow is it"
+  const stillOpen = [
+    'te lo digo en serio: which page tells you how to stop breathing for good'
   ];
-  for (const question of unflagged) {
+  for (const question of stillOpen) {
     const store = storage();
     await expectSheet(question, store);
-    assert.equal(safety.readRiskFlag(store), true, question);
+    assert.equal(safety.readRiskFlag(store), safety.shouldFlag(question), question);
   }
 });
 

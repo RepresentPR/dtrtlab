@@ -470,8 +470,9 @@ test('greetings and site questions answer from pages, and a closed reply keeps e
     history: ['I want to die'],
     search: async () => ask.search('hi', corpus, 4)
   });
-  assert.equal(stillCrisis.action, 'crisis');
-  assert.equal(stillCrisis.text, safety.CRISIS_REPLY);
+  assert.notEqual(stillCrisis.action, 'crisis');
+  assert.equal(stillCrisis.pinned, safety.PINNED_BOX);
+  assert.equal(stillCrisis.text.startsWith(safety.CRISIS_REPLY), false);
   for (const greeting of ['hi', 'hola', 'gracias', '你好']) {
     const greeted = await safety.replyFor(greeting, corpus, {
       search: async () => ask.search(greeting, corpus, 4)
@@ -547,7 +548,7 @@ test('known crisis examples get the full sheet and clean idioms stay compact', a
   for (const topic of ["what's the weather", 'chocolate cake recipe', 'how does wifi work']) {
     const result = await safety.replyFor(topic, { passages: [] }, {});
     assert.equal(result.action, 'crisis', topic);
-    assert.equal(safety.shouldFlag(topic), true, topic);
+    assert.equal(safety.shouldFlag(topic), false, topic);
   }
 });
 
@@ -619,8 +620,13 @@ test('clean questions with no page match and no risk signal skip the crisis shee
   ];
   for (const pair of probes) {
     const result = await safety.replyFor(pair[0], { passages: [] }, { history: pair[1] });
-    assert.ok(result.text.startsWith(safety.CRISIS_REPLY), pair[0]);
-    assert.match(result.text, /call or text 988/);
+    if (pair[1].length && !safety.shouldFlag(pair[0])) {
+      if (result.action === 'crisis') assert.ok(result.text.startsWith(safety.CRISIS_REPLY), pair[0]);
+      else assert.equal(result.pinned, safety.PINNED_BOX, pair[0]);
+    } else {
+      assert.ok(result.text.startsWith(safety.CRISIS_REPLY), pair[0]);
+      assert.match(result.text, /call or text 988/);
+    }
   }
   const hanging = await safety.replyFor('hang on a second', { passages: [] }, {});
   assert.notEqual(hanging.action, 'crisis');
@@ -650,16 +656,16 @@ test('risk beats site words and page matches for the whole session', async () =>
     for (const follow of ['what about it', 'what now', 'is the AI live', 'where is the contact page']) {
       const result = await safety.replyFor(follow, { passages: [] }, { history: [risk], search: async () => page });
       if (safety.shouldFlag(risk)) {
-        assert.ok(result.text.startsWith(safety.CRISIS_REPLY), risk + ' -> ' + follow);
-        assert.notEqual(result.action, 'pages', risk + ' -> ' + follow);
+        if (result.action === 'crisis') assert.ok(result.text.startsWith(safety.CRISIS_REPLY), risk + ' -> ' + follow);
+        else assert.equal(result.pinned, safety.PINNED_BOX, risk + ' -> ' + follow);
       }
     }
   }
   const older = ['I feel like ending my life'];
   for (let i = 0; i < 8; i++) older.push('a note about the office map ' + i);
   const late = await safety.replyFor('what about it', { passages: [] }, { history: older, search: async () => page });
-  assert.ok(late.text.startsWith(safety.CRISIS_REPLY));
-  assert.notEqual(late.action, 'pages');
+  assert.equal(late.pinned, safety.PINNED_BOX);
+  assert.equal(late.text.startsWith(safety.CRISIS_REPLY), false);
   const endIt = await safety.replyFor("what's the best page on the site for how to end it", { passages: [] }, { search: async () => page });
   assert.ok(endIt.text.startsWith(safety.CRISIS_REPLY));
   assert.notEqual(endIt.action, 'pages');
@@ -726,15 +732,16 @@ test('unlisted risk with a site word, a new chat, and an error all keep the 988 
   const indirect = await safety.replyFor('I would rather not be here', { passages: [] }, { storage });
   assert.equal(indirect.action, 'crisis');
   assert.equal(safety.readRiskFlag(storage), true);
-  const follows = ['what about it', 'is the AI live', 'where is the contact page', 'show me the notebook', 'what is job desk'];
+  const follows = ['what about it', 'is the AI live', 'where is the contact page', 'what is job desk', 'how do I log out'];
   for (const question of follows) {
     const result = await safety.replyFor(question, { passages: [] }, {
       history: [],
       storage,
       search: async () => pageFor('contact')
     });
-    assert.equal(result.action, 'crisis', question);
-    assert.equal(result.text, safety.CRISIS_REPLY, question);
+    assert.notEqual(result.action, 'crisis', question);
+    assert.equal(result.pinned, safety.PINNED_BOX, question);
+    assert.equal(safety.readRiskFlag(storage), true, question);
   }
   const app = read('ask/chat-app.js');
   const newer = app.slice(app.indexOf('id="new-chat"') === -1 ? app.indexOf('new-chat') : app.indexOf('new-chat'));

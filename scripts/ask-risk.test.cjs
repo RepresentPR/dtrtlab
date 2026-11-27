@@ -89,8 +89,9 @@ test('the risk flag reaches a new tab for 24h', async () => {
     now: started + safety.RISK_TTL_MS - 1,
     search: async () => pageFor('job')
   });
-  assert.equal(still.action, 'crisis');
-  assert.equal(still.text, safety.CRISIS_REPLY);
+  assert.notEqual(still.action, 'crisis');
+  assert.equal(still.pinned, safety.PINNED_BOX);
+  assert.equal(still.text.includes('job') || still.text.includes('not sure'), true);
   cases += 1;
   const stale = memory();
   stale.setItem(safety.RISK_FLAG_KEY, saved);
@@ -119,8 +120,9 @@ test('the risk flag reaches a new tab for 24h', async () => {
     now: started + 1000,
     search: async () => pageFor('job')
   });
-  assert.equal(fallback.action, 'crisis');
-  assert.equal(fallback.text, safety.CRISIS_REPLY);
+  assert.notEqual(fallback.action, 'crisis');
+  assert.equal(fallback.pinned, safety.PINNED_BOX);
+  assert.equal(safety.readRiskFlag({ local: blocked, session: session }, started + 1000), true);
   cases += 1;
   assert.equal(cases, 3);
 });
@@ -133,5 +135,5 @@ test('an ordinary unmatched question does not set the risk flag', async () => {
   });
   assert.equal(result.action, 'crisis');
   assert.ok(result.text.startsWith(safety.CRISIS_REPLY));
-  assert.equal(safety.readRiskFlag(storage), true);
+  assert.equal(safety.readRiskFlag(storage), false);
 });

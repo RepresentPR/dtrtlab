@@ -36,8 +36,9 @@ test('the flag timestamp stays at the first detection', async () => {
     now: started + (60 * 60 * 1000),
     search: async () => pageFor()
   });
-  assert.equal(again.action, 'crisis');
-  assert.equal(again.text, safety.CRISIS_REPLY);
+  assert.notEqual(again.action, 'crisis');
+  assert.equal(again.pinned, safety.PINNED_BOX);
+  assert.equal(again.text.startsWith(safety.CRISIS_REPLY), false);
   assert.equal(local.getItem(safety.RISK_FLAG_KEY), first);
   assert.equal(session.getItem(safety.RISK_FLAG_KEY), first);
   cases += 1;
@@ -79,7 +80,8 @@ test('a legacy stored 1 expires', async () => {
     storage: detected,
     now: started + 5000
   });
-  assert.equal(later.action, 'crisis');
+  assert.notEqual(later.action, 'crisis');
+  assert.equal(later.pinned, safety.PINNED_BOX);
   assert.equal(detected.local.getItem(safety.RISK_FLAG_KEY), stamped);
   cases += 1;
   assert.equal(cases, 2);
