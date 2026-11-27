@@ -1,0 +1,14 @@
+#dtrt-crisis-root, .dtrt-crisis-field {
+  box-sizing: border-box;
+  max-width: 70ch;
+  margin: 12px 12px 20px;
+  padding: 10px 12px;
+  font: 0.9rem/1.45 system-ui, sans-serif;
+  color: #111;
+  background: #fff8e7;
+  border: 1px solid #c9b48a;
+  border-radius: 8px;
+}
+.dtrt-crisis-field { margin: 6px 0 14px; font-size: 0.85rem; }
+#dtrt-crisis-root a, .dtrt-crisis-field a { color: #0d6e6d; }
+#dtrt-crisis-root { position: relative; z-index: 40; }

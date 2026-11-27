@@ -1,0 +1,106 @@
+/* Mercado Puerto Rico — sand, sunset coral, Caribbean turquoise, palm green,
+   and a still neural-glow aurora. Contrast checked for WCAG AA. */
+body.mk {
+  --sand: #f7efe4;
+  --sand-card: #fffbf6;
+  --ink: #1c2a28;
+  --muted: #3f4a46;
+  --coral: #c7452f;
+  --coral-deep: #8b2e1c;
+  --turquoise: #0d6e6d;
+  --turquoise-deep: #0a5756;
+  --palm: #1b5e3b;
+  --line: rgba(28, 42, 40, 0.18);
+  color: var(--ink);
+  background-color: var(--sand);
+  background-image:
+    radial-gradient(60% 50% at 88% -8%, rgba(199, 69, 47, 0.28), transparent 62%),
+    radial-gradient(52% 46% at 0% 28%, rgba(13, 110, 109, 0.22), transparent 68%),
+    radial-gradient(48% 42% at 72% 108%, rgba(27, 94, 59, 0.20), transparent 70%),
+    radial-gradient(36% 32% at 46% 42%, rgba(125, 225, 200, 0.14), transparent 70%);
+  background-attachment: fixed;
+  min-height: 100%;
+}
+body.mk a { color: var(--turquoise-deep); }
+body.mk a:focus-visible,
+body.mk button:focus-visible,
+body.mk input:focus-visible {
+  outline: 3px solid var(--turquoise);
+  outline-offset: 3px;
+}
+body.mk .top {
+  background: #0b2545;
+  color: #fff;
+  border-bottom: 0;
+}
+body.mk .top a,
+body.mk .top .brand { color: #fff; }
+body.mk .mk-wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+body.mk .mk-top { padding: 22px 0 8px; }
+body.mk .mk-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+body.mk .mk-top h1 { font-size: clamp(1.4rem, 4vw, 2rem); margin: 0; color: var(--ink); }
+body.mk .mk-lang { display: inline-flex; min-height: 44px; align-items: center; color: var(--turquoise-deep); font-weight: 600; }
+body.mk .mk-search { display: grid; gap: 6px; margin-top: 14px; }
+body.mk .mk-helper-label { font-size: 0.92rem; font-weight: 700; color: var(--palm); }
+body.mk .mk-search input {
+  width: 100%; min-height: 48px; padding: 0 14px; font: inherit; font-size: 16px;
+  border: 1px solid var(--line); border-radius: 10px; background: var(--sand-card); color: var(--ink);
+}
+body.mk .mk-hint { margin: 0; font-size: 0.88rem; color: var(--muted); }
+body.mk .mk-tiles {
+  display: flex; gap: 10px; overflow-x: auto; padding: 14px 4px 8px;
+  scrollbar-width: thin; -webkit-overflow-scrolling: touch;
+}
+body.mk .mk-tiles button {
+  flex: 0 0 auto; min-height: 44px; padding: 0 16px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--sand-card); color: var(--ink);
+  font: inherit; cursor: pointer;
+}
+body.mk .mk-tiles button[aria-pressed="true"] {
+  background: var(--palm); color: #fff; border-color: var(--palm);
+}
+body.mk .mk-grid {
+  display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  padding: 10px 0 32px;
+}
+body.mk .mk-card {
+  border: 1px solid var(--line); border-radius: 12px; padding: 16px;
+  display: flex; flex-direction: column; gap: 8px; background: var(--sand-card);
+  box-shadow: 0 8px 24px rgba(28, 42, 40, 0.06);
+}
+body.mk .mk-card h2 { font-size: 1.1rem; margin: 0; color: var(--ink); }
+body.mk .mk-card p { margin: 0; line-height: 1.45; color: var(--ink); }
+body.mk .mk-note { font-size: 0.88rem; color: var(--muted); }
+body.mk .mk-card .btn,
+body.mk .btn {
+  margin-top: auto; min-height: 44px; display: inline-flex; align-items: center; justify-content: center;
+  background: var(--turquoise); color: #fff; border: 0; border-radius: 10px;
+  padding: 0 16px; text-decoration: none; font-weight: 700;
+}
+body.mk .mk-card .btn:hover,
+body.mk .btn:hover { background: var(--turquoise-deep); color: #fff; }
+body.mk .mk-empty { padding: 8px 0 24px; color: var(--muted); }
+body.mk .mk-foot { padding: 24px 16px 40px; color: var(--ink); }
+body.mk .mk-foot .wordmark { color: var(--ink); text-decoration: none; }
+body.mk .mk-foot nav { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 8px; }
+body.mk .mk-foot nav a { min-height: 44px; display: inline-flex; align-items: center; color: var(--turquoise-deep); }
+@media (prefers-reduced-motion: reduce) {
+  body.mk { background-attachment: scroll; }
+  body.mk * { animation: none !important; transition: none !important; }
+}
+
+body.mk .mk-card[hidden], body.mk .mk-empty[hidden] { display: none !important; }
+
+body.mk .mk-crisis { background:#1c2a28; color:#fff; border-radius:12px; padding:16px 18px; margin:8px 0 24px; }
+body.mk .mk-crisis a { color:#7de1c8; }
+body.mk .mk-crisis[hidden], body.mk .mk-grid[hidden] { display:none !important; }
+body.mk .site-crisis { font-size:0.92rem; color:var(--ink); max-width:70ch; }
+body.mk .site-crisis a { color:var(--turquoise-deep); }
+
+body.mk .mk-try { margin: 12px 0 8px; font-weight: 600; }
+body.mk .mk-chips { display:flex; flex-wrap:wrap; gap:8px; }
+body.mk .mk-chips button { min-height:44px; padding:8px 14px; border-radius:999px; border:1px solid #7de1c8; background:transparent; color:#fff; font:inherit; cursor:pointer; }
+body.mk .mk-chips button:hover, body.mk .mk-chips button:focus { background:#0d6e6d; }
+
+
+.mk-988-always{margin:12px 0 8px;font-size:14px;line-height:1.45;color:#1a3a28;}
