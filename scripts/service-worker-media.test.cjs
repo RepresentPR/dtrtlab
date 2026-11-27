@@ -165,10 +165,10 @@ test('install precaches the Ask page and the assets it requests', async () => {
   }
   const document = await instance.dispatch(requestFor('/ask/', { mode: 'navigate' }));
   assert.equal(await document.response.text(), 'precache /ask/');
-  const script = await instance.dispatch(requestFor('/ask/ask.js?v=20261127-ask37'));
-  assert.equal(await script.response.text(), 'precache /ask/ask.js?v=20261127-ask37');
-  const passage = await instance.dispatch(requestFor('/ask/passages.js?v=20261127-ask37'));
-  assert.equal(await passage.response.text(), 'precache /ask/passages.js?v=20261127-ask37');
+  const script = await instance.dispatch(requestFor('/ask/ask.js?v=20261127-ask40'));
+  assert.equal(await script.response.text(), 'precache /ask/ask.js?v=20261127-ask40');
+  const passage = await instance.dispatch(requestFor('/ask/passages.js?v=20261127-ask40'));
+  assert.equal(await passage.response.text(), 'precache /ask/passages.js?v=20261127-ask40');
 });
 
 test('install precaches the shell and posters without audio or video files', async () => {

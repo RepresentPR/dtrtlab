@@ -142,7 +142,7 @@ test('a crisis in this history pins the next plain answer and a fresh call does 
   const opened = await ask('I want to end my life tonight', storage());
   assert.equal(opened.result.action, 'crisis');
   const soon = await safety.replyFor('where is the brand page', { passages: [] }, { history: ['I want to end my life tonight'] });
-  assert.notEqual(soon.action, 'crisis');
+  assert.equal(soon.action, 'crisis');
   assert.equal(soon.pinned, undefined);
   const fresh = await safety.replyFor('where is the brand page', { passages: [] }, {});
   assert.equal(fresh.pinned, undefined);

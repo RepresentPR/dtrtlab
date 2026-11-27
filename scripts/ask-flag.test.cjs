@@ -18,7 +18,7 @@ test('the session pin follows history and is not stored', async () => {
     history: [crisis],
     search: async () => [{ passage: { title: 'Job desk', url: '/lab.html', text: 'Job desk is a public page.' }, score: 9 }]
   });
-  assert.notEqual(again.action, 'crisis');
+  assert.equal(again.action, 'crisis');
   assert.equal(again.pinned, undefined);
   const fresh = await safety.replyFor('what is job desk', { passages: [] }, {
     search: async () => [{ passage: { title: 'Job desk', url: '/lab.html', text: 'Job desk is a public page.' }, score: 9 }]

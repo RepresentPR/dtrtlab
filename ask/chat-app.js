@@ -1,6 +1,6 @@
-import { replyFor, CRISIS_REPLY, REDIRECT, RESOURCE_NOTE, SUGGESTIONS, ERROR_REPLY } from "./safety.mjs?v=20261127-ask37";
-import { isCrisisText } from "../js/safety-core.mjs?v=20261127-ask37";
-import { normalizeEmail, ownedChat, syncOnLogin, applyDelete, keepAfterExpiredSession, deleteStatus, recordDeleteResult, readStore, logoutStore, STORE_KEY } from "./chat-store.mjs?v=20261127-ask37";
+import { replyFor, CRISIS_REPLY, OTHER_HELP_LINE, REDIRECT, RESOURCE_NOTE, SUGGESTIONS, ERROR_REPLY } from "./safety.mjs?v=20261127-ask40";
+import { classifyCrisis } from "../js/safety-core.mjs?v=20261127-ask40";
+import { normalizeEmail, ownedChat, syncOnLogin, applyDelete, keepAfterExpiredSession, deleteStatus, recordDeleteResult, readStore, logoutStore, STORE_KEY } from "./chat-store.mjs?v=20261127-ask40";
 
 const STORE = STORE_KEY;
 const NOTICE = "dtrt.early-notice";
@@ -304,10 +304,20 @@ async function ask(question) {
   thread.append(item);
   let result;
   try {
-    result = await replyFor(question, window.DTRT_ASK_CORPUS || { passages: [] }, {
-      history,
-      search: (q, corpus) => window.DTRTAsk ? window.DTRTAsk.search(q, corpus, 4) : []
-    });
+    const tier = classifyCrisis(question, history);
+    if (tier === "tier1") {
+      result = {
+        action: "crisis",
+        text: CRISIS_REPLY + "\n\n" + OTHER_HELP_LINE,
+        modelCalled: false,
+        sources: []
+      };
+    } else {
+      result = await replyFor(question, window.DTRT_ASK_CORPUS || { passages: [] }, {
+        history,
+        search: (q, corpus) => window.DTRTAsk ? window.DTRTAsk.search(q, corpus, 4) : []
+      });
+    }
   } catch (err) {
     result = { action: "error", text: ERROR_REPLY, sources: [] };
   }

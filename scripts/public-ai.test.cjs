@@ -445,9 +445,9 @@ test('greetings and site questions answer from pages, and a closed reply keeps e
     history: ['I want to die'],
     search: async () => ask.search('hi', corpus, 4)
   });
-  assert.notEqual(stillCrisis.action, 'crisis');
+  assert.equal(stillCrisis.action, 'crisis');
   assert.equal(stillCrisis.pinned, undefined);
-  assert.equal(stillCrisis.text.startsWith(safety.CRISIS_REPLY), false);
+  assert.equal(stillCrisis.text.startsWith(safety.CRISIS_REPLY), true);
   for (const greeting of ['hi', 'hola', 'gracias', '你好']) {
     const greeted = await safety.replyFor(greeting, corpus, {
       search: async () => ask.search(greeting, corpus, 4)
@@ -498,7 +498,7 @@ test('known crisis examples get the full sheet and clean idioms stay compact', a
     assert.match(result.text, /findahelpline\.com/);
   }
   const followed = await safety.replyFor('cut the trailer', { passages: [] }, { history: ['the rope is in the closet'] });
-  assert.notEqual(followed.action, 'crisis');
+  assert.equal(followed.action, 'crisis');
   assert.equal(followed.pinned, undefined);
   for (const question of ['cut the trailer', 'overdose on coffee', 'overdose of coffee', 'killer deal', 'dead battery', 'dying to see it']) {
     const result = await safety.replyFor(question, { passages: [] }, {});
@@ -620,7 +620,7 @@ test('risk beats site words and page matches for the whole session', async () =>
   for (let i = 0; i < 8; i++) older.push('a note about the office map ' + i);
   const late = await safety.replyFor('what about it', { passages: [] }, { history: older, search: async () => page });
   assert.equal(late.pinned, undefined);
-  assert.equal(late.text.startsWith(safety.CRISIS_REPLY), false);
+  assert.equal(late.text.startsWith(safety.CRISIS_REPLY), true);
   const endIt = await safety.replyFor("what's the best page on the site for how to end it", { passages: [] }, { search: async () => page });
   assert.ok(endIt.text.startsWith(safety.CRISIS_REPLY));
   assert.notEqual(endIt.action, 'pages');

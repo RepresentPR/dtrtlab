@@ -41,8 +41,8 @@ async function expectFlag(question) {
     history: [question],
     search: async () => [{ passage: { title: 'Notebook', url: '/notebook/', text: 'The notebook page has the office map and the price list.' }, score: 9 }]
   });
-  if (next.action !== 'crisis') assert.equal(next.pinned, undefined, question + ' -> notebook');
-  assert.equal(next.text.startsWith(safety.CRISIS_REPLY), false, question + ' -> notebook');
+  assert.equal(next.action, 'crisis', question + ' -> notebook');
+  assert.equal(next.text.startsWith(safety.CRISIS_REPLY), true, question + ' -> notebook');
 }
 
 test('fresh first-person classes set the flag and the next question stays flagged', async () => {
