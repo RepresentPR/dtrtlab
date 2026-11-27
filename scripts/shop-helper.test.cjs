@@ -12,12 +12,14 @@ test('shopping helper matches English keywords to catalog cards', () => {
   assert.doesNotMatch(energy[0].why, /live AI|inteligencia artificial en vivo/i);
   const beauty = shop.search('skin perfume makeup', 'en');
   assert.equal(beauty[0].id, 'jafra');
-  const ai = shop.search('chatbot for my business', 'en');
-  assert.equal(ai[0].id, 'ai');
+  const ask = shop.search('chatbot', 'en');
+  assert.equal(ask[0].id, 'ai');
+  const biz = shop.search('negocio', 'en');
+  assert.equal(biz[0].id, 'biz');
   const trade = shop.search('crypto trading', 'en');
   assert.equal(trade[0].id, 'candles');
-  const sell = shop.search('sell with you', 'en');
-  assert.ok(sell.some((m) => m.id === 'sell'));
+  const bizEn = shop.search('office', 'en');
+  assert.ok(bizEn.some((m) => m.id === 'biz'));
 });
 
 test('shopping helper matches Spanish keywords to catalog cards', () => {
@@ -26,18 +28,29 @@ test('shopping helper matches Spanish keywords to catalog cards', () => {
   assert.match(energy[0].why, /Coincide con/);
   const beauty = shop.search('maquillaje belleza', 'es');
   assert.equal(beauty[0].id, 'jafra');
-  const ai = shop.search('negocio chatbot', 'es');
-  assert.equal(ai[0].id, 'ai');
+  const ask = shop.search('chatbot', 'es');
+  assert.equal(ask[0].id, 'ai');
+  const biz = shop.search('negocio', 'es');
+  assert.equal(biz[0].id, 'biz');
   const trade = shop.search('trading cripto', 'es');
   assert.equal(trade[0].id, 'candles');
-  const sell = shop.search('quiero vender', 'es');
-  assert.ok(sell.some((m) => m.id === 'sell'));
+  const bizEs = shop.search('oficina', 'es');
+  assert.ok(bizEs.some((m) => m.id === 'biz'));
 });
 
-test('shopping helper is typo-tolerant after accent folding', () => {
-  assert.equal(shop.search('caffiene', 'en')[0].id, 'motion');
-  assert.equal(shop.search('maquilaje', 'es')[0].id, 'jafra');
+test('shopping helper folds accents on known allowlist tokens', () => {
+  assert.equal(shop.isSafeProductQuery('cafeína energía').ok, true);
   assert.equal(shop.search('cafeina energia', 'es')[0].id, 'motion');
+  assert.equal(shop.isSafeProductQuery('caffiene').ok, false);
+  assert.equal(shop.isSafeProductQuery('maquilaje').ok, false);
+});
+
+test('unknown or crisis tokens show no catalog cards (allowlist gate)', () => {
+  assert.equal(shop.isSafeProductQuery('xyzzy airplane tickets').ok, false);
+  assert.equal(shop.isSafeProductQuery('boletos de avion xyzzy').ok, false);
+  assert.equal(shop.isSafeProductQuery('i want to die lol').ok, false);
+  assert.equal(shop.isSafeProductQuery('quiero matarme').ok, false);
+  assert.equal(shop.isSafeProductQuery('energy caffeine').ok, true);
 });
 
 test('shopping helper returns no matches and stays a catalog helper, not live AI', () => {
