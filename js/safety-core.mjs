@@ -9,7 +9,7 @@ export const GENTLE_LINE = "If you're going through something hard, you can call
 const HARM_EMOJI = { "🔪": " knife ", "🩸": " blood ", "💀": " death ", "⚰️": " death ", "💊": " pill ", "🪢": " noose ", "🔫": " gun ", "😵": " dead ", "💉": " inject ", "🪦": " death ", "☠️": " death " };
 
 const FUZZY = ["suicide", "suicidal", "myself", "yourself", "himself", "herself", "themselves", "existing", "disappear", "forever", "tonight", "overdose", "hanging", "poison", "goodbye", "wrist", "wrists", "cutting", "unalive", "bridge", "paracetamol", "jump", "kill", "killing", "life", "pills", "swallow", "swallowed", "tablets", "bottle", "dying", "alive", "here", "rope", "ending", "morir", "quiero", "saturday"];
-const TYPO = { kil: "kill", kll: "kill", ded: "dead", dye: "die", lyfe: "life", lfe: "life", lfie: "life", wnat: "want", wanna: "want", wana: "want", deth: "death", myslef: "myself", mysef: "myself", suicde: "suicide", sucidie: "suicide", tomorow: "tomorrow", tonite: "tonight", tonihgt: "tonight", anymroe: "anymore", existng: "existing", exstng: "existing", dissapear: "disappear", permanantly: "permanently", pilz: "pills", pils: "pills", hnag: "hang", jumo: "jump", jum: "jump", rof: "roof", mtar: "matar", gunna: "going", ened: "end", tke: "take", wrold: "world", goin: "going", evrything: "everything", alve: "alive", matr: "matar" };
+const TYPO = { kil: "kill", kll: "kill", ded: "dead", dye: "die", lyfe: "life", lfe: "life", lfie: "life", wnat: "want", wanna: "want", wana: "want", deth: "death", myslef: "myself", mysef: "myself", suicde: "suicide", sucidie: "suicide", scide: "suicide", sucide: "suicide", sicide: "suicide", tomorow: "tomorrow", tonite: "tonight", tonihgt: "tonight", anymroe: "anymore", existng: "existing", exstng: "existing", dissapear: "disappear", permanantly: "permanently", pilz: "pills", pils: "pills", hnag: "hang", jumo: "jump", jum: "jump", rof: "roof", mtar: "matar", gunna: "going", ened: "end", tke: "take", wrold: "world", goin: "going", evrything: "everything", alve: "alive", matr: "matar" };
 
 const COMMON = new Set(("a an the and or of to for in on at by with from into over after before out off not yes no please just then than there here too very also still only own when while have has had do does did this that these those what whats where who how can will would should may might am are was were been being is it its my your our their his her we they he she you i im ive id ill me mine them him page pages site lab price prices plan plans planned planning form forms fill bill bills link links map desk contact notebook privacy refund brand shop list public free note notes class people day days time date today early company real wide shown optional stuck come comes sell use used stay turn two person share send find clear report happen get ask fix wrong need apply update see save device change delete remove close cancel make look great tab tabs built build read much many new old same other another any some such live love like line life last long give fire fine file five lift home hope open door city want wish told said anymore doesnt dont cant wont isnt wasnt didnt couldnt wouldnt shouldnt lets thats heres theres youre theyre proof night eight wake photo photos minute minutes hour hours cake recipe weather video feature office email password checkout donate browser kit band catalog candle shipping human question answer data bug bugs term terms job jobs ian dtrt demo partner partners coffee battery phone plant plane plank play pizza showcase trailer cookie cookies session account accounts chat history mute sound lights poster wall download downloads clip clips subscription cost costs template pixel status preorder invoice invoices overdue sample pack aquarium tablet tablets organizer sticker stickers badge button buttons logo design deal deals idea playlist mystery valley theme story stories about news article guide hang tag cut paste jump section pricing pro office lead pill pills load head meal real tell well call fall full film held help hell hill hall all log sign reset most hand band land sand rang bang song long king kind mind find wind back polls pool pull dad mom there where hear these those doing going coming being having making taking saying looking getting using seeing asking reading working trying living giving due hare vill exiting".split(" ")));
 
@@ -86,7 +86,7 @@ function normalize(text) {
   for (const [mark, word] of Object.entries(HARM_EMOJI)) next = next.split(mark).join(word);
   next = next.replace(/\bODed\b/gi, " oded ").replace(/\bOD['’]d\b/gi, " oded ");
   next = next.replace(/död/gi, " dead ").replace(/dö/gi, " die ");
-  next = fold(next).replace(/¢/g, "c").replace(/\b(?:[a-z0-9][_-]){2,}[a-z0-9]\b/g, (chunk) => chunk.replace(/[_-]/g, ""));
+  next = fold(next).replace(/¢/g, "c").replace(/\*/g, "").replace(/\b(?:[a-z0-9][_-]){2,}[a-z0-9]\b/g, (chunk) => chunk.replace(/[_-]/g, ""));
   next = next.replace(/([a-z]{2,})-([a-z]{2,})/g, "$1$2");
   next = next.replace(/\b(?:[a-z0-9] ){2,}[a-z0-9]\b/g, (chunk) => chunk.replace(/ /g, ""));
   next = next.replace(/\b(?:[a-z0-9]\.){2,}[a-z0-9]\b/g, (chunk) => chunk.replace(/\./g, ""));
@@ -132,7 +132,8 @@ const STRIP = [
   /\bdying (?:for|to|of)\b/g,
   /\b(?:dead|died) (?:tired|serious|link|simple|slow|weight|end|heat|silence|pixel)(?! of (?:living|life|everything))\b/g,
   /\b(?:almost |nearly )?died (?:laughing|of embarrassment)\b/g,
-  /\b(?:phone|battery|laptop|device|detector|charger|screen|keyboard|link|session|plant|server|printer|page|video|demo|tab|brain|feet)(?: battery| link)? (?:is |are |was |were |will be |gonna be )?(?:dead|died|dying)\b/g,
+  /\b(?:the|my|our|el|la|a|an)\s+(?!friend|mom|dad|mother|father|brother|sister|kid|baby|person|neighbor|patient|hijo|hija|madre|padre|hermano|hermana)\w+\s+(?:is|are|was|were|esta|estan)\s+(?:dead|died|dying|muerto|muerta)\b/g,
+  /\b(?:phone|battery|laptop|device|detector|charger|screen|keyboard|link|session|plant|server|printer|page|video|demo|tab|brain|feet)(?: battery| link)? (?:is |are |was |were |will be |gonna be )?(?:dead|died|dying|muerto|muerta)\b/g,
   /\b(?:my |the |our |el |la )?(?:phone|battery|laptop|link|enlace|session|plant|server|printer) (?:is |esta |are )?(?:dead|died|dying|muerto|muerta)\b/g,
   /\bbattery\b[^.]{0,48}\b(?:dead|died|dying)\b/g,
   /\bkill (?:the |a |an )?(?:lights|sound|autoplay|banner|cookie|tab|chat|switch|two birds|background)\b/g,
@@ -214,8 +215,8 @@ const LIVE = /\b(live|living|alive|life|vida)\b/;
 const NEG = /\b(dont|doesnt|no|nao|non|nicht|not|never|ya)\b/;
 const HARD = /\b(noose|gun|pistol|shotgun|razor|bleach|bala)\b/;
 const MEANS = /\b(rope|soga|knife|blade|pill\w*|tablet\w*|pastill\w*|bridge|cliff\w*|bottle|veneno|insulin|tylenol|ibuprofen|aspirin|paracetamol|frasco|bullet)\b/;
-const DRUG = /\b(pill\w*|tablet\w*|pastil\w*|tylenol|ibuprofen|aspirin|paracetamol|insulin\w*|veneno|meds|medicine|medication|prescription|bottle|frasco|painkiller\w*|capsule\w*)\b/;
-const TOOK = /\b(take|took|taken|taking|ate|eaten|swallow\w*|drank|chugg\w*|tome|tomo|trague|inhal\w*|inject\w*|inyect\w*|\bod\b|oded)\b/;
+const DRUG = /\b(pill\w*|tablet\w*|pastil\w*|tylenol|ibuprofen|aspirin|paracetamol|insulin\w*|veneno|meds|medicin\w*|benzo\w*|botiquin|cleaner|antifreeze|lejia|desatascador|medicine|medication|prescription|bottle|frasco|painkiller\w*|capsule\w*)\b/;
+const TOOK = /\b(take|took|taken|taking|ate|eaten|swallow\w*|drank|downed|chugg\w*|tome|tomo|tomar\w*|trague|trag\w*|bebi\w*|inhal\w*|inject\w*|inyect\w*|\bod\b|oded)\b/;
 const PLAN = /\b(plan|setup|dawn|midnight|sunday|drawer|closet|noche)\b/;
 const PAGE = /\b(page|guide|article|notebook)\b/;
 const RISK = /\b(lethal|fatal|deadly|overdos\w*|suicid\w*|noose|dose|painless\w*)\b/;
@@ -226,180 +227,73 @@ const COMPARE = /\b(rather|better|happier|tired|done|cant|cannot|refuse|stop\w*|
 
 function anchored(text) {
   if (!text) return false;
-  if (/\b(suicid\w*|unaliv\w*|kms|self ?harm\w*|overdos\w*|sobredos\w*|farmi|taglio|dano|lethal|letal|dosis|\bod\b|oded|olmek|oldur\w*|morrer\w*|morir\w*|muri\w*|muer\w*|morire|mourir|sterben|toten|matar\w*|muert\w*|tuer\b|uccid\w*|umbring\w*|intihar\w*|ahorc\w*|soga)\b/.test(text) && !/\bmuero de\b/.test(text)) return true;
-  if (/\b(mat(?:ar\w*|arme|arse|are|ara|ase|o|a)|cortarme|cortarse|ahorcarme|quitarme|pegarme|colgarme|lanzarme|se mata|me mato)\b/.test(text)) return true;
-  if (/\bme tuer\b/.test(text) || /\bkendimi\b/.test(text) && /\b(oldur\w*|olmek|intihar\w*)\b/.test(text)) return true;
-  if (!/\ben vivo\b/.test(text) && near(text, NEG, /\bvivo\b/, 36)) return true;
-  if (near(text, /\b(want\w*|wish\w*|quier\w*)\b/, /\bout\b/, 16) && /\b(life|living|alive|pointless|anymore|vida)\b/.test(text)) return true;
-  if (near(text, /\bplan\w*\b/, DEATH, 40) || /\bplan\w* it\b/.test(text) || near(text, /\bplan\w*\b/, /\bdo it\b/, 24)) return true;
-  if (/\b(do it|doing it|lo hago|way out)\b/.test(text) && /\b(dawn|noche|medianoche|amanecer|monday|tuesday|wednesday|thursday|saturday|friday|sunday|tomorrow|tonight|midnight|manana|lunes|martes|miercoles|jueves|viernes|sabado|domingo)\b/.test(text)) return true;
-  if (/\b(date is set|set a date|set the day|chosen the day|ya elegi|todo listo)\b/.test(text)) return true;
-  if (near(text, TOOK, /\b(everything|whole|shelf|handful)\b/, 32)) return true;
-  if (near(text, DRUG, DEATH, 48)) return true;
-  if (near(text, /\b(slic\w*|inhal\w*|inject\w*|inyect\w*|engine)\b/, /\b(arm|wrist\w*|gas|fumes|insulin\w*|running|idling|exhaust|me|my|mi)\b/, 32)) return true;
-  if (near(text, /\b(delet\w*|finish\w*)\b/, SELF, 16) || /\bfinish\w* me off\b/.test(text)) return true;
-  if (near(text, /\bfin\b/, /\b(jours|vida)\b/, 24)) return true;
-  if (/\bdriv\w* into\b[^.]{0,32}\b(wall|overpass|traffic)\b/.test(text)) return true;
-  if (near(text, /\b(crash|hit)\b/, /\bme\b/, 24) && /\b(car|wall|coche)\b/.test(text)) return true;
-  if (near(text, /\bdeshar\w*\b/, /\b(mi|me)\b/, 16)) return true;
-  if (near(text, /\bdejar\w*\b/, /\brespir\w*\b/, 16)) return true;
-  if (near(text, /\b(desped\w*|goodbye|farewell)\b/, /\b(vida|life)\b/, 16)) return true;
-  if (near(text, /\b(voy|irme|quier\w*)\b/, /\bmundo\b/, 24) && (/\b(voy|irme|mejor)\b/.test(text) || NEG.test(text))) return true;
-  if (near(text, /\bsleep\w*\b/, /\bforever\b/, 16)) return true;
-  if (near(text, /\babout to\b/, /\b(jump\w*|die|kill\w*|cut\w*)\b/, 12)) return true;
-  if (near(text, DEATH, /\b(easier|exit|painless\w*|better)\b/, 32)) return true;
-  if (near(text, /\balive\b/, /\btoo many\b/, 32) || /\bnever been born\b/.test(text)) return true;
-  if (near(text, /\bwhy\b/, /\b(breath\w*|living|alive)\b/, 28) && /\b(should|keep|bother)\b/.test(text)) return true;
-  if (near(text, /\b(giving|give)\b/, /\bup\b/, 8) && LIVE.test(text)) return true;
-  if (near(text, NEG, /\bsurviv\w*\b/, 16)) return true;
-  if (near(text, DEATH, /\bmorning\b/, 20) && /\b(will|by|be)\b/.test(text) && !/\b(phone|battery|plant|link|session)\b/.test(text)) return true;
-  if (near(text, /\b(not coming back|not come back)\b/, /\b(bridge|puente|water|tonight|forever|sunrise)\b/, 48)) return true;
-  if (near(text, /\bjump\w*\b/, /\b(puente|again|surviv\w*)\b/, 24)) return true;
-  if (/\bnot be here\b/.test(text) || /\bwont be coming back\b/.test(text)) return true;
-  if (near(text, /\bya no\b/, /\bestar\b/, 24)) return true;
-  if (near(text, /\b(point|reason)\b/, /\bwak\w*\b/, 24)) return true;
-  if (/\b(im|ill|i will|should i) (do it|doing it)\b/.test(text)) return true;
-  if (/\bfinish\w* it\b/.test(text) && /\b(weekend|tonight|cabin|alone|sunday|tomorrow|garage|bath\w*|friday|saturday)\b/.test(text)) return true;
-  if ((/\btonight is the\b/.test(text) && /\bnight\b/.test(text)) || (/\blast night\b/.test(text) && /\bearth\b/.test(text)) || /\bthats the day\b/.test(text)) return true;
-  if (/\bcant go on\b/.test(text)) return true;
-  if (near(text, /\b(goodbye|farewell|adios)\b/, /\b(world|cruel|mundo)\b/, 20)) return true;
-  if (/\bsee tomorrow\b/.test(text) && NEG.test(text)) return true;
-  if (near(text, /\bdone\b/, /\b(lake|lago|bridge|puente|garage|roof|quarry|overpass|tracks|woods)\b/, 40) && /\b(saturday|sunday|monday|tuesday|wednesday|thursday|friday|tonight|tomorrow|domingo|sabado)\b/.test(text)) return true;
-  if (near(text, COMPARE, DEATH, 48) || near(text, COMPARE, /\b(gone|wak\w*|exist\w*|disappear\w*)\b/, 36)) return true;
+  if (/\bwo finde ich\b/.test(text) && /\b(seite|preis|handy|schlussel|konto|karte|link|buero|formular)\b/.test(text)) {
+    const rest = text.replace(/\bdie\b/g, " ");
+    if (!DEATH.test(rest) && !MEANS.test(rest) && !HARD.test(rest)) return false;
+  }
+  if (/\bmy will\b/.test(text) && /\b(lawyer|estate|attorney|executor|signed|notar)\b/.test(text) && !DEATH.test(text) && !/\b(live|alive|life)\b/.test(text)) return false;
+  if (near(text, /\blost\b/, /\bwill\b/, 16) && !/\b(lawyer|estate|attorney|executor|notar)\b/.test(text)) return true;
+  if (/\b(suicid\w*|unaliv\w*|kms|self ?harm\w*|overdos\w*|sobredos\w*|lethal|letal|dosis|painless\w*|\bod\b|oded|olmek|oldur\w*|morrer\w*|morir\w*|muri\w*|muer\w*|morire|mourir|sterben|toten|matar\w*|muert\w*|tuer\b|uccid\w*|umbring\w*|intihar\w*|ahorc\w*|soga|noose|dano|farmi|taglio|zabi\w*)\b/.test(text) && !/\bmuero de\b/.test(text) && !/\b(?:mourir|morir) de rire\b/.test(text)) return true;
+  if (/\b(mat(?:ar\w*|arme|arse|are|ara|ase|o|a)|cortarme|cortarse|cortare|ahorcarme|quitarme|pegarme|colgarme|colgarse|colgare|lanzarme|se mata|me mato|tomarme|tomarse|envenen\w*|me tuer|jogarme|me jogar|jogar me|asmak|asiyor\w*|asacag\w*|asilir\w*|hacerme)\b/.test(text)) return true;
+  if (/\bkendimi\b/.test(text) && /\b(oldur\w*|olmek|intihar\w*|asmak|asiyor\w*|asacag\w*|asilir\w*)\b/.test(text)) return true;
+  if (near(text, DEATH, PERSON, 48) || near(text, DEATH, SELF, 40) || near(text, DEATH, /\b(he|she|they|yo|vill|wil|jag)\b/, 40)) return true;
+  if (near(text, COMPARE, DEATH, 48) || near(text, WISH, DEATH, 40)) return true;
+  if (near(text, DEATH, /\b(easier|exit|better|tonight|morning|tomorrow)\b/, 32) && !/\b(phone|battery|plant|link|session|page)\b/.test(text)) return true;
+  if (near(text, COMPARE, /\b(gone|wak\w*|exist\w*|disappear\w*)\b/, 36)) return true;
   if (NEG.test(text) && near(text, COMPARE, LIVE, 40)) return true;
-  if (near(text, /\b(cant|cannot|dont|wont)\b/, LIVE, 24)) return true;
-  if (near(text, /\b(stop\w*|quit\w*|tired|done|cant|cannot|refuse|rather|better|happier|sick|exhaust\w*)\b/, LIVE, 32)) return true;
-  if (near(text, /\bnot\b/, /\b(alive|exist\w*|wak\w*)\b/, 16)) return true;
-  if (near(text, DEATH, TIME, 40)) return true;
-  if (near(text, /\b(die|dies|died|dying|dead|death|alive|gone|no more)\b/, /\b(tonight|morning|tomorrow|last)\b/, 24)) return true;
-  if (near(text, /\b(do it|doing it|lo hago)\b/, /\b(river|rio|lake|lago|pier|highway|tracks|vias|garage|garaje|roof|bridge|puente|cliff\w*|bath\w*|bano|banera|balcony|balcon\w*|azotea|carretera|parking|overpass|quarry|subway|platform|woods|presa|cantera|estacionamiento|cabin|patio)\b/, 48)) return true;
-  if (near(text, TIME, /\b(river|rio|lake|lago|pier|highway|tracks|vias|garage|garaje|roof|bridge|puente|cliff\w*|bath\w*|bano|banera|balcony|balcon\w*|azotea|carretera|parking|overpass|quarry|subway|platform|woods|presa|cantera|estacionamiento|cabin|patio|mall)\b/, 48) || near(text, /\bdecid\w*\b/, TIME, 32)) return true;
-  if (near(text, /\b(tomorrow|friday|monday|manana|sabado|domingo|jueves)\b/, /\b(river|rio|lake|lago|pier|highway|tracks|vias|garage|garaje|roof|bridge|puente|cliff\w*|bath\w*|bano|banera|balcony|balcon\w*|azotea|carretera|parking|overpass|quarry|subway|platform|woods|presa|cantera|estacionamiento|cabin|patio)\b/, 48)) return true;
-  if (/\b(ahog|estrangul|inyect|lanz|salt|dispar|clav|prend|estrell|arroj)(ar\w*|er\w*|ir\w*|e|o)\b/.test(text)) return true;
-  if (near(text, /\b(dejar\w*|ire|irme)\b/, /\b(mundo|balcon\w*|caer)\b/, 28)) return true;
-  if (near(text, /\bquitar\w*\b/, /\b(me|yo|medio)\b/, 18)) return true;
-  if (near(text, /\bend\w*\b/, /\bthings\b/, 12)) return true;
-  if (/\b(wont|will not) be (here|around)\b/.test(text) || /\bya no estar\w*\b/.test(text)) return true;
-  if (near(text, /\b(meter\w*|via|vias)\b/, /\b(tren|vias|via)\b/, 24)) return true;
-  if ((near(text, /\b(going|walking|driving)\b/, /\b(tracks|vias|highway|railway|cliff\w*|roof|pier|bridge|puente)\b/, 32) || near(text, /\bgo to\b/, /\b(garage|garaje|bridge|puente|roof)\b/, 28) && /\b(sleep\w*|tonight|alone|midnight)\b/.test(text)) && !/\bpage\b/.test(text)) return true;
-  if (near(text, DRUG, /\b(bath\w*|bano|banera)\b/, 32)) return true;
-  if (near(text, /\bwont\b/, /\bhere\b/, 12) || near(text, /\bwant\w*\b/, /\bhere\b/, 16) && NEG.test(text)) return true;
-  if (near(text, MEANS, /\b(garage|garaje|closet|drawer|bath\w*)\b/, 28)) return true;
-  if (near(text, /\b(wrist\w*|munec\w*)\b/, TIME, 28) || near(text, /\b(cut\w*|cort\w*|slit\w*)\b/, /\bmunec\w*\b/, 16)) return true;
-  if (near(text, /\bpurpose\b/, /\b(wall|drive|car|crash)\b/, 24)) return true;
-  if (near(text, /\bsick\b/, LIVE, 16)) return true;
-  if (near(text, /\breason\w*\b/, /\b(live|going|vivir)\b/, 20)) return true;
-  if (near(text, /\bmethod\b/, /\b(night|garage|picked|chose|chosen)\b/, 64)) return true;
-  if (near(text, /\b(do it|doing it)\b/, /\b(tomorrow|tonight|midnight|friday|sunday)\b/, 32)) return true;
-  if (near(text, PERSON, DEATH, 48)) return true;
-  if (near(text, HARM, SELF, 40)) return true;
-  if (near(text, TOOK, /\b(poison\w*|veneno|bleach)\b/, 36)) return true;
-  if (near(text, TOOK, DRUG, 40) && !/\b(aquarium|organizer|dissolve|vitamin)\b/.test(text) && !(/\bsomeone\b/.test(text) && !PERSON.test(text))) return true;
-  if (near(text, TIME, MEANS, 48) || near(text, TIME, HARD, 48)) return true;
-  if (near(text, MEANS, /\b(have|got|holding|ready|mano|hand|with|con)\b/, 32) || near(text, HARD, /\b(have|got|holding|ready|mano|hand|with|con)\b/, 32)) return true;
-  if (near(text, /\b(how many|how much|how to|how high|how far|what dose|which)\b/, /\b(die|dead|death|kill\w*|lethal|fatal|overdos\w*|fall|dose|noose|bleed\w*)\b/, 56)) return true;
-  if (near(text, /\bend\w*\b/, /\b(it|myself|himself|herself|life|lives|vida|todo)\b/, 18)) return true;
-  if (near(text, PAGE, /\b(last words|final message|suicid\w*|disappear\w*|lethal|overdos\w*|painless\w*|deadly)\b/, 48) || near(text, /\b(about|cover|store)\b/, /\b(final message|last words|mensaje final|ultimas palabras|goodbye forever|adios para siempre)\b/, 40)) return true;
-  if (near(text, DEATH, WISH, 40) || near(text, DEATH, SELF, 40)) return true;
-  if (near(text, /\bbetter\b/, /\bwithout\b/, 16) && /\bme\b/.test(text)) return true;
-  if (near(text, /\bgone\b/, /\b(when|im|am)\b/, 16)) return true;
-  if (near(text, /\bpain\b/, /\bstop\w*\b/, 16)) return true;
-  if (near(text, /\blife\b/, /\bworth\b/, 16)) return true;
-  if (near(text, /\blife\b/, /\b(over|own)\b/, 16)) return true;
-  if (near(text, /\b(cansad\w*|hart\w*|tired)\b/, /\b(vivir|vivo|living|alive)\b/, 24)) return true;
-  if (near(text, /\b(do it|doing it)\b/, /\b(garage|bath|bridge|cliff\w*|roof|balcon\w*|balcony)\b/, 40)) return true;
-  if (near(text, /\bplan\b/, /\b(bath|balcon\w*|balcony|garage|roof|bridge|midnight|dawn)\b/, 40)) return true;
-  if (/\b(take|taking|end\w*|ended) (her|his|their|my|own) (life|lives)\b/.test(text) || near(text, /\bstay\b/, /\balive\b/, 16)) return true;
-  if (near(text, /\btir(ar|are|arme|arse)\w*\b/, /\b(balcon\w*|puente|bridge|cliff\w*)\b/, 32)) return true;
-  if (near(text, /\bdesaparec\w*\b/, /\b(siempre|forever|permanent\w*)\b/, 24)) return true;
-  if (near(text, WISH, HARM, 24)) return true;
-  if (near(text, DRUG, /\bpurpose\b/, 32)) return true;
-  if (near(text, /\btired\b/, /\b(living|life|exist\w*)\b/, 16)) return true;
-  if (near(text, /\bend\w*\b/, /\beverything\b/, 16)) return true;
-  if (near(text, /\bplan\b/, /\b(banera|bath)\b/, 40)) return true;
-  if (/\b(tirare|tirarme|tirarse|ahorc\w*|matarme|matarse)\b/.test(text)) return true;
-  if (near(text, /\bjump\w*\b/, /\b(train|tonight|will|front|plan(?:s|ned|ning)?|she|he|they)\b/, 32)) return true;
-  if (near(text, WISH, /\bjump\w*\b/, 24)) return true;
-  if (near(text, HARM, PLAN, 32)) return true;
-  if (/\b(cortarme|cortarse|cortare|tomarme|tomarse|colgarme|colgarse|colgare|envenen\w*|pegarme|pegare|quitarme|intihar\w*|uccid\w*|zabi\w*|finita|lejia|antifreeze|tramadol|benzos|desatascador|escopeta|cuchillo|botiquin|acantilado|umbring\w*)\b/.test(text)) return true;
-  if (near(text, /\boff\b/, /\bmyself\b/, 12)) return true;
-  if (near(text, /\brather\b/, /\blive\b/, 16)) return true;
-  if (near(text, /\b(refuse|done)\b/, /\b(live|life)\b/, 16)) return true;
-  if (near(text, /\bout\b/, /\blife\b/, 12)) return true;
-  if (near(text, /\bend\w*\b/, /\blives\b/, 16)) return true;
-  if (near(text, /\bdejar\w*\b/, CEASE, 16)) return true;
-  if (near(text, /\bno\b/, /\bllegar\w*\b/, 12)) return true;
-  if (near(text, /\bpondr\w*\b/, /\bfin\b/, 12)) return true;
-  if (near(text, /\bmy will\b/, /\b\w+\b/, 8)) return true;
-  if (/\b(desaparec\w*|conmigo|cleaner|painful\w*)\b/.test(text)) return true;
-  if (near(text, /\bquitarme\b/, /\b\w+\b/, 4)) return true;
-  if (near(text, /\blive\b/, /\b(wont|cant|cannot|nothing|refuse)\b/, 24)) return true;
-  if (near(text, /\bvida\b/, /\b(vale|fin)\b/, 16)) return true;
-  if (near(text, /\b(take|taking)\b/, /\beverything\b/, 16)) return true;
-  if (near(text, /\bwithout me\b/, /\b(lighter|world|everyone|cope)\b/, 24)) return true;
-  if (/\b(rage quit|six feet|let me go)\b/.test(text)) return true;
-  if (/\bis cutting\b/.test(text)) return true;
-  if (near(text, /\bbarrel\b/, /\bmouth\b/, 24)) return true;
-  if (near(text, /\b(slit\w*|cut\w*|cort\w*)\b/, /\bthroat\b/, 16)) return true;
-  if (near(text, /\bacab\w*\b/, /\b(se|me)\b/, 16)) return true;
-  if (near(text, /\btirar\w*\b/, /\b(se|me|vida|balcon\w*|puente)\b/, 24)) return true;
-  if (near(text, HARM, SELF, 32) || near(text, /\bfire\b/, SELF, 24) || near(text, /\b(cut\w*|slit\w*|cort\w*|slic\w*)\b/, TIME, 32) || near(text, HARM, /\b(me|mi|yo|se|su|ella|el|he|she|his|her|their|they|them|vecin\w*|amig\w*|herman\w*|pacient\w*)\b/, 80) || near(text, /\b(cut\w*|cort\w*|slit\w*|slash\w*|bleed\w*)\b/, /\b(wrist\w*|arm\w*|brazos)\b/, 24)) return true;
-  if (near(text, WISH, CEASE, 32) || near(text, WISH, /\b(die|dead|death|gone|alive)\b/, 32)) return true;
-  if (near(text, NEG, WISH, 16) && (LIVE.test(text) || CEASE.test(text))) return true;
-  if (near(text, NEG, /\b(leben|vivre|vivere|vivir|exist\w*|seguir|wake\w*|despert\w*|acord\w*|svegli\w*|yasamak)\b/, 32)) return true;
-  if (HARD.test(text)) return true;
-  if (!/\b(aquarium|organizer|dissolve|vitamin|sample)\b/.test(text) && (near(text, MEANS, SELF, 40) || near(text, MEANS, PLAN, 40) || near(text, MEANS, /\b(jump\w*|tonight|myself|i|im|ive|me|my|he|she|him|her|they|yo)\b/, 40))) return true;
-  if (near(text, /\bbridge\b/, /\b(close|jump\w*|tonight|plan|midnight|sunday)\b/, 32)) return true;
-  if (near(text, /\bplan\b/, /\b(dawn|midnight|cliff\w*|bridge|rope|gun|sunday|noche)\b/, 32)) return true;
-  if (near(text, /\b(cliff\w*|bridge|rope|gun|blade)\b/, /\b(cliff\w*|bridge|rope|gun|blade|table|note)\b/, 40)) return true;
-  if (near(text, DEATH, /\b(ich|je|moi|eu|io|i|im|me|my|he|she|they|yo|vill|wil|jag)\b/, 40)) return true;
-  if (near(text, DEATH, PLAN, 32)) return true;
-  if (near(text, TOOK, /\b(poison\w*|veneno)\b/, 32)) return true;
-  if (near(text, HARM, /\bpurpose\b/, 24)) return true;
-  if (near(text, TOOK, DRUG, 40) && !/\b(aquarium|organizer|dissolve|vitamin)\b/.test(text) && (!/\bsomeone\b/.test(text) || /\b(i|im|ive|me|my|you|she|he|they|her|his)\b/.test(text))) return true;
+  if ((NEG.test(text) || /\b(ne|pas|istemiyor\w*)\b/.test(text)) && near(text, /\b(quier\w*|quer\w*|voglio|veux|istiyor\w*|istem\w*|dese\w*|quisier\w*|prefier\w*|gust\w*|ganas|will)\b/, /\b(vivir|viver|vivre|vivere|leben|yasamak|vida|vivi\w*|seguir|exist\w*|esist\w*|despert\w*|acord\w*|svegli\w*|wak\w*|wok\w*)\b/, 36)) return true;
+  if (near(text, /\b(quier\w*|quer\w*|voglio|veux|istiyor\w*|gust\w*)\b/, /\b(exist\w*|esist\w*|disappear\w*|desaparec\w*)\b/, 28)) return true;
+  if (near(text, /\b(cant|cannot|dont|wont)\b/, /\b(alive|exist\w*|wak\w*|vivir|viver|life|living)\b/, 28)) return true;
+  if (near(text, /\b(stop\w*|quit\w*|tired|done|refuse|rather|better|happier|sick|exhaust\w*|cansad\w*|hart\w*)\b/, /\b(live|living|alive|life|vida|exist\w*|vivir|vivo)\b/, 32)) return true;
+  if (near(text, TOOK, DRUG, 40) && !/\b(aquarium|organizer|dissolve|vitamin|sample)\b/.test(text) && !(/\bsomeone\b/.test(text) && !PERSON.test(text))) return true;
+  if (near(text, TOOK, /\b(poison\w*|veneno|bleach|cleaner|antifreeze|lejia|desatascador|everything|whole|shelf|handful|fell)\b/, 36)) return true;
   if (!/\b(aquarium|dissolve|vitamin|sample|organizer)\b/.test(text) && near(text, /\b(whole|entire|handful|all|twenty|thirty|forty|fifteen)\b/, DRUG, 24)) return true;
-  if (near(text, /\b(how many|how much|how to|what dose|which)\b/, RISK, 48)) return true;
-  if (near(text, /\b(how many|how much|how to|what dose)\b/, DEATH, 48)) return true;
-  if (near(text, PAGE, RISK, 48)) return true;
+  if (near(text, /\b(slic\w*|inhal\w*|inject\w*|inyect\w*|engine)\b/, /\b(arm|wrist\w*|gas|fumes|insulin\w*|running|idling|exhaust)\b/, 32)) return true;
+  if (near(text, HARM, SELF, 40) || near(text, /\bfire\b/, SELF, 24) || /\bis cutting\b/.test(text) || /\bcortand\w*\b/.test(text) || near(text, /\b(slit\w*|hang\w*|shoot\w*)\b/, /\bplan\w*\b/, 24) || near(text, HARM, /\b(wrist\w*|arm\w*|brazos|throat|munec\w*|purpose|his|her|their|she|he|they|sister|brother|friend|mom|dad|hijo|hija|hermano|hermana|amig\w*)\b/, 40) || near(text, /\b(cort\w*|colgar\w*|ahorcar\w*|pegar\w*|tiro)\b/, /\b(me|se|mi)\b/, 18) || near(text, /\b(barrel|gun|pistol)\b/, /\bmouth\b/, 24)) return true;
+  if (HARD.test(text)) return true;
+  if (near(text, MEANS, /\b(have|got|holding|ready|tied|mano|hand|myself|himself|herself|tonight|drawer|closet|cabinet|setup|plan\w*|close|wrist\w*|arm\w*)\b/, 32) && !/\b(aquarium|organizer|dissolve|vitamin|sample|poster|laundry|photo|lights|page)\b/.test(text)) return true;
+  if (near(text, TIME, MEANS, 48) || near(text, TIME, /\b(river|rio|lake|lago|pier|highway|tracks|garage|garaje|roof|bridge|puente|cliff\w*|bath\w*|balcony|balcon\w*|overpass|quarry|subway|woods|presa|cantera)\b/, 48)) return true;
+  if (near(text, /\b(do it|doing it|lo hago|way out)\b/, /\b(tonight|midnight|dawn|sunday|tomorrow|friday|monday|noche|medianoche|manana|domingo|lunes|viernes|garage|bridge|cliff\w*|roof|bath\w*|balcony|tracks|highway|quarry|overpass)\b/, 48)) return true;
+  if (near(text, /\bplan\w*\b/, DEATH, 40) || near(text, /\bplan\w*\b/, /\b(do it|cliff\w*|bridge|rope|gun|noose|bath\w*|roof|balcon\w*|garage|midnight|dawn)\b/, 40) || (near(text, /\bplan\w*\b/, /\b(tonight|midnight|dawn|sunday|domingo|noche|tomorrow|manana|friday|monday)\b/, 32) && !/\b(pizza|meeting|invoice|shop|price)\b/.test(text))) return true;
+  if (near(text, /\bdecid\w*\b/, TIME, 32)) return true;
+  if (/\b(set|chosen|picked|elegi\w*)\b/.test(text) && /\b(day|date|dia|fecha)\b/.test(text) && PERSON.test(text) && !/\b(meeting|invoice|appointment|shop|price|knife)\b/.test(text)) return true;
+  if (near(text, /\b(how many|how much|how to|how high|how quick|how fast|how long|what dose|which|amount)\b/, /\b(die|dead|death|kill\w*|lethal|fatal|overdos\w*|fall|dose|noose|bleed\w*|method|heart|breath\w*)\b/, 56)) return true;
+  if (/\b(how|what|which|can|could|should)\b/.test(text) && /\b(method|floor|tracks|breath\w*|underwater|dose|height|peaceful|painless\w*)\b/.test(text) && PERSON.test(text) && !/\b(poster|laundry|picture|tag|shelf|costume|trailer|video|page|guide|notebook)\b/.test(text)) return true;
+  if (/\b(wont|will not) be (here|around)\b/.test(text) || /\bnot be here\b/.test(text) || /\bwont be coming back\b/.test(text) || /\bya no estar\w*\b/.test(text) || (/\bestuvier\w*\b/.test(text) && NEG.test(text)) || (near(text, /\bgone\b/, /\b(when|already)\b/, 16) && /\b(im|i|me)\b/.test(text))) return true;
+  if (/\bfor good\b/.test(text) && /\b(check\w*|leav\w*|gone|goodbye|life|myself|exit\w*)\b/.test(text) && !/\b(chat|account|delete|page|shop)\b/.test(text)) return true;
+  if (/\bbetter off\b/.test(text) && /\b(everyone|everybody|without|dead|gone)\b/.test(text)) return true;
+  if (near(text, /\b(want\w*|wish\w*)\b/, /\bout\b/, 16) && /\b(life|living|vida)\b/.test(text)) return true;
+  if (near(text, /\bover\b/, /\bfor me\b/, 16) || (/\bwithout me\b/.test(text) && /\b(world|everyone|everybody|lighter|cope)\b/.test(text))) return true;
+  if (near(text, /\boff\b/, /\b(myself|himself|herself)\b/, 12)) return true;
+  if (near(text, /\bend\w*\b/, /\b(it|myself|himself|herself|life|lives|vida|todo|everything)\b/, 18) || near(text, TIME, /\bend\b/, 16)) return true;
+  if (near(text, /\b(acab\w*|quit\w*|termin\w*|dejar\w*|leave|leaving|pondr\w*)\b/, /\b(vida|todo|life|mundo|world|se|me|noche|conmigo|fin|irl)\b/, 24)) return true;
+  if (near(text, PAGE, /\b(last words|final message|mensaje final|ultimas palabras|goodbye forever|adios para siempre|suicid\w*|disappear\w*|lethal|overdos\w*|painless\w*|painful\w*|deadly|noose)\b/, 48) || near(text, /\b(about|cover|store)\b/, /\b(final message|last words|mensaje final|ultimas palabras|goodbye forever|adios para siempre)\b/, 40) || (/\bend it\b/.test(text) && (PAGE.test(text) || /\b(about|cover|store)\b/.test(text)))) return true;
   if (near(text, PAGE, /\b(bomb|explosive|weapon)\b/, 48) && /\b(how|make|build)\b/.test(text)) return true;
-  if (near(text, /\bend\w*\b/, /\b(it|life|vida|todo)\b/, 16)) return true;
-  if (near(text, /\b(acab\w*|quit\w*|termin\w*|dejar\w*|leave|leaving)\b/, /\b(vida|todo|life|mundo|world)\b/, 24)) return true;
-  if (near(text, /\brather\b/, /\b(here|die|dead|alive|exist\w*)\b/, 24)) return true;
-  if (near(text, /\b(point|reason|sentido)\b/, /\b(alive|live|living|vida|vivir)\b/, 24)) return true;
+  if ((near(text, /\bjump\w*\b/, /\b(bridge|cliff\w*|puente|off|from|train|tonight|roof|balcony|garage|window|he|she|they|himself|herself)\b/, 32) || near(text, /\b(cliff\w*|bridge|puente|rope)\b/, /\b(cliff\w*|bridge|puente|rope)\b/, 40)) && !/\bpage\b/.test(text)) return true;
+  if (near(text, /\b(goodbye|farewell|adios|desped\w*)\b/, /\b(forever|siempre|world|cruel|mundo|vida|life)\b/, 24) || near(text, /\bforever\b/, /\b(me|myself|gone)\b/, 24)) return true;
+  if (/\b(ahog|estrangul|inyect|lanz|salt|dispar|clav|prend|estrell|arroj)(ar\w*|er\w*|ir\w*|e|o)\b/.test(text) || /\btirar\w*\b/.test(text)) return true;
+  if (near(text, DRUG, DEATH, 48)) return true;
+  if (near(text, /\b(disappear\w*|desaparec\w*)\b/, /\b(forever|permanent\w*|siempre)\b/, 24)) return true;
+  if ((near(text, /\b(going|walking|driving)\b/, /\b(tracks|highway|cliff\w*|roof|bridge|puente|garage)\b/, 32) || near(text, /\b(do it|doing it)\b/, /\b(garage|bridge|cliff\w*|roof|bath\w*|balcony)\b/, 40)) && !/\bpage\b/.test(text)) return true;
+  if (/\b(im|ill|i will|should i) (do it|doing it|use it)\b/.test(text)) return true;
+  if (near(text, /\babout to\b/, /\b(jump\w*|die|kill\w*|cut\w*|end)\b/, 16)) return true;
+  if (near(text, /\bfin\b/, /\b(jours|vida|life|me|conmigo)\b/, 16)) return true;
+  if (/\bdriv\w* into\b[^.]{0,32}\b(wall|overpass)\b/.test(text) || (near(text, /\b(crash|hit)\b/, /\bme\b/, 24) && /\b(car|wall|coche)\b/.test(text))) return true;
+  if (near(text, /\b(not|never|no)\b/, /\b(wak\w*|wok\w*|despert\w*|acord\w*|svegli\w*|vivir|viver|vivere)\b/, 18) || near(text, /\bsleep\w*\b/, /\bforever\b/, 16) || near(text, /\b(pain|heart)\b/, /\bstop\w*\b/, 20) || near(text, /\b(life|vida)\b/, /\b(worth|vale|over)\b/, 16) || near(text, /\b(point|reason|sentido|razon)\b/, /\b(alive|live|living|vida|vivir|vivi\w*|seguir)\b/, 28) || near(text, /\balive\b/, /\b(last|tonight)\b/, 24)) return true;
+  if (/\b(take|taking|took|taken|end\w*)\b/.test(text) && /\b(my|her|his|their|own)\b/.test(text) && /\blife\b/.test(text)) return true;
+  if (near(text, DRUG, /\b(purpose|alcohol|vodka|wine)\b/, 32)) return true;
   if (near(text, /\b(who|quien)\b/, /\b(find|encontrar)\b/, 24) && /\bme\b/.test(text)) return true;
-  if (near(text, /\bstop\w*\b/, /\b(breath\w*|heart)\b/, 24)) return true;
-  if (near(text, /\bjump\w*\b/, /\b(bridge|cliff\w*|off|from)\b/, 24)) return true;
-  if (near(text, /\bdisappear\w*\b/, /\b(forever|permanent\w*|siempre)\b/, 16)) return true;
-  if (near(text, /\b(goodbye|farewell|adios)\b/, /\b(forever|siempre)\b/, 24)) return true;
-  if (near(text, /\blost\b/, /\bwill\b/, 16)) return true;
-  if (near(text, /\b(forever|siempre)\b/, /\b(me|myself|exist\w*)\b/, 24)) return true;
-  if (/\b(quier\w*|quer\w*|voglio|veux|istiyor\w*)\b/.test(text) && (DEATH.test(text) || CEASE.test(text) || LIVE.test(text))) return true;
-  if (near(text, /\b(tonight|midnight|dawn|sunday)\b/, /\b(roof|bridge|garage|cliff\w*|balcony)\b/, 32)) return true;
-  if (/\bme mato\b/.test(text)) return true;
-  if (/\b(painless\w*|en finir|verschwind\w*|atropell\w*|estuvier\w*|umrz\w*)\b/.test(text)) return true;
-  if (near(text, /\bover\b/, /\bfor me\b/, 12)) return true;
-  if (near(text, /\b(yeet|sewer)\b/, /\b(myself|slide)\b/, 16)) return true;
-  if (near(text, /\bpermanently\b/, /\b(clock|quit|end|stop|out|exit\w*|game)\b/, 24)) return true;
-  if (near(text, /\bdood\b/, /\bwil\b/, 12)) return true;
-  if (near(text, /\bcar\b/, /\bhit\b/, 24) && /\bme\b/.test(text)) return true;
-  if (near(text, /\b(never|not)\b/, /\bwok\w*\b/, 16)) return true;
-  if (near(text, /\bcabinet\b/, /\b(tonight|take|everything)\b/, 24)) return true;
-  if (near(text, DRUG, /\b(listas|tengo|todas|ready)\b/, 24)) return true;
-  if (near(text, PAGE, /\b(last words|final message|deadly|painless\w*)\b/, 48)) return true;
-  if (near(text, /\b(last|hears|hear)\b/, /\bfrom me\b/, 24)) return true;
-  if (near(text, /\btonight\b/, /\bend\b/, 16)) return true;
-  if (near(text, TOOK, /\bhandful\b/, 24)) return true;
-  if (near(text, TOOK, /\bfell\b/, 32)) return true;
-  if (near(text, /\b(me|mi)\b/, /\b(tiro|pegare|pegarme)\b/, 24)) return true;
+  if (/\bfrom me\b/.test(text) && /\b(last|hear\w*)\b/.test(text)) return true;
   return false;
 }
+
 
 function softRisk(text) {
   return /\b(tonight|tomorrow|friday|sunday|midnight|dawn|garage|highway|tracks|pier|river|lake|roof|bridge|cliff\w*|pills|pill|rope|gun|plan|sorry|forever|alive|living|cant|cannot|puente|balcon\w*|soga|frasco|noche|manana|lanz\w*|ahog\w*|inyect\w*|estrangul\w*|saltar\w*|estare|oded|vias|mundo|caer|edificio|cable|medio|medication|prescription|handful|sunrise|mall|lot|wall|cabinet|fighting|mornings|burden|yeet|sewer|dood|umrz\w*|vill|finir|verschwind\w*|atropell\w*|pastill\w*|vio|cuarto|bano|carretera|azotea|lago|rio|garaje|decid|listo|despido|accounts|coming back|engine|roommate|bath|bathtub|wrists|wrist|tub|carta|cabeza|capsules|cantera|napkin|quarry|cabin|overpass|respawn|vanish|exiting|deleting|fade|mensaje|llaves|amanecer|prender\w*|estrell\w*|arrojar\w*|clav\w*|jours|via|tren|fuego|coche|bala|gas|arm|deep|born|breathing|breath|underwater|fall|floor|shelf|crash|vivo|method|reasons|keys|letters|bedroom|desk|jump\w*|tuer|finita|returned|packed|guitar|room|regal\w*|necesitar|volver\w*|gato|puedo|weekend|monday|handed|sleep|problem|date|hora|viernes|lunes|dia|perro|boxes|family|waking|saturday|decision|office|cosas|amigos|neighbor|going|nobody|permanently|close|long|calm|exit|today)\b/.test(text);
 }
 
 function warningOnly(text) {
-  return /\b(goodbye|farewell|adios|desped\w*|bye\b|last day|last post|last night|final message|last message|no point|no reason|paid off|gave away|giving away|be around|be here|been decided|next month|next year|finished being|later for me|no longer|no more|stop fighting|burden|way out|mornings|me voy|the end|wont be back|wont need|for good|funeral|empty|passwords|checking out|final wishes|do it|doing it|morning|soon|nothing left|time to go|not around|ready to go|letter|letters|dog|keys|care|donated|giving|carta|perro|note)\b/.test(text) || (/\bmade\b/.test(text) && /\bmind\b/.test(text)) || (/\bpicked\b/.test(text) && /\bday\b/.test(text));
+  return /\b(goodbye|farewell|adios|desped\w*|bye\b|last day|last post|last night|final message|last message|no point|no reason|paid off|gave away|giving away|be around|be here|been decided|next month|next year|finished being|later for me|no longer|no more|stop fighting|burden|way out|mornings|me voy|the end|wont be back|wont need|for good|funeral|empty|passwords|checking out|final wishes|do it|doing it|morning|soon|nothing left|time to go|not around|ready to go|letter|letters|dog|keys|care|donated|giving|carta|perro|note|regal\w*|deje|dejo|cartas|asuntos|despedida|addio|hoscakal|finished|my will)\b/.test(text) || (/\bmade\b/.test(text) && /\bmind\b/.test(text)) || (/\bpicked\b/.test(text) && /\bday\b/.test(text));
 }
 
 function tier1(text) {
@@ -413,6 +307,7 @@ function classifyCurrent(text) {
   let stripped = stripBenign(norm);
   if (/\b(aquarium|dissolve|organizer)\b/.test(stripped) && !TOOK.test(stripped) && !/\b(whole|everything|handful)\b/.test(stripped)) stripped = stripped.replace(/\b(pill\w*|tablet\w*|organizer)\b/g, " ");
   if (anchored(stripped)) return "tier1";
+  if (/\bfeet\b/.test(norm) && /\bunder\b/.test(norm)) return "tier2";
   if (warningOnly(norm) || warningOnly(stripped) || stripped !== norm || TIER2_WORD.test(norm) || TIER2_WORD.test(fold(text)) || softRisk(norm)) return "tier2";
   return "none";
 }

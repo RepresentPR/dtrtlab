@@ -1,6 +1,6 @@
-import { replyFor, CRISIS_REPLY, OTHER_HELP_LINE, REDIRECT, RESOURCE_NOTE, SUGGESTIONS, ERROR_REPLY } from "./safety.mjs?v=20261127-ask50";
-import { classifyCrisis } from "../js/safety-core.mjs?v=20261127-ask50";
-import { normalizeEmail, ownedChat, syncOnLogin, applyDelete, keepAfterExpiredSession, deleteStatus, recordDeleteResult, readStore, logoutStore, STORE_KEY } from "./chat-store.mjs?v=20261127-ask50";
+import { replyFor, CRISIS_REPLY, OTHER_HELP_LINE, REDIRECT, RESOURCE_NOTE, SUGGESTIONS, ERROR_REPLY } from "./safety.mjs?v=20261127-ask51";
+import { classifyCrisis } from "../js/safety-core.mjs?v=20261127-ask51";
+import { normalizeEmail, ownedChat, syncOnLogin, applyDelete, keepAfterExpiredSession, deleteStatus, recordDeleteResult, readStore, logoutStore, STORE_KEY } from "./chat-store.mjs?v=20261127-ask51";
 
 const STORE = STORE_KEY;
 const NOTICE = "dtrt.early-notice";

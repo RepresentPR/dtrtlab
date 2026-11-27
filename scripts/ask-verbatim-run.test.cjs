@@ -1,45 +1,34 @@
-// A 4-word run in the shared classifier must not be a line from QA's export.
+// A 4-word run in the shared classifier must not be a run from the export.
+// The export stays off the repo. CI checks salted hashes of those runs.
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
 
 const SOURCE = path.join(__dirname, '..', 'js', 'safety-core.mjs');
-const EXPORTS = [
-  '/cursor/stores/bot/qa-handoff/pr111/sets',
-  '/home/box/qa-reports/pr111/sets'
-];
+const HASHES = path.join(__dirname, 'fixtures', 'ask-export-4gram.sha256');
+const SALT = 'dtrt-pr111-4gram-v1';
 
 function wordsOf(text) {
   return String(text || '').toLowerCase().match(/[a-z]{2,}/g) || [];
 }
 
-function runs(words, size) {
-  const found = [];
-  for (let i = 0; i + size <= words.length; i += 1) found.push(words.slice(i, i + size).join(' '));
-  return found;
+function digest(phrase) {
+  return crypto.createHash('sha256').update(SALT + '\n' + phrase).digest('hex');
 }
 
 test('safety-core has no 4-word run from the exported sets', () => {
-  const dir = EXPORTS.find((item) => fs.existsSync(item));
-  if (!dir) assert.fail('exported sets are not mounted');
-  const hay = [];
-  for (const name of fs.readdirSync(dir)) {
-    if (!name.endsWith('.json') || name === 'manifest.json') continue;
-    const rows = JSON.parse(fs.readFileSync(path.join(dir, name), 'utf8'));
-    for (const row of rows) {
-      const text = Array.isArray(row.text) ? row.text.join(' ') : row.text;
-      hay.push(String(text || '').toLowerCase());
-    }
-  }
-  const blob = hay.join('\n');
-  const sourceWords = wordsOf(fs.readFileSync(SOURCE, 'utf8'));
+  assert.ok(fs.existsSync(HASHES), 'salted 4-word hashes are missing');
+  const lines = fs.readFileSync(HASHES, 'utf8').trim().split('\n');
+  assert.ok(lines.length > 1000, 'hash list is too small to be the export');
+  for (const line of lines) assert.match(line, /^[a-f0-9]{64}$/);
+  const known = new Set(lines);
+  const words = wordsOf(fs.readFileSync(SOURCE, 'utf8'));
   const hits = [];
-  for (let size = 4; size <= 8; size += 1) {
-    for (const phrase of new Set(runs(sourceWords, size))) {
-      if (blob.includes(phrase)) hits.push(phrase);
-    }
+  for (let i = 0; i + 4 <= words.length; i += 1) {
+    const phrase = words.slice(i, i + 4).join(' ');
+    if (known.has(digest(phrase))) hits.push(phrase);
   }
-  const unique = [...new Set(hits)].filter((phrase) => !hits.some((other) => other !== phrase && other.includes(phrase) && other.length > phrase.length));
-  assert.deepEqual(unique, [], 'verbatim runs:\n' + unique.slice(0, 40).join('\n'));
+  assert.deepEqual([...new Set(hits)], [], 'verbatim runs:\n' + hits.slice(0, 40).join('\n'));
 });
