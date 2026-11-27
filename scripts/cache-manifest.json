@@ -4,12 +4,12 @@
     "key": "20261115-ask1"
   },
   "ask/passages.js": {
-    "hash": "a457222f12db05aa095f71433884446bd543d21f0cf21dc4adee11724dd28aee",
-    "key": "20261123-links2"
+    "hash": "51dd60b77dc38b3b9e72aa4bccb76566415be0804449ffbe078d6d58526063c6",
+    "key": "20261127-links3"
   },
   "ask/ui.js": {
-    "hash": "e8cb24344e36a96ed04d6647f6290289bfe5024f4347ee3ac0a7c38e3a41e567",
-    "key": "20261123-links2"
+    "hash": "9d187d7b8101cc33ffbb98928ff15725952e24ddd4f6fe635eeab6fb54cd29c0",
+    "key": "20261127-links4"
   },
   "content/clips.js": {
     "hash": "a5c0cfa45b00524fbc1d2de324ec0f19031af1fce1ff80c092c465e2e29cd1e4",
@@ -198,8 +198,8 @@
     "key": "20261010n"
   },
   "js/biz-lang.js": {
-    "hash": "72b71457be095735897c89298d59eae17e67bcdbbf4263119259eea2409644dc",
-    "key": "20261115-legal3"
+    "hash": "752f0aac19e47b077c37c48517d0c14ebe7a9ec8b48c4785606413ee5483364b",
+    "key": "20261127-legal4"
   },
   "js/calm.js": {
     "hash": "0405c18592b384288ccddc73a9948b1517c5cb88224f3b6f2cac6b817302f03f",
@@ -324,8 +324,8 @@
     "key": "20261010n"
   },
   "js/nav.js": {
-    "hash": "90eea9152e2819b0d9f1836b80a1b16a0e67be384660dc797a335a04caa77b04",
-    "key": "20261123-links2"
+    "hash": "918131d8f5341a083ed7b6d04d850d43df805ec3f2c2c10c6540296fc8aed12a",
+    "key": "20261127-links4"
   },
   "js/plan-tool.js": {
     "hash": "687e9bc23bcb839927457b71cad5ac30e36edcd4593be1f5a8bdd79786e50cee",
@@ -352,7 +352,7 @@
     "key": null
   },
   "js/stats.js": {
-    "hash": "f02abd1939268a7d0517cc16079c9b2ba9d1b3b885be17bb457971b27466764b",
+    "hash": "913f29555bfff7afa916f40388eb8c4e4ed777780f1a2a93fd4287c7e9d457cc",
     "key": null
   },
   "js/story-guide.mjs": {
@@ -376,8 +376,8 @@
     "key": "20261123-links2"
   },
   "links/links.css": {
-    "hash": "39791aaa8a42cddc4baf3e9b1f0e46ee0f96b4aabcac2a9803eaaf756156cedd",
-    "key": "20261123-links2"
+    "hash": "6d03f521b02b9151b5b287158ae37f6858e2dbba7007392f3d7f7b758d9186a5",
+    "key": "20261127-links3"
   },
   "live/board/board.css": {
     "hash": "271c8299d305455798896d2ce641363b2207128b1c0f82d392c138629c4d3e04",
@@ -416,8 +416,8 @@
     "key": null
   },
   "sw.js": {
-    "hash": "22009bd039b41a12e5b3d164cd3f513fffd43ec527560808c6969cf460b211ad",
-    "key": "20261123-links2"
+    "hash": "9b2083496d55f571f718f50fddff47905f9d8d1677edd446d188dc078d00b719",
+    "key": "20261127-links4"
   },
   "watch/watch.css": {
     "hash": "0b8026e65ae3b40c91b7dfdf31a94e579c60b0222bd1d5ce8999b2ffc29870f1",
