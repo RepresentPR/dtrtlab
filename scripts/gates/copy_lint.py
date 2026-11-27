@@ -57,15 +57,20 @@ EXTRA_PAIRS = {
     "7e2faed68eeab2d1", "fd4c6689d5e97d23",                      # generic kids phrases
     "04548b1dcbe9b7d0",                                          # generic "the kids"
     "29f20e8e14d01617",                                          # hyphenated / split wait-list
+    "3753d200556d4ceb",                                          # singular "my kid"
 }
 # n-gram hashes (3+ tokens), same scheme. "live ai" is a special case in lint_text
 # so a negation only exempts the pair when it denies the liveness claim itself.
 EXTRA_PHRASES = {
     "25091ef1f29cac39",  # MOTION paraphrase
     "76254501fcfadf99", "ab90ae9f487e0e3f", "f577150ae719f46b", "189d2a10daac1298",  # AI-is-live claims
+    "989ac231168b9387", "492235eba8c93212", "63960f909b13fe4c",  # Spanish AI-is-live claims
 }
 AI_LIVE_PHRASES = {
     "76254501fcfadf99", "ab90ae9f487e0e3f", "f577150ae719f46b", "189d2a10daac1298",
+}
+ES_LIVE_PHRASES = {
+    "989ac231168b9387", "492235eba8c93212", "63960f909b13fe4c",
 }
 # Island-name tokens restored for Brain §3 path-scoping (marketplace / home store / fiction only).
 ISLAND_SINGLE = {
@@ -99,7 +104,7 @@ DENY_PREDICATES = {
     "connected", "connect", "connects", "connecting",
     "activated", "activate", "activates", "activating", "activation",
     "active", "available", "online", "ready", "enabled", "enable", "enables",
-    "offered", "launched", "running", "live", "on", "up",
+    "offered", "launched", "running", "live",
 }
 LIVE_AI = ("live", "ai")
 DISCLOSURE = "Referral link. We earn from fees. Trading is risky, not financial advice."
@@ -108,10 +113,17 @@ MOTION_OPENER_ES = "Enlace de afiliado. Ganamos una comisión."
 MOTION_OFFICIAL = "Zero nicotine and zero tobacco, too."
 MOTION_OFFICIAL_ES = "Cero nicotina y cero tabaco, también."
 MOTION_LINK = re.compile(r"motionpouches\.com", re.I)
+HTML_BREAK = re.compile(
+    r"</?(?:li|ul|ol|tr|td|th|p|br|h[1-6]|div|section|article|blockquote)\b",
+    re.I,
+)
+LINE_LIST_MARK = re.compile(r"[\n\r][ \t]*(?:[-*+]|\d+\.)[ \t]")
+BOS_LIST_MARK = re.compile(r"[ \t]*(?:[-*+]|\d+\.)[ \t]")
+MIDLINE_LIST_GAP = re.compile(r"^[ \t]*(?:[-*+]|\d+\.)[ \t]*$")
+DASH_BREAK = {"\N{EM DASH}", "\N{EN DASH}", "\N{HORIZONTAL BAR}", "\N{MINUS SIGN}"}
+SENTENCE_CHARS = set(".!?:;·•|\n\r")
 HARD_BREAK = re.compile(
-    r"[.!?\n\r|·•]"
-    r"|</?(?:li|ul|ol|tr|td|th|p|br|h[1-6]|div|section|article|blockquote)\b"
-    r"|(?:^|[\n\r])\s*(?:[-*+]|\d+\.)\s",
+    r"[.!?:;\n\r|·•\u2014\u2013]|</?(?:li|ul|ol|tr|td|th|p|br|h[1-6]|div|section|article|blockquote)\b",
     re.I,
 )
 MARKETPLACE_PATH = re.compile(
@@ -305,11 +317,66 @@ def phrase_hash(toks):
     return h(" ".join(toks))
 
 
+def _is_emoji(ch):
+    o = ord(ch)
+    return (
+        0x1F000 <= o <= 0x1FAFF
+        or 0x1F1E6 <= o <= 0x1F1FF
+        or 0x2600 <= o <= 0x27BF
+        or 0x2300 <= o <= 0x23FF
+        or 0x2B00 <= o <= 0x2BFF
+        or o in (0x00A9, 0x00AE, 0x2122, 0x3030, 0x303D)
+    )
+
+
+def _at_line_start(text, pos):
+    return pos == 0 or text[pos - 1] in "\n\r"
+
+
+def _midline_list_gap(text, end_a, start_b):
+    """True when the gap is only a mid-line list marker (hyphen, asterisk, plus, or 1.)."""
+    gap = text[end_a:start_b]
+    if "\n" in gap or "\r" in gap:
+        return False
+    if not MIDLINE_LIST_GAP.match(gap):
+        return False
+    return not _at_line_start(text, end_a)
+
+
 def hard_break_between(text, end_a, start_b):
-    """True if the live+AI bigram (or an AI-is-live n-gram) crosses a sentence, bullet, or list break."""
+    """True if the live+AI bigram (or an AI-is-live n-gram) crosses a sentence, bullet, or list break.
+
+    List-marker breaks (-, *, +, 1.) count only at a real line start (after a newline
+    plus optional indent, or the start of the text), never mid-line. A mid-line
+    period that is only an ordered-list marker is not a sentence end. Em dashes,
+    colons, semicolons, and emoji are sentence-level breaks.
+    """
     if start_b < end_a:
         return True
-    return bool(HARD_BREAK.search(text[end_a:start_b]))
+    gap = text[end_a:start_b]
+    if not gap:
+        return False
+    if _midline_list_gap(text, end_a, start_b):
+        return False
+    if any(ch in SENTENCE_CHARS or ch in DASH_BREAK or _is_emoji(ch) for ch in gap):
+        return True
+    if HTML_BREAK.search(gap):
+        return True
+    if LINE_LIST_MARK.search(gap):
+        return True
+    if _at_line_start(text, end_a) and BOS_LIST_MARK.match(gap):
+        return True
+    return False
+
+
+def live_ai_partner(toks, i, text):
+    """Index of a following 'ai' that forms a live+AI bigram, skipping a mid-line '1.' marker."""
+    if i + 1 < len(toks) and toks[i + 1][0] == "ai":
+        return i + 1
+    if i + 2 < len(toks) and toks[i + 1][0].isdigit() and toks[i + 2][0] == "ai":
+        if _midline_list_gap(text, toks[i][3], toks[i + 2][2]):
+            return i + 2
+    return None
 
 
 def is_neg_at(words, j):
@@ -365,9 +432,37 @@ def liveness_denied(words, start, end):
     return False
 
 
+def es_neg_in(seq):
+    """True if a Spanish liveness denial sits in this token span (no, nunca, todavía no, aún no)."""
+    for i, w in enumerate(seq):
+        if w in {"no", "nunca"}:
+            return True
+        if w in {"aun", "todavia"} and i + 1 < len(seq) and seq[i + 1] == "no":
+            return True
+    return False
+
+
+def es_liveness_denied(words, start, end):
+    """True when a Spanish negation denies the liveness claim itself."""
+    lo = max(0, start - 6)
+    hi = min(len(words), end + 6)
+    return es_neg_in(words[lo:start]) or es_neg_in(words[end:hi])
+
+
+def _norm_official(text):
+    """Case-fold and collapse whitespace, including spaces around punctuation, for official wording."""
+    t = re.sub(r"\s+", " ", fold(text)).strip()
+    return re.sub(r"\s*([,.;:!?])\s*", r"\1", t)
+
+
+def has_motion_official(text):
+    n = _norm_official(text)
+    return _norm_official(MOTION_OFFICIAL) in n or _norm_official(MOTION_OFFICIAL_ES) in n
+
+
 def motion_needs_opener(text):
     raw = str(text)
-    triggered = MOTION_OFFICIAL in raw or MOTION_OFFICIAL_ES in raw or bool(MOTION_LINK.search(raw))
+    triggered = has_motion_official(raw) or bool(MOTION_LINK.search(raw))
     if not triggered:
         return False
     return MOTION_OPENER not in raw and MOTION_OPENER_ES not in raw
@@ -389,8 +484,9 @@ def lint_text(text, ai_voice=False, sets=None, path=None):
             if pair in pairs:
                 if not (pair in ISLAND_PAIRS and island_ok_at(path, raw, start)):
                     issues.append(("PAIR", n, "pair#" + pair))
-            if (t, toks[i + 1][0]) == LIVE_AI:
-                if not hard_break_between(raw, toks[i][3], toks[i + 1][2]) and not liveness_denied(words, i, i + 2):
+            if t == "live":
+                j = live_ai_partner(toks, i, raw)
+                if j is not None and not hard_break_between(raw, toks[i][3], toks[j][2]) and not liveness_denied(words, i, j + 1):
                     issues.append(("TERM", n, "term#" + h("live ai")))
         for ngram in range(3, 7):
             if i + ngram > len(toks):
@@ -402,6 +498,11 @@ def lint_text(text, ai_voice=False, sets=None, path=None):
                 if hard_break_between(raw, toks[i][3], toks[i + ngram - 1][2]):
                     continue
                 if liveness_denied(words, i, i + ngram):
+                    continue
+            if ph in ES_LIVE_PHRASES:
+                if hard_break_between(raw, toks[i][3], toks[i + ngram - 1][2]):
+                    continue
+                if es_liveness_denied(words, i, i + ngram):
                     continue
             issues.append(("TERM", n, "term#" + ph))
     if "candles" in tokens(text) and DISCLOSURE not in raw:  # exact case and wording

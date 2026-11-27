@@ -39,6 +39,10 @@ OUR_AI_NOW_LIVE = w(111, 117, 114, 32, 65, 73, 32, 105, 115, 32, 110, 111, 119, 
 MY_SON = w(109, 121, 32, 115, 111, 110)
 MY_DAUGHTER = w(109, 121, 32, 100, 97, 117, 103, 104, 116, 101, 114)
 MY_KIDS = w(109, 121, 32, 107, 105, 100, 115)
+MY_KID = w(109, 121, 32, 107, 105, 100)
+IA_EN_VIVO = w(73, 65, 32, 101, 110, 32, 118, 105, 118, 111)
+IA_EN_DIRECTO = w(73, 65, 32, 101, 110, 32, 100, 105, 114, 101, 99, 116, 111)
+IA_YA_DISPONIBLE = w(73, 65, 32, 121, 97, 32, 100, 105, 115, 112, 111, 110, 105, 98, 108, 101)
 MI_HIJA = w(109, 105, 32, 104, 105, 106, 97)
 MI_HIJO = w(109, 105, 32, 104, 105, 106, 111)
 THE_KIDS = w(116, 104, 101, 32, 107, 105, 100, 115)
@@ -157,6 +161,16 @@ class CopyLintTests(unittest.TestCase):
                         "reordered opener must fail")
         self.assertEqual(copy_lint.lint_text("MOTION: " + MOTION_GOOD + " " + MOTION_OPENER), [])
         self.assertEqual(copy_lint.lint_text(MOTION_OPENER + " " + MOTION_LINK), [])
+        self.assertTrue(copy_lint.lint_text("MOTION: " + MOTION_GOOD.lower()),
+                        "lowercase official wording without the opener must fail")
+        self.assertTrue(copy_lint.lint_text("MOTION: " + MOTION_GOOD.upper()),
+                        "uppercase official wording without the opener must fail")
+        self.assertTrue(copy_lint.lint_text("MOTION: " + MOTION_GOOD.title()),
+                        "title-case official wording without the opener must fail")
+        spaced = MOTION_GOOD.replace(" ", "  ").replace(",", " , ")
+        self.assertTrue(copy_lint.lint_text("MOTION: " + spaced),
+                        "whitespace-drifted official wording without the opener must fail")
+        self.assertEqual(copy_lint.lint_text("MOTION: " + MOTION_GOOD.lower() + " " + MOTION_OPENER), [])
 
     def test_signup_queue_and_retired_handle_fail(self):
         self.assertTrue(copy_lint.lint_text("Join the " + QUEUE_WORD + " today."))
@@ -175,6 +189,10 @@ class CopyLintTests(unittest.TestCase):
         self.assertEqual(copy_lint.lint_text("Very early AI test, not live yet."), [])
         self.assertEqual(copy_lint.lint_text("The assistant shown is a scripted preview; " + LIVE_AI + " is not connected."), [])
         self.assertEqual(copy_lint.lint_text("This switch does not activate " + LIVE_AI + " or paid work."), [])
+        self.assertTrue(copy_lint.lint_text("Try our " + LIVE_AI + ", not on sale."))
+        self.assertTrue(copy_lint.lint_text("Try our " + LIVE_AI + ", not up for debate."))
+        self.assertEqual(copy_lint.lint_text("The " + LIVE_AI + " is not live yet."), [])
+        self.assertEqual(copy_lint.lint_text("This " + LIVE_AI + " isn't live."), [])
 
     def test_live_ai_bigram_does_not_match_across_breaks(self):
         self.assertEqual(copy_lint.lint_text("Go live. AI stays a very early test, not live yet."), [])
@@ -184,12 +202,32 @@ class CopyLintTests(unittest.TestCase):
         self.assertEqual(copy_lint.lint_text("Go live?\nAI stays a very early test, not live yet."), [])
         self.assertEqual(copy_lint.lint_text("status: live\n- AI spend ops"), [])
         self.assertTrue(copy_lint.lint_text("Try our " + LIVE_AI + " today."))
+        self.assertTrue(copy_lint.lint_text("live - AI is ready."))
+        self.assertTrue(copy_lint.lint_text("live * AI is ready."))
+        self.assertTrue(copy_lint.lint_text("live + AI is ready."))
+        self.assertTrue(copy_lint.lint_text("live 1. AI is ready."))
+        self.assertTrue(copy_lint.lint_text("our live - AI never sleeps."))
+        self.assertTrue(copy_lint.lint_text("live-AI is ready."), "tight hyphen still counts")
+        self.assertEqual(copy_lint.lint_text("Go live: AI stays a very early test, not live yet."), [])
+        self.assertEqual(copy_lint.lint_text("Go live; AI stays a very early test, not live yet."), [])
+        self.assertEqual(copy_lint.lint_text("Go live" + "\u2014" + "AI stays a very early test, not live yet."), [])
+        self.assertEqual(copy_lint.lint_text("Go live" + chr(0x1F680) + " AI stays a very early test, not live yet."), [])
 
     def test_generic_kids_phrases_fail(self):
-        for phrase in (MY_SON, MY_DAUGHTER, MY_KIDS, MI_HIJA, MI_HIJO, THE_KIDS, BARE_DAUGHTER):
+        for phrase in (MY_SON, MY_DAUGHTER, MY_KIDS, MY_KID, MI_HIJA, MI_HIJO, THE_KIDS, BARE_DAUGHTER):
             with self.subTest(phrase=len(phrase)):
                 self.assertTrue(copy_lint.lint_text("Weekend with " + phrase + "."))
 
+
+    def test_spanish_ai_live_claims_fail_and_denials_pass(self):
+        self.assertTrue(copy_lint.lint_text(IA_EN_VIVO + " ahora."))
+        self.assertTrue(copy_lint.lint_text("Prueba nuestra " + IA_EN_DIRECTO + "."))
+        self.assertTrue(copy_lint.lint_text("Nuestra " + IA_YA_DISPONIBLE + "."))
+        todavia = "todav" + chr(237) + "a no est" + chr(225) + " en vivo"
+        self.assertEqual(copy_lint.lint_text("Prueba de IA muy temprana, " + todavia + "."), [])
+        self.assertEqual(copy_lint.lint_text(IA_EN_VIVO + "? A" + chr(250) + "n no."), [])
+        self.assertEqual(copy_lint.lint_text("A" + chr(250) + "n no hay " + IA_EN_VIVO + "."), [])
+        self.assertEqual(copy_lint.lint_text("Nuestra " + IA_EN_DIRECTO + " todav" + chr(237) + "a no."), [])
 
 class DoneGateTests(unittest.TestCase):
     def run_gate(self, body, extra_files=()):
