@@ -516,15 +516,46 @@ function legalStampProblems(file, baseHtml, headHtml, now = new Date()) {
   return out;
 }
 
+function stripWorkerMaps(src) {
+  let out = String(src || '');
+  for (const name of ['FILES', 'OVERRIDE', 'EMBED']) {
+    const re = new RegExp('\\bconst ' + name + '\\s*=\\s*\\{');
+    const m = re.exec(out);
+    if (!m) continue;
+    const start = m.index;
+    const brace = out.indexOf('{', start);
+    let depth = 0;
+    for (let i = brace; i < out.length; i++) {
+      const c = out[i];
+      if (c === '{') depth++;
+      else if (c === '}') {
+        depth--;
+        if (depth === 0) {
+          let end = i + 1;
+          if (out[end] === ';') end++;
+          out = out.slice(0, start) + out.slice(end);
+          break;
+        }
+      }
+    }
+  }
+  return out;
+}
+
+// Assets the worker actually injects into page HTML (script src / link href).
+// Paths that only appear in FILES / OVERRIDE / EMBED maps are not injected.
+function injectedAssetsFromWorkerSource(src) {
+  const stripped = stripWorkerMaps(src);
+  const out = new Set();
+  const re = /<(?:script\b[^>]*\bsrc|link\b[^>]*\bhref)\s*=\s*["'](\/(?:css|js)\/[^"'?#]+)/gi;
+  for (const m of stripped.matchAll(re)) out.add(m[1].replace(/^\//, ''));
+  return [...out];
+}
+
 function workerInjectedAssets() {
   const p = path.join(ROOT, 'cloudflare/_worker.js');
   if (!fs.existsSync(p)) return [];
-  const src = fs.readFileSync(p, 'utf8');
-  const out = new Set();
-  for (const m of src.matchAll(/\/(?:css|js)\/[A-Za-z0-9._-]+\.(?:css|js|mjs)/g)) {
-    out.add(m[0].replace(/^\//, ''));
-  }
-  return [...out];
+  return injectedAssetsFromWorkerSource(fs.readFileSync(p, 'utf8'));
 }
 
 // JS/CSS that exist for Node tests or tooling, not for pages. Reason required.
@@ -538,6 +569,6 @@ module.exports = {
   requiresRetired, silentSkipProblems, passwordSkipProblems, HASHED, GUARD_FILES, isGuardFile, NEGATIVE_LINE, walkAll, kindOf, stringsOf, jsonStrings,
   mailtoProblems, mailtoScan, MAILTO_ALLOW, EMAIL_MAP_LINE, isTextFile, baseContent, LEGAL_PAGE, lastUpdated, legalStampProblems, todayEt,
   ROOT, walk, rel, htmlPages, visibleText, codeOf, decode, isFiction, FICTION_PATHS, BANNED, scanText, scanFile, wordScanFiles,
-  pendingStates, TERM_ALLOW, FREE_MAP_LINE, GUARANTEE, wordingProblems, norm, parseEt, MAX_PROOF_AGE_H, editedFiles, UNREFERENCED_ALLOW, workerInjectedAssets,
+  pendingStates, TERM_ALLOW, FREE_MAP_LINE, GUARANTEE, wordingProblems, norm, parseEt, MAX_PROOF_AGE_H, editedFiles, UNREFERENCED_ALLOW, workerInjectedAssets, injectedAssetsFromWorkerSource, stripWorkerMaps,
   allMatches, context, hashedHits, sha, PLACE_CATS, AGENT_MAIL_HOSTS, agentHost,
 };

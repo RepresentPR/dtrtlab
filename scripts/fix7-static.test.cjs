@@ -299,6 +299,34 @@ test('fix7/5 planted: an edited file no page loads is flagged; page-linked and J
   assert.ok(refd.has('css/identity.css'), 'identity.css is injected by nav.js');
   assert.deepEqual(orphansOf(['js/__planted_orphan__.js', 'css/__planted_orphan__.css'], refd), ['js/__planted_orphan__.js', 'css/__planted_orphan__.css']);
 });
+
+test('fix7/5 workerInjectedAssets counts only injected script/link tags, not FILES-map paths', () => {
+  const src = [
+    'const FILES = {"/js/__planted__.js":"application/javascript","/css/site.css":"text/css"};',
+    'const OVERRIDE = {"/js/nav.js":{"type":"application/javascript","b64":"abc"}};',
+    "const CRISIS_ROOT = '<link rel=\"stylesheet\" href=\"/css/crisis-line.css?v=1\"><script src=\"/js/crisis-line.js?v=1\"></script>';",
+  ].join('\n');
+  const got = L.injectedAssetsFromWorkerSource(src).sort();
+  assert.deepEqual(got, ['css/crisis-line.css', 'js/crisis-line.js']);
+  assert.equal(got.includes('js/__planted__.js'), false);
+  assert.equal(got.includes('css/site.css'), false);
+  assert.equal(got.includes('js/nav.js'), false);
+});
+
+test('fix7/5 planted file in js/ is flagged when no page or worker injection references it', () => {
+  const plantedRel = 'js/__planted_r8c__.js';
+  const planted = path.join(L.ROOT, plantedRel);
+  fs.writeFileSync(planted, '/* planted: must be flagged as unreferenced */\n');
+  try {
+    const refd = referencedAssets();
+    const orphans = orphansOf([plantedRel], refd);
+    assert.deepEqual(orphans, [plantedRel], 'a js file that only exists on disk (and is not injected) must fail the guard');
+    assert.equal(refd.has(plantedRel), false);
+  } finally {
+    fs.unlinkSync(planted);
+  }
+});
+
 test('fix7/5 every edited JS/CSS file is referenced by some served page', (t) => {
   const edited = L.editedFiles();
   const scope = (edited ?? allAssets).filter((f) => /\.(m?js|css)$/.test(f) && !/^(scripts|tools|\.github)\//.test(f) && fs.existsSync(path.join(L.ROOT, f)));
@@ -361,7 +389,7 @@ test('fix7/7 planted: an edited legal page fails if "Last updated" is missing, u
   ];
   assert.deepEqual(missed(plants, ([b, h]) => L.legalStampProblems('legal/terms.html', b, h, now).length > 0), []);
   assert.deepEqual(L.legalStampProblems('legal/terms.html', page('October 14, 2026'), page('October 16, 2026'), now), []);
-  assert.deepEqual(L.legalStampProblems('legal/cookies.html', page('October 14, 2026', '<script src="/js/nav.js?v=old"></script>'), page('October 14, 2026', '<script src="/js/nav.js?v=new"></script>'), now), [], 'a cache key is not a legal edit');
+  assert.deepEqual(L.legalStampProblems('legal/cookies.html', page('October 14, 2026', '<script src="/js/nav.js?v=20261127r8c"></script>'), page('October 14, 2026', '<script src="/js/nav.js?v=20261127r8c"></script>'), now), [], 'a cache key is not a legal edit');
   assert.deepEqual(L.legalStampProblems('legal/new.html', null, page('October 16, 2026'), now), [], 'new legal page with a stamp is fine');
   assert.equal(L.lastUpdated('Last updated October 3, 2026.'), '2026-10-03');
 });
