@@ -73,7 +73,7 @@
 | Channel | Visual | Cadence idea |
 | --- | --- | --- |
 | X @DTRTLab | Horizontal work still + short caption | Company voice; link free plan |
-| IG @officiallydtrt | Square / 4:5 work stills | Same company voice; Made for all |
+| IG @dtrt.xyng | Square / 4:5 work stills | Same company voice; Made for all |
 | TikTok @iananthonyfc | Vertical covers from real stills | Personal → Lab link |
 | YT @DTRTLabYT | Banner already in `img/brand/`; thumbs from work stills | Proof, not chrome |
 | Twitch dtrtc | Keep stream heat **off** company site; panels stay stream | Dual brand |
