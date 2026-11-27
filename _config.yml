@@ -23,6 +23,8 @@ exclude:
   - brand-kit.md
   - CONTRIBUTING.md
   - README.md
+  - PROGRESS.md
+  - RESULT-done_gate*.txt
   - .env.example
   - .gitignore
   - live/README.md
