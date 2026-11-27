@@ -6,7 +6,7 @@
    are stale-while-revalidate. Media, byte ranges, JSON and third
    parties bypass this worker's cache.
 */
-var VERSION = "20261122-ask1";
+var VERSION = "20261127r8c";
 var CACHE = "dtrtlab-" + VERSION;
 var PRECACHE = [
   "/",
@@ -42,13 +42,12 @@ var PRECACHE = [
   "/css/adapt.css?v=20261010n",
   "/css/hub.css?v=20261010n",
   "/css/afterlight.css?v=20261010n",
-  "/js/nav.js?v=20261127r8b2",
+  "/js/nav.js?v=20261127r8c",
   "/js/hub.js?v=20261010n",
-  "/js/contact-topic.js?v=20261025-freemap1",
+  "/js/contact-topic.js?v=20261127r8c",
   "/js/live-extras.js?v=20261016-qa3",
   "/js/live-pulse.js?v=20261016-qa3",
   "/live/dashboard.js?v=20261016-qa3",
-  "/demo/demo.js?v=20261127h8r8",
   "/js/product.js?v=20261010n",
   "/js/media.js?v=20261010n",
   "/js/content.js?v=20261010n",
@@ -56,7 +55,7 @@ var PRECACHE = [
   "/js/afterlight.js?v=20261010n",
   "/js/releases.js?v=20261115-rel1",
   "/content/clips.js?v=20261010n",
-  "/content/socials.js?v=20261127h8",
+  "/content/socials.js?v=20261127r8c",
   "/js/find-me.js?v=20261013-find1",
   "/css/find-me.css?v=20261013-find1",
   "/find.html",
@@ -64,9 +63,6 @@ var PRECACHE = [
   "/ask/index.html",
   "/js/golive-uncache.js?v=20261127h1",
   "/js/ask-soon.js?v=20261127h1",
-  "/ask/passages.js?v=20261127-r8b2",
-  "/ask/ask.js?v=20261115-ask1",
-  "/ask/ui.js?v=20261127r8b2",
   "/css/knowledge-home.css?v=20261112-notebook1",
   "/css/dream.css?v=20261115-dream4",
   "/css/socials.css?v=20261115-socials3",
@@ -78,7 +74,7 @@ var PRECACHE = [
   "/partners.html",
   "/css/about.css?v=20261011-hub2",
   "/css/growth-home.css?v=20261025-freemap1",
-  "/css/site.css?v=20261011-hub2",
+  "/css/site.css?v=20261127r8c",
   "/css/editorial.css?v=20261011-hub2",
   "/css/identity.css?v=20261010n",
   "/css/experience.css?v=20261010n",
