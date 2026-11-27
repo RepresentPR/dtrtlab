@@ -2,20 +2,21 @@
 
 Public AI chat branch `cursor/public-ai-launch-8a16`.
 
-Head: `3b9b0f7aff9fe68cc5e5b9d7c82b13361806e044`
+Head: `b0d054fe344722433ae614aa061e9e5851f724c6`
 
-FIXED: ask and functions contain no 24-hour flag writer, scripts/ask-no-flag.test.cjs
-FIXED: plain questions show no session pin, 0/30 scripts/ask-no-flag.test.cjs
-FIXED: plain pairs show no session pin, 0/870 scripts/ask-no-flag.test.cjs
-FIXED: fresh third-person danger lines get the helping line, 132/132 scripts/ask-third-person.test.cjs
-FIXED: third-person sheets include the helping line, 10/10 scripts/ask-no-flag.test.cjs
-FIXED: a later plain answer stays pinned after a positive crisis match in the same history, scripts/ask-no-flag.test.cjs
-FIXED: pagePin keeps the 988 box when history is empty, scripts/ask-no-flag.test.cjs
-FIXED: New chat does not clear pagePin and pagePin is not stored, scripts/ask-no-flag.test.cjs
-FIXED: the 988 footer stays on a page answer and an error, scripts/ask-no-flag.test.cjs
-FIXED: crisis-first screen stays 56/56, scripts/public-ai.test.cjs
+FIXED: builder everyday idioms are not sheets, 0/16 scripts/ask-precision.test.cjs
+FIXED: builder plain questions are not sheets, 0/30 scripts/ask-precision.test.cjs
+FIXED: builder site questions are not sheets, 0/32 scripts/ask-precision.test.cjs
+FIXED: builder broad question sweep is not a sheet, 0/100 scripts/ask-precision.test.cjs
+FIXED: builder crisis lines sheet with both helping lines, 6/6 scripts/ask-precision.test.cjs
+FIXED: builder third-person danger lines sheet with the helping line, 132/132 scripts/ask-third-person.test.cjs
+FIXED: builder idiom-plus-crisis lines sheet, 26/26 scripts/ask-qa-fresh.test.cjs
+FIXED: builder idiom-plus-crisis lines sheet, 26/26 scripts/ask-softlock.test.cjs
+FIXED: repo held-out screen set sheets, 56/56 scripts/public-ai.test.cjs
+FIXED: repo held-out clean set false alarms, 0/36 scripts/public-ai.test.cjs
+FIXED: ask and functions have one crisis decider and no pin, scripts/ask-precision.test.cjs
 
-`finish()` is the only call that adds the helping line, and it runs once. `replyFor` pins a non-sheet reply when `opts.pagePin` is true or an earlier turn in `opts.history` is `crisisMatch`. `ask/chat-app.js` keeps `pagePin` in a tab variable. The New chat handler does not clear it. `saveLocal` and `snapshot` do not include it, and the file has no `sessionStorage`. A reload or a new tab starts clear because the variable is not stored. Grep of `ask/` and `functions/` for `writeRiskFlag`, `readRiskFlag`, `RISK_FLAG_KEY`, `RISK_TTL`, and `dtrt.risk` returned no hits. QA's private 116 third-person sheets were not re-run here.
+`crisisSheet()` is the only crisis decider. `finish()` adds the English and Spanish helping lines to every crisis sheet, and it runs once. There is no `pagePin`. Grep of `ask/` and `functions/` found no `crisisMatch`, `wantsSheet`, `hasRisk`, `clearlyClean`, `fullSheet`, `compactReply`, `pagePin`, or `dtrt.risk`.
 
 # copy_lint: QA must-fixes for PR #121 — handoff to QA (2026-11-27)
 
@@ -36,11 +37,12 @@ READY for QA (30/30 gate tests, 4/4 term-list tests): the copy_lint rules close 
 
 ## Not checked
 
-- QA's private 559 and 330 sets were not re-run here, a live D1 signup, and the proof stamp.
+- QA's private 559 crisis set, QA's 116 third-person sheets, QA's unseen 30, and QA's 111 idiom-plus-crisis lines were not re-run here.
+- A live D1 signup, and the proof stamp.
 - A headed pass of live marketplace pages (this PR is lint rules only).
 - Whether every remaining unpublished hash in the lists still matches current rules (only the listed amendment, QA must-fixes, and Brain §3 narrowing were changed).
 - Engagement-bait phrases were left in place (out of scope for this amendment).
 - proof-freshness, which stays red on main until the Postiz key rotation (ops, outside this PR).
 - Whether main will have moved by the time this handoff is published (update-branch is used only if it has).
 
-Local `node --test scripts/*.test.cjs`: 423 tests, 413 pass, 0 fail, 10 skip.
+Local `node --test scripts/*.test.cjs`: 427 tests, 417 pass, 0 fail, 10 skip.
