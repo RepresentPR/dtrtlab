@@ -146,8 +146,8 @@
     "key": null
   },
   "css/neural-glow.css": {
-    "hash": "11556f6879f01844168d9cdda9f106b48ac079d57b57b67a374831845f7f9f5c",
-    "key": "20261127-store4"
+    "hash": "9e625686e52330e33dddfea6dc8eacdee4cf64442a265422b82ca42458903942",
+    "key": "20261127-store6"
   },
   "css/scene-base.css": {
     "hash": "14d8a1d586d432a1ac71c76ed4b15a860001737fed9a27f5f22f8e0ccdbe87e9",
@@ -335,6 +335,13 @@
     "hash": "cd208aa1427b91b3e57fb49a314a9dfd1320d043d4e0b0284c87a52d7fafc8ab",
     "key": "20261010n"
   },
+  "js/mercado-allowlist.js": {
+    "hash": "c2255b95d324112d8ac15e00e139b8aed3420cd215942088102db2930dbfeb5c",
+    "key": [
+      "20261127-store6",
+      null
+    ]
+  },
   "js/nav.js": {
     "hash": "e5c352f4e1b21aa065d0c4b401eb548083816d41c19490db4e00aa4383dbcf34",
     "key": "20261122-ask1"
@@ -360,8 +367,8 @@
     "key": "20261115-social6"
   },
   "js/shop-helper.js": {
-    "hash": "7500d26b71756f6577b10e640bf5a7d5b125e48bc9eddb4ab83b2c1efa4e7e90",
-    "key": "20261127-store2"
+    "hash": "0f5f610035e4399e244bf1304acea89946c21f4a8783316b9a9955eb86cb6cdb",
+    "key": "20261127-store6"
   },
   "js/shop.js": {
     "hash": "1d629e1828cded14e2a3e055e89b5c3e2109271fa33192c201144889dc1f76c1",

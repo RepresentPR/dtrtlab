@@ -4,6 +4,17 @@
 (function (root) {
   "use strict";
 
+  var allow = null;
+  if (typeof module === "object" && module.exports) {
+    try { allow = require("./mercado-allowlist.js"); } catch (e) { allow = null; }
+  }
+  if (!allow && root.DtrtMercado) allow = root.DtrtMercado;
+
+  function isSafeProductQuery(term) {
+    if (allow && typeof allow.isSafeProductQuery === "function") return allow.isSafeProductQuery(term);
+    return { ok: false, reason: "no-allowlist" };
+  }
+
   function fold(s) {
     return String(s || "")
       .toLowerCase()
@@ -15,34 +26,34 @@
 
   var CATALOG = [
     {
+      id: "jafra",
+      href: "https://www.jafra.com/es/?pws=sabrinacrespo",
+      title: { en: "My mom's Jafra shop", es: "La tienda Jafra de mi mamá" },
+      keywords: ["skin", "skincare", "perfume", "fragancia", "fragrance", "maquillaje", "makeup", "belleza", "beauty", "jafra", "cosmetic", "cosmetico", "cosmetics", "crema", "cream", "mama", "mom"]
+    },
+    {
+      id: "biz",
+      href: "/contact.html",
+      title: { en: "DTRT Lab AI for business", es: "IA de DTRT Lab para negocios" },
+      keywords: ["negocio", "negocios", "business", "oficina", "office", "servicio", "service", "empresa", "empresas"]
+    },
+    {
       id: "motion",
-      href: "/links/#motion",
+      href: "https://www.motionpouches.com?bg_ref=VLwp0g3b5W",
       title: { en: "MOTION caffeine pouches", es: "Bolsitas de cafeína MOTION" },
       keywords: ["energy", "energia", "energetica", "energetico", "caffeine", "cafeina", "pouch", "pouches", "bolsita", "bolsitas", "motion"]
     },
     {
-      id: "jafra",
-      href: "/links/#jafra",
-      title: { en: "My mom's Jafra shop", es: "La tienda Jafra de mi mamá" },
-      keywords: ["skin", "skincare", "perfume", "fragancia", "fragrance", "maquillaje", "makeup", "belleza", "beauty", "jafra", "cosmetic", "cosmetico", "cosmetics", "crema", "cream"]
-    },
-    {
-      id: "ai",
-      href: "/links/#ai",
-      title: { en: "Ask DTRT Lab, our AI", es: "Ask DTRT Lab, nuestra IA" },
-      keywords: ["ai", "ia", "negocio", "negocios", "business", "chatbot", "chat", "ask", "dtrt", "assistant", "asistente"]
-    },
-    {
       id: "candles",
-      href: "/links/#candles",
+      href: "https://buycandles.xyz/invite?ref=dtrt",
       title: { en: "Candles", es: "Candles" },
       keywords: ["trading", "trade", "trader", "crypto", "cripto", "candles", "operar"]
     },
     {
-      id: "sell",
-      href: "/mercado/",
-      title: { en: "Vende con nosotros", es: "Vende con nosotros" },
-      keywords: ["sell", "selling", "seller", "vender", "venta", "vendedores", "mercado", "tienda"]
+      id: "ai",
+      href: "#card-ai",
+      title: { en: "Ask DTRT Lab, our AI", es: "Ask DTRT Lab, nuestra IA" },
+      keywords: ["ask", "chatbot", "chat", "assistant", "asistente", "pregunta"]
     }
   ];
 
@@ -127,31 +138,43 @@
     var emptyEs = results.getAttribute("data-empty-es") || "Todavía no hay una coincidencia en el catálogo. Escríbenos y te señalamos la página más cercana.";
     var contact = results.getAttribute("data-contact") || "/contact.html";
 
+    var crisis = doc.getElementById("shop-crisis");
+
+    function hideCrisis() {
+      if (crisis) crisis.hidden = true;
+    }
+
+    function showCrisis() {
+      while (results.firstChild) results.removeChild(results.firstChild);
+      results.hidden = true;
+      if (crisis) crisis.hidden = false;
+      var cards = doc.querySelectorAll("[data-shop-id]");
+      for (var i = 0; i < cards.length; i++) cards[i].hidden = true;
+    }
+
     function render() {
       var q = input.value;
       var lang = langOf();
       var cards = doc.querySelectorAll("[data-shop-id]");
-      var matches = search(q, lang);
       while (results.firstChild) results.removeChild(results.firstChild);
       if (!fold(q)) {
         results.hidden = true;
-        for (var i = 0; i < cards.length; i++) cards[i].hidden = false;
+        hideCrisis();
+        applyCat();
         return;
       }
+      if (!isSafeProductQuery(q).ok) {
+        showCrisis();
+        return;
+      }
+      var matches = search(q, lang);
+      if (!matches.length) {
+        showCrisis();
+        return;
+      }
+      hideCrisis();
       results.hidden = false;
       var shown = {};
-      if (!matches.length) {
-        var p = doc.createElement("p");
-        p.className = "shop-empty";
-        p.appendChild(doc.createTextNode((lang === "es" ? emptyEs : emptyEn) + " "));
-        var a = doc.createElement("a");
-        a.href = contact;
-        a.textContent = lang === "es" ? "Contacto" : "Contact";
-        p.appendChild(a);
-        results.appendChild(p);
-        for (var j = 0; j < cards.length; j++) cards[j].hidden = true;
-        return;
-      }
       var list = doc.createElement("ul");
       list.className = "shop-matches";
       matches.forEach(function (m) {
@@ -176,9 +199,33 @@
     input.addEventListener("input", render);
     var go = doc.getElementById("shop-go");
     if (go) go.addEventListener("click", render);
+
+    var chips = doc.querySelectorAll(".store-chips .chip");
+    var cat = "all";
+    function applyCat() {
+      if (fold(input.value)) { render(); return; }
+      var cards = doc.querySelectorAll("[data-shop-id]");
+      for (var i = 0; i < cards.length; i++) {
+        var id = cards[i].getAttribute("data-shop-id") || cards[i].getAttribute("data-cat") || "";
+        cards[i].hidden = !(cat === "all" || id === cat);
+      }
+    }
+    for (var c = 0; c < chips.length; c++) {
+      chips[c].addEventListener("click", function () {
+        var next = this.getAttribute("data-cat") || "all";
+        if (cat === next && next !== "all") next = "all";
+        cat = next;
+        for (var k = 0; k < chips.length; k++) {
+          var on = chips[k].getAttribute("data-cat") === cat;
+          chips[k].classList.toggle("is-on", on);
+          chips[k].setAttribute("aria-pressed", on ? "true" : "false");
+        }
+        applyCat();
+      });
+    }
   }
 
-  var api = { fold: fold, search: search, catalog: CATALOG, bind: bind, dist: dist };
+  var api = { fold: fold, search: search, catalog: CATALOG, bind: bind, dist: dist, isSafeProductQuery: isSafeProductQuery };
   if (typeof module === "object" && module.exports) module.exports = api;
   root.DTRT_SHOP = api;
   if (root.document) {
