@@ -8,8 +8,8 @@
     "key": "20261127-links6"
   },
   "ask/ui.js": {
-    "hash": "595c145466c7aa699b02f89e3f039792f83ebf88528cdd076f9cd65e129efbb7",
-    "key": "20261127-links6"
+    "hash": "58e17b0b5963c731b1037f6d148c30d6c9d5dacca2e36d5fd3ca18476516ab4f",
+    "key": "20261127-links7"
   },
   "content/clips.js": {
     "hash": "a5c0cfa45b00524fbc1d2de324ec0f19031af1fce1ff80c092c465e2e29cd1e4",
@@ -324,8 +324,8 @@
     "key": "20261010n"
   },
   "js/nav.js": {
-    "hash": "dff6b96ac8d01875d19e625a47e146733a270d8f175a8cdd6063aecfe4a67bab",
-    "key": "20261127-links6"
+    "hash": "f091500e896ddff594702f6d5498194a5ecd92e12e787799b8ee3eceec61a5c7",
+    "key": "20261127-links7"
   },
   "js/plan-tool.js": {
     "hash": "687e9bc23bcb839927457b71cad5ac30e36edcd4593be1f5a8bdd79786e50cee",
@@ -372,8 +372,8 @@
     "key": "20261115-dream10"
   },
   "links/lang.js": {
-    "hash": "e25d3727c8a0e5c57f9187fb9c8aa74f479d07cfe4607cf6744c66571550b95a",
-    "key": "20261123-links2"
+    "hash": "e88ed4604629377cb5c3beeb5272e3dee8efa7c7c1950e5c6c9e6ad688115665",
+    "key": "20261127-links7"
   },
   "links/links.css": {
     "hash": "6d03f521b02b9151b5b287158ae37f6858e2dbba7007392f3d7f7b758d9186a5",
@@ -416,8 +416,8 @@
     "key": null
   },
   "sw.js": {
-    "hash": "1efd29ded7d424ef4e1aac9ee0aae06a9e42bcfd779400bdcd8e59a4483e4aa1",
-    "key": "20261127-links6"
+    "hash": "9f5008b4c5a1224a6cc6c6efe9b4d10eb54b21b19bf6ef009676242bead2e844",
+    "key": "20261127-links7"
   },
   "watch/watch.css": {
     "hash": "0b8026e65ae3b40c91b7dfdf31a94e579c60b0222bd1d5ce8999b2ffc29870f1",
