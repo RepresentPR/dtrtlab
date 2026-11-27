@@ -22,17 +22,17 @@ w = lambda *codes: "".join(map(chr, codes))
 ISLAND = w(80, 117, 101, 114, 116, 111) + " " + w(82, 105, 99, 111)
 EMPLOYER = w(67, 97, 108, 105, 98, 101, 114)
 TOWN = w(67, 108, 105, 110, 116, 111, 110)
-SOMD = w(83, 111, 77, 68)
-DMV = w(68, 77, 86)
+REGION_ABBR = w(83, 111, 77, 68)
+METRO_ABBR = w(68, 77, 86)
 STATE = w(109, 97, 114, 121, 108, 97, 110, 100)
 ISLAND_TOKEN = w(98, 111, 114, 105, 99, 117, 97)
-WAITLIST = w(119, 97, 105, 116, 108, 105, 115, 116)
+QUEUE_WORD = w(119, 97, 105, 116, 108, 105, 115, 116)
 OLD_HANDLE = w(111, 102, 102, 105, 99, 105, 97, 108, 108, 121, 100, 116, 114, 116)
 MOTION_BAD = w(67, 97, 102, 102, 101, 105, 110, 101, 32, 112, 111, 117, 99, 104, 101, 115, 32, 119, 105, 116, 104, 32, 110, 111, 32, 110, 105, 99, 111, 116, 105, 110, 101, 46)
 MOTION_GOOD = w(90, 101, 114, 111, 32, 110, 105, 99, 111, 116, 105, 110, 101, 32, 97, 110, 100, 32, 122, 101, 114, 111, 32, 116, 111, 98, 97, 99, 99, 111, 44, 32, 116, 111, 111, 46)
-INVESTORS = w(105, 110, 118, 101, 115, 116, 111, 114, 115)
-OUR_INVESTORS = w(111, 117, 114, 32, 105, 110, 118, 101, 115, 116, 111, 114, 115)
-INVESTORS_BACKED = w(105, 110, 118, 101, 115, 116, 111, 114, 115, 32, 98, 97, 99, 107, 101, 100)
+BACKER_WORD = w(105, 110, 118, 101, 115, 116, 111, 114, 115)
+OUR_BACKERS = w(111, 117, 114, 32, 105, 110, 118, 101, 115, 116, 111, 114, 115)
+BACKERS_BACKED = w(105, 110, 118, 101, 115, 116, 111, 114, 115, 32, 98, 97, 99, 107, 101, 100)
 AI_IS_LIVE = w(65, 73, 32, 105, 115, 32, 108, 105, 118, 101)
 LIVE_AI = w(108, 105, 118, 101, 32, 65, 73)
 OUR_AI_NOW_LIVE = w(111, 117, 114, 32, 65, 73, 32, 105, 115, 32, 110, 111, 119, 32, 108, 105, 118, 101)
@@ -55,7 +55,7 @@ class CopyLintTests(unittest.TestCase):
         self.assertEqual(copy_lint.lint_text("Four quick fixes for a slow week. Free map at dtrtlab.com"), [])
 
     def test_personal_location_and_employer_fail_even_with_accents_and_case(self):
-        for text in (f"my {EMPLOYER} days", f"near {TOWN}", f"shot in {SOMD}", f"{DMV} area shop",
+        for text in (f"my {EMPLOYER} days", f"near {TOWN}", f"shot in {REGION_ABBR}", f"{METRO_ABBR} area shop",
                      "Rinc" + chr(243) + "n vibes"):
             with self.subTest(text=len(text)):
                 self.assertTrue(copy_lint.lint_text(text))
@@ -69,8 +69,8 @@ class CopyLintTests(unittest.TestCase):
     def test_bare_state_name_is_allowed_personal_location_terms_are_not(self):
         self.assertEqual(copy_lint.lint_text(f"A {STATE} filing is not required."), [])
         self.assertTrue(copy_lint.lint_text(f"near {TOWN}"))
-        self.assertTrue(copy_lint.lint_text(SOMD))
-        self.assertTrue(copy_lint.lint_text(DMV))
+        self.assertTrue(copy_lint.lint_text(REGION_ABBR))
+        self.assertTrue(copy_lint.lint_text(METRO_ABBR))
 
     def test_output_never_prints_the_word(self):
         issues = copy_lint.lint_text(f"near {TOWN}")
@@ -115,17 +115,17 @@ class CopyLintTests(unittest.TestCase):
             with redirect_stdout(io.StringIO()):
                 self.assertEqual(copy_lint.main([str(Path(d, "empty-dir-missing"))]), 1)
 
-    def test_investor_claims_fail_but_bare_word_passes(self):
-        self.assertEqual(copy_lint.lint_text(f"Notes for an {INVESTORS} briefing."), [])
-        self.assertTrue(copy_lint.lint_text(OUR_INVESTORS + " agree."))
-        self.assertTrue(copy_lint.lint_text(INVESTORS_BACKED + " the shop."))
+    def test_backer_claims_fail_but_bare_word_passes(self):
+        self.assertEqual(copy_lint.lint_text(f"Notes for an {BACKER_WORD} briefing."), [])
+        self.assertTrue(copy_lint.lint_text(OUR_BACKERS + " agree."))
+        self.assertTrue(copy_lint.lint_text(BACKERS_BACKED + " the shop."))
 
     def test_motion_paraphrase_fails_official_wording_passes(self):
         self.assertTrue(copy_lint.lint_text("MOTION: " + MOTION_BAD))
         self.assertEqual(copy_lint.lint_text("MOTION: " + MOTION_GOOD + " Affiliate link. We earn a commission."), [])
 
-    def test_waitlist_and_retired_handle_fail(self):
-        self.assertTrue(copy_lint.lint_text("Join the " + WAITLIST + " today."))
+    def test_signup_queue_and_retired_handle_fail(self):
+        self.assertTrue(copy_lint.lint_text("Join the " + QUEUE_WORD + " today."))
         self.assertTrue(copy_lint.lint_text("Find us at @" + OLD_HANDLE))
         self.assertEqual(copy_lint.lint_text("Find us at @dtrt.xyng"), [])
 
