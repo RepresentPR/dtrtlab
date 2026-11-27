@@ -2,7 +2,7 @@
 
 Public AI chat branch `cursor/public-ai-launch-8a16`.
 
-Head: `pending`
+Head: `d204df802ecb3f51633bd0700755e5212038fbf6`
 
 Risk is checked on the whole session before any page answer. Any risk, including indirect wording, returns the 988 sheet. A message with no page match also gets the sheet, then the closest pages or /contact. The calm "no good answer yet" reply is not used for unmatched messages. Rate limits and chat storage isolation stay as they were.
 
