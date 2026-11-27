@@ -2,23 +2,21 @@
 
 Public AI chat branch `cursor/public-ai-launch-8a16`.
 
-Head: `d298ab96fa2305eecd73ce228d3040922cdac34c`
+Head: `07efcad926980a36155cc89c821d66dcd8161f68`
 
-FIXED: idiom plus a real crisis returns the full sheet, 26/26 scripts/ask-softlock.test.cjs
-FIXED: a separate plain list sets no flag, 0/30 scripts/ask-softlock.test.cjs
-FIXED: plain question pairs end unflagged, 0/870 scripts/ask-softlock.test.cjs
-FIXED: the 24h flag keeps its first time and a plain follow-up shows the 988 box, 1/1 scripts/ask-softlock.test.cjs
-FIXED: ending-it lines set the flag, 22/22 scripts/ask-heldout-flag.test.cjs
-FIXED: pill and bleach lines set the flag, 22/22 scripts/ask-heldout-flag.test.cjs
-FIXED: cut and bleeding lines set the flag, 22/22 scripts/ask-heldout-flag.test.cjs
-FIXED: Spanish me quitaré la vida lines set the flag, 22/22 scripts/ask-heldout-flag.test.cjs
-FIXED: unattributed act lines set the flag, 22/22 scripts/ask-heldout-flag.test.cjs
-FIXED: news and someone-else lines get the sheet without the flag, 22/22 scripts/ask-heldout-flag.test.cjs
-FIXED: figurative lines get neither the sheet nor the flag, 40/40 scripts/ask-heldout-flag.test.cjs
-FIXED: I need help and I am not safe get the sheet, 4/4 scripts/ask-heldout-flag.test.cjs
+FIXED: idiom plus a crisis gets the full sheet and no page quote, 26/26 scripts/ask-qa-fresh.test.cjs
+FIXED: typo act words set the flag, 26/26 scripts/ask-qa-fresh.test.cjs
+FIXED: normalizer traps set the flag, 26/26 scripts/ask-qa-fresh.test.cjs
+FIXED: barrel, slit, morirme and tirare set the flag, 26/26 scripts/ask-qa-fresh.test.cjs
+FIXED: third-person and news lines get the sheet, flag 1/52 scripts/ask-qa-fresh.test.cjs
+FIXED: a fresh plain list sets no flag, 0/30 scripts/ask-qa-fresh.test.cjs
+FIXED: plain question pairs end unflagged, 0/870 scripts/ask-qa-fresh.test.cjs
+FIXED: a flagged visitor's benign follow-up keeps the pinned 988 box, 1/1 scripts/ask-qa-fresh.test.cjs
 FIXED: held-out crisis-first stays 56/56, scripts/public-ai.test.cjs
 FIXED: wrangler.toml is absent so dashboard bindings stay, scripts/cf-deploy.test.cjs
 
-Not checked: QA's private 559 and 330 sets were not re-run here, a live D1 signup, and the proof stamp.
+The one third-person flag is "The homework sheet prints the phrase hang myself". A pure idiom can still get the sheet. That false alarm is accepted. The 24h flag stays off when the whole message is that one idiom.
 
-Local `node --test scripts/*.test.cjs`: 379 tests, 369 pass, 0 fail, 10 skip.
+Not checked: QA's private 559 and 330 sets were not re-run here, a live D1 signup, and the proof stamp. There is no separate 30-line unmistakable list; the clear classes above are 26 lines each.
+
+Local `node --test scripts/*.test.cjs`: 386 tests, 376 pass, 0 fail, 10 skip.
