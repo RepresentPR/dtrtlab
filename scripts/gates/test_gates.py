@@ -223,11 +223,21 @@ class CopyLintTests(unittest.TestCase):
         self.assertTrue(copy_lint.lint_text(IA_EN_VIVO + " ahora."))
         self.assertTrue(copy_lint.lint_text("Prueba nuestra " + IA_EN_DIRECTO + "."))
         self.assertTrue(copy_lint.lint_text("Nuestra " + IA_YA_DISPONIBLE + "."))
-        todavia = "todav" + chr(237) + "a no est" + chr(225) + " en vivo"
-        self.assertEqual(copy_lint.lint_text("Prueba de IA muy temprana, " + todavia + "."), [])
-        self.assertEqual(copy_lint.lint_text(IA_EN_VIVO + "? A" + chr(250) + "n no."), [])
-        self.assertEqual(copy_lint.lint_text("A" + chr(250) + "n no hay " + IA_EN_VIVO + "."), [])
-        self.assertEqual(copy_lint.lint_text("Nuestra " + IA_EN_DIRECTO + " todav" + chr(237) + "a no."), [])
+        self.assertTrue(copy_lint.lint_text("Prueba nuestra " + IA_EN_VIVO + ", no un truco."))
+        self.assertTrue(copy_lint.lint_text(IA_EN_VIVO + "? No es un rumor."))
+        self.assertTrue(copy_lint.lint_text(IA_EN_VIVO + " ahora. No voy."))
+        todavia = "todav" + chr(237) + "a"
+        esta = "est" + chr(225)
+        aun = "A" + chr(250) + "n"
+        self.assertEqual(copy_lint.lint_text("Prueba de IA muy temprana, " + todavia + " no " + esta + " en vivo."), [])
+        self.assertEqual(copy_lint.lint_text("Nuestra " + IA_EN_VIVO + " no " + esta + " en vivo."), [])
+        self.assertEqual(copy_lint.lint_text("Nuestra " + IA_EN_VIVO + " " + todavia + " no."), [])
+        self.assertEqual(copy_lint.lint_text(IA_EN_VIVO + ", " + aun + " no."), [])
+        self.assertEqual(copy_lint.lint_text(aun + " no hay " + IA_EN_VIVO + "."), [])
+        self.assertEqual(copy_lint.lint_text("Nuestra " + IA_EN_VIVO + " no " + esta + " activa."), [])
+        self.assertEqual(copy_lint.lint_text("Nuestra " + IA_EN_VIVO + " no funciona " + todavia + "."), [])
+        self.assertEqual(copy_lint.lint_text("Nuestra " + IA_EN_VIVO + " nunca ha estado en vivo."), [])
+        self.assertEqual(copy_lint.lint_text("Nuestra " + IA_EN_DIRECTO + " " + todavia + " no."), [])
 
 class DoneGateTests(unittest.TestCase):
     def run_gate(self, body, extra_files=()):

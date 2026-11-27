@@ -432,21 +432,94 @@ def liveness_denied(words, start, end):
     return False
 
 
-def es_neg_in(seq):
-    """True if a Spanish liveness denial sits in this token span (no, nunca, todavía no, aún no)."""
-    for i, w in enumerate(seq):
-        if w in {"no", "nunca"}:
+ES_NEG = {"no", "nunca"}
+ES_YET = {"aun", "todavia"}
+ES_FILLER = {
+    "la", "el", "las", "los", "lo", "un", "una", "unos", "unas",
+    "nuestra", "nuestro", "nuestras", "nuestros", "su", "sus",
+    "esta", "estan", "este", "estos", "estas", "estoy", "estamos",
+    "es", "son", "era", "eran", "fue", "fueron", "sido",
+    "ha", "han", "habia", "habian", "he", "hemos", "haya",
+    "ya", "todavia", "aun", "siquiera", "tampoco",
+    "de", "a", "en", "por", "para", "que", "se", "hay",
+    "muy", "tan", "mas", "menos", "si", "o",
+    "estado", "estando",
+}
+ES_DENY_VERBS = {
+    "esta", "estan", "estar", "estuvo", "estuvieron", "estado",
+    "funciona", "funcionan", "funcionar", "funcionando",
+    "activa", "activar", "activan", "activado", "activada",
+    "hay", "existe", "existen",
+}
+ES_DENY_PREDICATES = {
+    "vivo", "directo", "disponible",
+    "activa", "activo", "activas", "activos",
+    "conectada", "conectado", "conectadas", "conectados",
+    "lista", "listo", "listas", "listos",
+    "operativa", "operativo", "online", "funcionando",
+    "lanzada", "lanzado",
+}
+
+
+def _same_sentence_range(toks, start, end, text):
+    """Inclusive lo, exclusive hi of tokens in the same sentence as toks[start:end]."""
+    lo = start
+    while lo > 0 and not hard_break_between(text, toks[lo - 1][3], toks[start][2]):
+        lo -= 1
+    hi = end
+    while hi < len(toks) and not hard_break_between(text, toks[end - 1][3], toks[hi][2]):
+        hi += 1
+    return lo, hi
+
+
+def _es_is_deny_word(w):
+    return w in ES_DENY_PREDICATES or w in ES_DENY_VERBS
+
+
+def es_liveness_denied(toks, start, end, text):
+    """True only when a Spanish negation in the same sentence denies liveness itself.
+
+    Bare nearby no/nunca (no un truco, no es un rumor, no voy in the next sentence)
+    does not exempt. todavia/aún no, no está en vivo, no está activa, no funciona
+    todavía, and nunca ha estado en vivo do.
+    """
+    words = [t[0] for t in toks]
+    lo, hi = _same_sentence_range(toks, start, end, text)
+
+    j = start - 1
+    while j >= lo and words[j] in ES_FILLER and words[j] not in ES_NEG:
+        j -= 1
+    if j >= lo and words[j] in ES_NEG:
+        return True
+    if j >= lo and words[j] in ES_DENY_VERBS:
+        j -= 1
+        while j >= lo and words[j] in ES_FILLER and words[j] not in ES_NEG:
+            j -= 1
+        if j >= lo and words[j] in ES_NEG:
             return True
-        if w in {"aun", "todavia"} and i + 1 < len(seq) and seq[i + 1] == "no":
+
+    j = end
+    while j < hi and words[j] in ES_FILLER and words[j] not in ES_NEG and words[j] not in ES_YET:
+        j += 1
+    if j >= hi:
+        return False
+    if words[j] in ES_YET:
+        k = j + 1
+        while k < hi and words[k] in ES_FILLER and words[k] not in ES_NEG:
+            k += 1
+        return k < hi and words[k] in ES_NEG
+    if words[j] in ES_NEG:
+        k = j + 1
+        found_yet = False
+        while k < hi and words[k] in ES_FILLER:
+            if words[k] in ES_YET:
+                found_yet = True
+            k += 1
+        if k < hi and _es_is_deny_word(words[k]):
+            return True
+        if found_yet or (k < hi and words[k] in ES_YET):
             return True
     return False
-
-
-def es_liveness_denied(words, start, end):
-    """True when a Spanish negation denies the liveness claim itself."""
-    lo = max(0, start - 6)
-    hi = min(len(words), end + 6)
-    return es_neg_in(words[lo:start]) or es_neg_in(words[end:hi])
 
 
 def _norm_official(text):
@@ -502,7 +575,7 @@ def lint_text(text, ai_voice=False, sets=None, path=None):
             if ph in ES_LIVE_PHRASES:
                 if hard_break_between(raw, toks[i][3], toks[i + ngram - 1][2]):
                     continue
-                if es_liveness_denied(words, i, i + ngram):
+                if es_liveness_denied(toks, i, i + ngram, raw):
                     continue
             issues.append(("TERM", n, "term#" + ph))
     if "candles" in tokens(text) and DISCLOSURE not in raw:  # exact case and wording

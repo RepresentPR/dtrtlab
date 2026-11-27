@@ -7,7 +7,7 @@ READY for QA (26/26 gate tests, 4/4 term-list tests): the copy_lint rules close 
 - Only an actual liveness denial exempts a claim (for example "not live yet", "isn't live", "not connected", "does not activate"). "Try our live AI, not on sale." and "not up for debate" fail (26/26 in scripts/gates/test_gates.py).
 - Em dash, semicolon, and colon are sentence-level breaks for the live+AI bigram, so "Go live: AI stays a very early test, not live yet." style lines pass. Emoji counts as a break too (26/26 in scripts/gates/test_gates.py).
 - Singular "my kid" and "mi hijo" / "mi hija" are caught (26/26 in scripts/gates/test_gates.py).
-- Spanish liveness claims ("IA en vivo", "IA en directo", "IA ya disponible") are caught; ES denials ("todavía no está en vivo", "aún no") are exempt (26/26 in scripts/gates/test_gates.py).
+- Spanish liveness claims ("IA en vivo", "IA en directo", "IA ya disponible") are caught. An ES denial only exempts when it negates liveness itself in the same sentence ("no está en vivo", "todavía no", "aún no", "no está activa", "no funciona todavía", "nunca ha estado en vivo"). "Prueba nuestra IA en vivo, no un truco.", "IA en vivo? No es un rumor.", and "IA en vivo ahora. No voy." fail (26/26 in scripts/gates/test_gates.py).
 - Island name stays marketplace-and-fiction only, per Brain §3. "Waitlists", "Wait-List", generic "the kids", and bare "daughter" stay caught (26/26 in scripts/gates/test_gates.py and 4/4 in scripts/private-terms.test.cjs).
 - PROGRESS.md, RESULT-done_gate-copy-lint.txt, and RESULT-done_gate-pr115.txt are excluded from the site build by exact name in _config.yml (scripts/pages-artifact.test.cjs and scripts/stage-site.cjs).
 
