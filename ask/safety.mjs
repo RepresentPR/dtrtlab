@@ -1,8 +1,9 @@
 // Public answers are quotes from DTRT Lab's pages.
 // A model may only rephrase those quotes. Anything else is discarded.
-// The crisis screen runs first. Any other message that is not a confident
-// page match gets the full 988 sheet. A compact redirect is only for a
-// message that is positively everyday, with no distress or plan in the recent turns.
+// Risk is checked on the whole session before any page answer.
+// A message with no confident page match gets the 988 sheet, then the
+// closest pages or the contact link. A compact note is only for a
+// greeting or everyday idiom that has no risk signal at all.
 
 export const CRISIS_REPLY = "If you might hurt yourself, get help now. In the US, call or text 988. You can chat at https://988lifeline.org. If you are in immediate danger, call 911. You can also visit https://findahelpline.com. This is a very early AI test. It is not a person and not a doctor, and it will not keep chatting about this.";
 
@@ -23,8 +24,6 @@ export const RESOURCE_NOTE = "If you might hurt yourself, get help now. In the U
 export const ONLY_LINE = REDIRECT;
 
 export const HELP_LINE = "If you're struggling, call or text 988 (US) or visit findahelpline.com.";
-
-const TURN_LIMIT = 6;
 
 const TERMS = new Set([
   "suicide", "suicidal", "unalive", "kms", "selfharm",
@@ -64,12 +63,13 @@ const CJK_PERSON = ["我", "私", "나", "저"];
 
 const PLAN_PHRASES = ["good plan", "should i", "how much", "is it enough"];
 
-const COMPACT_BLOCKS = ["good plan", "should i use it", "should i do it", "should i use that", "should i do that", "how much", "is it enough", "how to", "tonight"];
+const COMPACT_BLOCKS = ["good plan", "should i use it", "should i do it", "should i use that", "should i do that", "how much", "is it enough", "tonight"];
 
 const DISTRESS_PHRASES = [
   "i cant", "i cannot", "im done", "i am done", "no point", "nobody cares", "tired of everything",
   "ending my life", "lethal dose", "disappear forever", "worth living", "keep living", "stop living",
-  "least painful", "goodbye note"
+  "least painful", "goodbye note", "better off without me", "when im gone", "when i am gone",
+  "make the pain stop", "end it"
 ];
 
 const MEANS = new Set(["pill", "pills", "rope", "gun", "blade", "bridge", "knife", "razor", "noose"]);
@@ -116,7 +116,8 @@ function fold(value) {
 function canonicalize(text) {
   return fold(text)
     .replace(/self\s*[- ]?\s*harm(?:ing|ed)?/g, " selfharm ")
-    .replace(/over\s*[- ]?\s*dos(?:e|ing|ed|es)/g, " overdose ");
+    .replace(/over\s*[- ]?\s*dos(?:e|ing|ed|es)/g, " overdose ")
+    .replace(/un\s*[- ]?\s*alive/g, " unalive ");
 }
 
 function tokensOf(text) {
@@ -157,7 +158,7 @@ function signals(text) {
 function userTurns(question, history) {
   const prior = Array.isArray(history) ? history.slice() : [];
   prior.push(question);
-  return prior.filter((item) => String(item || "").trim()).slice(-TURN_LIMIT);
+  return prior.filter((item) => String(item || "").trim());
 }
 
 export function screen(question, history) {
@@ -278,19 +279,13 @@ function dangerIn(text) {
   if (hasAnyPhrase(tokens, DISTRESS_PHRASES) || hasAnyPhrase(tokens, COMPACT_BLOCKS)) return true;
   if (hasAnyPhrase(tokens, COMPLETE) || includesAny(scan, CJK_COMPLETE) || includesAny(scan, CJK_TERMS)) return true;
   if (/\b(hurt|die|dying|died|death|kill|killed|killing)\b/.test(fold(scan))) return true;
+  const folded = fold(scan);
+  if (folded.includes("worth it") && /\b(life|living|alive)\b/.test(folded)) return true;
   return false;
 }
 
 export function hasRisk(question, history) {
   return userTurns(question, history).some((turn) => dangerIn(turn));
-}
-
-const SITE_TOPIC = /\b(ai|chat|chats|account|password|passwords|privacy|data|contact|email|ian|lab|dtrt|terms|notebook|bug|checkout|plan|map|desk|quote|quotes|answer|answers|signup|sign|test|page|pages|message|messages|human|phone|ask|question|write)\b/;
-
-export function siteTopic(text) {
-  const folded = fold(text);
-  if (!folded || folded.length > 180 || hasNonLatin(text) || dangerIn(text)) return false;
-  return SITE_TOPIC.test(folded);
 }
 
 export function clearlyClean(question, history) {
@@ -323,17 +318,17 @@ function fullSheet() {
   return { action: "sheet", text: CRISIS_REPLY, modelCalled: false, sources: [] };
 }
 
-function missReply(matches) {
+function sheetWithHelp(matches) {
   const bits = (matches || []).slice(0, 3).map((item) => {
     const passage = item.passage || item;
     const title = passage.title || "A public page";
     const url = passage.url || "";
     return url ? title + " " + url : title;
   }).filter(Boolean);
-  const extra = bits.length ? "Closest pages: " + bits.join("; ") + "." : CONTACT_LINE;
+  const extra = bits.length ? "Closest pages: " + bits.join("; ") + ". " + CONTACT_LINE : CONTACT_LINE;
   return {
-    action: "miss",
-    text: MISS_REPLY + " " + extra,
+    action: "sheet",
+    text: CRISIS_REPLY + "\n\n" + extra,
     sources: (matches || []).slice(0, 3),
     modelCalled: false
   };
@@ -353,6 +348,7 @@ function compactReply() {
 
 export async function replyFor(question, corpus, options) {
   const opts = options || {};
+  if (hasRisk(question, opts.history)) return { action: "crisis", text: CRISIS_REPLY, modelCalled: false, sources: [] };
   const screened = screen(question, opts.history);
   if (screened.action === "crisis") return { action: "crisis", text: CRISIS_REPLY, modelCalled: false, sources: [] };
   if (screened.action === "harm") return { action: "harm", text: HARM_REPLY, modelCalled: false, sources: [] };
@@ -370,10 +366,8 @@ export async function replyFor(question, corpus, options) {
   }
   const unmatched = (!confidentMatch(question, matches) && !meta) || !matches.length;
   if (unmatched) {
-    if (hasRisk(question, opts.history)) return fullSheet();
     if (clearlyClean(question, opts.history)) return compactReply();
-    if (siteTopic(question)) return missReply(matches);
-    return fullSheet();
+    return sheetWithHelp(matches);
   }
   const sources = matches.slice(0, 3);
   const template = templateFrom(sources);
