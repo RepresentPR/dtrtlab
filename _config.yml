@@ -25,8 +25,7 @@ exclude:
   - CONTRIBUTING.md
   - README.md
   - PROGRESS.md
-  - RESULT-done_gate*.txt
-  - RESULT-done_gate-pr114.txt
+  - RESULT-done_gate-pr115.txt
   - .env.example
   - .gitignore
   - live/README.md
