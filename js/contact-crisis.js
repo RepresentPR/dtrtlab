@@ -1,44 +1,75 @@
-import { isCrisisText } from '/js/safety-core.mjs?v=20261127h7';
-/* Reactive 988 message on the contact form when crisis words are typed. Never submits. */
+import { classifyCrisis, GENTLE_LINE } from '/js/safety-core.mjs?v=20261127h8';
+/* Contact pop-up: PR #111 classifyCrisis as is.
+   tier1: crisis card, do not send the form.
+   tier2: send normally, show the gentle 988 line. */
 (function () {
   "use strict";
   var isEs = /(?:\?|&)lang=es(?:&|$)/.test(location.search);
-  var EN = "You're not alone. Call or text 988 (US). Si estás en crisis: llama o textea al 988. findahelpline.com (outside US).";
-  var ES = "No estás solo/a. Llama o textea al 988 (EE. UU.). Si estás en crisis: llama o textea al 988. findahelpline.com (fuera de EE. UU).";
+  var TIER1_EN = "If you're thinking about suicide or in crisis: call or text 988 (US). Si estás en crisis: llama o textea al 988. findahelpline.com (outside US). This message was not sent.";
+  var TIER1_ES = "Si estás pensando en suicidio o en crisis: llama o textea al 988 (EE. UU.). findahelpline.com (fuera de EE. UU.). Este mensaje no se envió.";
   var FIELD_IDS = { name: 1, email: 1, message: 1 };
-  function ensureBox() {
-    var box = document.getElementById("contact-crisis-reactive");
-    if (box) return box;
-    box = document.createElement("p");
-    box.id = "contact-crisis-reactive";
-    box.setAttribute("role", "alert");
-    box.hidden = true;
-    box.style.cssText = "max-width:70ch;margin:12px 0;padding:10px 12px;background:#fff8e7;border:1px solid #c9b48a;border-radius:8px;color:#111;";
-    var form = document.querySelector("form");
-    if (form) form.insertAdjacentElement("afterbegin", box);
-    else (document.querySelector("main") || document.body).appendChild(box);
-    return box;
-  }
-  function check() {
-    var hit = false;
+
+  function fieldValues() {
     var ids = ["name", "email", "message"];
+    var values = [];
     for (var i = 0; i < ids.length; i++) {
       var el = document.getElementById(ids[i]);
-      if (el && isCrisisText(el.value || "")) { hit = true; break; }
+      values.push(el ? (el.value || "") : "");
     }
-    var box = ensureBox();
-    box.textContent = isEs ? ES : EN;
-    box.hidden = !hit;
+    return values;
   }
+
+  function rank() {
+    var values = fieldValues();
+    var worst = "none";
+    for (var i = 0; i < values.length; i++) {
+      var history = values.filter(function (_, j) { return j !== i; });
+      var t = classifyCrisis(values[i], history);
+      if (t === "tier1") return "tier1";
+      if (t === "tier2") worst = "tier2";
+    }
+    return worst;
+  }
+
+  function box(id, className) {
+    var el = document.getElementById(id);
+    if (el) return el;
+    el = document.createElement("p");
+    el.id = id;
+    el.hidden = true;
+    if (id === "contact-crisis-card") el.setAttribute("role", "alert");
+    else el.setAttribute("role", "note");
+    var form = document.querySelector("form");
+    if (form) form.insertAdjacentElement("afterbegin", el);
+    else (document.querySelector("main") || document.body).appendChild(el);
+    return el;
+  }
+
+  function paint() {
+    var t = rank();
+    var crisis = box("contact-crisis-card");
+    var gentle = box("contact-gentle-988");
+    crisis.textContent = isEs ? TIER1_ES : TIER1_EN;
+    gentle.textContent = GENTLE_LINE;
+    crisis.hidden = t !== "tier1";
+    gentle.hidden = t !== "tier2";
+    return t;
+  }
+
   function start() {
-    ensureBox();
+    paint();
     document.addEventListener("input", function (e) {
       var t = e.target;
-      if (t && t.id && FIELD_IDS[t.id]) check();
+      if (t && t.id && FIELD_IDS[t.id]) paint();
     }, true);
-    check();
+    var form = document.querySelector("form");
+    if (form) {
+      form.addEventListener("submit", function (ev) {
+        if (paint() === "tier1") ev.preventDefault();
+      });
+    }
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
   else start();
-  window.addEventListener("load", check);
+  window.addEventListener("load", paint);
 })();
