@@ -39,7 +39,7 @@ Do not invent a legal-entity suffix in public copy until `content/company.json` 
 | Surface | Handle | URL |
 | --- | --- | --- |
 | **Lab** X | @DTRTLab | https://x.com/DTRTLab |
-| **Lab** Instagram | @officiallydtrt | https://www.instagram.com/officiallydtrt/ |
+| **Lab** Instagram | @dtrt.xyng | https://www.instagram.com/dtrt.xyng/ |
 | **Lab** YouTube | @DTRTLabYT | https://www.youtube.com/@DTRTLabYT |
 | **Lab** TikTok | @iananthonyfc | https://www.tiktok.com/@iananthonyfc |
 | **Stream** Twitch | dtrtc | https://www.twitch.tv/dtrtc |
