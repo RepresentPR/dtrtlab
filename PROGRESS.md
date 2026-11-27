@@ -11,6 +11,10 @@ READY for QA (30/30 gate tests, 4/4 term-list tests): the copy_lint rules close 
 - Island name stays marketplace-and-fiction only, per Brain §3. "Waitlists", "Wait-List", generic "the kids", and bare "daughter" stay caught (30/30 in scripts/gates/test_gates.py and 4/4 in scripts/private-terms.test.cjs).
 - PROGRESS.md, RESULT-done_gate-copy-lint.txt, and RESULT-done_gate-pr115.txt are excluded from the site build by exact name in _config.yml (scripts/pages-artifact.test.cjs and scripts/stage-site.cjs).
 
+## Follow-ups
+
+- Bugbot medium on 7b05b589, "Copula skip misses modified denials" (discussion r4721496652, bug 902eb42f-b382-41e4-827e-e7865791499e): a modifier between the copula and the predicate (`no va a estar ahora disponible`, `no va a estar nunca disponible`, `no está ahora en vivo`) is flagged even though the complement is a real liveness denial. `ya` in that slot, and a modifier after the predicate (`no va a estar disponible ahora`), already stay clean. This is a false fail on honest copy, which is safe. Left for a later pass; this round does not loosen the skip set.
+
 ## Not checked
 
 - A headed pass of live marketplace pages (this PR is lint rules only).
