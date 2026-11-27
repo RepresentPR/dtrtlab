@@ -2,7 +2,7 @@
 
 Public AI chat branch `cursor/public-ai-launch-8a16`.
 
-Head: `pending`
+Head: `2871521359494ac0e6e1bbb4a6ce784a61724aff`
 
 FIXED: Spanish reflexive paraphrases return the full sheet, 60/60 scripts/ask-heldout.test.cjs
 FIXED: leetspeak paraphrases return the full sheet, 48/48 scripts/ask-heldout.test.cjs
