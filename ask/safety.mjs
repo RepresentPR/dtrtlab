@@ -501,6 +501,10 @@ function fullSheet() {
 
 function deleet(text) {
   return fold(text)
+    .replace(/!/g, "i")
+    .replace(/\|/g, "i")
+    .replace(/@/g, "a")
+    .replace(/\$/g, "s")
     .replace(/0/g, "o")
     .replace(/1/g, "i")
     .replace(/3/g, "e")
@@ -513,39 +517,37 @@ function prepared(text) {
   return tokensOf(deleet(text)).map(correctToken).join(" ");
 }
 
-function blocksBenign(text) {
-  const t = prepared(text);
-  if (/\b(dead|die|dies|died|dying|death|kill|kills|killing|hang|hangs|hanged|hanging|suicide|suicidal|overdose|overdosed|goodbye|farewell|unalive|kms)\b/.test(t)) return true;
-  if (/\b(life|lives|living|alive)\b/.test(t)) return true;
-  if (/\b(matar|matarme|morir|morirme|muero|muerte|tirarme|suicidarme|quitarme la vida|colgarme|ahorcarme|me voy a matar|me mato|me muero)\b/.test(t)) return true;
-  if (/\bsuicid/.test(t)) return true;
-  if (/\bstop breathing\b/.test(t)) return true;
-  if (/\b(end it|end my life|ending my life|rather be dead|rather not be here)\b/.test(t)) return true;
-  if (/\b(decided|decision|made up my mind)\b/.test(t) && /\b(tomorrow|tonight|goodbye|the end)\b/.test(t)) return true;
-  if (/\bthis is goodbye\b/.test(t)) return true;
-  if (/\b(last words|final message|final words|parting note|farewell letter)\b/.test(t)) return true;
-  if (/\b(gone|disappear|disappeared|lethal|dose|doses|unalive|pain|goodbye note|better off|worth living|keep living|stop living)\b/.test(t)) return true;
-  if (/\b(muerto|muerta|muertos|morir|matar|colgar|ahorcar|puente)\b/.test(t)) return true;
-  if (/\bwho will find me\b/.test(t) || /\bme va a encontrar\b/.test(t)) return true;
-  if (/\b(leave this world|dejar este mundo|end your life|mensaje final|ultimas palabras|adios para siempre)\b/.test(t)) return true;
-  if (/\b(sobredosis|dosis|letal|letales|vida|desaparecer|desaparezco)\b/.test(t)) return true;
-  return false;
-}
+const STOPWORDS = new Set("a an the of to for in on at and or is are was were be been being do does did doing how what whats where who whom whose which can will would should may might am i im ive id me my mine you your yours we our it its this that these those with from about into over after before out up off not no yes please just so if then than as by but there here their them us too very also still only own when while have has had onto per via let lets".split(" "));
+
+const BENIGN_CONTENT = new Set(("site page pages lab dtrt ian map maps desk desks notebook notebooks contact contacts privacy term terms " +
+  "office offices job jobs form forms proof brand donate career careers service services test tests online data bug bugs answer answers private " +
+  "quote quotes browser browsers phone phones number numbers cookie cookies copy copies chat chats message messages account accounts " +
+  "password passwords email emails login logins log logs sign signs signing signed stored store stores public human humans help helps " +
+  "helpful write writes writing question questions price prices plan plans free checkout checkouts refund refunds cost costs fee fees " +
+  "hi hello hey yo thanks thank hola gracias bonjour salut good morning afternoon evening night time date day today hour clock live early " +
+  "ai company companies real wide list listed shown optional stuck later come comes coming keep keeps keeping safe sell sells selling use " +
+  "uses using used without stay stays stayed turned turn turns two people person share shares shared maintain maintains maintained send " +
+  "sends sent note notes find finds finding clear clears print prints report reports typo typos happen happens happened get gets getting " +
+  "ask asks asked fix fixes fixed wrong need needs needed apply applies applied update updates updated protect protects protected protection " +
+  "see sees seen someone else saving save saves device devices change changes changed delete deletes deleted remove removes removed close " +
+  "closes closed cancel cancels make makes made look looks great summarize summarized propose proposed tab tabs built build read reads " +
+  "reading much many one all new old same other another any some such").split(/\s+/));
 
 function clearlyBenign(question) {
-  const t = prepared(question);
-  if (!t || blocksBenign(t)) return false;
   if (isGreeting(question)) return true;
-  if (isMetaQuestion(question)) return true;
-  if (/^(what time|whats the time|what day|whats the date|what is the date|what is today|que hora|que fecha)\b/.test(t) || t === "what time is it") return true;
-  if (/^(prices|contact|notebook|office map|free office map|job desk)$/.test(t)) return true;
-  const practical = /\b(how|what|whats|where|who|can|is|do|does|will|are|which)\b/.test(t);
-  const topic = /\b(site|pages?|lab|dtrt|ian|maps?|desks?|notebooks?|contacts?|privacy|terms|prices?|plans?|checkouts?|accounts?|passwords?|emails?|logins?|logs?|chats?|quotes?|browsers?|typos?|devices?|phones?|forms?|offices?|jobs?|tests?|online|data|humans?|bugs?|answers?|messages?|helps?|writes?|questions?|signs?|stored|public|companys?|companies|free|early|ai|live|cookies?|copies|copy)\b/.test(t);
-  return practical && topic;
+  const tokens = tokensOf(deleet(question));
+  if (!tokens.length || tokens.length > 24) return false;
+  if (!tokens.every((token) => STOPWORDS.has(token) || BENIGN_CONTENT.has(token))) return false;
+  const content = tokens.filter((token) => !STOPWORDS.has(token));
+  return content.length <= 12;
 }
 
 function noFlagIdiom(text) {
   const t = prepared(text);
+  if (/\bdead tired\b/.test(t) || /\bdying to\b/.test(t)) return true;
+  if (/\bhang on\b/.test(t) && !/\b(myself|yourself)\b/.test(t)) return true;
+  if (/\bhang\b/.test(t) && /\b(map|poster|office)\b/.test(t) && !/\b(myself|yourself)\b/.test(t)) return true;
+  if (/\bkill\b/.test(t) && /\banswer\b/.test(t) && !/\bmyself\b/.test(t)) return true;
   if (/\b(cookie|banner|poster|link|story)\b/.test(t) && /\b(kill|killing|dead|hang|hanging|life|living)\b/.test(t)) return true;
   if (/\bmake a living\b/.test(t) || /\blife story\b/.test(t) || /\bdead link\b/.test(t) || /\bhang a poster\b/.test(t)) return true;
   if (/\bmy last message\b/.test(t)) return true;
@@ -558,15 +560,19 @@ export function shouldFlag(text) {
   if (!t || noFlagIdiom(t)) return false;
   if (/\b(this is goodbye|saying goodbye|goodbye forever)\b/.test(t)) return true;
   const self = /\b(i|im|ive|id|me|my|myself|yourself)\b/.test(t)
-    || /\b(me voy|voy a|quiero|matarme|morirme|tirarme|suicidarme|quitarme|colgarme|ahorcarme|me mato|me muero)\b/.test(t);
+    || /\b(me voy|voy a|quiero|matarme|morirme|tirarme|suicidarme|quitarme|colgarme|ahorcarme|me mato|me muero|tomarme)\b/.test(t);
   if (!self) return false;
   if (/\b(this is goodbye|saying goodbye|goodbye forever|goodbye note)\b/.test(t)) return true;
   if (/\b(rather not be here|rather be dead|want to die|wanna die|end my life|ending my life|end it|kill myself|hang myself)\b/.test(t)) return true;
   if (/\b(matarme|morirme|tirarme|suicidarme|quitarme la vida|me voy a matar|me mato|me muero|colgarme|ahorcarme)\b/.test(t)) return true;
   if (/\bsuicid/.test(t)) return true;
+  if (/\b(dont|do not) want to live\b/.test(t) || /\bno quiero vivir\b/.test(t)) return true;
+  if (/\b(matare|mataria|matar|ahorcare|ahorcaria|ahorcar|colgare|colgaria|colgar|morire|moriria|morir)\b/.test(t)) return true;
+  if (/\b(swallowed|pills|pill|pastillas|pastilla)\b/.test(t)) return true;
   if (/\b(kill|killing|hang|hanging|suicide|suicidal|overdose|die|dying|dead|death)\b/.test(t)) return true;
   if (/\b(better off without me|who will find me|when im gone|when i am gone)\b/.test(t)) return true;
   if (/\b(me|myself|i|im)\b/.test(t) && /\b(lethal|dose|doses|pain|gone|unalive|goodbye)\b/.test(t)) return true;
+  if (/\bend my own life\b/.test(t) || (/\bplan to\b/.test(t) && /\b(end|die|kill)\b/.test(t))) return true;
   return false;
 }
 
@@ -619,6 +625,7 @@ export async function replyFor(question, corpus, options) {
     if (turns.some((turn) => shouldFlag(turn))) return crisisReply(opts.storage, now);
     if (asksForHarmPage(question, tokensOf(deleet(question)))) return sheetOnly();
     const screened = screen(question, opts.history);
+    if (screened.action === "crisis") return sheetOnly();
     if (screened.action === "harm") return { action: "harm", text: HARM_REPLY, modelCalled: false, sources: [] };
     if (screened.action === "identity") return { action: "identity", text: IDENTITY_REPLY, modelCalled: false, sources: [] };
     if (!clearlyBenign(question)) return sheetOnly();
