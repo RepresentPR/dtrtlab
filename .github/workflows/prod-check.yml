@@ -1,0 +1,29 @@
+name: prod-check
+# Production regression check: fails if dtrtlab.com or www returns 401, the key page
+# (a form posting to /__key) or a non-200 on / and /ask/, or if /private stops being 404.
+# OFF until the PROD_CHECK_ENABLED repo variable is "true". Turn it on after go-live.
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_run:
+    workflows: [deploy-cloudflare]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch: {}
+permissions: {}
+concurrency: { group: prod-check, cancel-in-progress: true }
+jobs:
+  prod:
+    if: ${{ vars.PROD_CHECK_ENABLED == 'true' && github.repository == 'RepresentPR/dtrtlab' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with: { node-version: "20" }
+      - name: dtrtlab.com is public (no 401, no key page) and /private is 404
+        run: node scripts/site-probe.cjs prod
