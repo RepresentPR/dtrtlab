@@ -3,3 +3,10 @@ git diff --stat 4612a9dc -- content/live-performance.json (empty means identical
 sha256 at 4612a9dc: b3e71cde2fb7bf28870f74a1dcec1aa38936d329c7abeb4883024654e08fd49f
 sha256 on branch:   b3e71cde2fb7bf28870f74a1dcec1aa38936d329c7abeb4883024654e08fd49f
 officiallydtrt lines: 70; dtrt.xyng lines: 0
+
+content/campaign.json restore check, 2026-11-27 10:29
+git diff --stat 4612a9dc -- content/campaign.json (empty means identical):
+
+sha256 at 4612a9dc: 1bc92b3b35ebe2e2b63bbfb30bd91b261c1645021ecefcfab5ed66c9337e8f46
+sha256 on branch:   1bc92b3b35ebe2e2b63bbfb30bd91b261c1645021ecefcfab5ed66c9337e8f46
+officiallydtrt lines: 6; dtrt.xyng lines: 0
