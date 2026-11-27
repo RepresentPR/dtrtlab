@@ -26,7 +26,6 @@ exclude:
   - README.md
   - PROGRESS.md
   - RESULT-done_gate-pr115.txt
-  - RESULT-done_gate-copy-lint.txt
   - .env.example
   - .gitignore
   - live/README.md
@@ -42,6 +41,7 @@ exclude:
   - vendor/cache
   - vendor/gems
   - vendor/ruby
+  - RESULT-done_gate-copy-lint.txt
 include:
   - .well-known
   - _headers
