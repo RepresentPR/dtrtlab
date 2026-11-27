@@ -71,7 +71,7 @@ test('idiom plus a real crisis still returns the full sheet', async () => {
     const got = await ask(question, store);
     assert.equal(got.modeled, false, question);
     assert.equal(got.result.action, 'crisis', question);
-    assert.equal(got.result.text, safety.CRISIS_REPLY, question);
+    assert.equal(got.result.text.startsWith(safety.CRISIS_REPLY), true, question);
     assert.deepEqual(got.result.sources, [], question);
     sheet += 1;
     flagged += 1;
@@ -143,7 +143,7 @@ test('a crisis in this history pins the next plain answer and a fresh call does 
   assert.equal(opened.result.action, 'crisis');
   const soon = await safety.replyFor('where is the brand page', { passages: [] }, { history: ['I want to end my life tonight'] });
   assert.notEqual(soon.action, 'crisis');
-  assert.equal(soon.pinned, safety.PINNED_BOX);
+  assert.equal(soon.pinned, undefined);
   const fresh = await safety.replyFor('where is the brand page', { passages: [] }, {});
   assert.equal(fresh.pinned, undefined);
 });

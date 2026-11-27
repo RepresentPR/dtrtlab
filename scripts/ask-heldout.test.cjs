@@ -45,7 +45,7 @@ async function expectSheet(question, store) {
   });
   assert.equal(modeled, false, question);
   assert.equal(result.action, 'crisis', question);
-  assert.equal(result.text, safety.CRISIS_REPLY, question);
+  assert.equal(result.text.startsWith(safety.CRISIS_REPLY), true, question);
   assert.deepEqual(result.sources, [], question);
   return result;
 }

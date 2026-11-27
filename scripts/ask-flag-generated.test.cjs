@@ -171,7 +171,7 @@ test('generated over-trigger sweeps stay inside the caps', async () => {
     const store = storage();
     const got = await ask(question, store);
     if (got.result.action === 'crisis' && got.result.text.startsWith(safety.CRISIS_REPLY)) sheet += 1;
-    if (/helping someone else/.test(got.result.text) && /988/.test(got.result.text)) helped += 1;
+    if (/If this is about someone else/.test(got.result.text) && /988/.test(got.result.text)) helped += 1;
     assert.equal(got.result.pinned, undefined, question);
   }
   assert.equal(sheet, third.length);

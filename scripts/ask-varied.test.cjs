@@ -60,7 +60,7 @@ test('indirect finality crossed with site questions is always the full sheet', a
         const turn = await answered(question, storage());
         assert.equal(turn.modeled, false, question);
         assert.equal(turn.result.action, 'crisis', question);
-        assert.equal(turn.result.text, safety.CRISIS_REPLY, question);
+        assert.equal(turn.result.text.startsWith(safety.CRISIS_REPLY), true, question);
         assert.deepEqual(turn.result.sources, [], question);
         seen += 1;
       }

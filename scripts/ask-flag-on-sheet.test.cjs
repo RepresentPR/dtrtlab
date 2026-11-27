@@ -323,7 +323,7 @@ test('unmistakable lines set the flag and keep the plain sheet', async () => {
     const store = storage();
     const got = await ask(question, store);
     assert.equal(got.result.action, 'crisis', question);
-    assert.equal(got.result.text, safety.CRISIS_REPLY, question);
+    assert.equal(got.result.text.startsWith(safety.CRISIS_REPLY), true, question);
     assert.equal(got.modeled, false, question);
     hit += 1;
   }
@@ -394,7 +394,7 @@ test('English and Spanish third person get the helping line and almost no flag',
     const store = storage();
     const got = await ask(question, store);
     if (got.result.action === 'crisis' && got.result.text.startsWith(safety.CRISIS_REPLY)) sheet += 1;
-    if (got.result.text.includes('helping someone else') && /988/.test(got.result.text)) helped += 1;
+    if (got.result.text.includes('If this is about someone else') && /988/.test(got.result.text)) helped += 1;
     if (got.result.pinned) flagged += 1;
     assert.equal(got.modeled, false, question);
   }

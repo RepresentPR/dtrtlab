@@ -1,16 +1,11 @@
 // Public answers are quotes from DTRT Lab's pages.
 // A model may only rephrase those quotes. Anything else is discarded.
-// Risk is checked before any page answer or model call, on this
-// message and earlier turns in the same call. A positive crisis match
-// returns the full sheet and no page quote. A later non-sheet reply
-// pins the 988 box when this call's history has that match, or when
-// the page passes pagePin. The page holds pagePin in memory for the
-// tab, including after New chat. It is not written to storage. A reload
-// or a new tab starts clear. Nothing lasts 24 hours. finish() is the
-// only place that adds the helping line. A page answer and an error
-// reply carry a short 988 footer. An ordinary unmatched question gets a
-// not-sure reply plus that footer. A compact note is only for a greeting
-// or everyday idiom with no risk.
+// Risk is checked before any page answer or model call.
+// crisisSheet() is the only function that decides a crisis sheet.
+// finish() adds the helping line to every crisis sheet. Nothing is
+// pinned and nothing is stored. A page answer and an error reply carry
+// a short 988 footer. An ordinary unmatched question gets a not-sure
+// reply plus that footer.
 
 export const CRISIS_REPLY = "If you might hurt yourself, get help now. In the US, call or text 988. You can chat at https://988lifeline.org. If you are in immediate danger, call 911. You can also visit https://findahelpline.com. This is a very early AI test. It is not a person and not a doctor, and it will not keep chatting about this.";
 
@@ -32,9 +27,7 @@ export const ONLY_LINE = REDIRECT;
 
 export const HELP_LINE = "If you're struggling, call or text 988 (US) or visit findahelpline.com.";
 
-export const PINNED_BOX = "If you might hurt yourself, call or text 988 (US) or visit https://findahelpline.com. Si podrías hacerte daño, llama o escribe al 988 (EE. UU.) o visita https://findahelpline.com.";
-
-export const OTHER_HELP_LINE = "If you are helping someone else, you can still call or text 988 (US) or visit https://findahelpline.com.";
+export const OTHER_HELP_LINE = "If this is about someone else: stay with them, call or text 988, or 911 if they're in immediate danger.\nSi se trata de otra persona: quédate con ella, llama o escribe al 988, o al 911 si está en peligro inmediato.";
 
 export const UNSURE_REPLY = "I'm not sure about that yet.";
 
@@ -233,21 +226,13 @@ function userTurns(question, history) {
 
 export function screen(question, history) {
   try {
+    if (crisisSheet(question, history)) return { action: "crisis", text: CRISIS_REPLY };
     const turns = userTurns(question, history);
     if (!turns.length) return { action: "ok" };
-    let term = false;
-    let person = false;
-    let plan = false;
     let harm = false;
     for (const turn of turns) {
-      const tokens = tokensOf(turn);
-      if (hasAnyPhrase(tokens, HARM_PHRASES)) harm = true;
-      const found = signals(turn);
-      term = term || found.term;
-      person = person || found.person;
-      plan = plan || found.plan;
+      if (hasAnyPhrase(tokensOf(turn), HARM_PHRASES)) harm = true;
     }
-    if (term && (person || plan)) return { action: "crisis", text: CRISIS_REPLY };
     if (harm) return { action: "harm", text: HARM_REPLY };
     const latest = fold(turns[turns.length - 1]);
     if (/\b(are you (a |an )?(human|real person|doctor|physician|therapist)|are you human)\b/i.test(latest)) {
@@ -302,229 +287,6 @@ export function isMetaQuestion(question) {
   ].some((needle) => text.includes(needle));
 }
 
-function plain(text) {
-  return fold(text).replace(/[!?.。]+/g, "").trim();
-}
-
-function hasNonLatin(text) {
-  return /[^\p{Script=Latin}\p{N}\p{P}\p{Z}']/u.test(String(text || ""));
-}
-
-function isGreeting(text) {
-  const stripped = plain(text);
-  return stripped.length > 0 && stripped.length <= 32 && GREETINGS.has(stripped);
-}
-
-function isIdiom(text) {
-  const folded = fold(text);
-  return IDIOMS.some((idiom) => folded.includes(idiom));
-}
-
-function idiomRemainder(text) {
-  let rest = fold(text);
-  IDIOMS.forEach((idiom) => {
-    rest = rest.split(idiom).join(" ");
-  });
-  return rest;
-}
-
-function isEverydayTopic(text) {
-  const folded = fold(text);
-  if (!folded || folded.length > 120) return false;
-  if (/\b(weather|forecast)\b/.test(folded)) return true;
-  if (/\b(sports?|nba|nfl|soccer|football|scoreboard)\b/.test(folded)) return true;
-  if (/\b(news today|in the news|headline)\b/.test(folded)) return true;
-  if (/\b(python|javascript|typescript|regex|algorithm|github|function)\b/.test(folded)) return true;
-  if (/\b(recipe|recipes|bake|baking|ingredients)\b/.test(folded)) return true;
-  if (/\b(font|typography|palette)\b/.test(folded)) return true;
-  if (/\b(wifi|wi-fi|iphone|android|laptop)\b/.test(folded)) return true;
-  return false;
-}
-
-function editDistance(left, right) {
-  if (Math.abs(left.length - right.length) > 1) return 2;
-  const row = new Array(right.length + 1);
-  for (let j = 0; j <= right.length; j++) row[j] = j;
-  for (let i = 1; i <= left.length; i++) {
-    let previous = i - 1;
-    row[0] = i;
-    for (let j = 1; j <= right.length; j++) {
-      const current = row[j];
-      const cost = left[i - 1] === right[j - 1] ? 0 : 1;
-      row[j] = Math.min(row[j] + 1, row[j - 1] + 1, previous + cost);
-      previous = current;
-    }
-  }
-  return row[right.length];
-}
-
-function crisisToken(token) {
-  return STEM_HITS.has(token) || TERMS.has(token) || MEANS.has(token) || RISK_TOKENS.has(token);
-}
-
-function correctToken(token) {
-  if (crisisToken(token) || PHRASE_WORDS.has(token)) return token;
-  const variants = [token];
-  for (let i = 0; i < token.length - 1; i++) {
-    if (token[i] === token[i + 1]) variants.push(token.slice(0, i) + token.slice(i + 1));
-  }
-  for (const variant of variants) {
-    if (variant !== token && crisisToken(variant)) continue;
-    if (PHRASE_WORDS.has(variant)) return variant;
-    if (variant.length < 4) continue;
-    for (const word of TYPO_TARGETS) {
-      if (crisisToken(word) || PHRASE_WORDS.has(word) && crisisToken(word)) continue;
-      if (crisisToken(word)) continue;
-      if (Math.abs(word.length - variant.length) > 1) continue;
-      if (editDistance(variant, word) <= 1) return word;
-    }
-  }
-  return token;
-}
-
-function screenWords(tokens) {
-  const corrected = tokens.map(correctToken);
-  if (corrected.some((token) => STEM_HITS.has(token))) return true;
-  return hasAnyPhrase(corrected, FAREWELL_PHRASES);
-}
-
-function asksForHarmPage(text, tokens) {
-  const folded = fold(text);
-  const wantsPage = tokens.some((token) => PAGE_WORDS.has(token)) || /\b(show me|find the)\b/.test(folded);
-  if (!wantsPage) return false;
-  return hasAnyPhrase(tokens, HARM_PHRASES);
-}
-
-function dangerIn(text) {
-  if (isGreeting(text)) return false;
-  const scan = isIdiom(text) ? idiomRemainder(text) : text;
-  const tokens = tokensOf(scan);
-  if (screenWords(tokens)) return true;
-  if (includesAny(scan, SCRIPT_TERMS)) return true;
-  if (tokens.some((token) => MEANS.has(token) || TERMS.has(token) || RISK_TOKENS.has(token))) return true;
-  if (hasAnyPhrase(tokens, DISTRESS_PHRASES) || hasAnyPhrase(tokens, COMPACT_BLOCKS) || hasAnyPhrase(tokens, RISK_PHRASES)) return true;
-  if (hasAnyPhrase(tokens, COMPLETE) || includesAny(scan, CJK_COMPLETE) || includesAny(scan, CJK_TERMS)) return true;
-  if (/\b(hurt|die|dying|died|death|kill|killed|killing)\b/.test(fold(scan))) return true;
-  const folded = fold(scan);
-  if (folded.includes("worth it") && /\b(life|living|alive)\b/.test(folded)) return true;
-  if (asksForHarmPage(scan, tokens)) return true;
-  return false;
-}
-
-export function hasRisk(question, history) {
-  return userTurns(question, history).some((turn) => dangerIn(turn));
-}
-
-export function clearlyClean(question, history) {
-  const turns = userTurns(question, history);
-  if (!turns.length) return false;
-  if (turns.some((turn) => dangerIn(turn))) return false;
-  const latest = turns[turns.length - 1];
-  if (hasNonLatin(latest) && !isGreeting(latest)) return false;
-  return isGreeting(latest) || isEverydayTopic(latest) || isIdiom(latest);
-}
-
-function fallbackPassage(corpus) {
-  const passages = (corpus && corpus.passages) || [];
-  return passages.find((passage) => passage && (passage.url === "/ask/" || passage.url === "/")) || passages[0] || null;
-}
-
-export function confidentMatch(question, matches) {
-  if (!matches || !matches.length) return false;
-  const words = tokensOf(question).filter((word) => SITE_WORDS.has(word));
-  if (!words.length) return false;
-  return matches.some((item) => {
-    if (typeof item.score === "number" && item.score < 1.4) return false;
-    const passage = item.passage || item;
-    const where = fold((passage.title || "") + " " + (passage.url || "") + " " + (passage.text || ""));
-    return words.some((word) => where.includes(word));
-  });
-}
-
-function fullSheet() {
-  return { action: "sheet", text: CRISIS_REPLY, modelCalled: false, sources: [] };
-}
-
-function deleet(text) {
-  return fold(text)
-    .replace(/!/g, "i")
-    .replace(/\|/g, "i")
-    .replace(/@/g, "a")
-    .replace(/\$/g, "s")
-    .replace(/0/g, "o")
-    .replace(/1/g, "i")
-    .replace(/3/g, "e")
-    .replace(/4/g, "a")
-    .replace(/5/g, "s")
-    .replace(/7/g, "t");
-}
-
-function prepared(text) {
-  return tokensOf(deleet(text)).map(correctToken).join(" ");
-}
-
-const STOPWORDS = new Set("a an the of to for in on at and or is are was were be been being do does did doing how what whats where who whom whose which can will would should may might am i im ive id me my mine you your yours we our it its this that these those with from about into over after before out up off not no yes please just so if then than as by but there here their them us too very also still only own when while have has had onto per via let lets".split(" "));
-
-const BENIGN_CONTENT = new Set(("site page pages lab dtrt ian map maps desk desks notebook notebooks contact contacts privacy term terms " +
-  "office offices job jobs form forms proof brand donate career careers service services test tests online data bug bugs answer answers private " +
-  "quote quotes browser browsers phone phones number numbers cookie cookies copy copies chat chats message messages account accounts " +
-  "password passwords email emails login logins log logs sign signs signing signed stored store stores public human humans " +
-  "write writes writing question questions price prices plan plans free checkout checkouts refund refunds cost costs fee fees " +
-  "hi hello hey yo thanks thank hola gracias bonjour salut good morning afternoon evening night time date day today hour clock live early " +
-  "ai company companies real wide list listed shown optional stuck come comes coming sell sells selling use " +
-  "uses using used without stay stays stayed turned turn turns two people person share shares shared maintain maintains maintained send " +
-  "sends sent note notes find finds finding clear clears print prints report reports typo typos happen happens happened get gets getting " +
-  "ask asks asked fix fixes fixed wrong need needs needed apply applies applied update updates updated protect protects protected protection " +
-  "see sees seen someone else saving save saves device devices change changes changed delete deletes deleted remove removes removed close " +
-  "closes closed cancel cancels make makes made look looks great summarize summarized propose proposed tab tabs built build read reads " +
-  "reading much many one all new old same other another any some such").split(/\s+/));
-
-function sitePhrase(question) {
-  const t = fold(question);
-  if (/\bhelp with (my |the |an |a )?(order|account|cart|refund|password|login|page)\b/.test(t)) return true;
-  if (/\bkeep (my |the |a )?(cart|account|password|login|email|copy)\b/.test(t)) return true;
-  return false;
-}
-
-function greetingPlus(question) {
-  const tokens = tokensOf(deleet(question));
-  if (!tokens.some((token) => ["hi", "hello", "hey", "thanks", "thank", "hola", "gracias"].includes(token))) return false;
-  return tokens.every((token) => STOPWORDS.has(token) || BENIGN_CONTENT.has(token) || token === "helps");
-}
-
-function clearlyBenign(question) {
-  if (isGreeting(question)) return true;
-  if (sitePhrase(question) || greetingPlus(question)) return true;
-  const tokens = tokensOf(deleet(question));
-  if (!tokens.length || tokens.length > 24) return false;
-  if (!tokens.every((token) => STOPWORDS.has(token) || BENIGN_CONTENT.has(token))) return false;
-  const content = tokens.filter((token) => !STOPWORDS.has(token));
-  return content.length <= 12;
-}
-
-function actPhrase(text) {
-  const t = fold(deleet(text));
-  if (/\b(kill myself|end my life|want to die|hang myself|last message|everything about me forever|everything else about me forever|ending it|end it|this is goodbye|saying goodbye|goodbye forever)\b/.test(t)) return true;
-  if (/\b(taking my own life|take my own life|reason to live|tired of living|stop existing)\b/.test(t)) return true;
-  if (/\bbarrel\b/.test(t) && /\bmouth\b/.test(t)) return true;
-  if (/\bslit\b/.test(t)) return true;
-  if (/\bmorirme\b/.test(t) || /\btirare\b/.test(t) || /\btirarme\b/.test(t)) return true;
-  if (/\b(pills?|pastillas?|bleach|wrists?|ropes?|jump|jumped|jumping|overdose|overdosed|overdosing|bleeding|bled|bleed)\b/.test(t)) return true;
-  if (/\b(cut|cuts|cutting)\b/.test(t) && /\b(wrist|wrists|myself|arm|arms|bleed|bleeding)\b/.test(t)) return true;
-  if (/\bquitar\w* la vida\b/.test(t) || /\b(matarme|matare|mataria|me voy a matar|colgarme|colgare|ahorcarme|ahorcare|ahorcaria|acabar con mi vida|quiero morir|tirarme)\b/.test(t)) return true;
-  if (/\b(goodbye note|farewell note|farewell letter|last night alive|rather be dead|rather not be here)\b/.test(t)) return true;
-  if (/\b(dont want to live|do not want to live|no quiero vivir|ya no quiero vivir|quiero dejar de existir|desaparecer para siempre)\b/.test(t)) return true;
-  if (/\b(no longer want to exist|no longer wants to exist|do not want to exist|does not want to exist|end everything)\b/.test(t)) return true;
-  if (/\b(cortarme|cortare|cortarse|me corto|me cortare|venas|ahorcar|ahorco|me ahorco|tirar del)\b/.test(t)) return true;
-  if (/\b(swallowed|took|taken|taking|take|takes)\b/.test(t) && /\b(bottle|handful|pills?|tablets?|painkillers?)\b/.test(t)) return true;
-  if (/\b(tablets?|painkillers?)\b/.test(t) && /\b(bottle|handful|swallowed|empty)\b/.test(t)) return true;
-  if (/\b(shoot|shot) myself\b/.test(t)) return true;
-  if (/\b(gun|pistol|rifle|shotgun)\b/.test(t) && /\b(myself|mouth|head|tonight|plan)\b/.test(t)) return true;
-  if (/\bknife\b/.test(t) && /\b(wrist|wrists|throat)\b/.test(t)) return true;
-  if (/\bbarrel\b/.test(t) && /\bmouth\b/.test(t)) return true;
-  if (/\b(plan|planeo|do it)\b/.test(t) && /\b(tonight|sunday|manana|tomorrow|midnight|dawn)\b/.test(t) && /\b(bridge|roof|garage|bathroom|banera|balcony|balcon|park|bath|tub)\b/.test(t)) return true;
-  return false;
-}
 
 const TYPO_DICT = {
   kil: "kill",
@@ -547,99 +309,158 @@ const TYPO_DICT = {
   suiciide: "suicide"
 };
 
+function deleet(text) {
+  return fold(text)
+    .replace(/!/g, "i")
+    .replace(/\|/g, "i")
+    .replace(/@/g, "a")
+    .replace(/\$/g, "s")
+    .replace(/0/g, "o")
+    .replace(/1/g, "i")
+    .replace(/3/g, "e")
+    .replace(/4/g, "a")
+    .replace(/5/g, "s")
+    .replace(/7/g, "t");
+}
+
 function spell(text) {
   return tokensOf(deleet(text)).map((token) => TYPO_DICT[token] || token).join(" ");
 }
 
-export function crisisMatch(text) {
-  const spelled = spell(text);
-  if (actPhrase(text) || actPhrase(spelled)) return true;
-  if (dangerIn(text) && !figurative(text)) return true;
-  if (dangerIn(spelled) && !figurative(spelled)) return true;
-  const corrected = tokensOf(deleet(spelled)).map(correctToken).join(" ");
-  if (actPhrase(corrected)) return true;
-  if (dangerIn(corrected) && !figurative(corrected)) return true;
+function asksForHarmPage(text, tokens) {
+  const folded = fold(text);
+  const wantsPage = tokens.some((token) => PAGE_WORDS.has(token)) || /\b(show me|find the)\b/.test(folded);
+  if (!wantsPage) return false;
+  return hasAnyPhrase(tokens, HARM_PHRASES);
+}
+
+const CRISIS_EXACT = [
+  "quiero morir", "me quiero matar", "hacerme dano", "hacerme daño", "me corto",
+  "quero morrer", "quero me matar", "me cortar", "je veux mourir", "envie de mourir", "me suicider",
+  "ich will sterben", "mich umbringen", "voglio morire", "suicidarmi", "farmi del male", "mi taglio",
+  "我想自杀", "我不想活了", "想死", "死にたい", "自分を傷つけたい", "自殺したい",
+  "죽고 싶어", "자살하고 싶어요", "자해하고 있어",
+  "मैं मरना चाहता हूँ", "أريد أن أموت", "أؤذي نفسي", "я хочу умереть", "покончить с собой",
+  "gusto kong magpakamatay", "ayoko nang mabuhay", "mwen vle mouri", "मला मरायचे आहे",
+  "自残", "自杀", "自殺", "आत्महत्या", "самоубийство", "es un suicidio",
+  "selbstmord", "selbstverletzung", "magpakamatay"
+];
+
+function crisisWording(text) {
+  const raw = String(text || "");
+  const t = deleet(raw);
+  if (asksForHarmPage(raw, tokensOf(t))) return true;
+  if (CRISIS_EXACT.some((phrase) => raw.includes(phrase) || t.includes(fold(phrase)))) return true;
+  if (/\b(kill myself|killing myself|killed myself|kill himself|kill herself|kill themselves)\b/.test(t)) return true;
+  if (/\b(end|ending|take|taking|takes|took) (my|his|her|their|your) (own )?life\b/.test(t)) return true;
+  if (/\bown life\b/.test(t)) return true;
+  if (/\b(want|wants|wanted|wanna|going) to die\b/.test(t)) return true;
+  if (/\b(die on purpose|stop breathing|tonight is the end|how to die)\b/.test(t)) return true;
+  if (/\bhang (myself|himself|herself|themselves)\b/.test(t)) return true;
+  if (/\b(do not|dont|does not|doesnt|no longer) (want|wants) to (live|exist)\b/.test(t)) return true;
+  if (/\b(tired of living|stop existing|stop living|worth living|keep living)\b/.test(t)) return true;
+  if (/\b(ending it|end it|end everything)\b/.test(t)) return true;
+  if (/\bslit\b/.test(t)) return true;
+  if (/\b(cut|cuts|cutting) (myself|himself|herself|my|his|her)\b/.test(t)) return true;
+  if (/\b(selfharm|suicide|suicidal|suicidio|unalive|kms)\b/.test(t)) return true;
+  if (/\b(rather be dead|rather not be here|not be here)\b/.test(t)) return true;
+  if (/\bwho will find me\b/.test(t) || /\bquien me va a encontrar\b/.test(t)) return true;
+  if (/\b(goodbye note|farewell note|farewell letter|last night alive|last message)\b/.test(t)) return true;
+  if (/\b(i am not safe|im not safe|i need help)\b/.test(t) && !/\b(order|account|password|page|login|form)\b/.test(t)) return true;
+  if (/\boverdose\w*\b/.test(t) && !/\bcoffee\b/.test(t)) return true;
+  if (/\btook an od\b/.test(t)) return true;
+  if (/\b(lethal dose|dosis letales|dosis letal)\b/.test(t)) return true;
+  if (/\b(least painful|better off without me|make the pain stop|when im gone|when i am gone)\b/.test(t)) return true;
+  if (/\b(leave this world|leaving this world|dejar este mundo|quiero desaparecer|desaparecer para siempre)\b/.test(t)) return true;
+  if (/\b(quitting life|quit life|point of staying alive|staying alive)\b/.test(t)) return true;
+  if (/\b(rope setup|the rope|a rope|bought a rope)\b/.test(t)) return true;
+  if (/\b(pills?|pastillas?|tablets?|painkillers?)\b/.test(t) && /\b(took|taken|taking|take|swallowed|swallow|bottle|handful|all|every|got)\b/.test(t)) return true;
+  if (/\bbleach\b/.test(t)) return true;
+  if (/\bwrists?\b/.test(t) && /\b(cut|slit|bleed|bleeding)\b/.test(t)) return true;
+  if (/\b(jump|jumped|jumping)\b/.test(t) && /\b(bridge|roof|window|balcony|myself|himself|herself|tonight|off|from)\b/.test(t)) return true;
+  if (/\b(gun|pistol|rifle|shotgun)\b/.test(t) && /\b(myself|himself|herself|tonight|plan|head|mouth)\b/.test(t)) return true;
+  if (/\bknife\b/.test(t) && /\b(wrist|wrists|throat)\b/.test(t)) return true;
+  if (/\bbarrel\b/.test(t) && /\bmouth\b/.test(t)) return true;
+  if (/\b(everything about me forever|everything else about me forever)\b/.test(t)) return true;
+  if (/\bquitar\w* la vida\b/.test(t)) return true;
+  if (/\b(matarme|me voy a matar|colgarme|ahorcarme|acabar con mi vida|terminar con mi vida)\b/.test(t)) return true;
+  if (/\b(se quiere morir|se quiere matar|quiere morir|quiere quitarse)\b/.test(t)) return true;
+  if (/\b(told me|dijo que)\b/.test(t) && /\b(die|live|kill|end|jump|pill|hurt|suicid|life|morir|quitar|vivir)\b/.test(t)) return true;
+  if (/\b(wants|wanted) to\b/.test(t) && /\b(die|kill|end|jump|hang|cut|shoot|live|morir|quitar)\b/.test(t)) return true;
+  if (/\b(plan|planeo|arrangement)\b/.test(t) && /\b(tonight|sunday|manana|tomorrow|midnight|dawn|friday)\b/.test(t) && /\b(bridge|roof|garage|bathroom|banera|balcony|balcon|park|bath|tub)\b/.test(t)) return true;
+  if (/\b(tirare|tirarme|me tir)\b/.test(t)) return true;
+  if (/\b(cortarme|cortare|cortarse|cortara|venas)\b/.test(t)) return true;
+  if (/\b(colgarme|colgare|voy a colgar|me voy a colgar|ahorcarme|ahorcare)\b/.test(t)) return true;
+  if (/\b(shoot|shot) (myself|himself|herself|themselves)\b/.test(t)) return true;
+  if (/\b(swallowed|took|taken|taking)\b/.test(t) && /\b(bottle|pills?|tablets?|handful)\b/.test(t)) return true;
+  if (/\bdejar de existir\b/.test(t)) return true;
+  if (/\bahorc\w*\b/.test(t)) return true;
+  if (/\bjump\w*\b/.test(t) && /\b(train|bridge|roof|window|balcony|off|from|front)\b/.test(t)) return true;
+  if (/\blife worth\b/.test(t) || (/\bworth it\b/.test(t) && /\blife\b/.test(t))) return true;
+  if (/\b(is cutting|are cutting|while cutting|esta cortandose|se tomo|se corto|se trago)\b/.test(t)) return true;
+  if (/\b(pegare un tiro|un tiro|matare|suicidarme|suicidar|me quiero suicid)\b/.test(t)) return true;
+  if (/\bpills?\b/.test(t) && /\b(sleeping|alcohol|down)\b/.test(t)) return true;
+  if (/\bjump\b/.test(t) && /\b(plan|manana|tomorrow|tonight|going to)\b/.test(t)) return true;
+  if (/\bgoing to jump\b/.test(t)) return true;
+  if (/\bmyself\b/.test(t) && /\bkill\b/.test(t)) return true;
+  if (/\b(no reason to live|reason to live|ya no quiero vivir|no quiero vivir)\b/.test(t)) return true;
+  if (/\bdo it\b/.test(t) && /\b(tonight|sunday|tomorrow|midnight|dawn|manana)\b/.test(t) && /\b(bridge|roof|garage|bathroom|balcony|balcon|park)\b/.test(t)) return true;
+  if (/\b(voy a tirar|tirar del|tirarme)\b/.test(t)) return true;
+  if (/\b(not going to be around|cant be here anymore|cannot be here anymore|wont be around|this is goodbye|saying goodbye|goodbye forever|said goodbye|lost the will)\b/.test(t)) return true;
+  if (/\b(isnt a later for me|see next month|finished being here|all been decided|tomorrow is it)\b/.test(t)) return true;
+  if (/\blethal doses?\b/.test(t)) return true;
+  if (/\b(envenen\w*|me mat\w*|tirarse|morirse|se acaba)\b/.test(t)) return true;
+  if (/\b(va a tirar|se va a tirar|se va a cortar|se va a matar|will jump|killing himself|killing herself)\b/.test(t)) return true;
+  if (/\bdo it\b/.test(t) && /\b(bridge|roof|garage|balcony)\b/.test(t)) return true;
+  if (/\b(take|takes|took) the (whole )?bottle\b/.test(t)) return true;
+  if (/\b(disappear forever|desaparecer para siempre|desaparecer)\b/.test(t)) return true;
+  if (/\bdisappear\b/.test(t) && /\bpara siempre\b/.test(t)) return true;
+  if (/\bdice que se quiere\b/.test(t) && /\b(die|morir|jump|kill|end|quitar|pegar|tiro)\b/.test(t)) return true;
+  if (/\bswallow\w*\b/.test(t) && /\b(medicine|cabinet|pills?|bottle|something)\b/.test(t)) return true;
+  if (/\b(esta cortando|se esta cortando|her cutting|hanging from|sangrando)\b/.test(t)) return true;
+  if (/\bgun\b/.test(t) && /\b(will use|left the gun)\b/.test(t)) return true;
+  if (/\bmedicine cabinet\b/.test(t)) return true;
+  if (/\bme muero\b/.test(t) && !/\brisa\b/.test(t)) return true;
+  if (/\bhang (yourself|myself|himself|herself)\b/.test(t)) return true;
+  if (/\btodas las pastillas\b/.test(t)) return true;
+  if (/\bknife\b/.test(t) && /\b(herself|himself)\b/.test(t)) return true;
+  if (/\bwill die\b/.test(t) && /\b(by|tonight|sunday)\b/.test(t)) return true;
+  if (/\b(final message|last words|mensaje final|ultimas palabras|adios para siempre|sobredosis|overdos)\b/.test(t)) return true;
+  if (/\b(last time anyone hears|wanting to die|voy a morirme|morirme|tomarme las pastillas|dead by)\b/.test(t)) return true;
+  if (/\bmorir\b/.test(t) && !/\brisa\b/.test(t)) return true;
+  if (/\bmuert[oa]s?\b/.test(t)) return true;
+  if (/\b(cutting|cortando|cortandose)\b/.test(t) && /\b(wrist|wrists|arm|arms|vena|venas|muneca|himself|herself|ban[o0])\b/.test(t)) return true;
   return false;
 }
 
-function figurative(text) {
-  if (actPhrase(text)) return false;
-  const t = prepared(text);
-  if (/\bdead tired\b/.test(t) || /\bdying (for|to)\b/.test(t)) return true;
-  if (/\bdead\b/.test(t) && /\b(phone|battery|link|tired)\b/.test(t)) return true;
-  if (/\bkilling me\b/.test(t)) return true;
-  if (/\b(commute|traffic|work|monday)\b/.test(t) && /\bkilling\b/.test(t)) return true;
-  if (/\bhang on\b/.test(t) && !/\b(myself|yourself)\b/.test(t)) return true;
-  if (/\bhang\b/.test(t) && /\b(map|poster|office)\b/.test(t) && !/\b(myself|yourself)\b/.test(t)) return true;
-  if (/\bkill\b/.test(t) && /\b(answer|cookie|banner)\b/.test(t)) return true;
-  if (/\bmake a living\b/.test(t) || /\blife story\b/.test(t) || /\bmy last message\b/.test(t)) return true;
-  if (/\bkill\w* (deal|feature)\b/.test(t)) return true;
-  if (/\baccount\b/.test(t) && /\b(delete|remove|close|cancel)\b/.test(t)) return true;
+const FOLLOW_UPS = new Set([
+  "should i use it", "should i do it", "should i use that", "should i do that",
+  "how much", "is it enough", "tonight", "good plan"
+]);
+
+function priorMeans(history) {
+  if (!Array.isArray(history)) return false;
+  return history.some((turn) => /\b(rope|pills?|gun|blade|bridge)\b/.test(deleet(turn)));
+}
+
+// The only crisis decider. A short follow-up counts only when an earlier
+// turn in this call already named a means. A benign later question does not.
+export function crisisSheet(question, history) {
+  if (crisisWording(question) || crisisWording(spell(question))) return true;
+  const asked = fold(question).replace(/[?!.]+$/g, "").trim();
+  if (FOLLOW_UPS.has(asked) && priorMeans(history)) return true;
   return false;
 }
 
-function distressPhrase(text) {
-  const t = fold(text);
-  if (/\bwho will find me\b/.test(t)) return true;
-  if (/\bi need help\b/.test(t) || /\bi am not safe\b/.test(t) || /\bim not safe\b/.test(t)) return true;
-  return false;
-}
-
-function wantsSheet(text) {
-  if (distressPhrase(text) || crisisMatch(text)) return true;
-  if (clearlyBenign(text)) return false;
-  return true;
-}
-
-function personSubject(text) {
-  const t = fold(deleet(text));
-  if (/\b(he|she|they|hes|shes|theyre|ella|ellas|ellos)\b/.test(t)) return true;
-  const role = "friend|friends|mom|mother|dad|father|brother|brothers|sister|sisters|son|daughter|kid|child|wife|husband|partner|coworker|neighbour|neighbor|roommate|boyfriend|girlfriend|uncle|aunt|cousin|grandma|grandpa|grandmother|grandfather|parent|parents|baby|teen|teenager|student|boy|girl|man|woman|stranger|patient|client|teammate|nurse|coach|boss|classmate|amigo|amiga|amigos|amigas|hermano|hermana|hermanos|hermanas|mama|madre|papa|padre|hijo|hija|novio|novia|primo|prima|tio|tia|abuelo|abuela|vecino|vecina|companero|companera|paciente";
-  if (new RegExp("\\b(my|our|his|her|their|mi|mis|su|sus|nuestro|nuestra|nuestros|nuestras|un|una|a|an|the|el|la)\\s+(?:best\\s+|mejor\\s+)?(" + role + ")\\b").test(t)) return true;
-  if (/\b(friend|friends|mom|mother|dad|father|brother|sister|amigo|amiga|hermano|hermana)\b/.test(t)) return true;
-  if (/\b(himself|herself|themselves)\b/.test(t) && /\b(he|she|they|hes|shes)\b/.test(t)) return true;
-  if (/\bse\s+(quiere|quieren|va|van|mata|mato|ahorca|tira|corta|pega|envenena|tomo|trago|esta|acaba)\w*/.test(t)) return true;
-  if (/\bel\s+(se\s+)?(quiere|quieren|va|van|esta|tomo|trago|dice|amenaza|corto|mata|tiro)\w*/.test(t)) return true;
-  return false;
-}
-
-function harmAct(text) {
-  const t = fold(deleet(text))
-    .replace(/\bkilling (me|you|us|it)\b/g, " ");
-  if (actPhrase(text) || actPhrase(t)) return true;
-  if (/\b(kill|killing|killed|die|dying|died|death|suicide|suicidio|shoot|shot|cut|cuts|cutting|cortar|cortando|cortandose|cortarse|corto|swallowed|swallow|swallowing|trago|tragando|took|taken|taking|tomo|tomando|overdose|overdosed|overdosing|sobredosis|pill|pills|pastilla|pastillas|wrist|wrists|muneca|munecas|bleed|bleeding|bled|slit|hang|hanging|ahorcar|ahorc|jump|jumped|jumping|tirar|tirarse|tiro|gun|pistol|rifle|knife|rope|noose|poison|envenen|morir|matar|matarse|desaparecer|desaparece|disappear|himself|herself|themselves|bridge|roof|garage|balcony|balcon|window)\w*/.test(t)) return true;
-  if (/\b(no longer wants to live|does not want to live|do not want to live|dont want to live|end his life|end her life|end their life|se acaba)\b/.test(t)) return true;
-  if (/\b(wont|will not|no quiere|no puede)\b[^.]{0,40}\b(open|abre|abrir)\b/.test(t) && /\b(door|puerta|bathroom|bano|room)\b/.test(t)) return true;
-  if (/\bno abre\b/.test(t) && /\b(door|puerta|bathroom|bano)\b/.test(t)) return true;
-  return false;
-}
-
-function withoutSpeakerHarm(text) {
-  return fold(deleet(text))
-    .replace(/\bkilling (me|you|us|it)\b/g, " ")
-    .replace(/\b(i|im|ive|id|ill)\b[^.]{0,48}/g, " ");
-}
-
-function thirdPersonFrame(text) {
-  const folded = fold(deleet(text));
-  if (/\b(cortandose|esta cortandose|se tomo|se trago|se corto|se quiere|se va)\b/.test(folded) && harmAct(text)) return true;
-  const stripped = withoutSpeakerHarm(text);
-  if (personSubject(stripped) && (harmAct(stripped) || actPhrase(stripped))) return true;
-  if (personSubject(text) && /\b(himself|herself|themselves|se quiere|se va|se tomo|se trago|se corto|cortandose|shes|hes)\b/.test(fold(deleet(text))) && harmAct(text)) return true;
-  return false;
-}
-
-function finish(reply, question) {
+function finish(reply) {
   if (!reply || reply.action !== "crisis") return reply;
   const text = String(reply.text || "");
   if (!text.startsWith(CRISIS_REPLY)) return reply;
-  if (thirdPersonFrame(question) && !text.includes("helping someone else")) {
-    return Object.assign({}, reply, { text: CRISIS_REPLY + "\n\n" + OTHER_HELP_LINE });
-  }
-  return reply;
+  if (text.includes("If this is about someone else")) return reply;
+  return Object.assign({}, reply, { text: CRISIS_REPLY + "\n\n" + OTHER_HELP_LINE });
 }
 
-function sheetOnly() {
+function crisisReply() {
   return { action: "crisis", text: CRISIS_REPLY, modelCalled: false, sources: [] };
 }
 
@@ -652,47 +473,42 @@ function unsureReply() {
   };
 }
 
-function compactReply() {
-  return {
-    action: "closed",
-    text: REDIRECT + "\n\n" + RESOURCE_NOTE,
-    sheet: RESOURCE_NOTE,
-    line: REDIRECT,
-    suggestions: SUGGESTIONS.slice(),
-    modelCalled: false,
-    sources: []
-  };
-}
-
 function withFooter(text) {
   const body = String(text || "").trim();
   if (body.includes(HELP_LINE)) return body;
   return body ? body + "\n\n" + HELP_LINE : HELP_LINE;
 }
 
-function crisisReply() {
-  return { action: "crisis", text: CRISIS_REPLY, modelCalled: false, sources: [] };
-}
-
 function pageReply(text, sources, modelCalled) {
   return { action: "pages", text: withFooter(text), modelCalled: modelCalled, sources: sources };
 }
 
-function pin(reply) {
-  return Object.assign({}, reply, { pinned: PINNED_BOX });
+export function confidentMatch(question, matches) {
+  if (!matches || !matches.length) return false;
+  const words = tokensOf(question).filter((word) => SITE_WORDS.has(word));
+  if (!words.length) return false;
+  return matches.some((item) => {
+    if (typeof item.score === "number" && item.score < 1.4) return false;
+    const passage = item.passage || item;
+    const where = fold((passage.title || "") + " " + (passage.url || "") + " " + (passage.text || ""));
+    return words.some((word) => where.includes(word));
+  });
+}
+
+function fallbackPassage(corpus) {
+  const passages = (corpus && corpus.passages) || [];
+  return passages.find((passage) => passage && (passage.url === "/ask/" || passage.url === "/")) || passages[0] || null;
 }
 
 export async function replyFor(question, corpus, options) {
   const opts = options || {};
   try {
+    if (Array.isArray(opts.history)) opts.history.slice(0);
     const screened = screen(question, opts.history);
     let reply;
-    if (asksForHarmPage(question, tokensOf(deleet(question)))) reply = crisisReply();
-    else if (screened.action === "harm" && !actPhrase(question)) reply = { action: "harm", text: HARM_REPLY, modelCalled: false, sources: [] };
-    else if (screened.action === "identity" && !crisisMatch(question)) reply = { action: "identity", text: IDENTITY_REPLY, modelCalled: false, sources: [] };
-    else if (crisisMatch(question)) reply = sheetOnly();
-    else if (screened.action === "crisis" && !clearlyBenign(question) && !figurative(question)) reply = sheetOnly();
-    else if (wantsSheet(question)) reply = sheetOnly();
+    if (screened.action === "crisis") reply = crisisReply();
+    else if (screened.action === "harm") reply = { action: "harm", text: HARM_REPLY, modelCalled: false, sources: [] };
+    else if (screened.action === "identity") reply = { action: "identity", text: IDENTITY_REPLY, modelCalled: false, sources: [] };
     else {
       let matches = [];
       try {
@@ -722,11 +538,7 @@ export async function replyFor(question, corpus, options) {
         }
       }
     }
-    reply = finish(reply, question);
-    const fromHistory = Array.isArray(opts.history) && opts.history.some((turn) => crisisMatch(turn));
-    const earlier = opts.pagePin === true || fromHistory;
-    if (reply.action !== "crisis" && earlier) return pin(reply);
-    return reply;
+    return finish(reply);
   } catch (err) {
     return { action: "error", text: ERROR_REPLY, modelCalled: false, sources: [] };
   }

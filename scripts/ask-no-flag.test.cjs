@@ -89,45 +89,23 @@ test('plain questions and every pair never show the session pin', async () => {
   console.log('plain pin 0/30 pairs 0/870');
 });
 
-test('a positive crisis match pins the 988 box for the rest of this history only', async () => {
+test('a later plain question is not a sheet and nothing is pinned', async () => {
   const crisis = 'I want to die tonight';
   const sheet = await safety.replyFor(crisis, { passages: [] }, {});
   assert.equal(sheet.action, 'crisis');
-  assert.equal(sheet.text.startsWith(safety.CRISIS_REPLY), true);
   assert.equal(sheet.pinned, undefined);
   const later = await safety.replyFor('where is the price list', { passages: [] }, { history: [crisis] });
   assert.notEqual(later.action, 'crisis');
-  assert.equal(later.pinned, safety.PINNED_BOX);
-  const fresh = await safety.replyFor('where is the price list', { passages: [] }, {});
-  assert.equal(fresh.pinned, undefined);
+  assert.equal(later.pinned, undefined);
 });
 
-test('pagePin keeps the 988 box with an empty history and a fresh call does not', async () => {
-  const kept = await safety.replyFor('where is the price list', { passages: [] }, { pagePin: true });
-  assert.notEqual(kept.action, 'crisis');
-  assert.equal(kept.pinned, safety.PINNED_BOX);
-  const fresh = await safety.replyFor('where is the price list', { passages: [] }, {});
-  assert.equal(fresh.pinned, undefined);
-  const sheet = await safety.replyFor('I want to die tonight', { passages: [] }, { pagePin: true });
-  assert.equal(sheet.action, 'crisis');
-  assert.equal(sheet.pinned, undefined);
-});
-
-test('the pin stays in tab memory when New chat runs and is not stored', () => {
+test('chat-app has no page pin and no crisis flag writer', () => {
   const app = fs.readFileSync(path.join(__dirname, '../ask/chat-app.js'), 'utf8');
-  assert.match(app, /let pagePin = false/);
-  assert.match(app, /pagePin,/);
-  assert.match(app, /if \(crisisMatch\(question\)\) pagePin = true/);
+  const safety = fs.readFileSync(path.join(__dirname, '../ask/safety.mjs'), 'utf8');
+  assert.doesNotMatch(app, /pagePin/);
+  assert.doesNotMatch(app, /crisisMatch/);
+  assert.doesNotMatch(safety, /pagePin|crisisMatch|wantsSheet|hasRisk|clearlyClean|writeRiskFlag|dtrt\.risk/);
   assert.doesNotMatch(app, /sessionStorage/);
-  assert.doesNotMatch(app, /localStorage\.setItem\([^)]*pagePin/);
-  const save = app.slice(app.indexOf('function saveLocal'), app.indexOf('function activeChat'));
-  const snap = app.slice(app.indexOf('function snapshot'), app.indexOf('function applySnapshot'));
-  const start = app.indexOf('getElementById("new-chat")');
-  const handler = app.slice(start, app.indexOf('getElementById("side-toggle")', start));
-  assert.doesNotMatch(save, /pagePin/);
-  assert.doesNotMatch(snap, /pagePin/);
-  assert.doesNotMatch(handler, /pagePin/);
-  assert.match(handler, /state\.activeId = ""/);
 });
 
 test('every third-person sheet includes the helping line', async () => {
@@ -147,7 +125,7 @@ test('every third-person sheet includes the helping line', async () => {
     const result = await safety.replyFor(question, { passages: [] }, {});
     assert.equal(result.action, 'crisis', question);
     assert.equal(result.text.startsWith(safety.CRISIS_REPLY), true, question);
-    assert.match(result.text, /helping someone else/, question);
+    assert.match(result.text, /If this is about someone else/, question);
     assert.match(result.text, /988/, question);
   }
   console.log('third-person help ' + lines.length + '/' + lines.length);

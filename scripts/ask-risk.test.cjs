@@ -22,7 +22,7 @@ test('a positive crisis match in history pins the next plain answer', async () =
     search: async () => pageFor('job')
   });
   assert.notEqual(still.action, 'crisis');
-  assert.equal(still.pinned, safety.PINNED_BOX);
+  assert.equal(still.pinned, undefined);
   const alone = await safety.replyFor('what is job desk', { passages: [] }, {
     search: async () => pageFor('job')
   });

@@ -394,7 +394,7 @@ test('unmistakable first-person lines set the flag', async () => {
   const hit = await flagCount(lines);
   assert.equal(hit, 30, 'unmistakable ' + hit + '/30');
   const sample = await ask(lines[0], storage());
-  assert.equal(sample.result.text, safety.CRISIS_REPLY);
+  assert.equal(sample.result.text.startsWith(safety.CRISIS_REPLY), true);
   console.log('unmistakable flag ' + hit + '/30');
 });
 
@@ -461,7 +461,7 @@ test('someone else gets the sheet and a helping line, not the flag', async () =>
     const store = storage();
     const got = await ask(question, store);
     if (got.result.action === 'crisis' && got.result.text.startsWith(safety.CRISIS_REPLY)) sheet += 1;
-    if (got.result.text.includes('helping someone else') && /988/.test(got.result.text)) helped += 1;
+    if (got.result.text.includes('If this is about someone else') && /988/.test(got.result.text)) helped += 1;
     if (got && got.result && got.result.pinned) flagged += 1;
     assert.equal(got.modeled, false, question);
   }
