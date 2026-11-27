@@ -2,7 +2,7 @@
 
 Public AI chat branch `cursor/public-ai-launch-8a16`.
 
-Head: `pending`
+Head: `fd3b47db9aadc000d8b363ea80584c9d530c4e1c`
 
 FIXED: harm-page requests mixed with site words return the full sheet and no page quote, 132/132 scripts/ask-risk.test.cjs
 FIXED: the risk flag reaches a new tab for 24h, 3/3 scripts/ask-risk.test.cjs
