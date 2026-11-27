@@ -214,14 +214,17 @@ class RefreshStampTests(unittest.TestCase):
              patch.object(refresh, 'encrypt') as encrypt, \
              patch.object(refresh, 'x_followers', return_value=9), \
              patch.object(refresh, 'postiz_published', return_value=None), \
-             redirect_stdout(log):
+             redirect_stdout(log), \
+             self.assertRaises(SystemExit) as exit_info:
             refresh.main()
+        self.assertEqual(exit_info.exception.code, 1)
         encrypt.assert_not_called()
         self.assertEqual(enc.read_bytes(), enc_before)
         self.assertEqual(proof_path.read_bytes(), proof_before)
-        self.assertIn('::warning::', log.getvalue())
+        self.assertIn('::error', log.getvalue())
         self.assertIn('unchanged', log.getvalue())
         self.assertIn('postiz: skipped', log.getvalue())
+        self.assertIn('POSTIZ_API_KEY', log.getvalue())
         self.assertNotIn('secret', log.getvalue())
         self.assertNotIn(STAMP, log.getvalue())
 
@@ -440,6 +443,81 @@ class RefreshStampTests(unittest.TestCase):
                 refresh.main()
         self.assertFalse(enc.exists())
         self.assertEqual(proof_path.read_text(encoding='utf-8'), before)
+
+
+class PostizFailsLoudTests(unittest.TestCase):
+    """11/22 incident: Postiz answered HTTP errors for 5 days and every run stayed green."""
+
+    def _http_error(self, code, body=b'{"msg":"Invalid API key"}'):
+        return urllib.error.HTTPError('https://api.postiz.com/public/v1/posts', code, 'x',
+                                      {'Set-Cookie': 'should-not-leak'}, io.BytesIO(body))
+
+    def _main_with_postiz_error(self, exc):
+        temp = tempfile.TemporaryDirectory()
+        self.addCleanup(temp.cleanup)
+        root = Path(temp.name)
+        enc, proof_path = root / 'owner.enc.json', root / 'proof.json'
+        enc.write_text('{"untouched":true}', encoding='utf-8')
+        proof_path.write_text('{"updated_et":"2026-11-22 09:22 ET"}', encoding='utf-8')
+        before = (enc.read_bytes(), proof_path.read_bytes())
+        owner = {'meta': {'start': '2026-10-01', 'updated_et': '2026-11-22 09:22 ET'},
+                 'history': [{'date': '2026-11-22', 'followers': {'x': 9}}]}
+        env = {'LIVE_PASSWORD': 'pw-not-printed', 'POSTIZ_API_KEY': 'key-not-printed', 'X_BEARER_TOKEN': ''}
+        log = io.StringIO()
+
+        def fake_get(url, headers):
+            raise exc
+
+        with patch.dict(os.environ, env, clear=True), \
+             patch.object(refresh, 'ENC', str(enc)), \
+             patch.object(refresh, 'PROOF', str(proof_path)), \
+             patch.object(refresh, 'decrypt', return_value=owner), \
+             patch.object(refresh, 'encrypt') as encrypt, \
+             patch.object(refresh, 'get', side_effect=fake_get), \
+             redirect_stdout(log), \
+             self.assertRaises(SystemExit) as exit_info:
+            refresh.main()
+        encrypt.assert_not_called()
+        self.assertEqual((enc.read_bytes(), proof_path.read_bytes()), before)
+        return exit_info.exception.code, log.getvalue()
+
+    def assert_no_secrets(self, out):
+        for secret in ('pw-not-printed', 'key-not-printed', 'should-not-leak', 'Invalid API key'):
+            self.assertNotIn(secret, out)
+
+    def test_rejected_key_fails_red_with_fix_instructions(self):
+        code, out = self._main_with_postiz_error(self._http_error(401))
+        self.assertEqual(code, 1)
+        self.assertIn('::error title=live-refresh failed::postiz: HTTPError 401', out)
+        self.assertIn('POSTIZ_API_KEY', out)
+        self.assertIn('Settings > Public API', out)
+        self.assertIn('2026-11-22 09:22 ET', out)
+        self.assert_no_secrets(out)
+
+    def test_rate_limit_and_server_errors_fail_red(self):
+        for status, words in ((429, 'rate limit'), (503, 'server error'), (404, 'path changed'), (403, '403')):
+            with self.subTest(status=status):
+                code, out = self._main_with_postiz_error(self._http_error(status))
+                self.assertEqual(code, 1)
+                self.assertIn(f'postiz: HTTPError {status}', out)
+                self.assertIn(words, out)
+                self.assert_no_secrets(out)
+
+    def test_network_and_shape_errors_fail_red(self):
+        for exc, label in ((urllib.error.URLError('down'), 'postiz: URLError'),
+                           (ValueError('bad'), 'postiz: ValueError'),
+                           (TimeoutError(), 'postiz: TimeoutError')):
+            with self.subTest(label=label):
+                code, out = self._main_with_postiz_error(exc)
+                self.assertEqual(code, 1)
+                self.assertIn('::error', out)
+                self.assertIn(label, out)
+
+    def test_workflow_does_not_swallow_the_failure(self):
+        wf = (Path(__file__).resolve().parent.parent / '.github' / 'workflows' / 'live-refresh.yml').read_text(encoding='utf-8')
+        self.assertNotIn('continue-on-error', wf)
+        self.assertNotIn('live-refresh.py ||', wf)
+        self.assertNotIn('live-refresh.py; true', wf)
 
 
 if __name__ == '__main__':
