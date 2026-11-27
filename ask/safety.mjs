@@ -577,6 +577,17 @@ function actPhrase(text) {
   if (/\b(pills?|pastillas?|bleach|wrists?|ropes?|jump|jumped|jumping|overdose|overdosed|overdosing|bleeding|bled|bleed)\b/.test(t)) return true;
   if (/\b(cut|cuts|cutting)\b/.test(t) && /\b(wrist|wrists|myself|arm|arms|bleed|bleeding)\b/.test(t)) return true;
   if (/\bquitar\w* la vida\b/.test(t) || /\b(matarme|matare|mataria|me voy a matar|colgarme|colgare|ahorcarme|ahorcare|ahorcaria|acabar con mi vida|quiero morir|tirarme)\b/.test(t)) return true;
+  if (/\b(goodbye note|farewell note|farewell letter|last night alive|rather be dead|rather not be here)\b/.test(t)) return true;
+  if (/\b(dont want to live|do not want to live|no quiero vivir|ya no quiero vivir|quiero dejar de existir|desaparecer para siempre)\b/.test(t)) return true;
+  if (/\b(no longer want to exist|no longer wants to exist|do not want to exist|does not want to exist|end everything)\b/.test(t)) return true;
+  if (/\b(cortarme|cortare|cortarse|me corto|me cortare|venas|ahorcar|ahorco|me ahorco|tirar del)\b/.test(t)) return true;
+  if (/\b(swallowed|took|taken|taking|take|takes)\b/.test(t) && /\b(bottle|handful|pills?|tablets?|painkillers?)\b/.test(t)) return true;
+  if (/\b(tablets?|painkillers?)\b/.test(t) && /\b(bottle|handful|swallowed|empty)\b/.test(t)) return true;
+  if (/\b(shoot|shot) myself\b/.test(t)) return true;
+  if (/\b(gun|pistol|rifle|shotgun)\b/.test(t) && /\b(myself|mouth|head|tonight|plan)\b/.test(t)) return true;
+  if (/\bknife\b/.test(t) && /\b(wrist|wrists|throat)\b/.test(t)) return true;
+  if (/\bbarrel\b/.test(t) && /\bmouth\b/.test(t)) return true;
+  if (/\b(plan|planeo|do it)\b/.test(t) && /\b(tonight|sunday|manana|tomorrow|midnight|dawn)\b/.test(t) && /\b(bridge|roof|garage|bathroom|banera|balcony|balcon|park|bath|tub)\b/.test(t)) return true;
   return false;
 }
 
@@ -603,39 +614,6 @@ const TYPO_DICT = {
 
 function spell(text) {
   return tokensOf(deleet(text)).map((token) => TYPO_DICT[token] || token).join(" ");
-}
-
-function flagAct(text) {
-  const t = spell(text);
-  if (/\b(kill myself|killing myself|killed myself|hang myself|kill yourself|hang yourself|end my life|end your life|end my own life|ending my life|take my own life|taking my own life|want to die|wanna die|going to die|gonna die|rather be dead|rather not be here)\b/.test(t)) return true;
-  if (/\bkill\b/.test(t) && /\bmyself\b/.test(t)) return true;
-  if (/\b(end it all|end everything|ending it|end it|ending my life)\b/.test(t)) return true;
-  if (/\b(last message|everything about me forever|everything else about me forever|this is goodbye|saying goodbye|goodbye forever)\b/.test(t)) return true;
-  if (/\b(no longer want to exist|no longer wants to exist|do not want to exist|does not want to exist|dont want to exist|stop existing|tired of living|reason to live|dont want to live|do not want to live|no quiero vivir)\b/.test(t)) return true;
-  if (/\b(leave this world|dejar este mundo|terminar con mi vida|quiero desaparecer)\b/.test(t)) return true;
-  if (/\b(quiero dejar de existir|desaparecer para siempre)\b/.test(t)) return true;
-  if (/\bbarrel\b/.test(t) && /\bmouth\b/.test(t)) return true;
-  if (/\bslit\b/.test(t) && /\b(wrists?|throat)\b/.test(t)) return true;
-  if (/\b(cut|cuts|cutting)\b/.test(t) && /\bwrists?\b/.test(t)) return true;
-  if (/\bwrists?\b/.test(t) && /\b(bleeding|bled|bleed)\b/.test(t)) return true;
-  if (/\b(pills?|pastillas?|bleach)\b/.test(t)) return true;
-  if (/\brope\b/.test(t) && !/\brope lights\b/.test(t)) return true;
-  if (/\b(bleeding|bled)\b/.test(t)) return true;
-  if (/\boverdose\b/.test(t) && !/\bcoffee\b/.test(t)) return true;
-  if (/\b(swallow\w*|took|taken|taking|take|takes)\b/.test(t) && /\b(bottle|handful|pills?|tablets?|painkillers?)\b/.test(t)) return true;
-  if (/\b(pills?|tablets?|painkillers?)\b/.test(t) && /\balcohol\b/.test(t)) return true;
-  if (/\bsleeping (pills|tablets)\b/.test(t)) return true;
-  if (/\b(suicide|suicidal|kms|unalive)\b/.test(t)) return true;
-  if (/\b(shoot|shot) (myself|himself|herself|themselves)\b/.test(t)) return true;
-  if (/\b(gun|pistol|rifle|shotgun)\b/.test(t) && /\b(myself|himself|herself|mouth|head|tonight|sunday|manana|midnight|plan)\b/.test(t)) return true;
-  if (/\bknife\b/.test(t) && /\b(wrist|wrists|myself|throat|tonight|sunday|manana)\b/.test(t)) return true;
-  if (/\b(jump|jumped|jumping)\b/.test(t) && /\b(off|from|bridge|window|balcony|roof|train|stair|tonight|sunday|manana|midnight|dawn)\b/.test(t)) return true;
-  if (/\b(quitar\w* la vida|matarme|matare|mataria|me voy a matar|colgarme|colgare|ahorcarme|ahorcare|ahorcaria|ahorcar|ahorco|me ahorco|acabar con mi vida|quiero morir|quiero morirme|morirme|tirarme|tirare)\b/.test(t)) return true;
-  if (/\b(cortarme|cortare|cortarse|me corto|me cortare)\b/.test(t)) return true;
-  if (/\bvenas\b/.test(t)) return true;
-  if (/\bbanera\b/.test(t) && /\b(cort\w*|venas|morir\w*|matar\w*)\b/.test(t)) return true;
-  if (/\b(tonight|sunday|manana|tomorrow|midnight|dawn)\b/.test(t) && /\b(end it|end everything|kill myself|want to die|morir\w*|matarme|slit|hang myself)\b/.test(t)) return true;
-  return false;
 }
 
 const IDIOM_FAMILIES = [
@@ -686,24 +664,60 @@ const IDIOM_FAMILIES = [
   /last message/
 ];
 
+function crisisMatch(text) {
+  const spelled = spell(text);
+  if (actPhrase(text) || actPhrase(spelled)) return true;
+  if (dangerIn(text) && !figurative(text)) return true;
+  if (dangerIn(spelled) && !figurative(spelled)) return true;
+  const corrected = tokensOf(deleet(spelled)).map(correctToken).join(" ");
+  if (actPhrase(corrected)) return true;
+  if (dangerIn(corrected) && !figurative(corrected)) return true;
+  return false;
+}
+
+const SITE_NOT_FLAG = [
+  /pill-shaped/,
+  /pill shaped/,
+  /rope lights?/,
+  /bleeding edge/,
+  /demo pills?/,
+  /kill switch/,
+  /killer deals?/,
+  /killer features?/,
+  /wrist bands?/,
+  /jump to/
+];
+
+function withoutPhrases(text, patterns) {
+  let stripped = fold(deleet(text));
+  for (let i = 0; i < patterns.length; i++) stripped = stripped.replace(patterns[i], " ");
+  return stripped;
+}
+
+function siteOnly(text) {
+  const raw = fold(deleet(text));
+  if (!SITE_NOT_FLAG.some((pattern) => pattern.test(raw))) return false;
+  return !crisisMatch(withoutPhrases(text, SITE_NOT_FLAG));
+}
+
+const COMPACT_ONLY = [/\bhow much\b/, /\bis it enough\b/, /\bgood plan\b/, /\bshould i\b/, /\btonight\b/];
+
+function compactOnly(text) {
+  if (actPhrase(text) || actPhrase(spell(text))) return false;
+  const raw = fold(deleet(text));
+  if (!COMPACT_ONLY.some((pattern) => pattern.test(raw))) return false;
+  return !crisisMatch(withoutPhrases(text, COMPACT_ONLY));
+}
+
 function idiomOnly(text) {
   const original = spell(text);
   let stripped = original;
   for (let i = 0; i < IDIOM_FAMILIES.length; i++) stripped = stripped.replace(IDIOM_FAMILIES[i], " ");
   if (stripped === original) return false;
-  if (flagAct(stripped)) return false;
-  const filler = new Set("laughing laughter embarrassment shame coffee risa verguenza hambre ganas poster deal feature trailer camera show nap honestly packing photos caption chiste counter quiet hour today again break second shorter studio logo typo week invoices metaphor".split(" "));
+  if (crisisMatch(stripped)) return false;
+  const filler = new Set("laughing laughter embarrassment shame coffee risa verguenza hambre ganas poster deal feature trailer camera show nap honestly packing photos caption chiste counter quiet hour today again break second shorter studio logo typo week invoices metaphor more nearly every con ese shop candle week".split(" "));
   const tokens = stripped.split(/[^\p{L}\p{N}\-]+/u).filter(Boolean);
   return tokens.every((token) => STOPWORDS.has(token) || BENIGN_CONTENT.has(token) || filler.has(token));
-}
-
-function crisisMatch(text) {
-  if (actPhrase(text)) return true;
-  if (dangerIn(text) && !figurative(text)) return true;
-  const corrected = tokensOf(deleet(text)).map(correctToken).join(" ");
-  if (actPhrase(corrected)) return true;
-  if (dangerIn(corrected) && !figurative(corrected)) return true;
-  return false;
 }
 
 function singleIdiom(text) {
@@ -766,22 +780,40 @@ function wantsSheet(text) {
   return true;
 }
 
-function otherPerson(text) {
+function firstPerson(text) {
   const t = fold(deleet(text));
-  if (/\b(i|im|ive|id|yo)\b/.test(t)) return false;
-  if (/\b(news|homework|headline|article|essay|wikipedia|assignment|reported|obituary|novel|poem|film|character|story)\b/.test(t)) return true;
-  if (/\b(himself|herself|themselves)\b/.test(t)) return true;
-  if (/\b(he|she|they)\b/.test(t)) return true;
-  if (/\bmy (friend|brother|sister|mom|mother|dad|father|coworker|classmate|boss|uncle|aunt|cousin|roommate|neighbor)\b/.test(t)) return true;
-  if (/\b(kill himself|kill herself|kill themselves)\b/.test(t)) return true;
+  if (/\b(i|im|ive|id|yo)\b/.test(t)) return true;
+  if (/\b(my life|mi vida)\b/.test(t)) return true;
+  if (/\bme\b/.test(t) && !/\b(told|tell|tells|telling|asked|ask|asks|asking) me\b/.test(t)) return true;
+  return false;
+}
+
+function thirdPerson(text) {
+  const t = fold(deleet(text));
+  if (/\b(he|she|they|himself|herself|themselves)\b/.test(t)) return true;
+  if (/\b(my|our|a|an|his|her|their|the) (best )?(friend|teammate|coworker|classmate|patient|son|daughter|brother|sister|cousin|neighbor|student|client|roommate)\b/.test(t)) return true;
+  if (/\b(mi|mis|un|una|el|la|nuestro|nuestra|nuestros|nuestras) (mejor )?(amigo|amiga|hijo|hija|hermano|hermana|primo|prima|vecino|vecina|paciente|companero|companera)\b/.test(t)) return true;
+  if (/\bse (quiere|quieren|va|van|mato|ahorca|tira|corta|acaba|suicida)\b/.test(t)) return true;
+  if (/\b(news|homework|headline|article|essay|wikipedia|assignment|reported|obituary|novel|poem|film|character)\b/.test(t)) return true;
   return false;
 }
 
 export function shouldFlag(text) {
-  if (!flagAct(text)) return false;
+  if (!crisisMatch(text)) return false;
+  if (siteOnly(text) || compactOnly(text)) return false;
   if (idiomOnly(text)) return false;
-  if (otherPerson(text)) return false;
+  if (thirdPerson(text) && !firstPerson(text)) return false;
   return true;
+}
+
+function finish(reply, question) {
+  if (!reply || reply.action !== "crisis") return reply;
+  const text = String(reply.text || "");
+  if (!text.startsWith(CRISIS_REPLY)) return reply;
+  if (thirdPerson(question) && !firstPerson(question) && !text.includes("helping someone else")) {
+    return Object.assign({}, reply, { text: CRISIS_REPLY + "\n\n" + OTHER_HELP_LINE });
+  }
+  return reply;
 }
 
 function sheetOnly() {
@@ -844,7 +876,7 @@ export async function replyFor(question, corpus, options) {
     if (asksForHarmPage(question, tokensOf(deleet(question)))) reply = crisisReply(opts.storage, now);
     else if (screened.action === "harm" && !actPhrase(question)) reply = { action: "harm", text: HARM_REPLY, modelCalled: false, sources: [] };
     else if (screened.action === "identity" && !crisisMatch(question)) reply = { action: "identity", text: IDENTITY_REPLY, modelCalled: false, sources: [] };
-    else if (crisisMatch(question) || flagAct(question)) reply = shouldFlag(question) ? crisisReply(opts.storage, now) : (otherPerson(question) ? otherSheet() : sheetOnly());
+    else if (crisisMatch(question)) reply = shouldFlag(question) ? crisisReply(opts.storage, now) : sheetOnly();
     else if (screened.action === "crisis" && !clearlyBenign(question) && !figurative(question)) reply = shouldFlag(question) ? crisisReply(opts.storage, now) : sheetOnly();
     else if (wantsSheet(question)) reply = sheetOnly();
     else {
@@ -876,6 +908,7 @@ export async function replyFor(question, corpus, options) {
         }
       }
     }
+    reply = finish(reply, question);
     if (reply.action !== "crisis" && (sessionFlag || readRiskFlag(opts.storage, now))) return pin(reply);
     return reply;
   } catch (err) {
