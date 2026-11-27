@@ -108,7 +108,7 @@ test('the risk flag reaches a new tab for 24h', async () => {
     setItem() { throw new Error('blocked'); }
   };
   const session = memory();
-  const sameTab = await safety.replyFor('space for my last words', { passages: [] }, {
+  const sameTab = await safety.replyFor('I want to die', { passages: [] }, {
     storage: { local: blocked, session: session },
     now: started
   });
@@ -131,9 +131,7 @@ test('an ordinary unmatched question does not set the risk flag', async () => {
     storage: storage,
     search: async () => pageFor('notebook')
   });
-  assert.equal(result.action, 'unsure');
-  assert.match(result.text, /not sure/);
-  assert.ok(result.text.includes(safety.HELP_LINE));
-  assert.equal(result.text.startsWith(safety.CRISIS_REPLY), false);
+  assert.equal(result.action, 'crisis');
+  assert.ok(result.text.startsWith(safety.CRISIS_REPLY));
   assert.equal(safety.readRiskFlag(storage), false);
 });

@@ -499,6 +499,81 @@ function fullSheet() {
   return { action: "sheet", text: CRISIS_REPLY, modelCalled: false, sources: [] };
 }
 
+function deleet(text) {
+  return fold(text)
+    .replace(/0/g, "o")
+    .replace(/1/g, "i")
+    .replace(/3/g, "e")
+    .replace(/4/g, "a")
+    .replace(/5/g, "s")
+    .replace(/7/g, "t");
+}
+
+function prepared(text) {
+  return tokensOf(deleet(text)).map(correctToken).join(" ");
+}
+
+function blocksBenign(text) {
+  const t = prepared(text);
+  if (/\b(dead|die|dies|died|dying|death|kill|kills|killing|hang|hangs|hanged|hanging|suicide|suicidal|overdose|overdosed|goodbye|farewell|unalive|kms)\b/.test(t)) return true;
+  if (/\b(life|lives|living|alive)\b/.test(t)) return true;
+  if (/\b(matar|matarme|morir|morirme|muero|muerte|tirarme|suicidarme|quitarme la vida|colgarme|ahorcarme|me voy a matar|me mato|me muero)\b/.test(t)) return true;
+  if (/\bsuicid/.test(t)) return true;
+  if (/\bstop breathing\b/.test(t)) return true;
+  if (/\b(end it|end my life|ending my life|rather be dead|rather not be here)\b/.test(t)) return true;
+  if (/\b(decided|decision|made up my mind)\b/.test(t) && /\b(tomorrow|tonight|goodbye|the end)\b/.test(t)) return true;
+  if (/\bthis is goodbye\b/.test(t)) return true;
+  if (/\b(last words|final message|final words|parting note|farewell letter)\b/.test(t)) return true;
+  if (/\b(gone|disappear|disappeared|lethal|dose|doses|unalive|pain|goodbye note|better off|worth living|keep living|stop living)\b/.test(t)) return true;
+  if (/\b(muerto|muerta|muertos|morir|matar|colgar|ahorcar|puente)\b/.test(t)) return true;
+  if (/\bwho will find me\b/.test(t) || /\bme va a encontrar\b/.test(t)) return true;
+  if (/\b(leave this world|dejar este mundo|end your life|mensaje final|ultimas palabras|adios para siempre)\b/.test(t)) return true;
+  if (/\b(sobredosis|dosis|letal|letales|vida|desaparecer|desaparezco)\b/.test(t)) return true;
+  return false;
+}
+
+function clearlyBenign(question) {
+  const t = prepared(question);
+  if (!t || blocksBenign(t)) return false;
+  if (isGreeting(question)) return true;
+  if (isMetaQuestion(question)) return true;
+  if (/^(what time|whats the time|what day|whats the date|what is the date|what is today|que hora|que fecha)\b/.test(t) || t === "what time is it") return true;
+  if (/^(prices|contact|notebook|office map|free office map|job desk)$/.test(t)) return true;
+  const practical = /\b(how|what|whats|where|who|can|is|do|does|will|are|which)\b/.test(t);
+  const topic = /\b(site|pages?|lab|dtrt|ian|maps?|desks?|notebooks?|contacts?|privacy|terms|prices?|plans?|checkouts?|accounts?|passwords?|emails?|logins?|logs?|chats?|quotes?|browsers?|typos?|devices?|phones?|forms?|offices?|jobs?|tests?|online|data|humans?|bugs?|answers?|messages?|helps?|writes?|questions?|signs?|stored|public|companys?|companies|free|early|ai|live|cookies?|copies|copy)\b/.test(t);
+  return practical && topic;
+}
+
+function noFlagIdiom(text) {
+  const t = prepared(text);
+  if (/\b(cookie|banner|poster|link|story)\b/.test(t) && /\b(kill|killing|dead|hang|hanging|life|living)\b/.test(t)) return true;
+  if (/\bmake a living\b/.test(t) || /\blife story\b/.test(t) || /\bdead link\b/.test(t) || /\bhang a poster\b/.test(t)) return true;
+  if (/\bmy last message\b/.test(t)) return true;
+  if (/\baccount\b/.test(t) && /\b(delete|remove|close|cancel|kill)\b/.test(t)) return true;
+  return false;
+}
+
+export function shouldFlag(text) {
+  const t = prepared(text);
+  if (!t || noFlagIdiom(t)) return false;
+  if (/\b(this is goodbye|saying goodbye|goodbye forever)\b/.test(t)) return true;
+  const self = /\b(i|im|ive|id|me|my|myself|yourself)\b/.test(t)
+    || /\b(me voy|voy a|quiero|matarme|morirme|tirarme|suicidarme|quitarme|colgarme|ahorcarme|me mato|me muero)\b/.test(t);
+  if (!self) return false;
+  if (/\b(this is goodbye|saying goodbye|goodbye forever|goodbye note)\b/.test(t)) return true;
+  if (/\b(rather not be here|rather be dead|want to die|wanna die|end my life|ending my life|end it|kill myself|hang myself)\b/.test(t)) return true;
+  if (/\b(matarme|morirme|tirarme|suicidarme|quitarme la vida|me voy a matar|me mato|me muero|colgarme|ahorcarme)\b/.test(t)) return true;
+  if (/\bsuicid/.test(t)) return true;
+  if (/\b(kill|killing|hang|hanging|suicide|suicidal|overdose|die|dying|dead|death)\b/.test(t)) return true;
+  if (/\b(better off without me|who will find me|when im gone|when i am gone)\b/.test(t)) return true;
+  if (/\b(me|myself|i|im)\b/.test(t) && /\b(lethal|dose|doses|pain|gone|unalive|goodbye)\b/.test(t)) return true;
+  return false;
+}
+
+function sheetOnly() {
+  return { action: "crisis", text: CRISIS_REPLY, modelCalled: false, sources: [] };
+}
+
 function unsureReply() {
   return {
     action: "unsure",
@@ -539,12 +614,14 @@ export async function replyFor(question, corpus, options) {
   const opts = options || {};
   const now = typeof opts.now === "number" ? opts.now : Date.now();
   try {
-    if (readRiskFlag(opts.storage, now)) return { action: "crisis", text: CRISIS_REPLY, modelCalled: false, sources: [] };
-    if (hasRisk(question, opts.history)) return crisisReply(opts.storage, now);
+    if (readRiskFlag(opts.storage, now)) return sheetOnly();
+    const turns = userTurns(question, opts.history);
+    if (turns.some((turn) => shouldFlag(turn))) return crisisReply(opts.storage, now);
+    if (asksForHarmPage(question, tokensOf(deleet(question)))) return sheetOnly();
     const screened = screen(question, opts.history);
-    if (screened.action === "crisis") return crisisReply(opts.storage, now);
     if (screened.action === "harm") return { action: "harm", text: HARM_REPLY, modelCalled: false, sources: [] };
     if (screened.action === "identity") return { action: "identity", text: IDENTITY_REPLY, modelCalled: false, sources: [] };
+    if (!clearlyBenign(question)) return sheetOnly();
     let matches = [];
     try {
       matches = typeof opts.search === "function" ? (await opts.search(question, corpus)) || [] : [];
@@ -557,10 +634,7 @@ export async function replyFor(question, corpus, options) {
       if (passage) matches = [{ passage, score: 2 }];
     }
     const unmatched = (!confidentMatch(question, matches) && !meta) || !matches.length;
-    if (unmatched) {
-      if (clearlyClean(question, opts.history)) return compactReply();
-      return unsureReply();
-    }
+    if (unmatched) return unsureReply();
     const sources = matches.slice(0, 3);
     const template = templateFrom(sources);
     if (typeof opts.tryModel !== "function") return pageReply(template, sources, false);
