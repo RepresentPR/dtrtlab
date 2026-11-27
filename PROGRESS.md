@@ -2,27 +2,28 @@
 
 Public AI chat branch `cursor/public-ai-launch-8a16`.
 
-Head: `221a15cbc3ec575763dcd499329821f6acf7ee0d`
+Head: `41afdfd0680ec2fda68b96d4d798bb154e97bf47`
 
-FIXED: goodbye and farewell notes set the flag, 16/16 scripts/ask-flag-on-sheet.test.cjs
-FIXED: last night alive sets the flag, 16/16 scripts/ask-flag-on-sheet.test.cjs
-FIXED: not wanting to live sets the flag, 16/16 scripts/ask-flag-on-sheet.test.cjs
-FIXED: a plan with a time and a place sets the flag, 16/16 scripts/ask-flag-on-sheet.test.cjs
-FIXED: taking pills or a bottle sets the flag, 16/16 scripts/ask-flag-on-sheet.test.cjs
-FIXED: ending a life in the first person sets the flag, 16/16 scripts/ask-flag-on-sheet.test.cjs
-FIXED: Spanish methods in the first person set the flag, 16/16 scripts/ask-flag-on-sheet.test.cjs
-FIXED: spelled-out typos set the flag, 16/16 scripts/ask-flag-on-sheet.test.cjs
-FIXED: unattributed lines set the flag, 16/16 scripts/ask-flag-on-sheet.test.cjs
-FIXED: a weapon or a jump sets the flag, 16/16 scripts/ask-flag-on-sheet.test.cjs
-FIXED: unmistakable lines set the flag, 30/30 scripts/ask-flag-on-sheet.test.cjs
-FIXED: third person gets the helping line, flag 0/52 scripts/ask-flag-on-sheet.test.cjs
-FIXED: site questions and site phrases set no flag, 0/67 scripts/ask-flag-on-sheet.test.cjs
-FIXED: a fresh plain list sets no flag, 0/30 scripts/ask-flag-on-sheet.test.cjs
-FIXED: plain question pairs end unflagged, 0/870 scripts/ask-flag-on-sheet.test.cjs
+FIXED: generated farewell lines set the flag, 12/12 scripts/ask-flag-generated.test.cjs
+FIXED: generated plan, time, and place lines set the flag, 12/12 scripts/ask-flag-generated.test.cjs
+FIXED: generated typos set the flag, 12/12 scripts/ask-flag-generated.test.cjs
+FIXED: generated Spanish future lines set the flag, 12/12 scripts/ask-flag-generated.test.cjs
+FIXED: generated past ingestion sets the flag, 12/12 scripts/ask-flag-generated.test.cjs
+FIXED: generated not-wanting-to-live lines set the flag, 12/12 scripts/ask-flag-generated.test.cjs
+FIXED: generated method lines set the flag, 12/12 scripts/ask-flag-generated.test.cjs
+FIXED: generated unattributed lines set the flag, 12/12 scripts/ask-flag-generated.test.cjs
+FIXED: generated weapon and jump lines set the flag, 12/12 scripts/ask-flag-generated.test.cjs
+FIXED: generated ending lines set the flag, 12/12 scripts/ask-flag-generated.test.cjs
+FIXED: generated third person gets the helping line, flag 0/52 scripts/ask-flag-generated.test.cjs
+FIXED: generated site questions set no flag, 0/57 scripts/ask-flag-generated.test.cjs
+FIXED: generated pure idioms set the flag rarely, 0/40 scripts/ask-flag-generated.test.cjs
+FIXED: generated everyday risk words set the flag rarely, 1/40 scripts/ask-flag-generated.test.cjs
+FIXED: generated plain questions set no flag, 0/30 scripts/ask-flag-generated.test.cjs
+FIXED: generated plain pairs end unflagged, 0/870 scripts/ask-flag-generated.test.cjs
 FIXED: held-out crisis-first stays 56/56, scripts/public-ai.test.cjs
 
-The flag follows the existing crisis-vocabulary sheet. Idioms, third-person frames, and site phrases stay on the sheet without the flag. QA's private 559 set was not re-run here.
+The one everyday flag is "the bill is not a rope". QA's private 559 set was not re-run here.
 
 Not checked: QA's private 559 and 330 sets were not re-run here, a live D1 signup, and the proof stamp.
 
-Local `node --test scripts/*.test.cjs`: 415 tests, 405 pass, 0 fail, 10 skip.
+Local `node --test scripts/*.test.cjs`: 417 tests, 407 pass, 0 fail, 10 skip.
