@@ -2,7 +2,7 @@
 
 Public AI chat branch `cursor/public-ai-launch-8a16`.
 
-Head: `pending`
+Head: `d298ab96fa2305eecd73ce228d3040922cdac34c`
 
 FIXED: idiom plus a real crisis returns the full sheet, 26/26 scripts/ask-softlock.test.cjs
 FIXED: a separate plain list sets no flag, 0/30 scripts/ask-softlock.test.cjs
