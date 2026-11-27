@@ -1,5 +1,5 @@
 const assert = require('node:assert/strict');
-const g = require('../js/growth-model.js');
+const g = require('./archive/unserved/js/growth-model.js');
 const s={id:'ig',platform:'instagram',cohort:['a','b'],metric:'post_plays',window:'lifetime',points:[{captured_at:'2026-10-09T00:00:00Z',views:4,interactions:null}]};
 assert.equal(g.latest(s).views,4);
 assert.equal(g.total([s,{...s,id:'account',metric:'account_views',points:[{views:100}]}]),4,'account totals must not be added to post totals');

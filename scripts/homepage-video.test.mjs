@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 
-const modulePath = new URL('../js/homepage-video.mjs', import.meta.url);
+const modulePath = new URL('./archive/unserved/js/homepage-video.mjs', import.meta.url);
 function setup({ portrait = false, playing = false } = {}) {
   assert.ok(fs.existsSync(modulePath), 'responsive homepage player exists');
   const listeners = {};
