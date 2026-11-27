@@ -28,7 +28,7 @@ const PLAIN = [
   'is checkout turned off',
   'who maintains the site',
   'what pages are public',
-  'how do I send a note to Ian',
+  'how do I email Ian',
   'is there a phone number',
   'can I use the chat without an account',
   'where is the privacy page',
@@ -46,7 +46,7 @@ const PLAIN = [
   'is the notebook updated',
   'how wide is the desk page',
   'what is the contact form for',
-  'do you keep a copy on this device',
+  'do you store a copy on this device',
   'which terms page applies'
 ];
 

@@ -522,10 +522,10 @@ const STOPWORDS = new Set("a an the of to for in on at and or is are was were be
 const BENIGN_CONTENT = new Set(("site page pages lab dtrt ian map maps desk desks notebook notebooks contact contacts privacy term terms " +
   "office offices job jobs form forms proof brand donate career careers service services test tests online data bug bugs answer answers private " +
   "quote quotes browser browsers phone phones number numbers cookie cookies copy copies chat chats message messages account accounts " +
-  "password passwords email emails login logins log logs sign signs signing signed stored store stores public human humans help helps " +
-  "helpful write writes writing question questions price prices plan plans free checkout checkouts refund refunds cost costs fee fees " +
+  "password passwords email emails login logins log logs sign signs signing signed stored store stores public human humans " +
+  "write writes writing question questions price prices plan plans free checkout checkouts refund refunds cost costs fee fees " +
   "hi hello hey yo thanks thank hola gracias bonjour salut good morning afternoon evening night time date day today hour clock live early " +
-  "ai company companies real wide list listed shown optional stuck later come comes coming keep keeps keeping safe sell sells selling use " +
+  "ai company companies real wide list listed shown optional stuck come comes coming sell sells selling use " +
   "uses using used without stay stays stayed turned turn turns two people person share shares shared maintain maintains maintained send " +
   "sends sent note notes find finds finding clear clears print prints report reports typo typos happen happens happened get gets getting " +
   "ask asks asked fix fixes fixed wrong need needs needed apply applies applied update updates updated protect protects protected protection " +
@@ -533,8 +533,22 @@ const BENIGN_CONTENT = new Set(("site page pages lab dtrt ian map maps desk desk
   "closes closed cancel cancels make makes made look looks great summarize summarized propose proposed tab tabs built build read reads " +
   "reading much many one all new old same other another any some such").split(/\s+/));
 
+function sitePhrase(question) {
+  const t = fold(question);
+  if (/\bhelp with (my |the |an |a )?(order|account|cart|refund|password|login|page)\b/.test(t)) return true;
+  if (/\bkeep (my |the |a )?(cart|account|password|login|email|copy)\b/.test(t)) return true;
+  return false;
+}
+
+function greetingPlus(question) {
+  const tokens = tokensOf(deleet(question));
+  if (!tokens.some((token) => ["hi", "hello", "hey", "thanks", "thank", "hola", "gracias"].includes(token))) return false;
+  return tokens.every((token) => STOPWORDS.has(token) || BENIGN_CONTENT.has(token) || token === "helps");
+}
+
 function clearlyBenign(question) {
   if (isGreeting(question)) return true;
+  if (sitePhrase(question) || greetingPlus(question)) return true;
   const tokens = tokensOf(deleet(question));
   if (!tokens.length || tokens.length > 24) return false;
   if (!tokens.every((token) => STOPWORDS.has(token) || BENIGN_CONTENT.has(token))) return false;
@@ -542,38 +556,59 @@ function clearlyBenign(question) {
   return content.length <= 12;
 }
 
-function noFlagIdiom(text) {
+function explicitAct(text) {
   const t = prepared(text);
-  if (/\bdead tired\b/.test(t) || /\bdying to\b/.test(t)) return true;
-  if (/\bhang on\b/.test(t) && !/\b(myself|yourself)\b/.test(t)) return true;
-  if (/\bhang\b/.test(t) && /\b(map|poster|office)\b/.test(t) && !/\b(myself|yourself)\b/.test(t)) return true;
-  if (/\bkill\b/.test(t) && /\banswer\b/.test(t) && !/\bmyself\b/.test(t)) return true;
-  if (/\b(cookie|banner|poster|link|story)\b/.test(t) && /\b(kill|killing|dead|hang|hanging|life|living)\b/.test(t)) return true;
-  if (/\bmake a living\b/.test(t) || /\blife story\b/.test(t) || /\bdead link\b/.test(t) || /\bhang a poster\b/.test(t)) return true;
-  if (/\bmy last message\b/.test(t)) return true;
-  if (/\baccount\b/.test(t) && /\b(delete|remove|close|cancel|kill)\b/.test(t)) return true;
+  if (/\b(pills?|bleach|wrists?|ropes?|jump|jumped|jumping|overdose|overdosed|overdosing|bleeding|bled|bleed)\b/.test(t)) return true;
+  if (/\b(ending it|end it|ended it)\b/.test(t)) return true;
+  if (/\bquitar\w* la vida\b/.test(t)) return true;
+  if (/\b(cut|cuts|cutting)\b/.test(t)) return true;
   return false;
 }
 
-export function shouldFlag(text) {
+function figurative(text) {
+  if (explicitAct(text)) return false;
   const t = prepared(text);
-  if (!t || noFlagIdiom(t)) return false;
-  if (/\b(this is goodbye|saying goodbye|goodbye forever)\b/.test(t)) return true;
-  const self = /\b(i|im|ive|id|me|my|myself|yourself)\b/.test(t)
-    || /\b(me voy|voy a|quiero|matarme|morirme|tirarme|suicidarme|quitarme|colgarme|ahorcarme|me mato|me muero|tomarme)\b/.test(t);
-  if (!self) return false;
-  if (/\b(this is goodbye|saying goodbye|goodbye forever|goodbye note)\b/.test(t)) return true;
-  if (/\b(rather not be here|rather be dead|want to die|wanna die|end my life|ending my life|end it|kill myself|hang myself)\b/.test(t)) return true;
-  if (/\b(matarme|morirme|tirarme|suicidarme|quitarme la vida|me voy a matar|me mato|me muero|colgarme|ahorcarme)\b/.test(t)) return true;
-  if (/\bsuicid/.test(t)) return true;
-  if (/\b(dont|do not) want to live\b/.test(t) || /\bno quiero vivir\b/.test(t)) return true;
-  if (/\b(matare|mataria|matar|ahorcare|ahorcaria|ahorcar|colgare|colgaria|colgar|morire|moriria|morir)\b/.test(t)) return true;
-  if (/\b(swallowed|pills|pill|pastillas|pastilla)\b/.test(t)) return true;
-  if (/\b(kill|killing|hang|hanging|suicide|suicidal|overdose|die|dying|dead|death)\b/.test(t)) return true;
-  if (/\b(better off without me|who will find me|when im gone|when i am gone)\b/.test(t)) return true;
-  if (/\b(me|myself|i|im)\b/.test(t) && /\b(lethal|dose|doses|pain|gone|unalive|goodbye)\b/.test(t)) return true;
-  if (/\bend my own life\b/.test(t) || (/\bplan to\b/.test(t) && /\b(end|die|kill)\b/.test(t))) return true;
+  if (/\bdead tired\b/.test(t) || /\bdying (for|to)\b/.test(t)) return true;
+  if (/\bdead\b/.test(t) && /\b(phone|battery|link|tired)\b/.test(t)) return true;
+  if (/\bkilling me\b/.test(t)) return true;
+  if (/\b(commute|traffic|work|monday)\b/.test(t) && /\bkilling\b/.test(t)) return true;
+  if (/\bhang on\b/.test(t) && !/\b(myself|yourself)\b/.test(t)) return true;
+  if (/\bhang\b/.test(t) && /\b(map|poster|office)\b/.test(t) && !/\b(myself|yourself)\b/.test(t)) return true;
+  if (/\bkill\b/.test(t) && /\b(answer|cookie|banner)\b/.test(t)) return true;
+  if (/\bmake a living\b/.test(t) || /\blife story\b/.test(t) || /\bmy last message\b/.test(t)) return true;
+  if (/\bkill\w* (deal|feature)\b/.test(t)) return true;
+  if (/\baccount\b/.test(t) && /\b(delete|remove|close|cancel)\b/.test(t)) return true;
   return false;
+}
+
+function aboutSomeoneElse(text) {
+  const t = prepared(text);
+  if (explicitAct(text) && /\b(i|im|ive|id|myself)\b/.test(t)) return false;
+  if (/\b(news|homework|headline|article|essay|wikipedia|assignment|reported)\b/.test(t)) return true;
+  if (/\bmy friend\b/.test(t) || /\b(he|she|they) said\b/.test(t)) return true;
+  if (/\b(friend|classmate|coworker|mom|mother|dad|father|brother|sister) (said|told|wants|wanted)\b/.test(t)) return true;
+  return false;
+}
+
+function distressPhrase(text) {
+  const t = fold(text);
+  if (/\bwho will find me\b/.test(t)) return true;
+  if (/\bi need help\b/.test(t) || /\bi am not safe\b/.test(t) || /\bim not safe\b/.test(t)) return true;
+  return false;
+}
+
+function wantsSheet(text) {
+  if (explicitAct(text)) return true;
+  if (distressPhrase(text)) return true;
+  if (figurative(text)) return false;
+  if (clearlyBenign(text)) return false;
+  return true;
+}
+
+export function shouldFlag(text) {
+  if (!wantsSheet(text)) return false;
+  if (aboutSomeoneElse(text)) return false;
+  return true;
 }
 
 function sheetOnly() {
@@ -622,13 +657,16 @@ export async function replyFor(question, corpus, options) {
   try {
     if (readRiskFlag(opts.storage, now)) return sheetOnly();
     const turns = userTurns(question, opts.history);
-    if (turns.some((turn) => shouldFlag(turn))) return crisisReply(opts.storage, now);
-    if (asksForHarmPage(question, tokensOf(deleet(question)))) return sheetOnly();
-    const screened = screen(question, opts.history);
-    if (screened.action === "crisis") return sheetOnly();
-    if (screened.action === "harm") return { action: "harm", text: HARM_REPLY, modelCalled: false, sources: [] };
-    if (screened.action === "identity") return { action: "identity", text: IDENTITY_REPLY, modelCalled: false, sources: [] };
-    if (!clearlyBenign(question)) return sheetOnly();
+    const ordinary = figurative(question) && !explicitAct(question);
+    if (!ordinary) {
+      const screened = screen(question, opts.history);
+      if (asksForHarmPage(question, tokensOf(deleet(question)))) return crisisReply(opts.storage, now);
+      if (screened.action === "harm" && !explicitAct(question)) return { action: "harm", text: HARM_REPLY, modelCalled: false, sources: [] };
+      if (screened.action === "identity") return { action: "identity", text: IDENTITY_REPLY, modelCalled: false, sources: [] };
+      if (turns.some((turn) => shouldFlag(turn))) return crisisReply(opts.storage, now);
+      if (screened.action === "crisis") return shouldFlag(question) ? crisisReply(opts.storage, now) : sheetOnly();
+      if (wantsSheet(question)) return aboutSomeoneElse(question) ? sheetOnly() : crisisReply(opts.storage, now);
+    }
     let matches = [];
     try {
       matches = typeof opts.search === "function" ? (await opts.search(question, corpus)) || [] : [];
