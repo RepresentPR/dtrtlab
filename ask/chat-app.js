@@ -1,5 +1,5 @@
-import { replyFor, CRISIS_REPLY, REDIRECT, RESOURCE_NOTE, SUGGESTIONS, ERROR_REPLY } from "./safety.mjs?v=20261127-ask34";
-import { normalizeEmail, ownedChat, syncOnLogin, applyDelete, keepAfterExpiredSession, deleteStatus, recordDeleteResult, readStore, logoutStore, STORE_KEY } from "./chat-store.mjs?v=20261127-ask34";
+import { replyFor, CRISIS_REPLY, REDIRECT, RESOURCE_NOTE, SUGGESTIONS, ERROR_REPLY } from "./safety.mjs?v=20261127-ask35";
+import { normalizeEmail, ownedChat, syncOnLogin, applyDelete, keepAfterExpiredSession, deleteStatus, recordDeleteResult, readStore, logoutStore, STORE_KEY } from "./chat-store.mjs?v=20261127-ask35";
 
 const STORE = STORE_KEY;
 const NOTICE = "dtrt.early-notice";
@@ -136,15 +136,7 @@ function appendChips(item, labels) {
   item.append(row);
 }
 
-function appendPinned(item, message) {
-  if (!message.pinned) return;
-  const card = el("div", "help-card");
-  card.append(el("p", "", message.pinned));
-  item.append(card);
-}
-
 function appendAnswer(item, message) {
-  appendPinned(item, message);
   const view = viewOf(message);
   if (view === "text") {
     item.append(el("p", "", message.text));
@@ -325,10 +317,8 @@ async function ask(question) {
     text: result.text,
     kind: result.action || "",
     sheet: result.sheet || "",
-    line: result.line || "",
-    pinned: result.pinned || ""
+    line: result.line || ""
   };
-  appendPinned(item, saved);
   if (viewOf(saved) === "text") {
     const paragraph = el("p", "");
     item.append(paragraph);

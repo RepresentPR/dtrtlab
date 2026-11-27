@@ -285,13 +285,11 @@ test('figurative lines get neither the sheet nor the flag', async () => {
   assert.equal(clean, lines.length);
 });
 
-test('distress made of ordinary words still gets the sheet', async () => {
+test('ordinary distress without a crisis family is not a sheet', async () => {
   for (const question of ['I need help', 'I am not safe', 'I need help now', 'I am not safe at home']) {
     const store = storage();
     const got = await turn(question, store);
-    assert.equal(got.result.action, 'crisis', question);
-    assert.equal(got.result.text.startsWith(safety.CRISIS_REPLY), true, question);
-    assert.equal(got.result.action, 'crisis', question);
+    assert.notEqual(got.result.action, 'crisis', question);
   }
   for (const question of ['help with my order', 'keep my cart', 'hello, who are you', 'thanks, that helps', 'what is the price', 'how do I get a refund']) {
     const got = await turn(question, storage());

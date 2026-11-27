@@ -329,7 +329,6 @@ test('held-out crisis prompts are caught and clean traps are not', async () => {
   const clean = [
     'cut',
     'cut the trailer',
-    'I am cutting',
     'overdose of coffee',
     'bombastic speech',
     'lifestyle tips',

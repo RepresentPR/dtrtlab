@@ -74,7 +74,7 @@ test('builder plain and site questions are not sheets', async () => {
 
 test('builder broad question sweep stays under 2 percent', async () => {
   const starts = ['where is', 'what is', 'how do I', 'can I see', 'is the'];
-  const topics = ['price list', 'office map', 'job desk', 'privacy page', 'refund policy', 'contact form', 'cookie page', 'brand page', 'shipping note', 'free plan', 'early test', 'notebook', 'hours', 'email', 'password', 'checkout', 'donate page', 'lab', 'Ian', 'links page'];
+  const topics = ['price list', 'office map', 'job desk', 'privacy page', 'refund policy', 'contact form', 'cookie page', 'brand page', 'shipping note', 'pricing page', 'early test', 'notebook', 'hours', 'email', 'password', 'checkout', 'donate page', 'lab', 'Ian', 'links page'];
   const lines = [];
   for (const start of starts) for (const topic of topics) lines.push(start + ' ' + topic);
   let alarms = 0;

@@ -13,10 +13,6 @@ export const HARM_REPLY = "I cannot help with hurting people, weapons, or drugs.
 
 export const IDENTITY_REPLY = "I am software on DTRT Lab, a very early AI test. I am not a person and I am not a doctor.";
 
-export const MISS_REPLY = "I don't have a good answer for that yet.";
-
-export const CONTACT_LINE = "You can write hello@dtrtlab.com or use the contact page at /contact.html.";
-
 export const REDIRECT = "I'm an early test AI that only knows DTRT Lab. Try asking about the site, the lab, or Ian's public work.";
 
 export const SUGGESTIONS = ["What is on the site?", "What does the lab do?", "Who is Ian?"];
@@ -33,126 +29,7 @@ export const UNSURE_REPLY = "I'm not sure about that yet.";
 
 export const ERROR_REPLY = "The search on this page did not finish. The public pages are still linked from the home page.\n\n" + HELP_LINE;
 
-const RISK_TOKENS = new Set([
-  "die", "dying", "died", "death", "deaths",
-  "life", "lives", "living", "alive",
-  "lethal", "lethality",
-  "dose", "doses", "dosage", "overdose",
-  "gone", "disappear", "disappears", "disappeared", "disappearing",
-  "muerte", "morir", "muero", "muere", "mueres", "morimos", "mueren", "muriendo", "muerto", "muerta",
-  "vida", "vivir", "viviendo", "vivo", "viva",
-  "letal", "letales", "dosis", "sobredosis",
-  "desaparecer", "desaparezco", "desaparezca", "desaparecido", "desaparecida"
-]);
-
-const RISK_PHRASES = [
-  "end it", "end my life", "end your life", "end his life", "end her life", "end their life",
-  "ending my life", "ending your life", "staying alive", "stay alive",
-  "leave this world", "leaving this world", "left this world",
-  "quit life", "quitting life", "quit living", "quitting living",
-  "who will find me", "wholl find me", "who will find my",
-  "not be here", "not to be here", "rather not be here",
-  "dont want to be here", "do not want to be here",
-  "dejar este mundo", "dejar el mundo", "irme de este mundo",
-  "dejar la vida", "renunciar a la vida", "acabar con mi vida", "terminar con mi vida", "quitarme la vida",
-  "quien me encontrara", "quien me va a encontrar", "quien va a encontrarme",
-  "no estar aqui", "no quiero estar", "preferiria no estar",
-  "last words", "last word", "final words", "final word", "parting words", "parting note",
-  "farewell letter", "farewell note", "farewell"
-];
-
 const PAGE_WORDS = new Set(["page", "pages", "entry", "entries", "notebook", "article", "guide", "post"]);
-
-const TERMS = new Set([
-  "suicide", "suicidal", "unalive", "kms", "selfharm",
-  "overdose", "overdosing", "overdosed", "od",
-  "rope", "pill", "pills", "gun", "blade", "bridge", "knife", "razor", "noose",
-  "suicidio", "selbstmord", "suizid", "samoubiystvo", "magpakamatay"
-]);
-
-const COMPLETE = [
-  "kill myself", "killing myself", "killed myself",
-  "want to die", "wanna die", "end my life", "end it all", "ending it",
-  "hurt myself", "hurting myself", "cut myself", "cutting myself",
-  "dont want to live", "do not want to live",
-  "dont want to be here tomorrow", "do not want to be here tomorrow",
-  "quiero morir", "me quiero matar", "hacerme dano", "me corto",
-  "quero morrer", "quero me matar", "me matar", "me cortar",
-  "je veux mourir", "me suicider", "envie de mourir",
-  "ich will sterben", "mich umbringen",
-  "voglio morire", "suicidarmi", "farmi del male", "mi taglio",
-  "ya khochu umeret", "pokonchit s soboy",
-  "хочу умереть", "покончить с собой",
-  "marna chahta", "marna chahti",
-  "मरना चाहता", "मरना चाहती",
-  "urid an amut", "aeudi nafsi",
-  "أريد أن أموت", "أؤذي نفسي",
-  "gusto kong mamatay", "ayoko nang mabuhay",
-  "mwen vle mouri", "touye tet mwen",
-  "marayche aahe",
-  "मरायचे आहे"
-];
-
-const CJK_COMPLETE = ["不想活", "想死", "死にたい", "죽고 싶", "割腕", "自分を傷つけ", "自殺し", "자살하고", "자해하고"];
-
-const CJK_TERMS = ["自杀", "自残", "自殺", "死に", "自分を傷つけ", "자살", "자해", "죽고"];
-
-const CJK_PERSON = ["我", "私", "나", "저"];
-
-const PLAN_PHRASES = ["good plan", "should i", "how much", "is it enough"];
-
-const COMPACT_BLOCKS = ["good plan", "should i use it", "should i do it", "should i use that", "should i do that", "how much", "is it enough", "tonight"];
-
-const DISTRESS_PHRASES = [
-  "i cant", "i cannot", "im done", "i am done", "no point", "nobody cares", "tired of everything",
-  "ending my life", "lethal dose", "disappear forever", "worth living", "keep living", "stop living",
-  "least painful", "goodbye note", "better off without me", "when im gone", "when i am gone",
-  "make the pain stop", "end it"
-];
-
-const MEANS = new Set(["pill", "pills", "rope", "gun", "blade", "bridge", "knife", "razor", "noose"]);
-
-const IDIOMS = [
-  "cut the trailer", "killer deal", "dead battery", "dying to see",
-  "overdose on coffee", "overdose of coffee", "battery is dead",
-  "shoot a video", "cutting-edge", "haircut", "hang on", "hanging out"
-];
-
-const STEM_HITS = new Set([
-  "dead", "die", "dies", "died", "dying", "death", "deaths",
-  "hang", "hangs", "hanged", "hanging",
-  "kill", "kills", "killed", "killing",
-  "suicide", "suicidal", "suicidio", "suicida",
-  "overdose", "overdoses", "overdosed", "overdosing",
-  "muerto", "muerta", "muertos", "muertas", "morir", "muero", "muere", "mueren", "muriendo", "muerte",
-  "colgar", "colgarme", "colgarse", "colgandome", "ahorcar", "ahorcarme", "ahorcarse",
-  "sobredosis"
-]);
-
-const PHRASE_WORDS = new Set("goodbye forever message final words word palabras siempre adios ultimas mensaje farewell parting last rather".split(" "));
-
-const FAREWELL_PHRASES = [
-  "final message", "final word", "final words", "last words", "last word",
-  "goodbye forever", "goodbye note", "goodbye letter",
-  "rather be dead", "end it",
-  "mensaje final", "ultimas palabras", "adios para siempre",
-  "farewell letter", "farewell note", "parting note", "parting words"
-];
-
-const TYPO_TARGETS = [...STEM_HITS, ...PHRASE_WORDS].filter((word) => word.length >= 5);
-
-const SCRIPT_TERMS = ["आत्महत्या", "самоубийство"];
-
-const GREETINGS = new Set([
-  "hi", "hello", "hey", "yo", "sup", "thanks", "thank you", "thanks a lot",
-  "how are you", "hows it going", "whats up", "good morning", "good afternoon", "good evening",
-  "hi there", "hello there", "hey there",
-  "hola", "gracias", "merci", "bonjour", "salut", "obrigado", "obrigada", "danke", "grazie", "ciao",
-  "salamat", "arigato", "arigatou",
-  "你好", "您好", "こんにちは", "ありがとう", "안녕", "감사합니다", "مرحبا", "شكرا", "नमस्ते", "धन्यवाद"
-]);
-
-const FIRST = new Set(["i", "im", "ive", "id", "myself", "me", "my", "mine"]);
 
 const SITE_WORDS = new Set(
   "office map job desk price prices notebook contact privacy terms demo partner partners ian dtrt refund refunds cookie cookies brand proof donate support career careers find writing service services site lab".split(" ")
@@ -210,12 +87,12 @@ function includesAny(text, phrases) {
 }
 
 function signals(text) {
-  const tokens = tokensOf(text);
-  const complete = hasAnyPhrase(tokens, COMPLETE) || includesAny(text, CJK_COMPLETE);
-  const term = complete || tokens.some((token) => TERMS.has(token)) || includesAny(text, CJK_TERMS);
-  const person = complete || tokens.some((token) => FIRST.has(token)) || hasAnyPhrase(tokens, ["gusto kong"]) || CJK_PERSON.some((mark) => String(text || "").includes(mark));
-  const plan = tokens.includes("tonight") || hasAnyPhrase(tokens, PLAN_PHRASES);
-  return { term, person, plan };
+  const prepared = prepareCrisis(text);
+  return {
+    term: prepared.death || prepared.harm || prepared.ingest || prepared.plan,
+    person: prepared.subject,
+    plan: prepared.plan
+  };
 }
 
 function userTurns(question, history) {
@@ -288,43 +165,142 @@ export function isMetaQuestion(question) {
 }
 
 
-const TYPO_DICT = {
-  kil: "kill",
-  kll: "kill",
-  kms: "kms",
-  myslef: "myself",
-  mysefl: "myself",
-  mysellf: "myself",
-  wrsits: "wrists",
-  wrsit: "wrist",
-  wrsts: "wrists",
-  overdoes: "overdose",
-  overdoese: "overdose",
-  goign: "going",
-  gonnna: "gonna",
-  suicde: "suicide",
-  sucide: "suicide",
-  suidice: "suicide",
-  suicid: "suicide",
-  suiciide: "suicide"
-};
-
-function deleet(text) {
-  return fold(text)
-    .replace(/!/g, "i")
-    .replace(/\|/g, "i")
-    .replace(/@/g, "a")
-    .replace(/\$/g, "s")
-    .replace(/0/g, "o")
-    .replace(/1/g, "i")
-    .replace(/3/g, "e")
-    .replace(/4/g, "a")
-    .replace(/5/g, "s")
-    .replace(/7/g, "t");
+function leet(text) {
+  return fold(text).replace(/!/g, "i").replace(/[a-z0-9@$]+/g, (token) => {
+    if (!/[a-z]/.test(token)) return token;
+    return token
+      .replace(/0/g, "o")
+      .replace(/1/g, "i")
+      .replace(/3/g, "e")
+      .replace(/4/g, "a")
+      .replace(/5/g, "s")
+      .replace(/7/g, "t")
+      .replace(/@/g, "a")
+      .replace(/\$/g, "s")
+      .replace(/!/g, "i");
+  });
 }
 
-function spell(text) {
-  return tokensOf(deleet(text)).map((token) => TYPO_DICT[token] || token).join(" ");
+function oneEdit(left, right) {
+  if (left === right) return true;
+  if (Math.abs(left.length - right.length) > 1) return false;
+  if (left.length === right.length) {
+    const diffs = [];
+    for (let i = 0; i < left.length; i++) if (left[i] !== right[i]) diffs.push(i);
+    if (diffs.length === 1) return true;
+    return diffs.length === 2 && diffs[1] === diffs[0] + 1 && left[diffs[0]] === right[diffs[1]] && left[diffs[1]] === right[diffs[0]];
+  }
+  const shorter = left.length < right.length ? left : right;
+  const longer = left.length < right.length ? right : left;
+  let i = 0;
+  let j = 0;
+  let skips = 0;
+  while (i < shorter.length && j < longer.length) {
+    if (shorter[i] === longer[j]) { i += 1; j += 1; }
+    else { skips += 1; j += 1; if (skips > 1) return false; }
+  }
+  return true;
+}
+
+const DEATH_WORDS = ["dead", "die", "dies", "died", "dying", "death", "deaths", "suicide", "suicidal", "suicidio", "suicidar", "muerto", "muerta", "morir", "muero", "muere", "muerte", "despertar", "overdose", "overdosing", "overdosed", "unalive"];
+const HARM_WORDS = ["hurt", "hurts", "hurting", "cut", "cuts", "cutting", "kill", "kills", "killing", "killed", "harm", "harms", "harming", "jump", "jumps", "jumping", "hang", "hangs", "hanging", "shoot", "shoots", "shooting", "lastimar", "cortar", "corto", "cortarme", "matar", "mato", "matare", "matarme", "saltar", "colgar", "colgarme", "ahorcar", "ahorcarme", "selfharm", "slit", "bleach", "tirar", "tirare", "tirarme", "tirarse", "pegar", "pegare", "tiro", "envenenar", "envenenare", "pistol", "bleed", "bleeding", "bled", "sangrando"];
+const INGEST_WORDS = ["took", "taken", "taking", "take", "takes", "swallowed", "swallow", "swallowing", "tome", "tomo", "trague", "trago"];
+const AMOUNT_WORDS = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "thirty", "forty", "fifty", "dozen", "several", "everything", "whole", "all", "todo", "toda", "todas", "frasco", "bottle", "handful", "quince", "veinte", "treinta", "cuarenta", "cincuenta"];
+const DRUG_WORDS = ["pill", "pills", "tablet", "tablets", "capsule", "capsules", "ibuprofen", "ibuprofeno", "tylenol", "aspirin", "advil", "paracetamol", "pastilla", "pastillas", "medicamento", "medicine", "medicines", "meds", "drug", "drugs", "painkiller", "painkillers"];
+const MEANS_WORDS = ["plan", "arrangement", "cliff", "bridge", "rope", "gun", "pills", "pill", "roof", "despedida"];
+const TIME_WORDS = ["tonight", "sunday", "manana", "tomorrow", "midnight", "dawn", "noche"];
+const FAMILY_WORDS = [...new Set([].concat(DEATH_WORDS, HARM_WORDS, INGEST_WORDS, AMOUNT_WORDS, DRUG_WORDS, MEANS_WORDS, TIME_WORDS))].filter((word) => word.length >= 4);
+const BENIGN_TOKENS = new Set("deal lead tired light lights swing fishing trailer coffee battery phone link plant plane play planet plank page pages price prices hour hours contact map desk photo photos minute minutes cake recipe weather video feature office notebook privacy refund brand candle candles shipping email password checkout donate browser form kit band catalog shop list public free note notes class classes people day days picture pictures site lab dtrt ian job jobs term terms data bug bugs answer answers human humans question questions time date today early company companies real wide shown optional stuck come comes sell sells use uses used stay stays turned turn turns two person share shares maintain maintains send sends sent find finds clear clears report reports happen happens get gets ask asks fix fixes wrong need needs apply applies update updates see sees seen save saves device devices change changes delete deletes remove removes close closes cancel cancels make makes made look looks great tab tabs built build read reads reading much many new old same other another any some such the and for with from about into over after before out off not yes please just then than there here too very also still only own when while have has had onto per via let lets what whats where who how can will would should may might am are was were been being do does did doing this that these those live love like line life last long give fire fine file home hope open door city want wish were told said anymore doesnt dont proof roofing night your our you eight".split(" "));
+const SUBJECT_WORDS = new Set("i im ive id me my myself mine yo mi mis quiero quiere he she they him his her their them himself herself themselves yourself yourselves ella ellas ellos friend friends brother brothers mom mother dad father husband wife son daughter amigo amiga esposo esposa hermano hermana coworker neighbor roommate classmate teammate patient vecino vecina companero companera prima primo uncle aunt niece nephew".split(" "));
+const BENIGN_OBJECTS = new Set("photo photos picture pictures minute minutes hour hours page pages dollar dollars step steps note notes class classes people day days coffee cake recipe video map desk price prices list form kit band candle candles".split(" "));
+
+const IDIOM_GUARDS = [
+  /\bthis is killing me\b/g,
+  /\bkilling me\b/g,
+  /\bme muero de risa\b/g,
+  /\bme muero por\b/g,
+  /\bmuero de risa\b/g,
+  /\bdead tired\b/g,
+  /\bdying (to|for)\b/g,
+  /\brope lights?\b/g,
+  /\brope swing\b/g,
+  /\bbleach-free\b/g,
+  /\bbleach free\b/g,
+  /\bkiller deal\b/g,
+  /\bkiller feature\b/g,
+  /\bdead battery\b/g,
+  /\bdead phone\b/g,
+  /\bdead link\b/g,
+  /\bhang on\b/g,
+  /\bcut the trailer\b/g,
+  /\boverdose (of|on) coffee\b/g,
+  /\bcutting-edge\b/g,
+  /\bcutting edge\b/g,
+  /\bhaircut\b/g,
+  /\bshoot a video\b/g,
+  /\bgone fishing\b/g,
+  /\bknife set\b/g
+];
+
+function stripIdioms(text) {
+  let next = text;
+  for (const pattern of IDIOM_GUARDS) next = next.replace(pattern, " ");
+  return next.replace(/\s+/g, " ").trim();
+}
+
+function nearestFamily(token) {
+  if (!token || BENIGN_TOKENS.has(token)) return token;
+  if (DEATH_WORDS.includes(token) || HARM_WORDS.includes(token) || INGEST_WORDS.includes(token) || AMOUNT_WORDS.includes(token) || DRUG_WORDS.includes(token) || MEANS_WORDS.includes(token) || TIME_WORDS.includes(token) || SUBJECT_WORDS.has(token)) return token;
+  if (token.length < 3) return token;
+  if (token.length < 4) {
+    for (const word of FAMILY_WORDS) {
+      if (word.length === token.length + 1 && oneEdit(token, word)) return word;
+    }
+    return token;
+  }
+  if (/^(morir|muer|suicid|cort|colg|ahorc|matar|pegar|tirar|quit)/.test(token)) return token;
+  let best = token;
+    for (const word of FAMILY_WORDS.concat(["myself"])) {
+    if (Math.abs(word.length - token.length) > 1) continue;
+    if (oneEdit(token, word)) return word;
+  }
+  return best;
+}
+
+function prepareCrisis(text) {
+  const raw = String(text || "");
+  const normalized = stripIdioms(leet(raw));
+  const tokens = tokensOf(normalized).map(nearestFamily);
+  const joined = tokens.join(" ");
+  const reflexive = tokens.some((token) => /(me|se)$/.test(token) && /^(ahorc|colg|cort|mat|tir|morir|muer|pegar)/.test(token));
+  const subject = reflexive || tokens.some((token) => SUBJECT_WORDS.has(token))
+    || /\b(told me|dijo que|dice que|quiere quitarse)\b/.test(joined)
+    || /él/i.test(raw);
+  const deathPhrase = /\b(not wake|no despertar|not be here|rather not be here|cant be here|cannot be here|not live anymore|dont want to live|doesnt want to live|do not want to live|does not want to live|do not want to exist|dont want to exist|no longer want to exist|no longer wants to exist|no longer wants to live|stop existing|dejar de existir|disappear forever|disappear para siempre|desaparecer para siempre|no quiero vivir|no quiere vivir|ya no quiero vivir|quiero morir|quiero morirme|want to die|wants to die|end it|ending it|end everything|end my life|ending my life|end his life|end her life|end your life|own life|acabar con|terminar con|mensaje final|ultimas palabras|dosis letales|quitarse|quitarme|quitar\w* la vida|no reason to live|all been decided|tomorrow is it|reason to live left|tired of living|goodbye note|goodbye letter|farewell note|farewell letter|last night alive|last message|final message|last words|this is goodbye|saying goodbye|said goodbye|goodbye forever|tonight is the end|later for me|reason to live is gone|rather be dead|stop breathing|finished being here|quitting life|life worth|who will find me|quien me va a encontrar|leave this world|dejar este mundo|adios para siempre|point of staying alive|staying alive|last time anyone hears|how to die|die on purpose|better off without me|when im gone|when i am gone|make the pain stop|not going to be around|wont be around|lost the will|about me forever|lethal dose)\b/.test(joined)
+    || /\b(tired of living|stop existing|quiero morir|goodbye note|farewell letter|last message|lethal doses?)\b/.test(leet(raw));
+  const death = deathPhrase || tokens.some((token) => DEATH_WORDS.includes(token) || /^(morir|muer|muert|suicid|desaparec)/.test(token));
+  const harm = reflexive || tokens.some((token) => HARM_WORDS.includes(token) || /^(cort|colg|ahorc|salt|matar|mato|mata|tirar|envenen|pegar)/.test(token))
+    || (/\bbarrel\b/.test(joined) && /\bmouth\b/.test(joined))
+    || /\bknife on (herself|himself)\b/.test(joined);
+  const ingestVerb = tokens.some((token) => INGEST_WORDS.includes(token) || token === "drank" || (/^(tome|tomo|tomar|trag)/.test(token) && token !== "tomorrow"));
+  const amount = tokens.some((token) => AMOUNT_WORDS.includes(token)) || /\b\d+\b/.test(joined)
+    || /\b(whole bottle|todo el frasco|all the pills|todas las pastillas)\b/.test(joined);
+  const drug = tokens.some((token) => DRUG_WORDS.includes(token) || token === "bleach");
+  const otherNoun = tokens.some((token) => token.length >= 5 && !BENIGN_OBJECTS.has(token) && !BENIGN_TOKENS.has(token) && !SUBJECT_WORDS.has(token) && !AMOUNT_WORDS.includes(token) && !INGEST_WORDS.includes(token) && !TIME_WORDS.includes(token) && !DEATH_WORDS.includes(token) && !HARM_WORDS.includes(token));
+  const ingest = (ingestVerb && amount && (drug || otherNoun || /\b(bottle|frasco|something)\b/.test(joined)))
+    || (subject && ingestVerb && (drug || /\b(bottle|frasco|something)\b/.test(joined)))
+    || (amount && drug)
+    || (ingestVerb && /\bhandful\b/.test(joined))
+    || (drug && tokens.some((token) => token === "swallowed" || token === "took" || token === "tomo" || token === "tome"));
+  const means = tokens.filter((token) => MEANS_WORDS.includes(token)).length
+    + (/\b(goodbye letter|carta de despedida)\b/.test(joined) ? 1 : 0);
+  const times = tokens.filter((token) => TIME_WORDS.includes(token)).length
+    + (/\besta noche\b/.test(joined) ? 1 : 0);
+  const plan = (subject && (means > 0 || times > 0)) || (means >= 1 && times >= 1) || means >= 2;
+  const unambiguous = tokens.some((token) => /^(suicid|overdos|sobredos|kms|selfharm|desaparec|bleach|muert|morir)/.test(token))
+    || ["我想自杀", "我不想活了", "想死", "死にたい", "自分を傷つけたい", "自殺したい", "죽고 싶어", "자살하고", "자해하고", "मैं मरना चाहता", "أريد أن أموت", "أؤذي نفسي", "я хочу умереть", "покончить с собой", "मला मरायचे आहे", "आत्महत्या", "самоубийство", "自残", "magpakamatay", "je veux mourir", "envie de mourir", "ich will sterben", "mich umbringen", "voglio morire", "quero morrer", "quero me matar", "mwen vle mouri", "gusto kong magpakamatay", "hacerme dano", "hacerme daño", "farmi del male", "me suicider", "mi taglio", "ayoko nang mabuhay"].some((phrase) => leet(raw).includes(fold(phrase)) || raw.toLowerCase().includes(phrase.toLowerCase()))
+    || /\bod\b/.test(joined);
+  return { subject, death, deathPhrase, harm, ingest, plan, unambiguous, joined };
 }
 
 function asksForHarmPage(text, tokens) {
@@ -334,105 +310,6 @@ function asksForHarmPage(text, tokens) {
   return hasAnyPhrase(tokens, HARM_PHRASES);
 }
 
-const CRISIS_EXACT = [
-  "quiero morir", "me quiero matar", "hacerme dano", "hacerme daño", "me corto",
-  "quero morrer", "quero me matar", "me cortar", "je veux mourir", "envie de mourir", "me suicider",
-  "ich will sterben", "mich umbringen", "voglio morire", "suicidarmi", "farmi del male", "mi taglio",
-  "我想自杀", "我不想活了", "想死", "死にたい", "自分を傷つけたい", "自殺したい",
-  "죽고 싶어", "자살하고 싶어요", "자해하고 있어",
-  "मैं मरना चाहता हूँ", "أريد أن أموت", "أؤذي نفسي", "я хочу умереть", "покончить с собой",
-  "gusto kong magpakamatay", "ayoko nang mabuhay", "mwen vle mouri", "मला मरायचे आहे",
-  "自残", "自杀", "自殺", "आत्महत्या", "самоубийство", "es un suicidio",
-  "selbstmord", "selbstverletzung", "magpakamatay"
-];
-
-function crisisWording(text) {
-  const raw = String(text || "");
-  const t = deleet(raw);
-  if (asksForHarmPage(raw, tokensOf(t))) return true;
-  if (CRISIS_EXACT.some((phrase) => raw.includes(phrase) || t.includes(fold(phrase)))) return true;
-  if (/\b(kill myself|killing myself|killed myself|kill himself|kill herself|kill themselves)\b/.test(t)) return true;
-  if (/\b(end|ending|take|taking|takes|took) (my|his|her|their|your) (own )?life\b/.test(t)) return true;
-  if (/\bown life\b/.test(t)) return true;
-  if (/\b(want|wants|wanted|wanna|going) to die\b/.test(t)) return true;
-  if (/\b(die on purpose|stop breathing|tonight is the end|how to die)\b/.test(t)) return true;
-  if (/\bhang (myself|himself|herself|themselves)\b/.test(t)) return true;
-  if (/\b(do not|dont|does not|doesnt|no longer) (want|wants) to (live|exist)\b/.test(t)) return true;
-  if (/\b(tired of living|stop existing|stop living|worth living|keep living)\b/.test(t)) return true;
-  if (/\b(ending it|end it|end everything)\b/.test(t)) return true;
-  if (/\bslit\b/.test(t)) return true;
-  if (/\b(cut|cuts|cutting) (myself|himself|herself|my|his|her)\b/.test(t)) return true;
-  if (/\b(selfharm|suicide|suicidal|suicidio|unalive|kms)\b/.test(t)) return true;
-  if (/\b(rather be dead|rather not be here|not be here)\b/.test(t)) return true;
-  if (/\bwho will find me\b/.test(t) || /\bquien me va a encontrar\b/.test(t)) return true;
-  if (/\b(goodbye note|farewell note|farewell letter|last night alive|last message)\b/.test(t)) return true;
-  if (/\b(i am not safe|im not safe|i need help)\b/.test(t) && !/\b(order|account|password|page|login|form)\b/.test(t)) return true;
-  if (/\boverdose\w*\b/.test(t) && !/\bcoffee\b/.test(t)) return true;
-  if (/\btook an od\b/.test(t)) return true;
-  if (/\b(lethal dose|dosis letales|dosis letal)\b/.test(t)) return true;
-  if (/\b(least painful|better off without me|make the pain stop|when im gone|when i am gone)\b/.test(t)) return true;
-  if (/\b(leave this world|leaving this world|dejar este mundo|quiero desaparecer|desaparecer para siempre)\b/.test(t)) return true;
-  if (/\b(quitting life|quit life|point of staying alive|staying alive)\b/.test(t)) return true;
-  if (/\b(rope setup|the rope|a rope|bought a rope)\b/.test(t)) return true;
-  if (/\b(pills?|pastillas?|tablets?|painkillers?)\b/.test(t) && /\b(took|taken|taking|take|swallowed|swallow|bottle|handful|all|every|got)\b/.test(t)) return true;
-  if (/\bbleach\b/.test(t)) return true;
-  if (/\bwrists?\b/.test(t) && /\b(cut|slit|bleed|bleeding)\b/.test(t)) return true;
-  if (/\b(jump|jumped|jumping)\b/.test(t) && /\b(bridge|roof|window|balcony|myself|himself|herself|tonight|off|from)\b/.test(t)) return true;
-  if (/\b(gun|pistol|rifle|shotgun)\b/.test(t) && /\b(myself|himself|herself|tonight|plan|head|mouth)\b/.test(t)) return true;
-  if (/\bknife\b/.test(t) && /\b(wrist|wrists|throat)\b/.test(t)) return true;
-  if (/\bbarrel\b/.test(t) && /\bmouth\b/.test(t)) return true;
-  if (/\b(everything about me forever|everything else about me forever)\b/.test(t)) return true;
-  if (/\bquitar\w* la vida\b/.test(t)) return true;
-  if (/\b(matarme|me voy a matar|colgarme|ahorcarme|acabar con mi vida|terminar con mi vida)\b/.test(t)) return true;
-  if (/\b(se quiere morir|se quiere matar|quiere morir|quiere quitarse)\b/.test(t)) return true;
-  if (/\b(told me|dijo que)\b/.test(t) && /\b(die|live|kill|end|jump|pill|hurt|suicid|life|morir|quitar|vivir)\b/.test(t)) return true;
-  if (/\b(wants|wanted) to\b/.test(t) && /\b(die|kill|end|jump|hang|cut|shoot|live|morir|quitar)\b/.test(t)) return true;
-  if (/\b(plan|planeo|arrangement)\b/.test(t) && /\b(tonight|sunday|manana|tomorrow|midnight|dawn|friday)\b/.test(t) && /\b(bridge|roof|garage|bathroom|banera|balcony|balcon|park|bath|tub)\b/.test(t)) return true;
-  if (/\b(tirare|tirarme|me tir)\b/.test(t)) return true;
-  if (/\b(cortarme|cortare|cortarse|cortara|venas)\b/.test(t)) return true;
-  if (/\b(colgarme|colgare|voy a colgar|me voy a colgar|ahorcarme|ahorcare)\b/.test(t)) return true;
-  if (/\b(shoot|shot) (myself|himself|herself|themselves)\b/.test(t)) return true;
-  if (/\b(swallowed|took|taken|taking)\b/.test(t) && /\b(bottle|pills?|tablets?|handful)\b/.test(t)) return true;
-  if (/\bdejar de existir\b/.test(t)) return true;
-  if (/\bahorc\w*\b/.test(t)) return true;
-  if (/\bjump\w*\b/.test(t) && /\b(train|bridge|roof|window|balcony|off|from|front)\b/.test(t)) return true;
-  if (/\blife worth\b/.test(t) || (/\bworth it\b/.test(t) && /\blife\b/.test(t))) return true;
-  if (/\b(is cutting|are cutting|while cutting|esta cortandose|se tomo|se corto|se trago)\b/.test(t)) return true;
-  if (/\b(pegare un tiro|un tiro|matare|suicidarme|suicidar|me quiero suicid)\b/.test(t)) return true;
-  if (/\bpills?\b/.test(t) && /\b(sleeping|alcohol|down)\b/.test(t)) return true;
-  if (/\bjump\b/.test(t) && /\b(plan|manana|tomorrow|tonight|going to)\b/.test(t)) return true;
-  if (/\bgoing to jump\b/.test(t)) return true;
-  if (/\bmyself\b/.test(t) && /\bkill\b/.test(t)) return true;
-  if (/\b(no reason to live|reason to live|ya no quiero vivir|no quiero vivir)\b/.test(t)) return true;
-  if (/\bdo it\b/.test(t) && /\b(tonight|sunday|tomorrow|midnight|dawn|manana)\b/.test(t) && /\b(bridge|roof|garage|bathroom|balcony|balcon|park)\b/.test(t)) return true;
-  if (/\b(voy a tirar|tirar del|tirarme)\b/.test(t)) return true;
-  if (/\b(not going to be around|cant be here anymore|cannot be here anymore|wont be around|this is goodbye|saying goodbye|goodbye forever|said goodbye|lost the will)\b/.test(t)) return true;
-  if (/\b(isnt a later for me|see next month|finished being here|all been decided|tomorrow is it)\b/.test(t)) return true;
-  if (/\blethal doses?\b/.test(t)) return true;
-  if (/\b(envenen\w*|me mat\w*|tirarse|morirse|se acaba)\b/.test(t)) return true;
-  if (/\b(va a tirar|se va a tirar|se va a cortar|se va a matar|will jump|killing himself|killing herself)\b/.test(t)) return true;
-  if (/\bdo it\b/.test(t) && /\b(bridge|roof|garage|balcony)\b/.test(t)) return true;
-  if (/\b(take|takes|took) the (whole )?bottle\b/.test(t)) return true;
-  if (/\b(disappear forever|desaparecer para siempre|desaparecer)\b/.test(t)) return true;
-  if (/\bdisappear\b/.test(t) && /\bpara siempre\b/.test(t)) return true;
-  if (/\bdice que se quiere\b/.test(t) && /\b(die|morir|jump|kill|end|quitar|pegar|tiro)\b/.test(t)) return true;
-  if (/\bswallow\w*\b/.test(t) && /\b(medicine|cabinet|pills?|bottle|something)\b/.test(t)) return true;
-  if (/\b(esta cortando|se esta cortando|her cutting|hanging from|sangrando)\b/.test(t)) return true;
-  if (/\bgun\b/.test(t) && /\b(will use|left the gun)\b/.test(t)) return true;
-  if (/\bmedicine cabinet\b/.test(t)) return true;
-  if (/\bme muero\b/.test(t) && !/\brisa\b/.test(t)) return true;
-  if (/\bhang (yourself|myself|himself|herself)\b/.test(t)) return true;
-  if (/\btodas las pastillas\b/.test(t)) return true;
-  if (/\bknife\b/.test(t) && /\b(herself|himself)\b/.test(t)) return true;
-  if (/\bwill die\b/.test(t) && /\b(by|tonight|sunday)\b/.test(t)) return true;
-  if (/\b(final message|last words|mensaje final|ultimas palabras|adios para siempre|sobredosis|overdos)\b/.test(t)) return true;
-  if (/\b(last time anyone hears|wanting to die|voy a morirme|morirme|tomarme las pastillas|dead by)\b/.test(t)) return true;
-  if (/\bmorir\b/.test(t) && !/\brisa\b/.test(t)) return true;
-  if (/\bmuert[oa]s?\b/.test(t)) return true;
-  if (/\b(cutting|cortando|cortandose)\b/.test(t) && /\b(wrist|wrists|arm|arms|vena|venas|muneca|himself|herself|ban[o0])\b/.test(t)) return true;
-  return false;
-}
-
 const FOLLOW_UPS = new Set([
   "should i use it", "should i do it", "should i use that", "should i do that",
   "how much", "is it enough", "tonight", "good plan"
@@ -440,14 +317,26 @@ const FOLLOW_UPS = new Set([
 
 function priorMeans(history) {
   if (!Array.isArray(history)) return false;
-  return history.some((turn) => /\b(rope|pills?|gun|blade|bridge)\b/.test(deleet(turn)));
+  return history.some((turn) => {
+    const prepared = prepareCrisis(turn);
+    return prepared.plan || /\b(rope|pills?|gun|blade|bridge|cliff)\b/.test(leet(turn));
+  });
 }
 
-// The only crisis decider. A short follow-up counts only when an earlier
-// turn in this call already named a means. A benign later question does not.
+// One structural decider. A subject plus a death, harm, ingest-amount,
+// or plan family fires the sheet. An unattributed plan fires when a means
+// co-occurs with a time or with another means. Idiom spans are removed first.
 export function crisisSheet(question, history) {
-  if (crisisWording(question) || crisisWording(spell(question))) return true;
-  const asked = fold(question).replace(/[?!.]+$/g, "").trim();
+  const prepared = prepareCrisis(question);
+  if (asksForHarmPage(question, tokensOf(leet(question)))) return true;
+  if (prepared.deathPhrase || prepared.unambiguous || prepared.ingest || (prepared.harm && /\b(plan|tonight|sunday|dawn|midnight|manana|noche|wrists?|bleed\w*|roof|bridge|cliff|balcon)\b/.test(prepared.joined))) return true;
+  if (prepared.subject && (prepared.death || prepared.harm || prepared.ingest || prepared.plan)) return true;
+  if (!prepared.subject && prepared.plan && (prepared.joined.includes("plan") || prepared.joined.split(" ").filter((token) => MEANS_WORDS.includes(token)).length >= 1)) {
+    const means = prepared.joined.split(" ").filter((token) => MEANS_WORDS.includes(token)).length;
+    const times = prepared.joined.split(" ").filter((token) => TIME_WORDS.includes(token)).length;
+    if ((means >= 1 && times >= 1) || means >= 2) return true;
+  }
+  const asked = leet(question).replace(/[?!.]+$/g, "").trim();
   if (FOLLOW_UPS.has(asked) && priorMeans(history)) return true;
   return false;
 }
@@ -503,6 +392,7 @@ function fallbackPassage(corpus) {
 export async function replyFor(question, corpus, options) {
   const opts = options || {};
   try {
+    if (crisisSheet(question)) return finish(crisisReply());
     if (Array.isArray(opts.history)) opts.history.slice(0);
     const screened = screen(question, opts.history);
     let reply;
