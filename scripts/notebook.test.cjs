@@ -111,12 +111,10 @@ test('2026-11-12 keeps the two notes and does not claim a platform post', () => 
   assert.doesNotMatch(page, /\b\d[\d,]*\s*(views|likes|followers|comments)\b/i);
 });
 
-test('notebook is registered in the nav, footer, and sitemap', () => {
+test('notebook is registered in the sitemap and inside-the-lab footer', () => {
   const home = read(HOME);
-  const nav = home.match(/<nav\b[^>]*aria-label="Main navigation"[^>]*>[\s\S]*?<\/nav>/)[0];
-  const foot = home.match(/<footer\b[\s\S]*?<\/footer>|<footer>[\s\S]*?<\/footer>/)[0];
-  assert.match(nav, /href="\/notebook\/"/);
-  assert.match(foot, /href="\/notebook\/"/);
+  const more = home.match(/<details class="foot-more"[\s\S]*?<\/details>/)[0];
+  assert.doesNotMatch(more, /href="\/notebook\/"/);
   assert.match(read('inside-the-lab/index.html'), /<footer[\s\S]*href="\/notebook\/"/);
   const newest = newestIso(entryDates(read(PAGE)));
   const sitemap = read(SITEMAP);

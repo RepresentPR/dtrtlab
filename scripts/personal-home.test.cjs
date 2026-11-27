@@ -31,7 +31,7 @@ function pages() {
   return out;
 }
 
-test('home leads with Ian, an empty posts page, and Ask', () => {
+test('home leads with Ian and an empty posts page', () => {
   const home = read('index.html');
   const main = home.match(/<main[\s\S]*?<\/main>/)[0];
   const blog = read('blog/index.html');
@@ -43,8 +43,10 @@ test('home leads with Ian, an empty posts page, and Ask', () => {
   assert.doesNotMatch(blog, /coming soon/i);
   assert.match(blog, /href="https:\/\/www\.instagram\.com\/dtrt\.xyng\/"/);
   assert.match(blog, /href="https:\/\/x\.com\/DTRTLab"/);
-  assert.match(main, /href="\/blog\/"/);
-  assert.match(main, /href="\/ask\/"/);
+  // Storefront footer More and the visible home no longer push /blog, /ask, or /notebook.
+  const more = home.match(/<details class="foot-more"[\s\S]*?<\/details>/);
+  assert.ok(more, 'footer More exists');
+  assert.doesNotMatch(more[0], /href="\/(blog|ask|notebook)\/"/);
   assert.match(main, /id="work-with-me"/);
   assert.match(home, /href="\/map\/"/);
   assert.match(home, /id="job-desk"/);
