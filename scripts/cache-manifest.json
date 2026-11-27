@@ -336,11 +336,8 @@
     "key": "20261010n"
   },
   "js/mercado-allowlist.js": {
-    "hash": "c2255b95d324112d8ac15e00e139b8aed3420cd215942088102db2930dbfeb5c",
-    "key": [
-      "20261127-store6",
-      null
-    ]
+    "hash": "9987984a4d174971f203a246dcfd1adf1a06368ebf64cd9f7ef46e171fe3ea11",
+    "key": "20261127-store9"
   },
   "js/nav.js": {
     "hash": "e5c352f4e1b21aa065d0c4b401eb548083816d41c19490db4e00aa4383dbcf34",
@@ -367,8 +364,8 @@
     "key": "20261115-social6"
   },
   "js/shop-helper.js": {
-    "hash": "0f5f610035e4399e244bf1304acea89946c21f4a8783316b9a9955eb86cb6cdb",
-    "key": "20261127-store6"
+    "hash": "ff822c3d246fd8a173d5fc1ba6a7f973a5a00dbc3be2e330b86af9be12520a2c",
+    "key": "20261127-store7"
   },
   "js/shop.js": {
     "hash": "1d629e1828cded14e2a3e055e89b5c3e2109271fa33192c201144889dc1f76c1",

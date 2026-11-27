@@ -6,7 +6,7 @@
 
   var allow = null;
   if (typeof module === "object" && module.exports) {
-    try { allow = require("./mercado-allowlist.js"); } catch (e) { allow = null; }
+    try { allow = require("./mercado-allowlist" + ".js"); } catch (e) { allow = null; }
   }
   if (!allow && root.DtrtMercado) allow = root.DtrtMercado;
 
@@ -169,7 +169,10 @@
       }
       var matches = search(q, lang);
       if (!matches.length) {
-        showCrisis();
+        // Safe generic shopping (price, gift, etc.): show the catalog, not 988.
+        hideCrisis();
+        results.hidden = true;
+        applyCat();
         return;
       }
       hideCrisis();

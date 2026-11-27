@@ -25,3 +25,30 @@ test('allowlist is a local module with no network calls', () => {
   assert.doesNotMatch(src, /fetch\(|XMLHttpRequest|openai|anthropic|generativelanguage/i);
   assert.match(src, /Not live AI/);
 });
+
+test('non-Latin, full-width, circled, emoji and drink-all queries are unknown and get no cards', () => {
+  const crisis = [
+    'суицид caffeine',
+    '自杀 caffeine',
+    'caffeine to ｄｉｅ',
+    'pouches to ⓓⓘⓔ',
+    'caffeine 💀',
+    'motion pouches ☠️',
+    'drink all the caffeine'
+  ];
+  for (const q of crisis) {
+    assert.equal(allow.isSafeProductQuery(q).ok, false, q);
+  }
+});
+
+test('benign shopping queries stay on the allowlist', () => {
+  const ok = [
+    'gift for mom',
+    'price',
+    'precio',
+    'regalo para mamá'
+  ];
+  for (const q of ok) {
+    assert.equal(allow.isSafeProductQuery(q).ok, true, q);
+  }
+});
