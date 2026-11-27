@@ -28,7 +28,7 @@ FIXED: MOTION disclosure is the first line of the card; the claims are the motio
 
 FIXED: the Candles disclosure sits on the same line as the View link in index.html and mercado/index.html: Referral link. We earn from fees. Trading is risky, not financial advice.
 
-FIXED: at 390 px all four product cards, including the business AI card, sit fully inside the first 844 px in EN and ES (lowest card bottom 615 px; AI card bottom 378 px) — /tmp/pr116-shots/home-en-phone.png /tmp/pr116-shots/home-es-phone.png /tmp/pr116-shots/mercado-en-phone.png /tmp/pr116-shots/mercado-es-phone.png.
+FIXED: at 390 px all four product cards, including the business AI card, sit fully inside the first 844 px in EN and ES (lowest card bottom 615 px; AI card bottom 378 px) — index.html and mercado/index.html (phone shots also at /tmp/pr116-shots/home-en-phone.png on the builder box).
 
 FIXED: home and `/mercado/` load the shared r5 helper js/mercado-helper.js and js/mercado-allowlist.js (the contact pop-up uses the same isCrisisText).
 
