@@ -7,10 +7,10 @@
   var path = (location.pathname || "/").replace(/\/index\.html$/, "/");
   if (path.length > 1 && path.endsWith("/")) path = path.slice(0, -1);
   var pages = {
-    "/brand.html": { title: "Marca — DTRT Lab", h1: "Kit de marca de DTRT Lab", lead: "El nombre de la empresa es DTRT Lab. La cuenta es @DTRTLab. El negocio es el DTRT Job Desk, un gerente de oficina con IA para pequeños negocios de servicios. Las solicitudes de prensa empiezan en <a href=\"/press.html\">Prensa</a>." },
-    "/careers.html": { title: "Empleo — DTRT Lab", h1: "No estamos contratando.", lead: "No hay puestos abiertos ni solicitudes de empleo en este sitio. DTRT Lab vende sistemas de oficina con IA para pequeños negocios de servicios: el DTRT Job Desk y el AI Visibility Fix." },
-    "/donate.html": { title: "Apoyo — DTRT Lab", h1: "Sin propinas directas.", lead: "Las propinas directas no están disponibles por ahora. Los planes pagados están en Whop. Esta página no hace cargos a ninguna tarjeta." },
-    "/404.html": { title: "No encontrada — DTRT Lab", h1: "Esa página no está.", lead: "Vuelve al inicio del negocio o a Lab / Pasatiempo." },
+    "/brand.html": { title: "Marca — DTRT Lab", h1: "Kit de marca de DTRT Lab", lead: "El nombre de la empresa es DTRT Lab. La cuenta es @DTRTLab. DTRT Lab es la tienda independiente de Jafra, MOTION, Candles y una prueba muy temprana de IA. Las solicitudes de prensa empiezan en <a href=\"/press.html\">Prensa</a>." },
+    "/careers.html": { title: "Empleo — DTRT Lab", h1: "No estamos contratando.", lead: "No hay puestos abiertos ni solicitudes de empleo en este sitio. DTRT Lab es la tienda de Jafra, MOTION, Candles y una prueba muy temprana de IA que todavía no está en vivo." },
+    "/donate.html": { title: "Apoyo — DTRT Lab", h1: "Sin propinas directas.", lead: "Las propinas directas no están disponibles por ahora. Esta página no hace cargos a ninguna tarjeta." },
+    "/404.html": { title: "No encontrada — DTRT Lab", h1: "Esa página no está.", lead: "Vuelve al inicio o a Lab / Pasatiempo." },
     "/legal/terms.html": { title: "Términos — DTRT Lab", h1: "Términos de uso", lead: "Última actualización: 27 de noviembre de 2026 — se actualizó el usuario de Instagram a @dtrt.xyng; el texto legal no cambió. Estos términos cubren dtrtlab.com y las páginas relacionadas de DTRT Lab. Preguntas: <a href=\"/contact.html\">formulario de contacto</a>." },
     "/legal/privacy.html": { title: "Privacidad — DTRT Lab", h1: "Privacidad", lead: "Última actualización: 27 de noviembre de 2026 — se actualizó el usuario de Instagram a @dtrt.xyng; el texto legal no cambió. Cómo DTRT Lab trata los mensajes, la analítica y los pagos que ocurren en Whop." },
     "/legal/cookies.html": { title: "Cookies — DTRT Lab", h1: "Cookies", lead: "Última actualización: 27 de noviembre de 2026 — se actualizó el usuario de Instagram a @dtrt.xyng; el texto legal no cambió. Cookies, almacenamiento local y analítica en dtrtlab.com." },

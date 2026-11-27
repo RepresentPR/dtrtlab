@@ -92,7 +92,7 @@
 
   if (!document.querySelector('script[src*="js/biz-lang.js"]')) {
     var bizLang = document.createElement("script");
-    bizLang.src = root + "js/biz-lang.js?v=20261127-legal4";
+    bizLang.src = root + "js/biz-lang.js?v=20261127r8c";
     bizLang.defer = true;
     document.head.appendChild(bizLang);
   }
@@ -101,8 +101,8 @@
     var banner = document.createElement("p");
     banner.className = "hobby-banner wrap";
     banner.innerHTML = lang === "es"
-      ? 'Esto es Lab / Pasatiempo, no el negocio. <a href="' + root + 'lab.html">Lab / Pasatiempo</a> · <a href="' + root + 'index.html">Inicio</a>'
-      : 'This is Lab / Hobby, not the business. <a href="' + root + 'lab.html">Lab / Hobby</a> · <a href="' + root + 'index.html">Business home</a>';
+      ? 'Esto es Lab / Pasatiempo, no la tienda. <a href="' + root + 'lab.html">Lab / Pasatiempo</a> · <a href="' + root + 'mercado/">Tienda</a>' + root + 'lab.html">Lab / Pasatiempo</a> · <a href="' + root + 'index.html">Inicio</a>'
+      : 'This is Lab / Hobby, not the shop. <a href="' + root + 'lab.html">Lab / Hobby</a> · <a href="' + root + 'mercado/">Shop</a>';
     document.getElementById("main").insertBefore(banner, document.getElementById("main").firstChild);
   }
 
@@ -347,7 +347,7 @@
 
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register(root + "sw.js?v=20261127r8b2").catch(function () {});
+      navigator.serviceWorker.register(root + "sw.js?v=20261127r8c").catch(function () {});
     });
   }
 })();
