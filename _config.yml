@@ -16,6 +16,7 @@ exclude:
   - functions
   - .github
   - .cursor
+  - cloudflare
   - node_modules
   - brand-assets
   - outputs
