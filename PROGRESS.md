@@ -2,7 +2,7 @@
 
 Public AI chat branch `cursor/public-ai-launch-8a16`.
 
-Head: `pending`
+Head: `3a9810d175529fd2469d1a4fd3c93aaf3ccd4f2d`
 
 FIXED: ending-it lines set the flag and the next question stays flagged, 22/22 scripts/ask-heldout-flag.test.cjs
 FIXED: pill and bleach lines set the flag and the next question stays flagged, 22/22 scripts/ask-heldout-flag.test.cjs
