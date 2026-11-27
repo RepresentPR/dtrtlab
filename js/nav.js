@@ -8,7 +8,6 @@
   var aboutOn = file === "about.html";
   var companyOn = file === "company.html";
   var contactOn = file === "contact.html";
-  var partnerOn = file === "partners.html" || here.indexOf("/partner/") !== -1;
   var afterlightOn =
     file === "afterlight.html" ||
     file === "game.html" ||
@@ -28,8 +27,8 @@
   var lang = /(?:\?|&)lang=es(?:&|$)/.test(location.search) ? "es" : "en";
   document.documentElement.lang = lang;
   var ui = lang === "es"
-    ? { primary: "Principal", free: "Mapa de oficina gratis", packages: "Paquetes", company: "Empresa", contact: "Contacto", shop: "Tienda", hobby: "Lab / Pasatiempo", press: "Prensa", brand: "Marca", privacy: "Privacidad", terms: "Términos", cookies: "Cookies", refunds: "Reembolsos", home: "Inicio", menu: "Menú", close: "Cerrar", credit: "Ian | DTRT Lab · trabaja en remoto" }
-    : { primary: "Primary", free: "Get my free office map", packages: "Packages", company: "Company", contact: "Contact", shop: "Shop", hobby: "Lab / Hobby", press: "Press", brand: "Brand", privacy: "Privacy", terms: "Terms", cookies: "Cookies", refunds: "Refunds", home: "Home", menu: "Menu", close: "Close", credit: "Ian | DTRT Lab · works remotely" };
+    ? { primary: "Principal", free: "Abrir la tienda", packages: "Paquetes", company: "Empresa", contact: "Contacto", shop: "Tienda", hobby: "Lab / Pasatiempo", press: "Prensa", brand: "Marca", privacy: "Privacidad", terms: "Términos", cookies: "Cookies", refunds: "Reembolsos", home: "Inicio", menu: "Menú", close: "Cerrar", credit: "Ian | DTRT Lab · trabaja en remoto" }
+    : { primary: "Primary", free: "Open the shop", packages: "Packages", company: "Company", contact: "Contact", shop: "Shop", hobby: "Lab / Hobby", press: "Press", brand: "Brand", privacy: "Privacy", terms: "Terms", cookies: "Cookies", refunds: "Refunds", home: "Home", menu: "Menu", close: "Close", credit: "Ian | DTRT Lab · works remotely" };
   function langHref(code) {
     var q = new URLSearchParams(location.search);
     q.set("lang", code);
@@ -42,9 +41,12 @@
     root +
     'img/brand/mark.svg" alt="DTRT Lab" width="36" height="36"><span>Ian | DTRT Lab</span></a>' +
     '<nav class="links" id="site-links" aria-label="' + ui.primary + '">' +
-    link("index.html#prices", lang === "es" ? "Precios" : "Prices", false) +
-    link("index.html#job-desk", "Job Desk", false) +
-    link("index.html#about", lang === "es" ? "Sobre Ian" : "About Ian", aboutOn) +
+    link("mercado/", lang === "es" ? "Mercado" : "Shop", here.indexOf("/mercado") !== -1) +
+    link("mercado/#motion", "MOTION", false) +
+    link("mercado/#candles", "Candles", false) +
+    link("mercado/#jafra", "Jafra", false) +
+    link("ask/", lang === "es" ? "Preguntar (IA)" : "Ask (AI)", here.indexOf("/ask") !== -1) +
+    link("links/", lang === "es" ? "Enlaces" : "Links", here.indexOf("/links") !== -1) +
     link("contact.html", ui.contact, contactOn) +
     '<a href="' + langHref("en") + '" lang="en" hreflang="en"' + (lang === "en" ? ' aria-current="page"' : "") + '>EN</a>' +
     '<a href="' + langHref("es") + '" lang="es" hreflang="es"' + (lang === "es" ? ' aria-current="page"' : "") + '>ES</a>' +
@@ -52,7 +54,7 @@
     "</nav>" +
     '<div class="nav-end">' +
     '<div class="nav-socials nav-socials-desktop" data-social-slot="nav"></div>' +
-    '<a class="nav-cta" id="nav-start" href="' + root + 'map/">' + ui.free + '</a>' +
+    '<a class="nav-cta" id="nav-start" href="' + root + 'mercado/">' + (lang === "es" ? "Mercado" : "Shop") + '</a>' +
     '<button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-links">' + ui.menu + '</button>' +
     "</div>" +
     "</div>";
@@ -76,10 +78,10 @@
     foot.innerHTML =
       '<div class="wrap">' +
       "<span>" + ui.credit + "</span>" +
-      '<a href="' + root + 'index.html#prices">' + (lang === "es" ? "Precios" : "Prices") + '</a>' +
+      '<a href="' + root + 'mercado/">Mercado</a>' +
       '<a href="' + root + 'contact.html">' + ui.contact + '</a>' +
       '<a href="' + root + 'brand.html">' + ui.brand + '</a>' +
-      '<a href="' + root + 'find.html">X · Instagram</a>' +
+      '<a href="' + root + 'links/">X · Instagram</a>' +
       '<a href="' + root + 'legal/privacy.html">' + ui.privacy + '</a>' +
       '<a href="' + root + 'legal/terms.html">' + ui.terms + '</a>' +
       '<a href="' + root + 'legal/cookies.html">' + ui.cookies + '</a>' +
